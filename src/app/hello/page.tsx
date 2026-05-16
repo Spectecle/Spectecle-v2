@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { LogoMark } from "@/components/LogoMark";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
@@ -167,8 +168,8 @@ export default function HelloPage() {
           transition={{ duration: 0.5 }}
           className="relative z-10 flex items-center justify-between px-6 md:px-12 pt-8 pb-0"
         >
-          <Link href="/" className="text-white font-extrabold text-xl tracking-tight" style={{ letterSpacing: "-1px" }}>
-            Spectecle
+          <Link href="/">
+            <LogoMark className="h-8 w-auto" />
           </Link>
           <Link
             href="/contact"
