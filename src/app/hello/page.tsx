@@ -294,14 +294,8 @@ export default function HelloPage() {
           <div className="marquee-track flex items-center gap-12 whitespace-nowrap">
             {[...CLIENTS, ...CLIENTS].map((c, i) => (
               <div key={i} className="flex items-center gap-3 flex-shrink-0">
-                <div className="relative w-6 h-6">
-                  <img
-                    src={`https://logo.clearbit.com/${c.domain}`}
-                    alt=""
-                    aria-hidden="true"
-                    className="w-6 h-6 rounded object-contain opacity-60"
-                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                  />
+                <div className="w-6 h-6 rounded bg-white/8 border border-white/10 flex items-center justify-center text-[10px] text-slate-400 font-bold flex-shrink-0">
+                  {c.name[0]}
                 </div>
                 <span className="text-slate-500 text-sm font-medium">{c.name}</span>
               </div>
@@ -376,13 +370,6 @@ export default function HelloPage() {
                         <div className="absolute inset-0 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
                           <span className="text-white font-bold text-lg">{p.title[0]}</span>
                         </div>
-                        <img
-                          src={`https://logo.clearbit.com/${p.domain}`}
-                          alt=""
-                          aria-hidden="true"
-                          className="absolute inset-0 w-full h-full object-contain rounded-xl bg-white/95 p-1"
-                          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                        />
                       </div>
                       <span className="text-white/40 text-[9px] font-mono tracking-widest">{p.domain}</span>
                     </div>
