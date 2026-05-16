@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import ConditionalShell from "@/components/ConditionalShell";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
@@ -182,9 +181,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col antialiased">
         <div className="noise-overlay" aria-hidden="true" />
         <SmoothScroll>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <ConditionalShell>{children}</ConditionalShell>
         </SmoothScroll>
         <Analytics />
       </body>

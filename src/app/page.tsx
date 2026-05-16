@@ -11,6 +11,11 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 import {
   ArrowUpRight,
   Monitor,
@@ -25,10 +30,6 @@ import {
   Code2,
   ExternalLink,
 } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 /* ─── Animated Counter ─────────────────────────────── */
 function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {

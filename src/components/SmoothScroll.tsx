@@ -25,7 +25,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    // Scroll progress bar at the very top
     if (progressRef.current) {
       gsap.to(progressRef.current, {
         scaleX: 1,
