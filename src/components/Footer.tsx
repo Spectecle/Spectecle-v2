@@ -31,6 +31,7 @@ const pages = [
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
+  { label: "Meet Spectecle", href: "/hello" },
 ];
 
 const socials = [
