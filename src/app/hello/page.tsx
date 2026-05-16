@@ -168,8 +168,11 @@ export default function HelloPage() {
           transition={{ duration: 0.5 }}
           className="relative z-10 flex items-center justify-between px-6 md:px-12 pt-8 pb-0"
         >
-          <Link href="/">
-            <LogoMark className="h-8 w-auto" />
+          <Link href="/" className="flex items-center gap-2">
+            <LogoMark className="w-7 h-8 drop-shadow-sm" />
+            <span className="text-xl font-bold tracking-tight text-white" style={{ fontFamily: "var(--font-inter)" }}>
+              Spectecle
+            </span>
           </Link>
           <Link
             href="/contact"
