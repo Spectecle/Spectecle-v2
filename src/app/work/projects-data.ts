@@ -116,7 +116,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://indoorgarden.com",
-    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://indoorgarden.com",
+    screenshotUrl: "/screenshots/indoorgarden.png",
   },
 
   {
@@ -186,7 +186,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://salazardrywallpros.com",
-    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://salazardrywallpros.com",
+    screenshotUrl: "/screenshots/salazardrywallpros.png",
   },
 
   {
@@ -256,7 +256,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://detroitglassandmirror.com",
-    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://detroitglassandmirror.com",
+    screenshotUrl: "/screenshots/detroitglassandmirror.png",
   },
 
   {
@@ -326,7 +326,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://thestatclinic.com",
-    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://thestatclinic.com",
+    screenshotUrl: "/screenshots/thestatclinic.png",
   },
 
   {
@@ -396,7 +396,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://thematek.com",
-    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://thematek.com",
+    screenshotUrl: "/screenshots/thematek.png",
   },
 
   {
@@ -466,7 +466,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://glambyabeer.com",
-    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://glambyabeer.com",
+    screenshotUrl: "/screenshots/glambyabeer.png",
   },
 
   {
@@ -545,6 +545,6 @@ export const projects: ProjectData[] = [
     },
     year: "2024",
     liveUrl: "https://nmlegalfirm.com",
-    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://nmlegalfirm.com",
+    screenshotUrl: "/screenshots/nmlegalfirm.png",
   },
 ];
