@@ -116,7 +116,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://indoorgarden.com",
-    screenshotUrl: "https://api.microlink.io?url=https%3A%2F%2Findoorgarden.com&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2",
+    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://indoorgarden.com",
   },
 
   {
@@ -186,7 +186,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://salazardrywallpros.com",
-    screenshotUrl: "https://api.microlink.io?url=https%3A%2F%2Fsalazardrywallpros.com&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2",
+    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://salazardrywallpros.com",
   },
 
   {
@@ -256,7 +256,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://detroitglassandmirror.com",
-    screenshotUrl: "https://api.microlink.io?url=https%3A%2F%2Fdetroitglassandmirror.com&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2",
+    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://detroitglassandmirror.com",
   },
 
   {
@@ -326,7 +326,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://thestatclinic.com",
-    screenshotUrl: "https://api.microlink.io?url=https%3A%2F%2Fthestatclinic.com&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2",
+    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://thestatclinic.com",
   },
 
   {
@@ -396,7 +396,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://thematek.com",
-    screenshotUrl: "https://api.microlink.io?url=https%3A%2F%2Fthematek.com&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2",
+    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://thematek.com",
   },
 
   {
@@ -466,7 +466,7 @@ export const projects: ProjectData[] = [
     ],
     year: "2024",
     liveUrl: "https://glambyabeer.com",
-    screenshotUrl: "https://api.microlink.io?url=https%3A%2F%2Fglambyabeer.com&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2",
+    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://glambyabeer.com",
   },
 
   {
@@ -545,6 +545,6 @@ export const projects: ProjectData[] = [
     },
     year: "2024",
     liveUrl: "https://nmlegalfirm.com",
-    screenshotUrl: "https://api.microlink.io?url=https%3A%2F%2Fnmlegalfirm.com&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2",
+    screenshotUrl: "https://image.thum.io/get/width/1200/crop/750/viewportWidth/1440/noanimate/https://nmlegalfirm.com",
   },
 ];

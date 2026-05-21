@@ -9,12 +9,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "api.microlink.io",
+        hostname: "image.thum.io",
         pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "iad.microlink.io",
+        hostname: "logo.clearbit.com",
         pathname: "/**",
       },
     ],
