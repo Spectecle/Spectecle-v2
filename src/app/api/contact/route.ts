@@ -5,6 +5,19 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = process.env.RESEND_FROM ?? "onboarding@resend.dev";
 const TO = process.env.CONTACT_EMAIL ?? "hello@spectecle.com";
 
+// Rate limiting: max 3 submissions per IP per hour
+const rateLimit = new Map<string, { count: number; resetAt: number }>();
+
+const SPAM_KEYWORDS = [
+  "backlink", "domain authority", "high da", "trust flow", "citation flow",
+  "page authority", "semrush", "ahrefs rating", "i provide", "my pricing starts",
+  "50k websites", "guest post", "link building service", "seo consultant",
+  "show up at the top of search results within 24 hours",
+  "let me know if you want to see", "looking forward to hearing from you\nregards",
+  "high traffic", "i have in my collection", "jmailservice.com",
+  "digitallinkbuilding", "paltuseoconsultant",
+];
+
 function esc(s: string) {
   return s
     .replace(/&/g, "&amp;")
@@ -13,16 +26,54 @@ function esc(s: string) {
     .replace(/"/g, "&quot;");
 }
 
+function isSpam(fields: Record<string, string>): boolean {
+  const haystack = Object.values(fields).join(" ").toLowerCase();
+  return SPAM_KEYWORDS.some((kw) => haystack.includes(kw));
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json() as Record<string, string>;
-    const { name, email, company, service, budget, message } = body;
+    const { name, email, company, service, budget, message, _honey, _ts } = body;
+
+    // Honeypot — bots fill hidden fields, humans don't
+    if (_honey) {
+      return NextResponse.json({ success: true }); // silent reject
+    }
+
+    // Time check — bots submit instantly (< 3 s)
+    const elapsed = Date.now() - Number(_ts || 0);
+    if (elapsed < 3000) {
+      return NextResponse.json({ success: true }); // silent reject
+    }
 
     if (!name?.trim() || !email?.trim() || !message?.trim()) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+    }
+
+    // Keyword spam filter
+    if (isSpam({ name, email, company: company ?? "", message })) {
+      return NextResponse.json({ success: true }); // silent reject
+    }
+
+    // Rate limiting by IP — max 3 per hour
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const now = Date.now();
+    const bucket = rateLimit.get(ip);
+    if (bucket) {
+      if (now < bucket.resetAt) {
+        if (bucket.count >= 3) {
+          return NextResponse.json({ error: "Too many submissions. Please try again later." }, { status: 429 });
+        }
+        bucket.count++;
+      } else {
+        rateLimit.set(ip, { count: 1, resetAt: now + 3_600_000 });
+      }
+    } else {
+      rateLimit.set(ip, { count: 1, resetAt: now + 3_600_000 });
     }
 
     const rows: [string, string][] = [

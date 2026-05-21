@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -133,6 +133,8 @@ export default function ContactPage() {
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const loadedAt = useRef(Date.now());
+  const [honey, setHoney] = useState("");
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -153,7 +155,7 @@ export default function ContactPage() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, _honey: honey, _ts: loadedAt.current }),
       });
       setStatus(res.ok ? "success" : "error");
     } catch {
@@ -268,6 +270,17 @@ export default function ContactPage() {
                   className="glass rounded-2xl border border-white/8 p-8 md:p-10 space-y-5"
                   noValidate
                 >
+                  {/* Honeypot — hidden from real users, bots fill it in */}
+                  <div style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} aria-hidden="true">
+                    <input
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honey}
+                      onChange={(e) => setHoney(e.target.value)}
+                    />
+                  </div>
                   <div>
                     <h2
                       className="text-2xl font-bold text-white mb-1"
