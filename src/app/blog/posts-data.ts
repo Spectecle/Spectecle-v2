@@ -16,8 +16,8 @@ export type BlogPost = {
   metaTitle: string;
   metaDescription: string;
   metaKeywords: string[];
-  caseStudySlug: string;
-  caseStudyTitle: string;
+  caseStudySlug?: string;
+  caseStudyTitle?: string;
   content: ContentBlock[];
 };
 
