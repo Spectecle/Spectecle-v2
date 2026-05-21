@@ -42,8 +42,6 @@ export const posts: BlogPost[] = [
       "web design for photographers Michigan",
       "how to get more photography clients Michigan",
     ],
-    caseStudySlug: "sunshine-photo-shots",
-    caseStudyTitle: "Sunshine Photo Shots",
     content: [
       {
         type: "p",
@@ -104,11 +102,6 @@ export const posts: BlogPost[] = [
       {
         type: "p",
         text: "We recently worked with a Michigan photography studio that was invisible in local search despite years of excellent work and a loyal Instagram following. After rebuilding their site on a modern stack and launching a targeted local SEO campaign — Google Business Profile optimization, review generation, and service landing pages — organic traffic grew 180% in four months. Booking inquiries tripled. They now consistently appear in both the map pack and organic results for their primary search terms.",
-      },
-      {
-        type: "callout",
-        text: "Read the full breakdown: how we built this → Sunshine Photo Shots Case Study",
-        caseStudySlug: "sunshine-photo-shots",
       },
       {
         type: "h2",
