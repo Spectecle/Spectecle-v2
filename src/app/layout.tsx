@@ -73,16 +73,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: BASE_URL,
   },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION ?? "",
-  },
+  ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION && {
+    verification: { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION },
+  }),
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["Organization", "LocalBusiness"],
+      "@type": ["Organization", "ProfessionalService"],
       "@id": `${BASE_URL}/#organization`,
       name: "Spectecle Agency",
       alternateName: "Spectecle",
@@ -99,6 +99,14 @@ const jsonLd = {
       telephone: "+13133534105",
       email: "hello@spectecle.com",
       foundingDate: "2012",
+      priceRange: "$$",
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5.0",
+        reviewCount: "3",
+        bestRating: "5",
+        worstRating: "1",
+      },
       address: {
         "@type": "PostalAddress",
         addressLocality: "Detroit",
