@@ -661,77 +661,171 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══ WORK PREVIEW — WHITE ═════════════════════ */}
-      <section className="py-32 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
+      {/* ══ WORK PREVIEW — DARK BENTO ═══════════════ */}
+      <section className="relative py-32 px-6 overflow-hidden" style={{ background: "#060610" }}>
+        {/* Ambient glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[560px] pointer-events-none"
+          style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.09) 0%, transparent 65%)" }} />
+        <div className="absolute inset-0 dot-pattern opacity-20 pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative">
+          {/* Header */}
           <Reveal>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14">
               <div>
-                <span className="text-xs font-semibold text-[#D25124] uppercase tracking-widest">Portfolio</span>
-                <h2 className="mt-3 text-4xl md:text-5xl font-bold text-slate-900" style={{ fontFamily: "var(--font-inter)" }}>
+                <span className="text-xs font-semibold text-[#F07A3A] uppercase tracking-widest">Portfolio</span>
+                <h2 className="mt-3 text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-tight" style={{ fontFamily: "var(--font-inter)" }}>
                   Work That <span className="gradient-text">Speaks</span>
                   <br />
                   For Itself
                 </h2>
+                <p className="mt-4 text-slate-400 text-base max-w-md leading-relaxed">
+                  Real businesses. Measurable growth. Every project tells a story.
+                </p>
               </div>
-              <Link href="/work" className="flex items-center gap-2 text-sm font-semibold text-[#D25124] hover:text-[#8B2800] transition-colors cursor-pointer shrink-0 group">
+              <Link
+                href="/work"
+                className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 hover:border-[#D25124]/50 text-slate-300 hover:text-white glass transition-all duration-300 text-sm font-semibold cursor-pointer shrink-0"
+              >
                 View All Projects
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Link>
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {projects.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.1}>
-                <div
-                  className="group rounded-2xl overflow-hidden cursor-pointer border border-slate-200 hover:border-[#D25124]/40 hover:shadow-2xl transition-all duration-300 bg-white"
-                  onMouseEnter={() => setHoveredProject(i)}
-                  onMouseLeave={() => setHoveredProject(null)}
-                >
-                  {/* Browser Mockup */}
-                  <div className="relative h-64 overflow-hidden bg-[#1e1e2a]">
-                    {renderMockup(p.mockup)}
-                    {/* Tag pill */}
-                    <div className="absolute top-8 left-3 z-10">
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold ${p.tagColor}`}>
-                        {p.tag}
-                      </span>
-                    </div>
-                    {/* Hover overlay */}
-                    <motion.div
-                      initial={false}
-                      animate={{ opacity: hoveredProject === i ? 1 : 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-20"
-                    >
-                      <Link href="/work" className="flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-xl text-sm font-semibold cursor-pointer shadow-xl">
-                        View Project <ExternalLink className="w-3.5 h-3.5" />
-                      </Link>
-                    </motion.div>
-                  </div>
+          {/* Bento grid */}
+          <div className="grid md:grid-cols-3 gap-4 lg:gap-5 items-start">
 
-                  {/* Card body */}
-                  <div className="p-5 bg-slate-50 border-t border-slate-200">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <span className="text-xs text-slate-400 uppercase tracking-wider">{p.category}</span>
-                        <h3 className="mt-0.5 text-base font-bold text-slate-900" style={{ fontFamily: "var(--font-inter)" }}>
-                          {p.title}
-                        </h3>
-                      </div>
-                      <span className={`text-xs font-semibold ${p.resultColor} shrink-0 mt-5`}>{p.result}</span>
+            {/* Featured card — 2/3 width */}
+            <Reveal delay={0} className="md:col-span-2">
+              <Link
+                href="/work"
+                className="group relative rounded-2xl overflow-hidden block border border-white/8 hover:border-[#D25124]/35 transition-all duration-500 cursor-pointer"
+                style={{ background: "linear-gradient(160deg, #0e0e1c 0%, #090912 100%)" }}
+                onMouseEnter={() => setHoveredProject(0)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+                {/* Browser mockup */}
+                <div className="relative h-[310px] overflow-hidden">
+                  {renderMockup(projects[0].mockup)}
+                  <div className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
+                    style={{ background: "linear-gradient(to top, #0e0e1c, transparent)" }} />
+                  {/* Result badge */}
+                  <div className="absolute top-4 right-4 z-10 px-3 py-1.5 rounded-full text-xs font-bold text-white"
+                    style={{ background: "linear-gradient(135deg, #D25124 0%, #A83418 100%)" }}>
+                    {projects[0].result}
+                  </div>
+                  {/* Tag pill */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-medium text-white/80 border border-white/15"
+                      style={{ background: "rgba(255,255,255,0.07)" }}>
+                      {projects[0].tag}
+                    </span>
+                  </div>
+                  {/* Hover overlay — pointer-events-none so card Link handles click */}
+                  <motion.div
+                    initial={false}
+                    animate={{ opacity: hoveredProject === 0 ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+                    style={{ background: "rgba(4,4,12,0.6)", backdropFilter: "blur(3px)" }}
+                  >
+                    <span className="flex items-center gap-2.5 px-6 py-3 bg-white text-black rounded-xl text-sm font-semibold shadow-2xl">
+                      View Case Study <ArrowUpRight className="w-4 h-4" />
+                    </span>
+                  </motion.div>
+                </div>
+
+                {/* Card body */}
+                <div className="p-6 pb-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-[10px] text-slate-500 uppercase tracking-widest font-medium">{projects[0].category}</p>
+                      <h3 className="mt-1 text-xl font-bold text-white" style={{ fontFamily: "var(--font-inter)" }}>{projects[0].title}</h3>
                     </div>
-                    <p className="mt-2 text-xs text-slate-500 leading-relaxed line-clamp-2">{p.desc}</p>
-                    <div className="mt-2.5 flex items-center gap-1.5 text-xs text-slate-400">
-                      <ExternalLink className="w-3 h-3" />
-                      <span className="font-mono">{p.url}</span>
-                    </div>
+                    <span className="flex items-center gap-1 text-[10px] text-slate-600 font-mono mt-6 shrink-0">
+                      <ExternalLink className="w-2.5 h-2.5" />{projects[0].url}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm text-slate-400 leading-relaxed line-clamp-2">{projects[0].desc}</p>
+                  <div className="mt-5 flex items-center gap-1.5 text-xs font-semibold text-[#F07A3A] group-hover:gap-2.5 transition-all duration-300">
+                    <span>Read the case study</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
-              </Reveal>
-            ))}
+              </Link>
+            </Reveal>
+
+            {/* Right column — two stacked cards */}
+            <div className="flex flex-col gap-4 lg:gap-5">
+              {projects.slice(1).map((p, idx) => (
+                <Reveal key={p.title} delay={(idx + 1) * 0.12}>
+                  <Link
+                    href="/work"
+                    className="group relative rounded-2xl overflow-hidden block border border-white/8 hover:border-[#D25124]/35 transition-all duration-500 cursor-pointer"
+                    style={{ background: "linear-gradient(160deg, #0e0e1c 0%, #090912 100%)" }}
+                    onMouseEnter={() => setHoveredProject(idx + 1)}
+                    onMouseLeave={() => setHoveredProject(null)}
+                  >
+                    {/* Browser mockup */}
+                    <div className="relative h-40 overflow-hidden">
+                      {renderMockup(p.mockup)}
+                      <div className="absolute inset-x-0 bottom-0 h-14 pointer-events-none"
+                        style={{ background: "linear-gradient(to top, #0e0e1c, transparent)" }} />
+                      {/* Result badge */}
+                      <div className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full text-[10px] font-bold text-white"
+                        style={{ background: "linear-gradient(135deg, #D25124 0%, #A83418 100%)" }}>
+                        {p.result}
+                      </div>
+                      {/* Hover overlay */}
+                      <motion.div
+                        initial={false}
+                        animate={{ opacity: hoveredProject === idx + 1 ? 1 : 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+                        style={{ background: "rgba(4,4,12,0.6)", backdropFilter: "blur(3px)" }}
+                      >
+                        <span className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg text-xs font-semibold shadow-xl">
+                          View Case Study <ArrowUpRight className="w-3 h-3" />
+                        </span>
+                      </motion.div>
+                    </div>
+
+                    {/* Card body */}
+                    <div className="p-4 pb-5">
+                      <p className="text-[9px] text-slate-500 uppercase tracking-widest font-medium">{p.category}</p>
+                      <h3 className="mt-0.5 text-sm font-bold text-white" style={{ fontFamily: "var(--font-inter)" }}>{p.title}</h3>
+                      <p className="mt-1.5 text-xs text-slate-400 leading-relaxed line-clamp-2">{p.desc}</p>
+                      <div className="mt-3 flex items-center justify-between">
+                        <span className="flex items-center gap-1 text-[9px] text-slate-600 font-mono">
+                          <ExternalLink className="w-2 h-2" />{p.url}
+                        </span>
+                        <span className="flex items-center gap-1 text-[10px] font-semibold text-[#F07A3A] group-hover:gap-1.5 transition-all duration-300">
+                          Case study <ArrowUpRight className="w-2.5 h-2.5" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
           </div>
+
+          {/* Bottom CTA strip */}
+          <Reveal delay={0.3}>
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/6">
+              <p className="text-slate-500 text-sm text-center sm:text-left">
+                7 case studies · Web Design, Local SEO &amp; AI Automation
+              </p>
+              <Link
+                href="/work"
+                className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold cursor-pointer"
+              >
+                <span>See All Case Studies</span>
+                <ArrowUpRight className="w-4 h-4 relative z-10" />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
