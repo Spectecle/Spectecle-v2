@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "web design and SEO agency",
   ],
   openGraph: {
-    title: "Web Design, SEO & AI Services — Detroit, MI | Spectecle Agency",
+    title: "Web Design, SEO & AI Services — Detroit, MI | Spectecle SEO & Web Design",
     description:
       "Professional web design, SEO & AI automation for businesses in Detroit, Michigan and beyond. Custom websites that rank and convert. SEO that dominates. Automation that scales.",
     url: `${BASE_URL}/services`,

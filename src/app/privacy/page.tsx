@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 const EFFECTIVE_DATE = "May 1, 2024";
-const COMPANY = "Spectecle Agency";
+const COMPANY = "Spectecle SEO & Web Design";
 const EMAIL = "hello@spectecle.com";
 const WEBSITE = "spectecle.com";
 
@@ -71,7 +71,7 @@ const sections = [
     content: [
       {
         subtitle: "We Do Not Sell Your Data",
-        body: `Spectecle Agency does not sell, rent, or trade your personal information to third parties for any purpose.`,
+        body: `Spectecle SEO & Web Design does not sell, rent, or trade your personal information to third parties for any purpose.`,
       },
       {
         subtitle: "Service Providers",
@@ -153,7 +153,7 @@ const sections = [
     content: [
       {
         subtitle: "Not Directed at Children",
-        body: `Spectecle Agency's website and services are intended for adults and business owners. We do not knowingly collect personal information from children under the age of 13. If you believe we have inadvertently collected information from a child, please contact us at hello@spectecle.com and we will delete it promptly.`,
+        body: `Spectecle SEO & Web Design's website and services are intended for adults and business owners. We do not knowingly collect personal information from children under the age of 13. If you believe we have inadvertently collected information from a child, please contact us at hello@spectecle.com and we will delete it promptly.`,
       },
     ],
   },
@@ -173,7 +173,7 @@ const sections = [
     content: [
       {
         subtitle: "Privacy Questions",
-        body: `If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your personal information, please contact us at:\n\nSpectecle Agency\nDetroit, Michigan, USA\nEmail: hello@spectecle.com\nPhone: +1 (313) 353-4105\n\nWe will respond to all privacy-related inquiries within 30 days.`,
+        body: `If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your personal information, please contact us at:\n\nSpectecle SEO & Web Design\nDetroit, Michigan, USA\nEmail: hello@spectecle.com\nPhone: +1 (313) 353-4105\n\nWe will respond to all privacy-related inquiries within 30 days.`,
       },
     ],
   },
@@ -208,7 +208,7 @@ export default function PrivacyPage() {
             </a>
           </p>
           <p className="mt-6 text-slate-400 leading-relaxed max-w-2xl">
-            At Spectecle Agency, your privacy matters. This Privacy Policy explains what
+            At Spectecle SEO & Web Design, your privacy matters. This Privacy Policy explains what
             information we collect when you visit spectecle.com or contact us, how we use it,
             and the choices you have. We are committed to handling your data responsibly and
             transparently.

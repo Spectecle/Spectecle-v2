@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "web design tips Detroit",
   ],
   openGraph: {
-    title: "Blog | Spectecle Agency — Web Design, SEO & AI Insights",
+    title: "Blog | Spectecle SEO & Web Design — AI & SEO Insights",
     description:
       "Actionable guides on web design, local SEO, and AI automation for businesses in Michigan and beyond.",
     url: `${BASE_URL}/blog`,

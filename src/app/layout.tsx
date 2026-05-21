@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default: "Spectecle | Web Design, SEO & AI Agency — Detroit, MI",
-    template: "%s | Spectecle Agency",
+    template: "%s | Spectecle SEO & Web Design",
   },
   description:
     "Spectecle is a premium web design, SEO & AI automation agency based in Detroit, MI. We build high-converting websites, dominate search rankings, and automate business workflows for ambitious companies worldwide.",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     "local SEO Michigan",
     "Spectecle agency",
   ],
-  authors: [{ name: "Spectecle Agency", url: BASE_URL }],
-  creator: "Spectecle Agency",
-  publisher: "Spectecle Agency",
+  authors: [{ name: "Spectecle SEO & Web Design", url: BASE_URL }],
+  creator: "Spectecle SEO & Web Design",
+  publisher: "Spectecle SEO & Web Design",
   category: "Web Design & Digital Marketing Agency",
   robots: {
     index: true,
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: BASE_URL,
-    siteName: "Spectecle Agency",
+    siteName: "Spectecle SEO & Web Design",
     title: "Spectecle | Web Design, SEO & AI Agency — Detroit, MI",
     description:
       "Premium web design, SEO & AI automation agency in Detroit, MI. We build websites that convert, rankings that dominate, and systems that scale.",
@@ -84,7 +84,7 @@ const jsonLd = {
     {
       "@type": ["Organization", "ProfessionalService"],
       "@id": `${BASE_URL}/#organization`,
-      name: "Spectecle Agency",
+      name: "Spectecle SEO & Web Design",
       alternateName: "Spectecle",
       url: BASE_URL,
       logo: {
@@ -167,7 +167,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${BASE_URL}/#website`,
       url: BASE_URL,
-      name: "Spectecle Agency",
+      name: "Spectecle SEO & Web Design",
       description: "Premium web design, SEO & AI automation agency — Detroit, MI",
       publisher: { "@id": `${BASE_URL}/#organization` },
       inLanguage: "en-US",

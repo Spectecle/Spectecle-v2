@@ -5,7 +5,7 @@ const BASE_URL = "https://spectecle.com";
 export const metadata: Metadata = {
   title: "Contact Spectecle — Free Strategy Call | Detroit, MI",
   description:
-    "Contact Spectecle Agency in Detroit, MI for a free 30-minute strategy call. Web design, SEO, and AI automation for businesses in Michigan and nationwide. Response within 24 hours, no commitment required.",
+    "Contact Spectecle SEO & Web Design in Detroit, MI for a free 30-minute strategy call. Web design, SEO, and AI automation for businesses in Michigan and nationwide. Response within 24 hours, no commitment required.",
   keywords: [
     "contact web design agency Detroit",
     "hire web designer Michigan",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact Spectecle — Free Strategy Call | Detroit, MI",
     description:
-      "Book a free 30-minute strategy call with Spectecle Agency in Detroit, MI. Honest advice, no commitment, response within 24 hours.",
+      "Book a free 30-minute strategy call with Spectecle SEO & Web Design in Detroit, MI. Honest advice, no commitment, response within 24 hours.",
     url: `${BASE_URL}/contact`,
   },
   alternates: { canonical: `${BASE_URL}/contact` },
@@ -37,7 +37,7 @@ const jsonLd = {
     {
       "@type": "ContactPage",
       "@id": `${BASE_URL}/contact`,
-      name: "Contact Spectecle Agency — Free Strategy Call",
+      name: "Contact Spectecle SEO & Web Design — Free Strategy Call",
       description:
         "Contact Spectecle for a free strategy call. Web design, SEO, and AI automation for businesses in Detroit, Michigan and beyond.",
       url: `${BASE_URL}/contact`,
@@ -45,7 +45,7 @@ const jsonLd = {
       mainEntity: {
         "@type": "LocalBusiness",
         "@id": `${BASE_URL}/#organization`,
-        name: "Spectecle Agency",
+        name: "Spectecle SEO & Web Design",
         telephone: "+13133534105",
         email: "hello@spectecle.com",
         address: {

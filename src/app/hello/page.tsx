@@ -618,7 +618,7 @@ export default function HelloPage() {
         <Link href="/" className="text-slate-500 hover:text-[#F07A3A] transition-colors font-semibold tracking-tight">
           spectecle.com
         </Link>
-        <p>© {new Date().getFullYear()} Spectecle Agency · Detroit, MI · All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Spectecle SEO & Web Design · Detroit, MI · All rights reserved.</p>
         <Link href="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
       </div>
     </>

@@ -35,7 +35,7 @@ const jsonLd = {
     {
       "@type": "AboutPage",
       "@id": `${BASE_URL}/about`,
-      name: "About Walid Alhassan — Founder of Spectecle Agency",
+      name: "About Walid Alhassan — Founder of Spectecle SEO & Web Design",
       url: `${BASE_URL}/about`,
       description:
         "The background and story of Walid Alhassan, founder of Spectecle — a Detroit-based web design, SEO, and AI automation agency serving Michigan businesses.",

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Walid Alhassan", url: `${BASE_URL}/about` }],
   creator: "Walid Alhassan",
-  publisher: "Spectecle Agency",
+  publisher: "Spectecle SEO & Web Design",
   category: "Web Design & Digital Marketing Agency",
   openGraph: {
     title: "Spectecle | Detroit Web Design, SEO & AI Agency — Meet Walid Alhassan",
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     url: `${BASE_URL}/hello`,
     type: "website",
     locale: "en_US",
-    siteName: "Spectecle Agency",
+    siteName: "Spectecle SEO & Web Design",
     images: [
       {
         url: `${BASE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Spectecle Agency — Detroit Web Design, SEO & AI Automation",
+        alt: "Spectecle SEO & Web Design — Detroit Web Design, SEO & AI Automation",
       },
     ],
   },
@@ -126,13 +126,13 @@ const jsonLd = {
       primaryImageOfPage: {
         "@type": "ImageObject",
         url: `${BASE_URL}/walid.jpg`,
-        description: "Walid Alhassan — Founder of Spectecle Agency, Detroit MI",
+        description: "Walid Alhassan — Founder of Spectecle SEO & Web Design, Detroit MI",
       },
     },
     {
       "@type": ["ProfessionalService", "LocalBusiness"],
       "@id": `${BASE_URL}/#organization`,
-      name: "Spectecle Agency",
+      name: "Spectecle SEO & Web Design",
       alternateName: "Spectecle",
       url: BASE_URL,
       logo: {
@@ -224,7 +224,7 @@ const jsonLd = {
       familyName: "Alhassan",
       jobTitle: "Founder & Lead Strategist",
       description:
-        "Walid Alhassan is a Detroit-based web developer with 10 years of experience, an IT systems engineer with 12 years of experience, and an AI practitioner with 4 years of experience. He is the founder of Spectecle Agency.",
+        "Walid Alhassan is a Detroit-based web developer with 10 years of experience, an IT systems engineer with 12 years of experience, and an AI practitioner with 4 years of experience. He is the founder of Spectecle SEO & Web Design.",
       image: `${BASE_URL}/walid.jpg`,
       url: `${BASE_URL}/about`,
       worksFor: { "@id": `${BASE_URL}/#organization` },

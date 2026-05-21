@@ -180,7 +180,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-white/6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-600">
-            © {new Date().getFullYear()} Spectecle Agency LLC. All rights reserved.
+            © {new Date().getFullYear()} Spectecle SEO & Web Design LLC. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="text-xs text-slate-600 hover:text-slate-400 transition-colors cursor-pointer">

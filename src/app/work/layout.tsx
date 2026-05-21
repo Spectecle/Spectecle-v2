@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "web design results Detroit",
   ],
   openGraph: {
-    title: "Portfolio & Case Studies | Spectecle Agency — Detroit, MI",
+    title: "Portfolio & Case Studies | Spectecle SEO & Web Design — Detroit, MI",
     description:
       "Real projects, real results. Web design, SEO & AI automation case studies for Michigan businesses and clients nationwide.",
     url: `${BASE_URL}/work`,
@@ -43,7 +43,7 @@ const jsonLd = {
     {
       "@type": "CollectionPage",
       "@id": `${BASE_URL}/work`,
-      name: "Portfolio & Case Studies | Spectecle Agency",
+      name: "Portfolio & Case Studies | Spectecle SEO & Web Design",
       description:
         "Web design, SEO, and AI automation case studies for real businesses — Michigan and nationwide. Industries include photography, contractors, legal, beauty, healthcare, e-commerce, and IT.",
       url: `${BASE_URL}/work`,
