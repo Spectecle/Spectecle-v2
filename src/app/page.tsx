@@ -39,7 +39,7 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const springVal = useSpring(count, { stiffness: 60, damping: 20 });
   useEffect(() => { if (!inView) return; animate(count, to, { duration: 2.4, ease: "easeOut" }); }, [inView, count, to]);
   useEffect(() => { return springVal.on("change", (v) => { if (ref.current) ref.current.textContent = Math.round(v) + suffix; }); }, [springVal, suffix]);
-  return <span ref={ref}>0{suffix}</span>;
+  return <span ref={ref}>{to}{suffix}</span>;
 }
 
 /* ─── Reveal ───────────────────────────────────────── */
@@ -341,7 +341,7 @@ const services = [
     iconBg: "bg-[#D25124]/8",
     badge: "Design & Dev",
     title: "Web Design &\nDevelopment",
-    desc: "Conversion-focused websites built with pixel-perfect precision. From brand identity to full-stack development, we engineer digital products that perform.",
+    desc: "Custom websites built for speed, search rankings, and real conversions. Every design decision comes from the same person writing the code — no translation layers.",
     features: ["Custom UI/UX Design", "Next.js & React", "E-commerce & CMS", "Performance Optimized"],
     href: "/services",
     linkColor: "text-[#D25124] hover:text-[#8B2800]",
@@ -354,7 +354,7 @@ const services = [
     iconBg: "bg-[#D25124]/8",
     badge: "Growth",
     title: "SEO &\nMarketing",
-    desc: "Data-driven strategies that put you at the top of search results and in front of your ideal customers. Traffic that converts, not just visits.",
+    desc: "Local SEO that puts you in front of customers searching in your city. Technical audits, content, and link building — tracked with real numbers, not vanity metrics.",
     features: ["Technical SEO Audits", "Content Strategy", "Link Building", "Analytics & Reporting"],
     href: "/services",
     linkColor: "text-[#D25124] hover:text-[#8B2800]",
@@ -365,9 +365,9 @@ const services = [
     accentBorder: "group-hover:border-[#D25124]/40",
     iconColor: "text-[#D25124]",
     iconBg: "bg-[#D25124]/8",
-    badge: "Future-Ready",
+    badge: "AI & Automation",
     title: "AI &\nAutomation",
-    desc: "Leverage cutting-edge AI to automate workflows, reduce costs, and unlock new capabilities. We integrate intelligence directly into your business.",
+    desc: "Custom AI agents built from scratch — trained on your services, connected to your CRM, and tested until they actually work. Not a chatbot plugin.",
     features: ["Custom AI Agents", "Workflow Automation", "CRM & API Integrations", "ChatBot Development"],
     href: "/services",
     linkColor: "text-[#D25124] hover:text-[#8B2800]",
@@ -375,9 +375,9 @@ const services = [
 ];
 
 const stats = [
-  { value: 150, suffix: "+", label: "Clients Served" },
-  { value: 98, suffix: "%", label: "Satisfaction Rate" },
-  { value: 12, suffix: "+", label: "Years of Excellence" },
+  { value: 50, suffix: "+", label: "Projects Delivered" },
+  { value: 98, suffix: "%", label: "Client Retention" },
+  { value: 12, suffix: "+", label: "Years of Experience" },
 ];
 
 const clients = [
@@ -449,10 +449,10 @@ const testimonials = [
 ];
 
 const process = [
-  { step: "01", title: "Discovery", desc: "We deep-dive into your goals, target audience, and competitive landscape to build a rock-solid strategic foundation for your business.", icon: Globe },
-  { step: "02", title: "Strategy", desc: "We design a complete roadmap covering UX, technology stack, SEO strategy, content planning, and measurable growth milestones for success.", icon: BarChart3 },
-  { step: "03", title: "Build", desc: "Pixel-perfect execution with weekly check-ins, live previews, real-time revisions, and thorough quality assurance at every stage of the build.", icon: Code2 },
-  { step: "04", title: "Launch & Scale", desc: "We go live, track performance metrics in real time, run continuous optimizations, and scale your digital presence for long-term sustainable growth.", icon: Zap },
+  { step: "01", title: "Discovery", desc: "A real conversation about your goals, your customers, and where you stand against competitors — before a single line of code is written.", icon: Globe },
+  { step: "02", title: "Strategy", desc: "A clear plan: what's getting built, what stack, how the SEO is structured, and what success looks like in measurable terms.", icon: BarChart3 },
+  { step: "03", title: "Build", desc: "Weekly check-ins, live previews you can click through, and revisions until it's right. No handoffs, no guessing, no surprises at launch.", icon: Code2 },
+  { step: "04", title: "Launch & Grow", desc: "We go live, monitor real performance, and keep improving. Most clients see meaningful results in the first 90 days.", icon: Zap },
 ];
 
 /* ─── Page ─────────────────────────────────────────── */
@@ -509,7 +509,7 @@ export default function HomePage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#D25124]/20 text-sm text-[#F07A3A] font-medium mb-8 pulse-glow"
           >
             <span className="w-2 h-2 rounded-full bg-[#F07A3A] animate-pulse" />
-            Premium Web Design Agency — Est. 2012
+            Detroit, Michigan · Est. 2012
           </motion.div>
 
           <motion.h1
@@ -519,11 +519,11 @@ export default function HomePage() {
             className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight text-white"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            We Build Digital
+            Detroit Web Design
             <br />
-            <span className="gradient-text">Experiences</span> That
+            Built By The Person
             <br />
-            Convert &amp; Scale
+            Who <span className="gradient-text">Actually Builds It</span>
           </motion.h1>
 
           <motion.p
@@ -532,8 +532,8 @@ export default function HomePage() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-8 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Premium web design, SEO &amp; AI automation for businesses that demand
-            excellence. We don&apos;t just build websites — we engineer growth.
+            No account managers. No handoffs. You work directly with Walid — 12 years
+            in IT infrastructure, 10 building websites — on sites that load fast, rank, and convert.
           </motion.p>
 
           <motion.div
@@ -557,7 +557,7 @@ export default function HomePage() {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="mt-16 flex flex-wrap items-center justify-center gap-6 text-slate-600 text-xs font-medium uppercase tracking-widest"
           >
-            {["SOC 2 Compliant", "WCAG 2.1 AA", "ISO Certified", "Award-Winning"].map((item) => (
+            {["Detroit-Based Studio", "Accessibility-First Builds", "No Account Managers", "Est. 2012"].map((item) => (
               <span key={item} className="flex items-center gap-2">
                 <Shield className="w-3 h-3 text-[#D25124]" />
                 {item}
@@ -601,12 +601,12 @@ export default function HomePage() {
             <div className="text-center mb-16">
               <span className="text-xs font-semibold text-[#D25124] uppercase tracking-widest">What We Do</span>
               <h2 className="mt-3 text-4xl md:text-5xl font-bold text-slate-900" style={{ fontFamily: "var(--font-inter)" }}>
-                Three Services. One Agency.
+                Web design, SEO, and AI —
                 <br />
-                <span className="gradient-text">Unlimited Potential.</span>
+                <span className="gradient-text">done by one person.</span>
               </h2>
               <p className="mt-5 text-slate-500 max-w-xl mx-auto text-lg">
-                A complete digital growth ecosystem — from first impression to long-term scale.
+                Every project — from initial brief to final deployment — handled by the same person.
               </p>
             </div>
           </Reveal>
@@ -822,13 +822,13 @@ export default function HomePage() {
               Let&apos;s Build Together
             </span>
             <h2 className="text-5xl md:text-6xl xl:text-7xl font-bold text-white leading-tight" style={{ fontFamily: "var(--font-inter)" }}>
-              Ready to Build Something
+              Your Site Should Be
               <br />
-              <span className="gradient-text">Extraordinary?</span>
+              Your <span className="gradient-text">Best Salesperson.</span>
             </h2>
             <p className="mt-6 text-slate-400 text-lg max-w-xl mx-auto">
-              Join 150+ businesses that chose Spectecle to lead their digital transformation.
-              Your next chapter starts here.
+              Work directly with Walid — no agencies, no account managers. A direct line to the
+              person designing, building, and launching your site.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact" className="btn-primary flex items-center gap-2 px-9 py-4 rounded-2xl text-base font-semibold cursor-pointer">
