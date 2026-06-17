@@ -800,9 +800,6 @@ export default function HomePage() {
           {/* Bottom CTA strip */}
           <Reveal delay={0.3}>
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/6">
-              <p className="text-slate-500 text-sm text-center sm:text-left">
-                7 case studies · Web Design, Local SEO &amp; AI Automation
-              </p>
               <Link
                 href="/work"
                 className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold cursor-pointer"
