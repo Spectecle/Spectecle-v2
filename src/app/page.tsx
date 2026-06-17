@@ -587,12 +587,12 @@ export default function HomePage() {
             <div className="text-center mb-16">
               <span className="text-xs font-semibold text-[#D25124] uppercase tracking-widest">What We Do</span>
               <h2 className="mt-3 text-4xl md:text-5xl font-bold text-slate-900" style={{ fontFamily: "var(--font-inter)" }}>
-                Web design, SEO, and AI —
+                Three disciplines.
                 <br />
-                <span className="gradient-text">done by one person.</span>
+                <span className="gradient-text">One performance obsession.</span>
               </h2>
               <p className="mt-5 text-slate-500 max-w-xl mx-auto text-lg">
-                Every project — from initial brief to final deployment — handled by the same person.
+                Search-first design, bold development, and intelligent automation — built around what your business actually needs to grow.
               </p>
             </div>
           </Reveal>
