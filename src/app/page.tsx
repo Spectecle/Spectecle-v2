@@ -24,7 +24,6 @@ import {
   Star,
   ChevronRight,
   Zap,
-  Shield,
   Globe,
   BarChart3,
   Code2,
@@ -551,19 +550,6 @@ export default function HomePage() {
             </Link>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="mt-16 flex flex-wrap items-center justify-center gap-6 text-slate-600 text-xs font-medium uppercase tracking-widest"
-          >
-            {["Detroit-Based Studio", "Accessibility-First Builds", "No Account Managers", "Est. 2012"].map((item) => (
-              <span key={item} className="flex items-center gap-2">
-                <Shield className="w-3 h-3 text-[#D25124]" />
-                {item}
-              </span>
-            ))}
-          </motion.div>
         </div>
 
         <motion.div
