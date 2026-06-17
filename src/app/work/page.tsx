@@ -30,13 +30,6 @@ function Reveal({
 
 const categories = ["All", "Web Design", "Local SEO", "SEO", "AI & Automation"];
 
-const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "$5.4M+", label: "Revenue Generated for Clients" },
-  { value: "98%", label: "Client Retention Rate" },
-  { value: "3×", label: "Average Traffic Growth" },
-];
-
 export default function WorkPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
@@ -91,28 +84,6 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* ── STATS BAR ───────────────────────────────── */}
-      <section className="border-y border-white/6 bg-[#09090f]">
-        <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((r, i) => (
-            <motion.div
-              key={r.label}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.07 + 0.3 }}
-              className="text-center"
-            >
-              <div
-                className="text-3xl md:text-4xl font-bold gradient-text"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                {r.value}
-              </div>
-              <p className="mt-2 text-slate-500 text-xs uppercase tracking-wider">{r.label}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
 
       {/* ── FILTER + GRID ────────────────────────────── */}
       <section className="py-20 px-6">
