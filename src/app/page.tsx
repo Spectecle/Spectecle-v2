@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   motion,
   useInView,
@@ -40,280 +41,6 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
     >
       {children}
     </motion.div>
-  );
-}
-
-/* ─── Browser Shell ────────────────────────────────── */
-function BrowserShell({ url, children }: { url: string; children: React.ReactNode }) {
-  return (
-    <div className="w-full h-full flex flex-col">
-      <div className="bg-[#1e1e2a] px-3 py-1.5 flex items-center gap-2 shrink-0">
-        <div className="flex gap-1">
-          <div className="w-2 h-2 rounded-full bg-[#FF5F57]" />
-          <div className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
-          <div className="w-2 h-2 rounded-full bg-[#28C840]" />
-        </div>
-        <div className="flex-1 mx-2">
-          <div className="bg-[#2d2d3d] rounded px-2 py-0.5 text-[8px] text-slate-500 font-mono">
-            {url}
-          </div>
-        </div>
-      </div>
-      <div className="flex-1 overflow-hidden">{children}</div>
-    </div>
-  );
-}
-
-/* ─── Glam by Abeer Mockup ─────────────────────────── */
-function GlamMockup() {
-  const sparkles = [
-    { top: "12%", left: "8%" }, { top: "5%", left: "55%" }, { top: "20%", left: "80%" },
-    { top: "35%", left: "15%" }, { top: "28%", left: "92%" }, { top: "45%", left: "40%" },
-    { top: "8%", left: "30%" }, { top: "50%", left: "72%" }, { top: "18%", left: "65%" },
-    { top: "40%", left: "5%" }, { top: "25%", left: "48%" }, { top: "55%", left: "25%" },
-  ];
-  return (
-    <BrowserShell url="glambyabeer.com">
-      <div className="h-full flex flex-col overflow-hidden">
-        {/* Navbar */}
-        <div className="bg-white flex items-center justify-between px-3 py-1.5 border-b border-gray-100">
-          <div className="leading-none">
-            <div className="text-[8px] font-black text-gray-900 tracking-[0.2em]" style={{ fontFamily: "Georgia, serif" }}>GLAM</div>
-            <div className="text-[5px] text-gray-400 tracking-[0.35em]">by ABEER</div>
-          </div>
-          <div className="flex items-center gap-2">
-            {["HOME", "BOOKING", "SERVICES"].map(n => (
-              <span key={n} className="text-[5px] text-gray-500 tracking-wider">{n}</span>
-            ))}
-          </div>
-        </div>
-        {/* Hero — dark with golden glitter */}
-        <div className="relative flex-1 flex flex-col items-center justify-center overflow-hidden" style={{ background: "#0a0a0a" }}>
-          {/* Radial gold glow from top */}
-          <div className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse 120% 60% at 50% -10%, rgba(200,165,60,0.45) 0%, transparent 65%)" }} />
-          {/* Gold sparkle particles */}
-          {sparkles.map((s, i) => (
-            <div key={i} className="absolute rounded-full bg-yellow-300"
-              style={{ top: s.top, left: s.left, width: i % 3 === 0 ? "3px" : "2px", height: i % 3 === 0 ? "3px" : "2px", opacity: 0.5 + (i % 4) * 0.12 }} />
-          ))}
-          {/* Gold powder burst shapes */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-12 opacity-25"
-            style={{ background: "radial-gradient(ellipse, rgba(218,165,32,0.9) 0%, transparent 70%)", filter: "blur(8px)" }} />
-          {/* Text content */}
-          <div className="relative z-10 text-center px-3">
-            <div className="text-[7px] text-gray-300 tracking-[0.4em] mb-0.5">GLAM</div>
-            <div className="text-[7px] text-gray-400 tracking-[0.3em] mb-0.5" style={{ fontStyle: "italic", fontFamily: "Georgia,serif" }}>by</div>
-            <div className="text-[24px] font-black text-white leading-none tracking-wider mb-3"
-              style={{ fontFamily: "Georgia, serif", textShadow: "0 0 30px rgba(218,165,32,0.3)" }}>
-              ABEER
-            </div>
-            <div className="inline-block px-5 py-1.5 text-[7px] font-bold text-black"
-              style={{ background: "linear-gradient(135deg, #D4AF37, #B8860B)", borderRadius: "2px", letterSpacing: "0.1em" }}>
-              BOOK NOW
-            </div>
-          </div>
-        </div>
-        {/* Services strip */}
-        <div className="bg-white px-3 py-2 border-t border-gray-100">
-          <div className="text-[7px] font-bold text-gray-800 text-center mb-1.5" style={{ fontFamily: "Georgia,serif" }}>Services</div>
-          <div className="flex gap-1.5">
-            {[
-              { name: "Full Glam", shade: "#E8D5C4" },
-              { name: "Engagement", shade: "#D4C4B0" },
-              { name: "Bridal Glam", shade: "#F0D9C8" },
-              { name: "Photoshoots", shade: "#D8C4B8" },
-            ].map(s => (
-              <div key={s.name} className="flex-1 text-center">
-                <div className="h-9 rounded-sm mb-0.5" style={{ background: `linear-gradient(160deg, ${s.shade}, #B8A090)` }} />
-                <div className="text-[5px] text-gray-600 leading-tight">{s.name}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </BrowserShell>
-  );
-}
-
-/* ─── NM Legal Mockup ──────────────────────────────── */
-function NMLegalMockup() {
-  return (
-    <BrowserShell url="nmlegalfirm.com">
-      <div className="h-full flex flex-col overflow-hidden bg-white">
-        {/* Top contact bar */}
-        <div className="bg-gray-100 px-3 py-0.5 flex items-center gap-1">
-          <div className="w-1.5 h-1.5 rounded-full bg-gray-400" />
-          <span className="text-[6px] text-gray-500">Call Me: (313) 632-2056</span>
-        </div>
-        {/* Navbar */}
-        <div className="bg-white px-3 py-1.5 flex items-center justify-between border-b border-gray-200">
-          <div className="flex items-center gap-1.5">
-            {/* NM hexagon badge */}
-            <svg viewBox="0 0 24 28" className="w-5 h-6">
-              <polygon points="12,1 23,7 23,21 12,27 1,21 1,7" fill="#0B1F4A" stroke="#1a3570" strokeWidth="0.5" />
-              <text x="12" y="17" textAnchor="middle" fill="#C9A84C" fontSize="8" fontWeight="900" fontFamily="Georgia">NM</text>
-            </svg>
-            <div>
-              <div className="text-[7px] font-bold text-gray-900 leading-none">NM</div>
-              <div className="text-[5px] text-gray-500 tracking-wide leading-none">LAW FIRM</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {["Home", "About", "Contacts"].map((n, i) => (
-              <span key={n} className={`text-[6px] ${i === 0 ? "text-gray-800 font-semibold" : "text-gray-400"}`}>{n}</span>
-            ))}
-          </div>
-        </div>
-        {/* Hero — dark split */}
-        <div className="flex-1 flex overflow-hidden" style={{ background: "linear-gradient(135deg, #0D1B2A 0%, #1a2c44 100%)" }}>
-          {/* Left: attorney */}
-          <div className="w-2/5 relative flex items-end justify-center overflow-hidden">
-            <div className="absolute inset-0 opacity-20"
-              style={{ background: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100' height='100' fill='%23334455'/%3E%3C/svg%3E\")" }} />
-            {/* Silhouette */}
-            <div className="relative z-10 flex flex-col items-center pb-1">
-              <div className="w-10 h-10 rounded-full mb-0.5" style={{ background: "linear-gradient(180deg,#8B9BB4 0%,#5A6B80 100%)" }} />
-              <div className="w-14 h-14 rounded-t-2xl" style={{ background: "linear-gradient(180deg,#6B7C92 0%,#4A5C70 100%)" }} />
-            </div>
-          </div>
-          {/* Right: headline */}
-          <div className="flex-1 flex flex-col justify-center px-3 py-3">
-            {/* NM Badge */}
-            <div className="w-8 h-8 mb-1.5 relative">
-              <svg viewBox="0 0 32 36" className="w-full h-full">
-                <polygon points="16,1 31,9 31,27 16,35 1,27 1,9" fill="#0B2060" stroke="#C9A84C" strokeWidth="1.5" />
-                <text x="16" y="22" textAnchor="middle" fill="#C9A84C" fontSize="9" fontWeight="900" fontFamily="Georgia">NM</text>
-              </svg>
-            </div>
-            {/* Tagline */}
-            <div className="text-[6px] text-[#C9A84C] mb-1 uppercase tracking-widest">Law Firm</div>
-            {/* Main headline */}
-            <div className="text-white font-black leading-none mb-2.5" style={{ fontSize: "13px", fontFamily: "Georgia, serif", lineHeight: 1.05 }}>
-              EVERY<br />CLIENT<br />MATTERS.
-            </div>
-            <div className="flex flex-col gap-1">
-              <div className="px-2.5 py-1 text-[6px] text-black font-bold w-fit" style={{ background: "#C9A84C" }}>
-                About Me
-              </div>
-              <div className="px-2.5 py-1 text-[6px] font-bold w-fit border" style={{ borderColor: "#C9A84C", color: "#C9A84C" }}>
-                REQUEST A CONSULTATION →
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* Stats bar */}
-        <div className="bg-white border-t-2 border-gray-200 flex">
-          {[["1090+", "TRUSTED CLIENTS"], ["628", "SETTLED CASES"], ["98%", "SUCCESSFUL"], ["2726+", "COFFEE CUPS CONSUMED"]].map(([v, l]) => (
-            <div key={l} className="flex-1 py-1.5 text-center border-r border-gray-200 last:border-r-0">
-              <div className="font-bold text-[#C9A84C]" style={{ fontSize: "9px" }}>{v}</div>
-              <div className="text-[4.5px] text-gray-400 uppercase tracking-wide leading-tight">{l}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </BrowserShell>
-  );
-}
-
-/* ─── Thematek Mockup ──────────────────────────────── */
-function ThematekMockup() {
-  return (
-    <BrowserShell url="thematek.com">
-      <div className="h-full flex flex-col overflow-hidden bg-white">
-        {/* Navbar */}
-        <div className="bg-white px-3 py-1.5 flex items-center justify-between border-b border-gray-100 shadow-sm">
-          <div className="flex items-center gap-1.5">
-            {/* Circuit-style logo */}
-            <div className="w-5 h-5 rounded-sm relative overflow-hidden" style={{ background: "linear-gradient(135deg, #F5A623, #D4861A)" }}>
-              <svg viewBox="0 0 20 20" className="w-full h-full" fill="none">
-                <circle cx="10" cy="10" r="3" fill="white" opacity="0.9" />
-                <line x1="10" y1="4" x2="10" y2="7" stroke="white" strokeWidth="1.5" opacity="0.7" />
-                <line x1="10" y1="13" x2="10" y2="16" stroke="white" strokeWidth="1.5" opacity="0.7" />
-                <line x1="4" y1="10" x2="7" y2="10" stroke="white" strokeWidth="1.5" opacity="0.7" />
-                <line x1="13" y1="10" x2="16" y2="10" stroke="white" strokeWidth="1.5" opacity="0.7" />
-              </svg>
-            </div>
-            <span className="text-[8px] font-black text-gray-900 tracking-[0.15em]">THEMATEK</span>
-          </div>
-          <div className="flex items-center gap-2">
-            {["HOME", "PORTFOLIO", "BLOG"].map(n => (
-              <span key={n} className="text-[5.5px] text-gray-500 tracking-wide">{n}</span>
-            ))}
-            <div className="px-2 py-0.5 text-[5.5px] font-bold text-black rounded-sm" style={{ background: "#F5A623" }}>
-              FREE QUOTE
-            </div>
-          </div>
-        </div>
-        {/* Hero split */}
-        <div className="flex flex-1 overflow-hidden">
-          {/* Left: network/server image simulation */}
-          <div className="w-2/5 relative overflow-hidden" style={{ background: "#1A1A2E" }}>
-            {/* Server rack simulation */}
-            <div className="absolute inset-0 flex flex-col gap-1 p-2 justify-center">
-              {[1, 2, 3, 4, 5].map(i => (
-                <div key={i} className="h-2 rounded-sm opacity-60" style={{ background: i % 2 === 0 ? "#2A2A4E" : "#222238" }}>
-                  <div className="flex items-center gap-0.5 px-1 h-full">
-                    <div className="w-1 h-1 rounded-full" style={{ background: i === 2 ? "#00FF88" : "#F5A623" }} />
-                  </div>
-                </div>
-              ))}
-              {/* Cable simulation */}
-              <div className="absolute top-2 right-0 w-3 h-full flex flex-col gap-0.5 justify-center">
-                <div className="h-0.5 rounded" style={{ background: "#F5A623", opacity: 0.8 }} />
-                <div className="h-0.5 rounded" style={{ background: "#F5A623", opacity: 0.6, marginLeft: "4px" }} />
-                <div className="h-0.5 rounded" style={{ background: "#4488FF", opacity: 0.7 }} />
-                <div className="h-0.5 rounded" style={{ background: "#F5A623", opacity: 0.5, marginLeft: "2px" }} />
-              </div>
-            </div>
-          </div>
-          {/* Right: headline */}
-          <div className="flex-1 px-3 py-2.5 flex flex-col justify-center bg-white">
-            <div className="text-[6px] font-semibold uppercase tracking-widest mb-1.5" style={{ color: "#F5A623" }}>
-              Business Technology Solutions
-            </div>
-            <div className="font-black text-gray-900 leading-tight mb-2" style={{ fontSize: "13px" }}>
-              Optimizing
-              <br />
-              local retail IT
-            </div>
-            {/* Two solution boxes */}
-            <div className="flex gap-2">
-              <div className="flex-1 pl-1.5 border-l-2" style={{ borderColor: "#F5A623" }}>
-                <div className="text-[6px] font-bold mb-0.5" style={{ color: "#F5A623" }}>Retail Business</div>
-                <div className="text-[5px] text-gray-500 leading-tight">IT Solutions for your retail space</div>
-              </div>
-              <div className="flex-1 pl-1.5 border-l-2" style={{ borderColor: "#F5A623" }}>
-                <div className="text-[6px] font-bold mb-0.5" style={{ color: "#F5A623" }}>Enterprise</div>
-                <div className="text-[5px] text-gray-500 leading-tight">Enterprise IT solutions.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* Free consultation banner */}
-        <div className="flex items-center justify-between px-3 py-1.5" style={{ background: "#F5A623" }}>
-          <div>
-            <div className="text-[7px] font-bold text-white">Free project consultation</div>
-            <div className="text-[5px] text-white/80">Share your number, we&apos;ll call you back</div>
-          </div>
-          <div className="flex gap-1 items-center">
-            <div className="px-2 py-0.5 bg-white text-[5px] text-gray-500 rounded-sm" style={{ minWidth: "60px" }}>Phone number</div>
-            <div className="px-1.5 py-0.5 bg-[#D4861A] text-[5.5px] text-white font-bold rounded-sm">SUBMIT</div>
-          </div>
-        </div>
-        {/* Service chips row */}
-        <div className="bg-gray-50 border-t border-gray-200 px-3 py-1.5 flex gap-1.5">
-          {["Low Voltage Cabling", "Security Cameras", "POS Setup", "Network"].map(s => (
-            <div key={s} className="flex items-center gap-0.5">
-              <div className="w-1.5 h-1.5 rounded-sm border border-gray-400 flex items-center justify-center">
-                <div className="w-0.5 h-0.5 bg-gray-600 rounded-sm" />
-              </div>
-              <span className="text-[5px] text-gray-600">{s}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </BrowserShell>
   );
 }
 
@@ -373,7 +100,7 @@ const projects = [
     desc: "Full brand website for a professional makeup artist featuring dark glamour aesthetic, service showcase, and online booking integration.",
     result: "+65% Bookings",
     resultColor: "text-[#D25124]",
-    mockup: "glam",
+    image: "/screenshots/glambyabeer.png",
     tag: "Web Design & SEO",
     tagColor: "bg-[#FFF3EE] text-[#D25124]",
   },
@@ -384,7 +111,7 @@ const projects = [
     desc: "Authoritative legal website for a Michigan-based attorney with consultation request funnel, practice areas, and multilingual support.",
     result: "+120% Leads",
     resultColor: "text-[#D25124]",
-    mockup: "nmlegal",
+    image: "/screenshots/nmlegalfirm.png",
     tag: "Web Dev + SEO",
     tagColor: "bg-[#FFF3EE] text-[#D25124]",
   },
@@ -395,7 +122,7 @@ const projects = [
     desc: "High-converting website for a retail & enterprise IT solutions company with free consultation funnel and service portfolio showcase.",
     result: "+200% Traffic",
     resultColor: "text-[#D25124]",
-    mockup: "thematek",
+    image: "/screenshots/thematek.png",
     tag: "Web Design + AI",
     tagColor: "bg-[#FFF3EE] text-[#D25124]",
   },
@@ -462,12 +189,6 @@ export default function HomePage() {
     return () => ctx.revert();
   }, []);
 
-  function renderMockup(key: string) {
-    if (key === "glam") return <GlamMockup />;
-    if (key === "nmlegal") return <NMLegalMockup />;
-    if (key === "thematek") return <ThematekMockup />;
-    return null;
-  }
 
   return (
     <>
@@ -656,9 +377,8 @@ export default function HomePage() {
                 onMouseEnter={() => setHoveredProject(0)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                {/* Browser mockup */}
                 <div className="relative h-[310px] overflow-hidden">
-                  {renderMockup(projects[0].mockup)}
+                  <Image src={projects[0].image} alt={projects[0].title} fill className="object-cover object-top" />
                   <div className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
                     style={{ background: "linear-gradient(to top, #0e0e1c, transparent)" }} />
                   {/* Result badge */}
@@ -718,9 +438,8 @@ export default function HomePage() {
                     onMouseEnter={() => setHoveredProject(idx + 1)}
                     onMouseLeave={() => setHoveredProject(null)}
                   >
-                    {/* Browser mockup */}
                     <div className="relative h-40 overflow-hidden">
-                      {renderMockup(p.mockup)}
+                      <Image src={p.image} alt={p.title} fill className="object-cover object-top" />
                       <div className="absolute inset-x-0 bottom-0 h-14 pointer-events-none"
                         style={{ background: "linear-gradient(to top, #0e0e1c, transparent)" }} />
                       {/* Result badge */}
