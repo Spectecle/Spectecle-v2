@@ -220,11 +220,11 @@ export default function HomePage() {
             className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight text-white"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Detroit Web Design
+            Where Detroit Brands
             <br />
-            Built By The Person
+            Come to Get Found,
             <br />
-            Who <span className="gradient-text">Actually Builds It</span>
+            <span className="gradient-text">And Own Their Market.</span>
           </motion.h1>
 
           <motion.p
