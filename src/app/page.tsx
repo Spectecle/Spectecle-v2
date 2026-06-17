@@ -5,9 +5,6 @@ import Link from "next/link";
 import {
   motion,
   useInView,
-  useMotionValue,
-  useSpring,
-  animate,
   useScroll,
   useTransform,
 } from "framer-motion";
@@ -30,16 +27,6 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-/* ─── Animated Counter ─────────────────────────────── */
-function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  const count = useMotionValue(0);
-  const springVal = useSpring(count, { stiffness: 60, damping: 20 });
-  useEffect(() => { if (!inView) return; animate(count, to, { duration: 2.4, ease: "easeOut" }); }, [inView, count, to]);
-  useEffect(() => { return springVal.on("change", (v) => { if (ref.current) ref.current.textContent = Math.round(v) + suffix; }); }, [springVal, suffix]);
-  return <span ref={ref}>{to}{suffix}</span>;
-}
 
 /* ─── Reveal ───────────────────────────────────────── */
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -373,12 +360,6 @@ const services = [
   },
 ];
 
-const stats = [
-  { value: 50, suffix: "+", label: "Projects Delivered" },
-  { value: 98, suffix: "%", label: "Client Retention" },
-  { value: 12, suffix: "+", label: "Years of Experience" },
-];
-
 const clients = [
   "NM Law Firm", "Stat Clinic", "Glam by Abeer", "City of Dearborn",
   "ICD", "Indoor Garden", "Thematek", "Detroit Glass & Mirror", "Salazar Drywall Services",
@@ -629,23 +610,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══ STATS — DARK ═════════════════════════════ */}
-      <section className="py-24 border-y border-white/6" style={{ background: "#040408" }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
-            {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.1}>
-                <div className="text-center">
-                  <div className="text-5xl md:text-6xl font-bold gradient-text" style={{ fontFamily: "var(--font-inter)" }}>
-                    <Counter to={s.value} suffix={s.suffix} />
-                  </div>
-                  <p className="mt-3 text-slate-500 text-sm font-medium uppercase tracking-wider">{s.label}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* ══ WORK PREVIEW — DARK BENTO ═══════════════ */}
       <section className="relative py-32 px-6 overflow-hidden" style={{ background: "#060610" }}>
