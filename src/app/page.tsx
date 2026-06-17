@@ -532,8 +532,8 @@ export default function HomePage() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-8 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            No account managers. No handoffs. You work directly with Walid — 12 years
-            in IT infrastructure, 10 building websites — on sites that load fast, rank, and convert.
+            A performance-obsessed Detroit studio shaping high-converting digital presences
+            through search-first design, bold development, and intelligent automation.
           </motion.p>
 
           <motion.div
