@@ -635,15 +635,15 @@ export default function HomePage() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact" className="btn-primary flex items-center gap-2 px-9 py-4 rounded-2xl text-base font-semibold cursor-pointer">
-                <span>Start a Project</span>
+                <span>Book a Free Call</span>
                 <ArrowUpRight className="w-5 h-5 relative z-10" />
               </Link>
-              <Link href="/services" className="flex items-center gap-2 px-9 py-4 rounded-2xl text-base font-semibold text-slate-300 hover:text-white glass hover:border-white/15 border border-white/8 transition-all duration-300 cursor-pointer">
-                Explore Services <ChevronRight className="w-4 h-4" />
+              <Link href="/work" className="flex items-center gap-2 px-9 py-4 rounded-2xl text-base font-semibold text-slate-300 hover:text-white glass hover:border-white/15 border border-white/8 transition-all duration-300 cursor-pointer">
+                See Our Work <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
             <p className="mt-8 text-slate-600 text-sm">
-              Free consultation · No commitment · Response within 24 hours
+              30-minute call · No commitment · Response within 24 hours
             </p>
           </div>
         </Reveal>

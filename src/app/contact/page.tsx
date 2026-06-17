@@ -286,11 +286,11 @@ export default function ContactPage() {
                       className="text-2xl font-bold text-white mb-1"
                       style={{ fontFamily: "var(--font-inter)" }}
                     >
-                      Tell us about your project
+                      Start a conversation
                     </h2>
                     <p className="text-slate-500 text-sm">
-                      Based in Detroit — working with businesses everywhere. Fill in the details
-                      and we&apos;ll be in touch.
+                      A quick question or a full project brief — both are welcome. Based in
+                      Detroit, working with businesses everywhere.
                     </p>
                   </div>
 
@@ -342,56 +342,57 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  {/* Service + Budget */}
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
-                        Service Interest
-                      </label>
-                      <select
-                        name="service"
-                        value={formData.service}
-                        onChange={handleChange}
-                        className={`${inputClass("service")} cursor-pointer`}
-                      >
-                        <option value="" disabled>Select a service</option>
-                        {serviceOptions.map((s) => (
-                          <option key={s} value={s}>{s}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
-                        Budget Range
-                      </label>
-                      <select
-                        name="budget"
-                        value={formData.budget}
-                        onChange={handleChange}
-                        className={`${inputClass("budget")} cursor-pointer`}
-                      >
-                        <option value="" disabled>Select a range</option>
-                        {budgetOptions.map((b) => (
-                          <option key={b} value={b}>{b}</option>
-                        ))}
-                      </select>
-                    </div>
+                  {/* Service */}
+                  <div>
+                    <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
+                      Service Interest
+                    </label>
+                    <select
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className={`${inputClass("service")} cursor-pointer`}
+                    >
+                      <option value="" disabled>Select a service</option>
+                      {serviceOptions.map((s) => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
                   </div>
 
                   {/* Message */}
                   <div>
                     <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
-                      Project Brief <span className="text-rose-400">*</span>
+                      What&apos;s on Your Mind? <span className="text-rose-400">*</span>
                     </label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       rows={5}
-                      placeholder="Tell us about your project goals, current challenges, and what success looks like for you..."
+                      placeholder="Tell us about your goals, questions, or challenges — whether you have a project ready or just want to explore your options."
                       className={`${inputClass("message")} resize-none`}
                     />
                     {errors.message && <p className="mt-1.5 text-xs text-rose-400">{errors.message}</p>}
+                  </div>
+
+                  {/* Budget — optional, at the end so it doesn't gate early */}
+                  <div>
+                    <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
+                      Budget Range{" "}
+                      <span className="text-slate-600 normal-case tracking-normal">(optional)</span>
+                    </label>
+                    <select
+                      name="budget"
+                      value={formData.budget}
+                      onChange={handleChange}
+                      className={`${inputClass("budget")} cursor-pointer`}
+                    >
+                      <option value="" disabled>Select a range — or skip if unsure</option>
+                      {budgetOptions.map((b) => (
+                        <option key={b} value={b}>{b}</option>
+                      ))}
+                    </select>
                   </div>
 
                   {/* Submit */}

@@ -69,7 +69,7 @@ const values = [
 
 const stats = [
   { value: "50+", label: "Projects Delivered" },
-  { value: "$5.4M+", label: "Revenue Generated" },
+  { value: "Est. 2012", label: "Detroit-Based" },
   { value: "98%", label: "Client Retention" },
   { value: "3×", label: "Avg Traffic Growth" },
 ];
@@ -544,14 +544,14 @@ export default function AboutPage() {
                 href="/contact"
                 className="btn-primary inline-flex items-center gap-2 px-9 py-4 rounded-2xl text-base font-semibold cursor-pointer"
               >
-                <span>Start a Project</span>
+                <span>Book a Free Call</span>
                 <ArrowUpRight className="w-5 h-5 relative z-10" />
               </Link>
               <Link
                 href="/work"
                 className="flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-semibold text-slate-300 hover:text-white glass hover:border-white/15 border border-white/8 transition-all duration-300 cursor-pointer"
               >
-                View My Work
+                See Our Work
               </Link>
             </div>
           </div>
