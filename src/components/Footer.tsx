@@ -19,9 +19,9 @@ const IconGithub = () => (
 );
 
 const services = [
-  { label: "Web Design & Development", href: "/services" },
-  { label: "SEO & Marketing", href: "/services" },
-  { label: "AI & Automation", href: "/services" },
+  { label: "Web Design & Development", href: "/services/web-design-detroit" },
+  { label: "SEO & Marketing", href: "/services/seo-agency-detroit" },
+  { label: "AI & Automation", href: "/services/ai-automation" },
 ];
 
 const pages = [
