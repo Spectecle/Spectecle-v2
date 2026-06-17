@@ -595,7 +595,7 @@ export default function HomePage() {
                 </div>
               </div>
               <a
-                href="https://www.google.com/search?q=Spectecle+Detroit+web+design+reviews"
+                href="https://g.page/r/CbSs-g26jjLnEBM/review"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-xl border border-slate-200 hover:border-[#D25124]/30 hover:shadow-md transition-all duration-300 text-sm font-semibold text-slate-700 hover:text-[#D25124]"
