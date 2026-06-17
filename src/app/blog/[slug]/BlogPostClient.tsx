@@ -85,6 +85,81 @@ function renderBlock(block: ContentBlock, i: number) {
   }
 }
 
+const SERVICE_LINKS: Record<string, { title: string; href: string; desc: string }[]> = {
+  "photography-website-design-michigan": [
+    {
+      title: "SEO & Digital Marketing",
+      href: "/services/seo-agency-detroit",
+      desc: "Local SEO, Google Business Profile optimization, and content strategy to get your photography studio ranking for the searches that book clients.",
+    },
+    {
+      title: "Web Design & Development",
+      href: "/services/web-design-detroit",
+      desc: "Custom portfolio sites built for speed, local SEO, and frictionless online bookings.",
+    },
+  ],
+  "contractor-website-design-michigan": [
+    {
+      title: "SEO & Digital Marketing",
+      href: "/services/seo-agency-detroit",
+      desc: "Map Pack rankings, service area pages, and citation building that consistently puts Michigan contractors at the top of local search.",
+    },
+    {
+      title: "Web Design & Development",
+      href: "/services/web-design-detroit",
+      desc: "High-converting contractor websites with trust signals, portfolios, and lead generation forms built to win jobs from Google.",
+    },
+  ],
+  "law-firm-website-design-michigan": [
+    {
+      title: "Web Design & Development",
+      href: "/services/web-design-detroit",
+      desc: "Custom attorney websites built on authority, trust, and conversion — with practice-area pages, schema markup, and a clear consultation path.",
+    },
+    {
+      title: "SEO & Digital Marketing",
+      href: "/services/seo-agency-detroit",
+      desc: "Legal SEO targeting the high-intent Michigan search terms that turn into consultation calls — not just traffic.",
+    },
+  ],
+  "makeup-artist-seo-michigan": [
+    {
+      title: "SEO & Digital Marketing",
+      href: "/services/seo-agency-detroit",
+      desc: "Local SEO and Google Business Profile optimization for Michigan beauty studios — ranking for the searches that fill booking calendars.",
+    },
+    {
+      title: "Web Design & Development",
+      href: "/services/web-design-detroit",
+      desc: "Custom beauty studio websites with gallery-first design, online booking integration, and search-optimized service pages.",
+    },
+  ],
+  "ai-business-automation-michigan": [
+    {
+      title: "AI & Workflow Automation",
+      href: "/services/ai-automation",
+      desc: "Custom AI agents and workflow automation built from scratch — trained on your services, integrated with your CRM, and tested until they work.",
+    },
+    {
+      title: "Web Design & Development",
+      href: "/services/web-design-detroit",
+      desc: "A high-converting website that feeds your AI-powered intake and follow-up systems with qualified leads.",
+    },
+  ],
+  "ecommerce-website-design-michigan": [
+    {
+      title: "Web Design & Development",
+      href: "/services/web-design-detroit",
+      desc: "Custom e-commerce websites for Michigan product businesses — optimized for search, built for conversion, and fully owned by you.",
+    },
+    {
+      title: "SEO & Digital Marketing",
+      href: "/services/seo-agency-detroit",
+      desc: "E-commerce SEO that captures purchase-intent searches and compounds organic traffic month over month.",
+    },
+  ],
+};
+
 export default function BlogPostClient({
   post,
   nextPost,
@@ -180,32 +255,67 @@ export default function BlogPostClient({
         </div>
       </section>
 
-      {/* ── RELATED CASE STUDY ───────────────────────── */}
-      <section className="py-16 px-6 border-t border-white/6 bg-[#09090f]">
-        <div className="max-w-3xl mx-auto">
-          <Reveal>
-            <p className="text-xs text-slate-600 uppercase tracking-widest mb-4">
-              Related Case Study
-            </p>
-            <Link
-              href={`/work/${post.caseStudySlug}`}
-              className="group flex items-center justify-between glass rounded-2xl p-7 border border-white/6 hover:border-[#D25124]/20 transition-colors duration-300"
-            >
-              <div>
-                <p className="text-slate-500 text-sm">Real project. Real results.</p>
-                <h3
-                  className="text-xl font-bold text-white mt-1 group-hover:text-[#F07A3A] transition-colors"
-                  style={{ fontFamily: "var(--font-inter)" }}
-                >
-                  {post.caseStudyTitle}
-                </h3>
-                <p className="text-slate-400 text-sm mt-1">View the full case study →</p>
+      {/* ── RELATED SERVICES ─────────────────────────── */}
+      {SERVICE_LINKS[post.slug] && (
+        <section className="py-16 px-6 border-t border-white/6">
+          <div className="max-w-3xl mx-auto">
+            <Reveal>
+              <p className="text-xs text-slate-600 uppercase tracking-widest mb-6">
+                Related Services
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {SERVICE_LINKS[post.slug].map((s) => (
+                  <Link
+                    key={s.href}
+                    href={s.href}
+                    className="group glass rounded-xl p-5 border border-white/6 hover:border-[#D25124]/25 transition-all duration-300 block"
+                  >
+                    <h3
+                      className="text-white font-semibold mb-1.5 text-sm group-hover:text-[#F07A3A] transition-colors"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      {s.title}
+                    </h3>
+                    <p className="text-slate-500 text-xs leading-relaxed mb-3">{s.desc}</p>
+                    <div className="flex items-center gap-1 text-xs font-semibold text-[#F07A3A]">
+                      Learn more <ArrowUpRight className="w-3 h-3" />
+                    </div>
+                  </Link>
+                ))}
               </div>
-              <ChevronRight className="w-6 h-6 text-slate-600 group-hover:text-[#F07A3A] transition-colors shrink-0" />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* ── RELATED CASE STUDY ───────────────────────── */}
+      {post.caseStudySlug && (
+        <section className="py-16 px-6 border-t border-white/6 bg-[#09090f]">
+          <div className="max-w-3xl mx-auto">
+            <Reveal>
+              <p className="text-xs text-slate-600 uppercase tracking-widest mb-4">
+                Related Case Study
+              </p>
+              <Link
+                href={`/work/${post.caseStudySlug}`}
+                className="group flex items-center justify-between glass rounded-2xl p-7 border border-white/6 hover:border-[#D25124]/20 transition-colors duration-300"
+              >
+                <div>
+                  <p className="text-slate-500 text-sm">Real project. Real results.</p>
+                  <h3
+                    className="text-xl font-bold text-white mt-1 group-hover:text-[#F07A3A] transition-colors"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {post.caseStudyTitle}
+                  </h3>
+                  <p className="text-slate-400 text-sm mt-1">View the full case study →</p>
+                </div>
+                <ChevronRight className="w-6 h-6 text-slate-600 group-hover:text-[#F07A3A] transition-colors shrink-0" />
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* ── NEXT ARTICLE ─────────────────────────────── */}
       <section className="py-16 px-6 border-t border-white/6">

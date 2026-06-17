@@ -251,6 +251,51 @@ export default function AIAutomationPage() {
         </div>
       </section>
 
+      {/* ── FROM THE BLOG ────────────────────────────── */}
+      <section className="py-20 px-6 border-t border-white/6">
+        <div className="max-w-7xl mx-auto">
+          <Reveal>
+            <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: "var(--font-inter)" }}>
+              From the Blog
+            </h2>
+            <p className="text-slate-500 text-sm mb-8">Real-world automation strategies from our client work.</p>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 gap-5 max-w-3xl">
+            {[
+              {
+                title: "AI Business Automation in 2026: What Michigan Companies Are Actually Using It For",
+                excerpt: "The conversation around AI has been dominated by hype. Here's what Michigan businesses are actually deploying — and what's genuinely delivering measurable ROI.",
+                href: "/blog/ai-business-automation-michigan",
+                category: "AI & Automation",
+                readTime: "7 min read",
+              },
+              {
+                title: "Local SEO for Michigan Contractors: How to Rank #1 for Your Trade",
+                excerpt: "The one who shows up first on Google wins the job. Here's how Michigan service businesses are combining SEO with automated follow-up to convert more leads.",
+                href: "/blog/contractor-website-design-michigan",
+                category: "Local SEO",
+                readTime: "7 min read",
+              },
+            ].map((post) => (
+              <Reveal key={post.href}>
+                <Link href={post.href} className="group glass rounded-xl p-6 border border-white/6 hover:border-[#D25124]/25 transition-all duration-300 block h-full">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs font-semibold text-[#F07A3A]">{post.category}</span>
+                    <span className="text-slate-700">·</span>
+                    <span className="text-xs text-slate-600">{post.readTime}</span>
+                  </div>
+                  <h3 className="text-white font-semibold text-sm mb-2 group-hover:text-[#F07A3A] transition-colors leading-snug" style={{ fontFamily: "var(--font-inter)" }}>{post.title}</h3>
+                  <p className="text-slate-500 text-xs leading-relaxed">{post.excerpt}</p>
+                  <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-[#F07A3A]">
+                    Read article <ArrowUpRight className="w-3 h-3" />
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ──────────────────────────────────────── */}
       <section className="py-24 px-6 border-t border-white/6 bg-[#09090f]">
         <Reveal>
