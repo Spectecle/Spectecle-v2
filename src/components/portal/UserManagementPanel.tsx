@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Search, ExternalLink, Building2 } from "lucide-react";
 import { InviteUserForm } from "@/components/portal/InviteUserForm";
 import { UserStatusToggle } from "@/components/portal/UserStatusToggle";
+import { UserDeleteButton } from "@/components/portal/UserDeleteButton";
 import { OrganizationNameEditor } from "@/components/portal/OrganizationNameEditor";
 import { groupByOrganization, type OrgUser } from "@/lib/organizations";
 
@@ -114,6 +115,11 @@ export function UserManagementPanel({
                       View Tickets
                     </Link>
                     <UserStatusToggle userId={u.id} status={u.status} />
+                    <UserDeleteButton
+                      userId={u.id}
+                      email={u.email}
+                      ticketCount={ticketCountByUserId[u.id] ?? 0}
+                    />
                   </div>
                 </div>
               ))}
