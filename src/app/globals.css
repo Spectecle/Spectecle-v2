@@ -194,3 +194,53 @@ body {
 input:focus, textarea:focus, select:focus {
   outline: none;
 }
+
+/* ── Portal theme (light/dark) ──────────────────────────────
+   Scoped entirely under .portal-shell so the marketing site
+   (which uses .glass etc. too) is never affected. */
+.portal-shell {
+  min-height: 100vh;
+  background-color: var(--portal-bg);
+  color: var(--portal-text-primary);
+}
+
+.portal-shell,
+.portal-shell[data-theme="dark"] {
+  --portal-bg: #040408;
+  --portal-surface: #09090f;
+  --portal-card: #0e0e1a;
+  --portal-card-alt: #1a0d08;
+  --portal-border: rgba(255, 255, 255, 0.08);
+  --portal-border-strong: rgba(255, 255, 255, 0.15);
+  --portal-text-primary: #ffffff;
+  --portal-text-secondary: #94a3b8;
+  --portal-text-muted: #64748b;
+  --portal-text-faint: #475569;
+  --portal-input-bg: #0e0e1a;
+}
+
+.portal-shell[data-theme="light"] {
+  --portal-bg: #f7f6f4;
+  --portal-surface: #ffffff;
+  --portal-card: #ffffff;
+  --portal-card-alt: #fdf1ea;
+  --portal-border: rgba(15, 15, 20, 0.09);
+  --portal-border-strong: rgba(15, 15, 20, 0.16);
+  --portal-text-primary: #14141a;
+  --portal-text-secondary: #52525b;
+  --portal-text-muted: #71717a;
+  --portal-text-faint: #a1a1aa;
+  --portal-input-bg: #ffffff;
+}
+
+.portal-shell[data-theme="light"] .glass {
+  background: rgba(20, 20, 26, 0.02);
+  border-color: var(--portal-border);
+  box-shadow: 0 1px 3px rgba(15, 15, 20, 0.04);
+}
+
+.portal-shell[data-theme="light"] .glass-hover:hover {
+  background: rgba(20, 20, 26, 0.03);
+  border-color: rgba(210, 81, 36, 0.3);
+  box-shadow: 0 20px 40px rgba(15, 15, 20, 0.08), 0 0 60px rgba(210, 81, 36, 0.06);
+}

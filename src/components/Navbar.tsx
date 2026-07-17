@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, Phone } from "lucide-react";
+import { Menu, X, ArrowUpRight, Phone, User } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 
 const navLinks = [
@@ -90,6 +90,13 @@ export default function Navbar() {
               (313) 353-4105
             </a>
             <Link
+              href="/portal"
+              className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer"
+            >
+              <User className="w-3.5 h-3.5" />
+              Client Portal
+            </Link>
+            <Link
               href="/contact"
               className="btn-primary flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold cursor-pointer"
             >
@@ -156,6 +163,13 @@ export default function Navbar() {
                 >
                   <span>Start a Project</span>
                   <ArrowUpRight className="w-4 h-4 relative z-10" />
+                </Link>
+                <Link
+                  href="/portal"
+                  className="flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white border border-white/8 hover:border-white/15 transition-all duration-200 cursor-pointer"
+                >
+                  <User className="w-4 h-4" />
+                  Client Portal
                 </Link>
                 <a
                   href="tel:+13133534105"
