@@ -7,12 +7,15 @@ export type FieldDef = {
   required?: boolean;
   placeholder?: string;
   options?: string[];
+  /** For checkboxes fields: when "Other" is selected, reveal a text input stored at `${key}_other`. */
+  allowOther?: boolean;
 };
 
 export const SERVICE_TYPES = [
   "New Website / Redesign",
   "Website Update or Bug Fix",
   "SEO & Digital Marketing",
+  "Paid Advertising",
   "AI & Automation",
   "Something Else",
 ] as const;
@@ -84,6 +87,25 @@ export const SERVICE_FIELDS: Record<ServiceType, FieldDef[]> = {
     { key: "competitors", label: "Main Competitors", type: "textarea" },
     { key: "current_efforts", label: "Current Marketing Efforts", type: "textarea" },
   ],
+  "Paid Advertising": [
+    { key: "monthly_budget", label: "Monthly Ad Budget", type: "text", required: true, placeholder: "e.g. $1,500/mo" },
+    { key: "campaign_start", label: "Campaign Start Date", type: "date" },
+    { key: "campaign_end", label: "Campaign End Date", type: "date", placeholder: "Leave blank if ongoing" },
+    {
+      key: "card_on_file",
+      label: "Card on File",
+      type: "select",
+      required: true,
+      options: ["Yes, a card is already on file", "No, needs to be collected"],
+    },
+    {
+      key: "ad_platforms",
+      label: "Ad Platforms",
+      type: "checkboxes",
+      allowOther: true,
+      options: ["Facebook", "Instagram", "Google", "Other"],
+    },
+  ],
   "AI & Automation": [
     { key: "current_tools", label: "Current Tools / Systems", type: "textarea", placeholder: "CRM, spreadsheets, email, etc." },
     { key: "automate_what", label: "What Should Be Automated?", type: "textarea", required: true },
@@ -126,7 +148,47 @@ export function validateDetails(
     } else if (field.required) {
       missing.push(field.label);
     }
+
+    if (field.allowOther) {
+      const otherKey = `${field.key}_other`;
+      const otherValue = details[otherKey];
+      const hasOther = Array.isArray(value) && value.includes("Other");
+      if (hasOther && !isEmpty(otherValue)) {
+        clean[otherKey] = otherValue;
+      }
+    }
   }
 
   return { clean, missing };
+}
+
+/**
+ * Client-side field errors keyed by field key (and `${key}_other` for the
+ * companion text input) — used by the create/edit forms for inline
+ * validation messages. Mirrors the required/allowOther rules in
+ * validateDetails() above, but returns per-field messages instead of a
+ * whitelist.
+ */
+export function getFieldErrors(
+  fields: FieldDef[],
+  details: Record<string, unknown>
+): Record<string, string> {
+  const errors: Record<string, string> = {};
+
+  for (const field of fields) {
+    const value = details[field.key];
+    if (field.required && isEmpty(value)) {
+      errors[field.key] = `${field.label} is required`;
+      continue;
+    }
+
+    if (field.allowOther && Array.isArray(value) && value.includes("Other")) {
+      const otherValue = details[`${field.key}_other`];
+      if (isEmpty(otherValue)) {
+        errors[`${field.key}_other`] = "Please specify";
+      }
+    }
+  }
+
+  return errors;
 }

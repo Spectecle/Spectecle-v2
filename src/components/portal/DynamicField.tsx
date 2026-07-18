@@ -13,12 +13,16 @@ export const inputClass = (hasError: boolean) =>
 export function DynamicField({
   field,
   value,
+  otherValue,
   error,
+  otherError,
   onChange,
 }: {
   field: FieldDef;
   value: DetailValue | undefined;
+  otherValue?: string;
   error?: string;
+  otherError?: string;
   onChange: (key: string, value: DetailValue) => void;
 }) {
   const label = (
@@ -58,6 +62,7 @@ export function DynamicField({
         : [...selected, opt];
       onChange(field.key, next);
     };
+    const showOther = field.allowOther && selected.includes("Other");
     return (
       <div>
         {label}
@@ -77,6 +82,18 @@ export function DynamicField({
             </button>
           ))}
         </div>
+        {showOther && (
+          <div className="mt-2">
+            <input
+              type="text"
+              value={otherValue ?? ""}
+              onChange={(e) => onChange(`${field.key}_other`, e.target.value)}
+              placeholder="Please specify"
+              className={inputClass(!!otherError)}
+            />
+            {otherError && <p className="mt-1.5 text-xs text-rose-400">{otherError}</p>}
+          </div>
+        )}
       </div>
     );
   }

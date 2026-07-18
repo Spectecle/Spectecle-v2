@@ -21,7 +21,12 @@ export function RequestDetails({
     .filter((f) => details[f.key] !== undefined && details[f.key] !== null && details[f.key] !== "")
     .map((f) => {
       const value = details[f.key];
-      const display = Array.isArray(value) ? value.join(", ") : String(value);
+      const otherValue = details[`${f.key}_other`];
+      const display = Array.isArray(value)
+        ? value
+            .map((v) => (v === "Other" && otherValue ? `Other (${String(otherValue)})` : v))
+            .join(", ")
+        : String(value);
       return { label: f.label, display };
     });
 

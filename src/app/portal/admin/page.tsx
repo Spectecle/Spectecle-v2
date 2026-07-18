@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { Inbox, X } from "lucide-react";
+import { Inbox, X, ArrowUpRight } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
@@ -163,6 +163,16 @@ async function RequestsSection({
 
   return (
     <>
+      <div className="flex items-center justify-end mb-4">
+        <Link
+          href="/portal/admin/request"
+          className="btn-primary flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer"
+        >
+          <span>Create Request for Client</span>
+          <ArrowUpRight className="w-4 h-4 relative z-10" />
+        </Link>
+      </div>
+
       {(userFilter || orgFilter) && (
         <div className="flex items-center gap-2 mb-4">
           <span className="text-xs text-[var(--portal-text-secondary)]">Filtered by:</span>

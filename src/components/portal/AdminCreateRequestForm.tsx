@@ -1,0 +1,311 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import {
+  SERVICE_TYPES,
+  BUDGET_OPTIONS,
+  getServiceFields,
+  getFieldErrors,
+} from "@/lib/service-fields";
+import { useFileUploads } from "@/hooks/useFileUploads";
+import { FileUploadField } from "@/components/portal/FileUploadField";
+import { DynamicField, inputClass, type DetailValue } from "@/components/portal/DynamicField";
+import type { OrgGroup } from "@/lib/organizations";
+
+export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
+  const router = useRouter();
+  const [domain, setDomain] = useState("");
+  const [userId, setUserId] = useState("");
+  const [serviceType, setServiceType] = useState("");
+  const [details, setDetails] = useState<Record<string, DetailValue>>({});
+  const [budget, setBudget] = useState("");
+  const [customBudget, setCustomBudget] = useState("");
+  const [message, setMessage] = useState("");
+  const fileUpload = useFileUploads();
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const fields = getServiceFields(serviceType);
+  const clients = groups.find((g) => g.domain === domain)?.users ?? [];
+  const selectedClient = clients.find((c) => c.id === userId);
+
+  const handleDomainChange = (value: string) => {
+    setDomain(value);
+    setUserId("");
+    if (errors.client) setErrors((prev) => ({ ...prev, client: "" }));
+  };
+
+  const handleServiceChange = (value: string) => {
+    setServiceType(value);
+    setDetails({});
+    setErrors((prev) => ({ ...prev, service_type: "" }));
+  };
+
+  const handleDetailChange = (key: string, value: DetailValue) => {
+    setDetails((prev) => ({ ...prev, [key]: value }));
+    if (errors[key]) setErrors((prev) => ({ ...prev, [key]: "" }));
+  };
+
+  const validate = () => {
+    const e: Record<string, string> = {};
+    if (!userId) e.client = "Select a client";
+    if (!serviceType) e.service_type = "Select a service";
+    if (!message.trim()) e.message = "Describe the request";
+    return { ...e, ...getFieldErrors(fields, details) };
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length) {
+      setErrors(errs);
+      return;
+    }
+    if (fileUpload.hasPendingUploads) {
+      setErrors((prev) => ({ ...prev, files: "Please wait for uploads to finish" }));
+      return;
+    }
+    setErrors({});
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/portal/requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          service_type: serviceType,
+          budget: budget === "Other (enter amount)" ? customBudget : budget,
+          message,
+          details,
+          files: fileUpload.getUploadedFiles(),
+          onBehalfOfUserId: userId,
+        }),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <AnimatePresence mode="wait">
+      {status === "success" ? (
+        <motion.div
+          key="success"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="glass rounded-2xl border border-[#D25124]/20 p-14 text-center"
+        >
+          <div className="w-16 h-16 mx-auto rounded-full bg-[#D25124]/10 flex items-center justify-center mb-6">
+            <CheckCircle2 className="w-8 h-8 text-[#F07A3A]" />
+          </div>
+          <h2
+            className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            Request Created
+          </h2>
+          <p className="text-[var(--portal-text-secondary)] mb-8 text-sm">
+            {selectedClient?.email} has been notified.
+          </p>
+          <div className="flex items-center justify-center gap-3">
+            <button
+              onClick={() =>
+                router.push(`/portal/admin?section=requests&user=${encodeURIComponent(selectedClient?.email ?? "")}`)
+              }
+              className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-sm font-semibold cursor-pointer"
+            >
+              View Request
+            </button>
+          </div>
+        </motion.div>
+      ) : (
+        <motion.form
+          key="form"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onSubmit={handleSubmit}
+          className="glass rounded-2xl border border-[var(--portal-border)] p-8 md:p-10 space-y-5"
+          noValidate
+        >
+          <div>
+            <h1
+              className="text-2xl font-bold text-[var(--portal-text-primary)] mb-1"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Create Request for Client
+            </h1>
+            <p className="text-[var(--portal-text-muted)] text-sm">
+              Logs a request on a client&apos;s behalf — they&apos;ll be notified and see it in their dashboard.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                Business <span className="text-rose-400">*</span>
+              </label>
+              <select
+                value={domain}
+                onChange={(e) => handleDomainChange(e.target.value)}
+                className={`${inputClass(false)} cursor-pointer`}
+              >
+                <option value="" disabled>Select a business</option>
+                {groups.map((g) => (
+                  <option key={g.domain} value={g.domain}>{g.name}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                Client <span className="text-rose-400">*</span>
+              </label>
+              <select
+                value={userId}
+                onChange={(e) => {
+                  setUserId(e.target.value);
+                  if (errors.client) setErrors((prev) => ({ ...prev, client: "" }));
+                }}
+                disabled={!domain}
+                className={`${inputClass(!!errors.client)} cursor-pointer disabled:opacity-50`}
+              >
+                <option value="" disabled>
+                  {domain ? "Select a client" : "Pick a business first"}
+                </option>
+                {clients.map((c) => (
+                  <option key={c.id} value={c.id}>{c.email}</option>
+                ))}
+              </select>
+              {errors.client && <p className="mt-1.5 text-xs text-rose-400">{errors.client}</p>}
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+              Service <span className="text-rose-400">*</span>
+            </label>
+            <select
+              value={serviceType}
+              onChange={(e) => handleServiceChange(e.target.value)}
+              className={`${inputClass(!!errors.service_type)} cursor-pointer`}
+            >
+              <option value="" disabled>Select a service</option>
+              {SERVICE_TYPES.map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+            {errors.service_type && (
+              <p className="mt-1.5 text-xs text-rose-400">{errors.service_type}</p>
+            )}
+          </div>
+
+          <AnimatePresence mode="wait">
+            {fields.length > 0 && (
+              <motion.div
+                key={serviceType}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+                className="space-y-5"
+              >
+                {fields.map((field) => (
+                  <DynamicField
+                    key={field.key}
+                    field={field}
+                    value={details[field.key]}
+                    otherValue={details[`${field.key}_other`] as string | undefined}
+                    error={errors[field.key]}
+                    otherError={errors[`${field.key}_other`]}
+                    onChange={handleDetailChange}
+                  />
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div>
+            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+              Budget Range{" "}
+              <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
+            </label>
+            <select
+              value={budget}
+              onChange={(e) => setBudget(e.target.value)}
+              className={`${inputClass(false)} cursor-pointer`}
+            >
+              <option value="" disabled>Select a range — or skip if unsure</option>
+              {BUDGET_OPTIONS.map((b) => (
+                <option key={b} value={b}>{b}</option>
+              ))}
+            </select>
+            {budget === "Other (enter amount)" && (
+              <input
+                type="text"
+                value={customBudget}
+                onChange={(e) => setCustomBudget(e.target.value)}
+                placeholder="e.g. $8,500"
+                className={`${inputClass(false)} mt-3`}
+              />
+            )}
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+              Details <span className="text-rose-400">*</span>
+            </label>
+            <textarea
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+                if (errors.message) setErrors((prev) => ({ ...prev, message: "" }));
+              }}
+              rows={5}
+              placeholder="Describe the request — as if the client wrote it"
+              className={`${inputClass(!!errors.message)} resize-none`}
+            />
+            {errors.message && <p className="mt-1.5 text-xs text-rose-400">{errors.message}</p>}
+          </div>
+
+          <FileUploadField
+            label="Files (optional)"
+            uploads={fileUpload.uploads}
+            error={fileUpload.error || errors.files || ""}
+            onFileSelect={fileUpload.handleFileSelect}
+            onRemove={fileUpload.removeUpload}
+          />
+
+          {status === "error" && (
+            <p className="text-rose-400 text-sm text-center py-2">
+              Something went wrong — please try again.
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={status === "submitting"}
+            className="btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {status === "submitting" ? (
+              <>
+                <span className="relative z-10">Creating...</span>
+                <motion.div
+                  className="relative z-10 w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                />
+              </>
+            ) : (
+              <>
+                <span>Create Request</span>
+                <ArrowUpRight className="w-4 h-4 relative z-10" />
+              </>
+            )}
+          </button>
+        </motion.form>
+      )}
+    </AnimatePresence>
+  );
+}

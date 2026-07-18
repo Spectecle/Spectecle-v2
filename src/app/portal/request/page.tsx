@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
-import { SERVICE_TYPES, BUDGET_OPTIONS, getServiceFields } from "@/lib/service-fields";
+import { SERVICE_TYPES, BUDGET_OPTIONS, getServiceFields, getFieldErrors } from "@/lib/service-fields";
 import { useFileUploads } from "@/hooks/useFileUploads";
 import { FileUploadField } from "@/components/portal/FileUploadField";
 import { DynamicField, inputClass, type DetailValue } from "@/components/portal/DynamicField";
@@ -37,13 +37,7 @@ export default function PortalRequestPage() {
     const e: Record<string, string> = {};
     if (!serviceType) e.service_type = "Select a service";
     if (!message.trim()) e.message = "Tell us what you need";
-    for (const field of fields) {
-      if (!field.required) continue;
-      const value = details[field.key];
-      const empty = Array.isArray(value) ? value.length === 0 : !value?.trim();
-      if (empty) e[field.key] = `${field.label} is required`;
-    }
-    return e;
+    return { ...e, ...getFieldErrors(fields, details) };
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -166,7 +160,9 @@ export default function PortalRequestPage() {
                         key={field.key}
                         field={field}
                         value={details[field.key]}
+                        otherValue={details[`${field.key}_other`] as string | undefined}
                         error={errors[field.key]}
+                        otherError={errors[`${field.key}_other`]}
                         onChange={handleDetailChange}
                       />
                     ))}
