@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { SERVICE_TYPES, BUDGET_OPTIONS, getServiceFields, getFieldErrors } from "@/lib/service-fields";
 import { useFileUploads } from "@/hooks/useFileUploads";
 import { FileUploadField } from "@/components/portal/FileUploadField";
@@ -78,6 +79,13 @@ export default function PortalRequestPage() {
         style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.12) 0%, transparent 70%)" }}
       />
       <div className="relative max-w-xl mx-auto">
+        <Link
+          href="/portal/dashboard"
+          className="inline-flex items-center gap-1.5 text-sm text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] cursor-pointer transition-colors mb-6"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Back to Dashboard
+        </Link>
         <AnimatePresence mode="wait">
           {status === "success" ? (
             <motion.div

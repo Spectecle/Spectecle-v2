@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { groupByOrganization } from "@/lib/organizations";
@@ -28,6 +30,13 @@ export default async function AdminCreateRequestPage() {
         style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.12) 0%, transparent 70%)" }}
       />
       <div className="relative max-w-xl mx-auto">
+        <Link
+          href="/portal/admin"
+          className="inline-flex items-center gap-1.5 text-sm text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] cursor-pointer transition-colors mb-6"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Back to Admin
+        </Link>
         <AdminCreateRequestForm groups={groups} />
       </div>
     </section>
