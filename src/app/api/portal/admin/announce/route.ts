@@ -139,19 +139,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  const body = (await req.json().catch(() => null)) as { testEmail?: string } | null;
-  const testEmail = body?.testEmail?.trim().toLowerCase();
+  const body = (await req.json().catch(() => null)) as { targetEmail?: string } | null;
+  const targetEmail = body?.targetEmail?.trim().toLowerCase();
 
   const recipientsQuery = supabase
     .from("portal_users")
     .select("id, email")
     .eq("status", "active");
 
-  const { data: recipients } = testEmail
-    ? await recipientsQuery.eq("email", testEmail)
+  const { data: recipients } = targetEmail
+    ? await recipientsQuery.eq("email", targetEmail)
     : await recipientsQuery.neq("email", admin.email);
 
-  if (testEmail && (!recipients || recipients.length === 0)) {
+  if (targetEmail && (!recipients || recipients.length === 0)) {
     return NextResponse.json(
       { error: "That email isn't a registered active client" },
       { status: 400 }
@@ -175,9 +175,7 @@ export async function POST(req: Request) {
       const { error: sendError } = await resend.emails.send({
         from: FROM,
         to: [recipient.email],
-        subject: testEmail
-          ? "[Test] Introducing Your New Spectecle Client Portal"
-          : "Introducing Your New Spectecle Client Portal",
+        subject: "Introducing Your New Spectecle Client Portal",
         html: announcementHtml(recipient.email, link),
       });
 
