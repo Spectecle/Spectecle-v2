@@ -7,6 +7,7 @@ import { InviteUserForm } from "@/components/portal/InviteUserForm";
 import { UserStatusToggle } from "@/components/portal/UserStatusToggle";
 import { UserDeleteButton } from "@/components/portal/UserDeleteButton";
 import { OrganizationNameEditor } from "@/components/portal/OrganizationNameEditor";
+import { AnnouncePortalButton } from "@/components/portal/AnnouncePortalButton";
 import { groupByOrganization, type OrgUser } from "@/lib/organizations";
 
 export function UserManagementPanel({
@@ -36,10 +37,12 @@ export function UserManagementPanel({
     );
   }, [groups, search]);
 
+  const activeCount = users.filter((u) => u.status === "active").length;
+
   return (
     <div className="space-y-4">
       <div className="glass rounded-2xl border border-[var(--portal-border)] p-6">
-        <div className="flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
           <div className="relative flex-1 min-w-[200px] max-w-xs">
             <Search className="w-3.5 h-3.5 text-[var(--portal-text-muted)] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -51,6 +54,9 @@ export function UserManagementPanel({
             />
           </div>
           <InviteUserForm />
+        </div>
+        <div className="pt-4 border-t border-[var(--portal-border)]">
+          <AnnouncePortalButton activeCount={activeCount} />
         </div>
       </div>
 
