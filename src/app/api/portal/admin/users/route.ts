@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { isTrustedOrigin } from "@/lib/origin-check";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM = process.env.RESEND_FROM ?? "onboarding@resend.dev";
+const FROM = `Hello from Spectecle <${process.env.RESEND_FROM ?? "onboarding@resend.dev"}>`;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://spectecle.com";
 
 export async function POST(req: Request) {

@@ -7,7 +7,7 @@ import { isValidServiceType, validateDetails, getServiceFields } from "@/lib/ser
 import { MAX_FILES_PER_REQUEST } from "@/lib/uploads";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM = process.env.RESEND_FROM ?? "onboarding@resend.dev";
+const FROM = `Hello from Spectecle <${process.env.RESEND_FROM ?? "onboarding@resend.dev"}>`;
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "hello@spectecle.com";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://spectecle.com";
 
