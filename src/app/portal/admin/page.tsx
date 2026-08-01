@@ -163,7 +163,13 @@ async function RequestsSection({
 
   return (
     <>
-      <div className="flex items-center justify-end mb-4">
+      <div className="flex items-center justify-end gap-2 mb-4">
+        <Link
+          href="/portal/admin/email"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer border border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:border-[var(--portal-border-strong)] transition-colors"
+        >
+          <span>Send Client Email</span>
+        </Link>
         <Link
           href="/portal/admin/request"
           className="btn-primary flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer"
