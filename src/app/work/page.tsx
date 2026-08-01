@@ -33,7 +33,6 @@ const categories = ["All", "Web Design", "Local SEO", "SEO", "AI & Automation"];
 
 export default function WorkPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   const filtered =
     activeCategory === "All"
@@ -127,15 +126,13 @@ export default function WorkPage() {
               transition={{ duration: 0.3 }}
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
-              {filtered.map((p, i) => (
+              {filtered.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/work/${p.slug}`}
                   className="group rounded-2xl overflow-hidden block"
-                  onMouseEnter={() => setHoveredIdx(i)}
-                  onMouseLeave={() => setHoveredIdx(null)}
                 >
-                  {/* Thumbnail — real homepage screenshot */}
+                  {/* Thumbnail — clean real homepage screenshot, no overlays */}
                   <div className="relative h-56 overflow-hidden bg-[#0a0a14]">
                     <Image
                       src={p.screenshotUrl}
@@ -144,41 +141,6 @@ export default function WorkPage() {
                       className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-
-                    {/* Bottom gradient for text legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
-
-                    {/* Domain badge */}
-                    <div className="absolute top-4 left-4 z-10">
-                      <span className="px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-sm text-white text-xs font-medium border border-white/10">
-                        {p.domain}
-                      </span>
-                    </div>
-
-                    {/* Tags */}
-                    <div className="absolute bottom-4 left-4 flex flex-wrap gap-1.5 z-10">
-                      {p.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-sm text-white text-xs border border-white/10"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Hover CTA overlay */}
-                    <motion.div
-                      initial={false}
-                      animate={{ opacity: hoveredIdx === i ? 1 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute inset-0 bg-black/65 backdrop-blur-[2px] flex items-center justify-center z-20"
-                    >
-                      <span className="flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-xl text-sm font-semibold shadow-xl">
-                        View Case Study
-                        <ArrowUpRight className="w-4 h-4" />
-                      </span>
-                    </motion.div>
                   </div>
 
                   {/* Card Body */}
@@ -198,6 +160,20 @@ export default function WorkPage() {
                       </span>
                     </div>
                     <p className="mt-3 text-sm text-slate-400 leading-relaxed line-clamp-2">{p.cardDesc}</p>
+                    <div className="mt-4 flex flex-wrap gap-1.5">
+                      {p.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="mt-4 flex items-center gap-1.5 text-sm font-semibold text-[#F07A3A] group-hover:gap-2.5 transition-all">
+                      View Case Study
+                      <ArrowUpRight className="w-4 h-4" />
+                    </span>
                   </div>
                 </Link>
               ))}
