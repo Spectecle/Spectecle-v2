@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "./projects-data";
@@ -134,56 +135,18 @@ export default function WorkPage() {
                   onMouseEnter={() => setHoveredIdx(i)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
-                  {/* Thumbnail — gradient + logo card */}
+                  {/* Thumbnail — real homepage screenshot */}
                   <div className="relative h-56 overflow-hidden bg-[#0a0a14]">
-                    {/* Gradient background */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${p.gradient}`} />
-                    <div className="absolute inset-0 dot-pattern opacity-15 pointer-events-none" />
-
-                    {/* Decorative shapes (unique per project) */}
-                    {p.shapes.map((s, si) => (
-                      <div key={si} className={`absolute ${s.size} ${s.pos} ${s.opacity}`} />
-                    ))}
+                    <Image
+                      src={p.screenshotUrl}
+                      alt={`${p.title} homepage`}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
 
                     {/* Bottom gradient for text legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-
-                    {/* Logo centered — shrinks & fades as hover CTA reveals */}
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <motion.div
-                        initial={false}
-                        animate={{
-                          scale: hoveredIdx === i ? 0.75 : 1,
-                          opacity: hoveredIdx === i ? 0.12 : 1,
-                        }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                        className="flex flex-col items-center gap-2.5"
-                      >
-                        {/* Logo wrapper with letter fallback */}
-                        <div className="relative w-14 h-14 shrink-0">
-                          <div className="absolute inset-0 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                            <span className="text-white font-bold text-xl select-none leading-none">
-                              {p.title[0]}
-                            </span>
-                          </div>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={`https://logo.clearbit.com/${p.domain}`}
-                            alt=""
-                            aria-hidden="true"
-                            width={56}
-                            height={56}
-                            className="absolute inset-0 w-full h-full object-contain rounded-xl bg-white/95 p-1.5"
-                            onError={(e) => {
-                              (e.currentTarget as HTMLImageElement).style.display = "none";
-                            }}
-                          />
-                        </div>
-                        <span className="text-white/50 text-[10px] font-mono tracking-widest">
-                          {p.domain}
-                        </span>
-                      </motion.div>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
 
                     {/* Domain badge */}
                     <div className="absolute top-4 left-4 z-10">

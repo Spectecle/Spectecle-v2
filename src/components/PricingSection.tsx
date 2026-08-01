@@ -231,7 +231,7 @@ function PlanCard({ plan, cycle }: { plan: Plan; cycle: BillingCycle }) {
   );
 }
 
-const PROOF_SLUGS = ["indoor-garden", "salazar-drywall-pros", "the-stat-clinic"];
+const PROOF_SLUGS = ["dearborn-cleaners", "vue-optometry", "mi-family-lawyer"];
 
 function ProofSection() {
   const featured = PROOF_SLUGS.map((slug) => projects.find((p) => p.slug === slug)).filter(
