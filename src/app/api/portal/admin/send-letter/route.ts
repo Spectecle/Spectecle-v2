@@ -3,24 +3,21 @@ import { NextResponse } from "next/server";
 import { getSession, isAdmin, createMagicLink } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { isTrustedOrigin } from "@/lib/origin-check";
-import { esc } from "@/lib/email-html";
+import { esc, wrapEmailDocument } from "@/lib/email-html";
+import { UPLOAD_BUCKET } from "@/lib/uploads";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = `Hello from Spectecle <${process.env.RESEND_FROM ?? "onboarding@resend.dev"}>`;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://spectecle.com";
+const PRIVACY_URL = `${SITE_URL}/privacy`;
+const TERMS_URL = `${SITE_URL}/terms`;
 const GOOGLE_REVIEW_URL =
   process.env.GOOGLE_REVIEW_URL ?? "https://g.page/r/CbSs-g26jjLnEBM/review";
-
-// First-draft wording — confirm with Walid before relying on this for real
-// clients, it was drafted from a description of the verbal/prior agreement,
-// not the original terms document.
-const TERMS_TEXT =
-  "This project is now complete. This delivery does not include ongoing " +
-  "website maintenance, content management, or any other add-on services. " +
-  "Any future edits, updates, or troubleshooting will be billed at an " +
-  "hourly rate of $100.00.";
+const CONTRACT_URL_EXPIRY_SECONDS = 60 * 60 * 24 * 30; // 30 days — a client may open this well after send
 
 type LetterTemplate = "onboarding" | "complete";
+
+type ContractFile = { path: string; name: string };
 
 type LetterBody = {
   userId?: string;
@@ -29,12 +26,15 @@ type LetterBody = {
   subject?: string;
   note?: string;
   invoiceBalance?: string;
+  invoiceNumber?: string;
+  dueDate?: string;
   invoiceLink?: string;
+  contracts?: ContractFile[];
   preview?: boolean;
 };
 
 function emailShell(preheader: string, heroEyebrow: string, heroTitle: string, bodyHtml: string) {
-  return `
+  const doc = `
 <div style="background-color:#040408;padding:40px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
   <div style="display:none;max-height:0;overflow:hidden;color:#040408;font-size:1px;line-height:1px;">${esc(preheader)}</div>
   <table role="presentation" width="100%" style="max-width:600px;margin:0 auto;border-collapse:collapse;">
@@ -71,13 +71,14 @@ function emailShell(preheader: string, heroEyebrow: string, heroTitle: string, b
     </tr>
     <tr>
       <td style="padding:28px 12px 0;text-align:center;">
-        <p style="margin:0 0 4px;color:#475569;font-size:12px;">Spectecle · Detroit, MI</p>
-        <p style="margin:0;color:#475569;font-size:12px;">Questions? Reply to this email — we read every one.</p>
+        <p style="margin:0 0 4px;color:#475569;font-size:12px;">Spectecle &middot; Detroit, MI</p>
+        <p style="margin:0;color:#475569;font-size:12px;">Questions? Reply to this email &mdash; we read every one.</p>
       </td>
     </tr>
   </table>
 </div>
 `;
+  return wrapEmailDocument(doc, heroTitle);
 }
 
 function noteBlock(note: string) {
@@ -93,15 +94,47 @@ function divider() {
   return `<div style="border-top:1px solid rgba(255,255,255,0.08);margin:28px 0;"></div>`;
 }
 
+function termsAndDocumentsSection(contractLinks: { name: string; url: string }[]) {
+  const contractRows = contractLinks
+    .map(
+      (c, i) => `
+      <tr>
+        <td style="padding:${i > 0 ? "8px 0 0" : "0"};">
+          <table role="presentation" width="100%" style="border-collapse:collapse;">
+            <tr>
+              <td style="padding:12px 16px;background-color:#1a0d08;border:1px solid rgba(210,81,36,0.3);border-radius:10px;">
+                <a href="${esc(c.url)}" style="color:#F07A3A;text-decoration:none;font-weight:600;font-size:14px;">&#128206; ${esc(c.name)}</a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>`
+    )
+    .join("");
+
+  return `
+    ${sectionHeading("Terms & Documents")}
+    <p style="margin:0 0 ${contractLinks.length > 0 ? "16" : "24"}px;color:#cbd5e1;font-size:13.5px;line-height:1.7;">
+      Please review our <a href="${TERMS_URL}" style="color:#F07A3A;">Terms & Conditions</a> and <a href="${PRIVACY_URL}" style="color:#F07A3A;">Privacy Policy</a> for details on how we handle your information.
+    </p>
+    ${
+      contractLinks.length > 0
+        ? `<table role="presentation" width="100%" style="border-collapse:collapse;margin:0 0 24px;">${contractRows}</table>`
+        : ""
+    }
+    ${divider()}
+  `;
+}
+
 function portalIntroBlock(email: string, link: string) {
   return `
     ${sectionHeading("Your Client Portal")}
     <p style="margin:0 0 20px;color:#cbd5e1;font-size:14.5px;line-height:1.7;">
-      Use the Spectecle portal to request website changes or edits, ask for new services, track the status of every request, and message us directly — all in one place.
+      Use the Spectecle portal to request website changes or edits, ask for new services, track the status of every request, and message us directly &mdash; all in one place.
     </p>
     <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(210,81,36,0.3);border-radius:10px;margin:0 0 24px;">
       <tr>
-        <td style="padding:16px 20px;">
+        <td style="padding:16px 20px;text-align:center;">
           <p style="margin:0 0 4px;color:#F07A3A;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Your Sign-In Email</p>
           <p style="margin:0;color:#ffffff;font-size:16px;font-weight:600;">${esc(email)}</p>
         </td>
@@ -117,7 +150,7 @@ function portalIntroBlock(email: string, link: string) {
       </tr>
     </table>
     <p style="margin:0;color:#64748b;font-size:12.5px;line-height:1.6;text-align:center;">
-      No password needed — this link signs you in instantly. It expires in 15 minutes; after that, just visit spectecle.com/portal and enter your email above to get a new one anytime.
+      No password needed &mdash; this link signs you in instantly. It expires in 15 minutes; after that, just visit spectecle.com/portal and enter your email above to get a new one anytime.
     </p>
   `;
 }
@@ -127,11 +160,13 @@ function onboardingLetterHtml({
   email,
   note,
   link,
+  contractLinks,
 }: {
   businessName: string;
   email: string;
   note: string;
   link: string;
+  contractLinks: { name: string; url: string }[];
 }) {
   const body = `
     <p style="margin:0 0 4px;color:#94a3b8;font-size:13px;">Hi ${esc(businessName)},</p>
@@ -139,6 +174,7 @@ function onboardingLetterHtml({
       note ||
         "Welcome to Spectecle! We're excited to get started — here's your portal so you always know where things stand."
     )}
+    ${contractLinks.length > 0 ? termsAndDocumentsSection(contractLinks) : ""}
     ${portalIntroBlock(email, link)}
   `;
   return emailShell(
@@ -155,35 +191,66 @@ function projectCompleteLetterHtml({
   note,
   link,
   invoiceBalance,
+  invoiceNumber,
+  dueDate,
   invoiceLink,
+  contractLinks,
 }: {
   businessName: string;
   email: string;
   note: string;
   link: string;
   invoiceBalance?: string;
+  invoiceNumber?: string;
+  dueDate?: string;
   invoiceLink?: string;
+  contractLinks: { name: string; url: string }[];
 }) {
-  const invoiceSection =
-    invoiceBalance?.trim()
-      ? `
+  const hasMeta = !!(invoiceNumber?.trim() || dueDate?.trim());
+
+  const amountCell = `
+    <p style="margin:0 0 4px;color:#F07A3A;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Amount Due</p>
+    <p style="margin:0 0 ${invoiceLink?.trim() ? "12" : "0"}px;color:#ffffff;font-size:20px;font-weight:700;">${esc(invoiceBalance ?? "")}</p>
+    ${
+      invoiceLink?.trim()
+        ? `<a href="${esc(invoiceLink)}" style="display:inline-block;background-color:#D25124;color:#ffffff;text-decoration:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:13.5px;">Pay Invoice &rarr;</a>`
+        : ""
+    }
+  `;
+
+  const metaCell = `
+    ${
+      invoiceNumber?.trim()
+        ? `<p style="margin:0 0 4px;color:#F07A3A;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Invoice #</p>
+           <p style="margin:0 0 12px;color:#ffffff;font-size:14px;font-weight:600;">${esc(invoiceNumber)}</p>`
+        : ""
+    }
+    ${
+      dueDate?.trim()
+        ? `<p style="margin:0 0 4px;color:#F07A3A;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Due Date</p>
+           <p style="margin:0;color:#ffffff;font-size:14px;font-weight:600;">${esc(dueDate)}</p>`
+        : ""
+    }
+  `;
+
+  const invoiceSection = invoiceBalance?.trim()
+    ? `
     ${sectionHeading("Remaining Balance")}
     <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(210,81,36,0.3);border-radius:10px;margin:0 0 24px;">
       <tr>
-        <td style="padding:16px 20px;">
-          <p style="margin:0 0 4px;color:#F07A3A;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Amount Due</p>
-          <p style="margin:0 0 ${invoiceLink?.trim() ? "12" : "0"}px;color:#ffffff;font-size:20px;font-weight:700;">${esc(invoiceBalance)}</p>
-          ${
-            invoiceLink?.trim()
-              ? `<a href="${esc(invoiceLink)}" style="display:inline-block;background-color:#D25124;color:#ffffff;text-decoration:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:13.5px;">Pay Invoice &rarr;</a>`
-              : ""
-          }
+        <td style="padding:16px 20px;vertical-align:top;${hasMeta ? "width:55%;" : ""}">
+          ${amountCell}
         </td>
+        ${
+          hasMeta
+            ? `<td style="padding:16px 20px;vertical-align:top;border-left:1px solid rgba(210,81,36,0.3);">${metaCell}</td>`
+            : ""
+        }
       </tr>
     </table>
     ${divider()}
   `
-      : "";
+    : "";
 
   const body = `
     <p style="margin:0 0 4px;color:#94a3b8;font-size:13px;">Hi ${esc(businessName)},</p>
@@ -192,9 +259,7 @@ function projectCompleteLetterHtml({
         `We just wrapped up work on your project — thank you for choosing Spectecle, it's been a pleasure working with you.`
     )}
 
-    ${sectionHeading("Terms & Conditions")}
-    <p style="margin:0 0 24px;color:#cbd5e1;font-size:13.5px;line-height:1.7;">${esc(TERMS_TEXT)}</p>
-    ${divider()}
+    ${termsAndDocumentsSection(contractLinks)}
 
     ${invoiceSection}
 
@@ -237,7 +302,10 @@ export async function POST(req: Request) {
   const subject = body?.subject?.trim();
   const note = body?.note?.trim() ?? "";
   const invoiceBalance = body?.invoiceBalance?.trim();
+  const invoiceNumber = body?.invoiceNumber?.trim();
+  const dueDate = body?.dueDate?.trim();
   const invoiceLink = body?.invoiceLink?.trim();
+  const contracts = Array.isArray(body?.contracts) ? body.contracts : [];
   const preview = body?.preview === true;
 
   if (!userId || (template !== "onboarding" && template !== "complete") || !businessName || !subject) {
@@ -259,16 +327,30 @@ export async function POST(req: Request) {
     ? "#"
     : `${SITE_URL}/portal/verify?token=${encodeURIComponent(await createMagicLink(recipient.id))}`;
 
+  const contractLinks = preview
+    ? contracts.map((c) => ({ name: c.name, url: "#" }))
+    : await Promise.all(
+        contracts.map(async (c) => {
+          const { data } = await supabase.storage
+            .from(UPLOAD_BUCKET)
+            .createSignedUrl(c.path, CONTRACT_URL_EXPIRY_SECONDS);
+          return { name: c.name, url: data?.signedUrl ?? "#" };
+        })
+      );
+
   const html =
     template === "onboarding"
-      ? onboardingLetterHtml({ businessName, email: recipient.email, note, link })
+      ? onboardingLetterHtml({ businessName, email: recipient.email, note, link, contractLinks })
       : projectCompleteLetterHtml({
           businessName,
           email: recipient.email,
           note,
           link,
           invoiceBalance,
+          invoiceNumber,
+          dueDate,
           invoiceLink,
+          contractLinks,
         });
 
   if (preview) {

@@ -3,7 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
-import { groupByOrganization } from "@/lib/organizations";
+import { groupByOrganization, type OrgRecord } from "@/lib/organizations";
 import { SendClientEmailForm } from "@/components/portal/SendClientEmailForm";
 
 export default async function AdminSendEmailPage() {
@@ -13,15 +13,22 @@ export default async function AdminSendEmailPage() {
 
   const { data: registeredUsers } = await supabase
     .from("portal_users")
-    .select("id, email, status")
+    .select("id, email, status, organization_id")
     .eq("status", "active")
     .order("email", { ascending: true });
 
-  const { data: orgRows } = await supabase.from("organizations").select("domain, name");
+  const { data: orgRows } = await supabase
+    .from("organizations")
+    .select("id, domain, name, website_url");
+  const orgs = (orgRows ?? []) as OrgRecord[];
   const orgNames: Record<string, string> = {};
-  for (const row of orgRows ?? []) orgNames[row.domain] = row.name;
+  const orgsById: Record<string, OrgRecord> = {};
+  for (const o of orgs) {
+    orgsById[o.id] = o;
+    if (o.domain) orgNames[o.domain] = o.name;
+  }
 
-  const groups = groupByOrganization(registeredUsers ?? [], orgNames, {});
+  const groups = groupByOrganization(registeredUsers ?? [], orgNames, {}, orgsById);
 
   return (
     <section className="relative min-h-[80vh] pt-32 pb-20 px-6 overflow-hidden">

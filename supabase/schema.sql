@@ -73,3 +73,37 @@ alter table service_request_files enable row level security;
 insert into storage.buckets (id, name, public, file_size_limit)
 values ('service-request-files', 'service-request-files', false, 20971520)
 on conflict (id) do nothing;
+
+-- Organizations (client display-name override by domain) — added out-of-band
+-- previously in the Supabase dashboard; captured here for completeness so a
+-- fresh setup from this file matches production.
+create table if not exists organizations (
+  domain text primary key,
+  name text not null,
+  created_at timestamptz not null default now()
+);
+alter table organizations enable row level security;
+
+-- Migration: first-class organizations (id-based, decoupled from email
+-- domain) + client contact/billing fields. Needed because multiple unrelated
+-- clients can share a generic email domain (gmail.com, yahoo.com, etc.) —
+-- domain can no longer be the unique identity for an organization.
+alter table organizations add column if not exists id uuid not null default gen_random_uuid();
+alter table organizations add column if not exists website_url text;
+
+do $$
+declare c record;
+begin
+  for c in
+    select conname from pg_constraint
+    where conrelid = 'organizations'::regclass and contype in ('p','u')
+  loop
+    execute format('alter table organizations drop constraint %I', c.conname);
+  end loop;
+end $$;
+
+alter table organizations add primary key (id);
+alter table organizations alter column domain drop not null;
+
+alter table portal_users add column if not exists organization_id uuid references organizations(id) on delete set null;
+alter table portal_users add column if not exists phone text;

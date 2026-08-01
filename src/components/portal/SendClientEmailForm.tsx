@@ -6,9 +6,30 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle2, Eye, Loader2 } from "lucide-react";
 import { inputClass } from "@/components/portal/DynamicField";
 import { ConfirmDialog } from "@/components/portal/ConfirmDialog";
+import { FileUploadField } from "@/components/portal/FileUploadField";
+import { useFileUploads } from "@/hooks/useFileUploads";
 import type { OrgGroup } from "@/lib/organizations";
 
 type LetterTemplate = "onboarding" | "complete";
+
+const NOTE_TEMPLATES: { label: string; text: string }[] = [
+  {
+    label: "Website Launch",
+    text: "Your new website is officially live! We had a great time bringing this one to life, and we hope it's everything you pictured (and then some). Thanks for trusting us with something this important — it's been a pleasure from day one.",
+  },
+  {
+    label: "Rebrand / Refresh",
+    text: "Your refreshed site is all set! We loved getting to build on what you already had and give it some new energy. Thanks for letting us be part of this next chapter — we think it was worth the wait.",
+  },
+  {
+    label: "Services Completed",
+    text: "Everything on your list has been taken care of! Thanks for your patience while we got it all sorted, and for trusting us to handle it right. If anything else comes up down the road, you know exactly where to find us.",
+  },
+  {
+    label: "Thank You",
+    text: "It's genuinely been a pleasure working with you on this. Thank you for choosing Spectecle — we hope you're as happy with how it turned out as we are. Here's to more good work together down the road.",
+  },
+];
 
 function defaultSubject(template: LetterTemplate, businessName: string): string {
   return template === "onboarding"
@@ -24,7 +45,7 @@ function defaultNote(template: LetterTemplate): string {
 
 export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
   const router = useRouter();
-  const [domain, setDomain] = useState("");
+  const [orgKey, setOrgKey] = useState("");
   const [userId, setUserId] = useState("");
   const [template, setTemplate] = useState<LetterTemplate>("complete");
   const [businessName, setBusinessName] = useState("");
@@ -34,7 +55,10 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
   const [note, setNote] = useState(defaultNote("complete"));
   const [noteTouched, setNoteTouched] = useState(false);
   const [invoiceBalance, setInvoiceBalance] = useState("");
+  const [invoiceNumber, setInvoiceNumber] = useState("");
+  const [dueDate, setDueDate] = useState("");
   const [invoiceLink, setInvoiceLink] = useState("");
+  const contractUpload = useFileUploads("/api/portal/admin/send-letter/upload-url");
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -42,15 +66,15 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState("");
 
-  const clients = groups.find((g) => g.domain === domain)?.users ?? [];
+  const clients = groups.find((g) => g.key === orgKey)?.users ?? [];
   const selectedClient = clients.find((c) => c.id === userId);
 
-  const handleDomainChange = (value: string) => {
-    setDomain(value);
+  const handleOrgChange = (value: string) => {
+    setOrgKey(value);
     setUserId("");
     if (errors.client) setErrors((prev) => ({ ...prev, client: "" }));
     if (!businessNameTouched) {
-      const orgName = groups.find((g) => g.domain === value)?.name ?? "";
+      const orgName = groups.find((g) => g.key === value)?.name ?? "";
       setBusinessName(orgName);
       if (!subjectTouched) setSubject(defaultSubject(template, orgName));
     }
@@ -69,7 +93,10 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
     subject,
     note,
     invoiceBalance: template === "complete" ? invoiceBalance : undefined,
+    invoiceNumber: template === "complete" ? invoiceNumber : undefined,
+    dueDate: template === "complete" ? dueDate : undefined,
     invoiceLink: template === "complete" ? invoiceLink : undefined,
+    contracts: contractUpload.getUploadedFiles().map((f) => ({ path: f.path, name: f.name })),
     preview,
   });
 
@@ -101,7 +128,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
         setPreviewError(data?.error ?? "Failed to build preview");
         return;
       }
-      const blob = new Blob([data.html], { type: "text/html" });
+      const blob = new Blob([data.html], { type: "text/html;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       window.open(url, "_blank");
     } catch {
@@ -115,6 +142,10 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
     const errs = validate();
     if (Object.keys(errs).length) {
       setErrors(errs);
+      return;
+    }
+    if (contractUpload.hasPendingUploads) {
+      setErrors((prev) => ({ ...prev, contracts: "Please wait for uploads to finish" }));
       return;
     }
     setErrors({});
@@ -190,13 +221,13 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                 Business <span className="text-rose-400">*</span>
               </label>
               <select
-                value={domain}
-                onChange={(e) => handleDomainChange(e.target.value)}
+                value={orgKey}
+                onChange={(e) => handleOrgChange(e.target.value)}
                 className={`${inputClass(false)} cursor-pointer`}
               >
                 <option value="" disabled>Select a business</option>
                 {groups.map((g) => (
-                  <option key={g.domain} value={g.domain}>{g.name}</option>
+                  <option key={g.key} value={g.key}>{g.name}</option>
                 ))}
               </select>
             </div>
@@ -210,11 +241,11 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                   setUserId(e.target.value);
                   if (errors.client) setErrors((prev) => ({ ...prev, client: "" }));
                 }}
-                disabled={!domain}
+                disabled={!orgKey}
                 className={`${inputClass(!!errors.client)} cursor-pointer disabled:opacity-50`}
               >
                 <option value="" disabled>
-                  {domain ? "Select a client" : "Pick a business first"}
+                  {orgKey ? "Select a client" : "Pick a business first"}
                 </option>
                 {clients.map((c) => (
                   <option key={c.id} value={c.id}>{c.email}</option>
@@ -284,9 +315,28 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
-              Personal Note
-            </label>
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] uppercase tracking-wider">
+                Personal Note
+              </label>
+            </div>
+            {template === "complete" && (
+              <div className="flex flex-wrap gap-1.5 mb-2.5">
+                {NOTE_TEMPLATES.map((t) => (
+                  <button
+                    type="button"
+                    key={t.label}
+                    onClick={() => {
+                      setNote(t.text);
+                      setNoteTouched(true);
+                    }}
+                    className="text-[11px] font-medium rounded-full px-2.5 py-1 border border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[#F07A3A] hover:border-[#D25124]/40 cursor-pointer transition-colors"
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+            )}
             <textarea
               value={note}
               onChange={(e) => {
@@ -297,6 +347,14 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
               className={`${inputClass(false)} resize-none`}
             />
           </div>
+
+          <FileUploadField
+            label="Contracts (optional)"
+            uploads={contractUpload.uploads}
+            error={contractUpload.error || errors.contracts || ""}
+            onFileSelect={contractUpload.handleFileSelect}
+            onRemove={contractUpload.removeUpload}
+          />
 
           <AnimatePresence mode="wait">
             {template === "complete" && (
@@ -331,6 +389,32 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                     value={invoiceLink}
                     onChange={(e) => setInvoiceLink(e.target.value)}
                     placeholder="https://…"
+                    className={inputClass(false)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                    Invoice #{" "}
+                    <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={invoiceNumber}
+                    onChange={(e) => setInvoiceNumber(e.target.value)}
+                    placeholder="e.g. INV-1042"
+                    className={inputClass(false)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                    Due Date{" "}
+                    <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={dueDate}
+                    onChange={(e) => setDueDate(e.target.value)}
+                    placeholder="e.g. August 15, 2026"
                     className={inputClass(false)}
                   />
                 </div>

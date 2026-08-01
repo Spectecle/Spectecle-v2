@@ -4,10 +4,21 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Pencil, Check, X, Loader2 } from "lucide-react";
 
-export function OrganizationNameEditor({ domain, name }: { domain: string; name: string }) {
+export function OrganizationNameEditor({
+  id,
+  domain,
+  name,
+  websiteUrl,
+}: {
+  id: string | null;
+  domain: string | null;
+  name: string;
+  websiteUrl: string | null;
+}) {
   const router = useRouter();
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(name);
+  const [website, setWebsite] = useState(websiteUrl ?? "");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [, startTransition] = useTransition();
@@ -21,7 +32,7 @@ export function OrganizationNameEditor({ domain, name }: { domain: string; name:
       const res = await fetch("/api/portal/admin/organizations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domain, name: trimmed }),
+        body: JSON.stringify({ id, domain, name: trimmed, websiteUrl: website.trim() }),
       });
       if (!res.ok) {
         setError("Failed to save");
@@ -39,7 +50,7 @@ export function OrganizationNameEditor({ domain, name }: { domain: string; name:
   if (editing) {
     return (
       <div>
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 flex-wrap">
           <input
             type="text"
             value={value}
@@ -48,8 +59,20 @@ export function OrganizationNameEditor({ domain, name }: { domain: string; name:
               if (e.key === "Enter") handleSave();
               if (e.key === "Escape") setEditing(false);
             }}
+            placeholder="Business name"
             autoFocus
-            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] rounded-lg px-2 py-1 text-sm outline-none focus:border-[#D25124]/50 w-56"
+            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] rounded-lg px-2 py-1 text-sm outline-none focus:border-[#D25124]/50 w-44"
+          />
+          <input
+            type="text"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleSave();
+              if (e.key === "Escape") setEditing(false);
+            }}
+            placeholder="Website (optional)"
+            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] rounded-lg px-2 py-1 text-sm outline-none focus:border-[#D25124]/50 w-44"
           />
           <button
             type="button"
@@ -63,6 +86,7 @@ export function OrganizationNameEditor({ domain, name }: { domain: string; name:
             type="button"
             onClick={() => {
               setValue(name);
+              setWebsite(websiteUrl ?? "");
               setEditing(false);
               setError("");
             }}

@@ -3,24 +3,17 @@ import { NextResponse } from "next/server";
 import { getSession, isAdmin, createMagicLink } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { isTrustedOrigin } from "@/lib/origin-check";
+import { esc, wrapEmailDocument } from "@/lib/email-html";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = `Hello from Spectecle <${process.env.RESEND_FROM ?? "onboarding@resend.dev"}>`;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://spectecle.com";
 
-function esc(s: string) {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
 function announcementHtml(email: string, link: string) {
   const preheader =
     "Request services, track progress, and message us directly — all from one new portal.";
 
-  return `
+  const body = `
 <div style="background-color:#040408;padding:40px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
   <div style="display:none;max-height:0;overflow:hidden;color:#040408;font-size:1px;line-height:1px;">${esc(preheader)}</div>
   <table role="presentation" width="100%" style="max-width:600px;margin:0 auto;border-collapse:collapse;">
@@ -127,6 +120,7 @@ function announcementHtml(email: string, link: string) {
   </table>
 </div>
 `;
+  return wrapEmailDocument(body, "Introducing Your New Spectecle Client Portal");
 }
 
 export async function POST(req: Request) {

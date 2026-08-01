@@ -24,13 +24,13 @@ export type UploadedFilePayload = {
   contentType: string;
 };
 
-export function useFileUploads() {
+export function useFileUploads(uploadUrlEndpoint = "/api/portal/requests/upload-url") {
   const [uploads, setUploads] = useState<UploadItem[]>([]);
   const [error, setError] = useState("");
 
   const uploadFile = async (item: UploadItem) => {
     try {
-      const res = await fetch("/api/portal/requests/upload-url", {
+      const res = await fetch(uploadUrlEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ filename: item.file.name }),

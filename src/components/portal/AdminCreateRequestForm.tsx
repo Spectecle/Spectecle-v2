@@ -17,7 +17,7 @@ import type { OrgGroup } from "@/lib/organizations";
 
 export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
   const router = useRouter();
-  const [domain, setDomain] = useState("");
+  const [orgKey, setOrgKey] = useState("");
   const [userId, setUserId] = useState("");
   const [serviceType, setServiceType] = useState("");
   const [details, setDetails] = useState<Record<string, DetailValue>>({});
@@ -29,11 +29,11 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const fields = getServiceFields(serviceType);
-  const clients = groups.find((g) => g.domain === domain)?.users ?? [];
+  const clients = groups.find((g) => g.key === orgKey)?.users ?? [];
   const selectedClient = clients.find((c) => c.id === userId);
 
-  const handleDomainChange = (value: string) => {
-    setDomain(value);
+  const handleOrgChange = (value: string) => {
+    setOrgKey(value);
     setUserId("");
     if (errors.client) setErrors((prev) => ({ ...prev, client: "" }));
   };
@@ -148,13 +148,13 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
                 Business <span className="text-rose-400">*</span>
               </label>
               <select
-                value={domain}
-                onChange={(e) => handleDomainChange(e.target.value)}
+                value={orgKey}
+                onChange={(e) => handleOrgChange(e.target.value)}
                 className={`${inputClass(false)} cursor-pointer`}
               >
                 <option value="" disabled>Select a business</option>
                 {groups.map((g) => (
-                  <option key={g.domain} value={g.domain}>{g.name}</option>
+                  <option key={g.key} value={g.key}>{g.name}</option>
                 ))}
               </select>
             </div>
@@ -168,11 +168,11 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
                   setUserId(e.target.value);
                   if (errors.client) setErrors((prev) => ({ ...prev, client: "" }));
                 }}
-                disabled={!domain}
+                disabled={!orgKey}
                 className={`${inputClass(!!errors.client)} cursor-pointer disabled:opacity-50`}
               >
                 <option value="" disabled>
-                  {domain ? "Select a client" : "Pick a business first"}
+                  {orgKey ? "Select a client" : "Pick a business first"}
                 </option>
                 {clients.map((c) => (
                   <option key={c.id} value={c.id}>{c.email}</option>

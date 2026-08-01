@@ -2,28 +2,29 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Search, ExternalLink, Building2 } from "lucide-react";
-import { InviteUserForm } from "@/components/portal/InviteUserForm";
+import { Search, ExternalLink, Building2, UserPlus } from "lucide-react";
 import { UserStatusToggle } from "@/components/portal/UserStatusToggle";
 import { UserDeleteButton } from "@/components/portal/UserDeleteButton";
 import { OrganizationNameEditor } from "@/components/portal/OrganizationNameEditor";
 import { AnnouncePortalButton } from "@/components/portal/AnnouncePortalButton";
-import { groupByOrganization, type OrgUser } from "@/lib/organizations";
+import { groupByOrganization, type OrgUser, type OrgRecord } from "@/lib/organizations";
 
 export function UserManagementPanel({
   users,
   orgNames,
+  orgsById,
   ticketCountByUserId,
 }: {
   users: OrgUser[];
   orgNames: Record<string, string>;
+  orgsById: Record<string, OrgRecord>;
   ticketCountByUserId: Record<string, number>;
 }) {
   const [search, setSearch] = useState("");
 
   const groups = useMemo(
-    () => groupByOrganization(users, orgNames, ticketCountByUserId),
-    [users, orgNames, ticketCountByUserId]
+    () => groupByOrganization(users, orgNames, ticketCountByUserId, orgsById),
+    [users, orgNames, ticketCountByUserId, orgsById]
   );
 
   const filtered = useMemo(() => {
@@ -32,7 +33,7 @@ export function UserManagementPanel({
     return groups.filter(
       (g) =>
         g.name.toLowerCase().includes(q) ||
-        g.domain.includes(q) ||
+        (g.domain ?? "").includes(q) ||
         g.users.some((u) => u.email.toLowerCase().includes(q))
     );
   }, [groups, search]);
@@ -53,7 +54,13 @@ export function UserManagementPanel({
               className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] rounded-lg pl-8 pr-3 py-2 text-xs outline-none focus:border-[#D25124]/50"
             />
           </div>
-          <InviteUserForm />
+          <Link
+            href="/portal/admin/clients/new"
+            className="flex items-center gap-1.5 bg-[#D25124]/15 hover:bg-[#D25124]/25 text-[#F07A3A] text-xs font-medium rounded-lg px-3 py-2 cursor-pointer transition-colors"
+          >
+            <UserPlus className="w-3.5 h-3.5" />
+            Add Client
+          </Link>
         </div>
         <div className="pt-4 border-t border-[var(--portal-border)]">
           <AnnouncePortalButton activeCount={activeCount} />
@@ -67,7 +74,7 @@ export function UserManagementPanel({
       ) : (
         filtered.map((group) => (
           <div
-            key={group.domain}
+            key={group.key}
             className="glass rounded-2xl border border-[var(--portal-border)] p-6"
           >
             <div className="flex items-center justify-between gap-4 flex-wrap mb-4 pb-4 border-b border-[var(--portal-border)]">
@@ -76,14 +83,20 @@ export function UserManagementPanel({
                   <Building2 className="w-4 h-4 text-[#F07A3A]" />
                 </div>
                 <div>
-                  <OrganizationNameEditor domain={group.domain} name={group.name} />
+                  <OrganizationNameEditor
+                    id={group.id}
+                    domain={group.domain}
+                    name={group.name}
+                    websiteUrl={group.websiteUrl}
+                  />
                   <p className="text-[10px] text-[var(--portal-text-faint)]">
-                    {group.domain} · {group.users.length} user{group.users.length === 1 ? "" : "s"}
+                    {group.websiteUrl ?? group.domain} · {group.users.length} user
+                    {group.users.length === 1 ? "" : "s"}
                   </p>
                 </div>
               </div>
               <Link
-                href={`?section=requests&org=${encodeURIComponent(group.domain)}`}
+                href={`?section=requests&org=${encodeURIComponent(group.key)}`}
                 className="flex items-center gap-1.5 text-xs text-[#F07A3A] hover:text-[#D25124] bg-[#D25124]/10 rounded-lg px-3 py-1.5 cursor-pointer transition-colors"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -95,7 +108,9 @@ export function UserManagementPanel({
               {group.users.map((u) => (
                 <div key={u.id} className="flex items-center justify-between gap-4 py-2.5">
                   <div className="min-w-0">
-                    <p className="text-sm text-[var(--portal-text-primary)] truncate">{u.email}</p>
+                    <p className="text-sm text-[var(--portal-text-primary)] truncate">
+                      {u.name ? `${u.name} · ${u.email}` : u.email}
+                    </p>
                     <div className="flex items-center gap-2 mt-1">
                       <span
                         className={`text-[10px] rounded-full px-2 py-0.5 ${
@@ -114,11 +129,11 @@ export function UserManagementPanel({
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <Link
-                      href={`?section=requests&user=${encodeURIComponent(u.email)}`}
+                      href={`/portal/admin/clients/${u.id}`}
                       className="flex items-center gap-1.5 text-xs text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] rounded-lg px-3 py-1.5 cursor-pointer transition-colors"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
-                      View Tickets
+                      View Client
                     </Link>
                     <UserStatusToggle userId={u.id} status={u.status} />
                     <UserDeleteButton

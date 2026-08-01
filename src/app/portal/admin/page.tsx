@@ -8,7 +8,7 @@ import { getMessagesForRequests } from "@/lib/request-messages";
 import { TicketCard } from "@/components/portal/TicketCard";
 import { UserManagementPanel } from "@/components/portal/UserManagementPanel";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
-import { getEmailDomain, prettifyDomain } from "@/lib/organizations";
+import { organizationKeyFor, prettifyDomain, type OrgRecord } from "@/lib/organizations";
 
 type AdminRequest = {
   id: string;
@@ -19,15 +19,18 @@ type AdminRequest = {
   created_at: string;
   details: Record<string, unknown>;
   user_id: string;
-  portal_users: { email: string } | { email: string }[] | null;
+  portal_users:
+    | { email: string; organization_id: string | null }
+    | { email: string; organization_id: string | null }[]
+    | null;
 };
 
 const ADMIN_TAB_STATUSES = new Set(["new", "in_progress", "done", "deleted"]);
 
-function clientEmail(row: AdminRequest): string {
+function clientInfo(row: AdminRequest): { email: string; organization_id: string | null } {
   const rel = row.portal_users;
-  if (!rel) return "unknown";
-  return Array.isArray(rel) ? rel[0]?.email ?? "unknown" : rel.email;
+  if (!rel) return { email: "unknown", organization_id: null };
+  return Array.isArray(rel) ? rel[0] ?? { email: "unknown", organization_id: null } : rel;
 }
 
 export default async function PortalAdminPage({
@@ -50,7 +53,7 @@ export default async function PortalAdminPage({
   const { data: allRequests } = await supabase
     .from("service_requests")
     .select(
-      "id, service_type, budget, message, status, created_at, details, user_id, portal_users(email)"
+      "id, service_type, budget, message, status, created_at, details, user_id, portal_users(email, organization_id)"
     )
     .order("created_at", { ascending: false })
     .returns<AdminRequest[]>();
@@ -59,12 +62,19 @@ export default async function PortalAdminPage({
 
   const { data: registeredUsers } = await supabase
     .from("portal_users")
-    .select("id, email, status")
+    .select("id, email, status, organization_id")
     .order("email", { ascending: true });
 
-  const { data: orgRows } = await supabase.from("organizations").select("domain, name");
+  const { data: orgRows } = await supabase
+    .from("organizations")
+    .select("id, domain, name, website_url");
+  const orgs = (orgRows ?? []) as OrgRecord[];
   const orgNames: Record<string, string> = {};
-  for (const row of orgRows ?? []) orgNames[row.domain] = row.name;
+  const orgsById: Record<string, OrgRecord> = {};
+  for (const o of orgs) {
+    orgsById[o.id] = o;
+    if (o.domain) orgNames[o.domain] = o.name;
+  }
 
   const ticketCountByUserId: Record<string, number> = {};
   for (const r of requests) {
@@ -103,6 +113,7 @@ export default async function PortalAdminPage({
           <UserManagementPanel
             users={registeredUsers ?? []}
             orgNames={orgNames}
+            orgsById={orgsById}
             ticketCountByUserId={ticketCountByUserId}
           />
         ) : (
@@ -112,6 +123,7 @@ export default async function PortalAdminPage({
             userFilter={userFilter}
             orgFilter={orgFilter}
             orgNames={orgNames}
+            orgsById={orgsById}
           />
         )}
       </div>
@@ -125,20 +137,24 @@ async function RequestsSection({
   userFilter,
   orgFilter,
   orgNames,
+  orgsById,
 }: {
   requests: AdminRequest[];
   statusParam?: string;
   userFilter?: string;
   orgFilter?: string;
   orgNames: Record<string, string>;
+  orgsById: Record<string, OrgRecord>;
 }) {
   const active = statusParam && ADMIN_TAB_STATUSES.has(statusParam) ? statusParam : "all";
   let filtered = active === "all" ? requests : requests.filter((r) => r.status === active);
   if (userFilter) {
-    filtered = filtered.filter((r) => clientEmail(r) === userFilter);
+    filtered = filtered.filter((r) => clientInfo(r).email === userFilter);
   }
   if (orgFilter) {
-    filtered = filtered.filter((r) => getEmailDomain(clientEmail(r)) === orgFilter);
+    filtered = filtered.filter(
+      (r) => organizationKeyFor(clientInfo(r), orgNames, orgsById).key === orgFilter
+    );
   }
 
   const tabs: StatusTab[] = [
@@ -160,6 +176,10 @@ async function RequestsSection({
   const requestIds = filtered.map((r) => r.id);
   const filesByRequest = await getFilesForRequests(requestIds);
   const messagesByRequest = await getMessagesForRequests(requestIds);
+
+  const orgFilterLabel = orgFilter
+    ? orgsById[orgFilter]?.name ?? prettifyDomain(orgFilter.replace(/^domain:/, ""))
+    : null;
 
   return (
     <>
@@ -183,7 +203,7 @@ async function RequestsSection({
         <div className="flex items-center gap-2 mb-4">
           <span className="text-xs text-[var(--portal-text-secondary)]">Filtered by:</span>
           <span className="flex items-center gap-1.5 text-xs text-[#F07A3A] bg-[#D25124]/10 rounded-full px-2.5 py-1">
-            {userFilter ?? orgNames[orgFilter!] ?? prettifyDomain(orgFilter!)}
+            {userFilter ?? orgFilterLabel}
             <Link href="?section=requests" className="hover:text-[var(--portal-text-primary)] cursor-pointer">
               <X className="w-3 h-3" />
             </Link>
@@ -217,7 +237,7 @@ async function RequestsSection({
               files={filesByRequest[r.id] ?? []}
               messages={messagesByRequest[r.id] ?? []}
               viewerRole="admin"
-              clientEmail={clientEmail(r)}
+              clientEmail={clientInfo(r).email}
             />
           ))}
         </div>

@@ -17,33 +17,86 @@ export type OrgUser = {
   id: string;
   email: string;
   status: string;
+  organization_id?: string | null;
+  name?: string | null;
+  phone?: string | null;
 };
 
-export type OrgGroup = {
-  domain: string;
+export type OrgRecord = {
+  id: string;
+  domain: string | null;
   name: string;
+  website_url: string | null;
+};
+
+/** A group of users sharing an organization. `key` is the stable identifier
+ * to use in URLs/selects — a real organization `id` once assigned, or a
+ * synthetic `domain:<domain>` key for users not yet assigned to one. */
+export type OrgGroup = {
+  key: string;
+  id: string | null;
+  domain: string | null;
+  name: string;
+  websiteUrl: string | null;
   users: OrgUser[];
   ticketCount: number;
 };
 
+/** The stable group key + display name for a user — a real organization
+ * `id` once assigned, or a synthetic `domain:<domain>` key for a legacy,
+ * not-yet-assigned user. Shared by `groupByOrganization` and any per-record
+ * (e.g. per-request) filtering that needs to match the same grouping. */
+export function organizationKeyFor(
+  user: { email: string; organization_id?: string | null },
+  orgNames: Record<string, string>,
+  orgsById: Record<string, OrgRecord> = {}
+): { key: string; org: OrgRecord | null } {
+  if (user.organization_id && orgsById[user.organization_id]) {
+    const org = orgsById[user.organization_id];
+    return { key: org.id, org };
+  }
+  const domain = getEmailDomain(user.email);
+  return {
+    key: `domain:${domain}`,
+    org: null,
+  };
+}
+
 export function groupByOrganization(
   users: OrgUser[],
   orgNames: Record<string, string>,
-  ticketCountByUserId: Record<string, number>
+  ticketCountByUserId: Record<string, number>,
+  orgsById: Record<string, OrgRecord> = {}
 ): OrgGroup[] {
   const groups = new Map<string, OrgGroup>();
 
   for (const user of users) {
-    const domain = getEmailDomain(user.email);
-    if (!groups.has(domain)) {
-      groups.set(domain, {
-        domain,
-        name: orgNames[domain] ?? prettifyDomain(domain),
-        users: [],
-        ticketCount: 0,
-      });
+    const { key, org } = organizationKeyFor(user, orgNames, orgsById);
+    let group = groups.get(key);
+    if (!group) {
+      const domain = getEmailDomain(user.email);
+      group = org
+        ? {
+            key,
+            id: org.id,
+            domain: org.domain,
+            name: org.name,
+            websiteUrl: org.website_url,
+            users: [],
+            ticketCount: 0,
+          }
+        : {
+            key,
+            id: null,
+            domain,
+            name: orgNames[domain] ?? prettifyDomain(domain),
+            websiteUrl: null,
+            users: [],
+            ticketCount: 0,
+          };
+      groups.set(key, group);
     }
-    const group = groups.get(domain)!;
+
     group.users.push(user);
     group.ticketCount += ticketCountByUserId[user.id] ?? 0;
   }

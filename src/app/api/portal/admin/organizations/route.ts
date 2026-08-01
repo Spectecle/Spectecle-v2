@@ -13,22 +13,55 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  const body = (await req.json().catch(() => null)) as { domain?: string; name?: string } | null;
+  const body = (await req.json().catch(() => null)) as {
+    id?: string;
+    domain?: string;
+    name?: string;
+    websiteUrl?: string;
+  } | null;
+  const id = body?.id?.trim();
   const domain = body?.domain?.trim().toLowerCase();
   const name = body?.name?.trim();
+  const websiteUrl = body?.websiteUrl?.trim() || null;
 
-  if (!domain || !name) {
-    return NextResponse.json({ error: "Missing domain or name" }, { status: 400 });
+  if (!name || (!id && !domain)) {
+    return NextResponse.json({ error: "Missing name or organization" }, { status: 400 });
   }
 
-  const { error } = await supabase
-    .from("organizations")
-    .upsert({ domain, name }, { onConflict: "domain" });
+  if (id) {
+    const { error } = await supabase
+      .from("organizations")
+      .update({ name, website_url: websiteUrl })
+      .eq("id", id);
+    if (error) {
+      console.error("[portal/admin/organizations] update error:", error);
+      return NextResponse.json({ error: "Failed to save" }, { status: 500 });
+    }
+    return NextResponse.json({ success: true, id });
+  }
 
-  if (error) {
-    console.error("[portal/admin/organizations] upsert error:", error);
+  // Legacy domain-bucket rename — promote it to a real organization and
+  // backfill every currently-unassigned user on that domain into it.
+  const { data: created, error: createError } = await supabase
+    .from("organizations")
+    .insert({ name, website_url: websiteUrl, domain })
+    .select("id")
+    .single();
+
+  if (createError || !created) {
+    console.error("[portal/admin/organizations] create error:", createError);
     return NextResponse.json({ error: "Failed to save" }, { status: 500 });
   }
 
-  return NextResponse.json({ success: true });
+  const { error: backfillError } = await supabase
+    .from("portal_users")
+    .update({ organization_id: created.id })
+    .is("organization_id", null)
+    .ilike("email", `%@${domain}`);
+
+  if (backfillError) {
+    console.error("[portal/admin/organizations] backfill error:", backfillError);
+  }
+
+  return NextResponse.json({ success: true, id: created.id });
 }
