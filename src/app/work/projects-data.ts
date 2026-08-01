@@ -199,7 +199,7 @@ export const projects: ProjectData[] = [
     cardDesc:
       "Authority-focused website design and SEO for Michigan family law attorney Neda Mohiedeen — built to convert first-time visitors into consultation requests during one of the hardest moments in their lives.",
     cardResult: "Custom Law Firm Site",
-    cardResultColor: "text-slate-300",
+    cardResultColor: "text-[#F07A3A]",
     tagline: "Authority-first web presence for a Michigan family law attorney",
     metaTitle: "MI Family Lawyer — Family Law Website & SEO Case Study | Spectecle",
     metaDescription:
