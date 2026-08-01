@@ -4,17 +4,29 @@ import { ArrowLeft } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { AddClientForm } from "@/components/portal/AddClientForm";
-import type { OrgRecord } from "@/lib/organizations";
+import { groupByOrganization, type OrgRecord } from "@/lib/organizations";
 
 export default async function AdminAddClientPage() {
   const user = await getSession();
   if (!user) redirect("/portal/sign-in?next=/portal/admin/clients/new");
   if (!isAdmin(user.email)) notFound();
 
-  const { data: orgs } = await supabase
+  const { data: allUsers } = await supabase
+    .from("portal_users")
+    .select("id, email, status, organization_id");
+
+  const { data: orgRows } = await supabase
     .from("organizations")
-    .select("id, domain, name, website_url")
-    .order("name", { ascending: true });
+    .select("id, domain, name, website_url");
+  const orgs = (orgRows ?? []) as OrgRecord[];
+  const orgNames: Record<string, string> = {};
+  const orgsById: Record<string, OrgRecord> = {};
+  for (const o of orgs) {
+    orgsById[o.id] = o;
+    if (o.domain) orgNames[o.domain] = o.name;
+  }
+
+  const groups = groupByOrganization(allUsers ?? [], orgNames, {}, orgsById);
 
   return (
     <section className="relative min-h-[80vh] pt-32 pb-20 px-6 overflow-hidden">
@@ -30,7 +42,7 @@ export default async function AdminAddClientPage() {
           <ArrowLeft className="w-3.5 h-3.5" />
           Back to Admin
         </Link>
-        <AddClientForm orgs={(orgs ?? []) as OrgRecord[]} />
+        <AddClientForm groups={groups} />
       </div>
     </section>
   );

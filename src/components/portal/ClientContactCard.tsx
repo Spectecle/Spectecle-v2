@@ -4,29 +4,32 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Pencil, Check, X, Loader2, Phone, User } from "lucide-react";
 import { inputClass } from "@/components/portal/DynamicField";
-import type { OrgRecord } from "@/lib/organizations";
+import { getEmailDomain, type OrgGroup } from "@/lib/organizations";
 
 type OrgMode = "existing" | "new";
 
 export function ClientContactCard({
   userId,
+  email,
   initialName,
   initialPhone,
   organizationId,
-  orgs,
+  groups,
 }: {
   userId: string;
+  email: string;
   initialName: string | null;
   initialPhone: string | null;
   organizationId: string | null;
-  orgs: OrgRecord[];
+  groups: OrgGroup[];
 }) {
   const router = useRouter();
+  const defaultOrgKey = organizationId ?? `domain:${getEmailDomain(email)}`;
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(initialName ?? "");
   const [phone, setPhone] = useState(initialPhone ?? "");
   const [orgMode, setOrgMode] = useState<OrgMode>("existing");
-  const [selectedOrgId, setSelectedOrgId] = useState(organizationId ?? "");
+  const [selectedOrgId, setSelectedOrgId] = useState(defaultOrgKey);
   const [newOrgName, setNewOrgName] = useState("");
   const [newOrgWebsite, setNewOrgWebsite] = useState("");
   const [saving, setSaving] = useState(false);
@@ -37,7 +40,7 @@ export function ClientContactCard({
     setName(initialName ?? "");
     setPhone(initialPhone ?? "");
     setOrgMode("existing");
-    setSelectedOrgId(organizationId ?? "");
+    setSelectedOrgId(defaultOrgKey);
     setNewOrgName("");
     setNewOrgWebsite("");
     setError("");
@@ -150,10 +153,10 @@ export function ClientContactCard({
             className={`${inputClass(false)} cursor-pointer`}
           >
             <option value="" disabled>Select a business</option>
-            {orgs.map((o) => (
-              <option key={o.id} value={o.id}>
-                {o.name}
-                {o.website_url ? ` — ${o.website_url}` : o.domain ? ` — ${o.domain}` : ""}
+            {groups.map((g) => (
+              <option key={g.key} value={g.key}>
+                {g.name}
+                {g.websiteUrl ? ` — ${g.websiteUrl}` : g.domain ? ` — ${g.domain}` : ""}
               </option>
             ))}
           </select>

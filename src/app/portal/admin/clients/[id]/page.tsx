@@ -5,7 +5,7 @@ import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
 import { getMessagesForRequests } from "@/lib/request-messages";
-import { getEmailDomain, prettifyDomain, type OrgRecord } from "@/lib/organizations";
+import { getEmailDomain, prettifyDomain, groupByOrganization, type OrgRecord } from "@/lib/organizations";
 import { TicketCard } from "@/components/portal/TicketCard";
 import { OrganizationNameEditor } from "@/components/portal/OrganizationNameEditor";
 import { ClientContactCard } from "@/components/portal/ClientContactCard";
@@ -47,6 +47,17 @@ export default async function AdminClientDetailPage({
   const domain = getEmailDomain(client.email);
   const displayName = org?.name ?? prettifyDomain(domain);
   const websiteUrl = org?.website_url ?? null;
+
+  const { data: allUsers } = await supabase
+    .from("portal_users")
+    .select("id, email, status, organization_id");
+  const orgNames: Record<string, string> = {};
+  const orgsById: Record<string, OrgRecord> = {};
+  for (const o of orgs) {
+    orgsById[o.id] = o;
+    if (o.domain) orgNames[o.domain] = o.name;
+  }
+  const groups = groupByOrganization(allUsers ?? [], orgNames, {}, orgsById);
 
   const { data: allRequests } = await supabase
     .from("service_requests")
@@ -138,10 +149,11 @@ export default async function AdminClientDetailPage({
           <div className="pt-5 border-t border-[var(--portal-border)]">
             <ClientContactCard
               userId={client.id}
+              email={client.email}
               initialName={client.name}
               initialPhone={client.phone}
               organizationId={client.organization_id}
-              orgs={orgs}
+              groups={groups}
             />
           </div>
         </div>

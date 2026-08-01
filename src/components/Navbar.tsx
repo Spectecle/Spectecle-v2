@@ -9,6 +9,7 @@ import { LogoMark } from "@/components/LogoMark";
 
 const navLinks = [
   { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Our Work", href: "/work" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },

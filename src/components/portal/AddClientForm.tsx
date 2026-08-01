@@ -5,16 +5,16 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { UserPlus, CheckCircle2 } from "lucide-react";
 import { inputClass } from "@/components/portal/DynamicField";
-import type { OrgRecord } from "@/lib/organizations";
+import type { OrgGroup } from "@/lib/organizations";
 
 type OrgMode = "existing" | "new";
 
-export function AddClientForm({ orgs }: { orgs: OrgRecord[] }) {
+export function AddClientForm({ groups }: { groups: OrgGroup[] }) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [orgMode, setOrgMode] = useState<OrgMode>(orgs.length > 0 ? "existing" : "new");
+  const [orgMode, setOrgMode] = useState<OrgMode>(groups.length > 0 ? "existing" : "new");
   const [organizationId, setOrganizationId] = useState("");
   const [newOrgName, setNewOrgName] = useState("");
   const [newOrgWebsite, setNewOrgWebsite] = useState("");
@@ -83,7 +83,7 @@ export function AddClientForm({ orgs }: { orgs: OrgRecord[] }) {
           <p className="text-[var(--portal-text-secondary)] mb-6 text-sm">
             {email} has been added. No email was sent — use{" "}
             <span className="text-[var(--portal-text-primary)]">Send Client Email</span> when
-            you're ready to onboard them.
+            you&apos;re ready to onboard them.
           </p>
           <div className="flex items-center justify-center gap-3">
             <button
@@ -165,7 +165,7 @@ export function AddClientForm({ orgs }: { orgs: OrgRecord[] }) {
             <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
               Business <span className="text-rose-400">*</span>
             </label>
-            {orgs.length > 0 && (
+            {groups.length > 0 && (
               <div className="flex gap-2 mb-3">
                 {(["existing", "new"] as OrgMode[]).map((m) => (
                   <button
@@ -184,7 +184,7 @@ export function AddClientForm({ orgs }: { orgs: OrgRecord[] }) {
               </div>
             )}
 
-            {orgMode === "existing" && orgs.length > 0 ? (
+            {orgMode === "existing" && groups.length > 0 ? (
               <div>
                 <select
                   value={organizationId}
@@ -195,10 +195,10 @@ export function AddClientForm({ orgs }: { orgs: OrgRecord[] }) {
                   className={`${inputClass(!!errors.organizationId)} cursor-pointer`}
                 >
                   <option value="" disabled>Select a business</option>
-                  {orgs.map((o) => (
-                    <option key={o.id} value={o.id}>
-                      {o.name}
-                      {o.website_url ? ` — ${o.website_url}` : o.domain ? ` — ${o.domain}` : ""}
+                  {groups.map((g) => (
+                    <option key={g.key} value={g.key}>
+                      {g.name}
+                      {g.websiteUrl ? ` — ${g.websiteUrl}` : g.domain ? ` — ${g.domain}` : ""}
                     </option>
                   ))}
                 </select>
