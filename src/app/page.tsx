@@ -149,7 +149,7 @@ const testimonials = [
   {
     quote: "I had been needing to update my website and didn't know where to start. Walid made the process so simple. He was patient throughout the whole process and really helped me with my vision. I'm so happy I went with him and highly recommend that everyone does the same!",
     name: "Neda Mohiedeen",
-    role: "Attorney, NM Law Firm",
+    role: "Attorney, MI Family Lawyer",
     stars: 5,
     avatar: "NM",
     color: "from-[#E86830] to-[#B83020]",
