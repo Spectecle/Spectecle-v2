@@ -88,8 +88,9 @@ const services = [
 ];
 
 const clients = [
-  "NM Law Firm", "Stat Clinic", "Glam by Abeer", "City of Dearborn",
+  "Stat Clinic", "Glam by Abeer", "City of Dearborn",
   "ICD", "Indoor Garden", "Thematek", "Detroit Glass & Mirror", "Salazar Drywall Services",
+  "Dearborn Cleaners", "Vue Optometry",
 ];
 
 const projects = [
@@ -105,25 +106,25 @@ const projects = [
     tagColor: "bg-[#FFF3EE] text-[#D25124]",
   },
   {
-    title: "NM Law Firm",
-    category: "Legal Services",
-    url: "nmlegalfirm.com",
-    desc: "Authoritative legal website for a Michigan-based attorney with consultation request funnel, practice areas, and multilingual support.",
-    result: "+120% Leads",
+    title: "Vue Optometry",
+    category: "Healthcare / Optometry",
+    url: "vueoptometry.com",
+    desc: "Ongoing website care for a membership-based eye care boutique — no insurance needed, with content kept current as plans and offerings evolve.",
+    result: "Ongoing Partnership",
     resultColor: "text-[#D25124]",
-    image: "/screenshots/nmlegalfirm.png",
-    tag: "Web Dev + SEO",
+    image: "/screenshots/vueoptometry.png",
+    tag: "Web Design + Ongoing Care",
     tagColor: "bg-[#FFF3EE] text-[#D25124]",
   },
   {
-    title: "Thematek",
-    category: "IT Solutions",
-    url: "thematek.com",
-    desc: "High-converting website for a retail & enterprise IT solutions company with free consultation funnel and service portfolio showcase.",
-    result: "+200% Traffic",
+    title: "Dearborn Cleaners",
+    category: "Home Services",
+    url: "dearborncleaners.com",
+    desc: "Complete website rebuild for a mold remediation and specialty cleaning company, built to convert urgent inquiries into booked inspections.",
+    result: "Complete Rebuild",
     resultColor: "text-[#D25124]",
-    image: "/screenshots/thematek.png",
-    tag: "Web Design + AI",
+    image: "/screenshots/dearborncleaners.png",
+    tag: "Web Design",
     tagColor: "bg-[#FFF3EE] text-[#D25124]",
   },
 ];
