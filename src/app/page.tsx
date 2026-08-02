@@ -110,7 +110,7 @@ const projects = [
     category: "Healthcare / Optometry",
     url: "vueoptometry.com",
     desc: "Ongoing website care for a membership-based eye care boutique — no insurance needed, with content kept current as plans and offerings evolve.",
-    result: "Ongoing Partnership",
+    result: "Always Up-to-Date",
     resultColor: "text-[#D25124]",
     image: "/screenshots/vueoptometry.png",
     tag: "Web Design + Ongoing Care",

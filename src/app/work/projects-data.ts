@@ -66,7 +66,7 @@ export const projects: ProjectData[] = [
     ],
     cardDesc:
       "Ongoing website care for Vùe Eye Boutique Optometry — a membership-based practice that skips insurance entirely. We keep the site current as their offerings, promotions, and messaging evolve.",
-    cardResult: "Ongoing Partnership",
+    cardResult: "Always Up-to-Date",
     cardResultColor: "text-[#F07A3A]",
     tagline: "Keeping a membership-first eye care brand's site as current as their business",
     metaTitle: "Vue Optometry — Website Design & Ongoing Care Case Study | Spectecle",
