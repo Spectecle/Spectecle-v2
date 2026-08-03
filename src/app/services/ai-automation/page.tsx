@@ -38,7 +38,7 @@ const deliverables = [
 
 const faqs = [
   {
-    q: "What is AI automation and how can it help my Detroit business?",
+    q: "What is AI automation and how can it help my business?",
     a: "AI automation replaces time-consuming, repetitive tasks with intelligent workflows. Common examples include automated lead follow-up, AI-powered customer support, automated reporting, CRM data entry, and document processing. For most businesses, automation saves 5–20 hours per week and meaningfully reduces operational costs.",
   },
   {
@@ -79,7 +79,7 @@ export default function AIAutomationPage() {
             transition={{ duration: 0.5 }}
             className="text-xs font-semibold text-[#F07A3A] uppercase tracking-widest"
           >
-            Detroit, MI — Serving Clients Nationwide
+            Serving Clients Nationwide
           </motion.span>
 
           <motion.h1
@@ -92,8 +92,6 @@ export default function AIAutomationPage() {
             AI &amp; Workflow
             <br />
             <span className="gradient-text">Automation</span>
-            <br />
-            Detroit, Michigan
           </motion.h1>
 
           <motion.p
@@ -301,9 +299,9 @@ export default function AIAutomationPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-inter)" }}>
-              Detroit-based.
+              Nationwide reach.
               <br />
-              <span className="gradient-text">Remote-ready. Results-driven.</span>
+              <span className="gradient-text">Remote-first. Results-driven.</span>
             </h2>
             <p className="mt-5 text-slate-400 text-lg max-w-xl mx-auto">
               Book a free 30-minute call. We&apos;ll identify exactly where automation would save you the most time and what it would cost to build.

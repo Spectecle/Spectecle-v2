@@ -113,7 +113,7 @@ function announcementHtml(email: string, link: string) {
     </tr>
     <tr>
       <td style="padding:28px 12px 0;text-align:center;">
-        <p style="margin:0 0 4px;color:#475569;font-size:12px;">Spectecle · Detroit, MI</p>
+        <p style="margin:0 0 4px;color:#475569;font-size:12px;">Spectecle</p>
         <p style="margin:0;color:#475569;font-size:12px;">Questions? Reply to this email — we read every one.</p>
       </td>
     </tr>

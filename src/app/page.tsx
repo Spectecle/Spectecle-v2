@@ -1,18 +1,11 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  motion,
-  useInView,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion, useInView } from "framer-motion";
+import SmoothScroll from "@/components/SmoothScroll";
+import Hero from "@/components/ui/hero";
 
 import {
   ArrowUpRight,
@@ -166,103 +159,10 @@ const process = [
 /* ─── Page ─────────────────────────────────────────── */
 export default function HomePage() {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const { scrollY } = useScroll();
-  const scrollIndicatorOpacity = useTransform(scrollY, [0, 90], [1, 0]);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(".orb-1", {
-        y: -180,
-        ease: "none",
-        scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: 1.5 },
-      });
-      gsap.to(".orb-2", {
-        y: -120, x: 60,
-        ease: "none",
-        scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: 2 },
-      });
-      gsap.to(".orb-3", {
-        y: -80,
-        ease: "none",
-        scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: 1 },
-      });
-    });
-    return () => ctx.revert();
-  }, []);
-
 
   return (
-    <>
-      {/* ══ HERO — DARK ══════════════════════════════ */}
-      <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: "#040408" }}>
-        <div className="orb-1 absolute top-[-200px] left-[-100px] w-[600px] h-[600px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(210,81,36,0.18) 0%, transparent 70%)" }} />
-        <div className="orb-2 absolute top-[-100px] right-[-150px] w-[500px] h-[500px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(168,52,24,0.15) 0%, transparent 70%)" }} />
-        <div className="orb-3 absolute bottom-[-100px] left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(210,81,36,0.1) 0%, transparent 70%)" }} />
-        <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
-
-        <div className="hero-content relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#D25124]/20 text-sm text-[#F07A3A] font-medium mb-8 pulse-glow"
-          >
-            <span className="w-2 h-2 rounded-full bg-[#F07A3A] animate-pulse" />
-            Detroit, Michigan · Est. 2012
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight text-white"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            Where Detroit Brands
-            <br />
-            Come to Get Found,
-            <br />
-            <span className="gradient-text">And Own Their Market.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-8 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
-          >
-            A performance-obsessed Detroit studio shaping high-converting digital presences
-            through search-first design, bold development, and intelligent automation.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link href="/contact" className="btn-primary flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-semibold cursor-pointer">
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-5 h-5 relative z-10" />
-            </Link>
-            <Link href="/work" className="flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-semibold text-slate-300 hover:text-white glass hover:border-white/15 border border-white/8 transition-all duration-300 cursor-pointer">
-              View Our Work <ChevronRight className="w-4 h-4" />
-            </Link>
-          </motion.div>
-
-        </div>
-
-        <motion.div
-          style={{ opacity: scrollIndicatorOpacity }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
-        >
-          <span className="text-xs text-slate-600 uppercase tracking-widest">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-[#D25124] to-transparent" />
-        </motion.div>
-      </section>
+    <SmoothScroll>
+      <Hero />
 
       {/* ══ CLIENT MARQUEE — DARK ════════════════════ */}
       <section className="py-10 border-y border-white/6 overflow-hidden" style={{ background: "#09090f" }}>
@@ -649,6 +549,6 @@ export default function HomePage() {
           </div>
         </Reveal>
       </section>
-    </>
+    </SmoothScroll>
   );
 }

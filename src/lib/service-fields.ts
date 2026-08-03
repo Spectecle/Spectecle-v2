@@ -83,7 +83,7 @@ export const SERVICE_FIELDS: Record<ServiceType, FieldDef[]> = {
   "SEO & Digital Marketing": [
     { key: "website_url", label: "Website URL", type: "text", required: true },
     { key: "target_keywords", label: "Target Keywords / Topics", type: "textarea" },
-    { key: "target_location", label: "Target Location(s)", type: "text", placeholder: "e.g. Detroit, MI" },
+    { key: "target_location", label: "Target Location(s)", type: "text", placeholder: "e.g. city, state, or nationwide" },
     { key: "competitors", label: "Main Competitors", type: "textarea" },
     { key: "current_efforts", label: "Current Marketing Efforts", type: "textarea" },
   ],

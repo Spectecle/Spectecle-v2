@@ -171,7 +171,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="text-sm text-slate-500">
-                Detroit, MI — Remote Worldwide
+                Serving Businesses Nationwide
               </li>
             </ul>
           </div>

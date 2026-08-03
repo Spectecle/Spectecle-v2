@@ -4,26 +4,26 @@ const BASE_URL = "https://spectecle.com";
 const PAGE_URL = `${BASE_URL}/services/ai-automation`;
 
 export const metadata: Metadata = {
-  title: "AI Automation & Workflow Automation Detroit, MI",
+  title: "AI Automation & Workflow Automation Services",
   description:
-    "Custom AI agents and workflow automation for Detroit businesses. Eliminate manual tasks, automate customer interactions, and scale operations without adding headcount.",
+    "Custom AI agents and workflow automation for businesses nationwide. Eliminate manual tasks, automate customer interactions, and scale operations without adding headcount.",
   keywords: [
-    "AI automation Detroit",
-    "workflow automation Michigan",
-    "AI agents for business Detroit",
-    "business automation Detroit Michigan",
-    "AI chatbot development Michigan",
-    "CRM automation Detroit",
-    "n8n automation Michigan",
-    "AI integration services Detroit",
-    "business process automation Michigan",
-    "AI consulting Detroit",
+    "AI automation services",
+    "workflow automation",
+    "AI agents for business",
+    "business automation",
+    "AI chatbot development",
+    "CRM automation",
+    "n8n automation",
+    "AI integration services",
+    "business process automation",
+    "AI consulting",
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "AI & Workflow Automation Detroit, MI | Spectecle",
+    title: "AI & Workflow Automation | Spectecle",
     description:
-      "Custom AI agents and workflow automation for Detroit businesses. Eliminate manual tasks and scale without hiring.",
+      "Custom AI agents and workflow automation for businesses nationwide. Eliminate manual tasks and scale without hiring.",
     url: PAGE_URL,
   },
 };
@@ -32,13 +32,9 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "AI & Workflow Automation — Detroit, Michigan",
+    name: "AI & Workflow Automation",
     provider: { "@id": `${BASE_URL}/#organization` },
-    areaServed: [
-      { "@type": "City", name: "Detroit" },
-      { "@type": "State", name: "Michigan" },
-      { "@type": "Country", name: "United States" },
-    ],
+    areaServed: [{ "@type": "Country", name: "United States" }],
     description:
       "Custom AI agents and workflow automation built from scratch for small and mid-size businesses. Eliminates repetitive tasks and scales operations without adding headcount.",
     url: PAGE_URL,
@@ -49,7 +45,7 @@ const jsonLd = [
     mainEntity: [
       {
         "@type": "Question",
-        name: "What is AI automation and how can it help my Detroit business?",
+        name: "What is AI automation and how can it help my business?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "AI automation replaces time-consuming, repetitive tasks with intelligent workflows. Common examples include automated lead follow-up, AI-powered customer support, automated reporting, CRM data entry, and document processing. For most businesses, automation saves 5–20 hours per week and meaningfully reduces operational costs.",

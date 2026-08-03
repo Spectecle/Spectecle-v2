@@ -70,7 +70,7 @@ export default function BlogPage() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="mt-6 text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            Actionable guides for Michigan businesses — photographers, contractors, attorneys,
+            Actionable guides for small businesses — photographers, contractors, attorneys,
             beauty studios, e-commerce shops, and tech companies — on web design, SEO, and AI automation.
           </motion.p>
         </div>
@@ -196,7 +196,7 @@ export default function BlogPage() {
             >
               Ready to grow your
               <br />
-              <span className="gradient-text">Michigan business?</span>
+              <span className="gradient-text">business?</span>
             </h2>
             <p className="mt-5 text-slate-400 text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call and we&apos;ll map out exactly what it

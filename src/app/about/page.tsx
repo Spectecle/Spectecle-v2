@@ -69,7 +69,7 @@ const values = [
 
 const stats = [
   { value: "50+", label: "Projects Delivered" },
-  { value: "Est. 2012", label: "Detroit-Based" },
+  { value: "Est. 2012", label: "Founder-Led" },
   { value: "98%", label: "Client Retention" },
   { value: "3×", label: "Avg Traffic Growth" },
 ];
@@ -116,7 +116,7 @@ export default function AboutPage() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#D25124]/20 text-sm text-[#F07A3A] font-medium mb-8"
               >
                 <span className="w-2 h-2 rounded-full bg-[#F07A3A]" />
-                Founder-Led · Detroit, MI
+                Founder-Led · Serving Businesses Nationwide
               </motion.div>
 
               <motion.h1
@@ -137,7 +137,7 @@ export default function AboutPage() {
                 className="mt-5 text-slate-400 text-lg leading-relaxed max-w-lg"
               >
                 Web developer. IT systems engineer. AI practitioner. Landscape photographer.
-                And the founder of Spectecle — a Detroit-based agency that builds digital
+                And the founder of Spectecle — an agency that builds digital
                 experiences that actually grow businesses.
               </motion.p>
 
@@ -210,7 +210,7 @@ export default function AboutPage() {
               <div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl shadow-black/60">
                 <Image
                   src="/walid.jpg"
-                  alt="Walid Alhassan — Founder of Spectecle, Detroit web design & SEO agency"
+                  alt="Walid Alhassan — Founder of Spectecle, web design & SEO agency"
                   fill
                   className="object-cover object-top"
                   style={{
@@ -316,7 +316,7 @@ export default function AboutPage() {
                     Founder & Lead Strategist
                   </p>
                   <p className="text-slate-500 text-xs mt-0.5">
-                    Detroit, MI — Metro Detroit & Nationwide
+                    Serving Businesses Nationwide
                   </p>
 
                   {/* Services */}
@@ -391,7 +391,7 @@ export default function AboutPage() {
                   <p>
                     Spectecle was built specifically to serve the kinds of businesses that are often
                     underserved by the industry — six-figure retailers converting their operations to
-                    e-commerce, top makeup artists in Detroit trying to get off Instagram DMs, law
+                    e-commerce, top makeup artists trying to get off Instagram DMs, law
                     firms competing in one of the most aggressive SEO verticals in existence, medical
                     and sports clinics that need a digital presence as precise as their practice, and
                     contractors who do excellent work but show up nowhere on Google.
@@ -399,7 +399,7 @@ export default function AboutPage() {
 
                   <p>
                     The AI piece — four years deep into working with large language models and
-                    workflow automation — adds a layer almost no Detroit-area web agency can match.
+                    workflow automation — adds a layer almost no web agency can match.
                     When a client needs an AI intake agent, Walid builds it from scratch: trained on
                     their specific services, integrated with their CRM, routed through their existing
                     tools. Not a widget. Actual automation that saves real team hours and compounds
@@ -483,7 +483,7 @@ export default function AboutPage() {
                 Every case study is a business Walid personally worked on.
               </h2>
               <p className="mt-3 text-slate-500 text-sm max-w-xl mx-auto">
-                From top Detroit makeup artists and Michigan law firms to e-commerce retailers,
+                From top makeup artists and law firms to e-commerce retailers,
                 medical clinics, and contractors — the industries are different, the approach
                 is the same: build something that performs, ranks, and grows your business.
               </p>

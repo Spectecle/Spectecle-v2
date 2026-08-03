@@ -52,7 +52,7 @@ const services = [
     badge: "Service 02",
     title: "SEO & Digital Marketing",
     tagline: "Page-one rankings for searches that actually matter.",
-    desc: "Technical SEO, local search, and content strategy — built around what your customers are searching for in Detroit and beyond. Tracked with real numbers, not vanity metrics.",
+    desc: "Technical SEO, local search, and content strategy — built around what your customers are actually searching for. Tracked with real numbers, not vanity metrics.",
     bullets: ["Technical SEO audits", "Local SEO & Google Business Profile", "Content & topical authority", "Monthly reporting & analytics"],
     href: "/services/seo-agency-detroit",
     cta: "See SEO Details",
@@ -94,8 +94,8 @@ const additionalServices = [
 
 const faqs = [
   {
-    q: "Do you offer web design and SEO services in Detroit, Michigan?",
-    a: "Yes — Spectecle is based in Detroit, MI and serves businesses across Metro Detroit, Dearborn, Southfield, Ann Arbor, Grand Rapids, and throughout Michigan. We also work remotely with clients across the U.S. and internationally.",
+    q: "Do you offer local SEO services?",
+    a: "Yes — we help single-location and multi-location businesses show up in local search results anywhere in the country. We also work remotely with clients across the U.S. and internationally.",
   },
   {
     q: "How much does a website cost for a small business?",
@@ -103,15 +103,15 @@ const faqs = [
   },
   {
     q: "How long does SEO take to show results?",
-    a: "Most businesses see meaningful ranking improvements within 3–6 months of consistent SEO work. For competitive local markets like Detroit or statewide Michigan keywords, expect 4–8 months to reach page one. We provide monthly reporting so you always know exactly where you stand.",
+    a: "Most businesses see meaningful ranking improvements within 3–6 months of consistent SEO work. For competitive local or national keywords, expect 4–8 months to reach page one. We provide monthly reporting so you always know exactly where you stand.",
   },
   {
     q: "What is AI automation and how can it help my business?",
     a: "AI automation replaces time-consuming, repetitive tasks with intelligent workflows. Common examples include: automated lead follow-up sequences, AI-powered customer support chatbots, automated reporting, CRM data entry, and document processing. For most businesses, automation saves 5–20 hours per week and meaningfully reduces operational costs.",
   },
   {
-    q: "Do you work with clients outside of Detroit?",
-    a: "Absolutely. While we're proud to serve Metro Detroit and Michigan, the majority of our work is done remotely with clients across the United States and internationally. Our process is built for seamless remote collaboration — distance is never a barrier.",
+    q: "Do you work with clients remotely?",
+    a: "Absolutely — the majority of our work is done remotely with clients across the United States and internationally. Our process is built for seamless remote collaboration, from kickoff calls to launch. Distance is never a barrier.",
   },
   {
     q: "Can you take over an existing website or help with a redesign?",
@@ -156,7 +156,7 @@ export default function ServicesPage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#D25124]/20 text-sm text-[#F07A3A] font-medium mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-[#F07A3A]" />
-            Detroit, MI — Serving Clients Worldwide
+            Serving Clients Nationwide
           </motion.div>
 
           <motion.h1
@@ -307,9 +307,9 @@ export default function ServicesPage() {
               className="text-4xl md:text-5xl font-bold text-white"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Detroit-based.
+              Nationwide reach.
               <br />
-              <span className="gradient-text">Remote-ready. Results-driven.</span>
+              <span className="gradient-text">Remote-first. Results-driven.</span>
             </h2>
             <p className="mt-5 text-slate-400 text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. No sales pitch — just honest advice on what will move the needle for your business, wherever you are.

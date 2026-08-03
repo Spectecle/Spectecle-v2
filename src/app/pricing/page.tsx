@@ -25,9 +25,9 @@ export default function PricingPage() {
             Plans built to grow with your business
           </h1>
           <p className="mt-6 text-slate-400 leading-relaxed max-w-xl mx-auto text-base">
-            A one-time setup gets your website built and configured. From there, a monthly plan
-            covers hosting, security, and ongoing care — pick the level of hands-on support that
-            fits where your business is headed.
+            Two simple steps: choose a one-time design investment to get your website built,
+            then choose an ongoing care plan to keep it growing — hosting, content, SEO, and
+            support, priced separately from the build.
           </p>
         </div>
       </section>

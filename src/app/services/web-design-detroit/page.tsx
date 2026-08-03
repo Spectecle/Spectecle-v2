@@ -302,9 +302,9 @@ export default function WebDesignDetroitPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-inter)" }}>
-              Detroit-based.
+              Detroit expertise.
               <br />
-              <span className="gradient-text">Remote-ready. Results-driven.</span>
+              <span className="gradient-text">Nationwide reach.</span>
             </h2>
             <p className="mt-5 text-slate-400 text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. No sales pitch — just honest advice on what your site needs to rank and convert.

@@ -183,7 +183,7 @@ export default function SEOAgencyDetroitPage() {
               <div className="mt-8 pt-6 border-t border-white/6 grid grid-cols-2 gap-4">
                 {[
                   { value: "3–6 mo", label: "Avg. time to results" },
-                  { value: "Detroit", label: "Primary market" },
+                  { value: "Detroit", label: "Local specialty" },
                   { value: "Monthly", label: "Reporting cadence" },
                   { value: "24hr", label: "Response guarantee" },
                 ].map((s) => (
@@ -299,9 +299,9 @@ export default function SEOAgencyDetroitPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-inter)" }}>
-              Detroit-based.
+              Detroit expertise.
               <br />
-              <span className="gradient-text">Remote-ready. Results-driven.</span>
+              <span className="gradient-text">Nationwide reach.</span>
             </h2>
             <p className="mt-5 text-slate-400 text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. We&apos;ll audit your current search presence and tell you exactly what it would take to rank.

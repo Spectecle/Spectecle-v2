@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
 import ConditionalShell from "@/components/ConditionalShell";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -16,26 +15,26 @@ const BASE_URL = "https://spectecle.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Spectecle | Web Design, SEO & AI Agency — Detroit, MI",
+    default: "Spectecle | Web Design, SEO & AI Agency",
     template: "%s | Spectecle SEO & Web Design",
   },
   description:
-    "Spectecle is a premium web design, SEO & AI automation agency based in Detroit, MI. We build high-converting websites, dominate search rankings, and automate business workflows for ambitious companies worldwide.",
+    "Spectecle is a premium web design, SEO & AI automation agency serving businesses across the United States. We build high-converting websites, dominate search rankings, and automate business workflows for ambitious companies everywhere.",
   keywords: [
-    "web design agency Detroit",
-    "web design Michigan",
-    "SEO agency Detroit",
-    "SEO marketing Michigan",
+    "web design agency",
+    "national web design agency",
+    "SEO agency",
+    "SEO marketing services",
     "AI automation agency",
-    "web development Detroit",
-    "digital marketing agency Michigan",
+    "web development company",
+    "digital marketing agency",
     "Next.js web development",
     "professional web design",
     "web design agency near me",
-    "affordable web design Detroit",
+    "affordable web design",
     "small business website design",
     "e-commerce web design",
-    "local SEO Michigan",
+    "local SEO services",
     "Spectecle agency",
   ],
   authors: [{ name: "Spectecle SEO & Web Design", url: BASE_URL }],
@@ -58,15 +57,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: BASE_URL,
     siteName: "Spectecle SEO & Web Design",
-    title: "Spectecle | Web Design, SEO & AI Agency — Detroit, MI",
+    title: "Spectecle | Web Design, SEO & AI Agency",
     description:
-      "Premium web design, SEO & AI automation agency in Detroit, MI. We build websites that convert, rankings that dominate, and systems that scale.",
+      "Premium web design, SEO & AI automation agency serving businesses nationwide. We build websites that convert, rankings that dominate, and systems that scale.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Spectecle | Web Design, SEO & AI Agency",
     description:
-      "Premium web design, SEO & AI automation agency in Detroit, MI. We build websites that convert and scale.",
+      "Premium web design, SEO & AI automation agency serving businesses nationwide. We build websites that convert and scale.",
     site: "@spectecle",
     creator: "@spectecle",
   },
@@ -95,35 +94,12 @@ const jsonLd = {
       },
       image: `${BASE_URL}/logo.png`,
       description:
-        "Spectecle is a premium web design, SEO & AI automation agency based in Detroit, MI, serving clients worldwide.",
+        "Spectecle is a premium web design, SEO & AI automation agency serving businesses across the United States.",
       telephone: "+13133534105",
       email: "hello@spectecle.com",
       foundingDate: "2012",
       priceRange: "$$",
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5.0",
-        reviewCount: "3",
-        bestRating: "5",
-        worstRating: "1",
-      },
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Detroit",
-        addressRegion: "MI",
-        addressCountry: "US",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: 42.3314,
-        longitude: -83.0458,
-      },
-      areaServed: [
-        { "@type": "City", name: "Detroit" },
-        { "@type": "State", name: "Michigan" },
-        { "@type": "Country", name: "United States" },
-        "Worldwide",
-      ],
+      areaServed: [{ "@type": "Country", name: "United States" }],
       sameAs: [
         "https://x.com/spectecle",
         "https://www.instagram.com/spectecle/",
@@ -168,7 +144,7 @@ const jsonLd = {
       "@id": `${BASE_URL}/#website`,
       url: BASE_URL,
       name: "Spectecle SEO & Web Design",
-      description: "Premium web design, SEO & AI automation agency — Detroit, MI",
+      description: "Premium web design, SEO & AI automation agency — serving businesses nationwide",
       publisher: { "@id": `${BASE_URL}/#organization` },
       inLanguage: "en-US",
     },
@@ -188,9 +164,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         <div className="noise-overlay" aria-hidden="true" />
-        <SmoothScroll>
-          <ConditionalShell>{children}</ConditionalShell>
-        </SmoothScroll>
+        <ConditionalShell>{children}</ConditionalShell>
         <Analytics />
       </body>
     </html>

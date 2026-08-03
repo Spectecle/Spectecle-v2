@@ -3,35 +3,35 @@ import type { Metadata } from "next";
 const BASE_URL = "https://spectecle.com";
 
 export const metadata: Metadata = {
-  title: "Web Design, SEO & AI Automation Services in Detroit, MI",
+  title: "Web Design, SEO & AI Automation Services",
   description:
-    "Spectecle offers professional web design, SEO, and AI automation services in Detroit, Michigan. Custom Next.js websites that rank on Google, data-driven SEO that drives organic traffic, and intelligent workflow automation that scales your business. Serving Metro Detroit and clients nationwide.",
+    "Spectecle offers professional web design, SEO, and AI automation services for businesses nationwide. Custom Next.js websites that rank on Google, data-driven SEO that drives organic traffic, and intelligent workflow automation that scales your business.",
   keywords: [
-    "web design services Detroit Michigan",
-    "web design agency Detroit",
-    "custom website design Michigan",
-    "SEO services Detroit MI",
-    "SEO agency Michigan",
-    "local SEO Detroit",
-    "AI automation services Michigan",
+    "web design services",
+    "web design agency",
+    "custom website design",
+    "SEO services",
+    "SEO agency",
+    "local SEO services",
+    "AI automation services",
     "workflow automation small business",
-    "Next.js web development Michigan",
-    "web development Detroit",
-    "digital marketing agency Detroit",
-    "Google ranking services Michigan",
-    "e-commerce web design Detroit",
-    "AI chatbot development Michigan",
-    "web design near me Detroit",
-    "affordable web design Michigan",
-    "professional web designer Detroit",
-    "SEO company Michigan",
+    "Next.js web development",
+    "web development agency",
+    "digital marketing agency",
+    "Google ranking services",
+    "e-commerce web design",
+    "AI chatbot development",
+    "web design near me",
+    "affordable web design",
+    "professional web designer",
+    "SEO company",
     "AI agent development",
     "web design and SEO agency",
   ],
   openGraph: {
-    title: "Web Design, SEO & AI Services — Detroit, MI | Spectecle SEO & Web Design",
+    title: "Web Design, SEO & AI Services | Spectecle SEO & Web Design",
     description:
-      "Professional web design, SEO & AI automation for businesses in Detroit, Michigan and beyond. Custom websites that rank and convert. SEO that dominates. Automation that scales.",
+      "Professional web design, SEO & AI automation for businesses nationwide. Custom websites that rank and convert. SEO that dominates. Automation that scales.",
     url: `${BASE_URL}/services`,
   },
   alternates: { canonical: `${BASE_URL}/services` },
@@ -45,14 +45,10 @@ const jsonLd = {
       "@id": `${BASE_URL}/services#web-design`,
       name: "Web Design & Development Services",
       description:
-        "Custom, high-performance websites built with Next.js and React for businesses in Detroit, Michigan and beyond. Mobile-first, SEO-ready, and optimized for Core Web Vitals.",
+        "Custom, high-performance websites built with Next.js and React for businesses nationwide. Mobile-first, SEO-ready, and optimized for Core Web Vitals.",
       provider: { "@id": `${BASE_URL}/#organization` },
       serviceType: "Web Design & Development",
-      areaServed: [
-        { "@type": "City", name: "Detroit" },
-        { "@type": "State", name: "Michigan" },
-        { "@type": "Country", name: "United States" },
-      ],
+      areaServed: [{ "@type": "Country", name: "United States" }],
       url: `${BASE_URL}/services#web-design`,
     },
     {
@@ -60,14 +56,10 @@ const jsonLd = {
       "@id": `${BASE_URL}/services#seo`,
       name: "SEO & Digital Marketing Services",
       description:
-        "Results-driven SEO for businesses in Detroit, Michigan and nationwide. Technical SEO, local search optimization, keyword strategy, content, and link building to reach page one on Google.",
+        "Results-driven SEO for businesses nationwide. Technical SEO, local search optimization, keyword strategy, content, and link building to reach page one on Google.",
       provider: { "@id": `${BASE_URL}/#organization` },
       serviceType: "Search Engine Optimization",
-      areaServed: [
-        { "@type": "City", name: "Detroit" },
-        { "@type": "State", name: "Michigan" },
-        { "@type": "Country", name: "United States" },
-      ],
+      areaServed: [{ "@type": "Country", name: "United States" }],
       url: `${BASE_URL}/services#seo`,
     },
     {
@@ -78,11 +70,7 @@ const jsonLd = {
         "Custom AI agents, chatbot development, and end-to-end workflow automation for small and mid-size businesses. Using OpenAI, n8n, and custom APIs to eliminate manual work and scale operations.",
       provider: { "@id": `${BASE_URL}/#organization` },
       serviceType: "AI Automation",
-      areaServed: [
-        { "@type": "City", name: "Detroit" },
-        { "@type": "State", name: "Michigan" },
-        { "@type": "Country", name: "United States" },
-      ],
+      areaServed: [{ "@type": "Country", name: "United States" }],
       url: `${BASE_URL}/services#ai`,
     },
     {
@@ -91,10 +79,10 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "Do you offer web design and SEO services in Detroit, Michigan?",
+          name: "Do you offer local SEO services?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes — Spectecle is based in Detroit, MI and serves businesses across Metro Detroit, Dearborn, Southfield, Ann Arbor, Grand Rapids, and throughout Michigan. We also work remotely with clients across the U.S. and internationally.",
+            text: "Yes — we help single-location and multi-location businesses show up in local search results anywhere in the country. We also work remotely with clients across the U.S. and internationally.",
           },
         },
         {
@@ -110,7 +98,7 @@ const jsonLd = {
           name: "How long does SEO take to show results?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Most businesses see meaningful ranking improvements within 3–6 months of consistent SEO work. For competitive local markets like Detroit or statewide Michigan keywords, expect 4–8 months to reach page one. We provide monthly reporting so you always know exactly where you stand.",
+            text: "Most businesses see meaningful ranking improvements within 3–6 months of consistent SEO work. For competitive local or national keywords, expect 4–8 months to reach page one. We provide monthly reporting so you always know exactly where you stand.",
           },
         },
         {
@@ -123,10 +111,10 @@ const jsonLd = {
         },
         {
           "@type": "Question",
-          name: "Do you work with clients outside of Detroit?",
+          name: "Do you work with clients remotely?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Absolutely. While we're proud to serve Metro Detroit and Michigan, the majority of our work is done remotely with clients across the United States and internationally. Our process is built for seamless remote collaboration — distance is never a barrier.",
+            text: "Absolutely — the majority of our work is done remotely with clients across the United States and internationally. Our process is built for seamless remote collaboration, from kickoff calls to launch. Distance is never a barrier.",
           },
         },
         {
@@ -139,10 +127,10 @@ const jsonLd = {
         },
         {
           "@type": "Question",
-          name: "What's included in your monthly maintenance plans?",
+          name: "What's included in your ongoing care plans?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Maintenance retainers include performance monitoring, security patches, content updates, uptime monitoring, and priority support with fast response times. Think of us as your dedicated on-call digital team — without the overhead of a full-time hire.",
+            text: "Care plans include performance monitoring, security patches, content updates, uptime monitoring, and priority support with fast response times. Think of us as your dedicated on-call digital team — without the overhead of a full-time hire.",
           },
         },
       ],

@@ -70,9 +70,9 @@ const contactInfo = [
   },
   {
     icon: MapPin,
-    label: "Location",
-    value: "Detroit, MI — Remote Worldwide",
-    href: "https://maps.google.com/?q=Detroit,MI",
+    label: "Coverage",
+    value: "United States — Remote",
+    href: "/work",
     color: "text-[#F07A3A]",
     bg: "bg-[#D25124]/10",
   },
@@ -116,7 +116,7 @@ const socials = [
 ];
 
 const whoWeHelp = [
-  "Local service businesses in Metro Detroit",
+  "Local service businesses, anywhere in the U.S.",
   "Law firms, clinics & professional services",
   "E-commerce brands scaling online",
   "Startups & established companies nationwide",
@@ -193,7 +193,7 @@ export default function ContactPage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#D25124]/20 text-sm text-[#F07A3A] font-medium mb-8"
           >
             <Zap className="w-3.5 h-3.5" />
-            Detroit, MI — Remote Worldwide
+            Serving Businesses Nationwide
           </motion.div>
 
           <motion.h1
@@ -215,7 +215,7 @@ export default function ContactPage() {
             className="mt-6 text-slate-400 text-lg max-w-xl mx-auto leading-relaxed"
           >
             Tell us about your goals. We&apos;ll respond within 24 hours with honest advice
-            and a clear plan — whether you&apos;re in Detroit or anywhere in the world.
+            and a clear plan — wherever you&apos;re located.
           </motion.p>
         </div>
       </section>
@@ -289,8 +289,8 @@ export default function ContactPage() {
                       Start a conversation
                     </h2>
                     <p className="text-slate-500 text-sm">
-                      A quick question or a full project brief — both are welcome. Based in
-                      Detroit, working with businesses everywhere.
+                      A quick question or a full project brief — both are welcome. We work with
+                      businesses across the country.
                     </p>
                   </div>
 

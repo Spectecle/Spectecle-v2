@@ -65,12 +65,12 @@ const INDUSTRIES = [
 
 const FAQ_ITEMS = [
   {
-    question: "How much does a professional website cost in Michigan?",
+    question: "How much does a professional website cost?",
     answer:
       "At Spectecle, custom website projects start at $2,500 for small businesses and scale based on complexity, number of pages, and integrations needed. Unlike agencies that charge $15,000–$50,000 for templated work, every Spectecle site is built from scratch in Next.js — faster, better-ranking, and entirely yours. SEO retainers and AI automation packages are available separately.",
   },
   {
-    question: "What makes Spectecle different from other web design agencies in Detroit?",
+    question: "What makes Spectecle different from other web design agencies?",
     answer:
       "Spectecle is founder-led — every project is handled directly by Walid Alhassan, a web developer with 10 years of experience, an IT systems engineer with 12 years in enterprise infrastructure, and an AI practitioner for 4 years. You never deal with account managers or handoffs. The same person who talks to you also designs, builds, and launches your site.",
   },
@@ -80,9 +80,9 @@ const FAQ_ITEMS = [
       "Most Spectecle projects are delivered in 4–8 weeks from kickoff to launch, depending on complexity. E-commerce sites and projects with custom AI integrations may take longer. There is no team bureaucracy — decisions happen fast and revisions never get lost in translation.",
   },
   {
-    question: "What is local SEO and how does it help my Michigan business?",
+    question: "What is local SEO and how does it help my business?",
     answer:
-      "Local SEO is the process of optimizing your website and Google Business Profile so your business appears at the top of searches like 'web designer near me' or 'law firm Detroit Michigan.' Spectecle builds local SEO into every website — including structured data markup, Google Business Profile optimization, location-specific content, and a review acquisition strategy — so your site starts ranking from day one.",
+      "Local SEO is the process of optimizing your website and Google Business Profile so your business appears at the top of searches like 'web designer near me' or 'law firm in [your city].' Spectecle builds local SEO into every website — including structured data markup, Google Business Profile optimization, location-specific content, and a review acquisition strategy — so your site starts ranking from day one.",
   },
   {
     question: "Do I need an AI agent for my business?",
@@ -90,9 +90,9 @@ const FAQ_ITEMS = [
       "If your business handles repetitive intake, quotes, scheduling, or customer questions, an AI agent can replace hours of manual work per week. Spectecle builds custom AI intake agents trained on your specific services, pricing, and FAQs — integrated directly with your CRM and communication tools. It's not a generic chatbot — it's a system that understands your business.",
   },
   {
-    question: "Does Spectecle work with businesses outside of Detroit?",
+    question: "Does Spectecle work with businesses nationwide?",
     answer:
-      "Yes. Spectecle is headquartered in Detroit, MI and specializes in metro Detroit and Michigan businesses, but we work with clients across the United States. If you are a serious business looking for a results-focused web design and digital growth partner, location is not a barrier.",
+      "Yes. Spectecle works with clients across the United States, with deep local-SEO expertise for businesses that also want to dominate their local market. If you are a serious business looking for a results-focused web design and digital growth partner, location is not a barrier.",
   },
 ];
 
@@ -194,7 +194,7 @@ export default function HelloPage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#D25124]/20 text-sm text-[#F07A3A] font-medium mb-10"
           >
             <span className="w-2 h-2 rounded-full bg-[#F07A3A] animate-pulse" />
-            Detroit, MI &nbsp;·&nbsp; Founder-Led &nbsp;·&nbsp; Available Now
+            Founder-Led &nbsp;·&nbsp; Serving Businesses Nationwide &nbsp;·&nbsp; Available Now
           </motion.div>
 
           {/* Headline */}
@@ -230,8 +230,8 @@ export default function HelloPage() {
             transition={{ duration: 0.6, delay: 0.32 }}
             className="mt-7 text-slate-400 text-lg md:text-xl leading-relaxed max-w-2xl"
           >
-            Spectecle is a Detroit-based agency building custom websites, dominating local search, and
-            deploying AI automation for Michigan&apos;s six-figure businesses — all handled directly by the
+            Spectecle is an agency building custom websites, dominating local search, and
+            deploying AI automation for six-figure businesses nationwide — all handled directly by the
             founder, start to finish.
           </motion.p>
 
@@ -293,7 +293,7 @@ export default function HelloPage() {
 
       {/* ── CLIENT MARQUEE ────────────────────────────────────────────────── */}
       <div className="py-10 border-y border-white/5 overflow-hidden bg-[#06060c]">
-        <p className="text-center text-slate-600 text-xs tracking-widest uppercase mb-6">Trusted by Michigan businesses</p>
+        <p className="text-center text-slate-600 text-xs tracking-widest uppercase mb-6">Trusted by businesses nationwide</p>
         <div className="flex">
           <div className="marquee-track flex items-center gap-12 whitespace-nowrap">
             {[...CLIENTS, ...CLIENTS].map((c, i) => (
@@ -355,7 +355,7 @@ export default function HelloPage() {
             <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
               Real results.
               <br />
-              <span className="gradient-text">Real Michigan clients.</span>
+              <span className="gradient-text">Real clients.</span>
             </h2>
           </Reveal>
 
@@ -420,7 +420,7 @@ export default function HelloPage() {
               We know your industry.
             </h2>
             <p className="text-slate-400 mb-10">
-              From law firms to beauty studios — we&apos;ve built for the full range of Michigan business.
+              From law firms to beauty studios — we&apos;ve built for the full range of small business.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               {INDUSTRIES.map((ind, i) => (
@@ -514,7 +514,7 @@ export default function HelloPage() {
                     </div>
                     <div>
                       <p className="text-white text-sm font-semibold">Walid Alhassan</p>
-                      <p className="text-slate-400 text-xs">Founder & Lead Strategist · Detroit, MI</p>
+                      <p className="text-slate-400 text-xs">Founder & Lead Strategist</p>
                     </div>
                   </div>
                 </div>
@@ -618,7 +618,7 @@ export default function HelloPage() {
         <Link href="/" className="text-slate-500 hover:text-[#F07A3A] transition-colors font-semibold tracking-tight">
           spectecle.com
         </Link>
-        <p>© {new Date().getFullYear()} Spectecle SEO & Web Design · Detroit, MI · All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Spectecle SEO & Web Design · All rights reserved.</p>
         <Link href="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
       </div>
     </>

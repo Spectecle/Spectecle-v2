@@ -78,8 +78,8 @@ export default function WorkPage() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="mt-6 text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            Web design, SEO, and AI automation projects for businesses in Detroit, Michigan
-            and beyond. Every case study is a real client with a real result.
+            Web design, SEO, and AI automation projects for businesses across the country.
+            Every case study is a real client with a real result.
           </motion.p>
         </div>
       </section>
@@ -110,7 +110,7 @@ export default function WorkPage() {
           {/* SEO intro — keyword-rich context for crawlers and users */}
           <Reveal>
             <p className="text-center text-slate-500 text-sm max-w-2xl mx-auto -mt-6 mb-12 leading-relaxed">
-              Real Michigan clients across every industry — photography studios, drywall contractors, glass shops,
+              Real clients across every industry — photography studios, drywall contractors, glass shops,
               sports clinics, law firms, beauty studios, e-commerce stores, and IT companies.
               Browse by service type to find a project that mirrors your business.
             </p>
@@ -201,7 +201,7 @@ export default function WorkPage() {
               <span className="gradient-text">our next case study.</span>
             </h2>
             <p className="mt-5 text-slate-400 text-lg max-w-xl mx-auto">
-              Based in Detroit, Michigan — working with businesses worldwide. Let&apos;s build
+              Serving businesses nationwide. Let&apos;s build
               something that generates real, measurable results for you.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

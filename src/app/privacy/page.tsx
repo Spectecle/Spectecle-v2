@@ -173,7 +173,7 @@ const sections = [
     content: [
       {
         subtitle: "Privacy Questions",
-        body: `If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your personal information, please contact us at:\n\nSpectecle SEO & Web Design\nDetroit, Michigan, USA\nEmail: hello@spectecle.com\nPhone: +1 (313) 353-4105\n\nWe will respond to all privacy-related inquiries within 30 days.`,
+        body: `If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your personal information, please contact us at:\n\nSpectecle SEO & Web Design\nEmail: hello@spectecle.com\nPhone: +1 (313) 353-4105\n\nWe will respond to all privacy-related inquiries within 30 days.`,
       },
     ],
   },
