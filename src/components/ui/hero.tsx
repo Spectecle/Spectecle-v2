@@ -56,38 +56,25 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            <span className="block font-medium text-white/90 text-3xl sm:text-4xl md:text-5xl mb-1">
-              Websites, SEO & AI Automation
-            </span>
             <span className="block font-black text-white text-5xl sm:text-6xl md:text-7xl drop-shadow-2xl">
-              Built to Get You Found,
+              We Do Websites, SEO &{" "}
+              <motion.span
+                className="italic"
+                style={{
+                  background: "linear-gradient(135deg, #FFB347 0%, #D25124 45%, #F07A3A 75%, #FFB347 100%)",
+                  backgroundSize: "200% 200%",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  filter: "url(#hero-text-glow)",
+                }}
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              >
+                AI Automation.
+              </motion.span>
             </span>
-            <motion.span
-              className="block font-light italic text-4xl sm:text-5xl md:text-6xl mt-1"
-              style={{
-                background: "linear-gradient(135deg, #FFB347 0%, #D25124 45%, #F07A3A 75%, #FFB347 100%)",
-                backgroundSize: "200% 200%",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                filter: "url(#hero-text-glow)",
-              }}
-              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            >
-              And Turn Visitors Into Customers.
-            </motion.span>
           </motion.h1>
-
-          <motion.p
-            className="mb-8 max-w-xl text-lg md:text-xl text-slate-300/90 leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-          >
-            Custom-built websites, ongoing SEO, and AI-driven automation — everything
-            you need to rank higher, convert more visitors, and grow without adding headcount.
-          </motion.p>
 
           <motion.div
             className="flex flex-wrap items-center gap-4"
