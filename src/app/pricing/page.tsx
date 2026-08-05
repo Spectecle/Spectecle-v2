@@ -5,28 +5,21 @@ import { PricingSection } from "@/components/PricingSection";
 export default function PricingPage() {
   return (
     <div className="relative min-h-screen">
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.1) 0%, transparent 70%)" }}
-      />
-
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="relative pt-40 pb-16 px-6 text-center">
+      <section className="pt-40 pb-16 px-6 text-center">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#D25124]/20 text-sm text-[#F07A3A] font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-[#F07A3A]" />
+          <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
             Simple, Predictable Pricing
-          </div>
-
+          </span>
           <h1
-            className="text-4xl md:text-5xl font-bold text-white leading-tight"
-            style={{ fontFamily: "var(--font-inter)" }}
+            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            style={{ fontFamily: "var(--font-serif)" }}
           >
-            Plans built to grow with your business
+            Plans built to <span className="italic text-[#c69947]">grow with your business.</span>
           </h1>
-          <p className="mt-6 text-slate-400 leading-relaxed max-w-xl mx-auto text-base">
+          <p className="mt-6 text-[var(--site-text-secondary)] leading-relaxed max-w-xl mx-auto text-lg">
             Two simple steps: choose a one-time design investment to get your website built,
-            then choose an ongoing care plan to keep it growing — hosting, content, SEO, and
+            then choose an ongoing care plan to keep it growing: hosting, content, SEO, and
             support, priced separately from the build.
           </p>
         </div>
@@ -35,32 +28,32 @@ export default function PricingPage() {
       <PricingSection />
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-white/6 bg-[#09090f]">
+      <section className="py-32 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-slate-500 text-sm uppercase tracking-widest mb-4">
+          <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">
             Not Sure Which Plan Fits?
-          </p>
+          </span>
           <h2
-            className="text-3xl md:text-4xl font-bold text-white"
-            style={{ fontFamily: "var(--font-inter)" }}
+            className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]"
+            style={{ fontFamily: "var(--font-serif)" }}
           >
             Let&apos;s talk it through.
           </h2>
-          <p className="mt-4 text-slate-400 text-base max-w-lg mx-auto">
-            Tell us about your business and we&apos;ll recommend the right plan — no pressure,
+          <p className="mt-4 text-[var(--site-text-secondary)] text-lg max-w-lg mx-auto">
+            Tell us about your business and we&apos;ll recommend the right plan. No pressure,
             no obligation.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               href="/contact"
-              className="btn-primary flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold cursor-pointer"
+              className="btn-primary flex items-center gap-2 px-7 py-3.5 text-sm font-semibold cursor-pointer"
             >
               <span>Contact Us</span>
               <ArrowUpRight className="w-4 h-4 relative z-10" />
             </Link>
             <Link
               href="/"
-              className="text-slate-400 hover:text-white text-sm transition-colors cursor-pointer"
+              className="text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] text-sm transition-colors cursor-pointer"
             >
               ← Back to Home
             </Link>

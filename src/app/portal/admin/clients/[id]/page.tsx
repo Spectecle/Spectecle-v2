@@ -93,7 +93,7 @@ export default async function AdminClientDetailPage({
     <section className="relative min-h-[80vh] pt-32 pb-20 px-6 overflow-hidden">
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.12) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse, rgba(198,153,71,0.12) 0%, transparent 70%)" }}
       />
       <div className="relative max-w-3xl mx-auto">
         <Link
@@ -104,7 +104,7 @@ export default async function AdminClientDetailPage({
           Back to Admin
         </Link>
 
-        <div className="glass rounded-2xl border border-[var(--portal-border)] p-6 mb-6">
+        <div className="glass border border-[var(--portal-border)] p-6 mb-6">
           <div className="flex items-start justify-between gap-4 flex-wrap mb-5">
             <div>
               <OrganizationNameEditor
@@ -123,7 +123,7 @@ export default async function AdminClientDetailPage({
                     href={websiteUrl.startsWith("http") ? websiteUrl : `https://${websiteUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs text-[#F07A3A] hover:text-[#D25124] transition-colors"
+                    className="flex items-center gap-1.5 text-xs text-[#c69947] hover:text-[#c69947] transition-colors"
                   >
                     <Globe className="w-3 h-3" />
                     {websiteUrl}
@@ -158,7 +158,7 @@ export default async function AdminClientDetailPage({
           </div>
         </div>
 
-        <div className="glass rounded-2xl border border-[var(--portal-border)] p-6 mb-6">
+        <div className="glass border border-[var(--portal-border)] p-6 mb-6">
           <p className="flex items-center gap-2 text-xs font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
             <Receipt className="w-3.5 h-3.5" />
             Billing
@@ -171,8 +171,8 @@ export default async function AdminClientDetailPage({
         <StatusTabs tabs={tabs} active={active} />
 
         {filtered.length === 0 ? (
-          <div className="glass rounded-2xl border border-[var(--portal-border)] p-14 text-center mt-4">
-            <div className="w-14 h-14 mx-auto rounded-full bg-[var(--portal-border)] flex items-center justify-center mb-5">
+          <div className="glass border border-[var(--portal-border)] p-14 text-center mt-4">
+            <div className="w-14 h-14 mx-auto bg-[var(--portal-border)] flex items-center justify-center mb-5">
               <Inbox className="w-6 h-6 text-[var(--portal-text-muted)]" />
             </div>
             <p className="text-[var(--portal-text-secondary)] text-sm">

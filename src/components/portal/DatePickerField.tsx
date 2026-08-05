@@ -87,7 +87,7 @@ export function DatePickerField({
         onClick={() => setOpen((v) => !v)}
         className={`w-full flex items-center justify-between bg-[var(--portal-card)] border ${
           error ? "border-rose-500/60" : "border-[var(--portal-border)]"
-        } text-[var(--portal-text-primary)] rounded-xl px-4 py-3.5 text-sm transition-all duration-200 focus:border-[#D25124]/50 outline-none cursor-pointer`}
+        } text-[var(--portal-text-primary)] rounded-xl px-4 py-3.5 text-sm transition-all duration-200 focus:border-[#c69947]/50 outline-none cursor-pointer`}
       >
         <span className={displayValue ? "text-[var(--portal-text-primary)]" : "text-[var(--portal-text-faint)]"}>
           {displayValue || placeholder}
@@ -102,13 +102,13 @@ export function DatePickerField({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-20 mt-2 w-72 bg-[var(--portal-card)] border border-[var(--portal-border-strong)] rounded-xl shadow-2xl p-4"
+            className="absolute z-20 mt-2 w-72 bg-[var(--portal-card)] border border-[var(--portal-border-strong)] shadow-2xl p-4"
           >
             <div className="flex items-center justify-between mb-3">
               <button
                 type="button"
                 onClick={() => setViewDate(new Date(year, month - 1, 1))}
-                className="p-1.5 rounded-lg text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:bg-[var(--portal-border)] cursor-pointer"
+                className="p-1.5 text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:bg-[var(--portal-border)] cursor-pointer"
                 aria-label="Previous month"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -119,7 +119,7 @@ export function DatePickerField({
               <button
                 type="button"
                 onClick={() => setViewDate(new Date(year, month + 1, 1))}
-                className="p-1.5 rounded-lg text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:bg-[var(--portal-border)] cursor-pointer"
+                className="p-1.5 text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:bg-[var(--portal-border)] cursor-pointer"
                 aria-label="Next month"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -143,9 +143,9 @@ export function DatePickerField({
                     onClick={() => handleSelectDay(day)}
                     className={`aspect-square rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                       isSelected(day)
-                        ? "bg-[#D25124] text-white"
+                        ? "bg-[#c69947] text-[#1e1e1e]"
                         : isToday(day)
-                        ? "bg-[#D25124]/15 text-[#F07A3A]"
+                        ? "bg-[#c69947]/15 text-[#c69947]"
                         : "text-[var(--portal-text-secondary)] hover:bg-[var(--portal-border-strong)]"
                     }`}
                   >

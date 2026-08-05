@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 const BASE_URL = "https://spectecle.com";
 
 export const metadata: Metadata = {
-  title: "About Walid Alhassan — Founder of Spectecle | Web Design & SEO",
+  title: "About Walid Alhassan, Founder of Spectecle | Web Design & SEO",
   description:
-    "Meet Walid Alhassan — 10-year web developer, 12-year IT systems engineer, and 4-year AI practitioner behind Spectecle. A web design agency serving businesses nationwide.",
+    "Meet Walid Alhassan, 10-year web developer, 12-year IT systems engineer, and 4-year AI practitioner behind Spectecle. A web design agency serving businesses nationwide.",
   keywords: [
     "Walid Alhassan web designer",
     "Spectecle agency founder",
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     "AI web design",
   ],
   openGraph: {
-    title: "About Walid Alhassan — Founder of Spectecle",
+    title: "About Walid Alhassan, Founder of Spectecle",
     description:
-      "10 years web development. 12 years IT systems engineering. 4 years AI. Meet the founder of Spectecle — a boutique web design, SEO & AI automation agency.",
+      "10 years web development. 12 years IT systems engineering. 4 years AI. Meet the founder of Spectecle, a boutique web design, SEO & AI automation agency.",
     url: `${BASE_URL}/about`,
   },
   alternates: { canonical: `${BASE_URL}/about` },
@@ -35,10 +35,10 @@ const jsonLd = {
     {
       "@type": "AboutPage",
       "@id": `${BASE_URL}/about`,
-      name: "About Walid Alhassan — Founder of Spectecle SEO & Web Design",
+      name: "About Walid Alhassan, Founder of Spectecle SEO & Web Design",
       url: `${BASE_URL}/about`,
       description:
-        "The background and story of Walid Alhassan, founder of Spectecle — a web design, SEO, and AI automation agency serving businesses nationwide.",
+        "The background and story of Walid Alhassan, founder of Spectecle, a web design, SEO, and AI automation agency serving businesses nationwide.",
       publisher: { "@id": `${BASE_URL}/#organization` },
     },
     {

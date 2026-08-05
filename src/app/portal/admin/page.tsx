@@ -90,13 +90,13 @@ export default async function PortalAdminPage({
     <section className="relative min-h-[80vh] pt-32 pb-20 px-6 overflow-hidden">
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.12) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse, rgba(198,153,71,0.12) 0%, transparent 70%)" }}
       />
       <div className="relative max-w-4xl mx-auto">
         <div className="flex items-start justify-between gap-4 mb-6">
           <h1
             className="text-2xl font-bold text-[var(--portal-text-primary)]"
-            style={{ fontFamily: "var(--font-inter)" }}
+            style={{ fontFamily: "var(--font-sans)" }}
           >
             Admin
           </h1>
@@ -186,13 +186,13 @@ async function RequestsSection({
       <div className="flex items-center justify-end gap-2 mb-4">
         <Link
           href="/portal/admin/email"
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer border border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:border-[var(--portal-border-strong)] transition-colors"
+          className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold cursor-pointer border border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:border-[var(--portal-border-strong)] transition-colors"
         >
           <span>Send Client Email</span>
         </Link>
         <Link
           href="/portal/admin/request"
-          className="btn-primary flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer"
+          className="btn-primary flex items-center gap-2 px-4 py-2.5 text-sm font-semibold cursor-pointer"
         >
           <span>Create Request for Client</span>
           <ArrowUpRight className="w-4 h-4 relative z-10" />
@@ -202,7 +202,7 @@ async function RequestsSection({
       {(userFilter || orgFilter) && (
         <div className="flex items-center gap-2 mb-4">
           <span className="text-xs text-[var(--portal-text-secondary)]">Filtered by:</span>
-          <span className="flex items-center gap-1.5 text-xs text-[#F07A3A] bg-[#D25124]/10 rounded-full px-2.5 py-1">
+          <span className="flex items-center gap-1.5 text-xs text-[#c69947] bg-[#c69947]/10 px-2.5 py-1">
             {userFilter ?? orgFilterLabel}
             <Link href="?section=requests" className="hover:text-[var(--portal-text-primary)] cursor-pointer">
               <X className="w-3 h-3" />
@@ -214,8 +214,8 @@ async function RequestsSection({
       <StatusTabs tabs={tabs} active={active} />
 
       {filtered.length === 0 ? (
-        <div className="glass rounded-2xl border border-[var(--portal-border)] p-14 text-center">
-          <div className="w-14 h-14 mx-auto rounded-full bg-[var(--portal-border)] flex items-center justify-center mb-5">
+        <div className="glass border border-[var(--portal-border)] p-14 text-center">
+          <div className="w-14 h-14 mx-auto bg-[var(--portal-border)] flex items-center justify-center mb-5">
             <Inbox className="w-6 h-6 text-[var(--portal-text-muted)]" />
           </div>
           <p className="text-[var(--portal-text-secondary)] text-sm">

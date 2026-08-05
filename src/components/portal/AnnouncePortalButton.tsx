@@ -74,13 +74,13 @@ export function AnnouncePortalButton({ activeCount }: { activeCount: number }) {
             setIndividualResult(null);
           }}
           placeholder="client@company.com"
-          className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] rounded-lg px-3 py-2 text-xs outline-none focus:border-[#D25124]/50 w-56"
+          className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] px-3 py-2 text-xs outline-none focus:border-[#c69947]/50 w-56"
         />
         <button
           type="button"
           onClick={handleIndividualSend}
           disabled={individualSending || !targetEmail.trim()}
-          className="flex items-center gap-1.5 text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] bg-[var(--portal-border)] text-xs font-medium rounded-lg px-3 py-2 cursor-pointer disabled:opacity-50 transition-colors"
+          className="flex items-center gap-1.5 text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] bg-[var(--portal-border)] text-xs font-medium px-3 py-2 cursor-pointer disabled:opacity-50 transition-colors"
         >
           {individualSending ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -107,7 +107,7 @@ export function AnnouncePortalButton({ activeCount }: { activeCount: number }) {
 
       <div className="pt-1">
         {result ? (
-          <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-500/10 rounded-lg px-3 py-2 w-fit">
+          <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-500/10 px-3 py-2 w-fit">
             <CheckCircle2 className="w-3.5 h-3.5" />
             Sent to {result.sent} client{result.sent === 1 ? "" : "s"}
             {result.failed.length > 0 && ` (${result.failed.length} failed)`}
@@ -117,7 +117,7 @@ export function AnnouncePortalButton({ activeCount }: { activeCount: number }) {
             type="button"
             onClick={() => setOpen(true)}
             disabled={activeCount === 0}
-            className="flex items-center gap-1.5 bg-[#D25124]/15 hover:bg-[#D25124]/25 text-[#F07A3A] text-xs font-medium rounded-lg px-3 py-2 cursor-pointer disabled:opacity-50 transition-colors"
+            className="flex items-center gap-1.5 bg-[#c69947]/15 hover:bg-[#c69947]/25 text-[#c69947] text-xs font-medium px-3 py-2 cursor-pointer disabled:opacity-50 transition-colors"
           >
             <Megaphone className="w-3.5 h-3.5" />
             Announce Portal to All Clients

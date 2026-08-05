@@ -138,7 +138,7 @@ export function ClientContactCard({
               onClick={() => setOrgMode(m)}
               className={`flex-1 px-3 py-2 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
                 orgMode === m
-                  ? "bg-[#D25124]/15 border-[#D25124]/40 text-[#F07A3A]"
+                  ? "bg-[#c69947]/15 border-[#c69947]/40 text-[#c69947]"
                   : "bg-[var(--portal-card)] border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)]"
               }`}
             >
@@ -187,7 +187,7 @@ export function ClientContactCard({
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center gap-1.5 bg-[#D25124]/15 hover:bg-[#D25124]/25 text-[#F07A3A] text-xs font-medium rounded-lg px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors"
+          className="flex items-center gap-1.5 bg-[#c69947]/15 hover:bg-[#c69947]/25 text-[#c69947] text-xs font-medium px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors"
         >
           {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
           Save
@@ -198,7 +198,7 @@ export function ClientContactCard({
             reset();
             setEditing(false);
           }}
-          className="flex items-center gap-1.5 text-xs text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] rounded-lg px-3 py-2 cursor-pointer"
+          className="flex items-center gap-1.5 text-xs text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] px-3 py-2 cursor-pointer"
         >
           <X className="w-3.5 h-3.5" />
           Cancel

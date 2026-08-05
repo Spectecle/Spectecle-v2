@@ -50,7 +50,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       <div
         ref={progressRef}
         className="fixed top-0 left-0 right-0 h-[2px] z-[9998] origin-left scale-x-0 pointer-events-none"
-        style={{ background: "linear-gradient(90deg, #FFB347, #D25124, #8B1A00)" }}
+        style={{ background: "linear-gradient(90deg, #d9b568, #c69947, #38190c)" }}
         aria-hidden="true"
       />
       {children}

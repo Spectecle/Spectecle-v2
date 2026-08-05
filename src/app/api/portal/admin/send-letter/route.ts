@@ -35,8 +35,8 @@ type LetterBody = {
 
 function emailShell(preheader: string, heroEyebrow: string, heroTitle: string, bodyHtml: string) {
   const doc = `
-<div style="background-color:#040408;padding:40px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
-  <div style="display:none;max-height:0;overflow:hidden;color:#040408;font-size:1px;line-height:1px;">${esc(preheader)}</div>
+<div style="background-color:#f4f1e9;padding:40px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <div style="display:none;max-height:0;overflow:hidden;color:#f4f1e9;font-size:1px;line-height:1px;">${esc(preheader)}</div>
   <table role="presentation" width="100%" style="max-width:600px;margin:0 auto;border-collapse:collapse;">
     <tr>
       <td style="padding:0 0 28px;text-align:center;">
@@ -46,19 +46,19 @@ function emailShell(preheader: string, heroEyebrow: string, heroTitle: string, b
               <img src="${SITE_URL}/logo-email.png" width="17" height="48" alt="" style="display:block;border:0;" />
             </td>
             <td style="vertical-align:middle;">
-              <span style="color:#ffffff;font-size:21px;font-weight:800;letter-spacing:0.3px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">Spectecle</span>
+              <span style="color:#1e1e1e;font-size:21px;font-weight:800;letter-spacing:0.3px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">Spectecle</span>
             </td>
           </tr>
         </table>
       </td>
     </tr>
     <tr>
-      <td style="background-color:#0e0e1a;border-radius:16px;">
+      <td style="background-color:#fdfbf5;border-radius:16px;">
         <table role="presentation" width="100%" style="border-collapse:collapse;">
           <tr>
-            <td style="background-color:#D25124;background-image:linear-gradient(135deg,#FF9A3A,#D25124);padding:40px 40px 32px;border-radius:16px 16px 0 0;text-align:center;">
+            <td style="background-color:#c69947;background-image:linear-gradient(135deg,#d9b568,#c69947);padding:40px 40px 32px;border-radius:16px 16px 0 0;text-align:center;">
               <p style="margin:0 0 10px;color:rgba(255,255,255,0.85);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">${esc(heroEyebrow)}</p>
-              <h1 style="margin:0;color:#ffffff;font-size:26px;font-weight:800;line-height:1.3;">${esc(heroTitle)}</h1>
+              <h1 style="margin:0;color:#1e1e1e;font-size:26px;font-weight:800;line-height:1.3;">${esc(heroTitle)}</h1>
             </td>
           </tr>
           <tr>
@@ -87,7 +87,7 @@ function noteBlock(note: string) {
 }
 
 function sectionHeading(text: string) {
-  return `<p style="margin:0 0 14px;color:#ffffff;font-size:12.5px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">${esc(text)}</p>`;
+  return `<p style="margin:0 0 14px;color:#1e1e1e;font-size:12.5px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">${esc(text)}</p>`;
 }
 
 function divider() {
@@ -102,8 +102,8 @@ function termsAndDocumentsSection(contractLinks: { name: string; url: string }[]
         <td style="padding:${i > 0 ? "8px 0 0" : "0"};">
           <table role="presentation" width="100%" style="border-collapse:collapse;">
             <tr>
-              <td style="padding:12px 16px;background-color:#1a0d08;border:1px solid rgba(210,81,36,0.3);border-radius:10px;">
-                <a href="${esc(c.url)}" style="color:#F07A3A;text-decoration:none;font-weight:600;font-size:14px;">&#128206; ${esc(c.name)}</a>
+              <td style="padding:12px 16px;background-color:#1a0d08;border:1px solid rgba(198,153,71,0.3);border-radius:10px;">
+                <a href="${esc(c.url)}" style="color:#38190c;text-decoration:none;font-weight:600;font-size:14px;">&#128206; ${esc(c.name)}</a>
               </td>
             </tr>
           </table>
@@ -115,7 +115,7 @@ function termsAndDocumentsSection(contractLinks: { name: string; url: string }[]
   return `
     ${sectionHeading("Terms & Documents")}
     <p style="margin:0 0 ${contractLinks.length > 0 ? "16" : "24"}px;color:#cbd5e1;font-size:13.5px;line-height:1.7;">
-      Please review our <a href="${TERMS_URL}" style="color:#F07A3A;">Terms & Conditions</a> and <a href="${PRIVACY_URL}" style="color:#F07A3A;">Privacy Policy</a> for details on how we handle your information.
+      Please review our <a href="${TERMS_URL}" style="color:#38190c;">Terms & Conditions</a> and <a href="${PRIVACY_URL}" style="color:#38190c;">Privacy Policy</a> for details on how we handle your information.
     </p>
     ${
       contractLinks.length > 0
@@ -132,18 +132,18 @@ function portalIntroBlock(email: string, link: string) {
     <p style="margin:0 0 20px;color:#cbd5e1;font-size:14.5px;line-height:1.7;">
       Use the Spectecle portal to request website changes or edits, ask for new services, track the status of every request, and message us directly &mdash; all in one place.
     </p>
-    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(210,81,36,0.3);border-radius:10px;margin:0 0 24px;">
+    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(198,153,71,0.3);border-radius:10px;margin:0 0 24px;">
       <tr>
         <td style="padding:16px 20px;text-align:center;">
-          <p style="margin:0 0 4px;color:#F07A3A;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Your Sign-In Email</p>
-          <p style="margin:0;color:#ffffff;font-size:16px;font-weight:600;">${esc(email)}</p>
+          <p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Your Sign-In Email</p>
+          <p style="margin:0;color:#1e1e1e;font-size:16px;font-weight:600;">${esc(email)}</p>
         </td>
       </tr>
     </table>
     <table role="presentation" width="100%" style="border-collapse:collapse;margin:0 0 16px;">
       <tr>
         <td align="center">
-          <a href="${link}" style="display:inline-block;background-color:#D25124;background-image:linear-gradient(135deg,#FF9A3A,#D25124);color:#ffffff;text-decoration:none;padding:16px 44px;border-radius:10px;font-weight:700;font-size:16px;">
+          <a href="${link}" style="display:inline-block;background-color:#c69947;background-image:linear-gradient(135deg,#d9b568,#c69947);color:#1e1e1e;text-decoration:none;padding:16px 44px;border-radius:10px;font-weight:700;font-size:16px;">
             Sign In to Your Portal &rarr;
           </a>
         </td>
@@ -209,11 +209,11 @@ function projectCompleteLetterHtml({
   const hasMeta = !!(invoiceNumber?.trim() || dueDate?.trim());
 
   const amountCell = `
-    <p style="margin:0 0 4px;color:#F07A3A;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Amount Due</p>
-    <p style="margin:0 0 ${invoiceLink?.trim() ? "12" : "0"}px;color:#ffffff;font-size:20px;font-weight:700;">${esc(invoiceBalance ?? "")}</p>
+    <p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Amount Due</p>
+    <p style="margin:0 0 ${invoiceLink?.trim() ? "12" : "0"}px;color:#1e1e1e;font-size:20px;font-weight:700;">${esc(invoiceBalance ?? "")}</p>
     ${
       invoiceLink?.trim()
-        ? `<a href="${esc(invoiceLink)}" style="display:inline-block;background-color:#D25124;color:#ffffff;text-decoration:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:13.5px;">Pay Invoice &rarr;</a>`
+        ? `<a href="${esc(invoiceLink)}" style="display:inline-block;background-color:#c69947;color:#1e1e1e;text-decoration:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:13.5px;">Pay Invoice &rarr;</a>`
         : ""
     }
   `;
@@ -221,14 +221,14 @@ function projectCompleteLetterHtml({
   const metaCell = `
     ${
       invoiceNumber?.trim()
-        ? `<p style="margin:0 0 4px;color:#F07A3A;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Invoice #</p>
-           <p style="margin:0 0 12px;color:#ffffff;font-size:14px;font-weight:600;">${esc(invoiceNumber)}</p>`
+        ? `<p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Invoice #</p>
+           <p style="margin:0 0 12px;color:#1e1e1e;font-size:14px;font-weight:600;">${esc(invoiceNumber)}</p>`
         : ""
     }
     ${
       dueDate?.trim()
-        ? `<p style="margin:0 0 4px;color:#F07A3A;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Due Date</p>
-           <p style="margin:0;color:#ffffff;font-size:14px;font-weight:600;">${esc(dueDate)}</p>`
+        ? `<p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Due Date</p>
+           <p style="margin:0;color:#1e1e1e;font-size:14px;font-weight:600;">${esc(dueDate)}</p>`
         : ""
     }
   `;
@@ -236,14 +236,14 @@ function projectCompleteLetterHtml({
   const invoiceSection = invoiceBalance?.trim()
     ? `
     ${sectionHeading("Remaining Balance")}
-    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(210,81,36,0.3);border-radius:10px;margin:0 0 24px;">
+    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(198,153,71,0.3);border-radius:10px;margin:0 0 24px;">
       <tr>
         <td style="padding:16px 20px;vertical-align:top;${hasMeta ? "width:55%;" : ""}">
           ${amountCell}
         </td>
         ${
           hasMeta
-            ? `<td style="padding:16px 20px;vertical-align:top;border-left:1px solid rgba(210,81,36,0.3);">${metaCell}</td>`
+            ? `<td style="padding:16px 20px;vertical-align:top;border-left:1px solid rgba(198,153,71,0.3);">${metaCell}</td>`
             : ""
         }
       </tr>
@@ -267,7 +267,7 @@ function projectCompleteLetterHtml({
       <tr>
         <td style="text-align:center;">
           <p style="margin:0 0 12px;color:#e2e8f0;font-size:14.5px;font-weight:600;">Enjoying working with us?</p>
-          <a href="${esc(GOOGLE_REVIEW_URL)}" style="display:inline-block;background-color:transparent;border:1px solid rgba(210,81,36,0.4);color:#F07A3A;text-decoration:none;padding:12px 28px;border-radius:10px;font-weight:600;font-size:14px;">
+          <a href="${esc(GOOGLE_REVIEW_URL)}" style="display:inline-block;background-color:transparent;border:1px solid rgba(198,153,71,0.4);color:#38190c;text-decoration:none;padding:12px 28px;border-radius:10px;font-weight:600;font-size:14px;">
             &#9733; Leave Us a Review
           </a>
         </td>

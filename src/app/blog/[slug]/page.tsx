@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { posts } from "../posts-data";
+import { projects } from "../../work/projects-data";
 import BlogPostClient from "./BlogPostClient";
 
 const BASE_URL = "https://spectecle.com";
@@ -44,12 +45,24 @@ export default async function BlogPostPage({
   const post = posts[postIndex];
   const nextPost = posts[(postIndex + 1) % posts.length];
 
+  const linkedCaseStudy = post.caseStudySlug
+    ? projects.find((p) => p.slug === post.caseStudySlug)
+    : undefined;
+  const image = linkedCaseStudy
+    ? `${BASE_URL}${linkedCaseStudy.screenshotUrl}`
+    : `${BASE_URL}/opengraph-image`;
+  const publishedDate = new Date(post.publishedAt).toISOString();
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.metaDescription,
     url: `${BASE_URL}/blog/${slug}`,
+    image,
+    datePublished: publishedDate,
+    dateModified: publishedDate,
+    author: { "@type": "Organization", name: "Spectecle", url: BASE_URL },
     publisher: { "@id": `${BASE_URL}/#organization` },
     inLanguage: "en-US",
     breadcrumb: {

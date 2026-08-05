@@ -4,8 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Minus, ArrowUpRight, Megaphone, Sparkles, Info } from "lucide-react";
-import { projects } from "@/app/work/projects-data";
+import { Check, Minus, ArrowUpRight, Info } from "lucide-react";
+import { ProofGallery } from "@/components/ui/ProofGallery";
 
 type BillingCycle = "monthly" | "yearly";
 
@@ -26,8 +26,6 @@ type CarePlan = {
 type FeatureRow = {
   label: string;
   description: string;
-  // One entry per plan in `carePlans`, in order. `true` = included (check),
-  // `false` = not included (dash), a string = a specific value for that tier.
   values: (string | boolean)[];
 };
 
@@ -49,7 +47,7 @@ const YEARLY_DISCOUNT = 0.1;
 const designTiers: DesignTier[] = [
   {
     name: "Blueprint",
-    tagline: "A professional site, fast — built on a proven foundation.",
+    tagline: "A professional site, fast, built on a proven foundation.",
     price: "$1,800",
     items: [
       "Pre-designed, industry-proven foundation",
@@ -73,7 +71,7 @@ const designTiers: DesignTier[] = [
     price: "$6,000",
     items: [
       "Everything in Craft, plus:",
-      "Fully custom design — unlimited creative direction",
+      "Fully custom design, unlimited creative direction",
       "Dedicated strategy sessions with our team",
     ],
   },
@@ -103,91 +101,39 @@ const featureGroups: FeatureGroup[] = [
   {
     category: "Hosting & Security",
     rows: [
-      {
-        label: "Managed hosting & security scanning",
-        description: "We host your site on fast, secure servers and run automated malware and vulnerability scans around the clock.",
-        values: [true, true, true, true, true, true],
-      },
-      {
-        label: "Advanced protection",
-        description: "Enhanced firewall rules, DDoS mitigation, and daily backups for extra peace of mind.",
-        values: [false, false, true, true, true, true],
-      },
+      { label: "Managed hosting & security scanning", description: "We host your site on fast, secure servers and run automated malware and vulnerability scans around the clock.", values: [true, true, true, true, true, true] },
+      { label: "Advanced protection", description: "Enhanced firewall rules, DDoS mitigation, and daily backups for extra peace of mind.", values: [false, false, true, true, true, true] },
     ],
   },
   {
     category: "Content",
     rows: [
-      {
-        label: "Changes per year",
-        description: "How many content updates — text, images, small edits — are included before extra work is billed hourly.",
-        values: ["4 (self-request)", "12 (done for you)", "Unlimited", "Unlimited", "Unlimited", "Unlimited"],
-      },
+      { label: "Changes per year", description: "How many content updates (text, images, small edits) are included before extra work is billed hourly.", values: ["4 (self-request)", "12 (done for you)", "Unlimited", "Unlimited", "Unlimited", "Unlimited"] },
     ],
   },
   {
     category: "SEO",
     rows: [
-      {
-        label: "Ongoing SEO",
-        description: "Continuous on-page optimization, technical fixes, and keyword targeting to improve your search rankings.",
-        values: [false, "Basic", "Full monthly", "Full monthly", "Full monthly", "Full monthly"],
-      },
-      {
-        label: "Blog posts / month",
-        description: "Professionally written, SEO-optimized blog posts published to your site each month.",
-        values: [false, false, false, "2", "2", "4"],
-      },
-      {
-        label: "AI search optimization (AEO/GEO)",
-        description: "Optimizing your content to appear in AI-powered answers like ChatGPT and Google AI Overviews, not just traditional search results.",
-        values: [false, false, false, false, true, true],
-      },
+      { label: "Ongoing SEO", description: "Continuous on-page optimization, technical fixes, and keyword targeting to improve your search rankings.", values: [false, "Basic", "Full monthly", "Full monthly", "Full monthly", "Full monthly"] },
+      { label: "Blog posts / month", description: "Professionally written, SEO-optimized blog posts published to your site each month.", values: [false, false, false, "2", "2", "4"] },
+      { label: "AI search optimization (AEO/GEO)", description: "Optimizing your content to appear in AI-powered answers like ChatGPT and Google AI Overviews, not just traditional search results.", values: [false, false, false, false, true, true] },
     ],
   },
   {
     category: "Local Presence",
     rows: [
-      {
-        label: "Google Business Profile management",
-        description: "We keep your Google Business listing accurate, active, and optimized so you show up in local map searches.",
-        values: [false, true, true, true, true, true],
-      },
+      { label: "Google Business Profile management", description: "We keep your Google Business listing accurate, active, and optimized so you show up in local map searches.", values: [false, true, true, true, true, true] },
     ],
   },
   {
     category: "Growth & Support",
     rows: [
-      {
-        label: "Reputation & review management",
-        description: "We monitor your Google, Yelp, and Facebook reviews and help you respond, protecting your online reputation.",
-        values: [false, false, false, true, true, true],
-      },
-      {
-        label: "Strategy consultation",
-        description: "Scheduled calls with your strategist to review performance and plan next steps.",
-        values: [false, false, false, "Monthly", "Monthly", "Dedicated strategist"],
-      },
-      {
-        label: "Managed ad campaigns",
-        description: "We build, run, and optimize your Google and Meta ad campaigns within the included monthly ad spend.",
-        values: [false, false, false, false, "Up to $500/mo spend", "Up to $2,000/mo spend"],
-      },
-      {
-        label: "Quarterly performance reports",
-        description: "A plain-English report every quarter covering traffic, rankings, and growth metrics.",
-        values: [false, false, false, false, true, true],
-      },
-      {
-        label: "Google Workspace",
-        description: "A professional @yourdomain.com email address and business tools through Google Workspace.",
-        values: [false, false, true, true, true, true],
-      },
-      {
-        label: "Priority support",
-        description: "Faster response times when you need help or have a request.",
-        values: [false, "Priority email", "Priority email", "Priority email", "Priority", "Fastest / dedicated"],
-      },
+      { label: "Reputation & review management", description: "We monitor your Google, Yelp, and Facebook reviews and help you respond, protecting your online reputation.", values: [false, false, false, true, true, true] },
+      { label: "Strategy consultation", description: "Scheduled calls with your strategist to review performance and plan next steps.", values: [false, false, false, "Monthly", "Monthly", "Dedicated strategist"] },
+      { label: "Managed ad campaigns", description: "We build, run, and optimize your Google and Meta ad campaigns within the included monthly ad spend.", values: [false, false, false, false, "Up to $500/mo spend", "Up to $2,000/mo spend"] },
+      { label: "Quarterly performance reports", description: "A plain-English report every quarter covering traffic, rankings, and growth metrics.", values: [false, false, false, false, true, true] },
+      { label: "Google Workspace", description: "A professional @yourdomain.com email address and business tools through Google Workspace.", values: [false, false, true, true, true, true] },
+      { label: "Priority support", description: "Faster response times when you need help or have a request.", values: [false, "Priority email", "Priority email", "Priority email", "Priority", "Fastest / dedicated"] },
     ],
   },
 ];
@@ -197,7 +143,7 @@ const addOns: AddOn[] = [
     name: "Paid Advertising Management",
     price: "From $250/mo + your ad budget",
     description:
-      "We build and manage your Google Ads and Meta (Facebook/Instagram) campaigns. You set your own monthly ad budget and pay that directly to Google/Meta — our fee is separate, and it's just for running and optimizing the campaigns. Already included starting at the Overdrive care plan.",
+      "We build and manage your Google Ads and Meta (Facebook/Instagram) campaigns. You set your own monthly ad budget and pay that directly to Google/Meta. Our fee is separate, and it's just for running and optimizing the campaigns. Already included starting at the Overdrive care plan.",
     items: [
       "Google Ads & Meta Ads setup and management",
       "You control your own monthly ad budget",
@@ -209,7 +155,7 @@ const addOns: AddOn[] = [
     name: "AI & Automation",
     price: "Custom pricing",
     description:
-      "Chatbots, automated booking, follow-up emails, and other custom tools that save you time — scoped and priced around what your business actually needs.",
+      "Chatbots, automated booking, follow-up emails, and other custom tools that save you time, scoped and priced around what your business actually needs.",
     items: [
       "Built around your specific workflow",
       "Available as a one-time project or ongoing support",
@@ -230,70 +176,58 @@ function BillingToggle({
   onChange: (c: BillingCycle) => void;
 }) {
   return (
-    <div className="inline-flex items-center rounded-full glass border border-white/8 p-1">
+    <div className="inline-flex items-center gap-6 border-b border-[var(--site-border)] pb-2">
       {(["monthly", "yearly"] as BillingCycle[]).map((c) => (
         <button
           key={c}
           type="button"
           onClick={() => onChange(c)}
-          className="relative px-5 py-2.5 rounded-full text-sm font-semibold cursor-pointer transition-colors"
+          className={`text-sm font-semibold cursor-pointer transition-colors flex items-center gap-1.5 ${
+            cycle === c ? "text-[var(--site-text-primary)]" : "text-[var(--site-text-muted)]"
+          }`}
         >
-          {cycle === c && (
-            <motion.span
-              layoutId="billing-pill"
-              className="absolute inset-0 rounded-full"
-              style={{ background: "linear-gradient(135deg, #FF9A3A, #D25124)" }}
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
-            />
+          {c === "monthly" ? "Monthly" : "Yearly"}
+          {c === "yearly" && (
+            <span className="text-[10px] font-bold text-[#c69947]">
+              SAVE {Math.round(YEARLY_DISCOUNT * 100)}%
+            </span>
           )}
-          <span className={`relative flex items-center gap-1.5 ${cycle === c ? "text-white" : "text-slate-400"}`}>
-            {c === "monthly" ? "Monthly" : "Yearly"}
-            {c === "yearly" && (
-              <span
-                className={`text-[10px] font-bold rounded-full px-1.5 py-0.5 ${
-                  cycle === "yearly" ? "bg-white/20 text-white" : "bg-[#D25124]/15 text-[#F07A3A]"
-                }`}
-              >
-                SAVE {Math.round(YEARLY_DISCOUNT * 100)}%
-              </span>
-            )}
-          </span>
         </button>
       ))}
     </div>
   );
 }
 
-/* ─── Part 1: one-time Website Design cards ─────────────── */
+/* ─── Website Design tiers ───────────────────────────────── */
 function DesignTierCard({ tier }: { tier: DesignTier }) {
   return (
-    <div className="glass border border-white/8 rounded-3xl p-7 flex flex-col h-full">
-      <h3 className="text-xl font-bold text-white mb-1.5" style={{ fontFamily: "var(--font-inter)" }}>
+    <div className="pt-6 flex flex-col h-full">
+      <h3 className="text-2xl font-light text-[var(--site-text-primary)] mb-1.5" style={{ fontFamily: "var(--font-serif)" }}>
         {tier.name}
       </h3>
-      <p className="text-sm text-slate-400 mb-5 min-h-[2.5rem]">{tier.tagline}</p>
+      <p className="text-sm text-[var(--site-text-muted)] mb-5 min-h-[2.5rem]">{tier.tagline}</p>
 
       <div className="mb-6">
-        <p className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mb-1">
+        <p className="text-[10px] text-[var(--site-text-muted)] uppercase tracking-widest font-semibold mb-1">
           One-Time Design Investment
         </p>
-        <span className={`font-bold text-white ${tier.isCustom ? "text-xl" : "text-3xl md:text-4xl"}`}>
+        <span className={`font-light text-[#c69947] ${tier.isCustom ? "text-xl" : "text-3xl md:text-4xl"}`} style={{ fontFamily: "var(--font-serif)" }}>
           {tier.price}
         </span>
       </div>
 
       <Link
         href="/contact"
-        className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl text-sm font-semibold cursor-pointer border border-white/12 text-white hover:border-[#D25124]/40 hover:bg-white/5 transition-all mb-7"
+        className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 w-fit mb-7"
       >
         <span>{tier.isCustom ? "Contact Us" : "Get Started"}</span>
         <ArrowUpRight className="w-4 h-4" />
       </Link>
 
-      <ul className="space-y-2.5 pt-6 border-t border-white/8 flex-1">
+      <ul className="space-y-2.5 pt-6 border-t border-[var(--site-border)] flex-1">
         {tier.items.map((item, i) => (
-          <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300">
-            <Check className="w-4 h-4 text-[#F07A3A] shrink-0 mt-0.5" />
+          <li key={i} className="flex items-start gap-2.5 text-sm text-[var(--site-text-secondary)]">
+            <Check className="w-4 h-4 text-[#c69947] shrink-0 mt-0.5" />
             <span>{item}</span>
           </li>
         ))}
@@ -305,17 +239,17 @@ function DesignTierCard({ tier }: { tier: DesignTier }) {
 function WebsiteDesignSection() {
   return (
     <div>
-      <div className="text-center mb-10">
-        <p className="text-xs font-semibold text-[#F07A3A] uppercase tracking-widest mb-3">Step 1</p>
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-inter)" }}>
-          Choose your website design
+      <div className="mb-10">
+        <p className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-3">Step 1</p>
+        <h2 className="text-4xl md:text-5xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
+          Choose your website design.
         </h2>
-        <p className="text-slate-400 max-w-xl mx-auto text-sm">
+        <p className="text-[var(--site-text-secondary)] max-w-xl text-sm">
           A one-time investment to design and build your site. Pick the level of customization
-          that fits — then choose an ongoing care plan below to keep it growing.
+          that fits, then choose an ongoing care plan below to keep it growing.
         </p>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 divide-x divide-[var(--site-border)]">
         {designTiers.map((tier, i) => (
           <motion.div
             key={tier.name}
@@ -323,6 +257,7 @@ function WebsiteDesignSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
+            className="pl-8 first:pl-0"
           >
             <DesignTierCard tier={tier} />
           </motion.div>
@@ -332,10 +267,7 @@ function WebsiteDesignSection() {
   );
 }
 
-/* ─── Feature row label with a hover/tap info tooltip ───────
-   Desktop: hover the info icon. Mobile: tap it (tap elsewhere to close).
-   Tooltip is portaled to <body> with fixed positioning so it's never
-   clipped by the table's rounded, overflow-hidden container. */
+/* ─── Feature row label with a hover/tap info tooltip ─────── */
 function FeatureLabel({ label, description }: { label: string; description: string }) {
   const [open, setOpen] = useState(false);
   const [coords, setCoords] = useState({ top: 0, left: 0, openUpward: false });
@@ -364,22 +296,15 @@ function FeatureLabel({ label, description }: { label: string; description: stri
 
   return (
     <div className="flex items-start gap-1.5">
-      <p className="text-xs text-slate-300">{label}</p>
+      <p className="text-xs text-[var(--site-text-secondary)]">{label}</p>
       <button
         ref={anchorRef}
         type="button"
-        onMouseEnter={() => {
-          updatePosition();
-          setOpen(true);
-        }}
+        onMouseEnter={() => { updatePosition(); setOpen(true); }}
         onMouseLeave={() => setOpen(false)}
-        onClick={(e) => {
-          e.stopPropagation();
-          updatePosition();
-          setOpen((o) => !o);
-        }}
+        onClick={(e) => { e.stopPropagation(); updatePosition(); setOpen((o) => !o); }}
         aria-label={`What is "${label}"?`}
-        className="shrink-0 mt-0.5 text-slate-600 hover:text-[#F07A3A] transition-colors cursor-pointer"
+        className="shrink-0 mt-0.5 text-[var(--site-text-muted)] hover:text-[#c69947] transition-colors cursor-pointer"
       >
         <Info className="w-3 h-3" />
       </button>
@@ -393,7 +318,7 @@ function FeatureLabel({ label, description }: { label: string; description: stri
               left: coords.left,
               transform: coords.openUpward ? "translateY(-100%)" : undefined,
             }}
-            className="z-50 w-56 rounded-lg glass border border-white/10 p-3 text-xs text-slate-300 leading-relaxed shadow-xl"
+            className="z-50 w-56 bg-[var(--site-bg)] border border-[var(--site-border)] p-3 text-xs text-[var(--site-text-secondary)] leading-relaxed shadow-xl"
           >
             {description}
           </div>,
@@ -404,9 +329,9 @@ function FeatureLabel({ label, description }: { label: string; description: stri
 }
 
 function Cell({ value }: { value: string | boolean }) {
-  if (value === true) return <Check className="w-4 h-4 text-[#F07A3A] mx-auto" />;
-  if (value === false) return <Minus className="w-3.5 h-3.5 text-slate-700 mx-auto" />;
-  return <span className="text-xs text-slate-300 leading-tight">{value}</span>;
+  if (value === true) return <Check className="w-4 h-4 text-[#c69947] mx-auto" />;
+  if (value === false) return <Minus className="w-3.5 h-3.5 text-[var(--site-text-muted)] mx-auto" />;
+  return <span className="text-xs text-[var(--site-text-secondary)] leading-tight">{value}</span>;
 }
 
 function CarePlansTable({
@@ -418,36 +343,30 @@ function CarePlansTable({
 }) {
   return (
     <div>
-      <div className="text-center mb-10">
-        <p className="text-xs font-semibold text-[#F07A3A] uppercase tracking-widest mb-3">Step 2</p>
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-inter)" }}>
-          Choose your care & growth plan
+      <div className="mb-10">
+        <p className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-3">Step 2</p>
+        <h2 className="text-4xl md:text-5xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
+          Choose your care & growth plan.
         </h2>
-        <p className="text-slate-400 max-w-xl mx-auto text-sm mb-8">
-          Ongoing hosting, content, SEO, and support — sold separately from your website design,
+        <p className="text-[var(--site-text-secondary)] max-w-xl text-sm mb-8">
+          Ongoing hosting, content, SEO, and support, sold separately from your website design,
           with no build cost baked in.
         </p>
         <BillingToggle cycle={cycle} onChange={onCycleChange} />
       </div>
 
       <div className="overflow-x-auto -mx-6 px-6 pb-2">
-        <div className="min-w-[880px] rounded-2xl border border-white/8 glass overflow-hidden">
-          {/* Header row */}
+        <div className="min-w-[880px] border-t border-[var(--site-border)]">
           <div className="grid grid-cols-[200px_repeat(6,1fr)]">
             <div className="p-4" />
             {carePlans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`relative p-4 text-center border-l border-white/8 ${
-                  plan.popular ? "bg-[#D25124]/10" : ""
-                }`}
-              >
+              <div key={plan.name} className="relative p-4 text-center border-l border-[var(--site-border)]">
                 {plan.popular && (
-                  <span className="absolute top-1.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide text-white bg-gradient-to-r from-[#FF9A3A] to-[#D25124]">
+                  <span className="absolute top-1.5 left-1/2 -translate-x-1/2 text-[9px] font-bold uppercase tracking-wide text-[#c69947]">
                     Popular
                   </span>
                 )}
-                <p className="text-sm font-bold text-white mt-3" style={{ fontFamily: "var(--font-inter)" }}>
+                <p className="text-sm font-semibold text-[var(--site-text-primary)] mt-3" style={{ fontFamily: "var(--font-sans)" }}>
                   {plan.name}
                 </p>
                 <AnimatePresence mode="wait" initial={false}>
@@ -457,27 +376,25 @@ function CarePlansTable({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 4 }}
                     transition={{ duration: 0.15 }}
-                    className="text-lg font-bold text-white mt-1"
+                    className="text-lg font-light text-[#c69947] mt-1"
+                    style={{ fontFamily: "var(--font-serif)" }}
                   >
                     ${(cycle === "monthly" ? plan.monthly : yearlyPrice(plan.monthly)).toLocaleString()}
-                    <span className="text-xs font-normal text-slate-400">/{cycle === "monthly" ? "mo" : "yr"}</span>
+                    <span className="text-xs font-sans font-normal text-[var(--site-text-muted)]">/{cycle === "monthly" ? "mo" : "yr"}</span>
                   </motion.p>
                 </AnimatePresence>
               </div>
             ))}
           </div>
 
-          {/* CTA row */}
-          <div className="grid grid-cols-[200px_repeat(6,1fr)] border-t border-white/8">
+          <div className="grid grid-cols-[200px_repeat(6,1fr)] border-t border-[var(--site-border)]">
             <div className="p-3" />
             {carePlans.map((plan) => (
-              <div key={plan.name} className="p-3 border-l border-white/8 flex items-center justify-center">
+              <div key={plan.name} className="p-3 border-l border-[var(--site-border)] flex items-center justify-center">
                 <Link
                   href="/contact"
-                  className={`w-full text-center px-2 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-all ${
-                    plan.popular
-                      ? "btn-primary"
-                      : "text-white border border-white/12 hover:border-[#D25124]/40 hover:bg-white/5"
+                  className={`text-xs font-semibold cursor-pointer border-b pb-0.5 ${
+                    plan.popular ? "text-[#c69947] border-[#c69947]" : "text-[var(--site-text-primary)] border-[var(--site-text-primary)]"
                   }`}
                 >
                   Get Started
@@ -486,23 +403,22 @@ function CarePlansTable({
             ))}
           </div>
 
-          {/* Feature groups */}
           {featureGroups.map((group) => (
             <div key={group.category}>
-              <div className="grid grid-cols-[200px_repeat(6,1fr)] border-t border-white/8 bg-white/[0.02]">
+              <div className="grid grid-cols-[200px_repeat(6,1fr)] border-t border-[var(--site-border)]">
                 <div className="p-3 col-span-7">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#F07A3A]">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#c69947]">
                     {group.category}
                   </p>
                 </div>
               </div>
               {group.rows.map((row) => (
-                <div key={row.label} className="grid grid-cols-[200px_repeat(6,1fr)] border-t border-white/6">
+                <div key={row.label} className="grid grid-cols-[200px_repeat(6,1fr)] border-t border-[var(--site-border)]">
                   <div className="p-3 flex items-center">
                     <FeatureLabel label={row.label} description={row.description} />
                   </div>
                   {row.values.map((value, i) => (
-                    <div key={i} className="p-3 border-l border-white/8 flex items-center justify-center text-center">
+                    <div key={i} className="p-3 border-l border-[var(--site-border)] flex items-center justify-center text-center">
                       <Cell value={value} />
                     </div>
                   ))}
@@ -513,7 +429,7 @@ function CarePlansTable({
         </div>
       </div>
 
-      <p className="text-center text-sm text-slate-500 mt-8 max-w-xl mx-auto">
+      <p className="text-center text-sm text-[var(--site-text-muted)] mt-8 max-w-xl mx-auto">
         All plans require a 12-month commitment, billed monthly or upfront annually for a
         discount. Need something outside your plan&apos;s change allowance? Extra work is billed
         at $100/hour.
@@ -525,87 +441,52 @@ function CarePlansTable({
 const PROOF_SLUGS = ["dearborn-cleaners", "vue-optometry", "mi-family-lawyer"];
 
 function ProofSection() {
-  const featured = PROOF_SLUGS.map((slug) => projects.find((p) => p.slug === slug)).filter(
-    (p): p is NonNullable<typeof p> => !!p
-  );
-
-  if (featured.length === 0) return null;
-
   return (
     <div className="mt-16">
-      <div className="text-center mb-10">
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-inter)" }}>
-          See what businesses like yours are getting
-        </h2>
-        <p className="text-slate-400 max-w-xl mx-auto text-sm">
-          Real clients, real results — on plans just like these.
-        </p>
-      </div>
-      <div className="grid sm:grid-cols-3 gap-5 max-w-5xl mx-auto">
-        {featured.map((project) => (
-          <Link
-            key={project.slug}
-            href={`/work/${project.slug}`}
-            className="glass border border-white/8 rounded-2xl p-6 hover:border-[#D25124]/30 transition-colors group"
-          >
-            <p className="text-xs text-slate-500 mb-1">{project.industry}</p>
-            <h3 className="text-base font-bold text-white mb-2 group-hover:text-[#F07A3A] transition-colors">
-              {project.title}
-            </h3>
-            <p className={`text-sm font-semibold ${project.cardResultColor}`}>{project.cardResult}</p>
-            <span className="inline-flex items-center gap-1 text-xs text-slate-400 group-hover:text-white mt-4 transition-colors">
-              View case study <ArrowUpRight className="w-3 h-3" />
-            </span>
-          </Link>
-        ))}
-      </div>
+      <ProofGallery
+        slugs={PROOF_SLUGS}
+        heading="See what businesses like yours are getting"
+        subheading="Real clients, real results: on plans just like these."
+      />
     </div>
   );
 }
 
-const addOnIcons = [Megaphone, Sparkles];
-
 function AddOnsSection() {
   return (
     <div className="mt-16">
-      <div className="text-center mb-10">
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-inter)" }}>
-          Want to grow faster? Add these on.
+      <div className="mb-10">
+        <h2 className="text-4xl md:text-5xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
+          Want to grow faster? <span className="italic text-[#c69947]">Add these on.</span>
         </h2>
-        <p className="text-slate-400 max-w-xl mx-auto text-sm">
+        <p className="text-[var(--site-text-secondary)] max-w-xl text-sm">
           Available alongside any care plan above. These are priced separately because the right
           amount depends on your business.
         </p>
       </div>
-      <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
-        {addOns.map((addOn, i) => {
-          const Icon = addOnIcons[i];
-          return (
-            <div key={addOn.name} className="glass border border-white/8 rounded-2xl p-7 flex flex-col">
-              <div className="w-10 h-10 rounded-xl bg-[#D25124]/10 flex items-center justify-center mb-4">
-                <Icon className="w-5 h-5 text-[#F07A3A]" />
-              </div>
-              <h3 className="text-lg font-bold text-white mb-1">{addOn.name}</h3>
-              <p className="text-sm font-semibold text-[#F07A3A] mb-3">{addOn.price}</p>
-              <p className="text-sm text-slate-400 leading-relaxed mb-5">{addOn.description}</p>
-              <ul className="space-y-2 mb-6 flex-1">
-                {addOn.items.map((item, ii) => (
-                  <li key={ii} className="flex items-start gap-2.5 text-sm text-slate-300">
-                    <Check className="w-4 h-4 text-[#F07A3A] shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/contact"
-                className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl text-sm font-semibold cursor-pointer border border-white/12 text-white hover:border-[#D25124]/40 hover:bg-white/5 transition-all"
-              >
-                <span>{addOn.cta}</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-            </div>
-          );
-        })}
+      <div className="grid sm:grid-cols-2 gap-x-12 gap-y-10 max-w-4xl divide-x divide-[var(--site-border)]">
+        {addOns.map((addOn) => (
+          <div key={addOn.name} className="flex flex-col pl-8 first:pl-0">
+            <h3 className="text-xl font-light text-[var(--site-text-primary)] mb-1" style={{ fontFamily: "var(--font-serif)" }}>{addOn.name}</h3>
+            <p className="text-sm font-semibold text-[#c69947] mb-3">{addOn.price}</p>
+            <p className="text-sm text-[var(--site-text-secondary)] leading-relaxed mb-5">{addOn.description}</p>
+            <ul className="space-y-2 mb-6 flex-1">
+              {addOn.items.map((item, ii) => (
+                <li key={ii} className="flex items-start gap-2.5 text-sm text-[var(--site-text-secondary)]">
+                  <Check className="w-4 h-4 text-[#c69947] shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 w-fit"
+            >
+              <span>{addOn.cta}</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -616,40 +497,20 @@ export function PricingSection() {
 
   return (
     <section className="relative px-6 pb-24">
-      <div className="max-w-6xl mx-auto space-y-20">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+      <div className="max-w-6xl mx-auto space-y-24">
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <WebsiteDesignSection />
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="pt-8 border-t border-[var(--site-border)]">
           <CarePlansTable cycle={cycle} onCycleChange={setCycle} />
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="pt-8 border-t border-[var(--site-border)]">
           <ProofSection />
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="pt-8 border-t border-[var(--site-border)]">
           <AddOnsSection />
         </motion.div>
       </div>

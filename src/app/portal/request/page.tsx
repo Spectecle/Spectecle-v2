@@ -76,7 +76,7 @@ export default function PortalRequestPage() {
     <section className="relative min-h-[80vh] pt-32 pb-20 px-6 overflow-hidden">
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.12) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse, rgba(198,153,71,0.12) 0%, transparent 70%)" }}
       />
       <div className="relative max-w-xl mx-auto">
         <Link
@@ -92,14 +92,14 @@ export default function PortalRequestPage() {
               key="success"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="glass rounded-2xl border border-[#D25124]/20 p-14 text-center"
+              className="glass border border-[#c69947]/20 p-14 text-center"
             >
-              <div className="w-16 h-16 mx-auto rounded-full bg-[#D25124]/10 flex items-center justify-center mb-6">
-                <CheckCircle2 className="w-8 h-8 text-[#F07A3A]" />
+              <div className="w-16 h-16 mx-auto bg-[#c69947]/10 flex items-center justify-center mb-6">
+                <CheckCircle2 className="w-8 h-8 text-[#c69947]" />
               </div>
               <h2
                 className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"
-                style={{ fontFamily: "var(--font-inter)" }}
+                style={{ fontFamily: "var(--font-sans)" }}
               >
                 Request Sent!
               </h2>
@@ -108,7 +108,7 @@ export default function PortalRequestPage() {
               </p>
               <button
                 onClick={() => router.push("/portal/dashboard")}
-                className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-sm font-semibold cursor-pointer"
+                className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold cursor-pointer"
               >
                 Back to Dashboard
               </button>
@@ -119,13 +119,13 @@ export default function PortalRequestPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               onSubmit={handleSubmit}
-              className="glass rounded-2xl border border-[var(--portal-border)] p-8 md:p-10 space-y-5"
+              className="glass border border-[var(--portal-border)] p-8 md:p-10 space-y-5"
               noValidate
             >
               <div>
                 <h1
                   className="text-2xl font-bold text-[var(--portal-text-primary)] mb-1"
-                  style={{ fontFamily: "var(--font-inter)" }}
+                  style={{ fontFamily: "var(--font-sans)" }}
                 >
                   Request a Service
                 </h1>
@@ -239,13 +239,13 @@ export default function PortalRequestPage() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                className="btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {status === "submitting" ? (
                   <>
                     <span className="relative z-10">Sending...</span>
                     <motion.div
-                      className="relative z-10 w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
+                      className="relative z-10 w-4 h-4 border-2 border-white/30 border-t-white"
                       animate={{ rotate: 360 }}
                       transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
                     />

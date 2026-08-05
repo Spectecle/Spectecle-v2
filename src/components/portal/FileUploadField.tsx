@@ -24,7 +24,7 @@ export function FileUploadField({
           {label}
         </label>
       )}
-      <label className="flex items-center justify-center gap-2 w-full border border-dashed border-[var(--portal-border-strong)] hover:border-[#D25124]/40 rounded-xl px-4 py-6 text-sm text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] cursor-pointer transition-colors">
+      <label className="flex items-center justify-center gap-2 w-full border border-dashed border-[var(--portal-border-strong)] hover:border-[#c69947]/40 px-4 py-6 text-sm text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] cursor-pointer transition-colors">
         <Paperclip className="w-4 h-4" />
         <span>Click to attach files</span>
         <input
@@ -41,13 +41,13 @@ export function FileUploadField({
           {uploads.map((u) => (
             <div
               key={u.id}
-              className="flex items-center gap-2 bg-[var(--portal-card)] border border-[var(--portal-border)] rounded-lg px-3 py-2 text-xs"
+              className="flex items-center gap-2 bg-[var(--portal-card)] border border-[var(--portal-border)] px-3 py-2 text-xs"
             >
               {u.status === "uploading" && (
                 <Loader2 className="w-3.5 h-3.5 text-[var(--portal-text-muted)] animate-spin shrink-0" />
               )}
               {u.status === "done" && (
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#F07A3A] shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#c69947] shrink-0" />
               )}
               {u.status === "error" && (
                 <AlertCircle className="w-3.5 h-3.5 text-rose-400 shrink-0" />

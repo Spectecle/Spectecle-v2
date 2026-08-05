@@ -149,12 +149,12 @@ export async function POST(req: Request) {
         subject: `A new service request was created for you: ${serviceType}`,
         html: `
           <div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;padding:32px 24px;background:#fff;">
-            <div style="border-left:4px solid #D25124;padding-left:16px;margin-bottom:28px;">
+            <div style="border-left:4px solid #c69947;padding-left:16px;margin-bottom:28px;">
               <h2 style="margin:0 0 4px;color:#111;font-size:20px;">New Service Request</h2>
               <p style="margin:0;color:#888;font-size:14px;">Spectecle logged this on your behalf</p>
             </div>
             ${detailsTable}
-            <p style="margin-top:24px;"><a href="${SITE_URL}/portal/dashboard" style="color:#D25124;">View in your portal</a></p>
+            <p style="margin-top:24px;"><a href="${SITE_URL}/portal/dashboard" style="color:#c69947;">View in your portal</a></p>
           </div>
         `,
       })
@@ -165,11 +165,11 @@ export async function POST(req: Request) {
         subject: `New portal service request from ${ticketOwner.email}`,
         html: `
           <div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;padding:32px 24px;background:#fff;">
-            <div style="border-left:4px solid #D25124;padding-left:16px;margin-bottom:28px;">
+            <div style="border-left:4px solid #c69947;padding-left:16px;margin-bottom:28px;">
               <h2 style="margin:0 0 4px;color:#111;font-size:20px;">New Service Request</h2>
               <p style="margin:0;color:#888;font-size:14px;">via client portal</p>
             </div>
-            <p style="margin:0 0 20px;font-size:14px;"><strong>Client:</strong> <a href="mailto:${esc(ticketOwner.email)}" style="color:#D25124;">${esc(ticketOwner.email)}</a></p>
+            <p style="margin:0 0 20px;font-size:14px;"><strong>Client:</strong> <a href="mailto:${esc(ticketOwner.email)}" style="color:#c69947;">${esc(ticketOwner.email)}</a></p>
             ${detailsTable}
           </div>
         `,

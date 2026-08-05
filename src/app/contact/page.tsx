@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { ProofGallery } from "@/components/ui/ProofGallery";
 import {
   Mail,
   Phone,
@@ -10,7 +11,6 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Clock,
-  Zap,
 } from "lucide-react";
 
 const IconX = () => (
@@ -52,58 +52,18 @@ function Reveal({
 }
 
 const contactInfo = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "hello@spectecle.com",
-    href: "mailto:hello@spectecle.com",
-    color: "text-[#F07A3A]",
-    bg: "bg-[#D25124]/10",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+1 (313) 353-4105",
-    href: "tel:+13133534105",
-    color: "text-[#F07A3A]",
-    bg: "bg-[#D25124]/10",
-  },
-  {
-    icon: MapPin,
-    label: "Coverage",
-    value: "United States — Remote",
-    href: "/work",
-    color: "text-[#F07A3A]",
-    bg: "bg-[#D25124]/10",
-  },
-  {
-    icon: Clock,
-    label: "Response Time",
-    value: "Within 24 hours",
-    href: "#",
-    color: "text-[#F07A3A]",
-    bg: "bg-[#D25124]/10",
-  },
+  { icon: Mail, label: "Email", value: "hello@spectecle.com", href: "mailto:hello@spectecle.com" },
+  { icon: Phone, label: "Phone", value: "+1 (313) 353-4105", href: "tel:+13133534105" },
+  { icon: MapPin, label: "Coverage", value: "United States, Remote", href: "/work" },
+  { icon: Clock, label: "Response Time", value: "Within 24 hours", href: "#" },
 ];
 
-const budgetOptions = [
-  "Under $5,000",
-  "$5,000 – $15,000",
-  "$15,000 – $50,000",
-  "$50,000+",
-  "Not sure yet",
-];
+const budgetOptions = ["Under $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+", "Not sure yet"];
 
-const serviceOptions = [
-  "Web Design & Development",
-  "SEO & Digital Marketing",
-  "AI & Automation",
-  "All Three",
-  "Something Else",
-];
+const serviceOptions = ["Web Design & Development", "SEO & Digital Marketing", "AI & Automation", "All Three", "Something Else"];
 
 const guarantees = [
-  "Free 30-min strategy call — no commitment",
+  "Free 30-min strategy call, no commitment",
   "Response within 24 hours, guaranteed",
   "NDA available on request",
   "Honest advice, even if we're not the right fit",
@@ -124,12 +84,7 @@ const whoWeHelp = [
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    service: "",
-    budget: "",
-    message: "",
+    name: "", email: "", company: "", service: "", budget: "", message: "",
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -171,60 +126,37 @@ export default function ContactPage() {
   };
 
   const inputClass = (field: string) =>
-    `w-full bg-[#0e0e1a] border ${
-      errors[field] ? "border-rose-500/60" : "border-white/8"
-    } text-white placeholder-slate-600 rounded-xl px-4 py-3.5 text-sm transition-all duration-200 focus:border-[#D25124]/50 focus:bg-[#1a0d08] outline-none`;
+    `w-full bg-transparent border-b ${
+      errors[field] ? "border-rose-400" : "border-[var(--site-border)]"
+    } text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] px-0 py-3 text-sm transition-all duration-200 focus:border-[#c69947] outline-none`;
 
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="relative pt-40 pb-20 px-6 overflow-hidden">
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.12) 0%, transparent 70%)" }}
-        />
-        <div className="absolute inset-0 dot-pattern opacity-30 pointer-events-none" />
-
-        <div className="relative max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#D25124]/20 text-sm text-[#F07A3A] font-medium mb-8"
-          >
-            <Zap className="w-3.5 h-3.5" />
+      <section className="pt-40 pb-20 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
             Serving Businesses Nationwide
-          </motion.div>
-
+          </span>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl md:text-6xl xl:text-7xl font-bold text-white leading-tight"
-            style={{ fontFamily: "var(--font-inter)" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            style={{ fontFamily: "var(--font-serif)" }}
           >
-            Let&apos;s Build Something
-            <br />
-            <span className="gradient-text">That Actually Works</span>
+            Let&apos;s build something <span className="italic text-[#c69947]">that actually works.</span>
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-6 text-slate-400 text-lg max-w-xl mx-auto leading-relaxed"
-          >
+          <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto leading-relaxed">
             Tell us about your goals. We&apos;ll respond within 24 hours with honest advice
-            and a clear plan — wherever you&apos;re located.
-          </motion.p>
+            and a clear plan, wherever you&apos;re located.
+          </p>
         </div>
       </section>
 
       {/* ── FORM + INFO ──────────────────────────────── */}
       <section className="pb-32 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-5 gap-12 items-start">
-
-          {/* ─ Left: Form ─ */}
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-5 gap-16 items-start">
           <div className="lg:col-span-3">
             <AnimatePresence mode="wait">
               {status === "success" ? (
@@ -232,31 +164,25 @@ export default function ContactPage() {
                   key="success"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="glass rounded-2xl border border-[#D25124]/20 p-16 text-center"
+                  className="py-16 text-center"
                 >
-                  <div className="w-20 h-20 mx-auto rounded-full bg-[#D25124]/10 flex items-center justify-center mb-6">
-                    <CheckCircle2 className="w-10 h-10 text-[#F07A3A]" />
-                  </div>
-                  <h2
-                    className="text-3xl font-bold text-white mb-4"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
+                  <CheckCircle2 className="w-10 h-10 text-[#c69947] mx-auto mb-6" />
+                  <h2 className="text-3xl font-light text-[var(--site-text-primary)] mb-4" style={{ fontFamily: "var(--font-serif)" }}>
                     Message Received!
                   </h2>
-                  <p className="text-slate-400 mb-2">
-                    Thank you for reaching out. We&apos;ll review your message and respond
-                    within 24 hours.
+                  <p className="text-[var(--site-text-secondary)] mb-2">
+                    Thank you for reaching out. We&apos;ll review your message and respond within 24 hours.
                   </p>
-                  <p className="text-slate-500 text-sm mb-10">
-                    Check your inbox — a confirmation is on its way to{" "}
-                    <span className="text-[#F07A3A]">{formData.email}</span>.
+                  <p className="text-[var(--site-text-muted)] text-sm mb-10">
+                    Check your inbox. A confirmation is on its way to{" "}
+                    <span className="text-[#c69947]">{formData.email}</span>.
                   </p>
                   <button
                     onClick={() => {
                       setStatus("idle");
                       setFormData({ name: "", email: "", company: "", service: "", budget: "", message: "" });
                     }}
-                    className="text-[#F07A3A] hover:text-[#D25124] text-sm font-medium transition-colors cursor-pointer"
+                    className="text-[#c69947] text-sm font-medium border-b border-[#c69947] pb-0.5 cursor-pointer"
                   >
                     ← Send another message
                   </button>
@@ -267,145 +193,90 @@ export default function ContactPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   onSubmit={handleSubmit}
-                  className="glass rounded-2xl border border-white/8 p-8 md:p-10 space-y-5"
+                  className="space-y-7"
                   noValidate
                 >
-                  {/* Honeypot — hidden from real users, bots fill it in */}
                   <div style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} aria-hidden="true">
-                    <input
-                      type="text"
-                      name="website"
-                      tabIndex={-1}
-                      autoComplete="off"
-                      value={honey}
-                      onChange={(e) => setHoney(e.target.value)}
-                    />
+                    <input type="text" name="website" tabIndex={-1} autoComplete="off" value={honey} onChange={(e) => setHoney(e.target.value)} />
                   </div>
                   <div>
-                    <h2
-                      className="text-2xl font-bold text-white mb-1"
-                      style={{ fontFamily: "var(--font-inter)" }}
-                    >
+                    <h2 className="text-3xl font-light text-[var(--site-text-primary)] mb-1" style={{ fontFamily: "var(--font-serif)" }}>
                       Start a conversation
                     </h2>
-                    <p className="text-slate-500 text-sm">
-                      A quick question or a full project brief — both are welcome. We work with
-                      businesses across the country.
+                    <p className="text-[var(--site-text-muted)] text-sm">
+                      A quick question or a full project brief, both are welcome.
                     </p>
                   </div>
 
-                  {/* Name + Email */}
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
+                      <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                         Full Name <span className="text-rose-400">*</span>
                       </label>
-                      <input
-                        name="name"
-                        type="text"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Jane Smith"
-                        className={inputClass("name")}
-                      />
+                      <input name="name" type="text" value={formData.name} onChange={handleChange} placeholder="Jane Smith" className={inputClass("name")} />
                       {errors.name && <p className="mt-1.5 text-xs text-rose-400">{errors.name}</p>}
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
+                      <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                         Email <span className="text-rose-400">*</span>
                       </label>
-                      <input
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="jane@company.com"
-                        className={inputClass("email")}
-                      />
+                      <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="jane@company.com" className={inputClass("email")} />
                       {errors.email && <p className="mt-1.5 text-xs text-rose-400">{errors.email}</p>}
                     </div>
                   </div>
 
-                  {/* Company */}
                   <div>
-                    <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
-                      Company Name{" "}
-                      <span className="text-slate-600 normal-case tracking-normal">(optional)</span>
+                    <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                      Company Name <span className="text-[var(--site-text-muted)] normal-case tracking-normal">(optional)</span>
                     </label>
-                    <input
-                      name="company"
-                      type="text"
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder="Your Business Name"
-                      className={inputClass("company")}
-                    />
+                    <input name="company" type="text" value={formData.company} onChange={handleChange} placeholder="Your Business Name" className={inputClass("company")} />
                   </div>
 
-                  {/* Service */}
                   <div>
-                    <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
+                    <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                       Service Interest
                     </label>
-                    <select
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className={`${inputClass("service")} cursor-pointer`}
-                    >
+                    <select name="service" value={formData.service} onChange={handleChange} className={`${inputClass("service")} cursor-pointer`}>
                       <option value="" disabled>Select a service</option>
-                      {serviceOptions.map((s) => (
-                        <option key={s} value={s}>{s}</option>
-                      ))}
+                      {serviceOptions.map((s) => <option key={s} value={s}>{s}</option>)}
                     </select>
                   </div>
 
-                  {/* Message */}
                   <div>
-                    <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
+                    <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                       What&apos;s on Your Mind? <span className="text-rose-400">*</span>
                     </label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      rows={5}
-                      placeholder="Tell us about your goals, questions, or challenges — whether you have a project ready or just want to explore your options."
+                      rows={4}
+                      placeholder="Tell us about your goals, questions, or challenges."
                       className={`${inputClass("message")} resize-none`}
                     />
                     {errors.message && <p className="mt-1.5 text-xs text-rose-400">{errors.message}</p>}
                   </div>
 
-                  {/* Budget — optional, at the end so it doesn't gate early */}
                   <div>
-                    <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
-                      Budget Range{" "}
-                      <span className="text-slate-600 normal-case tracking-normal">(optional)</span>
+                    <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                      Budget Range <span className="text-[var(--site-text-muted)] normal-case tracking-normal">(optional)</span>
                     </label>
-                    <select
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      className={`${inputClass("budget")} cursor-pointer`}
-                    >
-                      <option value="" disabled>Select a range — or skip if unsure</option>
-                      {budgetOptions.map((b) => (
-                        <option key={b} value={b}>{b}</option>
-                      ))}
+                    <select name="budget" value={formData.budget} onChange={handleChange} className={`${inputClass("budget")} cursor-pointer`}>
+                      <option value="" disabled>Select a range, or skip if unsure</option>
+                      {budgetOptions.map((b) => <option key={b} value={b}>{b}</option>)}
                     </select>
                   </div>
 
-                  {/* Submit */}
                   {status === "error" && (
                     <p className="text-rose-400 text-sm text-center py-2">
-                      Something went wrong — please try again or email us directly at{" "}
+                      Something went wrong. Please try again or email us directly at{" "}
                       <a href="mailto:hello@spectecle.com" className="underline">hello@spectecle.com</a>.
                     </p>
                   )}
                   <button
                     type="submit"
                     disabled={status === "submitting"}
-                    className="btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "submitting" ? (
                       <>
@@ -424,118 +295,66 @@ export default function ContactPage() {
                     )}
                   </button>
 
-                  <p className="text-center text-xs text-slate-600">
+                  <p className="text-center text-xs text-[var(--site-text-muted)]">
                     By submitting this form you agree to our{" "}
-                    <Link
-                      href="/privacy"
-                      className="text-slate-500 hover:text-white transition-colors cursor-pointer underline underline-offset-2"
-                    >
-                      Privacy Policy
-                    </Link>
+                    <Link href="/privacy" className="underline underline-offset-2">Privacy Policy</Link>
                   </p>
                 </motion.form>
               )}
             </AnimatePresence>
           </div>
 
-          {/* ─ Right: Info ─ */}
-          <div className="lg:col-span-2 space-y-5">
-
-            {/* Contact Details */}
+          {/* Info */}
+          <div className="lg:col-span-2 space-y-12">
             <Reveal delay={0.1}>
-              <div className="glass rounded-2xl border border-white/8 p-7 space-y-5">
-                <h3
-                  className="text-lg font-bold text-white"
-                  style={{ fontFamily: "var(--font-inter)" }}
-                >
-                  Contact Details
-                </h3>
+              <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Contact Details</h3>
+              <div className="space-y-4">
                 {contactInfo.map((c) => (
-                  <a
-                    key={c.label}
-                    href={c.href}
-                    target={c.href.startsWith("http") ? "_blank" : undefined}
-                    rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="flex items-center gap-4 group cursor-pointer"
-                  >
-                    <div className={`w-10 h-10 rounded-xl ${c.bg} flex items-center justify-center shrink-0`}>
-                      <c.icon className={`w-4 h-4 ${c.color}`} />
-                    </div>
+                  <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined} className="flex items-center gap-3 group cursor-pointer">
+                    <c.icon className="w-4 h-4 text-[#c69947] shrink-0" />
                     <div>
-                      <p className="text-xs text-slate-500 uppercase tracking-wider mb-0.5">{c.label}</p>
-                      <p className="text-sm text-slate-300 group-hover:text-white transition-colors">{c.value}</p>
+                      <span className="text-xs text-[var(--site-text-muted)] uppercase tracking-wider mr-2">{c.label}</span>
+                      <span className="text-sm text-[var(--site-text-secondary)] group-hover:text-[var(--site-text-primary)] transition-colors">{c.value}</span>
                     </div>
                   </a>
                 ))}
               </div>
             </Reveal>
 
-            {/* Who We Help */}
             <Reveal delay={0.14}>
-              <div className="glass rounded-2xl border border-white/8 p-7">
-                <h3
-                  className="text-lg font-bold text-white mb-5"
-                  style={{ fontFamily: "var(--font-inter)" }}
-                >
-                  Who We Work With
-                </h3>
-                <div className="space-y-3">
-                  {whoWeHelp.map((g) => (
-                    <div key={g} className="flex items-center gap-3 text-sm text-slate-300">
-                      <CheckCircle2 className="w-4 h-4 text-[#F07A3A] shrink-0" />
-                      {g}
-                    </div>
-                  ))}
-                </div>
+              <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Who We Work With</h3>
+              <div className="space-y-3">
+                {whoWeHelp.map((g) => (
+                  <div key={g} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
+                    <CheckCircle2 className="w-4 h-4 text-[#c69947] shrink-0" />
+                    {g}
+                  </div>
+                ))}
               </div>
             </Reveal>
 
-            {/* What to Expect */}
             <Reveal delay={0.18}>
-              <div className="glass rounded-2xl border border-white/8 p-7">
-                <h3
-                  className="text-lg font-bold text-white mb-5"
-                  style={{ fontFamily: "var(--font-inter)" }}
-                >
-                  What to Expect
-                </h3>
-                <div className="space-y-3">
-                  {guarantees.map((g) => (
-                    <div key={g} className="flex items-center gap-3 text-sm text-slate-300">
-                      <CheckCircle2 className="w-4 h-4 text-[#F07A3A] shrink-0" />
-                      {g}
-                    </div>
-                  ))}
-                </div>
+              <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">What to Expect</h3>
+              <div className="space-y-3">
+                {guarantees.map((g) => (
+                  <div key={g} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
+                    <CheckCircle2 className="w-4 h-4 text-[#c69947] shrink-0" />
+                    {g}
+                  </div>
+                ))}
               </div>
             </Reveal>
 
-            {/* Follow Us */}
             <Reveal delay={0.22}>
-              <div className="glass rounded-2xl border border-white/8 p-7">
-                <h3
-                  className="text-lg font-bold text-white mb-5"
-                  style={{ fontFamily: "var(--font-inter)" }}
-                >
-                  Follow Us
-                </h3>
-                <div className="space-y-3">
-                  {socials.map((s) => (
-                    <a
-                      key={s.label}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors cursor-pointer group"
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-[#D25124]/15 transition-colors">
-                        <s.Icon />
-                      </div>
-                      <span className="text-sm">{s.label}</span>
-                      <span className="text-xs text-slate-600 ml-auto">{s.handle}</span>
-                    </a>
-                  ))}
-                </div>
+              <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Follow Us</h3>
+              <div className="space-y-3">
+                {socials.map((s) => (
+                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer group">
+                    <s.Icon />
+                    <span className="text-sm">{s.label}</span>
+                    <span className="text-xs text-[var(--site-text-muted)] ml-auto">{s.handle}</span>
+                  </a>
+                ))}
               </div>
             </Reveal>
           </div>
@@ -543,44 +362,45 @@ export default function ContactPage() {
       </section>
 
       {/* ── WHY SPECTECLE ────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-white/6 bg-[#09090f]">
+      <section className="py-24 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <span className="text-xs font-semibold text-[#F07A3A] uppercase tracking-widest">
-              Why Reach Out
-            </span>
-            <h2
-              className="mt-3 text-3xl md:text-4xl font-bold text-white"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Why Reach Out</span>
+            <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
               No pressure. Just honest advice.
             </h2>
-            <p className="mt-4 text-slate-400 text-base max-w-xl mx-auto leading-relaxed">
+            <p className="mt-4 text-[var(--site-text-secondary)] text-base max-w-xl mx-auto leading-relaxed">
               Our free strategy calls aren&apos;t sales pitches. We listen, we assess your
-              situation honestly, and we tell you exactly what we&apos;d do — and what it would
+              situation honestly, and we tell you exactly what we&apos;d do and what it would
               cost. If we&apos;re not the right fit, we&apos;ll say so.
             </p>
           </Reveal>
 
-          <div className="mt-12 grid sm:grid-cols-3 gap-5">
+          <div className="mt-14 grid sm:grid-cols-3 gap-8">
             {[
               { value: "24 hrs", label: "Guaranteed response time" },
               { value: "Free", label: "Strategy call, no strings attached" },
               { value: "100%", label: "Transparent pricing, no surprises" },
             ].map((stat, i) => (
               <Reveal key={stat.label} delay={i * 0.08}>
-                <div className="glass rounded-2xl p-6 border border-white/6 hover:border-[#D25124]/20 transition-colors duration-300">
-                  <div
-                    className="text-2xl font-bold gradient-text mb-2"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
-                    {stat.value}
-                  </div>
-                  <p className="text-slate-400 text-sm">{stat.label}</p>
-                </div>
+                <div className="text-2xl font-light text-[#c69947] mb-2" style={{ fontFamily: "var(--font-serif)" }}>{stat.value}</div>
+                <p className="text-[var(--site-text-secondary)] text-sm">{stat.label}</p>
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── PROOF GALLERY ────────────────────────────── */}
+      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-7xl mx-auto">
+          <Reveal>
+            <ProofGallery
+              slugs={["dearborn-cleaners", "vue-optometry", "indoor-garden"]}
+              heading="Businesses like yours, already growing"
+              subheading="A few recent projects: real sites, real clients, real results."
+            />
+          </Reveal>
         </div>
       </section>
     </>

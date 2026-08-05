@@ -240,34 +240,34 @@ export default function TermsPage() {
     <div className="relative min-h-screen">
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.08) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse, rgba(198,153,71,0.08) 0%, transparent 70%)" }}
       />
 
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="relative pt-40 pb-16 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#D25124]/20 text-sm text-[#F07A3A] font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-[#F07A3A]" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 glass border border-[#c69947]/20 text-sm text-[#c69947] font-medium mb-8">
+            <span className="w-2 h-2 bg-[#c69947]" />
             Legal
           </div>
 
           <h1
-            className="text-4xl md:text-5xl font-bold text-white leading-tight"
-            style={{ fontFamily: "var(--font-inter)" }}
+            className="text-4xl md:text-5xl font-bold text-[#1e1e1e] leading-tight"
+            style={{ fontFamily: "var(--font-sans)" }}
           >
             Terms & Conditions
           </h1>
-          <p className="mt-4 text-slate-400 text-base">
+          <p className="mt-4 text-[#41433a] text-base">
             Effective Date: {EFFECTIVE_DATE} &nbsp;·&nbsp; {COMPANY} &nbsp;·&nbsp; Dearborn, Michigan
             &nbsp;·&nbsp;{" "}
-            <a href={`https://${WEBSITE}`} className="text-[#F07A3A] hover:underline">
+            <a href={`https://${WEBSITE}`} className="text-[#c69947] hover:underline">
               {WEBSITE}
             </a>
           </p>
-          <p className="mt-6 text-slate-400 leading-relaxed max-w-2xl">
+          <p className="mt-6 text-[#41433a] leading-relaxed max-w-2xl">
             These Terms and Conditions govern any website design, SEO, paid advertising, or AI
             automation services Spectecle provides. Please read them together with our{" "}
-            <Link href="/privacy" className="text-[#F07A3A] hover:underline">
+            <Link href="/privacy" className="text-[#c69947] hover:underline">
               Privacy Policy
             </Link>
             .
@@ -278,8 +278,8 @@ export default function TermsPage() {
       {/* ── TABLE OF CONTENTS ─────────────────────────── */}
       <section className="px-6 pb-12">
         <div className="max-w-4xl mx-auto">
-          <div className="glass rounded-2xl border border-white/6 p-7">
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-5">
+          <div className="glass border border-[#1e1e1e]/10 p-7">
+            <p className="text-xs font-semibold text-[#7c776b] uppercase tracking-widest mb-5">
               Table of Contents
             </p>
             <div className="grid sm:grid-cols-2 gap-2">
@@ -287,7 +287,7 @@ export default function TermsPage() {
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  className="text-sm text-slate-400 hover:text-[#F07A3A] transition-colors py-1"
+                  className="text-sm text-[#41433a] hover:text-[#c69947] transition-colors py-1"
                 >
                   {s.title}
                 </a>
@@ -303,18 +303,18 @@ export default function TermsPage() {
           {sections.map((section) => (
             <div key={section.id} id={section.id} className="scroll-mt-28">
               <h2
-                className="text-xl md:text-2xl font-bold text-white mb-6 pb-4 border-b border-white/6"
-                style={{ fontFamily: "var(--font-inter)" }}
+                className="text-xl md:text-2xl font-bold text-[#1e1e1e] mb-6 pb-4 border-b border-[#1e1e1e]/10"
+                style={{ fontFamily: "var(--font-sans)" }}
               >
                 {section.title}
               </h2>
               <div className="space-y-6">
                 {section.content.map((item, i) => (
                   <div key={i}>
-                    <h3 className="text-base font-semibold text-[#F07A3A] mb-2">
+                    <h3 className="text-base font-semibold text-[#c69947] mb-2">
                       {item.subtitle}
                     </h3>
-                    <p className="text-slate-400 leading-relaxed text-sm whitespace-pre-line">
+                    <p className="text-[#41433a] leading-relaxed text-sm whitespace-pre-line">
                       {item.body}
                     </p>
                   </div>
@@ -326,20 +326,20 @@ export default function TermsPage() {
       </section>
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-white/6 bg-[#09090f]">
+      <section className="py-20 px-6 border-t border-[#1e1e1e]/10 bg-[#fdfbf5]">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-slate-500 text-sm uppercase tracking-widest mb-4">
+          <p className="text-[#7c776b] text-sm uppercase tracking-widest mb-4">
             Questions About These Terms?
           </p>
           <h2
-            className="text-3xl md:text-4xl font-bold text-white"
-            style={{ fontFamily: "var(--font-inter)" }}
+            className="text-3xl md:text-4xl font-bold text-[#1e1e1e]"
+            style={{ fontFamily: "var(--font-sans)" }}
           >
             Reach out — we&apos;re here to help.
           </h2>
-          <p className="mt-4 text-slate-400 text-base max-w-lg mx-auto">
+          <p className="mt-4 text-[#41433a] text-base max-w-lg mx-auto">
             Email us at{" "}
-            <a href={`mailto:${EMAIL}`} className="text-[#F07A3A] hover:underline">
+            <a href={`mailto:${EMAIL}`} className="text-[#c69947] hover:underline">
               {EMAIL}
             </a>{" "}
             with any questions about these Terms.
@@ -347,14 +347,14 @@ export default function TermsPage() {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="btn-primary flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold cursor-pointer"
+              className="btn-primary flex items-center gap-2 px-7 py-3.5 text-sm font-semibold cursor-pointer"
             >
               <span>Contact Us</span>
               <ArrowUpRight className="w-4 h-4 relative z-10" />
             </Link>
             <Link
               href="/"
-              className="text-slate-400 hover:text-white text-sm transition-colors cursor-pointer"
+              className="text-[#41433a] hover:text-[#1e1e1e] text-sm transition-colors cursor-pointer"
             >
               ← Back to Home
             </Link>

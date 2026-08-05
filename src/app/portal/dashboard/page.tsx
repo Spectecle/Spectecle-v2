@@ -69,7 +69,7 @@ export default async function PortalDashboardPage({
           <div>
             <h1
               className="text-2xl font-bold text-[var(--portal-text-primary)] mb-1"
-              style={{ fontFamily: "var(--font-inter)" }}
+              style={{ fontFamily: "var(--font-sans)" }}
             >
               Welcome back
             </h1>

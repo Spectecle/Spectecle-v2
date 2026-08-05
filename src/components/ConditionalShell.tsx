@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { SiteThemeProvider } from "./SiteThemeProvider";
 
 const STANDALONE_ROUTES = ["/hello"];
 
@@ -17,13 +18,19 @@ export default function ConditionalShell({ children }: { children: React.ReactNo
 
   const standalone = STANDALONE_ROUTES.includes(pathname);
 
-  if (standalone) return <main className="flex-1">{children}</main>;
+  if (standalone) {
+    return (
+      <SiteThemeProvider>
+        <main className="flex-1">{children}</main>
+      </SiteThemeProvider>
+    );
+  }
 
   return (
-    <>
+    <SiteThemeProvider>
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
-    </>
+    </SiteThemeProvider>
   );
 }

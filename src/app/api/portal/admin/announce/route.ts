@@ -14,8 +14,8 @@ function announcementHtml(email: string, link: string) {
     "Request services, track progress, and message us directly — all from one new portal.";
 
   const body = `
-<div style="background-color:#040408;padding:40px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
-  <div style="display:none;max-height:0;overflow:hidden;color:#040408;font-size:1px;line-height:1px;">${esc(preheader)}</div>
+<div style="background-color:#f4f1e9;padding:40px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <div style="display:none;max-height:0;overflow:hidden;color:#f4f1e9;font-size:1px;line-height:1px;">${esc(preheader)}</div>
   <table role="presentation" width="100%" style="max-width:600px;margin:0 auto;border-collapse:collapse;">
     <tr>
       <td style="padding:0 0 28px;text-align:center;">
@@ -25,19 +25,19 @@ function announcementHtml(email: string, link: string) {
               <img src="${SITE_URL}/logo-email.png" width="17" height="48" alt="" style="display:block;border:0;" />
             </td>
             <td style="vertical-align:middle;">
-              <span style="color:#ffffff;font-size:21px;font-weight:800;letter-spacing:0.3px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">Spectecle</span>
+              <span style="color:#1e1e1e;font-size:21px;font-weight:800;letter-spacing:0.3px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">Spectecle</span>
             </td>
           </tr>
         </table>
       </td>
     </tr>
     <tr>
-      <td style="background-color:#0e0e1a;border-radius:16px;">
+      <td style="background-color:#fdfbf5;border-radius:16px;">
         <table role="presentation" width="100%" style="border-collapse:collapse;">
           <tr>
-            <td style="background-color:#D25124;background-image:linear-gradient(135deg,#FF9A3A,#D25124);padding:40px 40px 32px;border-radius:16px 16px 0 0;text-align:center;">
+            <td style="background-color:#c69947;background-image:linear-gradient(135deg,#d9b568,#c69947);padding:40px 40px 32px;border-radius:16px 16px 0 0;text-align:center;">
               <p style="margin:0 0 10px;color:rgba(255,255,255,0.85);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Now Live</p>
-              <h1 style="margin:0;color:#ffffff;font-size:26px;font-weight:800;line-height:1.3;">Your New Client Portal Is Here</h1>
+              <h1 style="margin:0;color:#1e1e1e;font-size:26px;font-weight:800;line-height:1.3;">Your New Client Portal Is Here</h1>
             </td>
           </tr>
           <tr>
@@ -46,11 +46,11 @@ function announcementHtml(email: string, link: string) {
                 We've built a dedicated home for everything you need from us — request new work, track progress in real time, and message our team directly, all in one place.
               </p>
 
-              <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(210,81,36,0.3);border-radius:10px;margin:0 0 28px;">
+              <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(198,153,71,0.3);border-radius:10px;margin:0 0 28px;">
                 <tr>
                   <td style="padding:16px 20px;">
-                    <p style="margin:0 0 4px;color:#F07A3A;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Your Sign-In Email</p>
-                    <p style="margin:0;color:#ffffff;font-size:16px;font-weight:600;">${esc(email)}</p>
+                    <p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Your Sign-In Email</p>
+                    <p style="margin:0;color:#1e1e1e;font-size:16px;font-weight:600;">${esc(email)}</p>
                   </td>
                 </tr>
               </table>
@@ -58,7 +58,7 @@ function announcementHtml(email: string, link: string) {
               <table role="presentation" width="100%" style="border-collapse:collapse;margin:0 0 20px;">
                 <tr>
                   <td align="center">
-                    <a href="${link}" style="display:inline-block;background-color:#D25124;background-image:linear-gradient(135deg,#FF9A3A,#D25124);color:#ffffff;text-decoration:none;padding:16px 44px;border-radius:10px;font-weight:700;font-size:16px;">
+                    <a href="${link}" style="display:inline-block;background-color:#c69947;background-image:linear-gradient(135deg,#d9b568,#c69947);color:#1e1e1e;text-decoration:none;padding:16px 44px;border-radius:10px;font-weight:700;font-size:16px;">
                       Sign In to Your Portal &rarr;
                     </a>
                   </td>
@@ -76,11 +76,11 @@ function announcementHtml(email: string, link: string) {
           </tr>
           <tr>
             <td style="padding:28px 40px 36px;">
-              <p style="margin:0 0 20px;color:#ffffff;font-size:12.5px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">What you can do</p>
+              <p style="margin:0 0 20px;color:#1e1e1e;font-size:12.5px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">What you can do</p>
               <table role="presentation" width="100%" style="border-collapse:collapse;">
                 <tr>
                   <td style="padding:0 12px 18px 0;vertical-align:top;width:32px;">
-                    <div style="width:26px;height:26px;background-color:rgba(210,81,36,0.15);border-radius:8px;text-align:center;line-height:26px;color:#F07A3A;font-size:13px;font-weight:700;">&#10003;</div>
+                    <div style="width:26px;height:26px;background-color:rgba(198,153,71,0.15);border-radius:8px;text-align:center;line-height:26px;color:#38190c;font-size:13px;font-weight:700;">&#10003;</div>
                   </td>
                   <td style="padding:0 0 18px;vertical-align:top;">
                     <p style="margin:0;color:#e2e8f0;font-size:14.5px;font-weight:600;">Submit a new request</p>
@@ -89,7 +89,7 @@ function announcementHtml(email: string, link: string) {
                 </tr>
                 <tr>
                   <td style="padding:0 12px 18px 0;vertical-align:top;">
-                    <div style="width:26px;height:26px;background-color:rgba(210,81,36,0.15);border-radius:8px;text-align:center;line-height:26px;color:#F07A3A;font-size:13px;font-weight:700;">&#10003;</div>
+                    <div style="width:26px;height:26px;background-color:rgba(198,153,71,0.15);border-radius:8px;text-align:center;line-height:26px;color:#38190c;font-size:13px;font-weight:700;">&#10003;</div>
                   </td>
                   <td style="padding:0 0 18px;vertical-align:top;">
                     <p style="margin:0;color:#e2e8f0;font-size:14.5px;font-weight:600;">Track real-time status</p>
@@ -98,7 +98,7 @@ function announcementHtml(email: string, link: string) {
                 </tr>
                 <tr>
                   <td style="padding:0 12px 0 0;vertical-align:top;">
-                    <div style="width:26px;height:26px;background-color:rgba(210,81,36,0.15);border-radius:8px;text-align:center;line-height:26px;color:#F07A3A;font-size:13px;font-weight:700;">&#10003;</div>
+                    <div style="width:26px;height:26px;background-color:rgba(198,153,71,0.15);border-radius:8px;text-align:center;line-height:26px;color:#38190c;font-size:13px;font-weight:700;">&#10003;</div>
                   </td>
                   <td style="padding:0;vertical-align:top;">
                     <p style="margin:0;color:#e2e8f0;font-size:14.5px;font-weight:600;">Message us directly</p>

@@ -42,7 +42,7 @@ export function UserManagementPanel({
 
   return (
     <div className="space-y-4">
-      <div className="glass rounded-2xl border border-[var(--portal-border)] p-6">
+      <div className="glass border border-[var(--portal-border)] p-6">
         <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
           <div className="relative flex-1 min-w-[200px] max-w-xs">
             <Search className="w-3.5 h-3.5 text-[var(--portal-text-muted)] absolute left-3 top-1/2 -translate-y-1/2" />
@@ -51,12 +51,12 @@ export function UserManagementPanel({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search organizations or users…"
-              className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] rounded-lg pl-8 pr-3 py-2 text-xs outline-none focus:border-[#D25124]/50"
+              className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] pl-8 pr-3 py-2 text-xs outline-none focus:border-[#c69947]/50"
             />
           </div>
           <Link
             href="/portal/admin/clients/new"
-            className="flex items-center gap-1.5 bg-[#D25124]/15 hover:bg-[#D25124]/25 text-[#F07A3A] text-xs font-medium rounded-lg px-3 py-2 cursor-pointer transition-colors"
+            className="flex items-center gap-1.5 bg-[#c69947]/15 hover:bg-[#c69947]/25 text-[#c69947] text-xs font-medium px-3 py-2 cursor-pointer transition-colors"
           >
             <UserPlus className="w-3.5 h-3.5" />
             Add Client
@@ -68,19 +68,19 @@ export function UserManagementPanel({
       </div>
 
       {filtered.length === 0 ? (
-        <div className="glass rounded-2xl border border-[var(--portal-border)] p-10 text-center">
+        <div className="glass border border-[var(--portal-border)] p-10 text-center">
           <p className="text-[var(--portal-text-muted)] text-sm">No organizations match your search.</p>
         </div>
       ) : (
         filtered.map((group) => (
           <div
             key={group.key}
-            className="glass rounded-2xl border border-[var(--portal-border)] p-6"
+            className="glass border border-[var(--portal-border)] p-6"
           >
             <div className="flex items-center justify-between gap-4 flex-wrap mb-4 pb-4 border-b border-[var(--portal-border)]">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#D25124]/10 flex items-center justify-center shrink-0">
-                  <Building2 className="w-4 h-4 text-[#F07A3A]" />
+                <div className="w-8 h-8 bg-[#c69947]/10 flex items-center justify-center shrink-0">
+                  <Building2 className="w-4 h-4 text-[#c69947]" />
                 </div>
                 <div>
                   <OrganizationNameEditor
@@ -97,7 +97,7 @@ export function UserManagementPanel({
               </div>
               <Link
                 href={`?section=requests&org=${encodeURIComponent(group.key)}`}
-                className="flex items-center gap-1.5 text-xs text-[#F07A3A] hover:text-[#D25124] bg-[#D25124]/10 rounded-lg px-3 py-1.5 cursor-pointer transition-colors"
+                className="flex items-center gap-1.5 text-xs text-[#c69947] hover:text-[#c69947] bg-[#c69947]/10 px-3 py-1.5 cursor-pointer transition-colors"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 View All Tickets ({group.ticketCount})
@@ -130,7 +130,7 @@ export function UserManagementPanel({
                   <div className="flex items-center gap-2 shrink-0">
                     <Link
                       href={`/portal/admin/clients/${u.id}`}
-                      className="flex items-center gap-1.5 text-xs text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] rounded-lg px-3 py-1.5 cursor-pointer transition-colors"
+                      className="flex items-center gap-1.5 text-xs text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] px-3 py-1.5 cursor-pointer transition-colors"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       View Client

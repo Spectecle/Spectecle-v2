@@ -78,13 +78,13 @@ export async function POST(req: Request) {
       subject: "Sign in to your Spectecle client portal",
       html: `
         <div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;padding:32px 24px;background:#fff;">
-          <div style="border-left:4px solid #D25124;padding-left:16px;margin-bottom:28px;">
+          <div style="border-left:4px solid #c69947;padding-left:16px;margin-bottom:28px;">
             <h2 style="margin:0 0 4px;color:#111;font-size:20px;">Sign in to Spectecle</h2>
             <p style="margin:0;color:#888;font-size:14px;">Client portal</p>
           </div>
           <p style="color:#333;font-size:15px;line-height:1.6;">Click the button below to sign in. This link expires in 15 minutes and can only be used once.</p>
           <p style="margin:28px 0;">
-            <a href="${link}" style="display:inline-block;background:#D25124;color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;font-weight:600;font-size:15px;">Sign in</a>
+            <a href="${link}" style="display:inline-block;background:#c69947;color:#1e1e1e;text-decoration:none;padding:12px 24px;border-radius:8px;font-weight:600;font-size:15px;">Sign in</a>
           </p>
           <p style="color:#bbb;font-size:12px;">If you didn't request this, you can safely ignore this email.</p>
         </div>

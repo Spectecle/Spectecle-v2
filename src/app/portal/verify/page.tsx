@@ -22,7 +22,7 @@ export default async function VerifyPage({
           <>
             <h1
               className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"
-              style={{ fontFamily: "var(--font-inter)" }}
+              style={{ fontFamily: "var(--font-sans)" }}
             >
               Link expired
             </h1>

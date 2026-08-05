@@ -61,7 +61,7 @@ export function OrganizationNameEditor({
             }}
             placeholder="Business name"
             autoFocus
-            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] rounded-lg px-2 py-1 text-sm outline-none focus:border-[#D25124]/50 w-44"
+            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] px-2 py-1 text-sm outline-none focus:border-[#c69947]/50 w-44"
           />
           <input
             type="text"
@@ -72,13 +72,13 @@ export function OrganizationNameEditor({
               if (e.key === "Escape") setEditing(false);
             }}
             placeholder="Website (optional)"
-            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] rounded-lg px-2 py-1 text-sm outline-none focus:border-[#D25124]/50 w-44"
+            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] px-2 py-1 text-sm outline-none focus:border-[#c69947]/50 w-44"
           />
           <button
             type="button"
             onClick={handleSave}
             disabled={saving}
-            className="p-1.5 rounded-lg text-emerald-400 hover:bg-emerald-500/10 cursor-pointer disabled:opacity-60"
+            className="p-1.5 text-emerald-400 hover:bg-emerald-500/10 cursor-pointer disabled:opacity-60"
           >
             {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
           </button>
@@ -90,7 +90,7 @@ export function OrganizationNameEditor({
               setEditing(false);
               setError("");
             }}
-            className="p-1.5 rounded-lg text-[var(--portal-text-muted)] hover:bg-[var(--portal-border)] cursor-pointer"
+            className="p-1.5 text-[var(--portal-text-muted)] hover:bg-[var(--portal-border)] cursor-pointer"
           >
             <X className="w-3.5 h-3.5" />
           </button>

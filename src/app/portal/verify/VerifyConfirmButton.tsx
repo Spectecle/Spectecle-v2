@@ -31,12 +31,12 @@ export function VerifyConfirmButton({ token, next }: { token: string; next: stri
 
   return (
     <>
-      <div className="w-16 h-16 mx-auto rounded-full bg-[#D25124]/10 flex items-center justify-center mb-6">
-        <ShieldCheck className="w-7 h-7 text-[#F07A3A]" />
+      <div className="w-16 h-16 mx-auto bg-[#c69947]/10 flex items-center justify-center mb-6">
+        <ShieldCheck className="w-7 h-7 text-[#c69947]" />
       </div>
       <h1
         className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"
-        style={{ fontFamily: "var(--font-inter)" }}
+        style={{ fontFamily: "var(--font-sans)" }}
       >
         Confirm sign-in
       </h1>
@@ -53,13 +53,13 @@ export function VerifyConfirmButton({ token, next }: { token: string; next: stri
       <button
         onClick={handleConfirm}
         disabled={status === "submitting"}
-        className="btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+        className="btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "submitting" ? (
           <>
             <span className="relative z-10">Signing in...</span>
             <motion.div
-              className="relative z-10 w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
+              className="relative z-10 w-4 h-4 border-2 border-white/30 border-t-white"
               animate={{ rotate: 360 }}
               transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
             />

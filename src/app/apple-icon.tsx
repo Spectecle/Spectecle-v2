@@ -11,7 +11,7 @@ export default function AppleIcon() {
         style={{
           width: 180,
           height: 180,
-          background: "#040408",
+          background: "#1e1e1e",
           borderRadius: 40,
           display: "flex",
           position: "relative",
@@ -21,26 +21,26 @@ export default function AppleIcon() {
         {/* Top-right — small */}
         <div style={{
           position: "absolute", top: 12, right: 12,
-          width: 50, height: 50, borderRadius: 11,
-          background: "linear-gradient(135deg, #F07A3A 0%, #B83A10 100%)",
+          width: 50, height: 50,
+          background: "#c69947",
         }} />
         {/* Upper-center — medium */}
         <div style={{
           position: "absolute", top: 38, left: 62,
-          width: 63, height: 63, borderRadius: 14,
-          background: "linear-gradient(135deg, #F07A3A 0%, #B83A10 100%)",
+          width: 63, height: 63,
+          background: "#c69947",
         }} />
         {/* Left — large */}
         <div style={{
           position: "absolute", top: 62, left: 6,
-          width: 84, height: 84, borderRadius: 20,
-          background: "linear-gradient(135deg, #F07A3A 0%, #B83A10 100%)",
+          width: 84, height: 84,
+          background: "#c69947",
         }} />
         {/* Bottom-right — medium */}
         <div style={{
           position: "absolute", bottom: 12, right: 12,
-          width: 56, height: 56, borderRadius: 13,
-          background: "linear-gradient(135deg, #F07A3A 0%, #B83A10 100%)",
+          width: 56, height: 56,
+          background: "#c69947",
         }} />
       </div>
     ),

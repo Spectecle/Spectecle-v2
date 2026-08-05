@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
@@ -40,52 +43,98 @@ const socials = [
   { label: "GitHub", href: "https://github.com/Spectecle", Icon: IconGithub },
 ];
 
+function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  if (status === "success") {
+    return <p className="text-sm text-[#c69947]">You&apos;re subscribed. Thank you.</p>;
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex items-stretch">
+      <input
+        type="email"
+        required
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Your email address"
+        className="flex-1 min-w-0 bg-transparent border-b border-[var(--site-border)] px-0 py-2 text-sm text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] focus:border-[#c69947] outline-none"
+      />
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className="ml-4 shrink-0 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer disabled:opacity-60"
+      >
+        {status === "loading" ? "..." : "Subscribe"}
+      </button>
+    </form>
+  );
+}
+
 export default function Footer() {
   return (
-    <footer className="bg-[#040408] border-t border-white/6">
+    <footer className="bg-[var(--site-bg)] border-t border-[var(--site-border)]">
       {/* CTA Strip */}
-      <div className="border-b border-white/6">
-        <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="border-b border-[var(--site-border)]">
+        <div className="max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h2
-              className="text-3xl md:text-4xl font-bold text-white"
-              style={{ fontFamily: "var(--font-inter)" }}
+              className="text-4xl md:text-5xl font-light text-[var(--site-text-primary)]"
+              style={{ fontFamily: "var(--font-serif)" }}
             >
-              Ready to build something{" "}
-              <span className="gradient-text">extraordinary?</span>
+              Ready to build something <span className="italic text-[#c69947]">extraordinary?</span>
             </h2>
-            <p className="mt-2 text-slate-400 text-base">
+            <p className="mt-3 text-[var(--site-text-secondary)] text-base">
               Let&apos;s discuss your project and create something remarkable together.
             </p>
           </div>
           <Link
             href="/contact"
-            className="btn-primary flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold shrink-0 cursor-pointer"
+            className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1 shrink-0"
           >
-            <span>Start a Project</span>
-            <ArrowUpRight className="w-4 h-4 relative z-10" />
+            Start a Project
+            <ArrowUpRight className="w-5 h-5" />
           </Link>
         </div>
       </div>
 
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
           {/* Brand */}
-          <div className="md:col-span-1">
+          <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-2 cursor-pointer group">
               <LogoMark className="w-7 h-8" />
-              <span
-                className="text-xl font-bold tracking-tight text-white"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
+              <span className="text-xl font-bold tracking-tight text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-sans)" }}>
                 Spectecle
               </span>
             </Link>
-            <p className="mt-4 text-slate-500 text-sm leading-relaxed max-w-xs">
+            <p className="mt-4 text-[var(--site-text-muted)] text-sm leading-relaxed max-w-xs">
               Premium web design, SEO & AI automation agency building digital experiences that convert and scale.
             </p>
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-6 flex items-center gap-4">
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -93,29 +142,26 @@ export default function Footer() {
                   aria-label={s.label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg flex items-center justify-center border border-white/8 text-slate-500 hover:text-white hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer"
+                  className="text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors duration-200 cursor-pointer"
                 >
                   <s.Icon />
                 </a>
               ))}
             </div>
+
+            <h3 className="mt-10 text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-3">
+              Newsletter
+            </h3>
+            <NewsletterForm />
           </div>
 
           {/* Services */}
           <div>
-            <h3
-              className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Services
-            </h3>
+            <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Services</h3>
             <ul className="space-y-3">
               {services.map((s) => (
                 <li key={s.label}>
-                  <Link
-                    href={s.href}
-                    className="text-sm text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
-                  >
+                  <Link href={s.href} className="text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors duration-200 cursor-pointer">
                     {s.label}
                   </Link>
                 </li>
@@ -125,19 +171,11 @@ export default function Footer() {
 
           {/* Pages */}
           <div>
-            <h3
-              className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Company
-            </h3>
+            <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Company</h3>
             <ul className="space-y-3">
               {pages.map((p) => (
                 <li key={p.label}>
-                  <Link
-                    href={p.href}
-                    className="text-sm text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
-                  >
+                  <Link href={p.href} className="text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors duration-200 cursor-pointer">
                     {p.label}
                   </Link>
                 </li>
@@ -147,46 +185,31 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3
-              className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Get in Touch
-            </h3>
+            <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Get in Touch</h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="mailto:hello@spectecle.com"
-                  className="text-sm text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
-                >
+                <a href="mailto:hello@spectecle.com" className="text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors duration-200 cursor-pointer">
                   hello@spectecle.com
                 </a>
               </li>
               <li>
-                <a
-                  href="tel:+13133534105"
-                  className="text-sm text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
-                >
+                <a href="tel:+13133534105" className="text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors duration-200 cursor-pointer">
                   +1 (313) 353-4105
                 </a>
               </li>
-              <li className="text-sm text-slate-500">
-                Serving Businesses Nationwide
-              </li>
+              <li className="text-sm text-[var(--site-text-secondary)]">Serving Businesses Nationwide</li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-white/6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-600">
+        <div className="mt-16 pt-8 border-t border-[var(--site-border)] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-[var(--site-text-muted)]">
             © {new Date().getFullYear()} Spectecle SEO & Web Design LLC. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-xs text-slate-600 hover:text-slate-400 transition-colors cursor-pointer">
-              Privacy Policy
-            </Link>
-          </div>
+          <Link href="/privacy" className="text-xs text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer">
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronRight, Bot, RefreshCw, Layers, Code2, BarChart3, Shield, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, ChevronRight, CheckCircle2 } from "lucide-react";
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -19,12 +19,12 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 }
 
 const features = [
-  { icon: Bot, label: "Custom AI Agents", desc: "LLM-powered agents built for your specific business tasks — not a generic chatbot plugin dropped on your site." },
-  { icon: RefreshCw, label: "Workflow Automation", desc: "End-to-end process automation using n8n, Make, Zapier, and custom APIs. We build around your existing tools." },
-  { icon: Layers, label: "CRM & System Integrations", desc: "Seamless data flow between your platforms — no silos, no manual entry, no copy-pasting between tabs." },
-  { icon: Code2, label: "AI Chatbot Development", desc: "Intelligent, context-aware bots for customer support, sales qualification, and intake — built on your actual services." },
-  { icon: BarChart3, label: "Data & Analytics Pipelines", desc: "Automated reporting and real-time insight generation from your business data, delivered on a schedule." },
-  { icon: Shield, label: "AI Strategy & Consulting", desc: "A practical, honest assessment of where AI will actually save you time and money — not a buzzword pitch." },
+  { label: "Custom AI Agents", desc: "LLM-powered agents built for your specific business tasks, not a generic chatbot plugin dropped on your site." },
+  { label: "Workflow Automation", desc: "End-to-end process automation using n8n, Make, Zapier, and custom APIs. We build around your existing tools." },
+  { label: "CRM & System Integrations", desc: "Seamless data flow between your platforms. No silos, no manual entry, no copy-pasting between tabs." },
+  { label: "AI Chatbot Development", desc: "Intelligent, context-aware bots for customer support, sales qualification, and intake, built on your actual services." },
+  { label: "Data & Analytics Pipelines", desc: "Automated reporting and real-time insight generation from your business data, delivered on a schedule." },
+  { label: "AI Strategy & Consulting", desc: "A practical, honest assessment of where AI will actually save you time and money, not a buzzword pitch." },
 ];
 
 const deliverables = [
@@ -43,11 +43,11 @@ const faqs = [
   },
   {
     q: "What's the difference between a custom AI agent and a chatbot plugin?",
-    a: "A chatbot plugin is a generic, pre-built tool that answers basic FAQ-style questions. A custom AI agent is built specifically for your business — trained on your services, integrated with your CRM, and capable of handling complex, multi-step tasks. The difference in capability and outcome is significant.",
+    a: "A chatbot plugin is a generic, pre-built tool that answers basic FAQ-style questions. A custom AI agent is built specifically for your business: trained on your services, integrated with your CRM, and capable of handling complex, multi-step tasks. The difference in capability and outcome is significant.",
   },
   {
     q: "What tools do you use for workflow automation?",
-    a: "We build with n8n, Make, Zapier, and custom API integrations depending on what best fits your stack. For AI agents, we use OpenAI and other LLM providers. Every build is designed around your existing tools — we don't force platform switches.",
+    a: "We build with n8n, Make, Zapier, and custom API integrations depending on what best fits your stack. For AI agents, we use OpenAI and other LLM providers. Every build is designed around your existing tools. We don't force platform switches.",
   },
   {
     q: "How long does it take to build an AI automation system?",
@@ -59,88 +59,60 @@ export default function AIAutomationPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="relative pt-40 pb-24 px-6 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.1) 0%, transparent 70%)" }} />
-        <div className="absolute inset-0 dot-pattern opacity-30 pointer-events-none" />
-
-        <div className="relative max-w-4xl mx-auto">
-          <nav className="flex items-center gap-2 text-xs text-slate-500 mb-8" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+      <section className="pt-40 pb-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <nav className="flex items-center gap-2 text-xs text-[var(--site-text-muted)] mb-8" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-[var(--site-text-primary)] transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
-            <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+            <Link href="/services" className="hover:text-[var(--site-text-primary)] transition-colors">Services</Link>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-slate-400">AI & Automation</span>
+            <span className="text-[var(--site-text-secondary)]">AI & Automation</span>
           </nav>
 
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-xs font-semibold text-[#F07A3A] uppercase tracking-widest"
-          >
+          <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
             Serving Clients Nationwide
-          </motion.span>
+          </span>
 
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-3 text-5xl md:text-6xl xl:text-7xl font-bold text-white leading-tight"
-            style={{ fontFamily: "var(--font-inter)" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            style={{ fontFamily: "var(--font-serif)" }}
           >
-            AI &amp; Workflow
-            <br />
-            <span className="gradient-text">Automation</span>
+            AI & Workflow <span className="italic text-[#c69947]">Automation.</span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-6 text-slate-400 text-lg md:text-xl max-w-2xl leading-relaxed"
-          >
-            Custom AI agents and workflow automation built from scratch — trained on your services, integrated with your systems, and tested until they actually work. Not a chatbot plugin.
-          </motion.p>
+          <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl max-w-2xl leading-relaxed">
+            Custom AI agents and workflow automation built from scratch: trained on your services, integrated with your systems, and tested until they actually work. Not a chatbot plugin.
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-8 flex flex-col sm:flex-row gap-4"
-          >
-            <Link href="/contact" className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold cursor-pointer">
-              <span>Get a Free Assessment</span>
-              <ArrowUpRight className="w-4 h-4 relative z-10" />
+          <div className="mt-8 flex flex-wrap gap-8">
+            <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
+              Get a Free Assessment
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
-            <Link href="/work" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold text-slate-300 hover:text-white glass border border-white/8 hover:border-white/15 transition-all duration-300 cursor-pointer">
+            <Link href="/work" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
               View Our Work <ChevronRight className="w-4 h-4" />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ── FEATURES ─────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-white/6 bg-[#09090f]">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-inter)" }}>
-              What&apos;s included
-            </h2>
-            <p className="text-slate-400 text-base max-w-xl mb-12">
-              From scoping to deployment — every automation is built, tested, and documented before handoff.
+      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="mb-14">
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>What&apos;s included.</h2>
+            <p className="text-[var(--site-text-secondary)] text-base max-w-xl mt-3">
+              From scoping to deployment, every automation is built, tested, and documented before handoff.
             </p>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
             {features.map((f, i) => (
               <Reveal key={f.label} delay={i * 0.07}>
-                <div className="glass rounded-xl p-6 border border-white/6 hover:border-[#D25124]/25 transition-colors duration-300 h-full">
-                  <div className="w-10 h-10 rounded-lg bg-[#D25124]/10 flex items-center justify-center mb-4">
-                    <f.icon className="w-5 h-5 text-[#F07A3A]" />
-                  </div>
-                  <h3 className="text-white font-semibold mb-2 text-sm">{f.label}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
-                </div>
+                <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
+                <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{f.desc}</p>
               </Reveal>
             ))}
           </div>
@@ -148,73 +120,66 @@ export default function AIAutomationPage() {
       </section>
 
       {/* ── DELIVERABLES ─────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-white/6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
           <Reveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-inter)" }}>
-              What you walk away with
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
+              What you walk away with.
             </h2>
-            <p className="text-slate-400 text-base mb-8">
+            <p className="text-[var(--site-text-secondary)] text-base mb-8">
               A working system, full documentation, and a team that knows how to use it.
             </p>
             <ul className="space-y-3">
               {deliverables.map((d) => (
-                <li key={d} className="flex items-center gap-3 text-sm text-slate-300">
-                  <CheckCircle2 className="w-4 h-4 text-[#F07A3A] shrink-0" />
+                <li key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
+                  <CheckCircle2 className="w-4 h-4 text-[#c69947] shrink-0" />
                   {d}
                 </li>
               ))}
             </ul>
             <div className="mt-10">
-              <Link href="/contact" className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold cursor-pointer">
-                <span>Start Your Automation Project</span>
-                <ArrowUpRight className="w-4 h-4 relative z-10" />
+              <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
+                Start Your Automation Project
+                <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="glass rounded-2xl border border-white/6 p-8">
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                We build custom AI agents and workflow automation systems for small and mid-size businesses ready to gain a real competitive edge. Using OpenAI, n8n, and custom API integrations, we help businesses eliminate repetitive tasks, automate customer interactions, and unlock operational capacity — without adding headcount.
-              </p>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Every system is built from scratch and tested against your real workflows before we hand it off.
-              </p>
-              <div className="mt-8 pt-6 border-t border-white/6 grid grid-cols-2 gap-4">
-                {[
-                  { value: "1–6 wks", label: "Build timeline" },
-                  { value: "n8n / Make", label: "Primary tools" },
-                  { value: "5–20 hrs", label: "Avg. weekly time saved" },
-                  { value: "24hr", label: "Response guarantee" },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <div className="text-lg font-bold gradient-text" style={{ fontFamily: "var(--font-inter)" }}>{s.value}</div>
-                    <div className="text-xs text-slate-500 mt-0.5">{s.label}</div>
-                  </div>
-                ))}
-              </div>
+            <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed mb-6">
+              We build custom AI agents and workflow automation systems for small and mid-size businesses ready to gain a real competitive edge. Using OpenAI, n8n, and custom API integrations, we help businesses eliminate repetitive tasks, automate customer interactions, and get more done without adding headcount.
+            </p>
+            <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">
+              Every system is built from scratch and tested against your real workflows before we hand it off.
+            </p>
+            <div className="mt-8 pt-6 border-t border-[var(--site-border)] grid grid-cols-2 gap-6">
+              {[
+                { value: "1–6 wks", label: "Build timeline" },
+                { value: "n8n / Make", label: "Primary tools" },
+                { value: "5–20 hrs", label: "Avg. weekly time saved" },
+                { value: "24hr", label: "Response guarantee" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div className="text-lg font-light text-[#c69947]" style={{ fontFamily: "var(--font-serif)" }}>{s.value}</div>
+                  <div className="text-xs text-[var(--site-text-muted)] mt-0.5">{s.label}</div>
+                </div>
+              ))}
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* ── FAQ ──────────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-white/6 bg-[#09090f]">
+      <section className="py-24 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12" style={{ fontFamily: "var(--font-inter)" }}>
-              Common questions
-            </h2>
+          <Reveal className="mb-14">
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Common questions.</h2>
           </Reveal>
-          <div className="space-y-4">
+          <div className="divide-y divide-[var(--site-border)]">
             {faqs.map((faq, i) => (
               <Reveal key={i} delay={i * 0.05}>
-                <div className="glass rounded-2xl p-7 border border-white/6 hover:border-[#D25124]/15 transition-colors duration-300">
-                  <h3 className="text-white font-semibold mb-3 flex items-start gap-3">
-                    <span className="text-[#F07A3A] shrink-0 font-bold">Q.</span>
-                    {faq.q}
-                  </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed pl-6">{faq.a}</p>
+                <div className="py-7">
+                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-3">{faq.q}</h3>
+                  <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">{faq.a}</p>
                 </div>
               </Reveal>
             ))}
@@ -223,23 +188,21 @@ export default function AIAutomationPage() {
       </section>
 
       {/* ── RELATED SERVICES ─────────────────────────── */}
-      <section className="py-20 px-6 border-t border-white/6">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <h2 className="text-2xl font-bold text-white mb-8" style={{ fontFamily: "var(--font-inter)" }}>
-              Pair it with
-            </h2>
+      <section className="py-20 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="mb-8">
+            <h2 className="text-2xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Pair it with</h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 gap-5 max-w-2xl">
+          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8 max-w-2xl">
             {[
               { title: "Web Design & Development", desc: "A fast, high-converting website to capture the leads your automation will follow up on.", href: "/services/web-design-detroit" },
               { title: "SEO & Digital Marketing", desc: "Drive the organic traffic that feeds your AI-powered intake and follow-up systems.", href: "/services/seo-agency-detroit" },
             ].map((s) => (
               <Reveal key={s.title}>
-                <Link href={s.href} className="group glass rounded-xl p-6 border border-white/6 hover:border-[#D25124]/25 transition-all duration-300 block">
-                  <h3 className="text-white font-semibold mb-2 group-hover:text-[#F07A3A] transition-colors">{s.title}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">{s.desc}</p>
-                  <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-[#F07A3A]">
+                <Link href={s.href} className="group block">
+                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#c69947] transition-colors">{s.title}</h3>
+                  <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{s.desc}</p>
+                  <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#c69947]">
                     Learn more <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
                 </Link>
@@ -250,19 +213,17 @@ export default function AIAutomationPage() {
       </section>
 
       {/* ── FROM THE BLOG ────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-white/6">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: "var(--font-inter)" }}>
-              From the Blog
-            </h2>
-            <p className="text-slate-500 text-sm mb-8">Real-world automation strategies from our client work.</p>
+      <section className="py-20 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="mb-8">
+            <h2 className="text-2xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>From the Journal</h2>
+            <p className="text-[var(--site-text-muted)] text-sm mt-2">Real-world automation strategies from our client work.</p>
           </Reveal>
-          <div className="grid sm:grid-cols-2 gap-5 max-w-3xl">
+          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8 max-w-3xl">
             {[
               {
                 title: "AI Business Automation in 2026: What Michigan Companies Are Actually Using It For",
-                excerpt: "The conversation around AI has been dominated by hype. Here's what Michigan businesses are actually deploying — and what's genuinely delivering measurable ROI.",
+                excerpt: "The conversation around AI has been dominated by hype. Here's what Michigan businesses are actually deploying, and what's genuinely delivering measurable ROI.",
                 href: "/blog/ai-business-automation-michigan",
                 category: "AI & Automation",
                 readTime: "7 min read",
@@ -276,17 +237,14 @@ export default function AIAutomationPage() {
               },
             ].map((post) => (
               <Reveal key={post.href}>
-                <Link href={post.href} className="group glass rounded-xl p-6 border border-white/6 hover:border-[#D25124]/25 transition-all duration-300 block h-full">
+                <Link href={post.href} className="group block h-full">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-semibold text-[#F07A3A]">{post.category}</span>
-                    <span className="text-slate-700">·</span>
-                    <span className="text-xs text-slate-600">{post.readTime}</span>
+                    <span className="text-xs font-semibold text-[#c69947]">{post.category}</span>
+                    <span className="text-[var(--site-text-muted)]">·</span>
+                    <span className="text-xs text-[var(--site-text-muted)]">{post.readTime}</span>
                   </div>
-                  <h3 className="text-white font-semibold text-sm mb-2 group-hover:text-[#F07A3A] transition-colors leading-snug" style={{ fontFamily: "var(--font-inter)" }}>{post.title}</h3>
-                  <p className="text-slate-500 text-xs leading-relaxed">{post.excerpt}</p>
-                  <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-[#F07A3A]">
-                    Read article <ArrowUpRight className="w-3 h-3" />
-                  </div>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold text-sm mb-2 group-hover:text-[#c69947] transition-colors leading-snug">{post.title}</h3>
+                  <p className="text-[var(--site-text-muted)] text-xs leading-relaxed">{post.excerpt}</p>
                 </Link>
               </Reveal>
             ))}
@@ -295,24 +253,19 @@ export default function AIAutomationPage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-white/6 bg-[#09090f]">
+      <section className="py-32 px-6 border-t border-[var(--site-border)]">
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: "var(--font-inter)" }}>
-              Nationwide reach.
-              <br />
-              <span className="gradient-text">Remote-first. Results-driven.</span>
+            <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              Nationwide reach. <span className="italic text-[#c69947]">Results-driven.</span>
             </h2>
-            <p className="mt-5 text-slate-400 text-lg max-w-xl mx-auto">
+            <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free 30-minute call. We&apos;ll identify exactly where automation would save you the most time and what it would cost to build.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact" className="btn-primary flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-semibold cursor-pointer">
-                <span>Book a Free Strategy Call</span>
-                <ArrowUpRight className="w-5 h-5 relative z-10" />
-              </Link>
-              <Link href="/work" className="flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-semibold text-slate-300 hover:text-white glass hover:border-white/15 border border-white/8 transition-all duration-300 cursor-pointer">
-                See Our Work <ChevronRight className="w-4 h-4" />
+            <div className="mt-10">
+              <Link href="/contact" className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1">
+                Book a Free Strategy Call
+                <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>
           </div>

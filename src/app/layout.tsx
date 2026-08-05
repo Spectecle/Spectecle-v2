@@ -1,13 +1,28 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import ConditionalShell from "@/components/ConditionalShell";
 import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({
-  variable: "--font-inter",
+const generalSans = localFont({
+  variable: "--font-sans",
+  display: "swap",
+  src: [
+    { path: "../fonts/general-sans/GeneralSans-extralight.woff2", weight: "200", style: "normal" },
+    { path: "../fonts/general-sans/GeneralSans-light.woff2", weight: "300", style: "normal" },
+    { path: "../fonts/general-sans/GeneralSans-regular.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/general-sans/GeneralSans-medium.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/general-sans/GeneralSans-semibold.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/general-sans/GeneralSans-bold.woff2", weight: "700", style: "normal" },
+  ],
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const BASE_URL = "https://spectecle.com";
@@ -144,7 +159,7 @@ const jsonLd = {
       "@id": `${BASE_URL}/#website`,
       url: BASE_URL,
       name: "Spectecle SEO & Web Design",
-      description: "Premium web design, SEO & AI automation agency — serving businesses nationwide",
+      description: "Premium web design, SEO & AI automation agency, serving businesses nationwide",
       publisher: { "@id": `${BASE_URL}/#organization` },
       inLanguage: "en-US",
     },
@@ -155,14 +170,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${generalSans.variable} ${playfairDisplay.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col antialiased">
+      <body className="min-h-screen flex flex-col antialiased" suppressHydrationWarning>
         <div className="noise-overlay" aria-hidden="true" />
         <ConditionalShell>{children}</ConditionalShell>
         <Analytics />

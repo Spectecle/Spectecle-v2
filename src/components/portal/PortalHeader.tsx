@@ -16,7 +16,7 @@ export async function PortalHeader() {
             <LogoMark className="w-6 h-7" />
             <span
               className="text-base font-bold text-[var(--portal-text-primary)]"
-              style={{ fontFamily: "var(--font-inter)" }}
+              style={{ fontFamily: "var(--font-sans)" }}
             >
               Spectecle
             </span>

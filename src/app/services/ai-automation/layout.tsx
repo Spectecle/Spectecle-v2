@@ -56,7 +56,7 @@ const jsonLd = [
         name: "What's the difference between a custom AI agent and a chatbot plugin?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "A chatbot plugin is a generic, pre-built tool that answers basic FAQ-style questions. A custom AI agent is built specifically for your business — trained on your services, integrated with your CRM, and capable of handling complex, multi-step tasks autonomously. The difference in capability is significant.",
+          text: "A chatbot plugin is a generic, pre-built tool that answers basic FAQ-style questions. A custom AI agent is built specifically for your business: trained on your services, integrated with your CRM, and capable of handling complex, multi-step tasks autonomously. The difference in capability is significant.",
         },
       },
       {
@@ -64,7 +64,7 @@ const jsonLd = [
         name: "What tools do you use for workflow automation?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "We build with n8n, Make, Zapier, and custom API integrations depending on what best fits your stack. For AI agents, we use OpenAI and other LLM providers. Every build is designed around your existing tools — we don't force you to switch platforms.",
+          text: "We build with n8n, Make, Zapier, and custom API integrations depending on what best fits your stack. For AI agents, we use OpenAI and other LLM providers. Every build is designed around your existing tools. We don't force you to switch platforms.",
         },
       },
       {

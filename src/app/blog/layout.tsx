@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 const BASE_URL = "https://spectecle.com";
 
 export const metadata: Metadata = {
-  title: "Blog — Web Design, SEO & AI Insights",
+  title: "Blog: Web Design, SEO & AI Insights",
   description:
     "Actionable guides on web design, local SEO, and AI automation for small businesses nationwide. Learn how photographers, contractors, law firms, beauty studios, and e-commerce shops grow with digital marketing.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "web design tips",
   ],
   openGraph: {
-    title: "Blog | Spectecle SEO & Web Design — AI & SEO Insights",
+    title: "Blog | Spectecle SEO & Web Design: AI & SEO Insights",
     description:
       "Actionable guides on web design, local SEO, and AI automation for businesses nationwide.",
     url: `${BASE_URL}/blog`,
@@ -33,7 +33,7 @@ const jsonLd = {
     {
       "@type": "Blog",
       "@id": `${BASE_URL}/blog`,
-      name: "Spectecle Blog — Web Design, SEO & AI Insights",
+      name: "Spectecle Blog: Web Design, SEO & AI Insights",
       description:
         "Actionable guides on web design, local SEO, and AI automation for small businesses nationwide.",
       url: `${BASE_URL}/blog`,

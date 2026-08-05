@@ -46,16 +46,16 @@ export function ConfirmDialog({
             transition={{ duration: 0.15 }}
             role="alertdialog"
             aria-modal="true"
-            className="relative w-full max-w-sm bg-[var(--portal-card)] border border-[var(--portal-border-strong)] rounded-2xl p-6 shadow-2xl"
+            className="relative w-full max-w-sm bg-[var(--portal-card)] border border-[var(--portal-border-strong)] p-6 shadow-2xl"
           >
             <div className="flex items-start gap-3 mb-5">
               <div
                 className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                  destructive ? "bg-rose-500/10" : "bg-[#D25124]/10"
+                  destructive ? "bg-rose-500/10" : "bg-[#c69947]/10"
                 }`}
               >
                 <AlertTriangle
-                  className={`w-4.5 h-4.5 ${destructive ? "text-rose-400" : "text-[#F07A3A]"}`}
+                  className={`w-4.5 h-4.5 ${destructive ? "text-rose-400" : "text-[#c69947]"}`}
                 />
               </div>
               <div>
@@ -69,7 +69,7 @@ export function ConfirmDialog({
               <button
                 type="button"
                 onClick={onCancel}
-                className="text-xs font-medium text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] rounded-lg px-3 py-2 cursor-pointer transition-colors"
+                className="text-xs font-medium text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] px-3 py-2 cursor-pointer transition-colors"
               >
                 {cancelLabel}
               </button>
@@ -80,7 +80,7 @@ export function ConfirmDialog({
                 className={`text-xs font-medium rounded-lg px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors ${
                   destructive
                     ? "bg-rose-500/15 text-rose-400 hover:bg-rose-500/25"
-                    : "bg-[#D25124]/15 text-[#F07A3A] hover:bg-[#D25124]/25"
+                    : "bg-[#c69947]/15 text-[#c69947] hover:bg-[#c69947]/25"
                 }`}
               >
                 {loading ? "Working…" : confirmLabel}

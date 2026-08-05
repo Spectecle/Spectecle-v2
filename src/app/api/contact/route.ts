@@ -78,7 +78,7 @@ export async function POST(req: Request) {
 
     const rows: [string, string][] = [
       ["Name", esc(name)],
-      ["Email", `<a href="mailto:${esc(email)}" style="color:#D25124;">${esc(email)}</a>`],
+      ["Email", `<a href="mailto:${esc(email)}" style="color:#c69947;">${esc(email)}</a>`],
       ...(company ? [["Company", esc(company)] as [string, string]] : []),
       ...(service ? [["Service", esc(service)] as [string, string]] : []),
       ...(budget ? [["Budget", esc(budget)] as [string, string]] : []),
@@ -98,10 +98,10 @@ export async function POST(req: Request) {
       from: FROM,
       to: [TO],
       replyTo: email,
-      subject: `New inquiry from ${name}${service ? ` — ${service}` : ""}`,
+      subject: `New inquiry from ${name}${service ? ` (${service})` : ""}`,
       html: `
         <div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;padding:32px 24px;background:#fff;">
-          <div style="border-left:4px solid #D25124;padding-left:16px;margin-bottom:28px;">
+          <div style="border-left:4px solid #c69947;padding-left:16px;margin-bottom:28px;">
             <h2 style="margin:0 0 4px;color:#111;font-size:20px;">New Project Inquiry</h2>
             <p style="margin:0;color:#888;font-size:14px;">via spectecle.com/contact</p>
           </div>

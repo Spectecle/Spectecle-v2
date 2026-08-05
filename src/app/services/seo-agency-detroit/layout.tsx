@@ -4,7 +4,7 @@ const BASE_URL = "https://spectecle.com";
 const PAGE_URL = `${BASE_URL}/services/seo-agency-detroit`;
 
 export const metadata: Metadata = {
-  title: "SEO Agency Detroit, MI — Local & Technical SEO",
+  title: "SEO Agency Detroit, MI: Local & Technical SEO",
   description:
     "Detroit SEO agency specializing in local search, technical SEO, and content strategy. Page-one rankings for Michigan businesses that need to be found.",
   keywords: [
@@ -32,7 +32,7 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "SEO & Digital Marketing — Detroit, Michigan",
+    name: "SEO & Digital Marketing: Detroit, Michigan",
     provider: { "@id": `${BASE_URL}/#organization` },
     areaServed: [
       { "@type": "City", name: "Detroit" },
@@ -60,7 +60,7 @@ const jsonLd = [
         name: "What is local SEO and why does my Detroit business need it?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Local SEO optimizes your business to appear in Google searches with geographic intent — 'web designer near me' or 'attorney Detroit.' It includes Google Business Profile optimization, local citations, and geo-targeted content. For any business serving a local area, it's the highest-ROI marketing channel available.",
+          text: "Local SEO optimizes your business to appear in Google searches with geographic intent, like 'web designer near me' or 'attorney Detroit.' It includes Google Business Profile optimization, local citations, and geo-targeted content. For any business serving a local area, it's the highest-ROI marketing channel available.",
         },
       },
       {
@@ -68,7 +68,7 @@ const jsonLd = [
         name: "Do you offer Google Business Profile optimization in Detroit?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Google Business Profile optimization is a core part of our local SEO service. We handle category selection, service descriptions, photo optimization, Q&A, and review strategy — the factors that determine whether you appear in the local map pack.",
+          text: "Yes. Google Business Profile optimization is a core part of our local SEO service. We handle category selection, service descriptions, photo optimization, Q&A, and review strategy: the factors that determine whether you appear in the local map pack.",
         },
       },
       {
@@ -76,7 +76,7 @@ const jsonLd = [
         name: "How do you measure SEO success?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "We track keyword rankings, organic traffic, click-through rates, and most importantly — leads and revenue attributed to organic search. Every month you receive a clear report with the metrics that actually matter to your business.",
+          text: "We track keyword rankings, organic traffic, click-through rates, and most importantly, leads and revenue attributed to organic search. Every month you receive a clear report with the metrics that actually matter to your business.",
         },
       },
     ],

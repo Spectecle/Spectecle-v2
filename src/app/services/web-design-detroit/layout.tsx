@@ -6,7 +6,7 @@ const PAGE_URL = `${BASE_URL}/services/web-design-detroit`;
 export const metadata: Metadata = {
   title: "Web Design & Development Detroit, MI",
   description:
-    "Custom web design and development for Detroit businesses. Next.js, React, Core Web Vitals — sites built to rank on Google and convert visitors into customers.",
+    "Custom web design and development for Detroit businesses. Next.js, React, Core Web Vitals: sites built to rank on Google and convert visitors into customers.",
   keywords: [
     "web design Detroit",
     "web designer Detroit Michigan",
@@ -32,7 +32,7 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Web Design & Development — Detroit, Michigan",
+    name: "Web Design & Development: Detroit, Michigan",
     provider: { "@id": `${BASE_URL}/#organization` },
     areaServed: [
       { "@type": "City", name: "Detroit" },
@@ -52,7 +52,7 @@ const jsonLd = [
         name: "How much does a website cost for a small business in Detroit?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Web design costs vary based on scope and goals. Simple brochure sites, custom web applications, and e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call — no hidden fees, no surprises.",
+          text: "Web design costs vary based on scope and goals. Simple brochure sites, custom web applications, and e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call. No hidden fees, no surprises.",
         },
       },
       {
@@ -68,7 +68,7 @@ const jsonLd = [
         name: "Do you build websites with SEO built in?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes — every site we build includes on-page SEO from day one: proper heading structure, schema markup, fast load times, and Core Web Vitals optimization. SEO is not an afterthought.",
+          text: "Yes. Every site we build includes on-page SEO from day one: proper heading structure, schema markup, fast load times, and Core Web Vitals optimization. SEO is not an afterthought.",
         },
       },
       {

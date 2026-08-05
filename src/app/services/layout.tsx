@@ -82,7 +82,7 @@ const jsonLd = {
           name: "Do you offer local SEO services?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes — we help single-location and multi-location businesses show up in local search results anywhere in the country. We also work remotely with clients across the U.S. and internationally.",
+            text: "Yes, we help single-location and multi-location businesses show up in local search results anywhere in the country. We also work remotely with clients across the U.S. and internationally.",
           },
         },
         {
@@ -90,7 +90,7 @@ const jsonLd = {
           name: "How much does a website cost for a small business?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Web design costs vary based on scope, complexity, and your goals. Simple brochure sites, custom web applications, and full e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call — no hidden fees, no surprises.",
+            text: "Web design costs vary based on scope, complexity, and your goals. Simple brochure sites, custom web applications, and full e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call. No hidden fees, no surprises.",
           },
         },
         {
@@ -114,7 +114,7 @@ const jsonLd = {
           name: "Do you work with clients remotely?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Absolutely — the majority of our work is done remotely with clients across the United States and internationally. Our process is built for seamless remote collaboration, from kickoff calls to launch. Distance is never a barrier.",
+            text: "Absolutely. The majority of our work is done remotely with clients across the United States and internationally. Our process is built for seamless remote collaboration, from kickoff calls to launch. Distance is never a barrier.",
           },
         },
         {
@@ -122,7 +122,7 @@ const jsonLd = {
           name: "Can you take over an existing website or help with a redesign?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. We conduct a full audit of your existing site — performance, SEO health, UX, and conversion rate — then either optimize it in place or migrate it to a better platform. Many clients come to us with a site that just isn't performing and leave with one that does.",
+            text: "Yes. We conduct a full audit of your existing site (performance, SEO health, UX, and conversion rate), then either optimize it in place or migrate it to a better platform. Many clients come to us with a site that just isn't performing and leave with one that does.",
           },
         },
         {
@@ -130,7 +130,7 @@ const jsonLd = {
           name: "What's included in your ongoing care plans?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Care plans include performance monitoring, security patches, content updates, uptime monitoring, and priority support with fast response times. Think of us as your dedicated on-call digital team — without the overhead of a full-time hire.",
+            text: "Care plans include performance monitoring, security patches, content updates, uptime monitoring, and priority support with fast response times. Think of us as your dedicated on-call digital team, without the overhead of a full-time hire.",
           },
         },
       ],

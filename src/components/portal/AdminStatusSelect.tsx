@@ -41,7 +41,7 @@ export function AdminStatusSelect({
       value={value}
       onChange={handleChange}
       disabled={isPending}
-      className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] rounded-lg px-3 py-1.5 text-xs cursor-pointer outline-none focus:border-[#D25124]/50 disabled:opacity-60"
+      className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-3 py-1.5 text-xs cursor-pointer outline-none focus:border-[#c69947]/50 disabled:opacity-60"
     >
       {STATUS_OPTIONS.map((opt) => (
         <option key={opt.value} value={opt.value}>

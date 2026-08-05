@@ -53,7 +53,7 @@ export function RequestDetails({
                 href={f.signedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-[#F07A3A] hover:text-[#D25124] bg-[#D25124]/10 rounded-lg px-2.5 py-1.5 transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 text-xs text-[#c69947] hover:text-[#c69947] bg-[#c69947]/10 px-2.5 py-1.5 transition-colors cursor-pointer"
               >
                 <Paperclip className="w-3 h-3" />
                 {f.fileName}
@@ -61,7 +61,7 @@ export function RequestDetails({
             ) : (
               <span
                 key={f.id}
-                className="flex items-center gap-1.5 text-xs text-[var(--portal-text-muted)] bg-[var(--portal-border)] rounded-lg px-2.5 py-1.5"
+                className="flex items-center gap-1.5 text-xs text-[var(--portal-text-muted)] bg-[var(--portal-border)] px-2.5 py-1.5"
               >
                 <Paperclip className="w-3 h-3" />
                 {f.fileName}

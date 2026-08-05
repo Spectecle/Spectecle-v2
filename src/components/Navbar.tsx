@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Phone, User } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
+import { SiteThemeToggle } from "@/components/SiteThemeToggle";
 
 const navLinks = [
   { label: "Services", href: "/services" },
@@ -40,9 +41,7 @@ export default function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-[#040408]/90 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-black/20"
-            : "bg-transparent"
+          scrolled ? "bg-[var(--site-bg)]/95 backdrop-blur-xl border-b border-[var(--site-border)]" : "bg-transparent"
         }`}
       >
         <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -50,74 +49,28 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2 cursor-pointer group">
             <LogoMark className="w-7 h-8 drop-shadow-sm" />
             <span
-              className="text-xl font-bold tracking-tight text-white"
-              style={{ fontFamily: "var(--font-inter)" }}
+              className="text-xl font-bold tracking-tight text-[var(--site-text-primary)]"
+              style={{ fontFamily: "var(--font-sans)" }}
             >
               Spectecle
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 cursor-pointer ${
-                  pathname === link.href
-                    ? "text-white"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                {pathname === link.href && (
-                  <motion.span
-                    layoutId="nav-pill"
-                    className="absolute inset-0 bg-white/8 rounded-lg"
-                    transition={{ type: "spring", duration: 0.4 }}
-                  />
-                )}
-                <span className="relative">{link.label}</span>
-              </Link>
-            ))}
+          {/* Theme toggle + menu button */}
+          <div className="flex items-center gap-1">
+            <SiteThemeToggle />
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="p-2 text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
-
-          {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <a
-              href="tel:+13133534105"
-              className="hidden lg:flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors duration-200"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              (313) 353-4105
-            </a>
-            <Link
-              href="/portal"
-              className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer"
-            >
-              <User className="w-3.5 h-3.5" />
-              Client Portal
-            </Link>
-            <Link
-              href="/contact"
-              className="btn-primary flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold cursor-pointer"
-            >
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-4 h-4 relative z-10" />
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
         </nav>
       </header>
 
-      {/* Mobile Menu */}
+      {/* Slide-in menu — the only nav surface, at every breakpoint */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -125,10 +78,10 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 md:hidden"
+            className="fixed inset-0 z-40"
           >
             <div
-              className="absolute inset-0 bg-[#040408]/95 backdrop-blur-2xl"
+              className="absolute inset-0 bg-[var(--site-text-primary)]/30 backdrop-blur-sm"
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
@@ -136,7 +89,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="absolute right-0 top-0 h-full w-72 bg-[#09090f] border-l border-white/8 p-8 pt-24 flex flex-col gap-2"
+              className="absolute right-0 top-0 h-full w-full sm:w-96 bg-[var(--site-bg)] border-l border-[var(--site-border)] p-10 pt-28 flex flex-col gap-2"
             >
               {navLinks.map((link, i) => (
                 <motion.div
@@ -147,36 +100,37 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`block px-4 py-3.5 rounded-xl text-base font-medium transition-colors cursor-pointer ${
+                    className={`block py-3 text-2xl font-light transition-colors cursor-pointer ${
                       pathname === link.href
-                        ? "bg-white/8 text-white"
-                        : "text-slate-400 hover:text-white hover:bg-white/5"
+                        ? "text-[var(--site-text-primary)]"
+                        : "text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)]"
                     }`}
+                    style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {link.label}
                   </Link>
                 </motion.div>
               ))}
-              <div className="mt-6 pt-6 border-t border-white/8 flex flex-col gap-3">
+              <div className="mt-8 pt-8 border-t border-[var(--site-border)] flex flex-col gap-4">
                 <Link
                   href="/contact"
-                  className="btn-primary flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl text-sm font-semibold cursor-pointer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 w-fit cursor-pointer"
                 >
                   <span>Start a Project</span>
-                  <ArrowUpRight className="w-4 h-4 relative z-10" />
+                  <ArrowUpRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/portal"
-                  className="flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white border border-white/8 hover:border-white/15 transition-all duration-200 cursor-pointer"
+                  className="inline-flex items-center gap-2 text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer w-fit"
                 >
-                  <User className="w-4 h-4" />
+                  <User className="w-3.5 h-3.5" />
                   Client Portal
                 </Link>
                 <a
                   href="tel:+13133534105"
-                  className="flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white border border-white/8 hover:border-white/15 transition-all duration-200"
+                  className="inline-flex items-center gap-2 text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors w-fit"
                 >
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-3.5 h-3.5" />
                   (313) 353-4105
                 </a>
               </div>
