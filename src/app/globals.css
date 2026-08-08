@@ -15,6 +15,7 @@
 html {
   scroll-behavior: smooth;
   background-color: #f4f1e9;
+  overflow-x: hidden;
 }
 
 body {
@@ -23,6 +24,7 @@ body {
   font-family: var(--font-sans, system-ui, sans-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 ::selection {

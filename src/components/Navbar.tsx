@@ -46,14 +46,8 @@ export default function Navbar() {
       >
         <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 cursor-pointer group">
-            <LogoMark className="w-7 h-8 drop-shadow-sm" />
-            <span
-              className="text-xl font-bold tracking-tight text-[var(--site-text-primary)]"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              Spectecle
-            </span>
+          <Link href="/" className="flex items-center cursor-pointer group">
+            <LogoMark className="w-16 h-16 drop-shadow-sm" />
           </Link>
 
           {/* Theme toggle + menu button */}
@@ -64,7 +58,7 @@ export default function Navbar() {
               className="p-2 text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
               aria-label="Toggle menu"
             >
-              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </nav>

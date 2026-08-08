@@ -27,11 +27,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/services/seo-agency-detroit`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/services/ai-automation`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/work`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/pricing`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     ...caseStudyUrls,
     ...blogPostUrls,
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/hello`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${base}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
   ];
 }

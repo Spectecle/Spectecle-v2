@@ -111,31 +111,76 @@ const services = [
 
 const projects = [
   {
+    slug: "glam-by-abeer",
     title: "Glam by Abeer",
     category: "Beauty Studio",
     tagline: "A bold beauty brand built for the Instagram generation.",
-    url: "glambyabeer.com",
-    desc: "Full brand website for a professional makeup artist featuring a bold aesthetic, service showcase, and online booking integration.",
     result: "+65% Bookings",
     image: "/screenshots/glambyabeer.png",
   },
   {
+    slug: "vue-optometry",
     title: "Vue Optometry",
     category: "Healthcare / Optometry",
     tagline: "Membership-based eye care, reimagined online.",
-    url: "vueoptometry.com",
-    desc: "Ongoing website care for a membership-based eye care boutique that requires no insurance, with content kept current as plans and offerings evolve.",
     result: "Always Up-to-Date",
     image: "/screenshots/vueoptometry.png",
   },
   {
+    slug: "mi-family-lawyer",
+    title: "MI Family Lawyer",
+    category: "Legal / Family Law",
+    tagline: "Authority-first web presence for a Michigan family law attorney.",
+    result: "Custom Law Firm Site",
+    image: "/screenshots/mifamilylawyer.png",
+  },
+  {
+    slug: "dearborn-cleaners",
     title: "Dearborn Cleaners",
     category: "Home Services",
     tagline: "Mold remediation you can book in minutes.",
-    url: "dearborncleaners.com",
-    desc: "Complete website rebuild for a mold remediation and specialty cleaning company, built to convert urgent inquiries into booked inspections.",
     result: "Complete Rebuild",
     image: "/screenshots/dearborncleaners.png",
+  },
+  {
+    slug: "the-stat-clinic",
+    title: "The Stat Clinic",
+    category: "Sports Performance & Health",
+    tagline: "Performance-grade digital presence for a data-driven clinic.",
+    result: "+85% Appointments",
+    image: "/screenshots/thestatclinic.png",
+  },
+  {
+    slug: "thematek",
+    title: "Thematek",
+    category: "Technology / IT Services",
+    tagline: "Cutting-edge website. Even sharper AI behind the scenes.",
+    result: "68% Automated",
+    image: "/screenshots/thematek.png",
+  },
+  {
+    slug: "detroit-glass-mirror",
+    title: "Detroit Glass & Mirror",
+    category: "Home Services / Glass",
+    tagline: "Detroit's premier glass shop, now impossible to miss on Google.",
+    result: "Google Map Pack",
+    image: "/screenshots/detroitglassandmirror.png",
+  },
+  {
+    slug: "salazar-drywall-pros",
+    title: "Salazar Drywall Pros",
+    category: "Home Services / Construction",
+    tagline: "From word of mouth to page one on Google.",
+    result: "#1 Local Rankings",
+    image: "/screenshots/salazardrywallpros.png",
+  },
+  {
+    slug: "indoor-garden",
+    title: "Indoor Garden",
+    category: "Retail / E-commerce",
+    tagline: "From Instagram DMs to a thriving online store.",
+    result: "+220% Organic Traffic",
+    image: "/screenshots/indoorgarden.png",
   },
 ];
 
@@ -168,7 +213,8 @@ const journalPosts = posts.slice(0, 3);
 
 /* ─── Page ─────────────────────────────────────────── */
 export default function HomePage() {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [showAllWork, setShowAllWork] = useState(false);
+  const visibleProjects = showAllWork ? projects : projects.slice(0, 6);
 
   return (
     <SmoothScroll>
@@ -198,72 +244,64 @@ export default function HomePage() {
       <section className="py-32 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
         <div className="max-w-7xl mx-auto">
           <Reveal>
-            <div className="flex items-end justify-between gap-6 mb-14">
+            <div className="mb-14">
               <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">Our Latest Work</span>
-              <Link
-                href="/work"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--site-text-primary)] uppercase tracking-widest border-b border-[var(--site-text-primary)] pb-0.5 shrink-0"
-              >
-                View All Work
-              </Link>
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-x-8 gap-y-14">
-            {projects.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.1}>
-                <Link
-                  href="/work"
-                  className="group block"
-                  onMouseEnter={() => setHoveredProject(i)}
-                  onMouseLeave={() => setHoveredProject(null)}
-                >
+          <div className="grid md:grid-cols-3 gap-x-8 gap-y-16">
+            {visibleProjects.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 0.08}>
+                <Link href={`/work/${p.slug}`} className="group block">
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image src={p.image} alt={p.title} fill className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]" />
-                    <div className="absolute inset-0 bg-black/35 group-hover:bg-black/45 transition-colors duration-300" />
-                    <div className="absolute inset-0 flex items-center justify-center px-6">
-                      <span
-                        className="text-white text-2xl sm:text-3xl font-bold uppercase tracking-wide text-center leading-tight"
-                        style={{ fontFamily: "var(--font-sans)" }}
-                      >
-                        {p.title}
-                      </span>
-                    </div>
-                    <motion.div
-                      initial={false}
-                      animate={{ opacity: hoveredProject === i ? 1 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute inset-0 flex items-end justify-center pb-6 pointer-events-none"
-                    >
-                      <span className="text-white text-xs font-semibold uppercase tracking-widest border-b border-white pb-0.5">
-                        View Case Study
-                      </span>
-                    </motion.div>
+                    <Image
+                      src={p.image}
+                      alt={`${p.title} homepage`}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
                   </div>
-                  <h3 className="mt-5 text-lg font-semibold text-[var(--site-text-primary)]">{p.title}</h3>
-                  <p className="mt-1 text-sm text-[var(--site-text-muted)]">{p.tagline}</p>
+                  <h3
+                    className="mt-5 text-xl font-light text-[var(--site-text-primary)] group-hover:text-[#c69947] transition-colors"
+                    style={{ fontFamily: "var(--font-serif)" }}
+                  >
+                    {p.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm text-[var(--site-text-muted)]">{p.tagline}</p>
                 </Link>
               </Reveal>
             ))}
           </div>
+
+          {!showAllWork && (
+            <div className="mt-16 flex justify-center">
+              <button
+                onClick={() => setShowAllWork(true)}
+                className="bg-black text-white px-8 py-3.5 text-sm font-semibold uppercase tracking-widest cursor-pointer hover:bg-[#1e1e1e] transition-colors"
+              >
+                View More
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
       {/* ══ SERVICES ═════════════════════════════════ */}
       <section className="py-32 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
+          <div className="hidden sm:block absolute -top-12 right-0 w-24 md:w-32 lg:w-40 pointer-events-none select-none">
+            <Image src="/tea.png" alt="" width={300} height={300} className="w-full h-auto" />
+          </div>
           <Reveal>
-            <div className="grid md:grid-cols-[1.3fr_1fr] gap-10 items-end mb-16">
-              <div>
-                <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Do</span>
-                <h2
-                  className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)]"
-                  style={{ fontFamily: "var(--font-serif)" }}
-                >
-                  Three disciplines. <span className="italic text-[#c69947]">One obsession.</span>
-                </h2>
-              </div>
-              <ImagePlaceholder className="aspect-[4/3] w-full" label="Work-in-progress / screen photo" />
+            <div className="mb-16">
+              <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Do</span>
+              <h2
+                className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)]"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                Three disciplines. <span className="italic text-[#c69947]">One obsession.</span>
+              </h2>
             </div>
           </Reveal>
 
@@ -290,11 +328,16 @@ export default function HomePage() {
       <section className="py-32 px-6 border-t border-[var(--site-border)] bg-[var(--site-bg)]">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <div className="mb-16">
-              <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Our Process</span>
-              <h2 className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-                How we work.
-              </h2>
+            <div className="grid md:grid-cols-[1.3fr_1fr] gap-10 items-end mb-16">
+              <div>
+                <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Our Process</span>
+                <h2 className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+                  How we work.
+                </h2>
+              </div>
+              <p className="text-[var(--site-text-secondary)] text-base leading-relaxed">
+                A clear, collaborative process from first conversation to launch. No black boxes, no guesswork, no surprises.
+              </p>
             </div>
           </Reveal>
 

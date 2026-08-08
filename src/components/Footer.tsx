@@ -126,7 +126,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-2 cursor-pointer group">
-              <LogoMark className="w-7 h-8" />
+              <LogoMark className="w-8 h-8" />
               <span className="text-xl font-bold tracking-tight text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-sans)" }}>
                 Spectecle
               </span>

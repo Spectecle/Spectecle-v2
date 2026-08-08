@@ -46,10 +46,10 @@ export default function PricingPage() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               href="/contact"
-              className="btn-primary flex items-center gap-2 px-7 py-3.5 text-sm font-semibold cursor-pointer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
             >
               <span>Contact Us</span>
-              <ArrowUpRight className="w-4 h-4 relative z-10" />
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
             <Link
               href="/"

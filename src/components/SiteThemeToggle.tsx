@@ -13,7 +13,7 @@ export function SiteThemeToggle() {
       className="p-2 text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] cursor-pointer transition-colors"
       aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
     >
-      <Contrast className="w-4 h-4" />
+      <Contrast className="w-5 h-5" />
     </button>
   );
 }

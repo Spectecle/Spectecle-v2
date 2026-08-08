@@ -48,7 +48,7 @@ const designTiers: DesignTier[] = [
   {
     name: "Blueprint",
     tagline: "A professional site, fast, built on a proven foundation.",
-    price: "$1,800",
+    price: "$1,500",
     items: [
       "Pre-designed, industry-proven foundation",
       "Customized with your colors, content & branding",
@@ -68,7 +68,7 @@ const designTiers: DesignTier[] = [
   {
     name: "Bespoke",
     tagline: "Fully custom, built from a blank canvas.",
-    price: "$6,000",
+    price: "$3,000",
     items: [
       "Everything in Craft, plus:",
       "Fully custom design, unlimited creative direction",
@@ -93,8 +93,8 @@ const carePlans: CarePlan[] = [
   { name: "Momentum", monthly: 229, popular: true },
   { name: "Velocity", monthly: 399 },
   { name: "Surge", monthly: 599 },
-  { name: "Overdrive", monthly: 899 },
-  { name: "Apex", monthly: 1499 },
+  { name: "Overdrive", monthly: 999 },
+  { name: "Apex", monthly: 1999 },
 ];
 
 const featureGroups: FeatureGroup[] = [
@@ -130,7 +130,7 @@ const featureGroups: FeatureGroup[] = [
     rows: [
       { label: "Reputation & review management", description: "We monitor your Google, Yelp, and Facebook reviews and help you respond, protecting your online reputation.", values: [false, false, false, true, true, true] },
       { label: "Strategy consultation", description: "Scheduled calls with your strategist to review performance and plan next steps.", values: [false, false, false, "Monthly", "Monthly", "Dedicated strategist"] },
-      { label: "Managed ad campaigns", description: "We build, run, and optimize your Google and Meta ad campaigns within the included monthly ad spend.", values: [false, false, false, false, "Up to $500/mo spend", "Up to $2,000/mo spend"] },
+      { label: "Managed ad campaigns", description: "We build, run, and optimize your Google and Meta ad campaigns within the included monthly ad spend.", values: [false, false, false, false, "Up to $1,000/mo spend", "Up to $2,000/mo spend"] },
       { label: "Quarterly performance reports", description: "A plain-English report every quarter covering traffic, rankings, and growth metrics.", values: [false, false, false, false, true, true] },
       { label: "Google Workspace", description: "A professional @yourdomain.com email address and business tools through Google Workspace.", values: [false, false, true, true, true, true] },
       { label: "Priority support", description: "Faster response times when you need help or have a request.", values: [false, "Priority email", "Priority email", "Priority email", "Priority", "Fastest / dedicated"] },
@@ -249,7 +249,7 @@ function WebsiteDesignSection() {
           that fits, then choose an ongoing care plan below to keep it growing.
         </p>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 divide-x divide-[var(--site-border)]">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:divide-x sm:divide-[var(--site-border)]">
         {designTiers.map((tier, i) => (
           <motion.div
             key={tier.name}
@@ -257,7 +257,7 @@ function WebsiteDesignSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="pl-8 first:pl-0"
+            className="sm:pl-8 sm:first:pl-0"
           >
             <DesignTierCard tier={tier} />
           </motion.div>
@@ -429,11 +429,6 @@ function CarePlansTable({
         </div>
       </div>
 
-      <p className="text-center text-sm text-[var(--site-text-muted)] mt-8 max-w-xl mx-auto">
-        All plans require a 12-month commitment, billed monthly or upfront annually for a
-        discount. Need something outside your plan&apos;s change allowance? Extra work is billed
-        at $100/hour.
-      </p>
     </div>
   );
 }
@@ -464,9 +459,9 @@ function AddOnsSection() {
           amount depends on your business.
         </p>
       </div>
-      <div className="grid sm:grid-cols-2 gap-x-12 gap-y-10 max-w-4xl divide-x divide-[var(--site-border)]">
+      <div className="grid sm:grid-cols-2 gap-x-12 gap-y-10 max-w-4xl sm:divide-x sm:divide-[var(--site-border)]">
         {addOns.map((addOn) => (
-          <div key={addOn.name} className="flex flex-col pl-8 first:pl-0">
+          <div key={addOn.name} className="flex flex-col sm:pl-8 sm:first:pl-0">
             <h3 className="text-xl font-light text-[var(--site-text-primary)] mb-1" style={{ fontFamily: "var(--font-serif)" }}>{addOn.name}</h3>
             <p className="text-sm font-semibold text-[#c69947] mb-3">{addOn.price}</p>
             <p className="text-sm text-[var(--site-text-secondary)] leading-relaxed mb-5">{addOn.description}</p>

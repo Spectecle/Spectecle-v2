@@ -22,7 +22,7 @@ function announcementHtml(email: string, link: string) {
         <table role="presentation" style="margin:0 auto;border-collapse:collapse;">
           <tr>
             <td style="padding-right:10px;vertical-align:middle;">
-              <img src="${SITE_URL}/logo-email.png" width="17" height="48" alt="" style="display:block;border:0;" />
+              <img src="${SITE_URL}/logo-email.png" width="40" height="40" alt="" style="display:block;border:0;" />
             </td>
             <td style="vertical-align:middle;">
               <span style="color:#1e1e1e;font-size:21px;font-weight:800;letter-spacing:0.3px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">Spectecle</span>

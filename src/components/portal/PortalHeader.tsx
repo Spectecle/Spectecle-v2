@@ -13,7 +13,7 @@ export async function PortalHeader() {
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-5">
           <Link href="/portal" className="flex items-center gap-2 cursor-pointer">
-            <LogoMark className="w-6 h-7" />
+            <LogoMark className="w-7 h-7" />
             <span
               className="text-base font-bold text-[var(--portal-text-primary)]"
               style={{ fontFamily: "var(--font-sans)" }}

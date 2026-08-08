@@ -246,25 +246,25 @@ export default function TermsPage() {
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="relative pt-40 pb-16 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 glass border border-[#c69947]/20 text-sm text-[#c69947] font-medium mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#c69947]/20 text-sm text-[#c69947] font-medium mb-8">
             <span className="w-2 h-2 bg-[#c69947]" />
             Legal
           </div>
 
           <h1
-            className="text-4xl md:text-5xl font-bold text-[#1e1e1e] leading-tight"
+            className="text-4xl md:text-5xl font-bold text-[var(--site-text-primary)] leading-tight"
             style={{ fontFamily: "var(--font-sans)" }}
           >
             Terms & Conditions
           </h1>
-          <p className="mt-4 text-[#41433a] text-base">
+          <p className="mt-4 text-[var(--site-text-secondary)] text-base">
             Effective Date: {EFFECTIVE_DATE} &nbsp;·&nbsp; {COMPANY} &nbsp;·&nbsp; Dearborn, Michigan
             &nbsp;·&nbsp;{" "}
             <a href={`https://${WEBSITE}`} className="text-[#c69947] hover:underline">
               {WEBSITE}
             </a>
           </p>
-          <p className="mt-6 text-[#41433a] leading-relaxed max-w-2xl">
+          <p className="mt-6 text-[var(--site-text-secondary)] leading-relaxed max-w-2xl">
             These Terms and Conditions govern any website design, SEO, paid advertising, or AI
             automation services Spectecle provides. Please read them together with our{" "}
             <Link href="/privacy" className="text-[#c69947] hover:underline">
@@ -278,8 +278,8 @@ export default function TermsPage() {
       {/* ── TABLE OF CONTENTS ─────────────────────────── */}
       <section className="px-6 pb-12">
         <div className="max-w-4xl mx-auto">
-          <div className="glass border border-[#1e1e1e]/10 p-7">
-            <p className="text-xs font-semibold text-[#7c776b] uppercase tracking-widest mb-5">
+          <div className="border border-[var(--site-border)] p-7">
+            <p className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">
               Table of Contents
             </p>
             <div className="grid sm:grid-cols-2 gap-2">
@@ -287,7 +287,7 @@ export default function TermsPage() {
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  className="text-sm text-[#41433a] hover:text-[#c69947] transition-colors py-1"
+                  className="text-sm text-[var(--site-text-secondary)] hover:text-[#c69947] transition-colors py-1"
                 >
                   {s.title}
                 </a>
@@ -303,7 +303,7 @@ export default function TermsPage() {
           {sections.map((section) => (
             <div key={section.id} id={section.id} className="scroll-mt-28">
               <h2
-                className="text-xl md:text-2xl font-bold text-[#1e1e1e] mb-6 pb-4 border-b border-[#1e1e1e]/10"
+                className="text-xl md:text-2xl font-bold text-[var(--site-text-primary)] mb-6 pb-4 border-b border-[var(--site-border)]"
                 style={{ fontFamily: "var(--font-sans)" }}
               >
                 {section.title}
@@ -314,7 +314,7 @@ export default function TermsPage() {
                     <h3 className="text-base font-semibold text-[#c69947] mb-2">
                       {item.subtitle}
                     </h3>
-                    <p className="text-[#41433a] leading-relaxed text-sm whitespace-pre-line">
+                    <p className="text-[var(--site-text-secondary)] leading-relaxed text-sm whitespace-pre-line">
                       {item.body}
                     </p>
                   </div>
@@ -326,18 +326,18 @@ export default function TermsPage() {
       </section>
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-[#1e1e1e]/10 bg-[#fdfbf5]">
+      <section className="py-20 px-6 border-t border-[var(--site-border)] bg-[var(--site-surface)]">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-[#7c776b] text-sm uppercase tracking-widest mb-4">
+          <p className="text-[var(--site-text-muted)] text-sm uppercase tracking-widest mb-4">
             Questions About These Terms?
           </p>
           <h2
-            className="text-3xl md:text-4xl font-bold text-[#1e1e1e]"
+            className="text-3xl md:text-4xl font-bold text-[var(--site-text-primary)]"
             style={{ fontFamily: "var(--font-sans)" }}
           >
             Reach out — we&apos;re here to help.
           </h2>
-          <p className="mt-4 text-[#41433a] text-base max-w-lg mx-auto">
+          <p className="mt-4 text-[var(--site-text-secondary)] text-base max-w-lg mx-auto">
             Email us at{" "}
             <a href={`mailto:${EMAIL}`} className="text-[#c69947] hover:underline">
               {EMAIL}
@@ -347,14 +347,14 @@ export default function TermsPage() {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="btn-primary flex items-center gap-2 px-7 py-3.5 text-sm font-semibold cursor-pointer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
             >
               <span>Contact Us</span>
-              <ArrowUpRight className="w-4 h-4 relative z-10" />
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
             <Link
               href="/"
-              className="text-[#41433a] hover:text-[#1e1e1e] text-sm transition-colors cursor-pointer"
+              className="text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] text-sm transition-colors cursor-pointer"
             >
               ← Back to Home
             </Link>
