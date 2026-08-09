@@ -8,7 +8,7 @@ export default function Hero() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
 
   const textOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
