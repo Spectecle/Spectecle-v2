@@ -29,6 +29,7 @@ export default function Hero() {
             end: "+=100%",
             scrub: desktop ? 0.8 : 0.6,
             pin: true,
+            pinReparent: true,
             anticipatePin: 1,
           },
         });
