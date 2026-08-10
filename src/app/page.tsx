@@ -298,8 +298,8 @@ export default function HomePage() {
       </section>
 
       {/* ══ SERVICES ═════════════════════════════════ */}
-      <section className="pt-32 pb-20 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto">
+      <section className="pt-32 pb-20 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto px-6">
           <Reveal>
             <div className="mb-16">
               <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Do</span>
@@ -313,9 +313,7 @@ export default function HomePage() {
           </Reveal>
         </div>
 
-        <div className="max-w-5xl mx-auto">
-          <ServiceStack items={services} />
-        </div>
+        <ServiceStack items={services} />
       </section>
 
       {/* ══ PROCESS ══════════════════════════════════ */}
