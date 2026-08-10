@@ -61,7 +61,7 @@ export function OrganizationNameEditor({
             }}
             placeholder="Business name"
             autoFocus
-            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] px-2 py-1 text-sm outline-none focus:border-[#c69947]/50 w-44"
+            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] px-2 py-1 text-sm outline-none focus:border-[#f87444]/50 w-44"
           />
           <input
             type="text"
@@ -72,7 +72,7 @@ export function OrganizationNameEditor({
               if (e.key === "Escape") setEditing(false);
             }}
             placeholder="Website (optional)"
-            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] px-2 py-1 text-sm outline-none focus:border-[#c69947]/50 w-44"
+            className="bg-[var(--portal-card)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] px-2 py-1 text-sm outline-none focus:border-[#f87444]/50 w-44"
           />
           <button
             type="button"

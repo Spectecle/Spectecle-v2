@@ -175,10 +175,10 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
           key="success"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="glass border border-[#c69947]/20 p-14 text-center"
+          className="glass border border-[#f87444]/20 p-14 text-center"
         >
-          <div className="w-16 h-16 mx-auto bg-[#c69947]/10 flex items-center justify-center mb-6">
-            <CheckCircle2 className="w-8 h-8 text-[#c69947]" />
+          <div className="w-16 h-16 mx-auto bg-[#f87444]/10 flex items-center justify-center mb-6">
+            <CheckCircle2 className="w-8 h-8 text-[#f87444]" />
           </div>
           <h2
             className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"
@@ -267,7 +267,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                   onClick={() => handleTemplateChange(t)}
                   className={`flex-1 px-4 py-3 rounded-xl text-sm font-medium border transition-colors cursor-pointer ${
                     template === t
-                      ? "bg-[#c69947]/15 border-[#c69947]/40 text-[#c69947]"
+                      ? "bg-[#f87444]/15 border-[#f87444]/40 text-[#f87444]"
                       : "bg-[var(--portal-card)] border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)]"
                   }`}
                 >
@@ -330,7 +330,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                       setNote(t.text);
                       setNoteTouched(true);
                     }}
-                    className="text-[11px] font-medium px-2.5 py-1 border border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[#c69947] hover:border-[#c69947]/40 cursor-pointer transition-colors"
+                    className="text-[11px] font-medium px-2.5 py-1 border border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[#f87444] hover:border-[#f87444]/40 cursor-pointer transition-colors"
                   >
                     {t.label}
                   </button>

@@ -8,7 +8,7 @@
   --color-ink-soft: #41433a;
   --color-taupe: #7c776b;
   --color-espresso: #38190c;
-  --color-brass: #c69947;
+  --color-brass: #f87444;
   --color-brass-light: #d9b568;
 }
 
@@ -40,17 +40,17 @@ body {
   background: #f4f1e9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c69947;
+  background: #f87444;
   border-radius: 0;
 }
 
 /* Emphasis text utility — solid brass, no gradient-clip */
 .gradient-text {
-  color: #c69947;
+  color: #f87444;
 }
 
 .gradient-text-gold {
-  color: #c69947;
+  color: #f87444;
 }
 
 /* Flat bordered card — no blur, no radius */
@@ -84,7 +84,7 @@ body {
 }
 
 .btn-primary:hover {
-  background: #c69947;
+  background: #f87444;
   color: #1e1e1e;
   transform: translateY(-2px);
 }
@@ -249,7 +249,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .site-shell[data-theme="dark"] .btn-primary {
-  background: #c69947;
+  background: #f87444;
   color: #1e1e1e;
 }
 

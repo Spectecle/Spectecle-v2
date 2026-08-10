@@ -21,25 +21,25 @@ export default function Icon() {
         <div style={{
           position: "absolute", top: 2, right: 2,
           width: 9, height: 9,
-          background: "#c69947",
+          background: "#f87444",
         }} />
         {/* Upper-center — medium */}
         <div style={{
           position: "absolute", top: 7, left: 11,
           width: 11, height: 11,
-          background: "#c69947",
+          background: "#f87444",
         }} />
         {/* Left — large */}
         <div style={{
           position: "absolute", top: 11, left: 1,
           width: 15, height: 15,
-          background: "#c69947",
+          background: "#f87444",
         }} />
         {/* Bottom-right — medium */}
         <div style={{
           position: "absolute", bottom: 2, right: 2,
           width: 10, height: 10,
-          background: "#c69947",
+          background: "#f87444",
         }} />
       </div>
     ),

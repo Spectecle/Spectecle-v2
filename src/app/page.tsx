@@ -45,7 +45,7 @@ function RotatingWord() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="italic text-[#c69947] underline underline-offset-8 decoration-1"
+          className="italic text-[#f87444] underline underline-offset-8 decoration-1"
         >
           {partnerWords[index]}
         </motion.span>
@@ -240,7 +240,7 @@ function ProjectCard({ p, delay }: { p: (typeof projects)[number]; delay: number
           />
         </div>
         <h3
-          className="mt-5 text-xl font-light text-[var(--site-text-primary)] group-hover:text-[#c69947] transition-colors"
+          className="mt-5 text-xl font-light text-[var(--site-text-primary)] group-hover:text-[#f87444] transition-colors"
           style={{ fontFamily: "var(--font-serif)" }}
         >
           {p.title}
@@ -271,7 +271,7 @@ export default function HomePage() {
               className="mt-6 text-3xl md:text-5xl text-[var(--site-text-primary)] leading-[1.25] font-light"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              A <span className="italic text-[#c69947]">full-service</span> web design, SEO, and
+              A <span className="italic text-[#f87444]">full-service</span> web design, SEO, and
               AI automation agency built for businesses that need their site to actually perform.
             </p>
           </Reveal>
@@ -326,7 +326,7 @@ export default function HomePage() {
                 className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)]"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                Four disciplines. <span className="italic text-[#c69947]">One obsession.</span>
+                Four disciplines. <span className="italic text-[#f87444]">One obsession.</span>
               </h2>
             </div>
           </Reveal>
@@ -373,7 +373,7 @@ export default function HomePage() {
             <div className="mb-16">
               <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Client Stories</span>
               <h2 className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-                Trusted <span className="italic text-[#c69947]">across industries.</span>
+                Trusted <span className="italic text-[#f87444]">across industries.</span>
               </h2>
             </div>
           </Reveal>
@@ -423,7 +423,7 @@ export default function HomePage() {
               <div>
                 <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Journal</span>
                 <h2 className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-                  Insights from <span className="italic text-[#c69947]">the agency.</span>
+                  Insights from <span className="italic text-[#f87444]">the agency.</span>
                 </h2>
               </div>
               <Link
@@ -453,7 +453,7 @@ export default function HomePage() {
                     {post.category}
                   </span>
                   <h3
-                    className="mt-3 text-2xl font-light text-[var(--site-text-primary)] leading-snug group-hover:text-[#c69947] transition-colors"
+                    className="mt-3 text-2xl font-light text-[var(--site-text-primary)] leading-snug group-hover:text-[#f87444] transition-colors"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {post.title}
@@ -499,12 +499,12 @@ export default function HomePage() {
       <section className="py-40 px-6 bg-[#1e1e1e]">
         <Reveal>
           <div className="max-w-4xl mx-auto text-center">
-            <span className="text-xs text-[#c69947] font-medium uppercase tracking-[0.25em]">
+            <span className="text-xs text-[#f87444] font-medium uppercase tracking-[0.25em]">
               Let&apos;s Build Together
             </span>
             <h2 className="mt-6 text-5xl md:text-7xl font-light text-[#f4f1e9] leading-[1.05]" style={{ fontFamily: "var(--font-serif)" }}>
               Your site should be your{" "}
-              <span className="italic text-[#c69947]">best salesperson.</span>
+              <span className="italic text-[#f87444]">best salesperson.</span>
             </h2>
             <p className="mt-8 text-[#f4f1e9]/60 text-lg max-w-xl mx-auto">
               Work directly with the team. No middlemen, no account managers, just a direct line

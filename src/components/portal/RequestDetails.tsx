@@ -53,7 +53,7 @@ export function RequestDetails({
                 href={f.signedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-[#c69947] hover:text-[#c69947] bg-[#c69947]/10 px-2.5 py-1.5 transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 text-xs text-[#f87444] hover:text-[#f87444] bg-[#f87444]/10 px-2.5 py-1.5 transition-colors cursor-pointer"
               >
                 <Paperclip className="w-3 h-3" />
                 {f.fileName}

@@ -35,7 +35,7 @@ function announcementHtml(email: string, link: string) {
       <td style="background-color:#fdfbf5;border-radius:16px;">
         <table role="presentation" width="100%" style="border-collapse:collapse;">
           <tr>
-            <td style="background-color:#c69947;background-image:linear-gradient(135deg,#d9b568,#c69947);padding:40px 40px 32px;border-radius:16px 16px 0 0;text-align:center;">
+            <td style="background-color:#f87444;background-image:linear-gradient(135deg,#d9b568,#f87444);padding:40px 40px 32px;border-radius:16px 16px 0 0;text-align:center;">
               <p style="margin:0 0 10px;color:rgba(255,255,255,0.85);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Now Live</p>
               <h1 style="margin:0;color:#1e1e1e;font-size:26px;font-weight:800;line-height:1.3;">Your New Client Portal Is Here</h1>
             </td>
@@ -58,7 +58,7 @@ function announcementHtml(email: string, link: string) {
               <table role="presentation" width="100%" style="border-collapse:collapse;margin:0 0 20px;">
                 <tr>
                   <td align="center">
-                    <a href="${link}" style="display:inline-block;background-color:#c69947;background-image:linear-gradient(135deg,#d9b568,#c69947);color:#1e1e1e;text-decoration:none;padding:16px 44px;border-radius:10px;font-weight:700;font-size:16px;">
+                    <a href="${link}" style="display:inline-block;background-color:#f87444;background-image:linear-gradient(135deg,#d9b568,#f87444);color:#1e1e1e;text-decoration:none;padding:16px 44px;border-radius:10px;font-weight:700;font-size:16px;">
                       Sign In to Your Portal &rarr;
                     </a>
                   </td>

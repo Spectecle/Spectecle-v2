@@ -54,7 +54,7 @@ export default function WorkPage() {
             className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Work that drives <span className="italic text-[#c69947]">measurable growth.</span>
+            Work that drives <span className="italic text-[#f87444]">measurable growth.</span>
           </motion.h1>
           <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-2xl mx-auto leading-relaxed">
             Web design, SEO, and AI automation projects for businesses across the country.
@@ -74,7 +74,7 @@ export default function WorkPage() {
                   onClick={() => setActiveCategory(cat)}
                   className={`text-sm font-medium transition-colors duration-200 cursor-pointer pb-1 border-b ${
                     activeCategory === cat
-                      ? "text-[var(--site-text-primary)] border-[#c69947]"
+                      ? "text-[var(--site-text-primary)] border-[#f87444]"
                       : "text-[var(--site-text-muted)] border-transparent hover:text-[var(--site-text-primary)]"
                   }`}
                 >
@@ -107,11 +107,11 @@ export default function WorkPage() {
                   <div className="mt-5 flex items-start justify-between gap-3">
                     <div>
                       <span className="text-xs text-[var(--site-text-muted)] uppercase tracking-wider">{p.category}</span>
-                      <h2 className="mt-1 text-2xl font-light text-[var(--site-text-primary)] group-hover:text-[#c69947] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
+                      <h2 className="mt-1 text-2xl font-light text-[var(--site-text-primary)] group-hover:text-[#f87444] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
                         {p.title}
                       </h2>
                     </div>
-                    <span className="text-xs font-semibold text-[#c69947] shrink-0 mt-2">{p.cardResult}</span>
+                    <span className="text-xs font-semibold text-[#f87444] shrink-0 mt-2">{p.cardResult}</span>
                   </div>
                   <p className="mt-2 text-sm text-[var(--site-text-secondary)] leading-relaxed line-clamp-2 max-w-md">{p.cardDesc}</p>
                   <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--site-text-primary)] group-hover:gap-2.5 transition-all">
@@ -136,7 +136,7 @@ export default function WorkPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Your business could be <span className="italic text-[#c69947]">our next case study.</span>
+              Your business could be <span className="italic text-[#f87444]">our next case study.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Serving businesses nationwide. Let&apos;s build

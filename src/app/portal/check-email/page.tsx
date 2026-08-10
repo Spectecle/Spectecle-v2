@@ -16,8 +16,8 @@ export default function CheckEmailPage() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="relative w-full max-w-md text-center glass border border-[var(--portal-border)] p-10"
       >
-        <div className="w-16 h-16 mx-auto bg-[#c69947]/10 flex items-center justify-center mb-6">
-          <MailCheck className="w-7 h-7 text-[#c69947]" />
+        <div className="w-16 h-16 mx-auto bg-[#f87444]/10 flex items-center justify-center mb-6">
+          <MailCheck className="w-7 h-7 text-[#f87444]" />
         </div>
         <h1
           className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"

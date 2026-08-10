@@ -13,7 +13,7 @@ function PostCover({ post, size }: { post: BlogPost; size: "default" | "compact"
   if (!project) {
     return (
       <div className={`relative w-full ${size === "compact" ? "h-40" : "h-56 md:h-72"} overflow-hidden bg-[var(--site-surface)] border border-[var(--site-border)] flex items-center justify-center`}>
-        <span className="text-2xl text-[#c69947]">✦</span>
+        <span className="text-2xl text-[#f87444]">✦</span>
       </div>
     );
   }
@@ -69,7 +69,7 @@ export default function BlogPage() {
             className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Guides that <span className="italic text-[#c69947]">actually work.</span>
+            Guides that <span className="italic text-[#f87444]">actually work.</span>
           </motion.h1>
           <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Actionable guides for small businesses (photographers, contractors, attorneys,
@@ -85,7 +85,7 @@ export default function BlogPage() {
             <Link href={`/blog/${featured.slug}`} className="group grid lg:grid-cols-[1fr_1fr] gap-8 items-center">
               <div className="relative">
                 <span
-                  className="absolute top-4 left-4 z-10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#1e1e1e] bg-[#c69947]"
+                  className="absolute top-4 left-4 z-10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#1e1e1e] bg-[#f87444]"
                 >
                   Featured
                 </span>
@@ -103,7 +103,7 @@ export default function BlogPage() {
                   </span>
                 </div>
                 <h2
-                  className="text-3xl md:text-4xl font-light text-[var(--site-text-primary)] leading-snug group-hover:text-[#c69947] transition-colors duration-300"
+                  className="text-3xl md:text-4xl font-light text-[var(--site-text-primary)] leading-snug group-hover:text-[#f87444] transition-colors duration-300"
                   style={{ fontFamily: "var(--font-serif)" }}
                 >
                   {featured.title}
@@ -144,7 +144,7 @@ export default function BlogPage() {
                     </span>
                   </div>
                   <h3
-                    className="mt-3 text-xl font-light text-[var(--site-text-primary)] leading-snug group-hover:text-[#c69947] transition-colors duration-300"
+                    className="mt-3 text-xl font-light text-[var(--site-text-primary)] leading-snug group-hover:text-[#f87444] transition-colors duration-300"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {post.title}
@@ -162,7 +162,7 @@ export default function BlogPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Ready to grow your <span className="italic text-[#c69947]">business?</span>
+              Ready to grow your <span className="italic text-[#f87444]">business?</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call and we&apos;ll map out exactly what it

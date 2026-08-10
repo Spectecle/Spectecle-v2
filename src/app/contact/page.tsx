@@ -112,7 +112,7 @@ export default function ContactPage() {
   const inputClass = (field: string) =>
     `w-full bg-transparent border-b ${
       errors[field] ? "border-rose-400" : "border-[var(--site-border)]"
-    } text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] px-0 py-3 text-sm transition-all duration-200 focus:border-[#c69947] outline-none`;
+    } text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] px-0 py-3 text-sm transition-all duration-200 focus:border-[#f87444] outline-none`;
 
   return (
     <>
@@ -129,7 +129,7 @@ export default function ContactPage() {
             className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Let&apos;s build something <span className="italic text-[#c69947]">that actually works.</span>
+            Let&apos;s build something <span className="italic text-[#f87444]">that actually works.</span>
           </motion.h1>
           <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto leading-relaxed">
             Tell us about your goals. We&apos;ll get back to you with honest advice
@@ -150,7 +150,7 @@ export default function ContactPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="py-16 text-center"
                 >
-                  <CheckCircle2 className="w-10 h-10 text-[#c69947] mx-auto mb-6" />
+                  <CheckCircle2 className="w-10 h-10 text-[#f87444] mx-auto mb-6" />
                   <h2 className="text-3xl font-light text-[var(--site-text-primary)] mb-4" style={{ fontFamily: "var(--font-serif)" }}>
                     Message Received!
                   </h2>
@@ -159,14 +159,14 @@ export default function ContactPage() {
                   </p>
                   <p className="text-[var(--site-text-muted)] text-sm mb-10">
                     Check your inbox. A confirmation is on its way to{" "}
-                    <span className="text-[#c69947]">{formData.email}</span>.
+                    <span className="text-[#f87444]">{formData.email}</span>.
                   </p>
                   <button
                     onClick={() => {
                       setStatus("idle");
                       setFormData({ name: "", email: "", company: "", service: "", budget: "", message: "" });
                     }}
-                    className="text-[#c69947] text-sm font-medium border-b border-[#c69947] pb-0.5 cursor-pointer"
+                    className="text-[#f87444] text-sm font-medium border-b border-[#f87444] pb-0.5 cursor-pointer"
                   >
                     ← Send another message
                   </button>
@@ -295,7 +295,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 {contactInfo.map((c) => (
                   <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined} className="flex items-center gap-3 group cursor-pointer">
-                    <c.icon className="w-4 h-4 text-[#c69947] shrink-0" />
+                    <c.icon className="w-4 h-4 text-[#f87444] shrink-0" />
                     <div>
                       <span className="text-xs text-[var(--site-text-muted)] uppercase tracking-wider mr-2">{c.label}</span>
                       <span className="text-sm text-[var(--site-text-secondary)] group-hover:text-[var(--site-text-primary)] transition-colors">{c.value}</span>

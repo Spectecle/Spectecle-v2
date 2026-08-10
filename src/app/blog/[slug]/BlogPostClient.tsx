@@ -54,7 +54,7 @@ function renderBlock(block: ContentBlock, i: number) {
         <ul key={i} className="mb-6 space-y-2.5">
           {block.items.map((item, j) => (
             <li key={j} className="flex items-start gap-3 text-[var(--site-text-secondary)]">
-              <span className="mt-1.5 w-1.5 h-1.5 bg-[#c69947] shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 bg-[#f87444] shrink-0" />
               {item}
             </li>
           ))}
@@ -63,7 +63,7 @@ function renderBlock(block: ContentBlock, i: number) {
     case "callout":
       return (
         <div key={i} className="my-10 py-6 border-t border-b border-[var(--site-border)]">
-          <p className="text-[#c69947] font-semibold text-sm mb-3">{block.text}</p>
+          <p className="text-[#f87444] font-semibold text-sm mb-3">{block.text}</p>
           <Link
             href={`/work/${block.caseStudySlug}`}
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5"
@@ -182,7 +182,7 @@ export default function BlogPostClient({
               <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {SERVICE_LINKS[post.slug].map((s) => (
                   <Link key={s.href} href={s.href} className="group block">
-                    <h3 className="text-[var(--site-text-primary)] font-semibold mb-1.5 text-sm group-hover:text-[#c69947] transition-colors">{s.title}</h3>
+                    <h3 className="text-[var(--site-text-primary)] font-semibold mb-1.5 text-sm group-hover:text-[#f87444] transition-colors">{s.title}</h3>
                     <p className="text-[var(--site-text-muted)] text-xs leading-relaxed">{s.desc}</p>
                   </Link>
                 ))}
@@ -201,11 +201,11 @@ export default function BlogPostClient({
               <Link href={`/work/${post.caseStudySlug}`} className="group flex items-center justify-between">
                 <div>
                   <p className="text-[var(--site-text-muted)] text-sm">Real project. Real results.</p>
-                  <h3 className="text-2xl font-light text-[var(--site-text-primary)] mt-1 group-hover:text-[#c69947] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
+                  <h3 className="text-2xl font-light text-[var(--site-text-primary)] mt-1 group-hover:text-[#f87444] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
                     {post.caseStudyTitle}
                   </h3>
                 </div>
-                <ChevronRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#c69947] transition-colors shrink-0" />
+                <ChevronRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#f87444] transition-colors shrink-0" />
               </Link>
             </Reveal>
           </div>
@@ -220,11 +220,11 @@ export default function BlogPostClient({
             <Link href={`/blog/${nextPost.slug}`} className="group flex items-center justify-between">
               <div>
                 <p className={`text-xs font-semibold ${nextPost.categoryColor} uppercase tracking-widest mb-1`}>{nextPost.category}</p>
-                <h3 className="text-2xl font-light text-[var(--site-text-primary)] group-hover:text-[#c69947] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
+                <h3 className="text-2xl font-light text-[var(--site-text-primary)] group-hover:text-[#f87444] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
                   {nextPost.title}
                 </h3>
               </div>
-              <ChevronRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#c69947] transition-colors shrink-0" />
+              <ChevronRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#f87444] transition-colors shrink-0" />
             </Link>
           </Reveal>
         </div>
@@ -235,7 +235,7 @@ export default function BlogPostClient({
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Want these results <span className="italic text-[#c69947]">for your business?</span>
+              Want these results <span className="italic text-[#f87444]">for your business?</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. We&apos;ll walk through exactly what it

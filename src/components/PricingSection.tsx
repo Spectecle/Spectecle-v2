@@ -188,7 +188,7 @@ function BillingToggle({
         >
           {c === "monthly" ? "Monthly" : "Yearly"}
           {c === "yearly" && (
-            <span className="text-[10px] font-bold text-[#c69947]">
+            <span className="text-[10px] font-bold text-[#f87444]">
               SAVE {Math.round(YEARLY_DISCOUNT * 100)}%
             </span>
           )}
@@ -211,7 +211,7 @@ function DesignTierCard({ tier }: { tier: DesignTier }) {
         <p className="text-[10px] text-[var(--site-text-muted)] uppercase tracking-widest font-semibold mb-1">
           One-Time Design Investment
         </p>
-        <span className={`font-light text-[#c69947] ${tier.isCustom ? "text-xl" : "text-3xl md:text-4xl"}`} style={{ fontFamily: "var(--font-serif)" }}>
+        <span className={`font-light text-[#f87444] ${tier.isCustom ? "text-xl" : "text-3xl md:text-4xl"}`} style={{ fontFamily: "var(--font-serif)" }}>
           {tier.price}
         </span>
       </div>
@@ -227,7 +227,7 @@ function DesignTierCard({ tier }: { tier: DesignTier }) {
       <ul className="space-y-2.5 pt-6 border-t border-[var(--site-border)] flex-1">
         {tier.items.map((item, i) => (
           <li key={i} className="flex items-start gap-2.5 text-sm text-[var(--site-text-secondary)]">
-            <Check className="w-4 h-4 text-[#c69947] shrink-0 mt-0.5" />
+            <Check className="w-4 h-4 text-[#f87444] shrink-0 mt-0.5" />
             <span>{item}</span>
           </li>
         ))}
@@ -304,7 +304,7 @@ function FeatureLabel({ label, description }: { label: string; description: stri
         onMouseLeave={() => setOpen(false)}
         onClick={(e) => { e.stopPropagation(); updatePosition(); setOpen((o) => !o); }}
         aria-label={`What is "${label}"?`}
-        className="shrink-0 mt-0.5 text-[var(--site-text-muted)] hover:text-[#c69947] transition-colors cursor-pointer"
+        className="shrink-0 mt-0.5 text-[var(--site-text-muted)] hover:text-[#f87444] transition-colors cursor-pointer"
       >
         <Info className="w-3 h-3" />
       </button>
@@ -329,7 +329,7 @@ function FeatureLabel({ label, description }: { label: string; description: stri
 }
 
 function Cell({ value }: { value: string | boolean }) {
-  if (value === true) return <Check className="w-4 h-4 text-[#c69947] mx-auto" />;
+  if (value === true) return <Check className="w-4 h-4 text-[#f87444] mx-auto" />;
   if (value === false) return <Minus className="w-3.5 h-3.5 text-[var(--site-text-muted)] mx-auto" />;
   return <span className="text-xs text-[var(--site-text-secondary)] leading-tight">{value}</span>;
 }
@@ -362,7 +362,7 @@ function CarePlansTable({
             {carePlans.map((plan) => (
               <div key={plan.name} className="relative p-4 text-center border-l border-[var(--site-border)]">
                 {plan.popular && (
-                  <span className="absolute top-1.5 left-1/2 -translate-x-1/2 text-[9px] font-bold uppercase tracking-wide text-[#c69947]">
+                  <span className="absolute top-1.5 left-1/2 -translate-x-1/2 text-[9px] font-bold uppercase tracking-wide text-[#f87444]">
                     Popular
                   </span>
                 )}
@@ -376,7 +376,7 @@ function CarePlansTable({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 4 }}
                     transition={{ duration: 0.15 }}
-                    className="text-lg font-light text-[#c69947] mt-1"
+                    className="text-lg font-light text-[#f87444] mt-1"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     ${(cycle === "monthly" ? plan.monthly : yearlyPrice(plan.monthly)).toLocaleString()}
@@ -394,7 +394,7 @@ function CarePlansTable({
                 <Link
                   href="/contact"
                   className={`text-xs font-semibold cursor-pointer border-b pb-0.5 ${
-                    plan.popular ? "text-[#c69947] border-[#c69947]" : "text-[var(--site-text-primary)] border-[var(--site-text-primary)]"
+                    plan.popular ? "text-[#f87444] border-[#f87444]" : "text-[var(--site-text-primary)] border-[var(--site-text-primary)]"
                   }`}
                 >
                   Get Started
@@ -407,7 +407,7 @@ function CarePlansTable({
             <div key={group.category}>
               <div className="grid grid-cols-[200px_repeat(6,1fr)] border-t border-[var(--site-border)]">
                 <div className="p-3 col-span-7">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#c69947]">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#f87444]">
                     {group.category}
                   </p>
                 </div>
@@ -452,7 +452,7 @@ function AddOnsSection() {
     <div className="mt-16">
       <div className="mb-10">
         <h2 className="text-4xl md:text-5xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
-          Want to grow faster? <span className="italic text-[#c69947]">Add these on.</span>
+          Want to grow faster? <span className="italic text-[#f87444]">Add these on.</span>
         </h2>
         <p className="text-[var(--site-text-secondary)] max-w-xl text-sm">
           Available alongside any care plan above. These are priced separately because the right
@@ -463,12 +463,12 @@ function AddOnsSection() {
         {addOns.map((addOn) => (
           <div key={addOn.name} className="flex flex-col sm:pl-8 sm:first:pl-0">
             <h3 className="text-xl font-light text-[var(--site-text-primary)] mb-1" style={{ fontFamily: "var(--font-serif)" }}>{addOn.name}</h3>
-            <p className="text-sm font-semibold text-[#c69947] mb-3">{addOn.price}</p>
+            <p className="text-sm font-semibold text-[#f87444] mb-3">{addOn.price}</p>
             <p className="text-sm text-[var(--site-text-secondary)] leading-relaxed mb-5">{addOn.description}</p>
             <ul className="space-y-2 mb-6 flex-1">
               {addOn.items.map((item, ii) => (
                 <li key={ii} className="flex items-start gap-2.5 text-sm text-[var(--site-text-secondary)]">
-                  <Check className="w-4 h-4 text-[#c69947] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[#f87444] shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </li>
               ))}

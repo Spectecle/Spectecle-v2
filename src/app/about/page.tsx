@@ -91,7 +91,7 @@ export default function AboutPage() {
             className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Small team. <span className="italic text-[#c69947]">Serious results.</span>
+            Small team. <span className="italic text-[#f87444]">Serious results.</span>
           </motion.h1>
 
           <p className="mt-6 text-[var(--site-text-secondary)] text-lg leading-relaxed max-w-lg">
@@ -228,7 +228,7 @@ export default function AboutPage() {
                 <Link
                   key={ind}
                   href="/work"
-                  className="text-sm text-[var(--site-text-secondary)] hover:text-[#c69947] transition-colors"
+                  className="text-sm text-[var(--site-text-secondary)] hover:text-[#f87444] transition-colors"
                 >
                   {ind}
                 </Link>
@@ -253,7 +253,7 @@ export default function AboutPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Let&apos;s build something <span className="italic text-[#c69947]">worth talking about.</span>
+              Let&apos;s build something <span className="italic text-[#f87444]">worth talking about.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Free 30-minute strategy call. No sales pitch, just an honest

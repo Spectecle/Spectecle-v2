@@ -15,7 +15,7 @@ export default function PricingPage() {
             className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Plans built to <span className="italic text-[#c69947]">grow with your business.</span>
+            Plans built to <span className="italic text-[#f87444]">grow with your business.</span>
           </h1>
           <p className="mt-6 text-[var(--site-text-secondary)] leading-relaxed max-w-xl mx-auto text-lg">
             Two simple steps: choose a one-time design investment to get your website built,

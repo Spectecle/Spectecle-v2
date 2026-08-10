@@ -139,7 +139,7 @@ export function EditRequestForm({
           type="button"
           onClick={handleSave}
           disabled={status === "saving"}
-          className="flex items-center gap-1.5 bg-[#c69947]/15 hover:bg-[#c69947]/25 text-[#c69947] text-xs font-medium px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors"
+          className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-xs font-medium px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors"
         >
           {status === "saving" ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />

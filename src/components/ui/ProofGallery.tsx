@@ -34,10 +34,10 @@ export function ProofGallery({
               size="compact"
             />
             <p className="mt-4 text-xs text-[var(--site-text-muted)]">{project.industry}</p>
-            <h3 className="mt-1 text-lg font-light text-[var(--site-text-primary)] group-hover:text-[#c69947] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
+            <h3 className="mt-1 text-lg font-light text-[var(--site-text-primary)] group-hover:text-[#f87444] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
               {project.title}
             </h3>
-            <p className="mt-1 text-sm font-semibold text-[#c69947]">{project.cardResult}</p>
+            <p className="mt-1 text-sm font-semibold text-[#f87444]">{project.cardResult}</p>
             <span className="inline-flex items-center gap-1 text-xs text-[var(--site-text-muted)] group-hover:text-[var(--site-text-primary)] mt-3 transition-colors">
               View case study <ArrowUpRight className="w-3 h-3" />
             </span>

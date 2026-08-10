@@ -65,7 +65,7 @@ export function TicketThread({
                 key={m.id}
                 className={`text-xs rounded-lg px-3 py-2 ${
                   isViewer
-                    ? "bg-[#c69947]/10 border border-[#c69947]/15 ml-6"
+                    ? "bg-[#f87444]/10 border border-[#f87444]/15 ml-6"
                     : "bg-[var(--portal-border)] border border-[var(--portal-border)] mr-6"
                 }`}
               >
@@ -90,7 +90,7 @@ export function TicketThread({
                           href={f.signedUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-[#c69947] hover:text-[#c69947] bg-[#c69947]/10 px-2 py-1 cursor-pointer"
+                          className="flex items-center gap-1 text-[#f87444] hover:text-[#f87444] bg-[#f87444]/10 px-2 py-1 cursor-pointer"
                         >
                           <Paperclip className="w-3 h-3" />
                           {f.fileName}
@@ -111,7 +111,7 @@ export function TicketThread({
           onChange={(e) => setBody(e.target.value)}
           rows={2}
           placeholder={viewerRole === "admin" ? "Reply to this client…" : "Reply or add more info…"}
-          className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] px-3 py-2 text-xs resize-none focus:border-[#c69947]/50 outline-none"
+          className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] px-3 py-2 text-xs resize-none focus:border-[#f87444]/50 outline-none"
         />
         {showUpload && (
           <FileUploadField
@@ -136,7 +136,7 @@ export function TicketThread({
             type="button"
             onClick={handleSend}
             disabled={sending}
-            className="ml-auto flex items-center gap-1.5 bg-[#c69947]/15 hover:bg-[#c69947]/25 text-[#c69947] text-xs font-medium px-3 py-1.5 cursor-pointer disabled:opacity-60 transition-colors"
+            className="ml-auto flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-xs font-medium px-3 py-1.5 cursor-pointer disabled:opacity-60 transition-colors"
           >
             {sending ? <Loader2 className="w-3 h-3 animate-spin" /> : <Send className="w-3 h-3" />}
             Send

@@ -53,7 +53,7 @@ export const projects: ProjectData[] = [
     cardDesc:
       "Ongoing website care for Vùe Eye Boutique Optometry, a membership-based practice that skips insurance entirely. We keep the site current as their offerings, promotions, and messaging evolve.",
     cardResult: "Always Up-to-Date",
-    cardResultColor: "text-[#c69947]",
+    cardResultColor: "text-[#f87444]",
     tagline: "Keeping a membership-first eye care brand's site as current as their business",
     metaTitle: "Vue Optometry: Website Design & Ongoing Care Case Study | Spectecle",
     metaDescription:
@@ -110,7 +110,7 @@ export const projects: ProjectData[] = [
     cardDesc:
       "Luxury portfolio website and local SEO for a Michigan makeup artist, ranking page one for 15+ searches including 'makeup artist Michigan,' 'lash extensions near me,' and 'bridal makeup Detroit.' Booking calendar now fills 3 months in advance from organic search alone.",
     cardResult: "15+ Keywords Ranked",
-    cardResultColor: "text-[#c69947]",
+    cardResultColor: "text-[#f87444]",
     tagline: "Luxury beauty brand: discovered on Google, booked for months",
     metaTitle: "Glam by Abeer: Web Design & Beauty SEO Case Study | Spectecle",
     metaDescription:
@@ -171,7 +171,7 @@ export const projects: ProjectData[] = [
     cardDesc:
       "Authority-focused website design and SEO for Michigan family law attorney Neda Mohiedeen, built to convert first-time visitors into consultation requests during one of the hardest moments in their lives.",
     cardResult: "Custom Law Firm Site",
-    cardResultColor: "text-[#c69947]",
+    cardResultColor: "text-[#f87444]",
     tagline: "Authority-first web presence for a Michigan family law attorney",
     metaTitle: "MI Family Lawyer: Family Law Website & SEO Case Study | Spectecle",
     metaDescription:
@@ -239,7 +239,7 @@ export const projects: ProjectData[] = [
     cardDesc:
       "A complete website rebuild for Dearborn Cleaners LLC, a mold remediation and specialty cleaning company, built to convert urgent, high-stress inquiries into booked inspections.",
     cardResult: "Complete Rebuild",
-    cardResultColor: "text-[#c69947]",
+    cardResultColor: "text-[#f87444]",
     tagline: "Turning an urgent problem into an easy first call",
     metaTitle: "Dearborn Cleaners: Website Redesign Case Study | Spectecle",
     metaDescription:
@@ -296,7 +296,7 @@ export const projects: ProjectData[] = [
     cardDesc:
       "Website redesign and local SEO for Detroit's premier glass and mirror company. Google Map Pack placement for 'glass company Detroit' and 'shower glass installation Michigan.' PageSpeed jumped 31 → 94 and monthly quote requests doubled in under 90 days.",
     cardResult: "Google Map Pack",
-    cardResultColor: "text-[#c69947]",
+    cardResultColor: "text-[#f87444]",
     tagline: "Detroit's premier glass shop, now impossible to miss on Google",
     metaTitle: "Detroit Glass & Mirror: Local SEO & Website Redesign Case Study | Spectecle",
     metaDescription:
@@ -357,7 +357,7 @@ export const projects: ProjectData[] = [
     cardDesc:
       "Contractor website design and aggressive local SEO for a Detroit-area drywall company, built from zero online presence to #1 Google rankings for 'drywall contractor Michigan.' Includes 40+ citation listings, geo-targeted service area pages, and Google Map Pack placement.",
     cardResult: "#1 Local Rankings",
-    cardResultColor: "text-[#c69947]",
+    cardResultColor: "text-[#f87444]",
     tagline: "From word of mouth to page one on Google",
     metaTitle: "Salazar Drywall Pros: Local SEO & Web Design Case Study | Spectecle",
     metaDescription:
@@ -419,7 +419,7 @@ export const projects: ProjectData[] = [
     cardDesc:
       "E-commerce website design for a Michigan indoor plant shop moving from Instagram DMs to a full online storefront. A targeted SEO content strategy around plant care and indoor gardening searches grew organic traffic 220% in 5 months. 40% of revenue now flows through the site.",
     cardResult: "+220% Organic Traffic",
-    cardResultColor: "text-[#c69947]",
+    cardResultColor: "text-[#f87444]",
     tagline: "From Instagram DMs to a thriving online store",
     metaTitle: "Indoor Garden: E-commerce Web Design Case Study | Spectecle",
     metaDescription:
@@ -480,7 +480,7 @@ export const projects: ProjectData[] = [
     cardDesc:
       "Website redesign and custom AI automation for a Michigan IT services company. A GPT-4 intake agent, trained on their full service catalog, integrated with CRM and Slack via n8n, now handles 68% of client inquiries 24/7, saving 40+ team hours per month.",
     cardResult: "68% Automated",
-    cardResultColor: "text-[#c69947]",
+    cardResultColor: "text-[#f87444]",
     tagline: "Cutting-edge website. Even sharper AI behind the scenes.",
     metaTitle: "Thematek: Web Design & AI Automation Case Study | Spectecle",
     metaDescription:
@@ -540,7 +540,7 @@ export const projects: ProjectData[] = [
     cardDesc:
       "Custom website design and SEO for a Michigan sports performance and health clinic. Integrated online booking grew appointment volume 85%; a content strategy targeting athletic recovery and performance searches drove +156% organic traffic in under 6 months.",
     cardResult: "+85% Appointments",
-    cardResultColor: "text-[#c69947]",
+    cardResultColor: "text-[#f87444]",
     tagline: "Performance-grade digital presence for a data-driven clinic",
     metaTitle: "The Stat Clinic: Web Design & SEO Case Study | Spectecle",
     metaDescription:

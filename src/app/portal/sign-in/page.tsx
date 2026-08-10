@@ -30,7 +30,7 @@ function SignInForm() {
   const inputClass = (hasError: boolean) =>
     `w-full bg-[var(--portal-card)] border ${
       hasError ? "border-rose-500/60" : "border-[var(--portal-border)]"
-    } text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] rounded-xl px-4 py-3.5 text-sm transition-all duration-200 focus:border-[#c69947]/50 focus:bg-[var(--portal-card-alt)] outline-none`;
+    } text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] rounded-xl px-4 py-3.5 text-sm transition-all duration-200 focus:border-[#f87444]/50 focus:bg-[var(--portal-card-alt)] outline-none`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,8 +76,8 @@ function SignInForm() {
         className="relative w-full max-w-md"
       >
         <div className="glass border border-[var(--portal-border)] p-8 md:p-10">
-          <div className="w-12 h-12 bg-[#c69947]/10 flex items-center justify-center mb-6">
-            <Mail className="w-5 h-5 text-[#c69947]" />
+          <div className="w-12 h-12 bg-[#f87444]/10 flex items-center justify-center mb-6">
+            <Mail className="w-5 h-5 text-[#f87444]" />
           </div>
           <h1
             className="text-2xl font-bold text-[var(--portal-text-primary)] mb-1"

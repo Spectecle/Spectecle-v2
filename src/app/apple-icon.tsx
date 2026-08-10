@@ -22,25 +22,25 @@ export default function AppleIcon() {
         <div style={{
           position: "absolute", top: 12, right: 12,
           width: 50, height: 50,
-          background: "#c69947",
+          background: "#f87444",
         }} />
         {/* Upper-center — medium */}
         <div style={{
           position: "absolute", top: 38, left: 62,
           width: 63, height: 63,
-          background: "#c69947",
+          background: "#f87444",
         }} />
         {/* Left — large */}
         <div style={{
           position: "absolute", top: 62, left: 6,
           width: 84, height: 84,
-          background: "#c69947",
+          background: "#f87444",
         }} />
         {/* Bottom-right — medium */}
         <div style={{
           position: "absolute", bottom: 12, right: 12,
           width: 56, height: 56,
-          background: "#c69947",
+          background: "#f87444",
         }} />
       </div>
     ),

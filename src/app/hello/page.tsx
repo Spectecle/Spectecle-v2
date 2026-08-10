@@ -173,7 +173,7 @@ export default function HelloPage() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -40, opacity: 0 }}
                   transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                  className="italic text-[#c69947] inline-block"
+                  className="italic text-[#f87444] inline-block"
                 >
                   {ROTATE_WORDS[wordIdx]}
                 </motion.span>
@@ -201,7 +201,7 @@ export default function HelloPage() {
           <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-8 w-full max-w-2xl">
             {STATS.map((s) => (
               <div key={s.label} className="text-center">
-                <span className="text-2xl sm:text-3xl font-light text-[#c69947]" style={{ fontFamily: "var(--font-serif)" }}>{s.value}</span>
+                <span className="text-2xl sm:text-3xl font-light text-[#f87444]" style={{ fontFamily: "var(--font-serif)" }}>{s.value}</span>
                 <p className="text-[var(--site-text-muted)] text-xs mt-1 leading-snug">{s.label}</p>
               </div>
             ))}
@@ -227,7 +227,7 @@ export default function HelloPage() {
           <Reveal className="mb-16">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Do</span>
             <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Three disciplines. <span className="italic text-[#c69947]">One agency.</span>
+              Three disciplines. <span className="italic text-[#f87444]">One agency.</span>
             </h2>
           </Reveal>
 
@@ -242,7 +242,7 @@ export default function HelloPage() {
                     <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5">
                       {s.bullets.map((b) => (
                         <li key={b} className="flex items-center gap-2 text-[var(--site-text-muted)] text-xs">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#c69947] shrink-0" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#f87444] shrink-0" />
                           {b}
                         </li>
                       ))}
@@ -261,7 +261,7 @@ export default function HelloPage() {
           <Reveal className="mb-16">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Selected Work</span>
             <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Real results. <span className="italic text-[#c69947]">Real clients.</span>
+              Real results. <span className="italic text-[#f87444]">Real clients.</span>
             </h2>
           </Reveal>
 
@@ -279,8 +279,8 @@ export default function HelloPage() {
                     />
                   </div>
                   <div className="mt-4 flex items-center justify-between">
-                    <span className="text-[var(--site-text-primary)] font-semibold text-sm group-hover:text-[#c69947] transition-colors">{p.title}</span>
-                    <span className="text-xs font-bold text-[#c69947]">{p.cardResult}</span>
+                    <span className="text-[var(--site-text-primary)] font-semibold text-sm group-hover:text-[#f87444] transition-colors">{p.title}</span>
+                    <span className="text-xs font-bold text-[#f87444]">{p.cardResult}</span>
                   </div>
                   <p className="mt-1 text-[var(--site-text-muted)] text-xs leading-relaxed line-clamp-2">{p.cardDesc}</p>
                 </Link>
@@ -325,7 +325,7 @@ export default function HelloPage() {
           <Reveal className="mb-16">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Common Questions</span>
             <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Everything you&apos;re <span className="italic text-[#c69947]">probably wondering.</span>
+              Everything you&apos;re <span className="italic text-[#f87444]">probably wondering.</span>
             </h2>
           </Reveal>
 
@@ -340,7 +340,7 @@ export default function HelloPage() {
                   >
                     <span className="text-[var(--site-text-primary)] font-semibold text-sm leading-snug">{item.question}</span>
                     <ChevronDown
-                      className="w-5 h-5 text-[#c69947] shrink-0 transition-transform duration-300"
+                      className="w-5 h-5 text-[#f87444] shrink-0 transition-transform duration-300"
                       style={{ transform: openFaq === i ? "rotate(180deg)" : "rotate(0deg)" }}
                     />
                   </button>
@@ -386,7 +386,7 @@ export default function HelloPage() {
             <Reveal>
               <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">The Founder</span>
               <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)] leading-tight mb-6" style={{ fontFamily: "var(--font-serif)" }}>
-                Hi, I&apos;m <span className="italic text-[#c69947]">Walid.</span>
+                Hi, I&apos;m <span className="italic text-[#f87444]">Walid.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
@@ -426,7 +426,7 @@ export default function HelloPage() {
         <Reveal className="max-w-3xl mx-auto text-center">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Let&apos;s Talk</span>
           <h2 className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)] leading-tight mb-6" style={{ fontFamily: "var(--font-serif)" }}>
-            Ready to build something <span className="italic text-[#c69947]">that actually works?</span>
+            Ready to build something <span className="italic text-[#f87444]">that actually works?</span>
           </h2>
           <p className="text-[var(--site-text-secondary)] text-lg mb-10 max-w-xl mx-auto">
             You scanned the card. That&apos;s the first step. The second one is a 15-minute conversation about what your business actually needs.
@@ -438,12 +438,12 @@ export default function HelloPage() {
               <ArrowUpRight className="w-5 h-5" />
             </Link>
             <a href="tel:+13133534105" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
-              <Phone className="w-4 h-4 text-[#c69947]" />
+              <Phone className="w-4 h-4 text-[#f87444]" />
               (313) 353-4105
             </a>
           </div>
 
-          <a href="mailto:hello@spectecle.com" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[#c69947] text-sm transition-colors">
+          <a href="mailto:hello@spectecle.com" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[#f87444] text-sm transition-colors">
             <Mail className="w-4 h-4" />
             hello@spectecle.com
           </a>
@@ -452,7 +452,7 @@ export default function HelloPage() {
 
       {/* ── MINI FOOTER ───────────────────────────────────────────────────── */}
       <div className="border-t border-[var(--site-border)] py-6 px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[var(--site-text-muted)] text-xs">
-        <Link href="/" className="text-[var(--site-text-muted)] hover:text-[#c69947] transition-colors font-semibold tracking-tight">
+        <Link href="/" className="text-[var(--site-text-muted)] hover:text-[#f87444] transition-colors font-semibold tracking-tight">
           spectecle.com
         </Link>
         <p>© {new Date().getFullYear()} Spectecle SEO & Web Design · All rights reserved.</p>

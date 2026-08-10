@@ -8,7 +8,7 @@ export type DetailValue = string | string[];
 export const inputClass = (hasError: boolean) =>
   `w-full bg-[var(--portal-card)] border ${
     hasError ? "border-rose-500/60" : "border-[var(--portal-border)]"
-  } text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] rounded-xl px-4 py-3.5 text-sm transition-all duration-200 focus:border-[#c69947]/50 focus:bg-[var(--portal-card-alt)] outline-none`;
+  } text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] rounded-xl px-4 py-3.5 text-sm transition-all duration-200 focus:border-[#f87444]/50 focus:bg-[var(--portal-card-alt)] outline-none`;
 
 export function DynamicField({
   field,
@@ -74,7 +74,7 @@ export function DynamicField({
               onClick={() => toggle(opt)}
               className={`px-3 py-2 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
                 selected.includes(opt)
-                  ? "bg-[#c69947]/15 border-[#c69947]/40 text-[#c69947]"
+                  ? "bg-[#f87444]/15 border-[#f87444]/40 text-[#f87444]"
                   : "bg-[var(--portal-card)] border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:border-[var(--portal-border-strong)]"
               }`}
             >

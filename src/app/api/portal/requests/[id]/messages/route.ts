@@ -119,13 +119,13 @@ export async function POST(
       subject: `New reply on your ${ticket.service_type} request`,
       html: `
         <div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;padding:32px 24px;background:#fff;">
-          <div style="border-left:4px solid #c69947;padding-left:16px;margin-bottom:28px;">
+          <div style="border-left:4px solid #f87444;padding-left:16px;margin-bottom:28px;">
             <h2 style="margin:0 0 4px;color:#111;font-size:20px;">New Reply</h2>
             <p style="margin:0;color:#888;font-size:14px;">on your ${esc(ticket.service_type)} request</p>
           </div>
           ${messageBody ? `<div style="background:#f7f7f7;border-radius:8px;padding:16px;font-size:15px;line-height:1.6;white-space:pre-wrap;color:#333;">${esc(messageBody)}</div>` : ""}
           ${attachmentNote}
-          <p style="margin-top:24px;"><a href="${SITE_URL}/portal/dashboard" style="color:#c69947;">View in your portal</a></p>
+          <p style="margin-top:24px;"><a href="${SITE_URL}/portal/dashboard" style="color:#f87444;">View in your portal</a></p>
         </div>
       `,
     });
@@ -138,13 +138,13 @@ export async function POST(
       subject: `New reply from ${user.email} on a ${ticket.service_type} request`,
       html: `
         <div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;padding:32px 24px;background:#fff;">
-          <div style="border-left:4px solid #c69947;padding-left:16px;margin-bottom:28px;">
+          <div style="border-left:4px solid #f87444;padding-left:16px;margin-bottom:28px;">
             <h2 style="margin:0 0 4px;color:#111;font-size:20px;">New Client Reply</h2>
             <p style="margin:0;color:#888;font-size:14px;">${esc(ticket.service_type)}</p>
           </div>
           ${messageBody ? `<div style="background:#f7f7f7;border-radius:8px;padding:16px;font-size:15px;line-height:1.6;white-space:pre-wrap;color:#333;">${esc(messageBody)}</div>` : ""}
           ${attachmentNote}
-          <p style="margin-top:24px;"><a href="${SITE_URL}/portal/admin" style="color:#c69947;">View in admin</a></p>
+          <p style="margin-top:24px;"><a href="${SITE_URL}/portal/admin" style="color:#f87444;">View in admin</a></p>
         </div>
       `,
     });

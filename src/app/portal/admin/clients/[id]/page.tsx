@@ -123,7 +123,7 @@ export default async function AdminClientDetailPage({
                     href={websiteUrl.startsWith("http") ? websiteUrl : `https://${websiteUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs text-[#c69947] hover:text-[#c69947] transition-colors"
+                    className="flex items-center gap-1.5 text-xs text-[#f87444] hover:text-[#f87444] transition-colors"
                   >
                     <Globe className="w-3 h-3" />
                     {websiteUrl}

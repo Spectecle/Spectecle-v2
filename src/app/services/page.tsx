@@ -113,7 +113,7 @@ export default function ServicesPage() {
             className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Three disciplines. <span className="italic text-[#c69947]">One obsession.</span>
+            Three disciplines. <span className="italic text-[#f87444]">One obsession.</span>
           </motion.h1>
           <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Search-first design, bold development, and intelligent automation, built around what your business actually needs to grow.
@@ -129,13 +129,13 @@ export default function ServicesPage() {
               <Link href={s.href} className="group grid md:grid-cols-[80px_1fr_auto] items-start gap-4 py-12">
                 <span className="text-sm text-[var(--site-text-muted)] font-mono">{s.n}</span>
                 <div>
-                  <h2 className="text-3xl font-light text-[var(--site-text-primary)] group-hover:text-[#c69947] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
+                  <h2 className="text-3xl font-light text-[var(--site-text-primary)] group-hover:text-[#f87444] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
                     {s.title}
                   </h2>
-                  <p className="mt-2 text-[#c69947] text-sm font-medium">{s.tagline}</p>
+                  <p className="mt-2 text-[#f87444] text-sm font-medium">{s.tagline}</p>
                   <p className="mt-3 text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-xl">{s.desc}</p>
                 </div>
-                <ArrowUpRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#c69947] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all justify-self-end mt-2" />
+                <ArrowUpRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#f87444] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all justify-self-end mt-2" />
               </Link>
             </Reveal>
           ))}
@@ -203,7 +203,7 @@ export default function ServicesPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Nationwide reach. <span className="italic text-[#c69947]">Results-driven.</span>
+              Nationwide reach. <span className="italic text-[#f87444]">Results-driven.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. No sales pitch, just honest advice on what will move the needle for your business, wherever you are.

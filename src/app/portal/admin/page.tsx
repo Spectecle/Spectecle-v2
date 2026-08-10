@@ -202,7 +202,7 @@ async function RequestsSection({
       {(userFilter || orgFilter) && (
         <div className="flex items-center gap-2 mb-4">
           <span className="text-xs text-[var(--portal-text-secondary)]">Filtered by:</span>
-          <span className="flex items-center gap-1.5 text-xs text-[#c69947] bg-[#c69947]/10 px-2.5 py-1">
+          <span className="flex items-center gap-1.5 text-xs text-[#f87444] bg-[#f87444]/10 px-2.5 py-1">
             {userFilter ?? orgFilterLabel}
             <Link href="?section=requests" className="hover:text-[var(--portal-text-primary)] cursor-pointer">
               <X className="w-3 h-3" />
