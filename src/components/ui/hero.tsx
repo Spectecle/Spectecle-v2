@@ -39,7 +39,7 @@ export default function Hero() {
     const height = startSize + (vh - startSize) * p;
     // Nudge the box down while it's growing, tapering to 0 by full growth
     // so the fully-scrolled state still fills the viewport with no gap.
-    const shiftDown = 400 * (1 - p);
+    const shiftDown = 350 * (1 - p);
     const top = vh / 2 - height / 2 + shiftDown;
     const left = vw / 2 - width / 2;
     const opacity = Math.min(p / 0.15, 1);
