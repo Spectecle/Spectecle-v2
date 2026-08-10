@@ -221,6 +221,36 @@ const process = [
 
 const journalPosts = posts.slice(0, 3);
 
+const mobileFeaturedSlugs = ["vue-optometry", "glam-by-abeer", "mi-family-lawyer"];
+const mobileFeaturedProjects = mobileFeaturedSlugs.map(
+  (slug) => projects.find((p) => p.slug === slug)!
+);
+
+function ProjectCard({ p, delay }: { p: (typeof projects)[number]; delay: number }) {
+  return (
+    <Reveal delay={delay}>
+      <Link href={`/work/${p.slug}`} className="group block">
+        <div className="relative aspect-[4/3] overflow-hidden">
+          <Image
+            src={p.image}
+            alt={`${p.title} homepage`}
+            fill
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        </div>
+        <h3
+          className="mt-5 text-xl font-light text-[var(--site-text-primary)] group-hover:text-[#c69947] transition-colors"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          {p.title}
+        </h3>
+        <p className="mt-1.5 text-sm text-[var(--site-text-muted)]">{p.tagline}</p>
+      </Link>
+    </Reveal>
+  );
+}
+
 /* ─── Page ─────────────────────────────────────────── */
 export default function HomePage() {
   const [showAllWork, setShowAllWork] = useState(false);
@@ -259,28 +289,17 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-x-8 gap-y-16">
+          {/* Mobile: 3 featured projects, expands to all via View More */}
+          <div className="grid md:hidden gap-y-16">
+            {(showAllWork ? projects : mobileFeaturedProjects).map((p, i) => (
+              <ProjectCard key={p.slug} p={p} delay={i * 0.08} />
+            ))}
+          </div>
+
+          {/* Desktop/tablet: 6 projects, expands to all via View More */}
+          <div className="hidden md:grid grid-cols-3 gap-x-8 gap-y-16">
             {visibleProjects.map((p, i) => (
-              <Reveal key={p.slug} delay={i * 0.08}>
-                <Link href={`/work/${p.slug}`} className="group block">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={p.image}
-                      alt={`${p.title} homepage`}
-                      fill
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                  <h3
-                    className="mt-5 text-xl font-light text-[var(--site-text-primary)] group-hover:text-[#c69947] transition-colors"
-                    style={{ fontFamily: "var(--font-serif)" }}
-                  >
-                    {p.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm text-[var(--site-text-muted)]">{p.tagline}</p>
-                </Link>
-              </Reveal>
+              <ProjectCard key={p.slug} p={p} delay={i * 0.08} />
             ))}
           </div>
 
