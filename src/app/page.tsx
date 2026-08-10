@@ -8,7 +8,6 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Hero from "@/components/ui/hero";
 import { posts } from "@/app/blog/posts-data";
 import { ArrowUpRight } from "lucide-react";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 
 /* ─── Reveal ───────────────────────────────────────── */
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -290,9 +289,6 @@ export default function HomePage() {
       {/* ══ SERVICES ═════════════════════════════════ */}
       <section className="py-32 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
         <div className="relative max-w-5xl mx-auto">
-          <div className="hidden sm:block absolute -top-12 right-0 w-24 md:w-32 lg:w-40 pointer-events-none select-none">
-            <Image src="/tea.png" alt="" width={300} height={300} className="w-full h-auto" />
-          </div>
           <Reveal>
             <div className="mb-16">
               <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Do</span>
@@ -429,7 +425,15 @@ export default function HomePage() {
             {journalPosts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 0.1}>
                 <Link href={`/blog/${post.slug}`} className="group block">
-                  <ImagePlaceholder className="aspect-[16/10] w-full mb-5" label="Post cover" />
+                  <div className="relative aspect-[16/10] w-full mb-5 overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
                   <span className={`text-xs font-semibold ${post.categoryColor} uppercase tracking-widest`}>
                     {post.category}
                   </span>

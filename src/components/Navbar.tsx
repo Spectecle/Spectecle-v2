@@ -50,12 +50,36 @@ export default function Navbar() {
             <LogoMark className="w-16 h-16 drop-shadow-sm" />
           </Link>
 
-          {/* Theme toggle + menu button */}
-          <div className="flex items-center gap-1">
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-colors cursor-pointer ${
+                  pathname === link.href
+                    ? "text-[var(--site-text-primary)]"
+                    : "text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)]"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Theme toggle + desktop CTA + mobile menu button */}
+          <div className="flex items-center gap-4">
             <SiteThemeToggle />
+            <Link
+              href="/contact"
+              className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
+            >
+              Start a Project
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
+              className="md:hidden p-2 text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
               aria-label="Toggle menu"
             >
               {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -64,7 +88,7 @@ export default function Navbar() {
         </nav>
       </header>
 
-      {/* Slide-in menu — the only nav surface, at every breakpoint */}
+      {/* Slide-in menu — mobile only */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div

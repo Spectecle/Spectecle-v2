@@ -11,6 +11,7 @@ export type BlogPost = {
   excerpt: string;
   category: string;
   categoryColor: string;
+  image: string;
   readTime: string;
   publishedAt: string;
   metaTitle: string;
@@ -24,6 +25,7 @@ export type BlogPost = {
 export const posts: BlogPost[] = [
   {
     slug: "photography-website-design-michigan",
+    image: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=800&q=80",
     title: "How Michigan Photography Studios Can Get More Clients From Google",
     excerpt:
       "Most photographers compete hard on Instagram and ignore search entirely, which is exactly why local SEO is the highest-ROI marketing channel most Michigan studios aren't using.",
@@ -116,6 +118,7 @@ export const posts: BlogPost[] = [
 
   {
     slug: "contractor-website-design-michigan",
+    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80",
     title: "Local SEO for Michigan Contractors: How to Rank #1 for Your Trade",
     excerpt:
       "The best contractor in Michigan isn't always the one who wins the job. The one who shows up first on Google wins the job, and here's exactly how to be that contractor.",
@@ -211,6 +214,7 @@ export const posts: BlogPost[] = [
 
   {
     slug: "law-firm-website-design-michigan",
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80",
     title: "Law Firm Website Design in Michigan: How Attorneys Get More Consultation Calls",
     excerpt:
       "Legal is one of the most competitive SEO verticals. The attorneys who consistently win online have websites built on trust and authority, not just aesthetics.",
@@ -314,6 +318,7 @@ export const posts: BlogPost[] = [
 
   {
     slug: "makeup-artist-seo-michigan",
+    image: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&q=80",
     title: "Makeup Artist SEO: How Michigan Beauty Studios Fill Their Booking Calendar",
     excerpt:
       "Most Michigan makeup artists live on Instagram and ignore Google, which is exactly why local SEO delivers such strong ROI for the beauty businesses that use it correctly.",
@@ -399,6 +404,7 @@ export const posts: BlogPost[] = [
 
   {
     slug: "ai-business-automation-michigan",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
     title: "AI Business Automation in 2026: What Michigan Companies Are Actually Using It For",
     excerpt:
       "The conversation around AI has been dominated by hype. Here's what Michigan businesses are actually deploying, and what's genuinely delivering measurable ROI.",
@@ -502,6 +508,7 @@ export const posts: BlogPost[] = [
 
   {
     slug: "ecommerce-website-design-michigan",
+    image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80",
     title: "E-commerce Website Design: How Michigan Shops Are Moving Beyond Instagram Sales",
     excerpt:
       "Instagram DMs are not a business model. They're a workaround. Here's how Michigan product businesses are building the infrastructure to turn their social following into a real, scalable operation.",

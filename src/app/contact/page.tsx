@@ -10,7 +10,6 @@ import {
   MapPin,
   ArrowUpRight,
   CheckCircle2,
-  Clock,
 } from "lucide-react";
 
 const IconX = () => (
@@ -55,31 +54,16 @@ const contactInfo = [
   { icon: Mail, label: "Email", value: "hello@spectecle.com", href: "mailto:hello@spectecle.com" },
   { icon: Phone, label: "Phone", value: "+1 (313) 353-4105", href: "tel:+13133534105" },
   { icon: MapPin, label: "Coverage", value: "United States, Remote", href: "/work" },
-  { icon: Clock, label: "Response Time", value: "Within 24 hours", href: "#" },
 ];
 
 const budgetOptions = ["Under $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+", "Not sure yet"];
 
 const serviceOptions = ["Web Design & Development", "SEO & Digital Marketing", "AI & Automation", "All Three", "Something Else"];
 
-const guarantees = [
-  "Free 30-min strategy call, no commitment",
-  "Response within 24 hours, guaranteed",
-  "NDA available on request",
-  "Honest advice, even if we're not the right fit",
-];
-
 const socials = [
   { Icon: IconX, label: "Twitter / X", handle: "@spectecle", href: "https://x.com/spectecle" },
   { Icon: IconInstagram, label: "Instagram", handle: "@spectecle", href: "https://www.instagram.com/spectecle/" },
   { Icon: IconGithub, label: "GitHub", handle: "Spectecle", href: "https://github.com/Spectecle" },
-];
-
-const whoWeHelp = [
-  "Local service businesses, anywhere in the U.S.",
-  "Law firms, clinics & professional services",
-  "E-commerce brands scaling online",
-  "Startups & established companies nationwide",
 ];
 
 export default function ContactPage() {
@@ -148,7 +132,7 @@ export default function ContactPage() {
             Let&apos;s build something <span className="italic text-[#c69947]">that actually works.</span>
           </motion.h1>
           <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto leading-relaxed">
-            Tell us about your goals. We&apos;ll respond within 24 hours with honest advice
+            Tell us about your goals. We&apos;ll get back to you with honest advice
             and a clear plan, wherever you&apos;re located.
           </p>
         </div>
@@ -171,7 +155,7 @@ export default function ContactPage() {
                     Message Received!
                   </h2>
                   <p className="text-[var(--site-text-secondary)] mb-2">
-                    Thank you for reaching out. We&apos;ll review your message and respond within 24 hours.
+                    Thank you for reaching out. We&apos;ll review your message and get back to you shortly.
                   </p>
                   <p className="text-[var(--site-text-muted)] text-sm mb-10">
                     Check your inbox. A confirmation is on its way to{" "}
@@ -322,30 +306,6 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal delay={0.14}>
-              <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Who We Work With</h3>
-              <div className="space-y-3">
-                {whoWeHelp.map((g) => (
-                  <div key={g} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
-                    <CheckCircle2 className="w-4 h-4 text-[#c69947] shrink-0" />
-                    {g}
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.18}>
-              <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">What to Expect</h3>
-              <div className="space-y-3">
-                {guarantees.map((g) => (
-                  <div key={g} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
-                    <CheckCircle2 className="w-4 h-4 text-[#c69947] shrink-0" />
-                    {g}
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.22}>
               <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Follow Us</h3>
               <div className="space-y-3">
                 {socials.map((s) => (
@@ -370,24 +330,11 @@ export default function ContactPage() {
               No pressure. Just honest advice.
             </h2>
             <p className="mt-4 text-[var(--site-text-secondary)] text-base max-w-xl mx-auto leading-relaxed">
-              Our free strategy calls aren&apos;t sales pitches. We listen, we assess your
+              Our strategy calls aren&apos;t sales pitches. We listen, we assess your
               situation honestly, and we tell you exactly what we&apos;d do and what it would
               cost. If we&apos;re not the right fit, we&apos;ll say so.
             </p>
           </Reveal>
-
-          <div className="mt-14 grid sm:grid-cols-3 gap-8">
-            {[
-              { value: "24 hrs", label: "Guaranteed response time" },
-              { value: "Free", label: "Strategy call, no strings attached" },
-              { value: "100%", label: "Transparent pricing, no surprises" },
-            ].map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 0.08}>
-                <div className="text-2xl font-light text-[#c69947] mb-2" style={{ fontFamily: "var(--font-serif)" }}>{stat.value}</div>
-                <p className="text-[var(--site-text-secondary)] text-sm">{stat.label}</p>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
