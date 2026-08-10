@@ -16,7 +16,7 @@ export default function ServiceStack({ items }: { items: ServiceStackItem[] }) {
   return (
     <div className="w-full">
       {items.map((item, i) => {
-        const widthPct = 88 + i * 3;
+        const widthPct = 94 + i * 1.5;
         return (
           <div
             key={item.title}
@@ -26,7 +26,7 @@ export default function ServiceStack({ items }: { items: ServiceStackItem[] }) {
             <div className="h-screen w-full flex items-center justify-center px-6">
               <Link
                 href={item.href}
-                className="group block w-full h-[62%] md:h-[74%]"
+                className="group block w-full h-[80%] md:h-[76%]"
                 style={{ ["--stack-w" as string]: `${widthPct}%` }}
               >
                 <div className="relative h-full w-full mx-auto max-w-[var(--stack-w)] overflow-hidden border border-[var(--site-border)] bg-black">
@@ -43,23 +43,25 @@ export default function ServiceStack({ items }: { items: ServiceStackItem[] }) {
                     <div className="pointer-events-none absolute inset-x-0 top-0 h-28 [box-shadow:0_-24px_48px_16px_rgba(0,0,0,0.7)]" />
                   )}
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/5" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 md:p-14">
-                    <span className="text-xs sm:text-sm font-mono text-white/70">{item.n}</span>
-                    <h3
-                      className="mt-2 sm:mt-3 text-2xl sm:text-5xl md:text-6xl font-light text-white leading-[1.05]"
-                      style={{ fontFamily: "var(--font-serif)" }}
-                    >
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 sm:mt-4 max-w-xl text-white/80 text-sm sm:text-base md:text-lg leading-relaxed">
-                      {item.desc}
-                    </p>
-                    <span className="mt-4 sm:mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white border-b border-white pb-0.5 w-fit">
-                      Learn more
-                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    </span>
+                  <div className="absolute inset-0 flex flex-col justify-end">
+                    <div className="bg-black px-6 py-6 sm:px-10 sm:py-8 md:px-14 md:py-10">
+                      <span className="text-xs sm:text-sm font-mono text-white/70">{item.n}</span>
+                      <h3
+                        className="mt-2 sm:mt-3 text-2xl sm:text-5xl md:text-6xl font-light text-white leading-[1.05]"
+                        style={{ fontFamily: "var(--font-serif)" }}
+                      >
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 sm:mt-4 max-w-xl text-white/80 text-sm sm:text-base md:text-lg leading-relaxed">
+                        {item.desc}
+                      </p>
+                      <span className="mt-4 sm:mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white border-b border-white pb-0.5 w-fit">
+                        Learn more
+                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Link>
