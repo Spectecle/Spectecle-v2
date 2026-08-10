@@ -77,7 +77,8 @@ export default function Hero() {
               className="block mt-4 sm:mt-6 font-light leading-snug tracking-tight text-[var(--site-text-secondary)] text-[3.6vw] sm:text-[1.9vw] lg:text-[1.3vw]"
               style={{ fontFamily: "var(--font-sans)" }}
             >
-              Custom Design Worth Looking at. Marketing That Works.
+              A full-service web design, SEO, and AI automation agency
+              built for businesses that need their site to actually perform.
             </span>
           </motion.div>
         </div>

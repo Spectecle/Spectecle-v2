@@ -23,10 +23,10 @@ export default function ServiceStack({ items }: { items: ServiceStackItem[] }) {
             className="sticky w-full"
             style={{ top: `${i * 16}px`, zIndex: i + 1 }}
           >
-            <div className="h-screen w-full flex items-center justify-center px-6">
+            <div className="h-screen sm:h-[70vh] w-full flex items-center justify-center px-6">
               <Link
                 href={item.href}
-                className="group block w-full h-[70%] sm:h-[38%]"
+                className="group block w-full h-[70%] sm:h-[54%]"
                 style={{ ["--stack-w" as string]: `${widthPct}%` }}
               >
                 <div className="relative h-full w-full mx-auto sm:max-w-[var(--stack-w)] overflow-hidden border border-[var(--site-border)] bg-black">
@@ -72,7 +72,7 @@ export default function ServiceStack({ items }: { items: ServiceStackItem[] }) {
       {/* Trailing spacer: without a sibling after the last card, its containing
           block ends exactly where it ends, leaving it zero room to stick —
           it would un-stick immediately and leave a gap. */}
-      <div className="w-full h-screen" aria-hidden="true" />
+      <div className="w-full h-screen sm:h-[70vh]" aria-hidden="true" />
     </div>
   );
 }

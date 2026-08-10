@@ -55,39 +55,6 @@ function RotatingWord() {
   );
 }
 
-/* ─── Who We Are expand/collapse ──────────────────── */
-function WhoWeAreExpand() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="mt-8">
-      {open && (
-        <Reveal>
-          <div className="space-y-5 text-[var(--site-text-secondary)] leading-relaxed text-left max-w-2xl mx-auto">
-            <p>
-              Spectecle grew out of years of hands-on experience in enterprise IT and systems
-              engineering, learning firsthand what makes software perform, scale, and stay secure
-              under real-world conditions. That background shapes everything we build.
-            </p>
-            <p>
-              We keep every engagement close and hands-on: a small, senior team across design,
-              development, SEO, and automation. No bloated account layers, no outsourced
-              developers, no handoffs between departments. Just direct communication and progress
-              you can see every week.
-            </p>
-          </div>
-        </Reveal>
-      )}
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="mt-6 inline-flex items-center gap-2 text-xs font-semibold text-[var(--site-text-primary)] uppercase tracking-widest border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
-      >
-        {open ? "Read Less" : "Continue Reading"}
-      </button>
-    </div>
-  );
-}
-
 /* ─── Data ─────────────────────────────────────────── */
 const services = [
   {
@@ -284,26 +251,6 @@ export default function HomePage() {
   return (
     <SmoothScroll>
       <Hero />
-
-      {/* ══ WHO WE ARE ═══════════════════════════════ */}
-      <section className="py-32 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
-        <div className="max-w-4xl mx-auto text-center">
-          <Reveal>
-            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">Who We Are</span>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p
-              className="mt-6 text-3xl md:text-5xl text-[var(--site-text-primary)] leading-[1.25] font-light"
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              A <span className="italic text-[#f87444]">full-service</span> web design, SEO, and
-              AI automation agency built for businesses that need their site to actually perform.
-            </p>
-          </Reveal>
-
-          <WhoWeAreExpand />
-        </div>
-      </section>
 
       {/* ══ OUR LATEST WORK ══════════════════════════ */}
       <section className="py-32 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
