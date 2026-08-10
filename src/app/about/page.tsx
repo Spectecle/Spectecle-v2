@@ -29,18 +29,23 @@ function Reveal({
 const expertise = [
   {
     n: "01",
-    title: "IT Systems Engineering",
-    desc: "Deep experience with enterprise infrastructure shapes every site we ship: performance architecture, server-side rendering, security, and uptime that most web designers simply don't think about.",
+    title: "Web Design & Development",
+    desc: "Custom websites built for speed, search rankings, and real conversions. Design and development happen in the same room, with no translation layers in between.",
   },
   {
     n: "02",
-    title: "Web Design & Development",
-    desc: "Built to consistently outperform agencies charging multiples of our rates. Every line of code is written by the same team that talks to the client.",
+    title: "SEO",
+    desc: "Local SEO that puts you in front of customers searching in your city. Technical audits, content, and link building, tracked with real numbers, not vanity metrics.",
   },
   {
     n: "03",
+    title: "Ad Campaigns",
+    desc: "Paid search and social campaigns built to convert, not just get clicks. Every dollar tracked back to real leads and revenue, never vanity impressions.",
+  },
+  {
+    n: "04",
     title: "AI & Automation",
-    desc: "When we deploy an AI intake agent, it's built from scratch: trained on the client's services, integrated with their CRM, tested until it works. Real automation, not a chatbot plugin.",
+    desc: "Custom AI agents built from scratch, trained on your services, connected to your CRM, and tested until they actually work. Not a chatbot plugin.",
   },
 ];
 
@@ -126,7 +131,7 @@ export default function AboutPage() {
               What We Bring
             </span>
             <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Three disciplines. One agency.
+              Four disciplines. One agency.
             </h2>
           </Reveal>
 
