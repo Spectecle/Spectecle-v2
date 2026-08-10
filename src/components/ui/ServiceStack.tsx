@@ -67,6 +67,10 @@ export default function ServiceStack({ items }: { items: ServiceStackItem[] }) {
           </div>
         );
       })}
+      {/* Trailing spacer: without a sibling after the last card, its containing
+          block ends exactly where it ends, leaving it zero room to stick —
+          it would un-stick immediately and leave a gap. */}
+      <div className="hidden sm:block w-full h-screen" aria-hidden="true" />
     </div>
   );
 }
