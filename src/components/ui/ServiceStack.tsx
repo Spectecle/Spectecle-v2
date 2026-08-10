@@ -16,20 +16,20 @@ export default function ServiceStack({ items }: { items: ServiceStackItem[] }) {
   return (
     <div className="w-full">
       {items.map((item, i) => {
-        const widthPct = 62 + i * 6;
+        const widthPct = 88 + i * 3;
         return (
           <div
             key={item.title}
-            className="static sm:sticky w-full"
+            className="sticky w-full"
             style={{ top: `${i * 16}px`, zIndex: i + 1 }}
           >
-            <div className="py-3 sm:py-0 sm:h-screen w-full flex items-center justify-center px-6">
+            <div className="h-screen w-full flex items-center justify-center px-6">
               <Link
                 href={item.href}
-                className="group block w-full aspect-[4/5] sm:aspect-auto sm:h-[62%] md:h-[74%]"
+                className="group block w-full h-[62%] md:h-[74%]"
                 style={{ ["--stack-w" as string]: `${widthPct}%` }}
               >
-                <div className="relative h-full w-full sm:mx-auto sm:max-w-[var(--stack-w)] overflow-hidden border border-[var(--site-border)] bg-black">
+                <div className="relative h-full w-full mx-auto max-w-[var(--stack-w)] overflow-hidden border border-[var(--site-border)] bg-black">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -70,7 +70,7 @@ export default function ServiceStack({ items }: { items: ServiceStackItem[] }) {
       {/* Trailing spacer: without a sibling after the last card, its containing
           block ends exactly where it ends, leaving it zero room to stick —
           it would un-stick immediately and leave a gap. */}
-      <div className="hidden sm:block w-full h-screen" aria-hidden="true" />
+      <div className="w-full h-screen" aria-hidden="true" />
     </div>
   );
 }
