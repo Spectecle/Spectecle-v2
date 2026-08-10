@@ -197,7 +197,6 @@ export default function Footer() {
                   +1 (313) 353-4105
                 </a>
               </li>
-              <li className="text-sm text-[var(--site-text-secondary)]">Serving Businesses Nationwide</li>
             </ul>
           </div>
         </div>
