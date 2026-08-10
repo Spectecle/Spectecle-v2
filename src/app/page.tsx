@@ -533,9 +533,6 @@ export default function HomePage() {
                 <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>
-            <p className="mt-8 text-[#f4f1e9]/40 text-sm">
-              30-minute call · No commitment · Response within 24 hours
-            </p>
           </div>
         </Reveal>
       </section>
