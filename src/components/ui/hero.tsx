@@ -69,7 +69,7 @@ export default function Hero() {
             </span>
             <span
               className="block italic font-light leading-none tracking-tight text-[14vw] sm:text-[11vw] lg:text-[9vw]"
-              style={{ fontFamily: "var(--font-sans)", color: "#f75c23" }}
+              style={{ fontFamily: "var(--font-sans)", color: "#f98d65" }}
             >
               Spectecle
             </span>
