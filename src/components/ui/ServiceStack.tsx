@@ -16,7 +16,7 @@ export default function ServiceStack({ items }: { items: ServiceStackItem[] }) {
   return (
     <div className="w-full">
       {items.map((item, i) => {
-        const widthPct = 94 + i * 1.5;
+        const widthPct = 47 + i * 1;
         return (
           <div
             key={item.title}
@@ -26,40 +26,40 @@ export default function ServiceStack({ items }: { items: ServiceStackItem[] }) {
             <div className="h-screen w-full flex items-center justify-center px-6">
               <Link
                 href={item.href}
-                className="group block w-full h-[80%] md:h-[76%]"
+                className="group block w-full h-[70%] sm:h-[38%]"
                 style={{ ["--stack-w" as string]: `${widthPct}%` }}
               >
-                <div className="relative h-full w-full mx-auto max-w-[var(--stack-w)] overflow-hidden border border-[var(--site-border)] bg-black">
+                <div className="relative h-full w-full mx-auto sm:max-w-[var(--stack-w)] overflow-hidden border border-[var(--site-border)] bg-black">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     priority={i === 0}
-                    sizes="(max-width: 768px) 100vw, 80vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 
                   {i > 0 && (
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-28 [box-shadow:0_-24px_48px_16px_rgba(0,0,0,0.7)]" />
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-14 [box-shadow:0_-12px_24px_8px_rgba(0,0,0,0.7)]" />
                   )}
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
                   <div className="absolute inset-0 flex flex-col justify-end">
-                    <div className="bg-black px-6 py-6 sm:px-10 sm:py-8 md:px-14 md:py-10">
-                      <span className="text-xs sm:text-sm font-mono text-white/70">{item.n}</span>
+                    <div className="bg-black px-6 py-6 sm:px-4 sm:py-4 md:px-6 md:py-5">
+                      <span className="text-xs sm:text-[10px] font-mono text-white/70">{item.n}</span>
                       <h3
-                        className="mt-2 sm:mt-3 text-2xl sm:text-5xl md:text-6xl font-light text-white leading-[1.05]"
+                        className="mt-2 sm:mt-1.5 text-2xl sm:text-lg md:text-xl font-light text-white leading-[1.05]"
                         style={{ fontFamily: "var(--font-serif)" }}
                       >
                         {item.title}
                       </h3>
-                      <p className="mt-3 sm:mt-4 max-w-xl text-white/80 text-sm sm:text-base md:text-lg leading-relaxed">
+                      <p className="mt-3 sm:mt-2 max-w-xl text-white/80 text-sm sm:text-xs leading-relaxed">
                         {item.desc}
                       </p>
-                      <span className="mt-4 sm:mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white border-b border-white pb-0.5 w-fit">
+                      <span className="mt-4 sm:mt-3 inline-flex items-center gap-2 text-sm sm:text-xs font-semibold text-white border-b border-white pb-0.5 w-fit">
                         Learn more
-                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        <ArrowUpRight className="w-4 h-4 sm:w-3.5 sm:h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                       </span>
                     </div>
                   </div>
