@@ -285,7 +285,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <Reveal>
             <div className="mb-14">
-              <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">Our Latest Work</span>
+              <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">Every Pixel. Every Website. Crafted.</span>
             </div>
           </Reveal>
 
