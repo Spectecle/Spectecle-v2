@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import SmoothScroll from "@/components/SmoothScroll";
 import Hero from "@/components/ui/hero";
 import ServiceStack from "@/components/ui/ServiceStack";
+import ProcessCarousel from "@/components/ui/ProcessCarousel";
 import { posts } from "@/app/blog/posts-data";
 import { ArrowUpRight } from "lucide-react";
 
@@ -213,10 +214,34 @@ const testimonials = [
 ];
 
 const process = [
-  { step: "01", title: "Discovery", desc: "A real conversation about your goals, your customers, and where you stand against competitors, before a single line of code is written." },
-  { step: "02", title: "Strategy", desc: "A clear plan: what's getting built, what stack, how the SEO is structured, and what success looks like in measurable terms." },
-  { step: "03", title: "Build", desc: "Weekly check-ins, live previews you can click through, and revisions until it's right. No handoffs, no guessing, no surprises at launch." },
-  { step: "04", title: "Launch & Grow", desc: "We go live, monitor real performance, and keep improving. Most clients see meaningful results in the first 90 days." },
+  {
+    step: "01",
+    title: "Discovery",
+    subtitle: "Where We Start",
+    desc: "A real conversation about your goals, your customers, and where you stand against competitors, before a single line of code is written.",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&h=1200&fit=crop&q=80",
+  },
+  {
+    step: "02",
+    title: "Strategy",
+    subtitle: "The Plan",
+    desc: "A clear plan: what's getting built, what stack, how the SEO is structured, and what success looks like in measurable terms.",
+    image: "https://images.unsplash.com/photo-1552581234-26160f608093?w=900&h=1200&fit=crop&q=80",
+  },
+  {
+    step: "03",
+    title: "Build",
+    subtitle: "In Progress",
+    desc: "Weekly check-ins, live previews you can click through, and revisions until it's right. No handoffs, no guessing, no surprises at launch.",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&h=1200&fit=crop&q=80",
+  },
+  {
+    step: "04",
+    title: "Launch & Grow",
+    subtitle: "Live & Growing",
+    desc: "We go live, monitor real performance, and keep improving. Most clients see meaningful results in the first 90 days.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=1200&fit=crop&q=80",
+  },
 ];
 
 const journalPosts = posts.slice(0, 3);
@@ -352,17 +377,9 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-14">
-            {process.map((p, i) => (
-              <Reveal key={p.step} delay={i * 0.1}>
-                <div>
-                  <span className="text-sm text-[var(--site-text-muted)] font-mono">{p.step}</span>
-                  <h3 className="mt-2 text-xl font-semibold text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-sans)" }}>{p.title}</h3>
-                  <p className="mt-3 text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-sm">{p.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={0.1}>
+            <ProcessCarousel slides={process} />
+          </Reveal>
         </div>
       </section>
 
