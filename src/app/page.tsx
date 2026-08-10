@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import SmoothScroll from "@/components/SmoothScroll";
 import Hero from "@/components/ui/hero";
+import ServiceStack from "@/components/ui/ServiceStack";
 import { posts } from "@/app/blog/posts-data";
 import { ArrowUpRight } from "lucide-react";
 
@@ -93,18 +94,28 @@ const services = [
     title: "Web Design & Development",
     desc: "Custom websites built for speed, search rankings, and real conversions. Design and development happen in the same room, with no translation layers in between.",
     href: "/services/web-design-detroit",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop",
   },
   {
     n: "02",
-    title: "SEO & Marketing",
+    title: "SEO",
     desc: "Local SEO that puts you in front of customers searching in your city. Technical audits, content, and link building, tracked with real numbers, not vanity metrics.",
     href: "/services/seo-agency-detroit",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1600&auto=format&fit=crop",
   },
   {
     n: "03",
+    title: "Ad Campaigns",
+    desc: "Paid search and social campaigns built to convert, not just get clicks. Every dollar tracked back to real leads and revenue, never vanity impressions.",
+    href: "/services",
+    image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1600&auto=format&fit=crop",
+  },
+  {
+    n: "04",
     title: "AI & Automation",
     desc: "Custom AI agents built from scratch, trained on your services, connected to your CRM, and tested until they actually work. Not a chatbot plugin.",
     href: "/services/ai-automation",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1600&auto=format&fit=crop",
   },
 ];
 
@@ -287,8 +298,8 @@ export default function HomePage() {
       </section>
 
       {/* ══ SERVICES ═════════════════════════════════ */}
-      <section className="py-32 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
-        <div className="relative max-w-5xl mx-auto">
+      <section className="pt-32 pb-20 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto">
           <Reveal>
             <div className="mb-16">
               <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Do</span>
@@ -296,27 +307,14 @@ export default function HomePage() {
                 className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)]"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                Three disciplines. <span className="italic text-[#c69947]">One obsession.</span>
+                Four disciplines. <span className="italic text-[#c69947]">One obsession.</span>
               </h2>
             </div>
           </Reveal>
+        </div>
 
-          <div className="divide-y divide-[var(--site-border)]">
-            {services.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.1}>
-                <Link href={s.href} className="group grid md:grid-cols-[80px_1fr_auto] items-center gap-4 py-10">
-                  <span className="text-sm text-[var(--site-text-muted)] font-mono">{s.n}</span>
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-light text-[var(--site-text-primary)] group-hover:text-[#c69947] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 text-[var(--site-text-secondary)] text-sm md:text-base max-w-xl">{s.desc}</p>
-                  </div>
-                  <ArrowUpRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#c69947] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all justify-self-end" />
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+        <div className="max-w-5xl mx-auto">
+          <ServiceStack items={services} />
         </div>
       </section>
 
