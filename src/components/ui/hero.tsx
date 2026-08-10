@@ -62,10 +62,22 @@ export default function Hero() {
             className="relative z-20 text-center px-6 pointer-events-none"
           >
             <span
-              className="block font-light leading-none tracking-tight text-[var(--site-text-primary)] text-[14vw] sm:text-[11vw] lg:text-[9vw]"
+              className="block font-light leading-tight tracking-tight text-[var(--site-text-primary)] text-[6vw] sm:text-[3.5vw] lg:text-[2.4vw]"
               style={{ fontFamily: "var(--font-sans)" }}
             >
-              SPECTECLE
+              Let&apos;s turn your website into a
+            </span>
+            <span
+              className="block italic font-light leading-none tracking-tight text-[14vw] sm:text-[11vw] lg:text-[9vw]"
+              style={{ fontFamily: "var(--font-sans)", color: "#f75c23" }}
+            >
+              Spectecle
+            </span>
+            <span
+              className="block mt-4 sm:mt-6 font-light leading-snug tracking-tight text-[var(--site-text-secondary)] text-[3.6vw] sm:text-[1.9vw] lg:text-[1.3vw]"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              Custom Design Worth Looking at. Marketing That Works.
             </span>
           </motion.div>
         </div>
