@@ -110,6 +110,13 @@ export default function Navbar() {
             </div>
             <SiteThemeToggle />
             <Link
+              href="/portal"
+              className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
+            >
+              <User className="w-3.5 h-3.5" />
+              Client Portal
+            </Link>
+            <Link
               href="/contact"
               className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
             >
