@@ -65,7 +65,7 @@ export default function Hero() {
           >
             <span className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-[var(--site-text-muted)]">
               <span className="w-6 h-px bg-[#f87444]" />
-              Web Design &amp; Marketing · Metro Detroit
+              Web Design &amp; Marketing · Serving Businesses Nationwide
             </span>
 
             <h1
@@ -82,11 +82,6 @@ export default function Hero() {
               We&apos;ll turn yours into a Spectecle.
             </p>
 
-            <p className="mt-6 text-[var(--site-text-secondary)] text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
-              Custom design worth looking at, plus marketing that actually works, for small and
-              mid-sized businesses across the Detroit area.
-            </p>
-
             <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
               <Link
                 href="/contact"
@@ -101,14 +96,6 @@ export default function Hero() {
               >
                 See our work
               </Link>
-            </div>
-
-            <div className="mt-10 flex items-center justify-center gap-3 text-sm text-[var(--site-text-muted)]">
-              <span>Design</span>
-              <span className="w-1 h-1 rounded-full bg-[#f87444]" />
-              <span>SEO &amp; Ads</span>
-              <span className="w-1 h-1 rounded-full bg-[#f87444]" />
-              <span>AI Automation</span>
             </div>
           </motion.div>
         </div>
