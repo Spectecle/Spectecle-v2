@@ -63,11 +63,6 @@ export default function Hero() {
             style={{ opacity: textOpacity, y: textY }}
             className="relative z-20 text-center px-6 max-w-3xl mx-auto"
           >
-            <span className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-[var(--site-text-muted)]">
-              <span className="w-6 h-px bg-[#f87444]" />
-              Web Design &amp; Marketing · Serving Businesses Nationwide
-            </span>
-
             <h1
               className="mt-6 font-bold leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
               style={{ fontFamily: "var(--font-sans)" }}
