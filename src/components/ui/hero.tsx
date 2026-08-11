@@ -69,7 +69,7 @@ export default function Hero() {
             </span>
             <span
               className="block italic font-light leading-none tracking-tight text-[14vw] sm:text-[11vw] lg:text-[9vw]"
-              style={{ fontFamily: "var(--font-sans)", color: "#f87444" }}
+              style={{ fontFamily: "var(--font-serif)", color: "#f87444" }}
             >
               Spectecle
             </span>
@@ -77,8 +77,7 @@ export default function Hero() {
               className="block mt-4 sm:mt-6 font-light leading-snug tracking-tight text-[var(--site-text-secondary)] text-[3.6vw] sm:text-[1.9vw] lg:text-[1.3vw]"
               style={{ fontFamily: "var(--font-sans)" }}
             >
-              A full-service web design, SEO, and AI automation agency
-              built for businesses that need their site to actually perform.
+              Custom Design Worth Looking at. Marketing That Works.
             </span>
           </motion.div>
         </div>
