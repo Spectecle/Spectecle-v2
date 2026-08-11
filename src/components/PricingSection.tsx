@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Minus, ArrowUpRight, Info } from "lucide-react";
+import { Check, Minus, ArrowUpRight, Info, ChevronDown } from "lucide-react";
 import { ProofGallery } from "@/components/ui/ProofGallery";
 
 type BillingCycle = "monthly" | "yearly";
@@ -14,6 +14,7 @@ type DesignTier = {
   tagline: string;
   price: string;
   isCustom?: boolean;
+  featured?: boolean;
   items: string[];
 };
 
@@ -21,6 +22,8 @@ type CarePlan = {
   name: string;
   monthly: number;
   popular?: boolean;
+  tagline: string;
+  highlights: string[];
 };
 
 type FeatureRow = {
@@ -59,6 +62,7 @@ const designTiers: DesignTier[] = [
     name: "Craft",
     tagline: "Semi-custom design, shaped around your brand.",
     price: "$2,500",
+    featured: true,
     items: [
       "Everything in Blueprint, plus:",
       "Custom mockup + a round of revisions",
@@ -89,12 +93,67 @@ const designTiers: DesignTier[] = [
 ];
 
 const carePlans: CarePlan[] = [
-  { name: "Spark", monthly: 149 },
-  { name: "Momentum", monthly: 229, popular: true },
-  { name: "Velocity", monthly: 399 },
-  { name: "Surge", monthly: 599 },
-  { name: "Overdrive", monthly: 999 },
-  { name: "Apex", monthly: 1999 },
+  {
+    name: "Spark",
+    monthly: 149,
+    tagline: "Keep your site online, secure, and up to date.",
+    highlights: [
+      "Managed hosting & security scanning",
+      "4 content updates per year",
+      "Priority email support",
+    ],
+  },
+  {
+    name: "Momentum",
+    monthly: 229,
+    popular: true,
+    tagline: "Add hands-on content and local visibility.",
+    highlights: [
+      "Everything in Spark, plus:",
+      "12 content updates per year",
+      "Basic SEO & Google Business Profile management",
+    ],
+  },
+  {
+    name: "Velocity",
+    monthly: 399,
+    tagline: "Full monthly SEO and unlimited content.",
+    highlights: [
+      "Everything in Momentum, plus:",
+      "Unlimited content updates",
+      "Full monthly SEO & Google Workspace",
+    ],
+  },
+  {
+    name: "Surge",
+    monthly: 599,
+    tagline: "Add content marketing and reputation management.",
+    highlights: [
+      "Everything in Velocity, plus:",
+      "2 blog posts per month",
+      "Reputation & review management, monthly strategy calls",
+    ],
+  },
+  {
+    name: "Overdrive",
+    monthly: 999,
+    tagline: "AI search visibility and managed ad campaigns.",
+    highlights: [
+      "Everything in Surge, plus:",
+      "AI search optimization (AEO/GEO)",
+      "Managed ad campaigns, up to $1,000/mo spend",
+    ],
+  },
+  {
+    name: "Apex",
+    monthly: 1999,
+    tagline: "Our most hands-on plan for aggressive growth.",
+    highlights: [
+      "Everything in Overdrive, plus:",
+      "4 blog posts per month, dedicated strategist",
+      "Ad campaigns up to $2,000/mo spend, fastest support",
+    ],
+  },
 ];
 
 const featureGroups: FeatureGroup[] = [
@@ -200,15 +259,32 @@ function BillingToggle({
 
 /* ─── Website Design tiers ───────────────────────────────── */
 function DesignTierCard({ tier }: { tier: DesignTier }) {
+  const featured = !!tier.featured;
   return (
-    <div className="pt-6 flex flex-col h-full">
-      <h3 className="text-2xl font-light text-[var(--site-text-primary)] mb-1.5" style={{ fontFamily: "var(--font-serif)" }}>
+    <div
+      className={`flex flex-col h-full p-7 border ${
+        featured
+          ? "bg-[#1e1e1e] border-[#1e1e1e]"
+          : "bg-[var(--site-bg)] border-[var(--site-border)]"
+      }`}
+    >
+      {featured && (
+        <span className="mb-4 self-start text-[10px] font-bold uppercase tracking-widest text-[#f87444]">
+          Most Popular
+        </span>
+      )}
+      <h3
+        className={`text-2xl font-light mb-1.5 ${featured ? "text-white" : "text-[var(--site-text-primary)]"}`}
+        style={{ fontFamily: "var(--font-serif)" }}
+      >
         {tier.name}
       </h3>
-      <p className="text-sm text-[var(--site-text-muted)] mb-5 min-h-[2.5rem]">{tier.tagline}</p>
+      <p className={`text-sm mb-5 min-h-[2.5rem] ${featured ? "text-white/60" : "text-[var(--site-text-muted)]"}`}>
+        {tier.tagline}
+      </p>
 
       <div className="mb-6">
-        <p className="text-[10px] text-[var(--site-text-muted)] uppercase tracking-widest font-semibold mb-1">
+        <p className={`text-[10px] uppercase tracking-widest font-semibold mb-1 ${featured ? "text-white/50" : "text-[var(--site-text-muted)]"}`}>
           One-Time Design Investment
         </p>
         <span className={`font-light text-[#f87444] ${tier.isCustom ? "text-xl" : "text-3xl md:text-4xl"}`} style={{ fontFamily: "var(--font-serif)" }}>
@@ -218,15 +294,17 @@ function DesignTierCard({ tier }: { tier: DesignTier }) {
 
       <Link
         href="/contact"
-        className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 w-fit mb-7"
+        className={`inline-flex items-center gap-2 text-sm font-semibold pb-0.5 w-fit mb-7 border-b ${
+          featured ? "text-white border-white" : "text-[var(--site-text-primary)] border-[var(--site-text-primary)]"
+        }`}
       >
         <span>{tier.isCustom ? "Contact Us" : "Get Started"}</span>
         <ArrowUpRight className="w-4 h-4" />
       </Link>
 
-      <ul className="space-y-2.5 pt-6 border-t border-[var(--site-border)] flex-1">
+      <ul className={`space-y-2.5 pt-6 border-t flex-1 ${featured ? "border-white/15" : "border-[var(--site-border)]"}`}>
         {tier.items.map((item, i) => (
-          <li key={i} className="flex items-start gap-2.5 text-sm text-[var(--site-text-secondary)]">
+          <li key={i} className={`flex items-start gap-2.5 text-sm ${featured ? "text-white/80" : "text-[var(--site-text-secondary)]"}`}>
             <Check className="w-4 h-4 text-[#f87444] shrink-0 mt-0.5" />
             <span>{item}</span>
           </li>
@@ -249,7 +327,7 @@ function WebsiteDesignSection() {
           that fits, then choose an ongoing care plan below to keep it growing.
         </p>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:divide-x sm:divide-[var(--site-border)]">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {designTiers.map((tier, i) => (
           <motion.div
             key={tier.name}
@@ -257,7 +335,6 @@ function WebsiteDesignSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="sm:pl-8 sm:first:pl-0"
           >
             <DesignTierCard tier={tier} />
           </motion.div>
@@ -334,13 +411,77 @@ function Cell({ value }: { value: string | boolean }) {
   return <span className="text-xs text-[var(--site-text-secondary)] leading-tight">{value}</span>;
 }
 
-function CarePlansTable({
+/* ─── Care plan cards (default, compact view) ─────────────── */
+function CarePlanCard({ plan, cycle }: { plan: CarePlan; cycle: BillingCycle }) {
+  return (
+    <div
+      className={`relative flex flex-col h-full p-6 border ${
+        plan.popular ? "bg-[#1e1e1e] border-[#1e1e1e]" : "bg-[var(--site-bg)] border-[var(--site-border)]"
+      }`}
+    >
+      {plan.popular && (
+        <span className="mb-3 self-start text-[10px] font-bold uppercase tracking-widest text-[#f87444]">
+          Most Popular
+        </span>
+      )}
+      <h3
+        className={`text-xl font-light ${plan.popular ? "text-white" : "text-[var(--site-text-primary)]"}`}
+        style={{ fontFamily: "var(--font-serif)" }}
+      >
+        {plan.name}
+      </h3>
+      <p className={`mt-1 text-sm min-h-[2.5rem] ${plan.popular ? "text-white/60" : "text-[var(--site-text-muted)]"}`}>
+        {plan.tagline}
+      </p>
+
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.p
+          key={`${plan.name}-${cycle}`}
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 4 }}
+          transition={{ duration: 0.15 }}
+          className="mt-4 text-3xl font-light text-[#f87444]"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          ${(cycle === "monthly" ? plan.monthly : yearlyPrice(plan.monthly)).toLocaleString()}
+          <span className={`text-sm font-sans font-normal ${plan.popular ? "text-white/50" : "text-[var(--site-text-muted)]"}`}>
+            /{cycle === "monthly" ? "mo" : "yr"}
+          </span>
+        </motion.p>
+      </AnimatePresence>
+
+      <Link
+        href="/contact"
+        className={`inline-flex items-center gap-2 mt-5 mb-6 text-sm font-semibold pb-0.5 w-fit border-b ${
+          plan.popular ? "text-white border-white" : "text-[var(--site-text-primary)] border-[var(--site-text-primary)]"
+        }`}
+      >
+        <span>Get Started</span>
+        <ArrowUpRight className="w-4 h-4" />
+      </Link>
+
+      <ul className={`space-y-2 pt-5 border-t flex-1 ${plan.popular ? "border-white/15" : "border-[var(--site-border)]"}`}>
+        {plan.highlights.map((item, i) => (
+          <li key={i} className={`flex items-start gap-2.5 text-sm ${plan.popular ? "text-white/80" : "text-[var(--site-text-secondary)]"}`}>
+            <Check className="w-4 h-4 text-[#f87444] shrink-0 mt-0.5" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function CarePlansSection({
   cycle,
   onCycleChange,
 }: {
   cycle: BillingCycle;
   onCycleChange: (c: BillingCycle) => void;
 }) {
+  const [showDetails, setShowDetails] = useState(false);
+
   return (
     <div>
       <div className="mb-10">
@@ -355,6 +496,54 @@ function CarePlansTable({
         <BillingToggle cycle={cycle} onChange={onCycleChange} />
       </div>
 
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {carePlans.map((plan, i) => (
+          <motion.div
+            key={plan.name}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.06 }}
+          >
+            <CarePlanCard plan={plan} cycle={cycle} />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="mt-10 flex justify-center">
+        <button
+          type="button"
+          onClick={() => setShowDetails((v) => !v)}
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
+        >
+          <span>{showDetails ? "Hide full plan details" : "Compare full plan details"}</span>
+          <ChevronDown className={`w-4 h-4 transition-transform ${showDetails ? "rotate-180" : ""}`} />
+        </button>
+      </div>
+
+      <AnimatePresence initial={false}>
+        {showDetails && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="mt-10">
+              <CarePlansDetailTable cycle={cycle} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+/* ─── Full feature comparison table (hidden behind "Compare full plan details") ─── */
+function CarePlansDetailTable({ cycle }: { cycle: BillingCycle }) {
+  return (
+    <div>
       <div className="overflow-x-auto -mx-6 px-6 pb-2">
         <div className="min-w-[880px] border-t border-[var(--site-border)]">
           <div className="grid grid-cols-[200px_repeat(6,1fr)]">
@@ -498,7 +687,7 @@ export function PricingSection() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="pt-8 border-t border-[var(--site-border)]">
-          <CarePlansTable cycle={cycle} onCycleChange={setCycle} />
+          <CarePlansSection cycle={cycle} onCycleChange={setCycle} />
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="pt-8 border-t border-[var(--site-border)]">
