@@ -76,14 +76,14 @@ const services = [
     title: "Ad Campaigns",
     desc: "Paid search and social campaigns built to convert, not just get clicks. Every dollar tracked back to real leads and revenue, never vanity impressions.",
     href: "/services",
-    image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1607703703674-df96af81dffa?q=80&w=1600&auto=format&fit=crop",
   },
   {
     n: "04",
     title: "AI & Automation",
     desc: "Custom AI agents built from scratch, trained on your services, connected to your CRM, and tested until they actually work. Not a chatbot plugin.",
     href: "/services/ai-automation",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=1600&auto=format&fit=crop",
   },
 ];
 
