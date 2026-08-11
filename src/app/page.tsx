@@ -6,7 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import SmoothScroll from "@/components/SmoothScroll";
 import Hero from "@/components/ui/hero";
-import ServiceStack from "@/components/ui/ServiceStack";
+import ServiceGrid from "@/components/ui/ServiceGrid";
 import ProcessCarousel from "@/components/ui/ProcessCarousel";
 import { posts } from "@/app/blog/posts-data";
 import { ArrowUpRight } from "lucide-react";
@@ -289,8 +289,8 @@ export default function HomePage() {
       </section>
 
       {/* ══ SERVICES ═════════════════════════════════ */}
-      <section className="pt-32 pb-20 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="py-32 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto">
           <Reveal>
             <div className="mb-16">
               <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Do</span>
@@ -302,9 +302,11 @@ export default function HomePage() {
               </h2>
             </div>
           </Reveal>
-        </div>
 
-        <ServiceStack items={services} />
+          <Reveal delay={0.1}>
+            <ServiceGrid items={services} />
+          </Reveal>
+        </div>
       </section>
 
       {/* ══ PROCESS ══════════════════════════════════ */}
