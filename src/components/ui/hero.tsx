@@ -1,7 +1,9 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -59,26 +61,55 @@ export default function Hero() {
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
             style={{ opacity: textOpacity, y: textY }}
-            className="relative z-20 text-center px-6 pointer-events-none"
+            className="relative z-20 text-center px-6 max-w-3xl mx-auto"
           >
-            <span
-              className="block font-light leading-tight tracking-tight text-[var(--site-text-primary)] text-[6vw] sm:text-[3.5vw] lg:text-[2.4vw]"
+            <span className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-[var(--site-text-muted)]">
+              <span className="w-6 h-px bg-[#f87444]" />
+              Web Design &amp; Marketing · Metro Detroit
+            </span>
+
+            <h1
+              className="mt-6 font-bold leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
               style={{ fontFamily: "var(--font-sans)" }}
             >
-              Let&apos;s turn your website into a
-            </span>
-            <span
-              className="block italic font-light leading-none tracking-tight text-[14vw] sm:text-[11vw] lg:text-[9vw]"
+              Websites that get noticed. Marketing that gets results.
+            </h1>
+
+            <p
+              className="mt-4 italic font-light leading-none tracking-tight text-[9vw] sm:text-[4.6vw] lg:text-[3vw]"
               style={{ fontFamily: "var(--font-serif)", color: "#f87444" }}
             >
-              Spectecle
-            </span>
-            <span
-              className="block mt-4 sm:mt-6 font-light leading-snug tracking-tight text-[var(--site-text-secondary)] text-[3.6vw] sm:text-[1.9vw] lg:text-[1.3vw]"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              Custom Design Worth Looking at. Marketing That Works.
-            </span>
+              We&apos;ll turn yours into a Spectecle.
+            </p>
+
+            <p className="mt-6 text-[var(--site-text-secondary)] text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
+              Custom design worth looking at, plus marketing that actually works, for small and
+              mid-sized businesses across the Detroit area.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 text-base font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
+              >
+                Start a project
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/work"
+                className="inline-flex items-center gap-2 text-base font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
+              >
+                See our work
+              </Link>
+            </div>
+
+            <div className="mt-10 flex items-center justify-center gap-3 text-sm text-[var(--site-text-muted)]">
+              <span>Design</span>
+              <span className="w-1 h-1 rounded-full bg-[#f87444]" />
+              <span>SEO &amp; Ads</span>
+              <span className="w-1 h-1 rounded-full bg-[#f87444]" />
+              <span>AI Automation</span>
+            </div>
           </motion.div>
         </div>
 
