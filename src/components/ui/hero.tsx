@@ -14,8 +14,12 @@ export default function Hero() {
     offset: ["start start", "end end"],
   });
 
-  const textOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.35], ["0vh", "-70vh"]);
+  // Top line moves up and out, bottom line + CTAs move down and out,
+  // opening a gap at the vertical center for the video to grow into.
+  const topOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const topY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "-60vh"]);
+  const bottomOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const bottomY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "60vh"]);
 
   const viewport = useRef({ w: 0, h: 0 });
 
@@ -36,15 +40,14 @@ export default function Hero() {
     const { w: vw, h: vh } = viewport.current;
     if (!vw || !vh) return;
 
-    const startSize = vh * 0.38;
+    // Grows from a small box centered in the gap between the two lines
+    // of text out to a fullscreen video by the end of the scroll.
+    const startSize = vh * 0.16;
     const width = startSize + (vw - startSize) * p;
     const height = startSize + (vh - startSize) * p;
-    // Nudge the box down while it's growing, tapering to 0 by full growth
-    // so the fully-scrolled state still fills the viewport with no gap.
-    const shiftDown = 350 * (1 - p);
-    const top = vh / 2 - height / 2 + shiftDown;
+    const top = vh / 2 - height / 2;
     const left = vw / 2 - width / 2;
-    const opacity = Math.min(p / 0.15, 1);
+    const opacity = Math.min(p / 0.12, 1);
 
     el.style.width = `${width}px`;
     el.style.height = `${height}px`;
@@ -58,18 +61,17 @@ export default function Hero() {
   return (
     <div ref={containerRef} className="relative h-[200vh]">
       <div className="sticky top-0 h-screen w-screen overflow-hidden bg-[var(--site-bg)]">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.div
-            style={{ opacity: textOpacity, y: textY }}
-            className="relative z-20 text-center px-6 max-w-3xl mx-auto"
-          >
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+          <motion.div style={{ opacity: topOpacity, y: topY }} className="relative z-20 max-w-3xl mx-auto">
             <h1
-              className="mt-6 font-bold leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
+              className="font-bold leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               Let&apos;s turn your website into a Spectecle
             </h1>
+          </motion.div>
 
+          <motion.div style={{ opacity: bottomOpacity, y: bottomY }} className="relative z-20 max-w-3xl mx-auto">
             <p
               className="mt-4 italic font-light leading-none tracking-tight text-[9vw] sm:text-[4.6vw] lg:text-[3vw]"
               style={{ fontFamily: "var(--font-serif)", color: "#f87444" }}
