@@ -14,12 +14,17 @@ export default function Hero() {
     offset: ["start start", "end end"],
   });
 
+  // Growth (text parting + video scale) completes at GROWTH_END, then holds
+  // fullscreen and centered for the rest of the scroll before the sticky
+  // section releases and the page scrolls past it.
+  const GROWTH_END = 0.7;
+
   // Top line moves up and out, bottom line + CTAs move down and out,
   // opening a gap at the vertical center for the video to grow into.
-  const topOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const topY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "-60vh"]);
-  const bottomOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const bottomY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "60vh"]);
+  const topOpacity = useTransform(scrollYProgress, [0, 0.4 * GROWTH_END], [1, 0]);
+  const topY = useTransform(scrollYProgress, [0, 0.5 * GROWTH_END], ["0vh", "-60vh"]);
+  const bottomOpacity = useTransform(scrollYProgress, [0, 0.4 * GROWTH_END], [1, 0]);
+  const bottomY = useTransform(scrollYProgress, [0, 0.5 * GROWTH_END], ["0vh", "60vh"]);
 
   const viewport = useRef({ w: 0, h: 0 });
 
@@ -40,14 +45,16 @@ export default function Hero() {
     const { w: vw, h: vh } = viewport.current;
     if (!vw || !vh) return;
 
-    // Grows from a small box centered in the gap between the two lines
-    // of text out to a fullscreen video by the end of the scroll.
+    // Grows from a small box centered in the gap between the two lines of
+    // text out to a fullscreen video by GROWTH_END, staying centered the
+    // whole way so it fills the viewport evenly with no off-center drift.
+    const gp = Math.min(p / GROWTH_END, 1);
     const startSize = vh * 0.16;
-    const width = startSize + (vw - startSize) * p;
-    const height = startSize + (vh - startSize) * p;
+    const width = startSize + (vw - startSize) * gp;
+    const height = startSize + (vh - startSize) * gp;
     const top = vh / 2 - height / 2;
     const left = vw / 2 - width / 2;
-    const opacity = Math.min(p / 0.12, 1);
+    const opacity = Math.min(gp / 0.12, 1);
 
     el.style.width = `${width}px`;
     el.style.height = `${height}px`;
