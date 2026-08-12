@@ -67,14 +67,14 @@ export default function Hero() {
               className="mt-6 font-bold leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
               style={{ fontFamily: "var(--font-sans)" }}
             >
-              Websites that get noticed. Marketing that gets results.
+              Let&apos;s turn your website into a Spectecle
             </h1>
 
             <p
               className="mt-4 italic font-light leading-none tracking-tight text-[9vw] sm:text-[4.6vw] lg:text-[3vw]"
               style={{ fontFamily: "var(--font-serif)", color: "#f87444" }}
             >
-              We&apos;ll turn yours into a Spectecle.
+              Custom Web Design. Marketing That Works.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-8">

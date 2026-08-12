@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import SmoothScroll from "@/components/SmoothScroll";
 import Hero from "@/components/ui/hero";
 import ServiceGrid from "@/components/ui/ServiceGrid";
+import ServiceStickyScale from "@/components/ui/ServiceStickyScale";
 import { posts } from "@/app/blog/posts-data";
 import { ArrowUpRight } from "lucide-react";
 
@@ -271,9 +272,15 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <ServiceGrid items={services} />
-          </Reveal>
+          <div className="hidden md:block">
+            <Reveal delay={0.1}>
+              <ServiceGrid items={services} />
+            </Reveal>
+          </div>
+        </div>
+
+        <div className="md:hidden">
+          <ServiceStickyScale items={services} />
         </div>
       </section>
 
