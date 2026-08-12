@@ -191,7 +191,7 @@ function ProjectCard({ p, delay }: { p: (typeof projects)[number]; delay: number
   return (
     <Reveal delay={delay}>
       <Link href={`/work/${p.slug}`} className="group block">
-        <div className="relative aspect-[4/3] overflow-hidden">
+        <div className="relative aspect-[1600/557] overflow-hidden">
           <Image
             src={p.image}
             alt={`${p.title} homepage`}
