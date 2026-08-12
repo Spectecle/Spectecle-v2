@@ -49,7 +49,7 @@ const jsonLd = [
     mainEntity: [
       {
         "@type": "Question",
-        name: "How much does a website cost for a small business in Detroit?",
+        name: "How much does a website cost for a small business?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Web design costs vary based on scope and goals. Simple brochure sites, custom web applications, and e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call. No hidden fees, no surprises.",
@@ -60,7 +60,7 @@ const jsonLd = [
         name: "How long does it take to build a website?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Most custom websites take 4–8 weeks from kickoff to launch. Simpler brochure sites can be done in 2–3 weeks. Timeline depends on feedback turnaround and the complexity of integrations required.",
+          text: "Most custom websites take a few weeks from kickoff to launch. Simpler brochure sites move faster. Timeline depends on feedback turnaround and the complexity of integrations required.",
         },
       },
       {
