@@ -352,24 +352,6 @@ export default function HomePage() {
           description="What clients say about working with Spectecle."
           testimonials={marqueeTestimonials}
         />
-
-        <Reveal>
-          <div className="max-w-5xl mx-auto px-6 pb-24 -mt-8 sm:-mt-12 pt-10 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div>
-              <span className="text-2xl font-semibold text-[#1e1e1e]">5.0</span>
-              <span className="text-neutral-500 text-sm ml-2">from Google Reviews</span>
-            </div>
-            <a
-              href="https://g.page/r/CbSs-g26jjLnEBM/review"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1e1e1e] border-b border-[#1e1e1e] pb-0.5"
-            >
-              See all reviews on Google
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-          </div>
-        </Reveal>
       </section>
 
       {/* ══ JOURNAL ══════════════════════════════════ */}
@@ -440,7 +422,9 @@ export default function HomePage() {
               className="text-4xl md:text-6xl font-light text-white leading-[1.2]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Ready to partner with us on your
+              Ready to partner
+              <br />
+              with us on your
               <br />
               <RotatingWord />?
             </h2>
