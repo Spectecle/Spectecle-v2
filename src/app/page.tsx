@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -95,6 +95,7 @@ const projects = [
     tagline: "A bold beauty brand built for the Instagram generation.",
     result: "+65% Bookings",
     image: "/screenshots/glambyabeer.png",
+    video: "/videos/glambyabeer.mp4",
   },
   {
     slug: "vue-optometry",
@@ -188,17 +189,36 @@ const mobileFeaturedProjects = mobileFeaturedSlugs.map(
 );
 
 function ProjectCard({ p, delay }: { p: (typeof projects)[number]; delay: number }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    videoRef.current?.play().catch(() => {});
+  }, []);
+
   return (
     <Reveal delay={delay}>
       <Link href={`/work/${p.slug}`} className="group block">
         <div className="relative aspect-[1600/557] overflow-hidden">
-          <Image
-            src={p.image}
-            alt={`${p.title} homepage`}
-            fill
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
+          {"video" in p && p.video ? (
+            <video
+              ref={videoRef}
+              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              src={p.video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+            />
+          ) : (
+            <Image
+              src={p.image}
+              alt={`${p.title} homepage`}
+              fill
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+          )}
         </div>
         <h3
           className="mt-5 text-xl font-light text-[var(--site-text-primary)] group-hover:text-[#f87444] transition-colors"
