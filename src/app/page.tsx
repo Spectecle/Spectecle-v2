@@ -203,7 +203,7 @@ const testimonials = [
   {
     quote: "Great designer, responsive, high quality work. Highly recommend.",
     name: "Hassan Saab",
-    role: "Google Review",
+    role: "Owner, Vue Optometry",
   },
   {
     quote: "Honestly, one of the greatest people I have had the honor of doing business with. Walid has the cleanest work I have ever seen. Every time a client of mine visits my website, they compliment the way it looks. I had a vision that I did not think was possible to achieve, and he gave me my vision PLUS more. If you want a website that works, looks good, and gets the job done, you're in the RIGHT place.",
