@@ -18,9 +18,8 @@ export default function PricingPage() {
             Plans built to <span className="italic text-[#f87444]">grow with your business.</span>
           </h1>
           <p className="mt-6 text-[var(--site-text-secondary)] leading-relaxed max-w-xl mx-auto text-lg">
-            Two simple steps: choose a one-time design investment to get your website built,
-            then choose an ongoing care plan to keep it growing: hosting, content, SEO, and
-            support, priced separately from the build.
+            Choose a one-time design investment to get your website built, tailored to the
+            level of customization your business needs.
           </p>
         </div>
       </section>
