@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Clock, ChevronRight } from "lucide-react";
 import type { BlogPost, ContentBlock } from "../posts-data";
@@ -148,19 +149,30 @@ export default function BlogPostClient({
       </section>
 
       {/* ── COVER IMAGE ───────────────────────────────── */}
-      {linkedProject && (
-        <section className="px-6 pb-16">
-          <div className="max-w-3xl mx-auto">
-            <Reveal>
+      <section className="px-6 pb-16">
+        <div className="max-w-3xl mx-auto">
+          <Reveal>
+            {linkedProject ? (
               <BrowserMockup
                 url={linkedProject.domain}
                 screenshotUrl={linkedProject.screenshotUrl}
                 alt={`${linkedProject.title} website screenshot`}
               />
-            </Reveal>
-          </div>
-        </section>
-      )}
+            ) : (
+              <div className="relative w-full h-64 md:h-[420px] overflow-hidden">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  priority
+                />
+              </div>
+            )}
+          </Reveal>
+        </div>
+      </section>
 
       {/* ── ARTICLE BODY ─────────────────────────────── */}
       <section className="px-6 pb-24">

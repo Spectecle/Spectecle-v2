@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "./projects-data";
 
@@ -29,29 +28,17 @@ function Reveal({
   );
 }
 
-const categories = ["All", "Web Design", "Local SEO", "SEO", "AI & Automation"];
-
 export default function WorkPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filtered =
-    activeCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
-
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="pt-40 pb-20 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
-            Real Clients. Real Results.
-          </span>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Work that drives <span className="italic text-[#f87444]">measurable growth.</span>
@@ -67,33 +54,8 @@ export default function WorkPage() {
       <section className="pb-20 px-6">
         <div className="max-w-7xl mx-auto">
           <Reveal>
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-20">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`text-sm font-medium transition-colors duration-200 cursor-pointer pb-1 border-b ${
-                    activeCategory === cat
-                      ? "text-[var(--site-text-primary)] border-[#f87444]"
-                      : "text-[var(--site-text-muted)] border-transparent hover:text-[var(--site-text-primary)]"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </Reveal>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="grid md:grid-cols-2 gap-x-10 gap-y-16"
-            >
-              {filtered.map((p) => (
+            <div className="grid md:grid-cols-2 gap-x-10 gap-y-16">
+              {projects.map((p) => (
                 <Link key={p.slug} href={`/work/${p.slug}`} className="group block">
                   <div className="relative h-72 overflow-hidden">
                     <Image
@@ -120,14 +82,8 @@ export default function WorkPage() {
                   </span>
                 </Link>
               ))}
-            </motion.div>
-          </AnimatePresence>
-
-          {filtered.length === 0 && (
-            <div className="text-center py-24 text-[var(--site-text-muted)]">
-              No projects in this category yet.
             </div>
-          )}
+          </Reveal>
         </div>
       </section>
 

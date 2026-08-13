@@ -8,11 +8,8 @@ export default function PricingPage() {
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="pt-40 pb-16 px-6 text-center">
         <div className="max-w-3xl mx-auto">
-          <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
-            Simple, Predictable Pricing
-          </span>
           <h1
-            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Plans built to <span className="italic text-[#f87444]">grow with your business.</span>
