@@ -71,7 +71,7 @@ export default function Hero() {
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
           <motion.div style={{ opacity: topOpacity, y: topY }} className="relative z-20 max-w-3xl mx-auto">
             <h1
-              className="font-bold leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
+              className="font-light leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               Let&apos;s turn your website into a Spectecle

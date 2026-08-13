@@ -8,6 +8,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Hero from "@/components/ui/hero";
 import ServiceGrid from "@/components/ui/ServiceGrid";
 import ServiceStickyScale from "@/components/ui/ServiceStickyScale";
+import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee";
 import { posts } from "@/app/blog/posts-data";
 import { ArrowUpRight } from "lucide-react";
 
@@ -27,7 +28,7 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 }
 
 /* ─── Rotating word ────────────────────────────────── */
-const partnerWords = ["Website", "SEO Campaign", "AI Agent", "Rebrand", "Next Launch"];
+const partnerWords = ["Ecommerce Store", "Website", "Rebrand", "Marketing Ads", "SEO"];
 
 function RotatingWord() {
   const [index, setIndex] = useState(0);
@@ -181,6 +182,11 @@ const testimonials = [
   },
 ];
 
+const marqueeTestimonials = testimonials.map((t) => ({
+  author: { name: t.name, handle: t.role },
+  text: t.quote,
+}));
+
 const journalPosts = posts.slice(0, 3);
 
 const mobileFeaturedSlugs = ["vue-optometry", "glam-by-abeer", "mi-family-lawyer"];
@@ -305,52 +311,30 @@ export default function HomePage() {
       </section>
 
       {/* ══ TESTIMONIALS ═════════════════════════════ */}
-      <section className="py-32 px-6 border-t border-[var(--site-border)] bg-[var(--site-bg)]">
-        <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <div className="mb-16">
-              <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Client Stories</span>
-              <h2 className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-                Trusted <span className="italic text-[#f87444]">across industries.</span>
-              </h2>
-            </div>
-          </Reveal>
+      <section className="bg-white border-t border-[var(--site-border)]">
+        <TestimonialsSection
+          title="Trusted across industries."
+          description="What clients say about working with Spectecle."
+          testimonials={marqueeTestimonials}
+        />
 
-          <div className="grid md:grid-cols-3 gap-x-10 gap-y-12">
-            {testimonials.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.1}>
-                <div>
-                  <blockquote
-                    className="text-[var(--site-text-primary)] text-lg leading-relaxed font-light italic"
-                    style={{ fontFamily: "var(--font-serif)" }}
-                  >
-                    &ldquo;{t.quote}&rdquo;
-                  </blockquote>
-                  <p className="mt-6 text-sm font-semibold text-[var(--site-text-primary)]">{t.name}</p>
-                  <p className="text-xs text-[var(--site-text-muted)]">{t.role}</p>
-                </div>
-              </Reveal>
-            ))}
+        <Reveal>
+          <div className="max-w-5xl mx-auto px-6 pb-24 -mt-8 sm:-mt-12 pt-10 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+              <span className="text-2xl font-semibold text-[#1e1e1e]">5.0</span>
+              <span className="text-neutral-500 text-sm ml-2">from Google Reviews</span>
+            </div>
+            <a
+              href="https://g.page/r/CbSs-g26jjLnEBM/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1e1e1e] border-b border-[#1e1e1e] pb-0.5"
+            >
+              See all reviews on Google
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
           </div>
-
-          <Reveal>
-            <div className="mt-16 pt-10 border-t border-[var(--site-border)] flex flex-col sm:flex-row items-center justify-between gap-6">
-              <div>
-                <span className="text-2xl font-semibold text-[var(--site-text-primary)]">5.0</span>
-                <span className="text-[var(--site-text-muted)] text-sm ml-2">from Google Reviews</span>
-              </div>
-              <a
-                href="https://g.page/r/CbSs-g26jjLnEBM/review"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5"
-              >
-                See all reviews on Google
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-            </div>
-          </Reveal>
-        </div>
+        </Reveal>
       </section>
 
       {/* ══ JOURNAL ══════════════════════════════════ */}
@@ -421,7 +405,9 @@ export default function HomePage() {
               className="text-4xl md:text-6xl font-light text-white leading-[1.2]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Ready to partner with us on your <RotatingWord />?
+              Ready to partner with us on your
+              <br />
+              <RotatingWord />?
             </h2>
             <Link
               href="/contact"

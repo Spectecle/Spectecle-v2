@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronRight, CheckCircle2 } from "lucide-react";
 
@@ -60,42 +61,56 @@ export default function AIAutomationPage() {
     <>
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="pt-40 pb-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <nav className="flex items-center gap-2 text-xs text-[var(--site-text-muted)] mb-8" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-[var(--site-text-primary)] transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3" />
-            <Link href="/services" className="hover:text-[var(--site-text-primary)] transition-colors">Services</Link>
-            <ChevronRight className="w-3 h-3" />
-            <span className="text-[var(--site-text-secondary)]">AI & Automation</span>
-          </nav>
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
+          <div>
+            <nav className="flex items-center gap-2 text-xs text-[var(--site-text-muted)] mb-8" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-[var(--site-text-primary)] transition-colors">Home</Link>
+              <ChevronRight className="w-3 h-3" />
+              <Link href="/services" className="hover:text-[var(--site-text-primary)] transition-colors">Services</Link>
+              <ChevronRight className="w-3 h-3" />
+              <span className="text-[var(--site-text-secondary)]">AI & Automation</span>
+            </nav>
 
-          <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
-            Serving Clients Nationwide
-          </span>
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
+              Serving Clients Nationwide
+            </span>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            AI & Workflow <span className="italic text-[#f87444]">Automation.</span>
-          </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              AI & Workflow <span className="italic text-[#f87444]">Automation.</span>
+            </motion.h1>
 
-          <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl max-w-2xl leading-relaxed">
-            Custom AI agents and workflow automation built from scratch: trained on your services, integrated with your systems, and tested until they actually work. Not a chatbot plugin.
-          </p>
+            <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl max-w-2xl leading-relaxed">
+              Custom AI agents and workflow automation built from scratch: trained on your services, integrated with your systems, and tested until they actually work. Not a chatbot plugin.
+            </p>
 
-          <div className="mt-8 flex flex-wrap gap-8">
-            <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
-              Get a Free Assessment
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-            <Link href="/work" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
-              View Our Work <ChevronRight className="w-4 h-4" />
-            </Link>
+            <div className="mt-8 flex flex-wrap gap-8">
+              <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
+                Get a Free Assessment
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+              <Link href="/work" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
+                View Our Work <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
+
+          <Reveal delay={0.15}>
+            <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
+              <Image
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop"
+                alt="AI & Automation"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
