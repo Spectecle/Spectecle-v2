@@ -6,7 +6,7 @@ import "./globals.css";
 import ConditionalShell from "@/components/ConditionalShell";
 import { Analytics } from "@vercel/analytics/react";
 
-const GA_MEASUREMENT_ID = "G-GH0Q2F3BS1";
+const GA_MEASUREMENT_ID = "G-SYWQGT396G";
 
 const generalSans = localFont({
   variable: "--font-sans",
