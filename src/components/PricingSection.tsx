@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Check, ArrowUpRight } from "lucide-react";
 import { ProofGallery } from "@/components/ui/ProofGallery";
+import { AdaptivePricingCards, type PricingTier as AdaptivePricingTier } from "@/components/ui/AdaptivePricingCards";
 
 type DesignTier = {
   name: string;
@@ -67,6 +68,18 @@ const designTiers: DesignTier[] = [
   },
 ];
 
+const DESIGN_TIER_SUBTITLES = ["Foundation", "Semi-Custom", "Fully Custom", "Enterprise"];
+
+const designCardTiers: AdaptivePricingTier[] = designTiers.map((tier, i) => ({
+  name: tier.name,
+  subtitle: DESIGN_TIER_SUBTITLES[i % DESIGN_TIER_SUBTITLES.length],
+  description: tier.tagline,
+  badge: tier.featured ? "Most Popular" : undefined,
+  features: tier.items.map((item) => ({ text: item, included: true })),
+  buttonText: tier.isCustom ? "Contact Us" : "Get Started",
+  highlighted: tier.featured,
+}));
+
 const addOns: AddOn[] = [
   {
     name: "Paid Advertising Management",
@@ -94,53 +107,6 @@ const addOns: AddOn[] = [
 ];
 
 /* ─── Website Design tiers ───────────────────────────────── */
-function DesignTierCard({ tier }: { tier: DesignTier }) {
-  const featured = !!tier.featured;
-  return (
-    <div
-      className={`flex flex-col h-full p-7 border ${
-        featured
-          ? "bg-[#1e1e1e] border-[#1e1e1e]"
-          : "bg-[var(--site-bg)] border-[var(--site-border)]"
-      }`}
-    >
-      {featured && (
-        <span className="mb-4 self-start text-[10px] font-bold uppercase tracking-widest text-[#f87444]">
-          Most Popular
-        </span>
-      )}
-      <h3
-        className={`text-2xl font-light mb-1.5 ${featured ? "text-white" : "text-[var(--site-text-primary)]"}`}
-        style={{ fontFamily: "var(--font-serif)" }}
-      >
-        {tier.name}
-      </h3>
-      <p className={`text-sm mb-6 min-h-[2.5rem] ${featured ? "text-white/60" : "text-[var(--site-text-muted)]"}`}>
-        {tier.tagline}
-      </p>
-
-      <Link
-        href="/contact"
-        className={`inline-flex items-center gap-2 text-sm font-semibold pb-0.5 w-fit mb-7 border-b ${
-          featured ? "text-white border-white" : "text-[var(--site-text-primary)] border-[var(--site-text-primary)]"
-        }`}
-      >
-        <span>{tier.isCustom ? "Contact Us" : "Get Started"}</span>
-        <ArrowUpRight className="w-4 h-4" />
-      </Link>
-
-      <ul className={`space-y-2.5 pt-6 border-t flex-1 ${featured ? "border-white/15" : "border-[var(--site-border)]"}`}>
-        {tier.items.map((item, i) => (
-          <li key={i} className={`flex items-start gap-2.5 text-sm ${featured ? "text-white/80" : "text-[var(--site-text-secondary)]"}`}>
-            <Check className="w-4 h-4 text-[#f87444] shrink-0 mt-0.5" />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 function WebsiteDesignSection() {
   return (
     <div>
@@ -153,19 +119,7 @@ function WebsiteDesignSection() {
           that fits your business.
         </p>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {designTiers.map((tier, i) => (
-          <motion.div
-            key={tier.name}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.08 }}
-          >
-            <DesignTierCard tier={tier} />
-          </motion.div>
-        ))}
-      </div>
+      <AdaptivePricingCards tiers={designCardTiers} />
     </div>
   );
 }
