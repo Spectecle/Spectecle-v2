@@ -1,72 +1,52 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const boxRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Growth (text parting + video scale) completes at GROWTH_END, then holds
-  // fullscreen and centered for the rest of the scroll before the sticky
-  // section releases and the page scrolls past it.
-  const GROWTH_END = 0.7;
+  // Raw scroll progress is 1:1 with wheel/trackpad input, so a fast flick
+  // snaps the video/text instantly instead of animating. Springing it adds
+  // a touch of lag so fast scrolls settle in smoothly instead of feeling
+  // "grabby" or over-sensitive.
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    mass: 0.6,
+  });
+
+  // Text and video grow apart on the exact same schedule: the video's
+  // scale fraction always equals the text's movement fraction, so the
+  // gap the text has opened (2 * fraction * 60vh) is always well ahead of
+  // the video's height (fraction * 100vh) — it can never catch up to the
+  // wording. Once both finish, the box just holds at fullscreen for the
+  // rest of the scroll before the section releases.
+  const TEXT_END = 0.42;
 
   // Top line moves up and out, bottom line + CTAs move down and out,
   // opening a gap at the vertical center for the video to grow into.
-  const topOpacity = useTransform(scrollYProgress, [0, 0.4 * GROWTH_END], [1, 0]);
-  const topY = useTransform(scrollYProgress, [0, 0.5 * GROWTH_END], ["0vh", "-60vh"]);
-  const bottomOpacity = useTransform(scrollYProgress, [0, 0.4 * GROWTH_END], [1, 0]);
-  const bottomY = useTransform(scrollYProgress, [0, 0.5 * GROWTH_END], ["0vh", "60vh"]);
+  const topOpacity = useTransform(smoothProgress, [0, TEXT_END], [1, 0]);
+  const topY = useTransform(smoothProgress, [0, TEXT_END], ["0vh", "-60vh"]);
+  const bottomOpacity = useTransform(smoothProgress, [0, TEXT_END], [1, 0]);
+  const bottomY = useTransform(smoothProgress, [0, TEXT_END], ["0vh", "60vh"]);
 
-  const viewport = useRef({ w: 0, h: 0 });
-
-  useEffect(() => {
-    const measure = () => {
-      viewport.current = { w: window.innerWidth, h: window.innerHeight };
-      applyBoxStyle(scrollYProgress.get());
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  function applyBoxStyle(p: number) {
-    const el = boxRef.current;
-    if (!el) return;
-    const { w: vw, h: vh } = viewport.current;
-    if (!vw || !vh) return;
-
-    // Grows from a small box centered in the gap between the two lines of
-    // text out to a fullscreen video by GROWTH_END, staying centered the
-    // whole way so it fills the viewport evenly with no off-center drift.
-    const gp = Math.min(p / GROWTH_END, 1);
-    const startSize = vh * 0.16;
-    const width = startSize + (vw - startSize) * gp;
-    const height = startSize + (vh - startSize) * gp;
-    const top = vh / 2 - height / 2;
-    const left = vw / 2 - width / 2;
-    const opacity = Math.min(gp / 0.12, 1);
-
-    el.style.width = `${width}px`;
-    el.style.height = `${height}px`;
-    el.style.top = `${top}px`;
-    el.style.left = `${left}px`;
-    el.style.opacity = String(opacity);
-  }
-
-  useMotionValueEvent(scrollYProgress, "change", (p) => applyBoxStyle(p));
+  // Scale + opacity only, never width/height/top/left — those force a
+  // synchronous layout reflow on every scroll frame, which is what made
+  // the old version feel janky. Scale/opacity are handled entirely by the
+  // compositor, so growth stays smooth no matter how fast the page scrolls.
+  const boxScale = useTransform(smoothProgress, [0, TEXT_END], [0.02, 1]);
+  const boxOpacity = useTransform(smoothProgress, [0, 0.08], [0, 1]);
 
   return (
-    <div ref={containerRef} className="relative h-[200vh]">
+    <div ref={containerRef} className="relative h-[280vh]">
       <div className="sticky top-0 h-screen w-screen overflow-hidden bg-[var(--site-bg)]">
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
           <motion.div style={{ opacity: topOpacity, y: topY }} className="relative z-20 max-w-3xl mx-auto">
@@ -104,7 +84,10 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        <div ref={boxRef} className="absolute overflow-hidden z-10" style={{ opacity: 0 }}>
+        <motion.div
+          style={{ scale: boxScale, opacity: boxOpacity }}
+          className="absolute inset-0 w-screen h-screen overflow-hidden z-10"
+        >
           <video
             className="absolute inset-0 w-full h-full object-cover hidden md:block"
             src="/videos/hero-desktop.mp4"
@@ -125,7 +108,7 @@ export default function Hero() {
             playsInline
             preload="auto"
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );
