@@ -149,6 +149,15 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
+              name: "Ad Campaigns",
+              description:
+                "Paid search and social campaigns built to convert, tracked back to real leads and revenue, never vanity impressions.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
               name: "AI & Automation",
               description:
                 "Custom AI agents, workflow automation, and intelligent integrations that save time and scale operations.",

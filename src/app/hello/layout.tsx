@@ -3,15 +3,17 @@ import type { Metadata } from "next";
 const BASE_URL = "https://spectecle.com";
 
 export const metadata: Metadata = {
-  title: "Spectecle | Web Design, SEO & AI Agency: Walid Alhassan",
+  title: "Get a Free Web Design & SEO Quote | Spectecle",
   description:
-    "Spectecle is a founder-led web design, SEO & AI automation agency built by Walid Alhassan, combining deep web development, IT systems engineering, and AI automation expertise. Serving six-figure businesses nationwide.",
+    "Spectecle is a web design, SEO, ad campaign & AI automation agency serving businesses nationwide. Custom Next.js websites, local SEO, paid ads, and AI agents built to convert. Get your free quote today.",
   keywords: [
     "web design agency",
-    "Walid Alhassan web designer",
     "Spectecle agency",
     "SEO agency",
     "AI automation agency",
+    "ad campaign management",
+    "PPC advertising agency",
+    "Google Ads management",
     "web developer",
     "local SEO services",
     "custom website design",
@@ -26,14 +28,14 @@ export const metadata: Metadata = {
     "SEO company",
     "Google Business Profile optimization",
   ],
-  authors: [{ name: "Walid Alhassan", url: `${BASE_URL}/about` }],
-  creator: "Walid Alhassan",
+  authors: [{ name: "Spectecle SEO & Web Design", url: BASE_URL }],
+  creator: "Spectecle SEO & Web Design",
   publisher: "Spectecle SEO & Web Design",
   category: "Web Design & Digital Marketing Agency",
   openGraph: {
-    title: "Spectecle | Web Design, SEO & AI Agency: Meet Walid Alhassan",
+    title: "Get a Free Web Design & SEO Quote | Spectecle",
     description:
-      "Web development. IT systems engineering. AI automation. A founder-led agency building websites that convert, rank, and scale for six-figure businesses nationwide.",
+      "Web design. SEO. Ad campaigns. AI automation. One dedicated team building websites that convert, rank, and scale for businesses nationwide.",
     url: `${BASE_URL}/hello`,
     type: "website",
     locale: "en_US",
@@ -49,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Spectecle | Web Design, SEO & AI Agency",
+    title: "Get a Free Web Design & SEO Quote | Spectecle",
     description:
-      "Founder-led web design, SEO & AI automation agency, built and run directly by Walid Alhassan.",
+      "Web design, SEO, ad campaigns & AI automation agency serving businesses nationwide.",
     images: [`${BASE_URL}/opengraph-image`],
     creator: "@spectecle",
     site: "@spectecle",
@@ -79,7 +81,7 @@ const faqItems = [
   {
     question: "What makes Spectecle different from other web design agencies?",
     answer:
-      "Spectecle is founder-led. Every project is handled directly by Walid Alhassan, a web developer, an IT systems engineer with deep enterprise infrastructure experience, and an AI practitioner. You never deal with account managers or handoffs. The same person who talks to you also designs, builds, and launches your site.",
+      "Spectecle brings web design, SEO, ad campaigns, and AI automation together under one dedicated team, so every part of your digital presence is built to work together instead of being handled by separate vendors who never talk to each other. No account managers, no outsourcing, no handoffs. The team that talks to you also designs, builds, and launches your site.",
   },
   {
     question: "How long does it take to build a website?",
@@ -109,18 +111,18 @@ const jsonLd = {
     {
       "@type": "WebPage",
       "@id": `${BASE_URL}/hello`,
-      name: "Spectecle: Web Design, SEO & AI Automation Agency",
+      name: "Get a Free Web Design & SEO Quote | Spectecle",
       url: `${BASE_URL}/hello`,
       description:
-        "Meet Spectecle, a web design, SEO & AI automation agency founded by Walid Alhassan. Serving six-figure businesses nationwide.",
+        "Spectecle is a web design, SEO, ad campaign & AI automation agency serving businesses nationwide. Get your free quote today.",
       inLanguage: "en-US",
       isPartOf: { "@id": `${BASE_URL}/#website` },
       about: { "@id": `${BASE_URL}/#organization` },
       publisher: { "@id": `${BASE_URL}/#organization` },
       primaryImageOfPage: {
         "@type": "ImageObject",
-        url: `${BASE_URL}/walid.jpg`,
-        description: "Walid Alhassan, Founder of Spectecle SEO & Web Design",
+        url: `${BASE_URL}/logo.png`,
+        description: "Spectecle SEO & Web Design logo",
       },
     },
     {
@@ -135,9 +137,9 @@ const jsonLd = {
         width: 400,
         height: 400,
       },
-      image: `${BASE_URL}/walid.jpg`,
+      image: `${BASE_URL}/logo.png`,
       description:
-        "Spectecle is a web design, SEO & AI automation agency founded by Walid Alhassan, serving six-figure businesses nationwide.",
+        "Spectecle is a web design, SEO, ad campaign & AI automation agency serving businesses nationwide.",
       telephone: "+13133534105",
       email: "hello@spectecle.com",
       priceRange: "$$",
@@ -192,35 +194,6 @@ const jsonLd = {
           },
         ],
       },
-      founder: { "@id": `${BASE_URL}/#founder` },
-      sameAs: [
-        "https://x.com/spectecle",
-        "https://www.instagram.com/spectecle/",
-        "https://github.com/Spectecle",
-      ],
-    },
-    {
-      "@type": "Person",
-      "@id": `${BASE_URL}/#founder`,
-      name: "Walid Alhassan",
-      givenName: "Walid",
-      familyName: "Alhassan",
-      jobTitle: "Founder & Lead Strategist",
-      description:
-        "Walid Alhassan is a web developer, an IT systems engineer with deep enterprise infrastructure experience, and an AI practitioner. He is the founder of Spectecle SEO & Web Design.",
-      image: `${BASE_URL}/walid.jpg`,
-      url: `${BASE_URL}/about`,
-      worksFor: { "@id": `${BASE_URL}/#organization` },
-      knowsAbout: [
-        "Web Design & Development",
-        "Search Engine Optimization",
-        "AI & Business Automation",
-        "IT Systems Engineering",
-        "Local SEO",
-        "Next.js Development",
-        "Google Business Profile Optimization",
-        "E-commerce Web Design",
-      ],
       sameAs: [
         "https://x.com/spectecle",
         "https://www.instagram.com/spectecle/",
@@ -243,7 +216,7 @@ const jsonLd = {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
-        { "@type": "ListItem", position: 2, name: "Meet Spectecle", item: `${BASE_URL}/hello` },
+        { "@type": "ListItem", position: 2, name: "Get a Free Quote", item: `${BASE_URL}/hello` },
       ],
     },
   ],

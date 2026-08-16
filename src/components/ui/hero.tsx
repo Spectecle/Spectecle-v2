@@ -5,7 +5,49 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-export default function Hero() {
+const DEFAULT_TOP = (
+  <h1
+    className="font-light leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
+    style={{ fontFamily: "var(--font-sans)" }}
+  >
+    Let&apos;s turn your website into a Spectecle
+  </h1>
+);
+
+const DEFAULT_BOTTOM = (
+  <>
+    <p
+      className="mt-4 italic font-light leading-none tracking-tight text-[9vw] sm:text-[4.6vw] lg:text-[3vw]"
+      style={{ fontFamily: "var(--font-serif)", color: "#f87444" }}
+    >
+      Custom Web Design. Marketing That Works.
+    </p>
+
+    <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
+      <Link
+        href="/contact"
+        className="inline-flex items-center gap-2 text-base font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
+      >
+        Start a project
+        <ArrowUpRight className="w-4 h-4" />
+      </Link>
+      <Link
+        href="/work"
+        className="inline-flex items-center gap-2 text-base font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
+      >
+        See our work
+      </Link>
+    </div>
+  </>
+);
+
+export default function Hero({
+  topContent = DEFAULT_TOP,
+  bottomContent = DEFAULT_BOTTOM,
+}: {
+  topContent?: React.ReactNode;
+  bottomContent?: React.ReactNode;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -50,37 +92,11 @@ export default function Hero() {
       <div className="sticky top-0 h-screen w-screen overflow-hidden bg-[var(--site-bg)]">
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
           <motion.div style={{ opacity: topOpacity, y: topY }} className="relative z-20 max-w-3xl mx-auto">
-            <h1
-              className="font-light leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              Let&apos;s turn your website into a Spectecle
-            </h1>
+            {topContent}
           </motion.div>
 
           <motion.div style={{ opacity: bottomOpacity, y: bottomY }} className="relative z-20 max-w-3xl mx-auto">
-            <p
-              className="mt-4 italic font-light leading-none tracking-tight text-[9vw] sm:text-[4.6vw] lg:text-[3vw]"
-              style={{ fontFamily: "var(--font-serif)", color: "#f87444" }}
-            >
-              Custom Web Design. Marketing That Works.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 text-base font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
-              >
-                Start a project
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/work"
-                className="inline-flex items-center gap-2 text-base font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
-              >
-                See our work
-              </Link>
-            </div>
+            {bottomContent}
           </motion.div>
         </div>
 

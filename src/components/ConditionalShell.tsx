@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { SiteThemeProvider } from "./SiteThemeProvider";
 
-const STANDALONE_ROUTES = ["/hello"];
+const STANDALONE_ROUTES: string[] = [];
 
 export default function ConditionalShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

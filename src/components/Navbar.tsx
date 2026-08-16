@@ -21,6 +21,10 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // /hello is a standalone campaign landing page, not part of the normal
+  // click-the-logo-to-go-home flow, so it gets an explicit Home link.
+  const links = pathname === "/hello" ? [{ label: "Home", href: "/" }, ...navLinks] : navLinks;
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -51,7 +55,7 @@ export default function Navbar() {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -123,7 +127,7 @@ export default function Navbar() {
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               className="absolute right-0 top-0 h-full w-full sm:w-96 bg-[var(--site-bg)] border-l border-[var(--site-border)] p-10 pt-28 flex flex-col gap-2"
             >
-              {navLinks.map((link, i) => (
+              {links.map((link, i) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, x: 20 }}

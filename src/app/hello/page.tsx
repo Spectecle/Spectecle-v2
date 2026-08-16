@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { LogoMark } from "@/components/LogoMark";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -10,11 +9,10 @@ import {
   Mail,
   Phone,
   CheckCircle2,
-  ChevronRight,
   ChevronDown,
 } from "lucide-react";
 import { projects } from "@/app/work/projects-data";
-import { SiteThemeToggle } from "@/components/SiteThemeToggle";
+import Hero from "@/components/ui/hero";
 import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee";
 import { marqueeTestimonials } from "@/lib/testimonials-data";
 
@@ -69,7 +67,7 @@ const FAQ_ITEMS = [
   {
     question: "What makes Spectecle different from other web design agencies?",
     answer:
-      "Spectecle is founder-led. Every project is handled directly by Walid Alhassan, a web developer, an IT systems engineer with deep enterprise infrastructure experience, and an AI practitioner. You never deal with account managers or handoffs. The same person who talks to you also designs, builds, and launches your site.",
+      "Spectecle brings web design, SEO, ad campaigns, and AI automation together under one dedicated team, so every part of your digital presence is built to work together instead of being handled by separate vendors who never talk to each other. No account managers, no outsourcing, no handoffs. The team that talks to you also designs, builds, and launches your site.",
   },
   {
     question: "How long does it take to build a website?",
@@ -94,7 +92,6 @@ const FAQ_ITEMS = [
 ];
 
 const FEATURED = projects.slice(0, 3);
-const CLIENTS = projects.map((p) => ({ name: p.title, domain: p.domain }));
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -120,6 +117,46 @@ function Reveal({
   );
 }
 
+function FeaturedWorkCard({ p }: { p: (typeof projects)[number] }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isVideo = p.slug === "glam-by-abeer";
+
+  useEffect(() => {
+    if (isVideo) videoRef.current?.play().catch(() => {});
+  }, [isVideo]);
+
+  return (
+    <Link href={`/work/${p.slug}`} className="group block">
+      <div className="relative aspect-[1600/557] overflow-hidden">
+        {isVideo ? (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            src="/videos/glambyabeer.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        ) : (
+          <Image
+            src={p.screenshotUrl}
+            alt={`${p.title} homepage`}
+            fill
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        )}
+      </div>
+      <div className="mt-4">
+        <span className="text-[var(--site-text-primary)] font-semibold text-sm group-hover:text-[#f87444] transition-colors">{p.title}</span>
+      </div>
+      <p className="mt-1 text-[var(--site-text-muted)] text-xs leading-relaxed line-clamp-2">{p.cardDesc}</p>
+    </Link>
+  );
+}
+
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function HelloPage() {
@@ -131,87 +168,33 @@ export default function HelloPage() {
     return () => clearInterval(t);
   }, []);
 
+  const heroTop = (
+    <h1
+      className="font-light leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
+      style={{ fontFamily: "var(--font-sans)" }}
+    >
+      We build websites that{" "}
+      <span className="inline-block min-w-[7ch] text-left">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={wordIdx}
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -40, opacity: 0 }}
+            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            className="italic text-[#f87444] inline-block"
+          >
+            {ROTATE_WORDS[wordIdx]}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+    </h1>
+  );
+
   return (
     <>
-      <style>{`
-        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        .marquee-track { animation: marquee 28s linear infinite; }
-        .marquee-track:hover { animation-play-state: paused; }
-      `}</style>
-
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col bg-[var(--site-bg)]">
-        <div className="relative z-10 flex items-center justify-between px-6 md:px-12 pt-8 pb-0">
-          <Link href="/" className="flex items-center gap-2">
-            <LogoMark className="w-8 h-8 drop-shadow-sm" />
-            <span className="text-xl font-bold tracking-tight text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-sans)" }}>
-              Spectecle
-            </span>
-          </Link>
-          <SiteThemeToggle />
-        </div>
-
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-16 pb-8 text-center max-w-5xl mx-auto w-full">
-          <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em] mb-8">
-            Founder-Led · Serving Businesses Nationwide · Available Now
-          </span>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl sm:text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.06]"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            We build websites
-            <br />
-            that&nbsp;
-            <span className="inline-block min-w-[220px] sm:min-w-[280px] text-left">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={wordIdx}
-                  initial={{ y: 40, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -40, opacity: 0 }}
-                  transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                  className="italic text-[#f87444] inline-block"
-                >
-                  {ROTATE_WORDS[wordIdx]}
-                </motion.span>
-              </AnimatePresence>
-            </span>
-          </motion.h1>
-
-          <p className="mt-7 text-[var(--site-text-secondary)] text-lg md:text-xl leading-relaxed max-w-2xl">
-            Spectecle is an agency building custom websites, dominating local search, and
-            deploying AI automation for six-figure businesses nationwide, all handled directly by the
-            founder, start to finish.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-8">
-            <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
-              Start a Project
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-            <Link href="/work" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
-              View Our Work
-              <ChevronRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CLIENT MARQUEE ────────────────────────────────────────────────── */}
-      <div className="py-10 border-y border-[var(--site-border)] overflow-hidden bg-[var(--site-bg)]">
-        <p className="text-center text-[var(--site-text-muted)] text-xs tracking-widest uppercase mb-6">Trusted by businesses nationwide</p>
-        <div className="flex">
-          <div className="marquee-track flex items-center gap-12 whitespace-nowrap">
-            {[...CLIENTS, ...CLIENTS].map((c, i) => (
-              <span key={i} className="text-[var(--site-text-secondary)] text-sm font-medium">{c.name}</span>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Hero topContent={heroTop} />
 
       {/* ── SERVICES ──────────────────────────────────────────────────────── */}
       <section className="py-28 px-6 border-b border-[var(--site-border)]">
@@ -260,21 +243,7 @@ export default function HelloPage() {
           <div className="grid md:grid-cols-3 gap-x-8 gap-y-10 mb-10">
             {FEATURED.map((p, i) => (
               <Reveal key={p.slug} delay={i * 0.1}>
-                <Link href={`/work/${p.slug}`} className="group block">
-                  <div className="relative aspect-[1600/557] overflow-hidden">
-                    <Image
-                      src={p.screenshotUrl}
-                      alt={`${p.title} homepage`}
-                      fill
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                  <div className="mt-4">
-                    <span className="text-[var(--site-text-primary)] font-semibold text-sm group-hover:text-[#f87444] transition-colors">{p.title}</span>
-                  </div>
-                  <p className="mt-1 text-[var(--site-text-muted)] text-xs leading-relaxed line-clamp-2">{p.cardDesc}</p>
-                </Link>
+                <FeaturedWorkCard p={p} />
               </Reveal>
             ))}
           </div>
@@ -365,58 +334,6 @@ export default function HelloPage() {
         </div>
       </section>
 
-      {/* ── MEET WALID ────────────────────────────────────────────────────── */}
-      <section className="py-28 px-6 border-b border-[var(--site-border)]">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden max-w-md mx-auto lg:mx-0">
-              <Image
-                src="/walid.jpg"
-                alt="Walid Alhassan, Founder of Spectecle"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 448px"
-                className="object-cover object-top"
-                style={{ filter: "brightness(1.04) contrast(1.08) saturate(0.82)" }}
-              />
-            </div>
-          </Reveal>
-
-          <div>
-            <Reveal>
-              <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">The Founder</span>
-              <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)] leading-tight mb-6" style={{ fontFamily: "var(--font-serif)" }}>
-                Hi, I&apos;m <span className="italic text-[#f87444]">Walid.</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="text-[var(--site-text-secondary)] leading-relaxed mb-4">
-                I started Spectecle the same way I approach every client project: by building something for myself first. Self-taught from the ground up, I built a career mastering web development alongside a deep background as an IT systems engineer in enterprise infrastructure.
-              </p>
-              <p className="text-[var(--site-text-secondary)] leading-relaxed mb-8">
-                That combination is rare. I understand server-side performance, security, and architecture at a level most designers never touch. When I add AI automation to a client&apos;s workflow, I&apos;m building the agent from scratch: trained on their business, integrated with their systems, and tested until it actually works.
-              </p>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8">
-                {["IT Systems Engineering", "Web Development", "AI & Automation"].map((area) => (
-                  <span key={area} className="flex items-center gap-2 text-[var(--site-text-secondary)] text-sm">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#f87444] shrink-0" />
-                    {area}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <Link href="/about" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
-                Full story on the about page
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* ── CTA ───────────────────────────────────────────────────────────── */}
       <section className="py-32 px-6">
         <Reveal className="max-w-3xl mx-auto text-center">
@@ -445,15 +362,6 @@ export default function HelloPage() {
           </a>
         </Reveal>
       </section>
-
-      {/* ── MINI FOOTER ───────────────────────────────────────────────────── */}
-      <div className="border-t border-[var(--site-border)] py-6 px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[var(--site-text-muted)] text-xs">
-        <Link href="/" className="text-[var(--site-text-muted)] hover:text-[#f87444] transition-colors font-semibold tracking-tight">
-          spectecle.com
-        </Link>
-        <p>© {new Date().getFullYear()} Spectecle SEO & Web Design · All rights reserved.</p>
-        <Link href="/privacy" className="hover:text-[var(--site-text-secondary)] transition-colors">Privacy Policy</Link>
-      </div>
     </>
   );
 }
