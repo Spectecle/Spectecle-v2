@@ -8,44 +8,19 @@ import {
   ArrowUpRight,
   Mail,
   Phone,
-  CheckCircle2,
   ChevronDown,
 } from "lucide-react";
 import { projects } from "@/app/work/projects-data";
 import Hero from "@/components/ui/hero";
+import ServiceGrid from "@/components/ui/ServiceGrid";
+import ServiceStickyScale from "@/components/ui/ServiceStickyScale";
 import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee";
 import { marqueeTestimonials } from "@/lib/testimonials-data";
+import { services } from "@/lib/services-data";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const ROTATE_WORDS = ["Convert.", "Rank.", "Scale.", "Perform."];
-
-const SERVICES = [
-  {
-    n: "01",
-    title: "Web Design & Development",
-    desc: "Custom Next.js websites engineered for speed, conversion, and search. Every pixel deliberate. Every line of code built to perform under real traffic, not just in demos.",
-    bullets: ["Fast, modern builds", "Mobile-first responsive", "Conversion-optimized layout"],
-  },
-  {
-    n: "02",
-    title: "SEO & Local Search",
-    desc: "Rank for the searches that send revenue your way. Local SEO, technical SEO, and content strategy tailored to your market, not copy-pasted from a template.",
-    bullets: ["Google Business Profile", "Local keyword domination", "Schema & structured data"],
-  },
-  {
-    n: "03",
-    title: "Ad Campaigns",
-    desc: "Paid search and social campaigns built to convert, not just get clicks. Every dollar tracked back to real leads and revenue, never vanity impressions.",
-    bullets: ["Google & Meta ads", "Conversion tracking", "Budget-conscious targeting"],
-  },
-  {
-    n: "04",
-    title: "AI & Automation",
-    desc: "Custom AI intake agents, workflow automation, and intelligent CRM integrations, built from scratch. Not a chatbot plugin. A system engineered for your business.",
-    bullets: ["Custom AI agents", "Lead capture automation", "CRM & workflow integration"],
-  },
-];
 
 const INDUSTRIES = [
   "E-commerce & Retail",
@@ -206,27 +181,15 @@ export default function HelloPage() {
             </h2>
           </Reveal>
 
-          <div className="divide-y divide-[var(--site-border)]">
-            {SERVICES.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.1}>
-                <div className="grid md:grid-cols-[80px_1fr] gap-4 py-10">
-                  <span className="text-sm text-[var(--site-text-muted)] font-mono">{s.n}</span>
-                  <div>
-                    <h3 className="text-2xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>{s.title}</h3>
-                    <p className="mt-2 text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-xl">{s.desc}</p>
-                    <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5">
-                      {s.bullets.map((b) => (
-                        <li key={b} className="flex items-center gap-2 text-[var(--site-text-muted)] text-xs">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#f87444] shrink-0" />
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+          <div className="hidden md:block">
+            <Reveal delay={0.1}>
+              <ServiceGrid items={services} />
+            </Reveal>
           </div>
+        </div>
+
+        <div className="md:hidden">
+          <ServiceStickyScale items={services} />
         </div>
       </section>
 
