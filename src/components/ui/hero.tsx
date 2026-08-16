@@ -1,18 +1,43 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-const DEFAULT_TOP = (
-  <h1
-    className="font-light leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
-    style={{ fontFamily: "var(--font-sans)" }}
-  >
-    Let&apos;s turn your website into a Spectecle
-  </h1>
-);
+const ROTATE_WORDS = ["Convert.", "Rank.", "Scale.", "Perform."];
+
+function DefaultTopContent() {
+  const [wordIdx, setWordIdx] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setWordIdx((i) => (i + 1) % ROTATE_WORDS.length), 2200);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <h1
+      className="font-light leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
+      style={{ fontFamily: "var(--font-sans)" }}
+    >
+      We build websites that{" "}
+      <span className="inline-block min-w-[7ch] text-left">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={wordIdx}
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -40, opacity: 0 }}
+            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            className="italic text-[#f87444] inline-block"
+          >
+            {ROTATE_WORDS[wordIdx]}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+    </h1>
+  );
+}
 
 const DEFAULT_BOTTOM = (
   <>
@@ -42,7 +67,7 @@ const DEFAULT_BOTTOM = (
 );
 
 export default function Hero({
-  topContent = DEFAULT_TOP,
+  topContent = <DefaultTopContent />,
   bottomContent = DEFAULT_BOTTOM,
 }: {
   topContent?: React.ReactNode;

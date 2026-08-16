@@ -20,8 +20,6 @@ import { services } from "@/lib/services-data";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
-const ROTATE_WORDS = ["Convert.", "Rank.", "Scale.", "Perform."];
-
 const INDUSTRIES = [
   "E-commerce & Retail",
   "Law Firms & Attorneys",
@@ -135,41 +133,12 @@ function FeaturedWorkCard({ p }: { p: (typeof projects)[number] }) {
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function HelloPage() {
-  const [wordIdx, setWordIdx] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  useEffect(() => {
-    const t = setInterval(() => setWordIdx((i) => (i + 1) % ROTATE_WORDS.length), 2200);
-    return () => clearInterval(t);
-  }, []);
-
-  const heroTop = (
-    <h1
-      className="font-light leading-[1.05] tracking-tight text-[var(--site-text-primary)] text-[9vw] sm:text-[5vw] lg:text-[3.4vw]"
-      style={{ fontFamily: "var(--font-sans)" }}
-    >
-      We build websites that{" "}
-      <span className="inline-block min-w-[7ch] text-left">
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={wordIdx}
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -40, opacity: 0 }}
-            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-            className="italic text-[#f87444] inline-block"
-          >
-            {ROTATE_WORDS[wordIdx]}
-          </motion.span>
-        </AnimatePresence>
-      </span>
-    </h1>
-  );
 
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <Hero topContent={heroTop} />
+      <Hero />
 
       {/* ── SERVICES ──────────────────────────────────────────────────────── */}
       <section className="py-28 px-6 border-b border-[var(--site-border)]">
