@@ -15,33 +15,34 @@ import {
 } from "lucide-react";
 import { projects } from "@/app/work/projects-data";
 import { SiteThemeToggle } from "@/components/SiteThemeToggle";
+import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee";
+import { marqueeTestimonials } from "@/lib/testimonials-data";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const ROTATE_WORDS = ["Convert.", "Rank.", "Scale.", "Perform."];
-
-const STATS = [
-  { value: "10+", label: "Years Web Dev" },
-  { value: "12+", label: "Years IT Eng." },
-  { value: "50+", label: "Projects Live" },
-  { value: "$5.4M+", label: "Revenue Generated" },
-];
 
 const SERVICES = [
   {
     n: "01",
     title: "Web Design & Development",
     desc: "Custom Next.js websites engineered for speed, conversion, and search. Every pixel deliberate. Every line of code built to perform under real traffic, not just in demos.",
-    bullets: ["Sub-2s load time", "Mobile-first responsive", "Conversion-optimized layout"],
+    bullets: ["Fast, modern builds", "Mobile-first responsive", "Conversion-optimized layout"],
   },
   {
     n: "02",
     title: "SEO & Local Search",
-    desc: "Rank #1 for the searches that send revenue your way. Local SEO, technical SEO, and content strategy tailored to your market, not copy-pasted from a template.",
+    desc: "Rank for the searches that send revenue your way. Local SEO, technical SEO, and content strategy tailored to your market, not copy-pasted from a template.",
     bullets: ["Google Business Profile", "Local keyword domination", "Schema & structured data"],
   },
   {
     n: "03",
+    title: "Ad Campaigns",
+    desc: "Paid search and social campaigns built to convert, not just get clicks. Every dollar tracked back to real leads and revenue, never vanity impressions.",
+    bullets: ["Google & Meta ads", "Conversion tracking", "Budget-conscious targeting"],
+  },
+  {
+    n: "04",
     title: "AI & Automation",
     desc: "Custom AI intake agents, workflow automation, and intelligent CRM integrations, built from scratch. Not a chatbot plugin. A system engineered for your business.",
     bullets: ["Custom AI agents", "Lead capture automation", "CRM & workflow integration"],
@@ -63,17 +64,17 @@ const FAQ_ITEMS = [
   {
     question: "How much does a professional website cost?",
     answer:
-      "At Spectecle, custom website projects start at $2,500 for small businesses and scale based on complexity, number of pages, and integrations needed. Unlike agencies that charge $15,000–$50,000 for templated work, every Spectecle site is built from scratch in Next.js: faster, better-ranking, and entirely yours. SEO retainers and AI automation packages are available separately.",
+      "Every Spectecle project is custom quoted based on complexity, number of pages, and integrations needed, not a one-size-fits-all package. Every site is built from scratch in Next.js: faster, better-ranking, and entirely yours. SEO retainers and AI automation packages are available separately. Reach out for a free quote tailored to your business.",
   },
   {
     question: "What makes Spectecle different from other web design agencies?",
     answer:
-      "Spectecle is founder-led. Every project is handled directly by Walid Alhassan, a web developer with 10 years of experience, an IT systems engineer with 12 years in enterprise infrastructure, and an AI practitioner for 4 years. You never deal with account managers or handoffs. The same person who talks to you also designs, builds, and launches your site.",
+      "Spectecle is founder-led. Every project is handled directly by Walid Alhassan, a web developer, an IT systems engineer with deep enterprise infrastructure experience, and an AI practitioner. You never deal with account managers or handoffs. The same person who talks to you also designs, builds, and launches your site.",
   },
   {
     question: "How long does it take to build a website?",
     answer:
-      "Most Spectecle projects are delivered in 4–8 weeks from kickoff to launch, depending on complexity. E-commerce sites and projects with custom AI integrations may take longer. There is no team bureaucracy. Decisions happen fast and revisions never get lost in translation.",
+      "Timelines depend on scope and complexity, and we agree on a clear timeline with you upfront before any work begins. E-commerce sites and projects with custom AI integrations naturally take longer. There is no team bureaucracy. Decisions happen fast and revisions never get lost in translation.",
   },
   {
     question: "What is local SEO and how does it help my business?",
@@ -197,15 +198,6 @@ export default function HelloPage() {
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
-
-          <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-8 w-full max-w-2xl">
-            {STATS.map((s) => (
-              <div key={s.label} className="text-center">
-                <span className="text-2xl sm:text-3xl font-light text-[#f87444]" style={{ fontFamily: "var(--font-serif)" }}>{s.value}</span>
-                <p className="text-[var(--site-text-muted)] text-xs mt-1 leading-snug">{s.label}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -227,7 +219,7 @@ export default function HelloPage() {
           <Reveal className="mb-16">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Do</span>
             <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Three disciplines. <span className="italic text-[#f87444]">One agency.</span>
+              Four disciplines. <span className="italic text-[#f87444]">One agency.</span>
             </h2>
           </Reveal>
 
@@ -269,7 +261,7 @@ export default function HelloPage() {
             {FEATURED.map((p, i) => (
               <Reveal key={p.slug} delay={i * 0.1}>
                 <Link href={`/work/${p.slug}`} className="group block">
-                  <div className="relative h-44 overflow-hidden">
+                  <div className="relative aspect-[1600/557] overflow-hidden">
                     <Image
                       src={p.screenshotUrl}
                       alt={`${p.title} homepage`}
@@ -278,9 +270,8 @@ export default function HelloPage() {
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
-                  <div className="mt-4 flex items-center justify-between">
+                  <div className="mt-4">
                     <span className="text-[var(--site-text-primary)] font-semibold text-sm group-hover:text-[#f87444] transition-colors">{p.title}</span>
-                    <span className="text-xs font-bold text-[#f87444]">{p.cardResult}</span>
                   </div>
                   <p className="mt-1 text-[var(--site-text-muted)] text-xs leading-relaxed line-clamp-2">{p.cardDesc}</p>
                 </Link>
@@ -295,6 +286,15 @@ export default function HelloPage() {
             </Link>
           </Reveal>
         </div>
+      </section>
+
+      {/* ── TESTIMONIALS ──────────────────────────────────────────────────── */}
+      <section className="border-b border-[var(--site-border)]">
+        <TestimonialsSection
+          title="Trusted across industries."
+          description="What clients say about working with Spectecle."
+          testimonials={marqueeTestimonials}
+        />
       </section>
 
       {/* ── INDUSTRIES ────────────────────────────────────────────────────── */}
@@ -391,23 +391,19 @@ export default function HelloPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="text-[var(--site-text-secondary)] leading-relaxed mb-4">
-                I started Spectecle the same way I approach every client project: by building something for myself first. Self-taught from the ground up, I spent 10 years mastering web development alongside 12 years as an IT systems engineer in enterprise infrastructure.
+                I started Spectecle the same way I approach every client project: by building something for myself first. Self-taught from the ground up, I built a career mastering web development alongside a deep background as an IT systems engineer in enterprise infrastructure.
               </p>
               <p className="text-[var(--site-text-secondary)] leading-relaxed mb-8">
                 That combination is rare. I understand server-side performance, security, and architecture at a level most designers never touch. When I add AI automation to a client&apos;s workflow, I&apos;m building the agent from scratch: trained on their business, integrated with their systems, and tested until it actually works.
               </p>
             </Reveal>
             <Reveal delay={0.15}>
-              <div className="flex flex-wrap gap-8 mb-8">
-                {[
-                  { years: "12 Yrs", label: "IT Systems Eng." },
-                  { years: "10 Yrs", label: "Web Development" },
-                  { years: "4 Yrs", label: "AI & Automation" },
-                ].map((e) => (
-                  <div key={e.label}>
-                    <p className="text-[var(--site-text-primary)] font-light text-2xl" style={{ fontFamily: "var(--font-serif)" }}>{e.years}</p>
-                    <p className="text-[var(--site-text-muted)] text-xs leading-tight mt-0.5">{e.label}</p>
-                  </div>
+              <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8">
+                {["IT Systems Engineering", "Web Development", "AI & Automation"].map((area) => (
+                  <span key={area} className="flex items-center gap-2 text-[var(--site-text-secondary)] text-sm">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#f87444] shrink-0" />
+                    {area}
+                  </span>
                 ))}
               </div>
             </Reveal>
@@ -429,7 +425,7 @@ export default function HelloPage() {
             Ready to build something <span className="italic text-[#f87444]">that actually works?</span>
           </h2>
           <p className="text-[var(--site-text-secondary)] text-lg mb-10 max-w-xl mx-auto">
-            You scanned the card. That&apos;s the first step. The second one is a 15-minute conversation about what your business actually needs.
+            You found us. That&apos;s the first step. The second one is a quick conversation about what your business actually needs.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-10">

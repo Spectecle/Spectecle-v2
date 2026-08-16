@@ -5,7 +5,7 @@ const BASE_URL = "https://spectecle.com";
 export const metadata: Metadata = {
   title: "Spectecle | Web Design, SEO & AI Agency: Walid Alhassan",
   description:
-    "Spectecle is a founder-led web design, SEO & AI automation agency. Built by Walid Alhassan: 10 years web development, 12 years IT systems engineering, 4 years AI. Serving six-figure businesses nationwide.",
+    "Spectecle is a founder-led web design, SEO & AI automation agency built by Walid Alhassan, combining deep web development, IT systems engineering, and AI automation expertise. Serving six-figure businesses nationwide.",
   keywords: [
     "web design agency",
     "Walid Alhassan web designer",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Spectecle | Web Design, SEO & AI Agency: Meet Walid Alhassan",
     description:
-      "10 years web development. 12 years IT engineering. 4 years AI. A founder-led agency building websites that convert, rank, and scale for six-figure businesses nationwide.",
+      "Web development. IT systems engineering. AI automation. A founder-led agency building websites that convert, rank, and scale for six-figure businesses nationwide.",
     url: `${BASE_URL}/hello`,
     type: "website",
     locale: "en_US",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Spectecle | Web Design, SEO & AI Agency",
     description:
-      "Founder-led web design, SEO & AI automation agency. Built by Walid Alhassan: 10yr web dev, 12yr IT engineering, 4yr AI.",
+      "Founder-led web design, SEO & AI automation agency, built and run directly by Walid Alhassan.",
     images: [`${BASE_URL}/opengraph-image`],
     creator: "@spectecle",
     site: "@spectecle",
@@ -74,17 +74,17 @@ const faqItems = [
   {
     question: "How much does a professional website cost?",
     answer:
-      "At Spectecle, custom website projects start at $2,500 for small businesses and scale based on complexity, number of pages, and integrations needed. Unlike agencies that charge $15,000–$50,000 for templated work, every Spectecle site is built from scratch in Next.js: faster, better-ranking, and entirely yours. SEO retainers and AI automation packages are available separately.",
+      "Every Spectecle project is custom quoted based on complexity, number of pages, and integrations needed, not a one-size-fits-all package. Every site is built from scratch in Next.js: faster, better-ranking, and entirely yours. SEO retainers and AI automation packages are available separately. Reach out for a free quote tailored to your business.",
   },
   {
     question: "What makes Spectecle different from other web design agencies?",
     answer:
-      "Spectecle is founder-led. Every project is handled directly by Walid Alhassan, a web developer with 10 years of experience, an IT systems engineer with 12 years in enterprise infrastructure, and an AI practitioner for 4 years. You never deal with account managers or handoffs. The same person who talks to you also designs, builds, and launches your site.",
+      "Spectecle is founder-led. Every project is handled directly by Walid Alhassan, a web developer, an IT systems engineer with deep enterprise infrastructure experience, and an AI practitioner. You never deal with account managers or handoffs. The same person who talks to you also designs, builds, and launches your site.",
   },
   {
     question: "How long does it take to build a website?",
     answer:
-      "Most Spectecle projects are delivered in 4–8 weeks from kickoff to launch, depending on complexity. E-commerce sites and projects with custom AI integrations may take longer. There is no team bureaucracy. Decisions happen fast and revisions never get lost in translation.",
+      "Timelines depend on scope and complexity, and we agree on a clear timeline with you upfront before any work begins. E-commerce sites and projects with custom AI integrations naturally take longer. There is no team bureaucracy. Decisions happen fast and revisions never get lost in translation.",
   },
   {
     question: "What is local SEO and how does it help my business?",
@@ -176,6 +176,15 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
+              name: "Ad Campaigns",
+              description:
+                "Paid search and social campaigns built to convert, tracked back to real leads and revenue for businesses nationwide.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
               name: "AI & Workflow Automation",
               description:
                 "Custom AI intake agents, workflow automation, and intelligent CRM integrations built from scratch for businesses nationwide.",
@@ -198,7 +207,7 @@ const jsonLd = {
       familyName: "Alhassan",
       jobTitle: "Founder & Lead Strategist",
       description:
-        "Walid Alhassan is a web developer with 10 years of experience, an IT systems engineer with 12 years of experience, and an AI practitioner with 4 years of experience. He is the founder of Spectecle SEO & Web Design.",
+        "Walid Alhassan is a web developer, an IT systems engineer with deep enterprise infrastructure experience, and an AI practitioner. He is the founder of Spectecle SEO & Web Design.",
       image: `${BASE_URL}/walid.jpg`,
       url: `${BASE_URL}/about`,
       worksFor: { "@id": `${BASE_URL}/#organization` },
