@@ -197,7 +197,7 @@ export default function HomePage() {
       <Hero />
 
       {/* ══ OUR LATEST WORK ══════════════════════════ */}
-      <section className="py-32 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
+      <section className="py-20 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
         <div className="max-w-7xl mx-auto">
           <Reveal>
             <div className="mb-14">
@@ -233,7 +233,7 @@ export default function HomePage() {
       </section>
 
       {/* ══ SERVICES ═════════════════════════════════ */}
-      <section className="py-32 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
+      <section className="py-20 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal>
             <div className="mb-16">
@@ -269,7 +269,7 @@ export default function HomePage() {
       </section>
 
       {/* ══ JOURNAL ══════════════════════════════════ */}
-      <section className="py-32 px-6 border-t border-[var(--site-border)] bg-[var(--site-bg)]">
+      <section className="py-20 px-6 border-t border-[var(--site-border)] bg-[var(--site-bg)]">
         <div className="max-w-7xl mx-auto">
           <Reveal>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">

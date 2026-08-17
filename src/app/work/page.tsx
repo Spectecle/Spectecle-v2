@@ -32,7 +32,7 @@ export default function WorkPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-40 pb-20 px-6">
+      <section className="pt-40 pb-12 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
@@ -51,7 +51,7 @@ export default function WorkPage() {
       </section>
 
       {/* ── FILTER + GRID ────────────────────────────── */}
-      <section className="pb-20 px-6">
+      <section className="pb-12 px-6">
         <div className="max-w-7xl mx-auto">
           <Reveal>
             <div className="grid md:grid-cols-2 gap-x-10 gap-y-16">
@@ -88,7 +88,7 @@ export default function WorkPage() {
       </section>
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-[var(--site-border)]">
+      <section className="py-20 px-6 border-t border-[var(--site-border)]">
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>

@@ -116,7 +116,7 @@ export default function BlogPostClient({
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-32 pb-16 px-6">
+      <section className="pt-32 pb-10 px-6">
         <div className="max-w-3xl mx-auto">
           <Link href="/blog" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors text-sm mb-10">
             <ArrowLeft className="w-4 h-4" />
@@ -149,7 +149,7 @@ export default function BlogPostClient({
       </section>
 
       {/* ── COVER IMAGE ───────────────────────────────── */}
-      <section className="px-6 pb-16">
+      <section className="px-6 pb-10">
         <div className="max-w-3xl mx-auto">
           <Reveal>
             {linkedProject ? (
@@ -175,7 +175,7 @@ export default function BlogPostClient({
       </section>
 
       {/* ── ARTICLE BODY ─────────────────────────────── */}
-      <section className="px-6 pb-24">
+      <section className="px-6 pb-14">
         <div className="max-w-3xl mx-auto">
           <Reveal>
             <div className="prose-sm">
@@ -187,7 +187,7 @@ export default function BlogPostClient({
 
       {/* ── RELATED SERVICES ─────────────────────────── */}
       {SERVICE_LINKS[post.slug] && (
-        <section className="py-16 px-6 border-t border-[var(--site-border)]">
+        <section className="py-10 px-6 border-t border-[var(--site-border)]">
           <div className="max-w-3xl mx-auto">
             <Reveal>
               <p className="text-xs text-[var(--site-text-muted)] uppercase tracking-widest mb-6">Related Services</p>
@@ -206,7 +206,7 @@ export default function BlogPostClient({
 
       {/* ── RELATED CASE STUDY ───────────────────────── */}
       {post.caseStudySlug && (
-        <section className="py-16 px-6 border-t border-[var(--site-border)]">
+        <section className="py-10 px-6 border-t border-[var(--site-border)]">
           <div className="max-w-3xl mx-auto">
             <Reveal>
               <p className="text-xs text-[var(--site-text-muted)] uppercase tracking-widest mb-4">Related Case Study</p>
@@ -225,7 +225,7 @@ export default function BlogPostClient({
       )}
 
       {/* ── NEXT ARTICLE ─────────────────────────────── */}
-      <section className="py-16 px-6 border-t border-[var(--site-border)]">
+      <section className="py-10 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto">
           <Reveal>
             <p className="text-xs text-[var(--site-text-muted)] uppercase tracking-widest mb-4">Next Article</p>
@@ -243,7 +243,7 @@ export default function BlogPostClient({
       </section>
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-[var(--site-border)]">
+      <section className="py-20 px-6 border-t border-[var(--site-border)]">
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>

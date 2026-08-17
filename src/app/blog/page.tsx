@@ -57,7 +57,7 @@ export default function BlogPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-40 pb-20 px-6">
+      <section className="pt-40 pb-12 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
             Insights from the Agency
@@ -79,7 +79,7 @@ export default function BlogPage() {
       </section>
 
       {/* ── FEATURED POST ────────────────────────────── */}
-      <section className="px-6 pb-20">
+      <section className="px-6 pb-12">
         <div className="max-w-5xl mx-auto">
           <Reveal>
             <Link href={`/blog/${featured.slug}`} className="group grid lg:grid-cols-[1fr_1fr] gap-8 items-center">
@@ -120,7 +120,7 @@ export default function BlogPage() {
       </section>
 
       {/* ── POSTS GRID ───────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-[var(--site-border)]">
+      <section className="py-12 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
             <h2 className="text-2xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
@@ -158,7 +158,7 @@ export default function BlogPage() {
       </section>
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-[var(--site-border)]">
+      <section className="py-20 px-6 border-t border-[var(--site-border)]">
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>

@@ -83,7 +83,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ── HERO ──────────────────────────────────────── */}
-      <section className="pt-40 pb-24 px-6">
+      <section className="pt-40 pb-14 px-6">
         <div className="max-w-3xl mx-auto">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
             About Spectecle · Serving Businesses Nationwide
@@ -124,7 +124,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── EXPERTISE ─────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">
@@ -154,7 +154,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── STORY ─────────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Our Story</span>
 
@@ -186,7 +186,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── VALUES ────────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">
@@ -213,7 +213,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── PROOF ─────────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">
@@ -254,7 +254,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-[var(--site-border)]">
+      <section className="py-20 px-6 border-t border-[var(--site-border)]">
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>

@@ -6,7 +6,7 @@ export default function PricingPage() {
   return (
     <div className="relative min-h-screen">
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-40 pb-16 px-6 text-center">
+      <section className="pt-40 pb-10 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <h1
             className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
@@ -24,7 +24,7 @@ export default function PricingPage() {
       <PricingSection />
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-[var(--site-border)]">
+      <section className="py-20 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">
             Not Sure Which Plan Fits?

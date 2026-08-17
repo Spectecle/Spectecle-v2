@@ -60,7 +60,7 @@ export default function AIAutomationPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-40 pb-24 px-6">
+      <section className="pt-40 pb-14 px-6">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
           <div>
             <nav className="flex items-center gap-2 text-xs text-[var(--site-text-muted)] mb-8" aria-label="Breadcrumb">
@@ -115,7 +115,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* ── FEATURES ─────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
             <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>What&apos;s included.</h2>
@@ -135,7 +135,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* ── DELIVERABLES ─────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
           <Reveal>
             <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
@@ -184,7 +184,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* ── FAQ ──────────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto">
           <Reveal className="mb-14">
             <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Common questions.</h2>
@@ -203,7 +203,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* ── RELATED SERVICES ─────────────────────────── */}
-      <section className="py-20 px-6 border-t border-[var(--site-border)]">
+      <section className="py-12 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-8">
             <h2 className="text-2xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Pair it with</h2>
@@ -228,7 +228,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* ── FROM THE BLOG ────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-[var(--site-border)]">
+      <section className="py-12 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-8">
             <h2 className="text-2xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>From the Journal</h2>
@@ -268,7 +268,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-[var(--site-border)]">
+      <section className="py-20 px-6 border-t border-[var(--site-border)]">
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>

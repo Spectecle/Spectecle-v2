@@ -141,7 +141,7 @@ export default function HelloPage() {
       <Hero />
 
       {/* ── SERVICES ──────────────────────────────────────────────────────── */}
-      <section className="py-28 px-6 border-b border-[var(--site-border)]">
+      <section className="py-16 px-6 border-b border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-16">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Do</span>
@@ -163,7 +163,7 @@ export default function HelloPage() {
       </section>
 
       {/* ── SELECTED WORK ─────────────────────────────────────────────────── */}
-      <section className="py-28 px-6 border-b border-[var(--site-border)]">
+      <section className="py-16 px-6 border-b border-[var(--site-border)]">
         <div className="max-w-6xl mx-auto">
           <Reveal className="mb-16">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Selected Work</span>
@@ -199,7 +199,7 @@ export default function HelloPage() {
       </section>
 
       {/* ── INDUSTRIES ────────────────────────────────────────────────────── */}
-      <section className="py-24 px-6 border-b border-[var(--site-border)]">
+      <section className="py-14 px-6 border-b border-[var(--site-border)]">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Industries</span>
@@ -221,7 +221,7 @@ export default function HelloPage() {
       </section>
 
       {/* ── FAQ ───────────────────────────────────────────────────────────── */}
-      <section className="py-28 px-6 border-b border-[var(--site-border)]">
+      <section className="py-16 px-6 border-b border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto">
           <Reveal className="mb-16">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Common Questions</span>
@@ -267,7 +267,7 @@ export default function HelloPage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────────── */}
-      <section className="py-32 px-6">
+      <section className="py-20 px-6">
         <Reveal className="max-w-3xl mx-auto text-center">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Let&apos;s Talk</span>
           <h2 className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)] leading-tight mb-6" style={{ fontFamily: "var(--font-serif)" }}>

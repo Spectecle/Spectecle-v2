@@ -101,7 +101,7 @@ export default function CaseStudyClient({
   return (
     <>
       {/* ── HEADER ───────────────────────────────────── */}
-      <section className="pt-32 pb-10 px-6">
+      <section className="pt-32 pb-8 px-6">
         <div className="max-w-6xl mx-auto">
           <Link href="/work" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors text-sm mb-8">
             <ArrowLeft className="w-4 h-4" />
@@ -148,7 +148,7 @@ export default function CaseStudyClient({
       </section>
 
       {/* ── METRICS ──────────────────────────────────── */}
-      <section className="py-16 px-6 border-b border-[var(--site-border)]">
+      <section className="py-10 px-6 border-b border-[var(--site-border)]">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {project.heroMetrics.map((m) => (
             <div key={m.label}>
@@ -162,7 +162,7 @@ export default function CaseStudyClient({
       </section>
 
       {/* ── CHALLENGE + SOLUTION ─────────────────────── */}
-      <section className="py-24 px-6">
+      <section className="py-14 px-6">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16">
           <Reveal>
             <div>
@@ -187,7 +187,7 @@ export default function CaseStudyClient({
       </section>
 
       {/* ── FEATURES ─────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Built</span>
@@ -218,7 +218,7 @@ export default function CaseStudyClient({
       </section>
 
       {/* ── RESULTS ──────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">The Impact</span>
@@ -241,7 +241,7 @@ export default function CaseStudyClient({
       </section>
 
       {/* ── DELIVERABLES ─────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-14 items-start">
           <Reveal>
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Deliverables</span>
@@ -269,7 +269,7 @@ export default function CaseStudyClient({
 
       {/* ── TESTIMONIAL ────────────────────────────────── */}
       {project.testimonial && (
-        <section className="py-24 px-6 border-t border-[var(--site-border)]">
+        <section className="py-14 px-6 border-t border-[var(--site-border)]">
           <div className="max-w-3xl mx-auto text-center">
             <Reveal>
               <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What They Said</span>
@@ -287,7 +287,7 @@ export default function CaseStudyClient({
       )}
 
       {/* ── NEXT PROJECT ─────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-[var(--site-border)]">
+      <section className="py-12 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal>
             <p className="text-xs text-[var(--site-text-muted)] uppercase tracking-widest mb-4">Next Project</p>
@@ -306,7 +306,7 @@ export default function CaseStudyClient({
       </section>
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-[var(--site-border)]">
+      <section className="py-20 px-6 border-t border-[var(--site-border)]">
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>

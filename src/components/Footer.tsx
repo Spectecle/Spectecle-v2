@@ -98,7 +98,7 @@ export default function Footer() {
     <footer className="bg-[var(--site-bg)] border-t border-[var(--site-border)]">
       {/* CTA Strip */}
       <div className="border-b border-[var(--site-border)]">
-        <div className="max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h2
               className="text-4xl md:text-5xl font-light text-[var(--site-text-primary)]"
@@ -121,7 +121,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
+      <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="md:col-span-2">

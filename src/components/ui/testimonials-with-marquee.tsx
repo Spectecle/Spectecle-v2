@@ -19,7 +19,7 @@ export function TestimonialsSection({
   className,
 }: TestimonialsSectionProps) {
   return (
-    <section className={cn("bg-white text-[#1e1e1e]", "py-12 sm:py-24 md:py-32 px-0", className)}>
+    <section className={cn("bg-white text-[#1e1e1e]", "py-8 sm:py-14 md:py-20 px-0", className)}>
       <style>{`
         @keyframes testimonial-marquee {
           from { transform: translateX(0); }

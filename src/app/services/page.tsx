@@ -101,7 +101,7 @@ export default function ServicesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       {/* ── HERO ────────────────────────────────────── */}
-      <section className="pt-40 pb-24 px-6">
+      <section className="pt-40 pb-14 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
             Serving Clients Nationwide
@@ -122,11 +122,11 @@ export default function ServicesPage() {
       </section>
 
       {/* ── SERVICES ─────────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-[var(--site-border)]">
+      <section className="py-12 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto divide-y divide-[var(--site-border)]">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08}>
-              <Link href={s.href} className="group grid md:grid-cols-[80px_1fr_auto] items-start gap-4 py-12">
+              <Link href={s.href} className="group grid md:grid-cols-[80px_1fr_auto] items-start gap-4 py-8">
                 <span className="text-sm text-[var(--site-text-muted)] font-mono">{s.n}</span>
                 <div>
                   <h2 className="text-3xl font-light text-[var(--site-text-primary)] group-hover:text-[#f87444] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
@@ -143,7 +143,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── ADD-ONS ─────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Add-ons</span>
@@ -163,7 +163,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── FAQ ─────────────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto">
           <Reveal className="mb-14">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">FAQ</span>
@@ -186,7 +186,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── PROOF GALLERY ────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-7xl mx-auto">
           <Reveal>
             <ProofGallery
@@ -199,7 +199,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-[var(--site-border)]">
+      <section className="py-20 px-6 border-t border-[var(--site-border)]">
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>

@@ -117,7 +117,7 @@ export default function ContactPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-40 pb-20 px-6">
+      <section className="pt-40 pb-12 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
             Serving Businesses Nationwide
@@ -139,7 +139,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── FORM + INFO ──────────────────────────────── */}
-      <section className="pb-32 px-6">
+      <section className="pb-20 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-5 gap-16 items-start">
           <div className="lg:col-span-3">
             <AnimatePresence mode="wait">
@@ -148,7 +148,7 @@ export default function ContactPage() {
                   key="success"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="py-16 text-center"
+                  className="py-10 text-center"
                 >
                   <CheckCircle2 className="w-10 h-10 text-[#f87444] mx-auto mb-6" />
                   <h2 className="text-3xl font-light text-[var(--site-text-primary)] mb-4" style={{ fontFamily: "var(--font-serif)" }}>
@@ -289,7 +289,7 @@ export default function ContactPage() {
           </div>
 
           {/* Info */}
-          <div className="lg:col-span-2 space-y-12">
+          <div className="lg:col-span-2 space-y-8">
             <Reveal delay={0.1}>
               <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Contact Details</h3>
               <div className="space-y-4">
@@ -322,7 +322,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── WHY SPECTECLE ────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Why Reach Out</span>
@@ -339,7 +339,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── PROOF GALLERY ────────────────────────────── */}
-      <section className="py-24 px-6 border-t border-[var(--site-border)]">
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-7xl mx-auto">
           <Reveal>
             <ProofGallery

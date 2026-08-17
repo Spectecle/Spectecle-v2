@@ -244,7 +244,7 @@ export default function TermsPage() {
       />
 
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="relative pt-40 pb-16 px-6">
+      <section className="relative pt-40 pb-10 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#f87444]/20 text-sm text-[#f87444] font-medium mb-8">
             <span className="w-2 h-2 bg-[#f87444]" />
@@ -276,7 +276,7 @@ export default function TermsPage() {
       </section>
 
       {/* ── TABLE OF CONTENTS ─────────────────────────── */}
-      <section className="px-6 pb-12">
+      <section className="px-6 pb-8">
         <div className="max-w-4xl mx-auto">
           <div className="border border-[var(--site-border)] p-7">
             <p className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">
@@ -298,8 +298,8 @@ export default function TermsPage() {
       </section>
 
       {/* ── TERMS CONTENT ─────────────────────────────── */}
-      <section className="px-6 pb-24">
-        <div className="max-w-4xl mx-auto space-y-14">
+      <section className="px-6 pb-14">
+        <div className="max-w-4xl mx-auto space-y-10">
           {sections.map((section) => (
             <div key={section.id} id={section.id} className="scroll-mt-28">
               <h2
@@ -326,7 +326,7 @@ export default function TermsPage() {
       </section>
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-[var(--site-border)] bg-[var(--site-surface)]">
+      <section className="py-12 px-6 border-t border-[var(--site-border)] bg-[var(--site-surface)]">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-[var(--site-text-muted)] text-sm uppercase tracking-widest mb-4">
             Questions About These Terms?
