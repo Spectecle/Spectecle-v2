@@ -186,10 +186,10 @@ export default function MedicalWebsiteDesignPage() {
             </Reveal>
           </div>
           <Reveal delay={0.15}>
-            <div className="relative aspect-[3/4] overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1666887360742-974c8fce8e6b?q=80&w=1200&auto=format&fit=crop"
-                alt="Confident medical provider in scrubs"
+                src="/vue-optometry-reception.png"
+                alt="Vue Optometry practice reception and boutique interior"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
