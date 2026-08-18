@@ -142,6 +142,39 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* ── INDUSTRIES ────────────────────────────────── */}
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="mb-14">
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Industry Focus</span>
+            <h2 className="mt-4 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              Built for high-trust industries.
+            </h2>
+            <p className="text-[var(--site-text-secondary)] text-base max-w-xl mt-3">
+              Some industries need more than a template. These two get their own dedicated approach.
+            </p>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 gap-8">
+            {[
+              { title: "Law Firm Website Design", desc: "Authority-first sites for attorneys and law firms, built to turn a stressful search into a booked consultation.", href: "/services/law-firm-website-design" },
+              { title: "Medical Website Design", desc: "Patient-first sites for doctors, dentists, and private practices, built to turn a search into a booked appointment.", href: "/services/medical-website-design" },
+            ].map((s) => (
+              <Reveal key={s.title}>
+                <Link href={s.href} className="group block border border-[var(--site-border)] p-8 h-full hover:border-[var(--site-text-muted)] transition-colors">
+                  <h3 className="text-2xl font-light text-[var(--site-text-primary)] group-hover:text-[#f87444] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-[var(--site-text-secondary)] text-sm leading-relaxed">{s.desc}</p>
+                  <div className="mt-5 flex items-center gap-1.5 text-xs font-semibold text-[#f87444]">
+                    Learn more <ArrowUpRight className="w-3.5 h-3.5" />
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── ADD-ONS ─────────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">

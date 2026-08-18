@@ -74,6 +74,28 @@ const jsonLd = {
       url: `${BASE_URL}/services#ai`,
     },
     {
+      "@type": "Service",
+      "@id": `${BASE_URL}/services/law-firm-website-design`,
+      name: "Law Firm Website Design",
+      description:
+        "Custom website design for law firms and attorneys nationwide: authority-first design, practice area pages, and consultation-focused conversion.",
+      provider: { "@id": `${BASE_URL}/#organization` },
+      serviceType: "Law Firm Website Design",
+      areaServed: [{ "@type": "Country", name: "United States" }],
+      url: `${BASE_URL}/services/law-firm-website-design`,
+    },
+    {
+      "@type": "Service",
+      "@id": `${BASE_URL}/services/medical-website-design`,
+      name: "Medical & Healthcare Website Design",
+      description:
+        "Custom website design for doctors, dentists, and private practices nationwide: patient-first design, service pages, and appointment-focused conversion.",
+      provider: { "@id": `${BASE_URL}/#organization` },
+      serviceType: "Medical Website Design",
+      areaServed: [{ "@type": "Country", name: "United States" }],
+      url: `${BASE_URL}/services/medical-website-design`,
+    },
+    {
       "@type": "FAQPage",
       "@id": `${BASE_URL}/services#faq`,
       mainEntity: [

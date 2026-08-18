@@ -87,7 +87,7 @@ const SERVICE_LINKS: Record<string, { title: string; href: string; desc: string 
     { title: "Web Design & Development", href: "/services/web-design-detroit", desc: "High-converting contractor websites with trust signals, portfolios, and lead generation forms built to win jobs from Google." },
   ],
   "law-firm-website-design-michigan": [
-    { title: "Web Design & Development", href: "/services/web-design-detroit", desc: "Custom attorney websites built on authority, trust, and conversion, with practice-area pages, schema markup, and a clear consultation path." },
+    { title: "Law Firm Website Design", href: "/services/law-firm-website-design", desc: "Custom attorney websites built on authority, trust, and conversion, with practice-area pages, schema markup, and a clear consultation path." },
     { title: "SEO & Digital Marketing", href: "/services/seo-agency-detroit", desc: "Legal SEO targeting the high-intent Michigan search terms that turn into consultation calls, not just traffic." },
   ],
   "makeup-artist-seo-michigan": [

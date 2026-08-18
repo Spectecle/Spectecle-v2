@@ -25,6 +25,8 @@ const services = [
   { label: "Web Design & Development", href: "/services/web-design-detroit" },
   { label: "SEO & Marketing", href: "/services/seo-agency-detroit" },
   { label: "AI & Automation", href: "/services/ai-automation" },
+  { label: "Law Firm Websites", href: "/services/law-firm-website-design" },
+  { label: "Medical Website Design", href: "/services/medical-website-design" },
 ];
 
 const pages = [
