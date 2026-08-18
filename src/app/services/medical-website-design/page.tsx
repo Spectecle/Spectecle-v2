@@ -3,7 +3,26 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronRight, CheckCircle2, Quote } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronRight,
+  CheckCircle2,
+  Quote,
+  Smile,
+  Stethoscope,
+  Building2,
+  Eye,
+  Activity,
+  Sparkles,
+  Brain,
+  HeartPulse,
+  HeartHandshake,
+  ClipboardList,
+  UserCheck,
+  CalendarCheck,
+  Database,
+  ShieldCheck,
+} from "lucide-react";
 import { ProofGallery } from "@/components/ui/ProofGallery";
 import { BrowserMockup } from "@/components/ui/BrowserMockup";
 import { pickProjects } from "@/app/work/projects-data";
@@ -22,30 +41,24 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
-const trustPoints = [
-  "Custom-designed for your practice, never templated",
-  "Built for appointment requests, not just page views",
-  "Handled start to finish by the same dedicated team",
-];
-
 const specialties = [
-  "Dentists",
-  "Internal Medicine",
-  "Private Practice",
-  "Optometry",
-  "Chiropractic & Physical Therapy",
-  "Med Spas & Aesthetics",
-  "Mental Health Practices",
-  "Specialty Clinics",
+  { label: "Dentists", Icon: Smile },
+  { label: "Internal Medicine", Icon: Stethoscope },
+  { label: "Private Practice", Icon: Building2 },
+  { label: "Optometry", Icon: Eye },
+  { label: "Chiropractic & Physical Therapy", Icon: Activity },
+  { label: "Med Spas & Aesthetics", Icon: Sparkles },
+  { label: "Mental Health Practices", Icon: Brain },
+  { label: "Specialty Clinics", Icon: HeartPulse },
 ];
 
 const features = [
-  { label: "Patient-First Design", desc: "Calm, clear layouts that reduce anxiety and make it obvious what to do next, whether that's booking, calling, or finding a location." },
-  { label: "Service & Treatment Pages", desc: "A dedicated page for every service you offer, written in language patients actually search for, not clinical jargon." },
-  { label: "Provider Bio Pages", desc: "Profiles that build confidence in your team's credentials and approach, the details patients look for before choosing a provider." },
-  { label: "Appointment Request Flow", desc: "A low-friction booking or request flow, built to integrate with the scheduling tools your practice already uses." },
-  { label: "Medical Schema & Structured Data", desc: "Structured data that helps search engines understand your specialties, locations, and services correctly." },
-  { label: "Privacy-Conscious Forms", desc: "Contact and intake forms built with patient privacy in mind. We'll work with your practice's compliance requirements during setup." },
+  { label: "Patient-First Design", desc: "Calm, clear layouts that reduce anxiety and make it obvious what to do next, whether that's booking, calling, or finding a location.", Icon: HeartHandshake },
+  { label: "Service & Treatment Pages", desc: "A dedicated page for every service you offer, written in language patients actually search for, not clinical jargon.", Icon: ClipboardList },
+  { label: "Provider Bio Pages", desc: "Profiles that build confidence in your team's credentials and approach, the details patients look for before choosing a provider.", Icon: UserCheck },
+  { label: "Appointment Request Flow", desc: "A low-friction booking or request flow, built to integrate with the scheduling tools your practice already uses.", Icon: CalendarCheck },
+  { label: "Medical Schema & Structured Data", desc: "Structured data that helps search engines understand your specialties, locations, and services correctly.", Icon: Database },
+  { label: "Privacy-Conscious Forms", desc: "Contact and intake forms built with patient privacy in mind. We'll work with your practice's compliance requirements during setup.", Icon: ShieldCheck },
 ];
 
 const deliverables = [
@@ -55,13 +68,6 @@ const deliverables = [
   "Appointment request flow, built to convert",
   "Medical schema & structured data markup",
   "GA4 & Search Console setup for ongoing visibility",
-];
-
-const process = [
-  { step: "Discovery", desc: "We learn your specialties, your patients, and what's actually held your current site back." },
-  { step: "Design", desc: "A custom visual direction built around calm, credibility, and ease of use, refined with your feedback first." },
-  { step: "Development", desc: "Built from scratch in Next.js: fast, secure, and structured for search from day one." },
-  { step: "Launch & Care", desc: "A supported launch, then ongoing updates as your practice, providers, and services evolve." },
 ];
 
 const faqs = [
@@ -144,15 +150,6 @@ export default function MedicalWebsiteDesignPage() {
                 View a Practice Case Study <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
-
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
-              {trustPoints.map((t) => (
-                <span key={t} className="flex items-center gap-2 text-[var(--site-text-secondary)] text-sm">
-                  <CheckCircle2 className="w-4 h-4 text-[#f87444] shrink-0" />
-                  {t}
-                </span>
-              ))}
-            </div>
           </div>
 
           <Reveal delay={0.15}>
@@ -172,42 +169,82 @@ export default function MedicalWebsiteDesignPage() {
 
       {/* ── WHY IT'S DIFFERENT ───────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
-          <Reveal>
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
-              Patients choose a provider before they ever call.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed mb-4">
-              By the time someone picks up the phone to book, they&apos;ve already formed an opinion of your practice from your website. A slow, dated, or confusing site quietly pushes them toward a competitor, before you ever get the chance to make your case in person.
-            </p>
-            <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">
-              We design medical and dental websites around that moment: calm, credible visuals, service pages written in plain language, provider profiles that build confidence, and a booking path simple enough to use from a phone in a waiting room. Every specialty, from general dentistry to internal medicine, gets content built around what that patient is actually searching for.
-            </p>
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-[1fr_0.85fr] gap-16 items-center">
+          <div>
+            <Reveal>
+              <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
+                Patients choose a provider before they ever call.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed mb-4">
+                By the time someone picks up the phone to book, they&apos;ve already formed an opinion of your practice from your website. A slow, dated, or confusing site quietly pushes them toward a competitor, before you ever get the chance to make your case in person.
+              </p>
+              <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">
+                We design medical and dental websites around that moment: calm, credible visuals, service pages written in plain language, provider profiles that build confidence, and a booking path simple enough to use from a phone in a waiting room. Every specialty, from general dentistry to internal medicine, gets content built around what that patient is actually searching for.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.15}>
+            <div className="relative aspect-[3/4] overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1666887360742-974c8fce8e6b?q=80&w=1200&auto=format&fit=crop"
+                alt="Confident medical provider in scrubs"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
+              />
+            </div>
           </Reveal>
         </div>
       </section>
 
       {/* ── SPECIALTIES ──────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto text-center">
-          <Reveal>
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="mb-14 text-center">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Specialties</span>
             <h2 className="mt-4 text-3xl md:text-4xl font-light text-[var(--site-text-primary)] mb-4" style={{ fontFamily: "var(--font-serif)" }}>
               Built for every kind of practice.
             </h2>
-            <p className="text-[var(--site-text-secondary)] mb-10 max-w-2xl mx-auto">
+            <p className="text-[var(--site-text-secondary)] max-w-2xl mx-auto">
               From solo private practices to multi-provider clinics, every specialty gets a site built around its patients.
             </p>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
-              {specialties.map((s) => (
-                <span key={s} className="text-[var(--site-text-secondary)] text-sm">
-                  {s}
-                </span>
-              ))}
-            </div>
           </Reveal>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {specialties.map((s, i) => (
+              <Reveal key={s.label} delay={i * 0.05}>
+                <div className="group flex flex-col items-center text-center gap-3 border border-[var(--site-border)] p-6 h-full hover:border-[#f87444]/50 transition-colors">
+                  <div className="w-11 h-11 rounded-full bg-[#f87444]/10 flex items-center justify-center">
+                    <s.Icon className="w-5 h-5 text-[#f87444]" strokeWidth={1.75} />
+                  </div>
+                  <span className="text-[var(--site-text-secondary)] text-sm leading-snug">{s.label}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── VISUAL BREAK ──────────────────────────────── */}
+      <section className="relative h-[55vh] min-h-[380px] overflow-hidden border-t border-[var(--site-border)]">
+        <Image
+          src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=2000&auto=format&fit=crop"
+          alt="Clean, precise medical equipment"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+        <div className="absolute inset-0 flex items-end">
+          <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
+            <Reveal>
+              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">Our Approach</p>
+              <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
+                Every detail designed to feel as precise as your practice.
+              </h2>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -220,11 +257,16 @@ export default function MedicalWebsiteDesignPage() {
               Every medical website engagement is built around one goal: turning a visitor&apos;s search into a booked appointment.
             </p>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f, i) => (
               <Reveal key={f.label} delay={i * 0.07}>
-                <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
-                <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{f.desc}</p>
+                <div className="border border-[var(--site-border)] p-6 h-full hover:border-[#f87444]/50 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-[#f87444]/10 flex items-center justify-center mb-4">
+                    <f.Icon className="w-5 h-5 text-[#f87444]" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
+                  <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{f.desc}</p>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -279,27 +321,6 @@ export default function MedicalWebsiteDesignPage() {
             <p className="mt-6 text-sm font-semibold text-[var(--site-text-primary)]">Hassan Saab</p>
             <p className="text-xs text-[var(--site-text-muted)]">Owner, Vue Optometry</p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ── PROCESS ──────────────────────────────────── */}
-      <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto">
-          <Reveal className="mb-14">
-            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">How We Work</span>
-            <h2 className="mt-4 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              A clear process, start to finish.
-            </h2>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
-            {process.map((p, i) => (
-              <Reveal key={p.step} delay={i * 0.07}>
-                <span className="text-xs text-[var(--site-text-muted)] font-mono">0{i + 1}</span>
-                <h3 className="mt-2 text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{p.step}</h3>
-                <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{p.desc}</p>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
