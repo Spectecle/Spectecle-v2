@@ -22,12 +22,6 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
-const trustPoints = [
-  "Custom-designed, never templated",
-  "Built for consultation requests, not just page views",
-  "Handled start to finish by the same dedicated team",
-];
-
 const practiceAreas = [
   "Family Law",
   "Personal Injury",
@@ -142,15 +136,6 @@ export default function LawFirmWebsiteDesignPage() {
               <Link href="/work/mi-family-lawyer" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
                 View a Law Firm Case Study <ChevronRight className="w-4 h-4" />
               </Link>
-            </div>
-
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
-              {trustPoints.map((t) => (
-                <span key={t} className="flex items-center gap-2 text-[var(--site-text-secondary)] text-sm">
-                  <CheckCircle2 className="w-4 h-4 text-[#f87444] shrink-0" />
-                  {t}
-                </span>
-              ))}
             </div>
           </div>
 
