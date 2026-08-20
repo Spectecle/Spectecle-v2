@@ -1,20 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, MessageSquare, Pencil } from "lucide-react";
+import { ChevronDown, MessageSquare, Pencil, Hash } from "lucide-react";
 import { StatusBadge } from "@/components/portal/StatusBadge";
 import { AdminStatusSelect } from "@/components/portal/AdminStatusSelect";
 import { RequestDetails, type RequestFile } from "@/components/portal/RequestDetails";
 import { TicketThread } from "@/components/portal/TicketThread";
 import { EditRequestForm } from "@/components/portal/EditRequestForm";
 import type { TicketMessage } from "@/lib/request-messages";
+import { formatTicketNumber } from "@/lib/ticket-number";
+
+function formatDateTime(iso: string): string {
+  return new Date(iso).toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
 
 export function TicketCard({
   id,
+  ticketNumber,
   serviceType,
   message,
   budget,
   createdAt,
+  updatedAt,
   status,
   details,
   files,
@@ -23,10 +36,12 @@ export function TicketCard({
   clientEmail,
 }: {
   id: string;
+  ticketNumber: number;
   serviceType: string;
   message: string;
   budget: string | null;
   createdAt: string;
+  updatedAt?: string;
   status: string;
   details: Record<string, unknown>;
   files: RequestFile[];
@@ -51,6 +66,10 @@ export function TicketCard({
           className="flex-1 min-w-0 text-left cursor-pointer"
         >
           <div className="flex items-center gap-2">
+            <span className="flex items-center gap-0.5 text-[10px] font-mono text-[var(--portal-text-faint)] shrink-0">
+              <Hash className="w-2.5 h-2.5" />
+              {formatTicketNumber(ticketNumber)}
+            </span>
             <h3 className="text-[var(--portal-text-primary)] font-semibold text-sm truncate">{serviceType}</h3>
             {messages.length > 0 && (
               <span className="flex items-center gap-1 text-[10px] text-[var(--portal-text-muted)] bg-[var(--portal-border)] rounded-full px-1.5 py-0.5 shrink-0">
@@ -108,7 +127,17 @@ export function TicketCard({
             />
           ) : (
             <>
-              <div className="flex items-start justify-between gap-4 border-t border-[var(--portal-border)] pt-4 mb-3">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-1 border-t border-[var(--portal-border)] pt-4 mb-3 text-xs text-[var(--portal-text-faint)]">
+                <span className="flex items-center gap-1 font-mono">
+                  <Hash className="w-3 h-3" />
+                  {formatTicketNumber(ticketNumber)}
+                </span>
+                <span>Submitted {formatDateTime(createdAt)}</span>
+                {updatedAt && updatedAt !== createdAt && (
+                  <span>Updated {formatDateTime(updatedAt)}</span>
+                )}
+              </div>
+              <div className="flex items-start justify-between gap-4 mb-3">
                 <p className="text-[var(--portal-text-secondary)] text-sm leading-relaxed whitespace-pre-wrap">
                   {message}
                 </p>

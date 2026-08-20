@@ -9,7 +9,7 @@ const ThemeContext = createContext<{ theme: Theme; toggle: () => void } | null>(
 const STORAGE_KEY = "portal-theme";
 
 export function PortalThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);

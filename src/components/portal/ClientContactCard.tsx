@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Pencil, Check, X, Loader2, Phone, User } from "lucide-react";
+import { Pencil, Check, X, Loader2, Phone, User, Mail } from "lucide-react";
 import { inputClass } from "@/components/portal/DynamicField";
 import { getEmailDomain, type OrgGroup } from "@/lib/organizations";
 
@@ -28,6 +28,7 @@ export function ClientContactCard({
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(initialName ?? "");
   const [phone, setPhone] = useState(initialPhone ?? "");
+  const [emailValue, setEmailValue] = useState(email);
   const [orgMode, setOrgMode] = useState<OrgMode>("existing");
   const [selectedOrgId, setSelectedOrgId] = useState(defaultOrgKey);
   const [newOrgName, setNewOrgName] = useState("");
@@ -39,6 +40,7 @@ export function ClientContactCard({
   const reset = () => {
     setName(initialName ?? "");
     setPhone(initialPhone ?? "");
+    setEmailValue(email);
     setOrgMode("existing");
     setSelectedOrgId(defaultOrgKey);
     setNewOrgName("");
@@ -55,6 +57,10 @@ export function ClientContactCard({
       setError("Enter a business name");
       return;
     }
+    if (!emailValue.trim()) {
+      setError("Email is required");
+      return;
+    }
     setSaving(true);
     setError("");
     try {
@@ -64,13 +70,15 @@ export function ClientContactCard({
         body: JSON.stringify({
           name,
           phone,
+          email: emailValue,
           organizationId: orgMode === "existing" ? selectedOrgId : undefined,
           newOrganization:
             orgMode === "new" ? { name: newOrgName, websiteUrl: newOrgWebsite } : undefined,
         }),
       });
       if (!res.ok) {
-        setError("Failed to save");
+        const data = await res.json().catch(() => null);
+        setError(data?.error ?? "Failed to save");
         return;
       }
       setEditing(false);
@@ -89,6 +97,10 @@ export function ClientContactCard({
           <p className="flex items-center gap-2 text-sm text-[var(--portal-text-secondary)]">
             <User className="w-3.5 h-3.5 text-[var(--portal-text-faint)]" />
             {initialName || <span className="text-[var(--portal-text-faint)]">No contact name</span>}
+          </p>
+          <p className="flex items-center gap-2 text-sm text-[var(--portal-text-secondary)]">
+            <Mail className="w-3.5 h-3.5 text-[var(--portal-text-faint)]" />
+            {email}
           </p>
           <p className="flex items-center gap-2 text-sm text-[var(--portal-text-secondary)]">
             <Phone className="w-3.5 h-3.5 text-[var(--portal-text-faint)]" />
@@ -124,7 +136,17 @@ export function ClientContactCard({
           placeholder="Phone"
           className={inputClass(false)}
         />
+        <input
+          type="email"
+          value={emailValue}
+          onChange={(e) => setEmailValue(e.target.value)}
+          placeholder="Email"
+          className={inputClass(false)}
+        />
       </div>
+      <p className="text-xs text-[var(--portal-text-faint)] -mt-2">
+        Changing email changes how this client signs in — they&apos;ll need the new address to receive future magic links.
+      </p>
 
       <div>
         <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">

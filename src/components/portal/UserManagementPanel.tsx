@@ -7,6 +7,7 @@ import { UserStatusToggle } from "@/components/portal/UserStatusToggle";
 import { UserDeleteButton } from "@/components/portal/UserDeleteButton";
 import { OrganizationNameEditor } from "@/components/portal/OrganizationNameEditor";
 import { AnnouncePortalButton } from "@/components/portal/AnnouncePortalButton";
+import { DashboardTierEditor } from "@/components/portal/DashboardTierEditor";
 import { groupByOrganization, type OrgUser, type OrgRecord } from "@/lib/organizations";
 
 export function UserManagementPanel({
@@ -95,13 +96,22 @@ export function UserManagementPanel({
                   </p>
                 </div>
               </div>
-              <Link
-                href={`?section=requests&org=${encodeURIComponent(group.key)}`}
-                className="flex items-center gap-1.5 text-xs text-[#f87444] hover:text-[#f87444] bg-[#f87444]/10 px-3 py-1.5 cursor-pointer transition-colors"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-                View All Tickets ({group.ticketCount})
-              </Link>
+              <div className="flex items-center gap-3">
+                <DashboardTierEditor
+                  organizationId={group.id}
+                  domain={group.domain}
+                  orgName={group.name}
+                  websiteUrl={group.websiteUrl}
+                  currentTier={group.dashboardTier}
+                />
+                <Link
+                  href={`?section=requests&org=${encodeURIComponent(group.key)}`}
+                  className="flex items-center gap-1.5 text-xs text-[#f87444] hover:text-[#f87444] bg-[#f87444]/10 px-3 py-1.5 cursor-pointer transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  View All Tickets ({group.ticketCount})
+                </Link>
+              </div>
             </div>
 
             <div className="divide-y divide-[var(--portal-border)]">

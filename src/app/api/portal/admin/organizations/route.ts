@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { isTrustedOrigin } from "@/lib/origin-check";
+import { isDashboardTier } from "@/lib/dashboard-tiers";
 
 export async function POST(req: Request) {
   if (!isTrustedOrigin(req)) {
@@ -18,6 +19,8 @@ export async function POST(req: Request) {
     domain?: string;
     name?: string;
     websiteUrl?: string;
+    dashboardTier?: string | null;
+    ga4PropertyId?: string | null;
   } | null;
   const id = body?.id?.trim();
   const domain = body?.domain?.trim().toLowerCase();
@@ -28,10 +31,27 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Missing name or organization" }, { status: 400 });
   }
 
+  let dashboardTierUpdate: { dashboard_tier: string | null; dashboard_tier_updated_at: string; dashboard_tier_updated_by: string } | null = null;
+  if (body && "dashboardTier" in body) {
+    if (body.dashboardTier !== null && !isDashboardTier(body.dashboardTier)) {
+      return NextResponse.json({ error: "Invalid dashboard tier" }, { status: 400 });
+    }
+    dashboardTierUpdate = {
+      dashboard_tier: body.dashboardTier ?? null,
+      dashboard_tier_updated_at: new Date().toISOString(),
+      dashboard_tier_updated_by: user.email,
+    };
+  }
+
+  let ga4Update: { ga4_property_id: string | null } | null = null;
+  if (body && "ga4PropertyId" in body) {
+    ga4Update = { ga4_property_id: body.ga4PropertyId?.trim() || null };
+  }
+
   if (id) {
     const { error } = await supabase
       .from("organizations")
-      .update({ name, website_url: websiteUrl })
+      .update({ name, website_url: websiteUrl, ...dashboardTierUpdate, ...ga4Update })
       .eq("id", id);
     if (error) {
       console.error("[portal/admin/organizations] update error:", error);
@@ -44,7 +64,7 @@ export async function POST(req: Request) {
   // backfill every currently-unassigned user on that domain into it.
   const { data: created, error: createError } = await supabase
     .from("organizations")
-    .insert({ name, website_url: websiteUrl, domain })
+    .insert({ name, website_url: websiteUrl, domain, ...dashboardTierUpdate, ...ga4Update })
     .select("id")
     .single();
 

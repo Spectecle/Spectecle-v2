@@ -27,6 +27,8 @@ export type OrgRecord = {
   domain: string | null;
   name: string;
   website_url: string | null;
+  dashboard_tier?: string | null;
+  ga4_property_id?: string | null;
 };
 
 /** A group of users sharing an organization. `key` is the stable identifier
@@ -38,6 +40,7 @@ export type OrgGroup = {
   domain: string | null;
   name: string;
   websiteUrl: string | null;
+  dashboardTier: string | null;
   users: OrgUser[];
   ticketCount: number;
 };
@@ -82,6 +85,7 @@ export function groupByOrganization(
             domain: org.domain,
             name: org.name,
             websiteUrl: org.website_url,
+            dashboardTier: org.dashboard_tier ?? null,
             users: [],
             ticketCount: 0,
           }
@@ -91,6 +95,7 @@ export function groupByOrganization(
             domain,
             name: orgNames[domain] ?? prettifyDomain(domain),
             websiteUrl: null,
+            dashboardTier: null,
             users: [],
             ticketCount: 0,
           };

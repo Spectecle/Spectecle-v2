@@ -25,6 +25,7 @@ export async function PATCH(
     status?: string;
     name?: string;
     phone?: string;
+    email?: string;
     organizationId?: string;
     newOrganization?: { name?: string; websiteUrl?: string };
   } | null;
@@ -39,6 +40,13 @@ export async function PATCH(
   }
   if (body?.name !== undefined) update.name = body.name.trim() || null;
   if (body?.phone !== undefined) update.phone = body.phone.trim() || null;
+  if (body?.email !== undefined) {
+    const email = body.email.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+    }
+    update.email = email;
+  }
 
   if (body?.organizationId !== undefined || body?.newOrganization !== undefined) {
     const orgResult = await resolveOrganizationId(body.organizationId, body.newOrganization);
@@ -55,6 +63,9 @@ export async function PATCH(
   const { error } = await supabase.from("portal_users").update(update).eq("id", id);
 
   if (error) {
+    if (error.code === "23505") {
+      return NextResponse.json({ error: "That email is already in use" }, { status: 409 });
+    }
     console.error("[portal/admin/users/:id] update error:", error);
     return NextResponse.json({ error: "Failed to update" }, { status: 500 });
   }

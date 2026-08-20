@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ArrowLeft, Globe, Mail, Inbox, Receipt } from "lucide-react";
+import { ArrowLeft, Globe, Mail, Inbox, Receipt, Gauge, BarChart3, Trash2 } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
@@ -12,6 +12,14 @@ import { ClientContactCard } from "@/components/portal/ClientContactCard";
 import { UserStatusToggle } from "@/components/portal/UserStatusToggle";
 import { UserDeleteButton } from "@/components/portal/UserDeleteButton";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
+import { DashboardTierEditor } from "@/components/portal/DashboardTierEditor";
+import { Ga4PropertyIdEditor } from "@/components/portal/Ga4PropertyIdEditor";
+import { AnalyticsSnapshotForm } from "@/components/portal/AnalyticsSnapshotForm";
+import { AnalyticsSnapshotCard } from "@/components/portal/AnalyticsSnapshotCard";
+import { DeleteSnapshotButton } from "@/components/portal/DeleteSnapshotButton";
+import { ViewAsClientButton } from "@/components/portal/ViewAsClientButton";
+import { getAnalyticsSnapshotsForOrg } from "@/lib/analytics-snapshots";
+import { tierIncludes } from "@/lib/dashboard-tiers";
 
 const TAB_STATUSES = new Set(["new", "in_progress", "done", "deleted"]);
 
@@ -39,7 +47,7 @@ export default async function AdminClientDetailPage({
 
   const { data: orgRows } = await supabase
     .from("organizations")
-    .select("id, domain, name, website_url")
+    .select("id, domain, name, website_url, dashboard_tier, ga4_property_id")
     .order("name", { ascending: true });
   const orgs = (orgRows ?? []) as OrgRecord[];
   const org = orgs.find((o) => o.id === client.organization_id) ?? null;
@@ -59,15 +67,22 @@ export default async function AdminClientDetailPage({
   }
   const groups = groupByOrganization(allUsers ?? [], orgNames, {}, orgsById);
 
+  const analyticsSnapshots = org ? await getAnalyticsSnapshotsForOrg(org.id) : [];
+  const showRankings = tierIncludes(org?.dashboard_tier ?? null, "rankings");
+
   const { data: allRequests } = await supabase
     .from("service_requests")
-    .select("id, service_type, budget, message, status, created_at, details")
+    .select("id, ticket_number, service_type, budget, message, status, created_at, updated_at, details")
     .eq("user_id", id)
     .order("created_at", { ascending: false });
 
   const requests = allRequests ?? [];
   const active = statusParam && TAB_STATUSES.has(statusParam) ? statusParam : "all";
-  const filtered = active === "all" ? requests : requests.filter((r) => r.status === active);
+  const filtered =
+    active === "all"
+      ? requests.filter((r) => r.status !== "deleted")
+      : requests.filter((r) => r.status === active);
+  const deletedCount = requests.filter((r) => r.status === "deleted").length;
 
   const tabs: StatusTab[] = [
     { value: "new", label: "New", count: requests.filter((r) => r.status === "new").length },
@@ -77,12 +92,7 @@ export default async function AdminClientDetailPage({
       count: requests.filter((r) => r.status === "in_progress").length,
     },
     { value: "done", label: "Done", count: requests.filter((r) => r.status === "done").length },
-    {
-      value: "deleted",
-      label: "Deleted",
-      count: requests.filter((r) => r.status === "deleted").length,
-    },
-    { value: "all", label: "All", count: requests.length },
+    { value: "all", label: "All", count: requests.filter((r) => r.status !== "deleted").length },
   ];
 
   const requestIds = filtered.map((r) => r.id);
@@ -141,6 +151,7 @@ export default async function AdminClientDetailPage({
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">
+              {client.status === "active" && <ViewAsClientButton userId={client.id} />}
               <UserStatusToggle userId={client.id} status={client.status} />
               <UserDeleteButton userId={client.id} email={client.email} ticketCount={requests.length} />
             </div>
@@ -158,17 +169,88 @@ export default async function AdminClientDetailPage({
           </div>
         </div>
 
-        <div className="glass border border-[var(--portal-border)] p-6 mb-6">
-          <p className="flex items-center gap-2 text-xs font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
-            <Receipt className="w-3.5 h-3.5" />
-            Billing
-          </p>
-          <p className="text-sm text-[var(--portal-text-faint)]">
-            Not connected yet — Zoho Books integration planned.
-          </p>
+        <div className="grid sm:grid-cols-2 gap-6 mb-6">
+          <div className="glass border border-[var(--portal-border)] p-6">
+            <p className="flex items-center gap-2 text-xs font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
+              <Gauge className="w-3.5 h-3.5" />
+              Dashboard Access
+            </p>
+            <DashboardTierEditor
+              organizationId={org?.id ?? null}
+              domain={domain}
+              orgName={displayName}
+              websiteUrl={websiteUrl}
+              currentTier={org?.dashboard_tier ?? null}
+            />
+          </div>
+
+          <div className="glass border border-[var(--portal-border)] p-6">
+            <p className="flex items-center gap-2 text-xs font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
+              <Receipt className="w-3.5 h-3.5" />
+              Billing
+            </p>
+            <p className="text-sm text-[var(--portal-text-faint)]">
+              Not connected yet — online invoicing is planned.
+            </p>
+          </div>
         </div>
 
-        <StatusTabs tabs={tabs} active={active} />
+        {org && (
+          <div className="glass border border-[var(--portal-border)] p-6 mb-6">
+            <p className="flex items-center gap-2 text-xs font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-4">
+              <BarChart3 className="w-3.5 h-3.5" />
+              Analytics &amp; Rankings
+            </p>
+            <Ga4PropertyIdEditor
+              organizationId={org.id}
+              domain={domain}
+              orgName={displayName}
+              websiteUrl={websiteUrl}
+              currentPropertyId={org.ga4_property_id ?? null}
+            />
+            <AnalyticsSnapshotForm organizationId={org.id} ga4Connected={!!org.ga4_property_id} />
+
+            {analyticsSnapshots.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-[var(--portal-border)] space-y-3">
+                {analyticsSnapshots.map((snapshot) => (
+                  <AnalyticsSnapshotCard
+                    key={snapshot.id}
+                    snapshot={snapshot}
+                    showRankings={showRankings}
+                    actions={
+                      <DeleteSnapshotButton
+                        organizationId={org.id}
+                        snapshotId={snapshot.id}
+                        monthLabel={snapshot.period_month}
+                      />
+                    }
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {active === "deleted" ? (
+          <div className="flex items-center gap-2 mb-4 text-xs text-[var(--portal-text-muted)]">
+            <Trash2 className="w-3.5 h-3.5" />
+            <span>Recycle Bin — deleted tickets. Change a ticket&apos;s status to restore it.</span>
+            <Link href="?" className="text-[#f87444] hover:underline ml-1">
+              Back to Requests
+            </Link>
+          </div>
+        ) : (
+          <div className="flex items-center justify-between gap-2 mb-4">
+            <StatusTabs tabs={tabs} active={active} />
+            <Link
+              href="?status=deleted"
+              className="flex items-center gap-1.5 text-xs text-[var(--portal-text-faint)] hover:text-[var(--portal-text-secondary)] transition-colors cursor-pointer shrink-0"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              Recycle Bin{deletedCount > 0 ? ` (${deletedCount})` : ""}
+            </Link>
+          </div>
+        )}
 
         {filtered.length === 0 ? (
           <div className="glass border border-[var(--portal-border)] p-14 text-center mt-4">
@@ -185,10 +267,12 @@ export default async function AdminClientDetailPage({
               <TicketCard
                 key={r.id}
                 id={r.id}
+                ticketNumber={r.ticket_number}
                 serviceType={r.service_type}
                 message={r.message}
                 budget={r.budget}
                 createdAt={r.created_at}
+                updatedAt={r.updated_at}
                 status={r.status}
                 details={r.details}
                 files={filesByRequest[r.id] ?? []}

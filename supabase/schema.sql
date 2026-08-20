@@ -107,3 +107,124 @@ alter table organizations alter column domain drop not null;
 
 alter table portal_users add column if not exists organization_id uuid references organizations(id) on delete set null;
 alter table portal_users add column if not exists phone text;
+
+-- ============================================================
+-- Migration: dashboard add-on tiers (Pulse / Signal / Radar)
+-- ============================================================
+-- Tier lives on organizations, not portal_users, because dashboard access
+-- is a per-business subscription. Admin-assigned only for now
+-- (src/lib/dashboard-tiers.ts is the source of truth for the tier/feature
+-- matrix); Stripe (a later phase) will collect payment but will not, by
+-- itself, control this column.
+alter table organizations add column if not exists dashboard_tier text
+  check (dashboard_tier in ('pulse', 'signal', 'radar'));
+alter table organizations add column if not exists dashboard_tier_updated_at timestamptz;
+alter table organizations add column if not exists dashboard_tier_updated_by text;
+
+-- ============================================================
+-- Backfill: document already-live-but-undocumented schema drift
+-- ============================================================
+-- These pieces are already used throughout the app code (src/lib/auth.ts,
+-- src/lib/request-messages.ts, admin/page.tsx, etc.) but were never
+-- captured in this file. Written idempotently so this file is safe to
+-- re-run and becomes a trustworthy source of truth again.
+
+alter table portal_users add column if not exists status text not null default 'active';
+alter table portal_users drop constraint if exists portal_users_status_check;
+alter table portal_users add constraint portal_users_status_check
+  check (status in ('active', 'revoked'));
+
+alter table service_requests drop constraint if exists service_requests_status_check;
+alter table service_requests add constraint service_requests_status_check
+  check (status in ('new', 'in_progress', 'done', 'deleted'));
+
+-- Ticket thread messages (src/lib/request-messages.ts,
+-- src/app/api/portal/requests/[id]/messages/route.ts, TicketThread.tsx).
+create table if not exists service_request_messages (
+  id uuid primary key default gen_random_uuid(),
+  request_id uuid not null references service_requests(id) on delete cascade,
+  sender_role text not null check (sender_role in ('admin', 'client')),
+  sender_email text not null,
+  body text not null,
+  created_at timestamptz not null default now()
+);
+create index if not exists service_request_messages_request_id_idx
+  on service_request_messages (request_id);
+alter table service_request_messages enable row level security;
+
+-- File attachments can belong to a specific thread message.
+-- CAUTION: if service_request_files.message_id already has a foreign key
+-- under a different auto-generated name, check for it in the Supabase
+-- table editor before running this block, to avoid a duplicate/conflicting
+-- constraint.
+alter table service_request_files add column if not exists message_id uuid;
+alter table service_request_files drop constraint if exists service_request_files_message_id_fkey;
+alter table service_request_files add constraint service_request_files_message_id_fkey
+  foreign key (message_id) references service_request_messages(id) on delete set null;
+
+-- ============================================================
+-- Migration: manual analytics & ranking snapshots (Phase 3)
+-- ============================================================
+-- One row per organization per month, admin-entered by hand (pulled from
+-- GA/Search Console) until a later phase replaces this with a live API
+-- integration. `rankings` is a jsonb array of {keyword, position} objects,
+-- position nullable for "not ranking yet". Gated client-side by
+-- src/lib/dashboard-tiers.ts's "analytics" (visitors/pageViews/notes) and
+-- "rankings" (the rankings array) features.
+create table if not exists analytics_snapshots (
+  id uuid primary key default gen_random_uuid(),
+  organization_id uuid not null references organizations(id) on delete cascade,
+  period_month date not null,
+  visitors integer,
+  page_views integer,
+  notes text,
+  rankings jsonb not null default '[]'::jsonb,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  created_by text not null,
+  unique (organization_id, period_month)
+);
+create index if not exists analytics_snapshots_org_idx on analytics_snapshots (organization_id);
+alter table analytics_snapshots enable row level security;
+
+-- ============================================================
+-- Migration: GA4 property linkage (automated analytics fetch)
+-- ============================================================
+-- The raw numeric GA4 property ID (e.g. "123456789", not the
+-- "properties/123456789" resource name) for orgs that have been linked up
+-- for automatic Visitors/Page Views fetching. See src/lib/ga4.ts.
+alter table organizations add column if not exists ga4_property_id text;
+
+-- ============================================================
+-- Migration: human-friendly ticket numbers (SPC-00001, SPC-00002, ...)
+-- ============================================================
+-- ticket_number is a plain integer; the "SPC-" prefix + zero-padding is a
+-- display-layer concern (see formatTicketNumber in src/lib/ticket-number.ts).
+-- Existing rows are backfilled in submission order (oldest = SPC-00001) so
+-- historical tickets stay meaningfully ordered; the sequence is then
+-- advanced past the backfilled range so new tickets continue counting up.
+create sequence if not exists service_requests_ticket_number_seq;
+
+alter table service_requests add column if not exists ticket_number integer;
+
+with numbered as (
+  select id, row_number() over (order by created_at asc) as rn
+  from service_requests
+  where ticket_number is null
+)
+update service_requests sr
+set ticket_number = numbered.rn
+from numbered
+where sr.id = numbered.id;
+
+select setval(
+  'service_requests_ticket_number_seq',
+  coalesce((select max(ticket_number) from service_requests), 0)
+);
+
+alter table service_requests
+  alter column ticket_number set default nextval('service_requests_ticket_number_seq');
+alter table service_requests alter column ticket_number set not null;
+
+alter table service_requests drop constraint if exists service_requests_ticket_number_key;
+alter table service_requests add constraint service_requests_ticket_number_key unique (ticket_number);
