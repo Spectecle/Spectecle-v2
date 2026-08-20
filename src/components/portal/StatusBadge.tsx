@@ -15,7 +15,7 @@ const STATUS_LABELS: Record<string, string> = {
 export function StatusBadge({ status }: { status: string }) {
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${
+      className={`inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium border ${
         STATUS_STYLES[status] ?? "bg-[var(--portal-border)] text-[var(--portal-text-secondary)] border-[var(--portal-border)]"
       }`}
     >

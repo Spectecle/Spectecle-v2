@@ -217,7 +217,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
 
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                 Business <span className="text-rose-400">*</span>
               </label>
               <select
@@ -232,7 +232,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                 Client <span className="text-rose-400">*</span>
               </label>
               <select
@@ -251,12 +251,12 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                   <option key={c.id} value={c.id}>{c.email}</option>
                 ))}
               </select>
-              {errors.client && <p className="mt-1.5 text-xs text-rose-400">{errors.client}</p>}
+              {errors.client && <p className="mt-1.5 text-sm text-rose-400">{errors.client}</p>}
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+            <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
               Template <span className="text-rose-400">*</span>
             </label>
             <div className="flex gap-2">
@@ -278,7 +278,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+            <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
               Business Name <span className="text-rose-400">*</span>
             </label>
             <input
@@ -293,12 +293,12 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
               className={inputClass(!!errors.businessName)}
             />
             {errors.businessName && (
-              <p className="mt-1.5 text-xs text-rose-400">{errors.businessName}</p>
+              <p className="mt-1.5 text-sm text-rose-400">{errors.businessName}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+            <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
               Subject <span className="text-rose-400">*</span>
             </label>
             <input
@@ -311,12 +311,12 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
               }}
               className={inputClass(!!errors.subject)}
             />
-            {errors.subject && <p className="mt-1.5 text-xs text-rose-400">{errors.subject}</p>}
+            {errors.subject && <p className="mt-1.5 text-sm text-rose-400">{errors.subject}</p>}
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] uppercase tracking-wider">
+              <label className="block text-sm font-medium text-[var(--portal-text-secondary)] uppercase tracking-wider">
                 Personal Note
               </label>
             </div>
@@ -367,7 +367,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                 className="grid sm:grid-cols-2 gap-4"
               >
                 <div>
-                  <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                  <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                     Invoice Balance{" "}
                     <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
                   </label>
@@ -380,7 +380,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                  <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                     Invoice Link{" "}
                     <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
                   </label>
@@ -393,7 +393,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                  <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                     Invoice #{" "}
                     <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
                   </label>
@@ -406,7 +406,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                  <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                     Due Date{" "}
                     <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
                   </label>

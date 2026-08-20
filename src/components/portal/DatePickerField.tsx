@@ -127,7 +127,7 @@ export function DatePickerField({
             </div>
             <div className="grid grid-cols-7 gap-1 mb-1">
               {WEEKDAYS.map((d, i) => (
-                <div key={i} className="text-center text-[10px] text-[var(--portal-text-muted)] font-medium py-1">
+                <div key={i} className="text-center text-xs text-[var(--portal-text-muted)] font-medium py-1">
                   {d}
                 </div>
               ))}
@@ -141,7 +141,7 @@ export function DatePickerField({
                     type="button"
                     key={i}
                     onClick={() => handleSelectDay(day)}
-                    className={`aspect-square rounded-lg text-xs font-medium transition-colors cursor-pointer ${
+                    className={`aspect-square rounded-lg text-sm font-medium transition-colors cursor-pointer ${
                       isSelected(day)
                         ? "bg-[#f87444] text-[#1e1e1e]"
                         : isToday(day)

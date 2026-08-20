@@ -135,7 +135,7 @@ export default function PortalRequestPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                   Service <span className="text-rose-400">*</span>
                 </label>
                 <select
@@ -149,7 +149,7 @@ export default function PortalRequestPage() {
                   ))}
                 </select>
                 {errors.service_type && (
-                  <p className="mt-1.5 text-xs text-rose-400">{errors.service_type}</p>
+                  <p className="mt-1.5 text-sm text-rose-400">{errors.service_type}</p>
                 )}
               </div>
 
@@ -179,7 +179,7 @@ export default function PortalRequestPage() {
               </AnimatePresence>
 
               <div>
-                <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                   Budget Range{" "}
                   <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
                 </label>
@@ -205,7 +205,7 @@ export default function PortalRequestPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+                <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                   Details <span className="text-rose-400">*</span>
                 </label>
                 <textarea
@@ -218,7 +218,7 @@ export default function PortalRequestPage() {
                   placeholder="Anything else we should know?"
                   className={`${inputClass(!!errors.message)} resize-none`}
                 />
-                {errors.message && <p className="mt-1.5 text-xs text-rose-400">{errors.message}</p>}
+                {errors.message && <p className="mt-1.5 text-sm text-rose-400">{errors.message}</p>}
               </div>
 
               <FileUploadField

@@ -101,7 +101,7 @@ function SignInForm() {
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                 Email
               </label>
               <input
@@ -115,7 +115,7 @@ function SignInForm() {
                 className={inputClass(!!error)}
                 autoFocus
               />
-              {error && <p className="mt-1.5 text-xs text-rose-400">{error}</p>}
+              {error && <p className="mt-1.5 text-sm text-rose-400">{error}</p>}
             </div>
 
             <button

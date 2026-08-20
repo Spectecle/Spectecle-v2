@@ -38,7 +38,7 @@ export function UserStatusToggle({
       type="button"
       onClick={handleToggle}
       disabled={loading || isPending}
-      className={`flex items-center gap-1.5 text-xs font-medium rounded-lg px-3 py-1.5 cursor-pointer disabled:opacity-60 transition-colors ${
+      className={`flex items-center gap-1.5 text-sm font-medium rounded-lg px-3 py-1.5 cursor-pointer disabled:opacity-60 transition-colors ${
         isActive
           ? "bg-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-rose-400 hover:bg-rose-500/10"
           : "bg-rose-500/10 text-rose-400 hover:text-emerald-400 hover:bg-emerald-500/10"

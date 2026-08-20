@@ -31,24 +31,24 @@ export function AnalyticsSnapshotCard({
           <p className="text-2xl font-light text-[#f87444]" style={{ fontFamily: "var(--font-serif, inherit)" }}>
             {snapshot.visitors ?? "—"}
           </p>
-          <p className="text-[10px] text-[var(--portal-text-faint)] uppercase tracking-wide">Visitors</p>
+          <p className="text-xs text-[var(--portal-text-faint)] uppercase tracking-wide">Visitors</p>
         </div>
         <div>
           <p className="text-2xl font-light text-[#f87444]" style={{ fontFamily: "var(--font-serif, inherit)" }}>
             {snapshot.page_views ?? "—"}
           </p>
-          <p className="text-[10px] text-[var(--portal-text-faint)] uppercase tracking-wide">Page Views</p>
+          <p className="text-xs text-[var(--portal-text-faint)] uppercase tracking-wide">Page Views</p>
         </div>
       </div>
 
       {showRankings && snapshot.rankings.length > 0 && (
         <div className="mb-3">
-          <p className="text-[10px] text-[var(--portal-text-faint)] uppercase tracking-wide mb-1.5">
+          <p className="text-xs text-[var(--portal-text-faint)] uppercase tracking-wide mb-1.5">
             Rankings
           </p>
           <ul className="space-y-1">
             {snapshot.rankings.map((r, i) => (
-              <li key={i} className="flex items-center justify-between text-xs">
+              <li key={i} className="flex items-center justify-between text-sm">
                 <span className="text-[var(--portal-text-secondary)]">{r.keyword}</span>
                 <span className="text-[var(--portal-text-primary)] font-medium">
                   {r.position !== null ? `#${r.position}` : "Not ranking"}
@@ -60,7 +60,7 @@ export function AnalyticsSnapshotCard({
       )}
 
       {snapshot.notes && (
-        <p className="text-xs text-[var(--portal-text-muted)] leading-relaxed pt-2 border-t border-[var(--portal-border)]">
+        <p className="text-sm text-[var(--portal-text-muted)] leading-relaxed pt-2 border-t border-[var(--portal-border)]">
           {snapshot.notes}
         </p>
       )}

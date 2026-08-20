@@ -66,25 +66,25 @@ export function TicketCard({
           className="flex-1 min-w-0 text-left cursor-pointer"
         >
           <div className="flex items-center gap-2">
-            <span className="flex items-center gap-0.5 text-[10px] font-mono text-[var(--portal-text-faint)] shrink-0">
+            <span className="flex items-center gap-0.5 text-xs font-mono text-[var(--portal-text-faint)] shrink-0">
               <Hash className="w-2.5 h-2.5" />
               {formatTicketNumber(ticketNumber)}
             </span>
             <h3 className="text-[var(--portal-text-primary)] font-semibold text-sm truncate">{serviceType}</h3>
             {messages.length > 0 && (
-              <span className="flex items-center gap-1 text-[10px] text-[var(--portal-text-muted)] bg-[var(--portal-border)] rounded-full px-1.5 py-0.5 shrink-0">
+              <span className="flex items-center gap-1 text-xs text-[var(--portal-text-muted)] bg-[var(--portal-border)] rounded-full px-1.5 py-0.5 shrink-0">
                 <MessageSquare className="w-2.5 h-2.5" />
                 {messages.length}
               </span>
             )}
           </div>
           {viewerRole === "admin" && clientEmail && (
-            <p className="text-xs text-[var(--portal-text-muted)] mt-0.5">{clientEmail}</p>
+            <p className="text-sm text-[var(--portal-text-muted)] mt-0.5">{clientEmail}</p>
           )}
           {!expanded && (
-            <p className="text-[var(--portal-text-muted)] text-xs mt-1.5 truncate">{message}</p>
+            <p className="text-[var(--portal-text-muted)] text-sm mt-1.5 truncate">{message}</p>
           )}
-          <div className="flex items-center gap-3 text-xs text-[var(--portal-text-faint)] mt-2">
+          <div className="flex items-center gap-3 text-sm text-[var(--portal-text-faint)] mt-2">
             {budget && <span>{budget}</span>}
             <span>{dateLabel}</span>
           </div>
@@ -93,7 +93,7 @@ export function TicketCard({
         <div className="flex items-center gap-3 shrink-0">
           {viewerRole === "admin" ? (
             <div className="flex flex-col items-start gap-1">
-              <span className="text-[10px] text-[var(--portal-text-muted)] uppercase tracking-wider">
+              <span className="text-xs text-[var(--portal-text-muted)] uppercase tracking-wider">
                 Current Status
               </span>
               <AdminStatusSelect requestId={id} status={status} />
@@ -127,7 +127,7 @@ export function TicketCard({
             />
           ) : (
             <>
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-1 border-t border-[var(--portal-border)] pt-4 mb-3 text-xs text-[var(--portal-text-faint)]">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-1 border-t border-[var(--portal-border)] pt-4 mb-3 text-sm text-[var(--portal-text-faint)]">
                 <span className="flex items-center gap-1 font-mono">
                   <Hash className="w-3 h-3" />
                   {formatTicketNumber(ticketNumber)}
@@ -144,7 +144,7 @@ export function TicketCard({
                 <button
                   type="button"
                   onClick={() => setEditing(true)}
-                  className="flex items-center gap-1.5 text-xs text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] cursor-pointer shrink-0"
+                  className="flex items-center gap-1.5 text-sm text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] cursor-pointer shrink-0"
                 >
                   <Pencil className="w-3 h-3" />
                   Edit

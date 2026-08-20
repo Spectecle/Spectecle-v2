@@ -20,7 +20,7 @@ export function FileUploadField({
   return (
     <div>
       {label && (
-        <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+        <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
           {label}
         </label>
       )}
@@ -35,13 +35,13 @@ export function FileUploadField({
           className="hidden"
         />
       </label>
-      {error && <p className="mt-1.5 text-xs text-rose-400">{error}</p>}
+      {error && <p className="mt-1.5 text-sm text-rose-400">{error}</p>}
       {uploads.length > 0 && (
         <div className="mt-3 space-y-2">
           {uploads.map((u) => (
             <div
               key={u.id}
-              className="flex items-center gap-2 bg-[var(--portal-card)] border border-[var(--portal-border)] px-3 py-2 text-xs"
+              className="flex items-center gap-2 bg-[var(--portal-card)] border border-[var(--portal-border)] px-3 py-2 text-sm"
             >
               {u.status === "uploading" && (
                 <Loader2 className="w-3.5 h-3.5 text-[var(--portal-text-muted)] animate-spin shrink-0" />

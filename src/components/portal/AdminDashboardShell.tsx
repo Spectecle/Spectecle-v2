@@ -83,7 +83,7 @@ export function AdminDashboardShell({
       >
         <div className="flex items-center justify-between p-3 border-b border-[var(--portal-border)]">
           {!isCollapsed && (
-            <span className="px-2 text-[10px] font-semibold text-[var(--portal-text-faint)] uppercase tracking-widest">
+            <span className="px-2 text-xs font-semibold text-[var(--portal-text-faint)] uppercase tracking-widest">
               Admin
             </span>
           )}
@@ -129,7 +129,7 @@ export function AdminDashboardShell({
           <div className="flex items-center gap-2.5 mb-3">
             <LogoMark className="w-7 h-7 shrink-0" />
             {!isCollapsed && (
-              <p className="text-xs text-[var(--portal-text-muted)] truncate">{email}</p>
+              <p className="text-sm text-[var(--portal-text-muted)] truncate">{email}</p>
             )}
           </div>
           {!isCollapsed && <SignOutButton />}

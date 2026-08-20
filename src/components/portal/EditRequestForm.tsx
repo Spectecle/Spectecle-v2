@@ -89,7 +89,7 @@ export function EditRequestForm({
       ))}
 
       <div>
-        <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+        <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
           Budget Range{" "}
           <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
         </label>
@@ -115,7 +115,7 @@ export function EditRequestForm({
       </div>
 
       <div>
-        <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+        <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
           Details <span className="text-rose-400">*</span>
         </label>
         <textarea
@@ -127,11 +127,11 @@ export function EditRequestForm({
           rows={4}
           className={`${inputClass(!!errors.message)} resize-none`}
         />
-        {errors.message && <p className="mt-1.5 text-xs text-rose-400">{errors.message}</p>}
+        {errors.message && <p className="mt-1.5 text-sm text-rose-400">{errors.message}</p>}
       </div>
 
       {status === "error" && (
-        <p className="text-rose-400 text-xs">Failed to save — please try again.</p>
+        <p className="text-rose-400 text-sm">Failed to save — please try again.</p>
       )}
 
       <div className="flex items-center gap-2">
@@ -139,7 +139,7 @@ export function EditRequestForm({
           type="button"
           onClick={handleSave}
           disabled={status === "saving"}
-          className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-xs font-medium px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors"
+          className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-sm font-medium px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors"
         >
           {status === "saving" ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -151,7 +151,7 @@ export function EditRequestForm({
         <button
           type="button"
           onClick={onDone}
-          className="flex items-center gap-1.5 text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] text-xs font-medium px-3 py-2 cursor-pointer transition-colors"
+          className="flex items-center gap-1.5 text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] text-sm font-medium px-3 py-2 cursor-pointer transition-colors"
         >
           <X className="w-3.5 h-3.5" />
           Cancel

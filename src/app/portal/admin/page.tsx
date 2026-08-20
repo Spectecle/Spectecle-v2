@@ -202,7 +202,7 @@ async function DashboardSection({
         <div className="glass border border-[var(--portal-border)] p-5">
           <p className="text-sm text-[var(--portal-text-secondary)]">
             Spectecle.com&apos;s website stats aren&apos;t connected yet. Add{" "}
-            <code className="text-xs bg-[var(--portal-border)] px-1.5 py-0.5 rounded">
+            <code className="text-sm bg-[var(--portal-border)] px-1.5 py-0.5 rounded">
               SPECTECLE_GA4_PROPERTY_ID
             </code>{" "}
             to your environment variables with spectecle.com&apos;s own GA4 property ID to enable this.
@@ -212,11 +212,11 @@ async function DashboardSection({
 
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <p className="text-xs font-semibold text-[var(--portal-text-muted)] uppercase tracking-wider">
+          <p className="text-sm font-semibold text-[var(--portal-text-muted)] uppercase tracking-wider">
             Email Activity (This Month)
           </p>
           {gmailAccount && (
-            <span className="text-[10px] text-[var(--portal-text-faint)] bg-[var(--portal-border)] px-2 py-0.5 rounded-full">
+            <span className="text-xs text-[var(--portal-text-faint)] bg-[var(--portal-border)] px-2 py-0.5 rounded-full">
               {gmailAccount}
             </span>
           )}
@@ -238,7 +238,7 @@ async function DashboardSection({
           />
         </div>
         {!gmailConfigured && (
-          <p className="text-xs text-[var(--portal-text-faint)] mt-2">
+          <p className="text-sm text-[var(--portal-text-faint)] mt-2">
             Not connected yet — needs Gmail API access. See setup notes in{" "}
             <code className="bg-[var(--portal-border)] px-1.5 py-0.5 rounded">.env.local.example</code>.
           </p>
@@ -271,7 +271,7 @@ function StatCard({
       <p className="text-3xl font-light text-[#f87444]" style={{ fontFamily: "var(--font-serif, inherit)" }}>
         {unavailable ? "—" : error ? "!" : (value ?? "—")}
       </p>
-      <p className="text-xs text-[var(--portal-text-muted)] mt-1">
+      <p className="text-sm text-[var(--portal-text-muted)] mt-1">
         {unavailable ? `${label} (not connected)` : error ? `${label} (fetch failed)` : label}
       </p>
     </div>
@@ -338,7 +338,7 @@ async function RequestsSection({
       <div className="flex items-center justify-between gap-2 mb-4 flex-wrap">
         <Link
           href="?section=requests&status=deleted"
-          className="flex items-center gap-1.5 text-xs text-[var(--portal-text-faint)] hover:text-[var(--portal-text-secondary)] transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 text-sm text-[var(--portal-text-faint)] hover:text-[var(--portal-text-secondary)] transition-colors cursor-pointer"
         >
           <Trash2 className="w-3.5 h-3.5" />
           Recycle Bin{deletedCount > 0 ? ` (${deletedCount})` : ""}
@@ -362,8 +362,8 @@ async function RequestsSection({
 
       {(userFilter || orgFilter) && (
         <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs text-[var(--portal-text-secondary)]">Filtered by:</span>
-          <span className="flex items-center gap-1.5 text-xs text-[#f87444] bg-[#f87444]/10 px-2.5 py-1">
+          <span className="text-sm text-[var(--portal-text-secondary)]">Filtered by:</span>
+          <span className="flex items-center gap-1.5 text-sm text-[#f87444] bg-[#f87444]/10 px-2.5 py-1">
             {userFilter ?? orgFilterLabel}
             <Link href="?section=requests" className="hover:text-[var(--portal-text-primary)] cursor-pointer">
               <X className="w-3 h-3" />
@@ -373,7 +373,7 @@ async function RequestsSection({
       )}
 
       {active === "deleted" ? (
-        <div className="flex items-center gap-2 mb-4 text-xs text-[var(--portal-text-muted)]">
+        <div className="flex items-center gap-2 mb-4 text-sm text-[var(--portal-text-muted)]">
           <Trash2 className="w-3.5 h-3.5" />
           <span>Recycle Bin — deleted tickets. Change a ticket&apos;s status to restore it.</span>
           <Link href="?section=requests" className="text-[#f87444] hover:underline ml-1">

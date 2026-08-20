@@ -91,7 +91,7 @@ export function AnalyticsSnapshotForm({
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-3 gap-3">
         <div>
-          <label className="block text-[10px] text-[var(--portal-text-faint)] uppercase tracking-wide mb-1">
+          <label className="block text-xs text-[var(--portal-text-faint)] uppercase tracking-wide mb-1">
             Month
           </label>
           <input
@@ -103,7 +103,7 @@ export function AnalyticsSnapshotForm({
           />
         </div>
         <div>
-          <label className="block text-[10px] text-[var(--portal-text-faint)] uppercase tracking-wide mb-1">
+          <label className="block text-xs text-[var(--portal-text-faint)] uppercase tracking-wide mb-1">
             Visitors
           </label>
           <input
@@ -116,7 +116,7 @@ export function AnalyticsSnapshotForm({
           />
         </div>
         <div>
-          <label className="block text-[10px] text-[var(--portal-text-faint)] uppercase tracking-wide mb-1">
+          <label className="block text-xs text-[var(--portal-text-faint)] uppercase tracking-wide mb-1">
             Page Views
           </label>
           <input
@@ -136,17 +136,17 @@ export function AnalyticsSnapshotForm({
             type="button"
             onClick={handleFetchGA4}
             disabled={fetching}
-            className="flex items-center gap-1.5 text-xs font-semibold text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] border border-[var(--portal-border)] hover:border-[var(--portal-border-strong)] px-3 py-1.5 cursor-pointer transition-colors disabled:opacity-60"
+            className="flex items-center gap-1.5 text-sm font-semibold text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] border border-[var(--portal-border)] hover:border-[var(--portal-border-strong)] px-3 py-1.5 cursor-pointer transition-colors disabled:opacity-60"
           >
             <Download className="w-3.5 h-3.5" />
             {fetching ? "Fetching…" : "Fetch from GA4"}
           </button>
-          {fetchError && <p className="text-xs text-rose-400 mt-1">{fetchError}</p>}
+          {fetchError && <p className="text-sm text-rose-400 mt-1">{fetchError}</p>}
         </div>
       )}
 
       <div>
-        <label className="block text-[10px] text-[var(--portal-text-faint)] uppercase tracking-wide mb-1.5">
+        <label className="block text-xs text-[var(--portal-text-faint)] uppercase tracking-wide mb-1.5">
           Rankings
         </label>
         <div className="space-y-2">
@@ -183,7 +183,7 @@ export function AnalyticsSnapshotForm({
         <button
           type="button"
           onClick={() => setRankings((prev) => [...prev, { keyword: "", position: null }])}
-          className="flex items-center gap-1.5 text-xs text-[#f87444] hover:text-[#f87444]/80 mt-2 cursor-pointer"
+          className="flex items-center gap-1.5 text-sm text-[#f87444] hover:text-[#f87444]/80 mt-2 cursor-pointer"
         >
           <Plus className="w-3.5 h-3.5" />
           Add keyword
@@ -191,7 +191,7 @@ export function AnalyticsSnapshotForm({
       </div>
 
       <div>
-        <label className="block text-[10px] text-[var(--portal-text-faint)] uppercase tracking-wide mb-1">
+        <label className="block text-xs text-[var(--portal-text-faint)] uppercase tracking-wide mb-1">
           Notes
         </label>
         <textarea
@@ -207,12 +207,12 @@ export function AnalyticsSnapshotForm({
         <button
           type="submit"
           disabled={saving}
-          className="bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-xs font-semibold px-4 py-2 cursor-pointer transition-colors disabled:opacity-60"
+          className="bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-sm font-semibold px-4 py-2 cursor-pointer transition-colors disabled:opacity-60"
         >
           {saving ? "Saving…" : "Save Snapshot"}
         </button>
-        {error && <p className="text-xs text-rose-400">{error}</p>}
-        {success && !error && <p className="text-xs text-emerald-400">Saved.</p>}
+        {error && <p className="text-sm text-rose-400">{error}</p>}
+        {success && !error && <p className="text-sm text-emerald-400">Saved.</p>}
       </div>
     </form>
   );

@@ -97,7 +97,7 @@ export function PortalDashboardShell({
           <div className="flex items-center gap-2.5 mb-3">
             <LogoMark className="w-7 h-7 shrink-0" />
             {!isCollapsed && (
-              <p className="text-xs text-[var(--portal-text-muted)] truncate">{email}</p>
+              <p className="text-sm text-[var(--portal-text-muted)] truncate">{email}</p>
             )}
           </div>
           {!isCollapsed && (impersonating ? <ExitImpersonationButton /> : <SignOutButton />)}

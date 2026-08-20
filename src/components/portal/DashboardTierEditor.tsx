@@ -29,7 +29,7 @@ export function DashboardTierEditor({
   if (!organizationId) {
     return (
       <span
-        className="text-[10px] text-[var(--portal-text-faint)]"
+        className="text-xs text-[var(--portal-text-faint)]"
         title="Give this client a dedicated business (via &quot;New Business&quot; on their client page) before assigning dashboard access."
       >
         No dashboard access — needs a business first
@@ -64,7 +64,7 @@ export function DashboardTierEditor({
       value={value}
       onChange={handleChange}
       disabled={isPending}
-      className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1 text-xs cursor-pointer outline-none focus:border-[#f87444]/50 disabled:opacity-60"
+      className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1 text-sm cursor-pointer outline-none focus:border-[#f87444]/50 disabled:opacity-60"
     >
       {TIER_OPTIONS.map((opt) => (
         <option key={opt.value} value={opt.value}>

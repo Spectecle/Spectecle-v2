@@ -110,7 +110,7 @@ export function ClientContactCard({
         <button
           type="button"
           onClick={() => setEditing(true)}
-          className="flex items-center gap-1.5 text-xs text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] cursor-pointer shrink-0"
+          className="flex items-center gap-1.5 text-sm text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] cursor-pointer shrink-0"
         >
           <Pencil className="w-3.5 h-3.5" />
           Edit
@@ -144,12 +144,12 @@ export function ClientContactCard({
           className={inputClass(false)}
         />
       </div>
-      <p className="text-xs text-[var(--portal-text-faint)] -mt-2">
+      <p className="text-sm text-[var(--portal-text-faint)] -mt-2">
         Changing email changes how this client signs in — they&apos;ll need the new address to receive future magic links.
       </p>
 
       <div>
-        <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+        <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
           Business
         </label>
         <div className="flex gap-2 mb-3">
@@ -158,7 +158,7 @@ export function ClientContactCard({
               type="button"
               key={m}
               onClick={() => setOrgMode(m)}
-              className={`flex-1 px-3 py-2 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
+              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium border transition-colors cursor-pointer ${
                 orgMode === m
                   ? "bg-[#f87444]/15 border-[#f87444]/40 text-[#f87444]"
                   : "bg-[var(--portal-card)] border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)]"
@@ -202,14 +202,14 @@ export function ClientContactCard({
         )}
       </div>
 
-      {error && <p className="text-xs text-rose-400">{error}</p>}
+      {error && <p className="text-sm text-rose-400">{error}</p>}
 
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-xs font-medium px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors"
+          className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-sm font-medium px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors"
         >
           {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
           Save
@@ -220,7 +220,7 @@ export function ClientContactCard({
             reset();
             setEditing(false);
           }}
-          className="flex items-center gap-1.5 text-xs text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] px-3 py-2 cursor-pointer"
+          className="flex items-center gap-1.5 text-sm text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] px-3 py-2 cursor-pointer"
         >
           <X className="w-3.5 h-3.5" />
           Cancel

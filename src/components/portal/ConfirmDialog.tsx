@@ -60,7 +60,7 @@ export function ConfirmDialog({
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-[var(--portal-text-primary)]">{title}</h3>
-                <p className="text-xs text-[var(--portal-text-secondary)] mt-1.5 leading-relaxed">
+                <p className="text-sm text-[var(--portal-text-secondary)] mt-1.5 leading-relaxed">
                   {message}
                 </p>
               </div>
@@ -69,7 +69,7 @@ export function ConfirmDialog({
               <button
                 type="button"
                 onClick={onCancel}
-                className="text-xs font-medium text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] px-3 py-2 cursor-pointer transition-colors"
+                className="text-sm font-medium text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] px-3 py-2 cursor-pointer transition-colors"
               >
                 {cancelLabel}
               </button>
@@ -77,7 +77,7 @@ export function ConfirmDialog({
                 type="button"
                 onClick={onConfirm}
                 disabled={loading}
-                className={`text-xs font-medium rounded-lg px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors ${
+                className={`text-sm font-medium rounded-lg px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors ${
                   destructive
                     ? "bg-rose-500/15 text-rose-400 hover:bg-rose-500/25"
                     : "bg-[#f87444]/15 text-[#f87444] hover:bg-[#f87444]/25"

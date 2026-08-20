@@ -37,7 +37,7 @@ export function RequestDetails({
       {rows.length > 0 && (
         <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
           {rows.map((r) => (
-            <div key={r.label} className="text-xs">
+            <div key={r.label} className="text-sm">
               <dt className="text-[var(--portal-text-muted)] inline">{r.label}: </dt>
               <dd className="text-[var(--portal-text-secondary)] inline">{r.display}</dd>
             </div>
@@ -53,7 +53,7 @@ export function RequestDetails({
                 href={f.signedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-[#f87444] hover:text-[#f87444] bg-[#f87444]/10 px-2.5 py-1.5 transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 text-sm text-[#f87444] hover:text-[#f87444] bg-[#f87444]/10 px-2.5 py-1.5 transition-colors cursor-pointer"
               >
                 <Paperclip className="w-3 h-3" />
                 {f.fileName}
@@ -61,7 +61,7 @@ export function RequestDetails({
             ) : (
               <span
                 key={f.id}
-                className="flex items-center gap-1.5 text-xs text-[var(--portal-text-muted)] bg-[var(--portal-border)] px-2.5 py-1.5"
+                className="flex items-center gap-1.5 text-sm text-[var(--portal-text-muted)] bg-[var(--portal-border)] px-2.5 py-1.5"
               >
                 <Paperclip className="w-3 h-3" />
                 {f.fileName}

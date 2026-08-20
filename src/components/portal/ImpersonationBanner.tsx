@@ -20,10 +20,12 @@ export function ImpersonationBanner({ email }: { email: string }) {
 
   return (
     <div className="bg-[#f87444] text-white -mx-6 lg:-mx-10 -mt-10 mb-8 px-6 lg:px-10 py-2.5">
-      <div className="flex items-center justify-between gap-4 text-xs flex-wrap">
-        <span className="flex items-center gap-2">
-          <Eye className="w-3.5 h-3.5 shrink-0" />
-          Viewing as <strong>{email}</strong> — replies or new requests submitted here are still attributed to your admin account.
+      <div className="flex items-start justify-between gap-4 text-sm flex-wrap">
+        <span className="flex items-start gap-2 py-0.5">
+          <Eye className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+          <span>
+            Viewing as <strong>{email}</strong> — replies or new requests submitted here are still attributed to your admin account.
+          </span>
         </span>
         <button
           type="button"

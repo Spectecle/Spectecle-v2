@@ -88,7 +88,7 @@ export function Ga4PropertyIdEditor({
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
-        {error && <p className="text-xs text-rose-400 mt-1">{error}</p>}
+        {error && <p className="text-sm text-rose-400 mt-1">{error}</p>}
       </div>
     );
   }
@@ -99,7 +99,7 @@ export function Ga4PropertyIdEditor({
       onClick={() => setEditing(true)}
       className="flex items-center gap-1.5 text-left cursor-pointer group mb-4"
     >
-      <span className="text-xs text-[var(--portal-text-muted)]">
+      <span className="text-sm text-[var(--portal-text-muted)]">
         GA4 Property:{" "}
         <span className="text-[var(--portal-text-secondary)]">{currentPropertyId ?? "Not connected"}</span>
       </span>

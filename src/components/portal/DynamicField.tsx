@@ -26,7 +26,7 @@ export function DynamicField({
   onChange: (key: string, value: DetailValue) => void;
 }) {
   const label = (
-    <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+    <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
       {field.label} {field.required && <span className="text-rose-400">*</span>}
     </label>
   );
@@ -49,7 +49,7 @@ export function DynamicField({
             </option>
           ))}
         </select>
-        {error && <p className="mt-1.5 text-xs text-rose-400">{error}</p>}
+        {error && <p className="mt-1.5 text-sm text-rose-400">{error}</p>}
       </div>
     );
   }
@@ -72,7 +72,7 @@ export function DynamicField({
               type="button"
               key={opt}
               onClick={() => toggle(opt)}
-              className={`px-3 py-2 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
+              className={`px-3 py-2 rounded-lg text-sm font-medium border transition-colors cursor-pointer ${
                 selected.includes(opt)
                   ? "bg-[#f87444]/15 border-[#f87444]/40 text-[#f87444]"
                   : "bg-[var(--portal-card)] border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:border-[var(--portal-border-strong)]"
@@ -91,7 +91,7 @@ export function DynamicField({
               placeholder="Please specify"
               className={inputClass(!!otherError)}
             />
-            {otherError && <p className="mt-1.5 text-xs text-rose-400">{otherError}</p>}
+            {otherError && <p className="mt-1.5 text-sm text-rose-400">{otherError}</p>}
           </div>
         )}
       </div>
@@ -109,7 +109,7 @@ export function DynamicField({
           placeholder={field.placeholder}
           className={`${inputClass(!!error)} resize-none`}
         />
-        {error && <p className="mt-1.5 text-xs text-rose-400">{error}</p>}
+        {error && <p className="mt-1.5 text-sm text-rose-400">{error}</p>}
       </div>
     );
   }
@@ -124,7 +124,7 @@ export function DynamicField({
           error={!!error}
           placeholder={field.placeholder}
         />
-        {error && <p className="mt-1.5 text-xs text-rose-400">{error}</p>}
+        {error && <p className="mt-1.5 text-sm text-rose-400">{error}</p>}
       </div>
     );
   }
@@ -139,7 +139,7 @@ export function DynamicField({
         placeholder={field.placeholder}
         className={inputClass(!!error)}
       />
-      {error && <p className="mt-1.5 text-xs text-rose-400">{error}</p>}
+      {error && <p className="mt-1.5 text-sm text-rose-400">{error}</p>}
     </div>
   );
 }

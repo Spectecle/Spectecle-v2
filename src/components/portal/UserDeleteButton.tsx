@@ -46,12 +46,12 @@ export function UserDeleteButton({
           setError("");
           setOpen(true);
         }}
-        className="flex items-center gap-1.5 text-xs font-medium rounded-lg px-3 py-1.5 cursor-pointer text-[var(--portal-text-muted)] hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+        className="flex items-center gap-1.5 text-sm font-medium rounded-lg px-3 py-1.5 cursor-pointer text-[var(--portal-text-muted)] hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
       >
         <Trash2 className="w-3.5 h-3.5" />
         Delete
       </button>
-      {error && <p className="text-xs text-rose-400 mt-1">{error}</p>}
+      {error && <p className="text-sm text-rose-400 mt-1">{error}</p>}
 
       <ConfirmDialog
         open={open}

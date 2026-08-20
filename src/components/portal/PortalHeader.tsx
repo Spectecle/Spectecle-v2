@@ -33,7 +33,7 @@ export async function PortalHeader() {
         </div>
         <div className="flex items-center gap-3">
           {user && (
-            <span className="text-xs text-[var(--portal-text-muted)] hidden sm:inline">
+            <span className="text-sm text-[var(--portal-text-muted)] hidden sm:inline">
               {user.email}
             </span>
           )}

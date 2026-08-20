@@ -124,7 +124,7 @@ export default async function AdminClientDetailPage({
                 websiteUrl={websiteUrl}
               />
               <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                <span className="flex items-center gap-1.5 text-xs text-[var(--portal-text-muted)]">
+                <span className="flex items-center gap-1.5 text-sm text-[var(--portal-text-muted)]">
                   <Mail className="w-3 h-3" />
                   {client.email}
                 </span>
@@ -133,14 +133,14 @@ export default async function AdminClientDetailPage({
                     href={websiteUrl.startsWith("http") ? websiteUrl : `https://${websiteUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs text-[#f87444] hover:text-[#f87444] transition-colors"
+                    className="flex items-center gap-1.5 text-sm text-[#f87444] hover:text-[#f87444] transition-colors"
                   >
                     <Globe className="w-3 h-3" />
                     {websiteUrl}
                   </a>
                 )}
                 <span
-                  className={`text-[10px] rounded-full px-2 py-0.5 ${
+                  className={`text-xs rounded-full px-2 py-0.5 ${
                     client.status === "active"
                       ? "bg-emerald-500/10 text-emerald-400"
                       : "bg-rose-500/10 text-rose-400"
@@ -171,7 +171,7 @@ export default async function AdminClientDetailPage({
 
         <div className="grid sm:grid-cols-2 gap-6 mb-6">
           <div className="glass border border-[var(--portal-border)] p-6">
-            <p className="flex items-center gap-2 text-xs font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
+            <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
               <Gauge className="w-3.5 h-3.5" />
               Dashboard Access
             </p>
@@ -185,7 +185,7 @@ export default async function AdminClientDetailPage({
           </div>
 
           <div className="glass border border-[var(--portal-border)] p-6">
-            <p className="flex items-center gap-2 text-xs font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
+            <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
               <Receipt className="w-3.5 h-3.5" />
               Billing
             </p>
@@ -197,7 +197,7 @@ export default async function AdminClientDetailPage({
 
         {org && (
           <div className="glass border border-[var(--portal-border)] p-6 mb-6">
-            <p className="flex items-center gap-2 text-xs font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-4">
+            <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-4">
               <BarChart3 className="w-3.5 h-3.5" />
               Analytics &amp; Rankings
             </p>
@@ -232,7 +232,7 @@ export default async function AdminClientDetailPage({
         )}
 
         {active === "deleted" ? (
-          <div className="flex items-center gap-2 mb-4 text-xs text-[var(--portal-text-muted)]">
+          <div className="flex items-center gap-2 mb-4 text-sm text-[var(--portal-text-muted)]">
             <Trash2 className="w-3.5 h-3.5" />
             <span>Recycle Bin — deleted tickets. Change a ticket&apos;s status to restore it.</span>
             <Link href="?" className="text-[#f87444] hover:underline ml-1">
@@ -244,7 +244,7 @@ export default async function AdminClientDetailPage({
             <StatusTabs tabs={tabs} active={active} />
             <Link
               href="?status=deleted"
-              className="flex items-center gap-1.5 text-xs text-[var(--portal-text-faint)] hover:text-[var(--portal-text-secondary)] transition-colors cursor-pointer shrink-0"
+              className="flex items-center gap-1.5 text-sm text-[var(--portal-text-faint)] hover:text-[var(--portal-text-secondary)] transition-colors cursor-pointer shrink-0"
             >
               <Trash2 className="w-3.5 h-3.5" />
               Recycle Bin{deletedCount > 0 ? ` (${deletedCount})` : ""}

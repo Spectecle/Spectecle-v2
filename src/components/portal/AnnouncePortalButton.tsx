@@ -74,13 +74,13 @@ export function AnnouncePortalButton({ activeCount }: { activeCount: number }) {
             setIndividualResult(null);
           }}
           placeholder="client@company.com"
-          className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] px-3 py-2 text-xs outline-none focus:border-[#f87444]/50 w-56"
+          className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] px-3 py-2 text-sm outline-none focus:border-[#f87444]/50 w-56"
         />
         <button
           type="button"
           onClick={handleIndividualSend}
           disabled={individualSending || !targetEmail.trim()}
-          className="flex items-center gap-1.5 text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] bg-[var(--portal-border)] text-xs font-medium px-3 py-2 cursor-pointer disabled:opacity-50 transition-colors"
+          className="flex items-center gap-1.5 text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] bg-[var(--portal-border)] text-sm font-medium px-3 py-2 cursor-pointer disabled:opacity-50 transition-colors"
         >
           {individualSending ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -91,7 +91,7 @@ export function AnnouncePortalButton({ activeCount }: { activeCount: number }) {
         </button>
         {individualResult && !individualError && (
           <span
-            className={`flex items-center gap-1.5 text-xs ${
+            className={`flex items-center gap-1.5 text-sm ${
               individualResult.sent > 0 ? "text-emerald-400" : "text-rose-400"
             }`}
           >
@@ -100,14 +100,14 @@ export function AnnouncePortalButton({ activeCount }: { activeCount: number }) {
           </span>
         )}
       </div>
-      {individualError && <p className="text-xs text-rose-400">{individualError}</p>}
+      {individualError && <p className="text-sm text-rose-400">{individualError}</p>}
       <p className="text-[11px] text-[var(--portal-text-faint)]">
         Send the portal info to one client at a time — handy for onboarding a new client individually.
       </p>
 
       <div className="pt-1">
         {result ? (
-          <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-500/10 px-3 py-2 w-fit">
+          <div className="flex items-center gap-2 text-sm text-emerald-400 bg-emerald-500/10 px-3 py-2 w-fit">
             <CheckCircle2 className="w-3.5 h-3.5" />
             Sent to {result.sent} client{result.sent === 1 ? "" : "s"}
             {result.failed.length > 0 && ` (${result.failed.length} failed)`}
@@ -117,13 +117,13 @@ export function AnnouncePortalButton({ activeCount }: { activeCount: number }) {
             type="button"
             onClick={() => setOpen(true)}
             disabled={activeCount === 0}
-            className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-xs font-medium px-3 py-2 cursor-pointer disabled:opacity-50 transition-colors"
+            className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-sm font-medium px-3 py-2 cursor-pointer disabled:opacity-50 transition-colors"
           >
             <Megaphone className="w-3.5 h-3.5" />
             Announce Portal to All Clients
           </button>
         )}
-        {error && <p className="text-xs text-rose-400 mt-1">{error}</p>}
+        {error && <p className="text-sm text-rose-400 mt-1">{error}</p>}
       </div>
 
       <ConfirmDialog

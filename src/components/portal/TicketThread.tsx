@@ -63,7 +63,7 @@ export function TicketThread({
             return (
               <div
                 key={m.id}
-                className={`text-xs rounded-lg px-3 py-2 ${
+                className={`text-sm rounded-lg px-3 py-2 ${
                   isViewer
                     ? "bg-[#f87444]/10 border border-[#f87444]/15 ml-6"
                     : "bg-[var(--portal-border)] border border-[var(--portal-border)] mr-6"
@@ -111,7 +111,7 @@ export function TicketThread({
           onChange={(e) => setBody(e.target.value)}
           rows={2}
           placeholder={viewerRole === "admin" ? "Reply to this client…" : "Reply or add more info…"}
-          className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] px-3 py-2 text-xs resize-none focus:border-[#f87444]/50 outline-none"
+          className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] px-3 py-2 text-sm resize-none focus:border-[#f87444]/50 outline-none"
         />
         {showUpload && (
           <FileUploadField
@@ -122,12 +122,12 @@ export function TicketThread({
             onRemove={fileUpload.removeUpload}
           />
         )}
-        {error && <p className="text-xs text-rose-400">{error}</p>}
+        {error && <p className="text-sm text-rose-400">{error}</p>}
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={() => setShowUpload((v) => !v)}
-            className="flex items-center gap-1 text-xs text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] cursor-pointer"
+            className="flex items-center gap-1 text-sm text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] cursor-pointer"
           >
             <Paperclip className="w-3 h-3" />
             Attach
@@ -136,7 +136,7 @@ export function TicketThread({
             type="button"
             onClick={handleSend}
             disabled={sending}
-            className="ml-auto flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-xs font-medium px-3 py-1.5 cursor-pointer disabled:opacity-60 transition-colors"
+            className="ml-auto flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-sm font-medium px-3 py-1.5 cursor-pointer disabled:opacity-60 transition-colors"
           >
             {sending ? <Loader2 className="w-3 h-3 animate-spin" /> : <Send className="w-3 h-3" />}
             Send

@@ -116,7 +116,7 @@ export function AddClientForm({ groups }: { groups: OrgGroup[] }) {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+            <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
               Email <span className="text-rose-400">*</span>
             </label>
             <input
@@ -129,12 +129,12 @@ export function AddClientForm({ groups }: { groups: OrgGroup[] }) {
               placeholder="client@company.com"
               className={inputClass(!!errors.email)}
             />
-            {errors.email && <p className="mt-1.5 text-xs text-rose-400">{errors.email}</p>}
+            {errors.email && <p className="mt-1.5 text-sm text-rose-400">{errors.email}</p>}
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                 Contact Name{" "}
                 <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
               </label>
@@ -147,7 +147,7 @@ export function AddClientForm({ groups }: { groups: OrgGroup[] }) {
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                 Phone{" "}
                 <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
               </label>
@@ -162,7 +162,7 @@ export function AddClientForm({ groups }: { groups: OrgGroup[] }) {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+            <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
               Business <span className="text-rose-400">*</span>
             </label>
             {groups.length > 0 && (
@@ -203,7 +203,7 @@ export function AddClientForm({ groups }: { groups: OrgGroup[] }) {
                   ))}
                 </select>
                 {errors.organizationId && (
-                  <p className="mt-1.5 text-xs text-rose-400">{errors.organizationId}</p>
+                  <p className="mt-1.5 text-sm text-rose-400">{errors.organizationId}</p>
                 )}
               </div>
             ) : (
@@ -220,7 +220,7 @@ export function AddClientForm({ groups }: { groups: OrgGroup[] }) {
                     className={inputClass(!!errors.newOrgName)}
                   />
                   {errors.newOrgName && (
-                    <p className="mt-1.5 text-xs text-rose-400">{errors.newOrgName}</p>
+                    <p className="mt-1.5 text-sm text-rose-400">{errors.newOrgName}</p>
                   )}
                 </div>
                 <input

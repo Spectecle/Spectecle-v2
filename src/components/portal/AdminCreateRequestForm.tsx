@@ -144,7 +144,7 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
 
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                 Business <span className="text-rose-400">*</span>
               </label>
               <select
@@ -159,7 +159,7 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                 Client <span className="text-rose-400">*</span>
               </label>
               <select
@@ -178,12 +178,12 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
                   <option key={c.id} value={c.id}>{c.email}</option>
                 ))}
               </select>
-              {errors.client && <p className="mt-1.5 text-xs text-rose-400">{errors.client}</p>}
+              {errors.client && <p className="mt-1.5 text-sm text-rose-400">{errors.client}</p>}
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+            <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
               Service <span className="text-rose-400">*</span>
             </label>
             <select
@@ -197,7 +197,7 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
               ))}
             </select>
             {errors.service_type && (
-              <p className="mt-1.5 text-xs text-rose-400">{errors.service_type}</p>
+              <p className="mt-1.5 text-sm text-rose-400">{errors.service_type}</p>
             )}
           </div>
 
@@ -227,7 +227,7 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
           </AnimatePresence>
 
           <div>
-            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+            <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
               Budget Range{" "}
               <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
             </label>
@@ -253,7 +253,7 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
+            <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
               Details <span className="text-rose-400">*</span>
             </label>
             <textarea
@@ -266,7 +266,7 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
               placeholder="Describe the request — as if the client wrote it"
               className={`${inputClass(!!errors.message)} resize-none`}
             />
-            {errors.message && <p className="mt-1.5 text-xs text-rose-400">{errors.message}</p>}
+            {errors.message && <p className="mt-1.5 text-sm text-rose-400">{errors.message}</p>}
           </div>
 
           <FileUploadField

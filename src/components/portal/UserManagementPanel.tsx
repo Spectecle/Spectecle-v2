@@ -52,12 +52,12 @@ export function UserManagementPanel({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search organizations or users…"
-              className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] pl-8 pr-3 py-2 text-xs outline-none focus:border-[#f87444]/50"
+              className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] pl-8 pr-3 py-2 text-sm outline-none focus:border-[#f87444]/50"
             />
           </div>
           <Link
             href="/portal/admin/clients/new"
-            className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-xs font-medium px-3 py-2 cursor-pointer transition-colors"
+            className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-sm font-medium px-3 py-2 cursor-pointer transition-colors"
           >
             <UserPlus className="w-3.5 h-3.5" />
             Add Client
@@ -90,7 +90,7 @@ export function UserManagementPanel({
                     name={group.name}
                     websiteUrl={group.websiteUrl}
                   />
-                  <p className="text-[10px] text-[var(--portal-text-faint)]">
+                  <p className="text-xs text-[var(--portal-text-faint)]">
                     {group.websiteUrl ?? group.domain} · {group.users.length} user
                     {group.users.length === 1 ? "" : "s"}
                   </p>
@@ -106,7 +106,7 @@ export function UserManagementPanel({
                 />
                 <Link
                   href={`?section=requests&org=${encodeURIComponent(group.key)}`}
-                  className="flex items-center gap-1.5 text-xs text-[#f87444] hover:text-[#f87444] bg-[#f87444]/10 px-3 py-1.5 cursor-pointer transition-colors"
+                  className="flex items-center gap-1.5 text-sm text-[#f87444] hover:text-[#f87444] bg-[#f87444]/10 px-3 py-1.5 cursor-pointer transition-colors"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   View All Tickets ({group.ticketCount})
@@ -123,7 +123,7 @@ export function UserManagementPanel({
                     </p>
                     <div className="flex items-center gap-2 mt-1">
                       <span
-                        className={`text-[10px] rounded-full px-2 py-0.5 ${
+                        className={`text-xs rounded-full px-2 py-0.5 ${
                           u.status === "active"
                             ? "bg-emerald-500/10 text-emerald-400"
                             : "bg-rose-500/10 text-rose-400"
@@ -131,7 +131,7 @@ export function UserManagementPanel({
                       >
                         {u.status === "active" ? "Active" : "Revoked"}
                       </span>
-                      <span className="text-[10px] text-[var(--portal-text-muted)]">
+                      <span className="text-xs text-[var(--portal-text-muted)]">
                         {ticketCountByUserId[u.id] ?? 0} ticket
                         {(ticketCountByUserId[u.id] ?? 0) === 1 ? "" : "s"}
                       </span>
@@ -140,7 +140,7 @@ export function UserManagementPanel({
                   <div className="flex items-center gap-2 shrink-0">
                     <Link
                       href={`/portal/admin/clients/${u.id}`}
-                      className="flex items-center gap-1.5 text-xs text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] px-3 py-1.5 cursor-pointer transition-colors"
+                      className="flex items-center gap-1.5 text-sm text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] px-3 py-1.5 cursor-pointer transition-colors"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       View Client
