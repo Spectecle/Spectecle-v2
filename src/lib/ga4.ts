@@ -76,3 +76,25 @@ export async function fetchGA4ActiveUsersNow(propertyId: string): Promise<number
   });
   return Number(response.rows?.[0]?.metricValues?.[0]?.value ?? 0);
 }
+
+export type DailyVisitors = { date: string; visitors: number };
+
+/** Day-by-day visitor counts for the current calendar month, for charting. */
+export async function fetchGA4DailyVisitors(propertyId: string): Promise<DailyVisitors[]> {
+  const { startDate, endDate } = monthRange(currentMonthValue());
+  const analyticsClient = getClient();
+
+  const [response] = await analyticsClient.runReport({
+    property: `properties/${propertyId}`,
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: "date" }],
+    metrics: [{ name: "totalUsers" }],
+    orderBys: [{ dimension: { dimensionName: "date" } }],
+  });
+
+  return (response.rows ?? []).map((row) => {
+    const raw = row.dimensionValues?.[0]?.value ?? ""; // YYYYMMDD
+    const date = `${raw.slice(0, 4)}-${raw.slice(4, 6)}-${raw.slice(6, 8)}`;
+    return { date, visitors: Number(row.metricValues?.[0]?.value ?? 0) };
+  });
+}

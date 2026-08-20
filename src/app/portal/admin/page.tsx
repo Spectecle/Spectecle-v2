@@ -9,8 +9,10 @@ import { TicketCard } from "@/components/portal/TicketCard";
 import { UserManagementPanel } from "@/components/portal/UserManagementPanel";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
 import { organizationKeyFor, prettifyDomain, type OrgRecord } from "@/lib/organizations";
-import { fetchGA4ActiveUsersNow, fetchGA4MonthToDate } from "@/lib/ga4";
+import { fetchGA4ActiveUsersNow, fetchGA4MonthToDate, fetchGA4DailyVisitors } from "@/lib/ga4";
 import { fetchEmailCountsThisMonth } from "@/lib/gmail";
+import { VisitorsChart } from "@/components/portal/VisitorsChart";
+import { TicketsChart } from "@/components/portal/TicketsChart";
 
 type AdminRequest = {
   id: string;
@@ -136,19 +138,31 @@ async function DashboardSection({
 }) {
   const openTickets = requests.filter((r) => r.status === "new" || r.status === "in_progress").length;
 
+  const now = new Date();
+  const daysThisMonth = now.getDate();
+  const monthPrefix = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+  const dailyTicketCounts = Array.from({ length: daysThisMonth }, (_, i) => {
+    const date = `${monthPrefix}-${String(i + 1).padStart(2, "0")}`;
+    const count = requests.filter((r) => r.created_at.startsWith(date) && r.status !== "deleted").length;
+    return { date, count };
+  });
+
   const spectecleGa4PropertyId = process.env.SPECTECLE_GA4_PROPERTY_ID;
   let activeNow: number | null = null;
   let monthVisitors: number | null = null;
+  let dailyVisitors: { date: string; visitors: number }[] = [];
   let ga4Error = false;
 
   if (spectecleGa4PropertyId) {
     try {
-      const [active, monthToDate] = await Promise.all([
+      const [active, monthToDate, daily] = await Promise.all([
         fetchGA4ActiveUsersNow(spectecleGa4PropertyId),
         fetchGA4MonthToDate(spectecleGa4PropertyId),
+        fetchGA4DailyVisitors(spectecleGa4PropertyId),
       ]);
       activeNow = active;
       monthVisitors = monthToDate.visitors;
+      dailyVisitors = daily;
     } catch (error) {
       console.error("[admin/dashboard] GA4 fetch error:", error);
       ga4Error = true;
@@ -209,6 +223,27 @@ async function DashboardSection({
           </p>
         </div>
       )}
+
+      <div className="grid lg:grid-cols-2 gap-4">
+        <div className="glass border border-[var(--portal-border)] p-5">
+          <p className="text-sm font-semibold text-[var(--portal-text-primary)] mb-0.5">Visitors This Month</p>
+          <p className="text-xs text-[var(--portal-text-faint)] mb-2">Daily visitors to spectecle.com</p>
+          {spectecleGa4PropertyId ? (
+            ga4Error ? (
+              <p className="text-sm text-[var(--portal-text-faint)] py-10 text-center">Failed to load.</p>
+            ) : (
+              <VisitorsChart data={dailyVisitors} />
+            )
+          ) : (
+            <p className="text-sm text-[var(--portal-text-faint)] py-10 text-center">Connect GA4 to see this chart.</p>
+          )}
+        </div>
+        <div className="glass border border-[var(--portal-border)] p-5">
+          <p className="text-sm font-semibold text-[var(--portal-text-primary)] mb-0.5">New Tickets This Month</p>
+          <p className="text-xs text-[var(--portal-text-faint)] mb-2">Daily request volume, all clients</p>
+          <TicketsChart data={dailyTicketCounts} />
+        </div>
+      </div>
 
       <div>
         <div className="flex items-center gap-2 mb-3">
