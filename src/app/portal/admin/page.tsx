@@ -162,6 +162,7 @@ async function DashboardSection({
   );
   let emailsSent: number | null = null;
   let emailsReceived: number | null = null;
+  let gmailAccount: string | null = null;
   let gmailError = false;
 
   if (gmailConfigured) {
@@ -169,6 +170,7 @@ async function DashboardSection({
       const counts = await fetchEmailCountsThisMonth();
       emailsSent = counts.sent;
       emailsReceived = counts.received;
+      gmailAccount = counts.account;
     } catch (error) {
       console.error("[admin/dashboard] Gmail fetch error:", error);
       gmailError = true;
@@ -209,9 +211,16 @@ async function DashboardSection({
       )}
 
       <div>
-        <p className="text-xs font-semibold text-[var(--portal-text-muted)] uppercase tracking-wider mb-3">
-          Email Activity (This Month)
-        </p>
+        <div className="flex items-center gap-2 mb-3">
+          <p className="text-xs font-semibold text-[var(--portal-text-muted)] uppercase tracking-wider">
+            Email Activity (This Month)
+          </p>
+          {gmailAccount && (
+            <span className="text-[10px] text-[var(--portal-text-faint)] bg-[var(--portal-border)] px-2 py-0.5 rounded-full">
+              {gmailAccount}
+            </span>
+          )}
+        </div>
         <div className="grid sm:grid-cols-2 gap-4">
           <StatCard
             label="Emails Sent"
