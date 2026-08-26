@@ -109,7 +109,7 @@ const jsonLd = {
         "Spectecle is a premium web design, SEO & AI automation agency serving businesses across the United States.",
       telephone: "+13133534105",
       email: "hello@spectecle.com",
-      foundingDate: "2012",
+      foundingDate: "2014",
       priceRange: "$$",
       areaServed: [{ "@type": "Country", name: "United States" }],
       sameAs: [

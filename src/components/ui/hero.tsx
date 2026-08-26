@@ -3,56 +3,27 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
-
-const ROTATE_WORDS = ["Convert.", "Rank.", "Scale.", "Perform."];
 
 const SLIDES = [
   {
     slug: "vue-optometry",
     image: "/screenshots/vueoptometry.png",
-    caption: "Vue Optometry · Brand & Website",
+    caption: "Website & Development",
   },
   {
     slug: "glam-by-abeer",
     image: "/screenshots/glambyabeer.png",
-    caption: "Glam by Abeer · Brand & Website",
+    caption: "SEO & Ad Campaigns",
   },
   {
     slug: "indoor-garden",
     image: "/screenshots/indoorgarden.png",
-    caption: "Indoor Garden · Content & SEO",
+    caption: "AI & Automation",
   },
 ];
 
 const SLIDE_DURATION = 5600;
-
-function RotatingWord() {
-  const [wordIdx, setWordIdx] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setWordIdx((i) => (i + 1) % ROTATE_WORDS.length), 2200);
-    return () => clearInterval(t);
-  }, []);
-
-  return (
-    <span className="inline-block min-w-[7ch] text-left">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={wordIdx}
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -40, opacity: 0 }}
-          transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-          className="italic text-[var(--site-copper-soft)] inline-block"
-        >
-          {ROTATE_WORDS[wordIdx]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  );
-}
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
@@ -139,14 +110,6 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-center px-6 pt-20">
         <div className="max-w-[1080px]">
-          <p
-            className="flex items-center gap-3.5 text-xs tracking-[0.26em] uppercase text-[var(--site-text-secondary)] mb-6 transition-all duration-1000"
-            style={{ opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(14px)", transitionDelay: "100ms" }}
-          >
-            <span className="w-[46px] h-px bg-[rgba(219,197,163,.34)]" />
-            Web Design &amp; Marketing · Serving Businesses Nationwide
-          </p>
-
           <h1
             className="font-normal leading-[0.99] tracking-tight text-[var(--site-text-primary)] text-[11vw] sm:text-[6vw] lg:text-[4.6vw]"
             style={{ fontFamily: "var(--font-serif)" }}
@@ -156,7 +119,7 @@ export default function Hero() {
                 className="block transition-transform duration-[1050ms]"
                 style={{ transform: loaded ? "none" : "translateY(112%)", transitionDelay: "180ms" }}
               >
-                We build websites that
+                Websites worth
               </span>
             </span>
             <span className="block overflow-hidden pb-[0.06em]">
@@ -164,16 +127,17 @@ export default function Hero() {
                 className="block transition-transform duration-[1050ms]"
                 style={{ transform: loaded ? "none" : "translateY(112%)", transitionDelay: "300ms" }}
               >
-                <RotatingWord />
+                looking <em className="italic text-[var(--site-copper-soft)]">twice.</em>
               </span>
             </span>
           </h1>
 
           <p
-            className="mt-6 sm:mt-8 italic text-[var(--site-copper-soft)] leading-none tracking-tight text-[7vw] sm:text-[3.4vw] lg:text-[2.4vw] transition-all duration-1000"
-            style={{ fontFamily: "var(--font-serif)", opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(16px)", transitionDelay: "500ms" }}
+            className="mt-6 sm:mt-8 max-w-[32em] text-base sm:text-[1.16rem] leading-[1.6] text-[var(--site-text-secondary)] transition-all duration-1000"
+            style={{ opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(16px)", transitionDelay: "500ms" }}
           >
-            Custom Web Design. Marketing That Works.
+            Custom design and growth marketing for brands that refuse to blend in.{" "}
+            <b className="font-medium text-[var(--site-text-primary)]">Built to load fast, rank, and convert</b>, then kept growing long after launch.
           </p>
 
           <div

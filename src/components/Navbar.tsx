@@ -49,8 +49,14 @@ export default function Navbar() {
       >
         <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center cursor-pointer group" data-cursor>
+          <Link href="/" className="flex items-center gap-3.5 cursor-pointer group" data-cursor>
             <LogoMark className="w-16 h-16 drop-shadow-sm" />
+            <span
+              className="text-[13px] font-semibold uppercase tracking-[0.32em] text-[var(--site-text-primary)]"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              Spectecle
+            </span>
           </Link>
 
           {/* Desktop nav links */}

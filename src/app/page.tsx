@@ -142,21 +142,14 @@ function ProjectCard({ p, idx, delay }: { p: (typeof projects)[number]; idx: num
             />
           )}
         </div>
-        <div className="mt-5 flex items-baseline justify-between gap-4 pb-4 border-b border-[var(--site-border)] group-hover:border-[var(--site-copper-soft)] transition-colors duration-400">
+        <div className="mt-5 pb-4 border-b border-[var(--site-border)] group-hover:border-[var(--site-copper-soft)] transition-colors duration-400">
           <h3
             className="text-2xl font-light text-[var(--site-text-primary)]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             {p.title}
           </h3>
-          <span className="text-[11px] tracking-[0.15em] uppercase text-[var(--site-text-muted)] whitespace-nowrap">
-            {p.category}
-          </span>
         </div>
-        <span className="mt-3.5 inline-flex items-center gap-2 text-[11.5px] tracking-[0.15em] uppercase text-[var(--site-copper-soft)] opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-          View project
-          <ArrowUpRight className="w-3.5 h-3.5" />
-        </span>
       </Link>
     </Reveal>
   );
@@ -173,19 +166,13 @@ export default function HomePage() {
       {/* ══ THE STUDIO ═══════════════════════════════ */}
       <section className="py-20 sm:py-28 px-6" style={{ background: "#ECE5D8", color: "#1A1410" }}>
         <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <p className="inline-flex items-center gap-3.5 text-xs tracking-[0.26em] uppercase" style={{ color: "#93856d" }}>
-              <span className="w-10 h-px" style={{ background: "rgba(26,20,16,.28)" }} />
-              The Studio
-            </p>
-          </Reveal>
-          <div className="mt-11 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-24 items-start">
+          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-24 items-start">
             <Reveal>
               <p
                 className="text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.16] tracking-tight"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                A small studio for brands that want to look <em className="italic" style={{ color: "#cb7c46" }}>inevitable</em> online.
+                A studio for brands that want to look <em className="italic" style={{ color: "#cb7c46" }}>inevitable</em> online.
               </p>
             </Reveal>
             <div>
@@ -194,23 +181,17 @@ export default function HomePage() {
                   Strategy, design, development, and marketing live under one roof, so the work stays sharp from first sketch to launched site. No handoffs to lose the thread. No template doing the thinking for you. Just a team that treats your site like the storefront it actually is.
                 </p>
               </Reveal>
-              <div className="mt-12 flex gap-10 sm:gap-16 flex-wrap">
-                {[
-                  { n: "2012", k: "Founded · Metro Detroit" },
-                  { n: "50+", k: "Projects Delivered" },
-                  { n: "98%", k: "Client Retention" },
-                ].map((s, i) => (
-                  <Reveal key={s.k} delay={0.16 + i * 0.08}>
-                    <div>
-                      <span className="block text-3xl sm:text-4xl lg:text-5xl leading-none" style={{ fontFamily: "var(--font-serif)" }}>
-                        {s.n}
-                      </span>
-                      <span className="block mt-2.5 text-[11.5px] tracking-[0.16em] uppercase" style={{ color: "#93856d" }}>
-                        {s.k}
-                      </span>
-                    </div>
-                  </Reveal>
-                ))}
+              <div className="mt-12">
+                <Reveal delay={0.16}>
+                  <div>
+                    <span className="block text-3xl sm:text-4xl lg:text-5xl leading-none" style={{ fontFamily: "var(--font-serif)" }}>
+                      2014
+                    </span>
+                    <span className="block mt-2.5 text-[11.5px] tracking-[0.16em] uppercase" style={{ color: "#93856d" }}>
+                      Founded
+                    </span>
+                  </div>
+                </Reveal>
               </div>
             </div>
           </div>
@@ -268,12 +249,8 @@ export default function HomePage() {
       <section className="py-20 sm:py-28 px-6 bg-[var(--site-bg)] border-t border-[var(--site-border)]" id="services">
         <div className="max-w-7xl mx-auto">
           <Reveal>
-            <p className="inline-flex items-center gap-3.5 text-xs tracking-[0.26em] uppercase text-[var(--site-text-muted)]">
-              <span className="w-10 h-px bg-[rgba(219,197,163,.34)]" />
-              Capabilities
-            </p>
             <h2
-              className="mt-4 mb-10 sm:mb-14 text-4xl sm:text-5xl lg:text-6xl font-normal text-[var(--site-text-primary)] tracking-tight"
+              className="mb-10 sm:mb-14 text-4xl sm:text-5xl lg:text-6xl font-normal text-[var(--site-text-primary)] tracking-tight"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Everything a site needs to earn its keep.
@@ -319,8 +296,8 @@ export default function HomePage() {
               className="mt-6 text-5xl md:text-7xl font-normal text-[var(--site-text-primary)] leading-[1.05] tracking-tight"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Your site should be your{" "}
-              <span className="italic text-[var(--site-copper-soft)]">best salesperson.</span>
+              Let&apos;s build something worth{" "}
+              <span className="italic text-[var(--site-copper-soft)]">looking twice</span> at.
             </h2>
             <p className="mt-8 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Work directly with the team. No middlemen, no account managers, just a direct line
