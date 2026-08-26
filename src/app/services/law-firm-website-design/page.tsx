@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronRight, CheckCircle2, Quote } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Quote } from "lucide-react";
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -35,13 +35,6 @@ const features = [
   { label: "Practice Area Pages", desc: "A dedicated, SEO-structured page for every area you practice." },
   { label: "Consultation-Focused Forms", desc: "Low-friction intake built to convert a nervous first-time visitor." },
   { label: "Legal Schema & Structured Data", desc: "Markup that helps search engines surface your practice correctly." },
-];
-
-const deliverables = [
-  "Custom-designed, fully responsive site",
-  "Practice area pages built around search intent",
-  "Attorney profile & credentials pages",
-  "Legal schema & structured data markup",
 ];
 
 const process = [
@@ -208,31 +201,6 @@ export default function LawFirmWebsiteDesignPage() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── DELIVERABLES ─────────────────────────────── */}
-      <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-8" style={{ fontFamily: "var(--font-serif)" }}>
-              What you walk away with.
-            </h2>
-            <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl">
-              {deliverables.map((d) => (
-                <li key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
-                  <CheckCircle2 className="w-4 h-4 text-[#9a5423] shrink-0" />
-                  {d}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10">
-              <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
-                Start Your Firm&apos;s Website
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </Reveal>
         </div>
       </section>
 

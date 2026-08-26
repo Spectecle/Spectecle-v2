@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronRight, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, ChevronRight } from "lucide-react";
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -24,20 +24,6 @@ const features = [
   { label: "Next.js & React Development", desc: "Fast, SEO-ready builds that score green on Core Web Vitals." },
   { label: "E-commerce & CMS", desc: "Shopify, WooCommerce, and headless CMS builds that grow with you." },
   { label: "Ongoing Maintenance", desc: "Fast, secure, and current, every month, without the overhead." },
-];
-
-const deliverables = [
-  "Brand strategy & visual identity",
-  "Full-stack development & CMS integration",
-  "Analytics & conversion tracking",
-  "Launch support & optimization",
-];
-
-const stats = [
-  { value: "2–4 wks", label: "Avg. build time" },
-  { value: "In-house", label: "No offshore teams" },
-  { value: "SEO-ready", label: "Every build" },
-  { value: "24hr", label: "Response guarantee" },
 ];
 
 const faqs = [
@@ -140,41 +126,6 @@ export default function WebDesignDetroitPage() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── DELIVERABLES ─────────────────────────────── */}
-      <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
-          <Reveal>
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
-              What you walk away with.
-            </h2>
-            <ul className="mt-8 space-y-3">
-              {deliverables.map((d) => (
-                <li key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
-                  <CheckCircle2 className="w-4 h-4 text-[#9a5423] shrink-0" />
-                  {d}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10">
-              <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
-                Start Your Project
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <div className="text-2xl font-light text-[#9a5423]" style={{ fontFamily: "var(--font-serif)" }}>{s.value}</div>
-                  <div className="text-xs text-[var(--site-text-muted)] mt-1">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 

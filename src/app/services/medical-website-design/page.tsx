@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   ChevronRight,
-  CheckCircle2,
   Quote,
   Smile,
   Stethoscope,
@@ -52,13 +51,6 @@ const features = [
   { label: "Service & Treatment Pages", desc: "Written in language patients actually search for.", Icon: ClipboardList },
   { label: "Appointment Request Flow", desc: "Built to integrate with the scheduling tools you already use.", Icon: CalendarCheck },
   { label: "Privacy-Conscious Forms", desc: "Built with patient privacy in mind from the start.", Icon: ShieldCheck },
-];
-
-const deliverables = [
-  "Custom-designed, fully responsive site",
-  "Service pages built around patient search intent",
-  "Provider bio & credentials pages",
-  "Medical schema & structured data markup",
 ];
 
 const faqs = [
@@ -253,31 +245,6 @@ export default function MedicalWebsiteDesignPage() {
             </blockquote>
             <p className="mt-6 text-sm font-semibold text-[var(--site-text-primary)]">Hassan Saab</p>
             <p className="text-xs text-[var(--site-text-muted)]">Owner, Vue Optometry</p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── DELIVERABLES ─────────────────────────────── */}
-      <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-8" style={{ fontFamily: "var(--font-serif)" }}>
-              What you walk away with.
-            </h2>
-            <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl">
-              {deliverables.map((d) => (
-                <li key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
-                  <CheckCircle2 className="w-4 h-4 text-[#9a5423] shrink-0" />
-                  {d}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10">
-              <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
-                Start Your Practice&apos;s Website
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-            </div>
           </Reveal>
         </div>
       </section>
