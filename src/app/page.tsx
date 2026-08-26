@@ -293,7 +293,6 @@ export default function HomePage() {
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
             <Reveal>
-              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">The Standard</p>
               <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
                 Nothing ships until it&apos;s right. That&apos;s the whole standard.
               </h2>
