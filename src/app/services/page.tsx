@@ -137,7 +137,7 @@ export default function ServicesPage() {
                   <p className="mt-2 text-[#9a5423] text-sm font-medium">{s.tagline}</p>
                   <p className="mt-3 text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-xl">{s.desc}</p>
                 </div>
-                <div className="hidden md:block relative w-full aspect-[4/3] overflow-hidden [clip-path:polygon(0_0,100%_0,100%_88%,88%_100%,0_100%)]">
+                <div className="hidden md:block relative w-full aspect-[4/3] overflow-hidden">
                   <Image
                     src={s.image}
                     alt=""

@@ -56,10 +56,6 @@ export default function WebDesignDetroitPage() {
               <span className="text-[var(--site-text-secondary)]">Web Design & Development</span>
             </nav>
 
-            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
-              Web Design & Development · Serving Businesses Nationwide
-            </span>
-
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -86,7 +82,7 @@ export default function WebDesignDetroitPage() {
           </div>
 
           <Reveal delay={0.15}>
-            <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)] [clip-path:polygon(0_0,100%_0,100%_88%,88%_100%,0_100%)]">
+            <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
               <Image
                 src="https://images.unsplash.com/photo-1487523117656-d5d117ad47c5?q=80&w=1600&auto=format&fit=crop"
                 alt="Modern web design workspace"
