@@ -191,8 +191,13 @@ export default function HomePage() {
                   data-cursor
                   className="group relative grid grid-cols-[auto_1fr] sm:grid-cols-[auto_1fr_auto] items-center gap-4 sm:gap-12 py-6 sm:py-8 px-4 -mx-4 overflow-hidden border-t border-[var(--site-border)] last:border-b transition-[padding-left] duration-[450ms] ease-[cubic-bezier(.16,1,.3,1)] hover:pl-9"
                 >
-                  {/* Full-row image reveal, on hover, tap, or keyboard focus */}
-                  <div className="absolute inset-0 -z-10 opacity-0 scale-105 transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:opacity-100 group-hover:scale-100 group-active:opacity-100 group-active:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100">
+                  {/* Full-row image reveal, on hover, tap, or keyboard focus.
+                      No z-index here on purpose: this div is first in DOM
+                      order and the text spans below have z-10, so normal
+                      paint order already puts the image behind the text —
+                      a negative z-index instead risked sinking it behind
+                      the section's own background in some browsers. */}
+                  <div className="absolute inset-0 opacity-0 scale-105 transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:opacity-100 group-hover:scale-100 group-active:opacity-100 group-active:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100">
                     <Image
                       src={s.image}
                       alt=""
@@ -203,16 +208,16 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-black/55" />
                   </div>
 
-                  <span className="text-xs tracking-[0.14em] text-[var(--site-text-muted)] group-hover:text-white transition-colors">
+                  <span className="relative z-10 text-xs tracking-[0.14em] text-[var(--site-text-muted)] group-hover:text-white transition-colors">
                     {s.n}
                   </span>
                   <span
-                    className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[var(--site-text-primary)] tracking-tight group-hover:text-white transition-colors"
+                    className="relative z-10 text-2xl sm:text-3xl lg:text-4xl font-normal text-[var(--site-text-primary)] tracking-tight group-hover:text-white transition-colors"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {s.title}
                   </span>
-                  <span className="hidden sm:block text-sm leading-relaxed text-[var(--site-text-secondary)] group-hover:text-white/85 max-w-[34ch] justify-self-end text-right transition-colors">
+                  <span className="relative z-10 hidden sm:block text-sm leading-relaxed text-[var(--site-text-secondary)] group-hover:text-white/85 max-w-[34ch] justify-self-end text-right transition-colors">
                     {s.desc}
                   </span>
                 </Link>

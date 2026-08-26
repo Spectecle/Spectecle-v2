@@ -116,7 +116,7 @@ export default function BlogPostClient({
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-[178px] pb-10 px-6">
+      <section className="pt-[144px] pb-10 px-6">
         <div className="max-w-3xl mx-auto">
           <Link href="/blog" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors text-sm mb-10">
             <ArrowLeft className="w-4 h-4" />

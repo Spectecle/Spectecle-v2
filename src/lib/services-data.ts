@@ -12,7 +12,7 @@ export const services: ServiceItem[] = [
     title: "Web Design & Development",
     desc: "Custom web design built for speed, SEO, and conversions.",
     href: "/services/web-design-detroit",
-    image: "https://images.unsplash.com/photo-1519332978332-21b7d621d05e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1519408469771-2586093c3f14?q=80&w=1200&auto=format&fit=crop",
   },
   {
     n: "02",

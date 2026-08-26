@@ -5,6 +5,7 @@ import "./globals.css";
 import ConditionalShell from "@/components/ConditionalShell";
 import GA4PageViewTracker from "@/components/GA4PageViewTracker";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const GA_MEASUREMENT_ID = "G-VK8T7HE7NR";
 
@@ -189,6 +190,7 @@ export default function RootLayout({
         <ConditionalShell>{children}</ConditionalShell>
         <GA4PageViewTracker />
         <Analytics />
+        <SpeedInsights />
         {/* Google Consent Mode: default to denied until CookieConsent grants it,
             so analytics_storage/ad_storage stay off for first-time visitors. */}
         <Script id="google-consent-default" strategy="beforeInteractive">

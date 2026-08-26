@@ -100,7 +100,7 @@ export default function CaseStudyClient({
   return (
     <>
       {/* ── HEADER ───────────────────────────────────── */}
-      <section className="pt-[178px] pb-8 px-6">
+      <section className="pt-[144px] pb-8 px-6">
         <div className="max-w-6xl mx-auto">
           <Link href="/work" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors text-sm mb-8">
             <ArrowLeft className="w-4 h-4" />
