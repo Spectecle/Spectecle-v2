@@ -189,7 +189,7 @@ export default function HomePage() {
                 <Link
                   href={s.href}
                   data-cursor
-                  className="group relative grid grid-cols-[auto_1fr] sm:grid-cols-[auto_1fr_auto] items-center gap-4 sm:gap-12 py-6 sm:py-8 px-4 -mx-4 overflow-hidden border-t border-[var(--site-border)] last:border-b transition-[padding-left] duration-[450ms] ease-[cubic-bezier(.16,1,.3,1)] sm:hover:pl-9"
+                  className="group relative grid grid-cols-[1fr] sm:grid-cols-[1fr_auto] items-center gap-4 sm:gap-12 py-6 sm:py-8 px-4 -mx-4 overflow-hidden border-t border-[var(--site-border)] last:border-b transition-[padding-left] duration-[450ms] ease-[cubic-bezier(.16,1,.3,1)] sm:hover:pl-9"
                 >
                   {/* Mobile: original copper-wash treatment, tap-driven only
                       (no :hover classes) so a single tap navigates instead of
@@ -214,9 +214,6 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-black/55" />
                   </div>
 
-                  <span className="relative z-10 text-xs tracking-[0.14em] text-[var(--site-text-muted)] group-active:text-[var(--site-copper)] sm:group-hover:text-white transition-colors">
-                    {s.n}
-                  </span>
                   <span
                     className="relative z-10 text-2xl sm:text-3xl lg:text-4xl font-normal text-[var(--site-text-primary)] tracking-tight group-active:text-[var(--site-copper-soft)] sm:group-hover:text-white transition-colors"
                     style={{ fontFamily: "var(--font-serif)" }}
@@ -294,7 +291,7 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
             <Reveal>
               <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
-                Nothing ships until it&apos;s right. That&apos;s the whole standard.
+                We don&apos;t call anything finished until it&apos;s right. That&apos;s the standard, every time.
               </h2>
             </Reveal>
           </div>
