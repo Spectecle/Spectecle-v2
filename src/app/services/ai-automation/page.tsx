@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronRight } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Bot, Workflow, Plug, MessageSquare } from "lucide-react";
+import { FAQAccordion } from "@/components/ui/FAQAccordion";
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -20,10 +21,10 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 }
 
 const features = [
-  { label: "Custom AI Agents", desc: "LLM-powered agents built for your business, not a generic chatbot." },
-  { label: "Workflow Automation", desc: "End-to-end automation using n8n, Make, Zapier, and custom APIs." },
-  { label: "CRM & System Integrations", desc: "Seamless data flow between your platforms. No manual entry." },
-  { label: "AI Chatbots", desc: "Context-aware bots for support, sales, and intake." },
+  { label: "Custom AI Agents", desc: "LLM-powered agents built for your business, not a generic chatbot.", Icon: Bot },
+  { label: "Workflow Automation", desc: "End-to-end automation using n8n, Make, Zapier, and custom APIs.", Icon: Workflow },
+  { label: "CRM & System Integrations", desc: "Seamless data flow between your platforms. No manual entry.", Icon: Plug },
+  { label: "AI Chatbots", desc: "Context-aware bots for support, sales, and intake.", Icon: MessageSquare },
 ];
 
 const faqs = [
@@ -113,13 +114,40 @@ export default function AIAutomationPage() {
           <Reveal className="mb-14">
             <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>What&apos;s included.</h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
               <Reveal key={f.label} delay={i * 0.07}>
-                <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
-                <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{f.desc}</p>
+                <div className="group border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
+                  <div className="w-10 h-10 rounded-full bg-[#9a5423]/10 flex items-center justify-center mb-4 group-hover:bg-[#9a5423]/20 transition-colors">
+                    <f.Icon className="w-5 h-5 text-[#9a5423]" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
+                  <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{f.desc}</p>
+                </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── VISUAL BREAK ──────────────────────────────── */}
+      <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
+        <Image
+          src="https://images.unsplash.com/photo-1592659762303-90081d34b277?q=80&w=2000&auto=format&fit=crop"
+          alt="Macro close-up of a circuit board"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+        <div className="absolute inset-0 flex items-end">
+          <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
+            <Reveal>
+              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">Working While You Sleep</p>
+              <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
+                Systems that keep running long after your team clocks out.
+              </h2>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -130,16 +158,9 @@ export default function AIAutomationPage() {
           <Reveal className="mb-14">
             <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Common questions.</h2>
           </Reveal>
-          <div className="divide-y divide-[var(--site-border)]">
-            {faqs.map((faq, i) => (
-              <Reveal key={i} delay={i * 0.05}>
-                <div className="py-7">
-                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-3">{faq.q}</h3>
-                  <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">{faq.a}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <FAQAccordion faqs={faqs} />
+          </Reveal>
         </div>
       </section>
 
@@ -149,17 +170,17 @@ export default function AIAutomationPage() {
           <Reveal className="mb-8">
             <h2 className="text-2xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Pair it with</h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8 max-w-2xl">
+          <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
             {[
               { title: "Web Design & Development", desc: "A fast, high-converting site to capture the leads your automation follows up on.", href: "/services/web-design-detroit" },
               { title: "SEO & Digital Marketing", desc: "Drive the organic traffic that feeds your AI-powered intake.", href: "/services/seo-agency-detroit" },
             ].map((s) => (
               <Reveal key={s.title}>
-                <Link href={s.href} className="group block">
+                <Link href={s.href} className="group block border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
                   <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#9a5423] transition-colors">{s.title}</h3>
                   <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{s.desc}</p>
                   <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#9a5423]">
-                    Learn more <ArrowUpRight className="w-3.5 h-3.5" />
+                    Learn more <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </Link>
               </Reveal>

@@ -20,6 +20,7 @@ import {
   CalendarCheck,
   ShieldCheck,
 } from "lucide-react";
+import { FAQAccordion } from "@/components/ui/FAQAccordion";
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -170,8 +171,8 @@ export default function MedicalWebsiteDesignPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {specialties.map((s, i) => (
               <Reveal key={s.label} delay={i * 0.05}>
-                <div className="group flex flex-col items-center text-center gap-3 border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 transition-colors">
-                  <div className="w-11 h-11 rounded-full bg-[#9a5423]/10 flex items-center justify-center">
+                <div className="group flex flex-col items-center text-center gap-3 border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
+                  <div className="w-11 h-11 rounded-full bg-[#9a5423]/10 flex items-center justify-center group-hover:bg-[#9a5423]/20 transition-colors">
                     <s.Icon className="w-5 h-5 text-[#9a5423]" strokeWidth={1.75} />
                   </div>
                   <span className="text-[var(--site-text-secondary)] text-sm leading-snug">{s.label}</span>
@@ -213,8 +214,8 @@ export default function MedicalWebsiteDesignPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
               <Reveal key={f.label} delay={i * 0.07}>
-                <div className="border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-[#9a5423]/10 flex items-center justify-center mb-4">
+                <div className="group border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
+                  <div className="w-10 h-10 rounded-full bg-[#9a5423]/10 flex items-center justify-center mb-4 group-hover:bg-[#9a5423]/20 transition-colors">
                     <f.Icon className="w-5 h-5 text-[#9a5423]" strokeWidth={1.75} />
                   </div>
                   <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
@@ -249,16 +250,9 @@ export default function MedicalWebsiteDesignPage() {
           <Reveal className="mb-14">
             <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Common questions.</h2>
           </Reveal>
-          <div className="divide-y divide-[var(--site-border)]">
-            {faqs.map((faq, i) => (
-              <Reveal key={i} delay={i * 0.05}>
-                <div className="py-7">
-                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-3">{faq.q}</h3>
-                  <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">{faq.a}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <FAQAccordion faqs={faqs} />
+          </Reveal>
         </div>
       </section>
 
@@ -268,17 +262,17 @@ export default function MedicalWebsiteDesignPage() {
           <Reveal className="mb-8">
             <h2 className="text-2xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Pair it with</h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8">
+          <div className="grid sm:grid-cols-2 gap-6">
             {[
               { title: "SEO for Medical Practices", desc: "Rank for the searches patients are actually typing into Google.", href: "/services/seo-agency-detroit" },
               { title: "AI & Automation", desc: "Automate appointment reminders and after-hours patient questions.", href: "/services/ai-automation" },
             ].map((s) => (
               <Reveal key={s.title}>
-                <Link href={s.href} className="group block">
+                <Link href={s.href} className="group block border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
                   <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#9a5423] transition-colors">{s.title}</h3>
                   <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{s.desc}</p>
                   <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#9a5423]">
-                    Learn more <ArrowUpRight className="w-3.5 h-3.5" />
+                    Learn more <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </Link>
               </Reveal>
