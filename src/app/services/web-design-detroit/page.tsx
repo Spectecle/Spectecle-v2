@@ -133,8 +133,8 @@ export default function WebDesignDetroitPage() {
       {/* ── VISUAL BREAK ──────────────────────────────── */}
       <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
         <Image
-          src="https://images.unsplash.com/photo-1767817099805-d79e31fb968c?q=80&w=2000&auto=format&fit=crop"
-          alt="Close-up of code on a dark screen"
+          src="https://images.unsplash.com/photo-1753162657497-82d7964273bd?q=80&w=2000&auto=format&fit=crop"
+          alt="A designer sketching a concept by hand"
           fill
           sizes="100vw"
           className="object-cover"
@@ -145,7 +145,7 @@ export default function WebDesignDetroitPage() {
             <Reveal>
               <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">Built In-House</p>
               <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
-                Every line of code written by hand, by our own team.
+                Every project shaped by real people, not a template.
               </h2>
             </Reveal>
           </div>

@@ -85,8 +85,8 @@ export default function AIAutomationPage() {
           <Reveal delay={0.15}>
             <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
               <Image
-                src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1600&auto=format&fit=crop"
-                alt="Abstract AI neural network"
+                src="https://images.unsplash.com/photo-1716406536069-c27068316336?q=80&w=1600&auto=format&fit=crop"
+                alt="Close-up of warm brass clockwork gears"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -133,8 +133,8 @@ export default function AIAutomationPage() {
       {/* ── VISUAL BREAK ──────────────────────────────── */}
       <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
         <Image
-          src="https://images.unsplash.com/photo-1592659762303-90081d34b277?q=80&w=2000&auto=format&fit=crop"
-          alt="Macro close-up of a circuit board"
+          src="https://images.unsplash.com/photo-1627899590758-9a41d43d49e6?q=80&w=2000&auto=format&fit=crop"
+          alt="An antique copper pocket watch"
           fill
           sizes="100vw"
           className="object-cover"
