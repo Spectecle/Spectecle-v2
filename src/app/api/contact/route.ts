@@ -41,14 +41,20 @@ export async function POST(req: Request) {
     const body = await req.json() as Record<string, string>;
     const { name, email, company, service, budget, message, _honey, _ts } = body;
 
-    // Honeypot — bots fill hidden fields, humans don't
-    if (_honey) {
-      console.warn("[contact] silent reject: honeypot filled", { honey: _honey, email });
+    const elapsed = Date.now() - Number(_ts || 0);
+
+    // Honeypot — bots fill hidden fields, humans don't. But browser/password-
+    // manager autofill can occasionally populate a hidden field too (seen in
+    // production with a real user's own email landing in it), so it's only
+    // trusted as a bot signal alongside an impossibly fast submission — a
+    // real bot fills everything and submits within milliseconds, whereas
+    // autofill-then-a-human-reads-the-form still takes normal human time.
+    if (_honey && elapsed < 3000) {
+      console.warn("[contact] silent reject: honeypot + fast submit", { elapsedMs: elapsed, email });
       return NextResponse.json({ success: true }); // silent reject
     }
 
     // Time check — bots submit instantly (< 3 s)
-    const elapsed = Date.now() - Number(_ts || 0);
     if (elapsed < 3000) {
       console.warn("[contact] silent reject: submitted too fast", { elapsedMs: elapsed, email });
       return NextResponse.json({ success: true }); // silent reject

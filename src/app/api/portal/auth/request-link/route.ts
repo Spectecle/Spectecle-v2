@@ -26,11 +26,11 @@ export async function POST(req: Request) {
     const body = (await req.json()) as Record<string, string>;
     const { email, _honey, _ts } = body;
 
-    // Honeypot — bots fill hidden fields, humans don't
-    if (_honey) return genericResponse();
-
-    // Time check — bots submit instantly (< 3 s)
+    // Honeypot — only trusted combined with an impossibly fast submission;
+    // autofill can occasionally populate a hidden field on its own (see
+    // src/app/api/contact/route.ts for the production case that surfaced this).
     const elapsed = Date.now() - Number(_ts || 0);
+    if (_honey && elapsed < 3000) return genericResponse();
     if (elapsed < 3000) return genericResponse();
 
     if (!email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {

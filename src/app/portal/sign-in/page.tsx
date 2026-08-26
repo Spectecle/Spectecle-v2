@@ -89,17 +89,19 @@ function SignInForm() {
             Enter your email and we&apos;ll send you a sign-in link — no password needed.
           </p>
 
+          {/* Honeypot lives outside the <form> so form-level autofill can't
+              associate it with this form's fillable fields. */}
+          <div style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} aria-hidden="true">
+            <input
+              type="text"
+              name="hp_confirm_field"
+              tabIndex={-1}
+              autoComplete="off"
+              value={honey}
+              onChange={(e) => setHoney(e.target.value)}
+            />
+          </div>
           <form onSubmit={handleSubmit} noValidate className="space-y-4">
-            <div style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} aria-hidden="true">
-              <input
-                type="text"
-                name="hp_confirm_field"
-                tabIndex={-1}
-                autoComplete="off"
-                value={honey}
-                onChange={(e) => setHoney(e.target.value)}
-              />
-            </div>
             <div>
               <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                 Email

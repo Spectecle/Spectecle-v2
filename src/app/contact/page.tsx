@@ -142,6 +142,13 @@ export default function ContactPage() {
       <section className="pb-20 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-5 gap-16 items-start">
           <div className="lg:col-span-3">
+            {/* Honeypot lives outside the <form> so browser/password-manager
+                autofill — which can populate hidden fields inside a form
+                regardless of visibility or name — has no form to associate
+                it with. Value is still wired into handleSubmit via state. */}
+            <div style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} aria-hidden="true">
+              <input type="text" name="hp_confirm_field" tabIndex={-1} autoComplete="off" value={honey} onChange={(e) => setHoney(e.target.value)} />
+            </div>
             <AnimatePresence mode="wait">
               {status === "success" ? (
                 <motion.div
@@ -180,9 +187,6 @@ export default function ContactPage() {
                   className="space-y-7"
                   noValidate
                 >
-                  <div style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} aria-hidden="true">
-                    <input type="text" name="hp_confirm_field" tabIndex={-1} autoComplete="off" value={honey} onChange={(e) => setHoney(e.target.value)} />
-                  </div>
                   <div>
                     <h2 className="text-3xl font-light text-[var(--site-text-primary)] mb-1" style={{ fontFamily: "var(--font-serif)" }}>
                       Start a conversation
