@@ -75,20 +75,10 @@ export default function SitemapPage() {
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="relative pt-[176px] pb-10 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#9a5423]/20 text-sm text-[#9a5423] font-medium mb-8">
+          <h1 className="inline-flex items-center gap-2 px-4 py-2 border border-[#9a5423]/20 text-sm text-[#9a5423] font-medium">
             <span className="w-2 h-2 bg-[#9a5423]" />
             Site Map
-          </div>
-
-          <h1
-            className="text-4xl md:text-5xl font-bold text-[var(--site-text-primary)] leading-tight"
-            style={{ fontFamily: "var(--font-sans)" }}
-          >
-            Every page, in one place.
           </h1>
-          <p className="mt-4 text-[var(--site-text-secondary)] leading-relaxed max-w-2xl">
-            A complete, clickable map of spectecle.com. Jump straight to any page, service, case study, or article.
-          </p>
         </div>
       </section>
 
