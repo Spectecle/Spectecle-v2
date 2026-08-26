@@ -104,7 +104,7 @@ export default function LawFirmWebsiteDesignPage() {
           </div>
 
           <Reveal delay={0.15}>
-            <div className="relative aspect-[4/3] overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden [clip-path:polygon(0_0,100%_0,100%_88%,88%_100%,0_100%)]">
               <Image
                 src="https://images.unsplash.com/photo-1619771678310-9f1e06085d86?q=80&w=1600&auto=format&fit=crop"
                 alt="Elegant law library bookshelves"
@@ -113,7 +113,6 @@ export default function LawFirmWebsiteDesignPage() {
                 className="object-cover"
                 priority
               />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(20,14,8,0.85)_100%)]" />
             </div>
           </Reveal>
         </div>

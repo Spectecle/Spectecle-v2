@@ -137,7 +137,7 @@ export default function ServicesPage() {
                   <p className="mt-2 text-[#9a5423] text-sm font-medium">{s.tagline}</p>
                   <p className="mt-3 text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-xl">{s.desc}</p>
                 </div>
-                <div className="hidden md:block relative w-full aspect-[4/3] overflow-hidden rounded-sm">
+                <div className="hidden md:block relative w-full aspect-[4/3] overflow-hidden [clip-path:polygon(0_0,100%_0,100%_88%,88%_100%,0_100%)]">
                   <Image
                     src={s.image}
                     alt=""
@@ -145,7 +145,6 @@ export default function ServicesPage() {
                     sizes="140px"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(20,14,8,0.85)_100%)]" />
                 </div>
                 <ArrowUpRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#9a5423] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all justify-self-end" />
               </Link>

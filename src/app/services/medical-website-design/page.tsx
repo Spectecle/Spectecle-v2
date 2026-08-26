@@ -113,7 +113,7 @@ export default function MedicalWebsiteDesignPage() {
           </div>
 
           <Reveal delay={0.15}>
-            <div className="relative aspect-[4/3] overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden [clip-path:polygon(0_0,100%_0,100%_88%,88%_100%,0_100%)]">
               <Image
                 src="https://images.unsplash.com/photo-1762625570087-6d98fca29531?q=80&w=1600&auto=format&fit=crop"
                 alt="Modern medical practice waiting room"
@@ -122,7 +122,6 @@ export default function MedicalWebsiteDesignPage() {
                 className="object-cover"
                 priority
               />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(20,14,8,0.85)_100%)]" />
             </div>
           </Reveal>
         </div>
@@ -150,7 +149,7 @@ export default function MedicalWebsiteDesignPage() {
             </Reveal>
           </div>
           <Reveal delay={0.15}>
-            <div className="relative aspect-[4/3] overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden [clip-path:polygon(0_0,100%_0,100%_88%,88%_100%,0_100%)]">
               <Image
                 src="https://images.unsplash.com/photo-1642844819197-5f5f21b89ff8?q=80&w=1200&auto=format&fit=crop"
                 alt="Modern private practice treatment room"
@@ -158,7 +157,6 @@ export default function MedicalWebsiteDesignPage() {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
               />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(20,14,8,0.85)_100%)]" />
             </div>
           </Reveal>
         </div>

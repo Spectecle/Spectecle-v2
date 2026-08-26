@@ -86,7 +86,7 @@ export default function WebDesignDetroitPage() {
           </div>
 
           <Reveal delay={0.15}>
-            <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
+            <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)] [clip-path:polygon(0_0,100%_0,100%_88%,88%_100%,0_100%)]">
               <Image
                 src="https://images.unsplash.com/photo-1487523117656-d5d117ad47c5?q=80&w=1600&auto=format&fit=crop"
                 alt="Modern web design workspace"
@@ -95,7 +95,6 @@ export default function WebDesignDetroitPage() {
                 className="object-cover"
                 priority
               />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(20,14,8,0.85)_100%)]" />
             </div>
           </Reveal>
         </div>
