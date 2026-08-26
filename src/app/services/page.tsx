@@ -54,15 +54,15 @@ const services = [
     href: "/services/ai-automation",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
   },
-  {
-    n: "04",
-    title: "The Loop",
-    tagline: "Your project, always within reach.",
-    desc: "A private client portal for tracking requests, analytics, invoices, and reports, all in one place. Included with every project, at no extra cost.",
-    href: "/services/the-loop",
-    image: "https://images.unsplash.com/photo-1759782552306-c972b2e11b07?q=80&w=1200&auto=format&fit=crop",
-  },
 ];
+
+const theLoop = {
+  title: "The Loop",
+  tagline: "Your project, always within reach.",
+  desc: "A private client portal for tracking requests, analytics, invoices, and reports, all in one place. Included with every project, at no extra cost.",
+  href: "/services/the-loop",
+  image: "https://images.unsplash.com/photo-1748764720733-3bb4c52ab6f9?q=80&w=1600&auto=format&fit=crop",
+};
 
 const additionalServices = [
   { title: "Brand Identity & Logo Design", desc: "Visual identity systems, brand guidelines, and logo design for new businesses and rebrands." },
@@ -123,7 +123,7 @@ export default function ServicesPage() {
             className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Our disciplines. <span className="italic text-[#9a5423]">One obsession.</span>
+            Three disciplines. <span className="italic text-[#9a5423]">One obsession.</span>
           </motion.h1>
           <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Search-first design, bold development, and intelligent automation, built around what your business actually needs to grow.
@@ -158,6 +158,42 @@ export default function ServicesPage() {
               </Link>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* ── THE LOOP ─────────────────────────────────── */}
+      <section className="py-14 px-6 border-t border-[var(--site-border)] bg-[var(--site-surface)]">
+        <div className="max-w-5xl mx-auto">
+          <Reveal>
+            <Link
+              href={theLoop.href}
+              className="group grid md:grid-cols-[1fr_1.2fr] gap-10 items-center border border-[var(--site-border)] bg-[var(--site-bg)] p-8 sm:p-10 hover:border-[#9a5423]/40 transition-colors"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden order-2 md:order-1">
+                <Image
+                  src={theLoop.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="order-1 md:order-2">
+                <span className="inline-block text-xs font-semibold text-[#9a5423] uppercase tracking-widest mb-3">
+                  Included With Every Project
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-light text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
+                  {theLoop.title}
+                </h2>
+                <p className="mt-2 text-[#9a5423] text-sm font-medium">{theLoop.tagline}</p>
+                <p className="mt-3 text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-md">{theLoop.desc}</p>
+                <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors">
+                  Learn more
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </div>
+              </div>
+            </Link>
+          </Reveal>
         </div>
       </section>
 

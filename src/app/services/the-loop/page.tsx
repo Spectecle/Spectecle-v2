@@ -85,8 +85,8 @@ export default function TheLoopPage() {
           <Reveal delay={0.15}>
             <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
               <Image
-                src="https://images.unsplash.com/photo-1759782552306-c972b2e11b07?q=80&w=1600&auto=format&fit=crop"
-                alt="A calm, organized desk by a sunlit window"
+                src="https://images.unsplash.com/photo-1748764720733-3bb4c52ab6f9?q=80&w=1600&auto=format&fit=crop"
+                alt="A sleek, modern architectural interior"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
