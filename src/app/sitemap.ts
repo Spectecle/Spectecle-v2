@@ -29,7 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/services/law-firm-website-design`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/services/medical-website-design`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/work`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${base}/pricing`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     ...caseStudyUrls,

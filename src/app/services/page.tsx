@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ProofGallery } from "@/components/ui/ProofGallery";
+import { PricingSection } from "@/components/PricingSection";
 import { ArrowUpRight } from "lucide-react";
 
 function Reveal({
@@ -151,6 +152,22 @@ export default function ServicesPage() {
           ))}
         </div>
       </section>
+
+      {/* ── PRICING ───────────────────────────────────── */}
+      <div className="pt-14 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-6xl mx-auto">
+          <Reveal className="mb-4">
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Pricing</span>
+            <h2 className="mt-4 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              Plans built to <span className="italic text-[#9a5423]">grow with your business.</span>
+            </h2>
+            <p className="text-[var(--site-text-secondary)] text-base max-w-xl mt-3">
+              A one-time design investment to get your website built, tailored to the level of customization your business needs.
+            </p>
+          </Reveal>
+        </div>
+      </div>
+      <PricingSection />
 
       {/* ── VISUAL BREAK ──────────────────────────────── */}
       <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">

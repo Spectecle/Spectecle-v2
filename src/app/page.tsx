@@ -189,33 +189,30 @@ export default function HomePage() {
                 <Link
                   href={s.href}
                   data-cursor
-                  className="group relative grid grid-cols-[auto_1fr] sm:grid-cols-[auto_1fr_auto] items-center gap-4 sm:gap-12 py-6 sm:py-8 border-t border-[var(--site-border)] last:border-b transition-[padding-left] duration-[450ms] ease-[cubic-bezier(.16,1,.3,1)] hover:pl-5"
+                  className="group relative grid grid-cols-[auto_1fr] sm:grid-cols-[auto_1fr_auto] items-center gap-4 sm:gap-12 py-6 sm:py-8 px-4 -mx-4 overflow-hidden border-t border-[var(--site-border)] last:border-b transition-[padding-left] duration-[450ms] ease-[cubic-bezier(.16,1,.3,1)] hover:pl-9"
                 >
-                  <span className="absolute inset-y-0 left-0 w-0 bg-[rgba(203,124,70,.06)] -z-10 transition-[width] duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:w-full" />
-
-                  {/* Image reveal, on hover, tap, or keyboard focus */}
-                  <div
-                    className="pointer-events-none absolute right-2 sm:right-16 top-1/2 -translate-y-1/2 w-[130px] h-[86px] sm:w-[220px] sm:h-[140px] rounded-sm overflow-hidden opacity-0 scale-95 z-10 shadow-2xl transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:opacity-100 group-hover:scale-100 group-active:opacity-100 group-active:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100"
-                  >
+                  {/* Full-row image reveal, on hover, tap, or keyboard focus */}
+                  <div className="absolute inset-0 -z-10 opacity-0 scale-105 transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:opacity-100 group-hover:scale-100 group-active:opacity-100 group-active:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100">
                     <Image
                       src={s.image}
                       alt=""
                       fill
-                      sizes="220px"
+                      sizes="100vw"
                       className="object-cover"
                     />
+                    <div className="absolute inset-0 bg-black/55" />
                   </div>
 
-                  <span className="text-xs tracking-[0.14em] text-[var(--site-text-muted)] group-hover:text-[var(--site-copper)] transition-colors">
+                  <span className="text-xs tracking-[0.14em] text-[var(--site-text-muted)] group-hover:text-white transition-colors">
                     {s.n}
                   </span>
                   <span
-                    className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[var(--site-text-primary)] tracking-tight group-hover:text-[var(--site-copper-soft)] transition-colors"
+                    className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[var(--site-text-primary)] tracking-tight group-hover:text-white transition-colors"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {s.title}
                   </span>
-                  <span className="hidden sm:block text-sm leading-relaxed text-[var(--site-text-secondary)] max-w-[34ch] justify-self-end text-right transition-opacity duration-300 group-hover:opacity-0">
+                  <span className="hidden sm:block text-sm leading-relaxed text-[var(--site-text-secondary)] group-hover:text-white/85 max-w-[34ch] justify-self-end text-right transition-colors">
                     {s.desc}
                   </span>
                 </Link>
@@ -275,8 +272,8 @@ export default function HomePage() {
       {/* ══ VISUAL BREAK ═══════════════════════════════ */}
       <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
         <Image
-          src="https://images.unsplash.com/photo-1779031242480-b3ee36ff9d02?q=80&w=2000&auto=format&fit=crop"
-          alt="Hands at work, shaping a detail with care and precision"
+          src="/home/standard.jpg"
+          alt="An elegant, considered space"
           fill
           sizes="100vw"
           className="object-cover"

@@ -13,7 +13,6 @@ const DARK_HERO_ROUTES = ["/", "/hello"];
 
 const navLinks = [
   { label: "Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
   { label: "Our Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
