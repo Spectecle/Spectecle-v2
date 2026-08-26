@@ -24,12 +24,13 @@ const services = [
   { label: "AI & Automation", href: "/services/ai-automation" },
   { label: "Law Firm Website Design", href: "/services/law-firm-website-design" },
   { label: "Medical Website Design", href: "/services/medical-website-design" },
+  { label: "The Loop", href: "/services/the-loop" },
 ];
 
 const legal = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Service", href: "/terms" },
-  { label: "Client Portal", href: "/portal" },
+  { label: "The Loop (Client Portal)", href: "/portal" },
 ];
 
 function LinkList({ links, className = "space-y-1" }: { links: { label: string; href: string }[]; className?: string }) {

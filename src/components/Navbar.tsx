@@ -114,7 +114,7 @@ export default function Navbar() {
               style={{ color: overDarkHero ? HERO_TEXT_MUTED : "var(--site-text-secondary)" }}
             >
               <User className="w-3.5 h-3.5" />
-              Client Portal
+              The Loop
             </Link>
             <Link
               href="/contact"
@@ -190,7 +190,7 @@ export default function Navbar() {
                   className="inline-flex items-center gap-2 text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer w-fit"
                 >
                   <User className="w-3.5 h-3.5" />
-                  Client Portal
+                  The Loop
                 </Link>
                 <a
                   href="tel:+13133534105"

@@ -83,7 +83,7 @@ function SignInForm() {
             className="text-2xl font-bold text-[var(--portal-text-primary)] mb-1"
             style={{ fontFamily: "var(--font-sans)" }}
           >
-            Client Portal
+            The Loop
           </h1>
           <p className="text-[var(--portal-text-muted)] text-sm mb-8">
             Enter your email and we&apos;ll send you a sign-in link — no password needed.
@@ -93,7 +93,7 @@ function SignInForm() {
             <div style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} aria-hidden="true">
               <input
                 type="text"
-                name="website"
+                name="hp_confirm_field"
                 tabIndex={-1}
                 autoComplete="off"
                 value={honey}

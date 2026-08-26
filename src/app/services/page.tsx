@@ -54,6 +54,14 @@ const services = [
     href: "/services/ai-automation",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
   },
+  {
+    n: "04",
+    title: "The Loop",
+    tagline: "Your project, always within reach.",
+    desc: "A private client portal for tracking requests, analytics, invoices, and reports, all in one place. Included with every project, at no extra cost.",
+    href: "/services/the-loop",
+    image: "https://images.unsplash.com/photo-1759782552306-c972b2e11b07?q=80&w=1200&auto=format&fit=crop",
+  },
 ];
 
 const additionalServices = [
@@ -115,7 +123,7 @@ export default function ServicesPage() {
             className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Three disciplines. <span className="italic text-[#9a5423]">One obsession.</span>
+            Our disciplines. <span className="italic text-[#9a5423]">One obsession.</span>
           </motion.h1>
           <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Search-first design, bold development, and intelligent automation, built around what your business actually needs to grow.
