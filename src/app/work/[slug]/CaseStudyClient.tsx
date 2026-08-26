@@ -6,7 +6,6 @@ import {
   ArrowLeft,
   ArrowUpRight,
   ChevronRight,
-  ExternalLink,
   CheckCircle2,
   Camera,
   Search,
@@ -120,16 +119,7 @@ export default function CaseStudyClient({
           >
             {project.title}
           </motion.h1>
-          <p className="mt-4 text-[#cb7c46] font-medium text-lg">{project.tagline}</p>
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors text-sm group"
-          >
-            <ExternalLink className="w-3.5 h-3.5" />
-            {project.domain}
-          </a>
+          <p className="mt-4 text-[#9a5423] font-medium text-lg">{project.tagline}</p>
         </div>
       </section>
 
@@ -152,7 +142,7 @@ export default function CaseStudyClient({
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {project.heroMetrics.map((m) => (
             <div key={m.label}>
-              <div className="text-3xl md:text-4xl font-light text-[#cb7c46]" style={{ fontFamily: "var(--font-serif)" }}>
+              <div className="text-3xl md:text-4xl font-light text-[#9a5423]" style={{ fontFamily: "var(--font-serif)" }}>
                 {m.value}
               </div>
               <p className="mt-1 text-[var(--site-text-muted)] text-xs uppercase tracking-wider">{m.label}</p>
@@ -207,7 +197,7 @@ export default function CaseStudyClient({
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06 + 0.1, duration: 0.5, ease: "easeOut" }}
                 >
-                  <Icon className="w-5 h-5 text-[#cb7c46] mb-3" />
+                  <Icon className="w-5 h-5 text-[#9a5423] mb-3" />
                   <p className="text-[var(--site-text-primary)] font-semibold text-sm mb-1">{f.label}</p>
                   <p className="text-[var(--site-text-muted)] text-xs leading-relaxed">{f.desc}</p>
                 </motion.div>
@@ -230,7 +220,7 @@ export default function CaseStudyClient({
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {project.results.map((r, i) => (
               <Reveal key={r.label} delay={i * 0.08}>
-                <div className="text-3xl md:text-4xl font-light text-[#cb7c46]" style={{ fontFamily: "var(--font-serif)" }}>
+                <div className="text-3xl md:text-4xl font-light text-[#9a5423]" style={{ fontFamily: "var(--font-serif)" }}>
                   {r.value}
                 </div>
                 <p className="mt-2 text-[var(--site-text-secondary)] text-sm leading-snug">{r.label}</p>
@@ -258,7 +248,7 @@ export default function CaseStudyClient({
             <div className="space-y-3">
               {project.deliverables.map((d) => (
                 <div key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
-                  <CheckCircle2 className="w-4 h-4 shrink-0 text-[#cb7c46]" />
+                  <CheckCircle2 className="w-4 h-4 shrink-0 text-[#9a5423]" />
                   {d}
                 </div>
               ))}
@@ -294,12 +284,11 @@ export default function CaseStudyClient({
             <Link href={`/work/${nextProject.slug}`} className="group flex items-center justify-between">
               <div>
                 <p className="text-[var(--site-text-muted)] text-sm">{nextProject.category}</p>
-                <h3 className="text-3xl font-light text-[var(--site-text-primary)] mt-1 group-hover:text-[#cb7c46] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
+                <h3 className="text-3xl font-light text-[var(--site-text-primary)] mt-1 group-hover:text-[#9a5423] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
                   {nextProject.title}
                 </h3>
-                <p className="text-[var(--site-text-secondary)] text-sm mt-1">{nextProject.domain}</p>
               </div>
-              <ChevronRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#cb7c46] transition-colors shrink-0" />
+              <ChevronRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#9a5423] transition-colors shrink-0" />
             </Link>
           </Reveal>
         </div>
@@ -310,7 +299,7 @@ export default function CaseStudyClient({
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Ready for results <span className="italic text-[#cb7c46]">like these?</span>
+              Ready for results <span className="italic text-[#9a5423]">like these?</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. We&apos;ll map out exactly how we can

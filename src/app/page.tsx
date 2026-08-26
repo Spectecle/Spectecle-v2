@@ -145,7 +145,7 @@ export default function HomePage() {
                 className="text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.16] tracking-tight"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                A studio for brands that want to look <em className="italic" style={{ color: "#cb7c46" }}>inevitable</em> online.
+                A studio for brands that want to look <em className="italic" style={{ color: "#9a5423" }}>inevitable</em> online.
               </p>
             </Reveal>
             <div>

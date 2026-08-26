@@ -30,7 +30,7 @@ export const posts: BlogPost[] = [
     excerpt:
       "Most photographers compete hard on Instagram and ignore search entirely, which is exactly why local SEO is the highest-ROI marketing channel most Michigan studios aren't using.",
     category: "Local SEO",
-    categoryColor: "text-[#cb7c46]",
+    categoryColor: "text-[#9a5423]",
     readTime: "6 min read",
     publishedAt: "March 18, 2026",
     metaTitle: "Photography Website Design Michigan: Get More Bookings From Google | Spectecle",
@@ -123,7 +123,7 @@ export const posts: BlogPost[] = [
     excerpt:
       "The best contractor in Michigan isn't always the one who wins the job. The one who shows up first on Google wins the job, and here's exactly how to be that contractor.",
     category: "Local SEO",
-    categoryColor: "text-[#cb7c46]",
+    categoryColor: "text-[#9a5423]",
     readTime: "7 min read",
     publishedAt: "March 4, 2026",
     metaTitle: "Contractor Website Design Michigan: Local SEO to Rank #1 | Spectecle",
@@ -323,7 +323,7 @@ export const posts: BlogPost[] = [
     excerpt:
       "Most Michigan makeup artists live on Instagram and ignore Google, which is exactly why local SEO delivers such strong ROI for the beauty businesses that use it correctly.",
     category: "Local SEO",
-    categoryColor: "text-[#cb7c46]",
+    categoryColor: "text-[#9a5423]",
     readTime: "5 min read",
     publishedAt: "February 5, 2026",
     metaTitle: "Makeup Artist SEO Michigan: Fill Your Booking Calendar | Spectecle",
@@ -409,7 +409,7 @@ export const posts: BlogPost[] = [
     excerpt:
       "The conversation around AI has been dominated by hype. Here's what Michigan businesses are actually deploying, and what's genuinely delivering measurable ROI.",
     category: "AI & Automation",
-    categoryColor: "text-[#cb7c46]",
+    categoryColor: "text-[#9a5423]",
     readTime: "7 min read",
     publishedAt: "January 22, 2026",
     metaTitle: "AI Business Automation Michigan 2026: What Actually Works | Spectecle",

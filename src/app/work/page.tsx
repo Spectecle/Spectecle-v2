@@ -41,7 +41,7 @@ export default function WorkPage() {
             className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Work that drives <span className="italic text-[#cb7c46]">measurable growth.</span>
+            Work that drives <span className="italic text-[#9a5423]">measurable growth.</span>
           </motion.h1>
           <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-2xl mx-auto leading-relaxed">
             Web design, SEO, and AI automation projects for businesses across the country.
@@ -66,20 +66,10 @@ export default function WorkPage() {
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
-                  <div className="mt-5 flex items-start justify-between gap-3">
-                    <div>
-                      <span className="text-xs text-[var(--site-text-muted)] uppercase tracking-wider">{p.category}</span>
-                      <h2 className="mt-1 text-2xl font-light text-[var(--site-text-primary)] group-hover:text-[#cb7c46] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
-                        {p.title}
-                      </h2>
-                    </div>
-                    <span className="text-xs font-semibold text-[#cb7c46] shrink-0 mt-2">{p.cardResult}</span>
-                  </div>
-                  <p className="mt-2 text-sm text-[var(--site-text-secondary)] leading-relaxed line-clamp-2 max-w-md">{p.cardDesc}</p>
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--site-text-primary)] group-hover:gap-2.5 transition-all">
-                    View Case Study
-                    <ArrowUpRight className="w-4 h-4" />
-                  </span>
+                  <h2 className="mt-5 text-2xl font-light text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
+                    {p.title}
+                  </h2>
+                  <p className="mt-2 text-sm text-[var(--site-text-secondary)] leading-relaxed max-w-md">{p.tagline}</p>
                 </Link>
               ))}
             </div>
@@ -92,7 +82,7 @@ export default function WorkPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Your business could be <span className="italic text-[#cb7c46]">our next case study.</span>
+              Your business could be <span className="italic text-[#9a5423]">our next case study.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Serving businesses nationwide. Let&apos;s build

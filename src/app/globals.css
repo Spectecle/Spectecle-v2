@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #0c0a08;
-  --color-cream-light: #171210;
-  --color-cream-dark: #060504;
-  --color-ink: #f2ece1;
-  --color-ink-soft: #b0a493;
-  --color-taupe: #7c7264;
+  --color-cream: #f7f2e9;
+  --color-cream-light: #fffdf8;
+  --color-cream-dark: #efe6d3;
+  --color-ink: #211a13;
+  --color-ink-soft: #5b4e3f;
+  --color-taupe: #8b7e6a;
   --color-espresso: #38190c;
-  --color-brass: #cb7c46;
-  --color-brass-light: #e3a876;
+  --color-brass: #9a5423;
+  --color-brass-light: #b36530;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #0c0a08;
+  background-color: #f7f2e9;
   overflow-x: clip;
 }
 
 body {
-  background-color: #0c0a08;
-  color: #f2ece1;
+  background-color: #f7f2e9;
+  color: #211a13;
   font-family: var(--font-sans, system-ui, sans-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,8 +28,8 @@ body {
 }
 
 ::selection {
-  background: rgba(203, 124, 70, 0.4);
-  color: #f2ece1;
+  background: rgba(154, 84, 35, 0.25);
+  color: #211a13;
 }
 
 /* Scrollbar */
@@ -37,20 +37,20 @@ body {
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #0c0a08;
+  background: #f7f2e9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cb7c46;
+  background: #9a5423;
   border-radius: 0;
 }
 
 /* Emphasis text utility — solid copper, no gradient-clip */
 .gradient-text {
-  color: #e3a876;
+  color: #9a5423;
 }
 
 .gradient-text-gold {
-  color: #e3a876;
+  color: #9a5423;
 }
 
 /* Flat bordered card — no blur, no radius */
@@ -71,10 +71,10 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Pill CTA button — bone fill, copper hover-slide */
+/* Pill CTA button — ink fill, copper hover-slide */
 .btn-primary {
-  background: #f2ece1;
-  color: #160f09;
+  background: var(--site-text-primary, #211a13);
+  color: var(--site-bg, #f7f2e9);
   border: none;
   border-radius: 100px;
   cursor: pointer;
@@ -87,7 +87,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: #cb7c46;
+  background: var(--site-copper, #9a5423);
   transform: translateY(101%);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 0;
@@ -241,8 +241,8 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* ── Marketing site theme ─────────────────────────────────────
-   Single fixed dark editorial theme — supersedes the old light/dark
-   toggle. Scoped under .site-shell so the portal keeps its own system. */
+   Single fixed light editorial theme — warm cream, not stark white.
+   Scoped under .site-shell so the portal keeps its own system. */
 .site-shell {
   min-height: 100vh;
   background-color: var(--site-bg);
@@ -250,14 +250,14 @@ input:focus, textarea:focus, select:focus {
 }
 
 .site-shell {
-  --site-bg: #0c0a08;
-  --site-surface: #171210;
-  --site-text-primary: #f2ece1;
-  --site-text-secondary: #b0a493;
-  --site-text-muted: #7c7264;
-  --site-border: rgba(242, 236, 225, 0.14);
-  --site-copper: #cb7c46;
-  --site-copper-soft: #e3a876;
+  --site-bg: #f7f2e9;
+  --site-surface: #efe6d3;
+  --site-text-primary: #211a13;
+  --site-text-secondary: #5b4e3f;
+  --site-text-muted: #8b7e6a;
+  --site-border: rgba(33, 26, 19, 0.14);
+  --site-copper: #9a5423;
+  --site-copper-soft: #b36530;
 }
 
 .site-shell .glass {

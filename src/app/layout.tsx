@@ -187,14 +187,24 @@ export default function RootLayout({
         <div className="noise-overlay" aria-hidden="true" />
         <ConditionalShell>{children}</ConditionalShell>
         <Analytics />
+        {/* Google Consent Mode: default to denied until CookieConsent grants it,
+            so analytics_storage/ad_storage stay off for first-time visitors. */}
+        <Script id="google-consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              ad_storage: 'denied',
+            });
+          `}
+        </Script>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
         <Script id="google-tag" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}

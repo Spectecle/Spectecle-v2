@@ -82,7 +82,7 @@ export default function SEOAgencyDetroitPage() {
               className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              SEO Agency <span className="italic text-[#cb7c46]">Detroit, Michigan.</span>
+              SEO Agency <span className="italic text-[#9a5423]">Detroit, Michigan.</span>
             </motion.h1>
 
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl max-w-2xl leading-relaxed">
@@ -147,7 +147,7 @@ export default function SEOAgencyDetroitPage() {
             <ul className="space-y-3">
               {deliverables.map((d) => (
                 <li key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
-                  <CheckCircle2 className="w-4 h-4 text-[#cb7c46] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#9a5423] shrink-0" />
                   {d}
                 </li>
               ))}
@@ -174,7 +174,7 @@ export default function SEOAgencyDetroitPage() {
                 { value: "24hr", label: "Response guarantee" },
               ].map((s) => (
                 <div key={s.label}>
-                  <div className="text-lg font-light text-[#cb7c46]" style={{ fontFamily: "var(--font-serif)" }}>{s.value}</div>
+                  <div className="text-lg font-light text-[#9a5423]" style={{ fontFamily: "var(--font-serif)" }}>{s.value}</div>
                   <div className="text-xs text-[var(--site-text-muted)] mt-0.5">{s.label}</div>
                 </div>
               ))}
@@ -215,9 +215,9 @@ export default function SEOAgencyDetroitPage() {
             ].map((s) => (
               <Reveal key={s.title}>
                 <Link href={s.href} className="group block">
-                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#cb7c46] transition-colors">{s.title}</h3>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#9a5423] transition-colors">{s.title}</h3>
                   <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{s.desc}</p>
-                  <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#cb7c46]">
+                  <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#9a5423]">
                     Learn more <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
                 </Link>
@@ -254,11 +254,11 @@ export default function SEOAgencyDetroitPage() {
               <Reveal key={post.href}>
                 <Link href={post.href} className="group block h-full">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-semibold text-[#cb7c46]">{post.category}</span>
+                    <span className="text-xs font-semibold text-[#9a5423]">{post.category}</span>
                     <span className="text-[var(--site-text-muted)]">·</span>
                     <span className="text-xs text-[var(--site-text-muted)]">{post.readTime}</span>
                   </div>
-                  <h3 className="text-[var(--site-text-primary)] font-semibold text-sm mb-2 group-hover:text-[#cb7c46] transition-colors leading-snug">{post.title}</h3>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold text-sm mb-2 group-hover:text-[#9a5423] transition-colors leading-snug">{post.title}</h3>
                   <p className="text-[var(--site-text-muted)] text-xs leading-relaxed">{post.excerpt}</p>
                 </Link>
               </Reveal>
@@ -272,7 +272,7 @@ export default function SEOAgencyDetroitPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Detroit expertise. <span className="italic text-[#cb7c46]">Nationwide reach.</span>
+              Detroit expertise. <span className="italic text-[#9a5423]">Nationwide reach.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. We&apos;ll audit your current search presence and tell you exactly what it would take to rank.

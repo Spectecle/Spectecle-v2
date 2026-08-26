@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { SiteThemeProvider } from "./SiteThemeProvider";
 import CustomCursor from "./CustomCursor";
+import CookieConsent from "./CookieConsent";
 
 const STANDALONE_ROUTES: string[] = [];
 
@@ -23,6 +24,7 @@ export default function ConditionalShell({ children }: { children: React.ReactNo
     return (
       <SiteThemeProvider>
         <main className="flex-1">{children}</main>
+        <CookieConsent />
       </SiteThemeProvider>
     );
   }
@@ -33,6 +35,7 @@ export default function ConditionalShell({ children }: { children: React.ReactNo
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
+      <CookieConsent />
     </SiteThemeProvider>
   );
 }

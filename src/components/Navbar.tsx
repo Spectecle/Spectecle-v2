@@ -6,12 +6,14 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Phone, User } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
+import { HERO_TEXT, HERO_TEXT_MUTED, HERO_BORDER, HERO_ACCENT } from "@/components/ui/hero";
+
+const DARK_HERO_ROUTES = ["/", "/hello"];
 
 const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
   { label: "Our Work", href: "/work" },
-  { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -24,6 +26,11 @@ export default function Navbar() {
   // /hello is a standalone campaign landing page, not part of the normal
   // click-the-logo-to-go-home flow, so it gets an explicit Home link.
   const links = pathname === "/hello" ? [{ label: "Home", href: "/" }, ...navLinks] : navLinks;
+
+  // "/" and "/hello" open on the dark photo hero, so the transparent,
+  // pre-scroll navbar needs the hero's light text instead of the site's
+  // (now light-theme) dark ink, or it disappears against the photo.
+  const overDarkHero = DARK_HERO_ROUTES.includes(pathname) && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -43,17 +50,16 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "bg-[var(--site-bg)]/95 backdrop-blur-xl border-b border-[var(--site-border)]" : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "backdrop-blur-xl border-b border-[var(--site-border)]" : ""}`}
+        style={{ background: scrolled ? "rgba(247,242,233,0.95)" : "transparent" }}
       >
         <nav className="w-full px-6 lg:px-10 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3.5 cursor-pointer group" data-cursor>
             <LogoMark className="w-16 h-16 drop-shadow-sm" />
             <span
-              className="text-[13px] font-semibold uppercase tracking-[0.32em] text-[var(--site-text-primary)]"
-              style={{ fontFamily: "var(--font-sans)" }}
+              className="text-[13px] font-semibold uppercase tracking-[0.32em]"
+              style={{ fontFamily: "var(--font-sans)", color: overDarkHero ? HERO_TEXT : "var(--site-text-primary)" }}
             >
               Spectecle
             </span>
@@ -66,23 +72,31 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 data-cursor
-                className={`group relative text-[13px] font-semibold uppercase tracking-[0.14em] transition-opacity cursor-pointer pb-1 text-[var(--site-text-primary)] ${
+                className={`group relative text-[13px] font-semibold uppercase tracking-[0.14em] transition-opacity cursor-pointer pb-1 ${
                   pathname === link.href ? "opacity-100" : "opacity-65 hover:opacity-100"
                 }`}
+                style={{ color: overDarkHero ? HERO_TEXT : "var(--site-text-primary)" }}
               >
                 {link.label}
-                <span className="absolute left-0 bottom-0 h-px w-0 bg-[var(--site-copper-soft)] transition-[width] duration-300 group-hover:w-full" />
+                <span
+                  className="absolute left-0 bottom-0 h-px w-0 transition-[width] duration-300 group-hover:w-full"
+                  style={{ background: overDarkHero ? HERO_ACCENT : "var(--site-copper-soft)" }}
+                />
               </Link>
             ))}
           </div>
 
           {/* Phone + portal + desktop CTA + mobile menu button */}
           <div className="flex items-center gap-4">
-            <div className="hidden lg:flex items-center gap-4 pr-4 mr-1 border-r border-[var(--site-border)]">
+            <div
+              className="hidden lg:flex items-center gap-4 pr-4 mr-1 border-r"
+              style={{ borderColor: overDarkHero ? HERO_BORDER : "var(--site-border)" }}
+            >
               <a
                 href="tel:+13133534105"
                 data-cursor
-                className="flex items-center gap-1.5 text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 text-sm transition-colors cursor-pointer"
+                style={{ color: overDarkHero ? HERO_TEXT_MUTED : "var(--site-text-secondary)" }}
               >
                 <Phone className="w-3.5 h-3.5" />
                 (313) 353-4105
@@ -91,7 +105,8 @@ export default function Navbar() {
             <Link
               href="/portal"
               data-cursor
-              className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
+              className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium transition-colors cursor-pointer"
+              style={{ color: overDarkHero ? HERO_TEXT_MUTED : "var(--site-text-secondary)" }}
             >
               <User className="w-3.5 h-3.5" />
               Client Portal
@@ -99,13 +114,15 @@ export default function Navbar() {
             <Link
               href="/contact"
               data-cursor
-              className="hidden md:inline-flex items-center gap-2 text-[11.5px] font-medium uppercase tracking-[0.2em] border border-[var(--site-border)] rounded-full px-[22px] py-3 cursor-pointer transition-colors duration-300 hover:border-[var(--site-copper-soft)] hover:bg-[var(--site-copper)] hover:text-[#160f09]"
+              className="hidden md:inline-flex items-center gap-2 text-[11.5px] font-medium uppercase tracking-[0.2em] border rounded-full px-[22px] py-3 cursor-pointer transition-colors duration-300 hover:border-[var(--site-copper-soft)] hover:bg-[var(--site-copper)] hover:text-[#f7f2e9]"
+              style={{ borderColor: overDarkHero ? HERO_BORDER : "var(--site-border)", color: overDarkHero ? HERO_TEXT : "var(--site-text-primary)" }}
             >
               Start a project
             </Link>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
+              className="md:hidden p-2 transition-colors cursor-pointer"
+              style={{ color: overDarkHero ? HERO_TEXT : "var(--site-text-secondary)" }}
               aria-label="Toggle menu"
             >
               {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

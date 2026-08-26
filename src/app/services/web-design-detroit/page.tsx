@@ -88,7 +88,7 @@ export default function WebDesignDetroitPage() {
               className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Web Design & <span className="italic text-[#cb7c46]">Development</span> that performs.
+              Web Design & <span className="italic text-[#9a5423]">Development</span> that performs.
             </motion.h1>
 
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl leading-relaxed">
@@ -153,7 +153,7 @@ export default function WebDesignDetroitPage() {
             <ul className="space-y-3">
               {deliverables.map((d) => (
                 <li key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
-                  <CheckCircle2 className="w-4 h-4 text-[#cb7c46] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#9a5423] shrink-0" />
                   {d}
                 </li>
               ))}
@@ -229,9 +229,9 @@ export default function WebDesignDetroitPage() {
             ].map((s) => (
               <Reveal key={s.title}>
                 <Link href={s.href} className="group block">
-                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#cb7c46] transition-colors">{s.title}</h3>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#9a5423] transition-colors">{s.title}</h3>
                   <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{s.desc}</p>
-                  <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#cb7c46]">
+                  <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#9a5423]">
                     Learn more <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
                 </Link>
@@ -246,7 +246,7 @@ export default function WebDesignDetroitPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Proven craft. <span className="italic text-[#cb7c46]">Nationwide reach.</span>
+              Proven craft. <span className="italic text-[#9a5423]">Nationwide reach.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. No sales pitch, just honest advice on what your site needs to rank and convert.

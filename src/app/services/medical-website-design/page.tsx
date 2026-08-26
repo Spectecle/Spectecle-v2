@@ -134,7 +134,7 @@ export default function MedicalWebsiteDesignPage() {
               className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)] leading-[1.08]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Medical website design <span className="italic text-[#cb7c46]">built to earn patient trust.</span>
+              Medical website design <span className="italic text-[#9a5423]">built to earn patient trust.</span>
             </motion.h1>
 
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl leading-relaxed">
@@ -214,9 +214,9 @@ export default function MedicalWebsiteDesignPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {specialties.map((s, i) => (
               <Reveal key={s.label} delay={i * 0.05}>
-                <div className="group flex flex-col items-center text-center gap-3 border border-[var(--site-border)] p-6 h-full hover:border-[#cb7c46]/50 transition-colors">
-                  <div className="w-11 h-11 rounded-full bg-[#cb7c46]/10 flex items-center justify-center">
-                    <s.Icon className="w-5 h-5 text-[#cb7c46]" strokeWidth={1.75} />
+                <div className="group flex flex-col items-center text-center gap-3 border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 transition-colors">
+                  <div className="w-11 h-11 rounded-full bg-[#9a5423]/10 flex items-center justify-center">
+                    <s.Icon className="w-5 h-5 text-[#9a5423]" strokeWidth={1.75} />
                   </div>
                   <span className="text-[var(--site-text-secondary)] text-sm leading-snug">{s.label}</span>
                 </div>
@@ -260,9 +260,9 @@ export default function MedicalWebsiteDesignPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f, i) => (
               <Reveal key={f.label} delay={i * 0.07}>
-                <div className="border border-[var(--site-border)] p-6 h-full hover:border-[#cb7c46]/50 transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-[#cb7c46]/10 flex items-center justify-center mb-4">
-                    <f.Icon className="w-5 h-5 text-[#cb7c46]" strokeWidth={1.75} />
+                <div className="border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-[#9a5423]/10 flex items-center justify-center mb-4">
+                    <f.Icon className="w-5 h-5 text-[#9a5423]" strokeWidth={1.75} />
                   </div>
                   <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
                   <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{f.desc}</p>
@@ -294,10 +294,10 @@ export default function MedicalWebsiteDesignPage() {
                       size="compact"
                     />
                     <div className="flex items-center justify-between px-4 py-4">
-                      <span className="text-sm font-semibold text-[var(--site-text-primary)] group-hover:text-[#cb7c46] transition-colors">
+                      <span className="text-sm font-semibold text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors">
                         View the {project.title} case study
                       </span>
-                      <ArrowUpRight className="w-4 h-4 text-[var(--site-text-muted)] group-hover:text-[#cb7c46] transition-colors" />
+                      <ArrowUpRight className="w-4 h-4 text-[var(--site-text-muted)] group-hover:text-[#9a5423] transition-colors" />
                     </div>
                   </Link>
                 </Reveal>
@@ -311,7 +311,7 @@ export default function MedicalWebsiteDesignPage() {
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto text-center">
           <Reveal>
-            <Quote className="w-8 h-8 text-[#cb7c46] mx-auto mb-6" strokeWidth={1.5} />
+            <Quote className="w-8 h-8 text-[#9a5423] mx-auto mb-6" strokeWidth={1.5} />
             <blockquote
               className="text-2xl md:text-3xl font-light text-[var(--site-text-primary)] leading-snug"
               style={{ fontFamily: "var(--font-serif)" }}
@@ -337,7 +337,7 @@ export default function MedicalWebsiteDesignPage() {
             <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl">
               {deliverables.map((d) => (
                 <li key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
-                  <CheckCircle2 className="w-4 h-4 text-[#cb7c46] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#9a5423] shrink-0" />
                   {d}
                 </li>
               ))}
@@ -397,9 +397,9 @@ export default function MedicalWebsiteDesignPage() {
             ].map((s) => (
               <Reveal key={s.title}>
                 <Link href={s.href} className="group block">
-                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#cb7c46] transition-colors">{s.title}</h3>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#9a5423] transition-colors">{s.title}</h3>
                   <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{s.desc}</p>
-                  <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#cb7c46]">
+                  <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#9a5423]">
                     Learn more <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
                 </Link>
@@ -414,7 +414,7 @@ export default function MedicalWebsiteDesignPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Give your practice <span className="italic text-[#cb7c46]">the site it deserves.</span>
+              Give your practice <span className="italic text-[#9a5423]">the site it deserves.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free strategy call. No sales pitch, just honest advice on what your practice&apos;s site needs to earn trust and fill your schedule.

@@ -12,7 +12,7 @@ export default function PricingPage() {
             className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Plans built to <span className="italic text-[#cb7c46]">grow with your business.</span>
+            Plans built to <span className="italic text-[#9a5423]">grow with your business.</span>
           </h1>
           <p className="mt-6 text-[var(--site-text-secondary)] leading-relaxed max-w-xl mx-auto text-lg">
             Choose a one-time design investment to get your website built, tailored to the
@@ -26,11 +26,8 @@ export default function PricingPage() {
       {/* ── CTA ─────────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">
-            Not Sure Which Plan Fits?
-          </span>
           <h2
-            className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]"
+            className="text-4xl md:text-5xl font-light text-[var(--site-text-primary)]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Let&apos;s talk it through.

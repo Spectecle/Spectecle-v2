@@ -7,7 +7,6 @@ import { ProofGallery } from "@/components/ui/ProofGallery";
 import {
   Mail,
   Phone,
-  MapPin,
   ArrowUpRight,
   CheckCircle2,
 } from "lucide-react";
@@ -53,7 +52,6 @@ function Reveal({
 const contactInfo = [
   { icon: Mail, label: "Email", value: "hello@spectecle.com", href: "mailto:hello@spectecle.com" },
   { icon: Phone, label: "Phone", value: "+1 (313) 353-4105", href: "tel:+13133534105" },
-  { icon: MapPin, label: "Coverage", value: "United States, Remote", href: "/work" },
 ];
 
 const budgetOptions = ["Under $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+", "Not sure yet"];
@@ -112,7 +110,7 @@ export default function ContactPage() {
   const inputClass = (field: string) =>
     `w-full bg-transparent border-b ${
       errors[field] ? "border-rose-400" : "border-[var(--site-border)]"
-    } text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] px-0 py-3 text-sm transition-all duration-200 focus:border-[#cb7c46] outline-none`;
+    } text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] px-0 py-3 text-sm transition-all duration-200 focus:border-[#9a5423] outline-none`;
 
   return (
     <>
@@ -129,7 +127,7 @@ export default function ContactPage() {
             className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Let&apos;s build something <span className="italic text-[#cb7c46]">that actually works.</span>
+            Let&apos;s build something <span className="italic text-[#9a5423]">that actually works.</span>
           </motion.h1>
           <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto leading-relaxed">
             Tell us about your goals. We&apos;ll get back to you with honest advice
@@ -150,7 +148,7 @@ export default function ContactPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="py-10 text-center"
                 >
-                  <CheckCircle2 className="w-10 h-10 text-[#cb7c46] mx-auto mb-6" />
+                  <CheckCircle2 className="w-10 h-10 text-[#9a5423] mx-auto mb-6" />
                   <h2 className="text-3xl font-light text-[var(--site-text-primary)] mb-4" style={{ fontFamily: "var(--font-serif)" }}>
                     Message Received!
                   </h2>
@@ -159,14 +157,14 @@ export default function ContactPage() {
                   </p>
                   <p className="text-[var(--site-text-muted)] text-sm mb-10">
                     Check your inbox. A confirmation is on its way to{" "}
-                    <span className="text-[#cb7c46]">{formData.email}</span>.
+                    <span className="text-[#9a5423]">{formData.email}</span>.
                   </p>
                   <button
                     onClick={() => {
                       setStatus("idle");
                       setFormData({ name: "", email: "", company: "", service: "", budget: "", message: "" });
                     }}
-                    className="text-[#cb7c46] text-sm font-medium border-b border-[#cb7c46] pb-0.5 cursor-pointer"
+                    className="text-[#9a5423] text-sm font-medium border-b border-[#9a5423] pb-0.5 cursor-pointer"
                   >
                     ← Send another message
                   </button>
@@ -295,7 +293,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 {contactInfo.map((c) => (
                   <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined} className="flex items-center gap-3 group cursor-pointer">
-                    <c.icon className="w-4 h-4 text-[#cb7c46] shrink-0" />
+                    <c.icon className="w-4 h-4 text-[#9a5423] shrink-0" />
                     <div>
                       <span className="text-xs text-[var(--site-text-muted)] uppercase tracking-wider mr-2">{c.label}</span>
                       <span className="text-sm text-[var(--site-text-secondary)] group-hover:text-[var(--site-text-primary)] transition-colors">{c.value}</span>

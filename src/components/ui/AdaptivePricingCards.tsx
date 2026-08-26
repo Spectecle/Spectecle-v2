@@ -35,7 +35,7 @@ export function AdaptivePricingCards({ tiers }: { tiers: PricingTier[] }) {
         >
           {tier.badge && (
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-              <div className="bg-[#cb7c46] text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap">
+              <div className="bg-[#9a5423] text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap">
                 {tier.badge}
               </div>
             </div>
@@ -63,7 +63,7 @@ export function AdaptivePricingCards({ tiers }: { tiers: PricingTier[] }) {
               {tier.features.map((feature, i) => (
                 <div key={i} className="flex items-start gap-2.5">
                   {feature.included ? (
-                    <Check className="h-4 w-4 text-[#cb7c46] shrink-0 mt-0.5" />
+                    <Check className="h-4 w-4 text-[#9a5423] shrink-0 mt-0.5" />
                   ) : (
                     <X className="h-4 w-4 text-[var(--site-text-muted)] shrink-0 mt-0.5" />
                   )}
@@ -82,7 +82,7 @@ export function AdaptivePricingCards({ tiers }: { tiers: PricingTier[] }) {
               className={cn(
                 "block w-full py-3 text-sm font-semibold text-center rounded-lg transition-colors duration-300",
                 tier.highlighted
-                  ? "bg-[#cb7c46] text-white hover:bg-[#e0602f]"
+                  ? "bg-[#9a5423] text-white hover:bg-[#e0602f]"
                   : "bg-[var(--site-border)] text-[var(--site-text-primary)] hover:bg-[var(--site-text-muted)] hover:text-white"
               )}
             >
