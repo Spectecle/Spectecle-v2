@@ -105,7 +105,7 @@ export default function ServicesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       {/* ── HERO ────────────────────────────────────── */}
-      <section className="pt-[260px] pb-14 px-6">
+      <section className="pt-[210px] pb-14 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}

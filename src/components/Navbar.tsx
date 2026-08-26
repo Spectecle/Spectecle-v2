@@ -55,7 +55,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 pt-[100px] transition-all duration-500 ${scrolled ? "backdrop-blur-xl border-b border-[var(--site-border)]" : ""}`}
+        className={`fixed top-0 left-0 right-0 z-50 pt-[50px] transition-all duration-500 ${scrolled ? "backdrop-blur-xl border-b border-[var(--site-border)]" : ""}`}
         style={{ background: scrolled ? "rgba(247,242,233,0.95)" : "transparent" }}
       >
         <nav className="w-full px-6 lg:px-10 h-20 flex items-center justify-between">
@@ -156,7 +156,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="absolute right-0 top-0 h-full w-full sm:w-96 bg-[var(--site-bg)] border-l border-[var(--site-border)] p-10 pt-[200px] flex flex-col gap-2"
+              className="absolute right-0 top-0 h-full w-full sm:w-96 bg-[var(--site-bg)] border-l border-[var(--site-border)] p-10 pt-[150px] flex flex-col gap-2"
             >
               {links.map((link, i) => (
                 <motion.div

@@ -192,7 +192,7 @@ export default function PrivacyPage() {
       />
 
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="relative pt-[260px] pb-10 px-6">
+      <section className="relative pt-[210px] pb-10 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#9a5423]/20 text-sm text-[#9a5423] font-medium mb-8">
             <span className="w-2 h-2 bg-[#9a5423]" />

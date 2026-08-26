@@ -258,6 +258,28 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══ VISUAL BREAK ═══════════════════════════════ */}
+      <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
+        <Image
+          src="https://images.unsplash.com/photo-1762182741687-deec9d1b386c?q=80&w=2000&auto=format&fit=crop"
+          alt="Sunlight falling across an elegant, quiet room"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+        <div className="absolute inset-0 flex items-end">
+          <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
+            <Reveal>
+              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">The Standard</p>
+              <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
+                Considered enough to earn the first look. Sharp enough to earn the second.
+              </h2>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* ══ CLOSING CTA ═══════════════════════════════ */}
       <section className="py-32 sm:py-40 px-6 bg-[var(--site-surface)] border-t border-[var(--site-border)]">
         <Reveal>

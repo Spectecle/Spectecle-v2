@@ -32,7 +32,7 @@ export default function WorkPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-[260px] pb-12 px-6">
+      <section className="pt-[210px] pb-12 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}

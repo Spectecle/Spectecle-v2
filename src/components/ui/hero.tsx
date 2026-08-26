@@ -29,7 +29,7 @@ const SLIDES = [
   {
     id: "brand",
     image: "/hero/typography.jpg",
-    caption: "Brand & Identity",
+    caption: "AI & Workflow Automation",
   },
 ];
 
@@ -38,7 +38,6 @@ const SLIDE_DURATION = 5600;
 export default function Hero() {
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const t0 = useRef(0);
 
@@ -55,7 +54,6 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    if (paused) return;
     let raf: number;
     const loop = (now: number) => {
       const p = (now - t0.current) / SLIDE_DURATION;
@@ -68,17 +66,10 @@ export default function Hero() {
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [index, paused, goTo]);
+  }, [index, goTo]);
 
   return (
-    <div
-      className="relative h-screen w-full overflow-hidden"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => {
-        setPaused(false);
-        t0.current = performance.now();
-      }}
-    >
+    <div className="relative h-screen w-full overflow-hidden">
       {/* Background image reel */}
       <div className="absolute inset-0 z-0">
         {SLIDES.map((slide, i) => (

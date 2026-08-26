@@ -6,7 +6,7 @@ export default function PricingPage() {
   return (
     <div className="relative min-h-screen">
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-[260px] pb-10 px-6 text-center">
+      <section className="pt-[210px] pb-10 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <h1
             className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
