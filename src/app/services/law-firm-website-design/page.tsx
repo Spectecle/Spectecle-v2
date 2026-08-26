@@ -4,9 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronRight, CheckCircle2, Quote } from "lucide-react";
-import { ProofGallery } from "@/components/ui/ProofGallery";
-import { BrowserMockup } from "@/components/ui/BrowserMockup";
-import { pickProjects } from "@/app/work/projects-data";
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -34,68 +31,42 @@ const practiceAreas = [
 ];
 
 const features = [
-  { label: "Authority-First Design", desc: "Layouts built around credentials, bar admissions, and case results, so a first-time visitor trusts you before they ever pick up the phone." },
-  { label: "Practice Area Pages", desc: "A dedicated, SEO-structured page for every area you practice, written to answer what a prospective client is actually searching for." },
-  { label: "Attorney Bio & Credentials Pages", desc: "Professional profiles that establish experience and approachability, the two things clients weigh most when choosing counsel." },
-  { label: "Consultation-Focused Forms", desc: "Low-friction intake forms designed to convert a nervous first-time visitor into a booked consultation, not just a form-fill." },
-  { label: "Legal Schema & Structured Data", desc: "Attorney and LegalService schema markup that helps search engines understand and surface your practice correctly." },
-  { label: "Mobile-First, Always-On", desc: "Most legal searches happen on a phone, often outside business hours. Every site is built to load fast and convert on mobile first." },
+  { label: "Authority-First Design", desc: "Layouts built around credentials and case results, so visitors trust you before they call." },
+  { label: "Practice Area Pages", desc: "A dedicated, SEO-structured page for every area you practice." },
+  { label: "Consultation-Focused Forms", desc: "Low-friction intake built to convert a nervous first-time visitor." },
+  { label: "Legal Schema & Structured Data", desc: "Markup that helps search engines surface your practice correctly." },
 ];
 
 const deliverables = [
-  "Custom-designed, fully responsive website",
-  "Practice area pages built around real search intent",
+  "Custom-designed, fully responsive site",
+  "Practice area pages built around search intent",
   "Attorney profile & credentials pages",
-  "Consultation request flow, built to convert",
   "Legal schema & structured data markup",
-  "GA4 & Search Console setup for ongoing visibility",
 ];
 
 const process = [
-  { step: "Discovery", desc: "We learn your practice areas, your ideal client, and what's actually held your current site back." },
-  { step: "Design", desc: "A custom visual direction built around authority and trust, refined with your feedback before a line of code is written." },
-  { step: "Development", desc: "Built from scratch in Next.js: fast, secure, and structured for search from day one." },
-  { step: "Launch & Care", desc: "A supported launch, then ongoing updates as your practice, team, and content evolve." },
+  { step: "Discovery", desc: "We learn your practice areas and ideal client." },
+  { step: "Design", desc: "A custom direction built around authority and trust." },
+  { step: "Development", desc: "Built from scratch in Next.js: fast and structured for search." },
+  { step: "Launch & Care", desc: "A supported launch, then ongoing updates." },
 ];
 
 const faqs = [
   {
-    q: "How is a law firm website different from a regular business website?",
-    a: "Legal services are a high-trust, high-stakes purchase. Visitors are often searching during a stressful moment and deciding, in seconds, whether to trust you with something serious. A law firm site has to establish credibility immediately: credentials, case focus, and a clear, low-pressure path to a consultation, not just a generic contact form.",
+    q: "How is a law firm website different?",
+    a: "Visitors are often searching during a stressful moment. Your site has to establish credibility and a clear path to consultation, immediately.",
   },
   {
-    q: "Do you design sites for solo attorneys and small firms, or only large practices?",
-    a: "Both. We've built sites for solo practitioners and small, focused practices, and the same principles apply regardless of size: clear practice area pages, strong credibility signals, and a consultation flow that actually converts.",
-  },
-  {
-    q: "Can you build pages for multiple practice areas?",
-    a: "Yes. Multi-practice firms get a dedicated, individually optimized page for each practice area, so someone searching for a specific issue, like custody or a DUI, lands on content built specifically for that search, not a generic services page.",
+    q: "Do you design for solo attorneys or only large firms?",
+    a: "Both. The same principles apply regardless of size: clear practice pages, strong credibility signals, and a consultation flow that converts.",
   },
   {
     q: "Do you follow attorney advertising rules?",
-    a: "We build the site around the content and disclosures you provide and will work with your guidance on state bar advertising requirements. We are not a substitute for your own compliance review, and we recommend having your content reviewed against your state bar's advertising rules before launch.",
-  },
-  {
-    q: "Will the site help with local SEO for my practice area and city?",
-    a: "Yes. Local SEO is available alongside the website build: Google Business Profile optimization, location-specific content, and legal schema markup that helps you show up for searches like 'family lawyer near me' or 'personal injury attorney in [your city].'",
-  },
-  {
-    q: "Can you migrate content from our current website?",
-    a: "Yes. We audit your existing site's content, redirect old URLs properly to protect any search rankings you've already earned, and rebuild what's worth keeping into the new design.",
-  },
-  {
-    q: "How much does a law firm website cost?",
-    a: "Every project is custom quoted based on the number of practice areas, pages, and integrations you need. Reach out for a free, no-pressure quote scoped to your firm.",
-  },
-  {
-    q: "Do you offer ongoing website maintenance for law firms?",
-    a: "Yes. Ongoing care plans keep your site secure, current, and updated as your team, results, and practice areas change, without you needing an in-house web team.",
+    a: "We build around the content and disclosures you provide, but recommend your own bar review before launch.",
   },
 ];
 
 export default function LawFirmWebsiteDesignPage() {
-  const heroProject = pickProjects(["mi-family-lawyer"])[0];
-
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
@@ -125,7 +96,7 @@ export default function LawFirmWebsiteDesignPage() {
             </motion.h1>
 
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl leading-relaxed">
-              Custom-built websites for attorneys and law firms, designed to convert a stressful search into a booked consultation. Authority-first design, practice area pages built around real search intent, and a client experience that reflects the seriousness of what you do.
+              Custom-built websites for attorneys, designed to turn a stressful search into a booked consultation.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-8">
@@ -133,8 +104,8 @@ export default function LawFirmWebsiteDesignPage() {
                 Get a Free Quote
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
-              <Link href="/work/mi-family-lawyer" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
-                View a Law Firm Case Study <ChevronRight className="w-4 h-4" />
+              <Link href="/work" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
+                View Our Work <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -142,8 +113,8 @@ export default function LawFirmWebsiteDesignPage() {
           <Reveal delay={0.15}>
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1600&auto=format&fit=crop"
-                alt="Elegant law firm library and office interior"
+                src="https://images.unsplash.com/photo-1619771678310-9f1e06085d86?q=80&w=1600&auto=format&fit=crop"
+                alt="Elegant law library bookshelves"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -154,21 +125,13 @@ export default function LawFirmWebsiteDesignPage() {
         </div>
       </section>
 
-      {/* ── WHY IT'S DIFFERENT ───────────────────────── */}
-      <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+      {/* ── CATCHPHRASE ──────────────────────────────── */}
+      <section className="py-16 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
-              Legal services are sold on trust, not price.
+            <h2 className="text-3xl md:text-5xl font-light text-[var(--site-text-primary)] leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
+              Trust is won <span className="italic text-[#9a5423]">in the first five seconds.</span>
             </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed mb-4">
-              Most people don&apos;t search for an attorney on a good day. They&apos;re dealing with a divorce, an arrest, an injury, or a business dispute, and they&apos;re trying to decide, in a matter of seconds, who they can trust with it. A generic, template-driven website undermines that decision before you ever get a phone call.
-            </p>
-            <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">
-              We design law firm websites around that reality: clear credentials, an approachable but authoritative tone, and a path to consultation that feels like a first conversation, not a form dropped into a queue. Every practice area gets its own page, written for the specific questions a client in that situation is actually asking Google.
-            </p>
           </Reveal>
         </div>
       </section>
@@ -178,12 +141,9 @@ export default function LawFirmWebsiteDesignPage() {
         <div className="max-w-5xl mx-auto text-center">
           <Reveal>
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Practice Areas</span>
-            <h2 className="mt-4 text-3xl md:text-4xl font-light text-[var(--site-text-primary)] mb-4" style={{ fontFamily: "var(--font-serif)" }}>
+            <h2 className="mt-4 text-3xl md:text-4xl font-light text-[var(--site-text-primary)] mb-8" style={{ fontFamily: "var(--font-serif)" }}>
               Built for every area of practice.
             </h2>
-            <p className="text-[var(--site-text-secondary)] mb-10 max-w-2xl mx-auto">
-              Whether you run a solo practice or a multi-attorney firm, every practice area gets a dedicated, purpose-built page.
-            </p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
               {practiceAreas.map((area) => (
                 <span key={area} className="text-[var(--site-text-secondary)] text-sm">
@@ -200,11 +160,8 @@ export default function LawFirmWebsiteDesignPage() {
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
             <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>What&apos;s included.</h2>
-            <p className="text-[var(--site-text-secondary)] text-base max-w-xl mt-3">
-              Every law firm website engagement is built around one goal: turning a visitor&apos;s hardest moment into a booked consultation.
-            </p>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
             {features.map((f, i) => (
               <Reveal key={f.label} delay={i * 0.07}>
                 <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
@@ -215,38 +172,6 @@ export default function LawFirmWebsiteDesignPage() {
         </div>
       </section>
 
-      {/* ── CASE STUDY SHOWCASE ──────────────────────── */}
-      {heroProject && (
-        <section className="py-14 px-6 border-t border-[var(--site-border)]">
-          <div className="max-w-5xl mx-auto">
-            <Reveal className="mb-10">
-              <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Real Work</span>
-              <h2 className="mt-4 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-                A law firm site built the same way yours would be.
-              </h2>
-              <p className="text-[var(--site-text-secondary)] text-base max-w-xl mt-3">
-                {heroProject.title}, a Michigan family law practice, needed a site that reflected the trust and sensitivity family law requires.
-              </p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <Link href={`/work/${heroProject.slug}`} className="group block border border-[var(--site-border)] p-2">
-                <BrowserMockup
-                  url={heroProject.domain}
-                  screenshotUrl={heroProject.screenshotUrl}
-                  alt={`${heroProject.title} law firm website screenshot`}
-                />
-                <div className="flex items-center justify-between px-4 py-4">
-                  <span className="text-sm font-semibold text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors">
-                    View the {heroProject.title} case study
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-[var(--site-text-muted)] group-hover:text-[#9a5423] transition-colors" />
-                </div>
-              </Link>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
       {/* ── TESTIMONIAL ──────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto text-center">
@@ -256,7 +181,7 @@ export default function LawFirmWebsiteDesignPage() {
               className="text-2xl md:text-3xl font-light text-[var(--site-text-primary)] leading-snug"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              &ldquo;Working with Spectecle was hands down the best investment I made for my firm. The website looks professional and authoritative, and within a few months I was getting consultation requests from clients who found me on Google.&rdquo;
+              &ldquo;Working with Spectecle was hands down the best investment I made for my firm. Within a few months I was getting consultation requests from clients who found me on Google.&rdquo;
             </blockquote>
             <p className="mt-6 text-sm font-semibold text-[var(--site-text-primary)]">Neda Mohiedeen</p>
             <p className="text-xs text-[var(--site-text-muted)]">Attorney, MI Family Lawyer</p>
@@ -289,12 +214,9 @@ export default function LawFirmWebsiteDesignPage() {
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-8" style={{ fontFamily: "var(--font-serif)" }}>
               What you walk away with.
             </h2>
-            <p className="text-[var(--site-text-secondary)] text-base mb-8 max-w-xl">
-              A complete, production-ready website, not a handoff to another team to finish.
-            </p>
             <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl">
               {deliverables.map((d) => (
                 <li key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
@@ -309,19 +231,6 @@ export default function LawFirmWebsiteDesignPage() {
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── PROOF ─────────────────────────────────────── */}
-      <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <ProofGallery
-              slugs={["mi-family-lawyer", "salazar-drywall-pros", "the-stat-clinic"]}
-              heading="Real sites. Real clients."
-              subheading="A few recent projects, built the same way yours would be."
-            />
           </Reveal>
         </div>
       </section>
@@ -351,11 +260,10 @@ export default function LawFirmWebsiteDesignPage() {
           <Reveal className="mb-8">
             <h2 className="text-2xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Pair it with</h2>
           </Reveal>
-          <div className="grid sm:grid-cols-3 gap-x-10 gap-y-8">
+          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8 max-w-2xl">
             {[
-              { title: "SEO for Law Firms", desc: "Rank for the searches your future clients are actually typing into Google.", href: "/services/seo-agency-detroit" },
-              { title: "AI & Automation", desc: "Automate intake questions and after-hours consultation requests.", href: "/services/ai-automation" },
-              { title: "Law Firm SEO Guide", desc: "Read our full guide on what makes a Michigan law firm rank.", href: "/blog/law-firm-website-design-michigan" },
+              { title: "SEO for Law Firms", desc: "Rank for the searches your future clients are actually typing.", href: "/services/seo-agency-detroit" },
+              { title: "AI & Automation", desc: "Automate intake and after-hours consultation requests.", href: "/services/ai-automation" },
             ].map((s) => (
               <Reveal key={s.title}>
                 <Link href={s.href} className="group block">
@@ -379,7 +287,7 @@ export default function LawFirmWebsiteDesignPage() {
               Represent your firm <span className="italic text-[#9a5423]">the way it deserves.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
-              Book a free strategy call. No sales pitch, just honest advice on what your firm&apos;s site needs to earn trust and win consultations.
+              Book a free strategy call. Honest advice on what your firm&apos;s site needs to earn trust and win consultations.
             </p>
             <div className="mt-10">
               <Link href="/contact" className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1">

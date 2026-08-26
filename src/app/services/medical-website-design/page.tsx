@@ -18,14 +18,9 @@ import {
   HeartPulse,
   HeartHandshake,
   ClipboardList,
-  UserCheck,
   CalendarCheck,
-  Database,
   ShieldCheck,
 } from "lucide-react";
-import { ProofGallery } from "@/components/ui/ProofGallery";
-import { BrowserMockup } from "@/components/ui/BrowserMockup";
-import { pickProjects } from "@/app/work/projects-data";
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -53,62 +48,35 @@ const specialties = [
 ];
 
 const features = [
-  { label: "Patient-First Design", desc: "Calm, clear layouts that reduce anxiety and make it obvious what to do next, whether that's booking, calling, or finding a location.", Icon: HeartHandshake },
-  { label: "Service & Treatment Pages", desc: "A dedicated page for every service you offer, written in language patients actually search for, not clinical jargon.", Icon: ClipboardList },
-  { label: "Provider Bio Pages", desc: "Profiles that build confidence in your team's credentials and approach, the details patients look for before choosing a provider.", Icon: UserCheck },
-  { label: "Appointment Request Flow", desc: "A low-friction booking or request flow, built to integrate with the scheduling tools your practice already uses.", Icon: CalendarCheck },
-  { label: "Medical Schema & Structured Data", desc: "Structured data that helps search engines understand your specialties, locations, and services correctly.", Icon: Database },
-  { label: "Privacy-Conscious Forms", desc: "Contact and intake forms built with patient privacy in mind. We'll work with your practice's compliance requirements during setup.", Icon: ShieldCheck },
+  { label: "Patient-First Design", desc: "Calm, clear layouts that make it obvious what to do next.", Icon: HeartHandshake },
+  { label: "Service & Treatment Pages", desc: "Written in language patients actually search for.", Icon: ClipboardList },
+  { label: "Appointment Request Flow", desc: "Built to integrate with the scheduling tools you already use.", Icon: CalendarCheck },
+  { label: "Privacy-Conscious Forms", desc: "Built with patient privacy in mind from the start.", Icon: ShieldCheck },
 ];
 
 const deliverables = [
-  "Custom-designed, fully responsive website",
-  "Service & treatment pages built around patient search intent",
+  "Custom-designed, fully responsive site",
+  "Service pages built around patient search intent",
   "Provider bio & credentials pages",
-  "Appointment request flow, built to convert",
   "Medical schema & structured data markup",
-  "GA4 & Search Console setup for ongoing visibility",
 ];
 
 const faqs = [
   {
-    q: "How is a medical website different from a regular business website?",
-    a: "Patients research providers before they ever call, and they're often anxious, in discomfort, or comparing options quickly. A healthcare site has to build credibility and calm at the same time: clear provider credentials, an easy way to see what you treat, and a simple, low-pressure way to request an appointment.",
+    q: "How is a medical website different?",
+    a: "Patients are often anxious or comparing options quickly. Your site has to build credibility and calm at once, with a simple path to book.",
   },
   {
-    q: "Do you design sites for dentists and other specialty practices?",
-    a: "Yes. We've designed for dentists, optometrists, internal medicine, chiropractic and physical therapy practices, med spas, mental health practices, and specialty clinics. Every specialty gets service pages written around what that specific type of patient is actually searching for.",
-  },
-  {
-    q: "Can the site integrate with our existing scheduling software?",
-    a: "In most cases, yes. We'll work with the booking or patient portal system your practice already uses, whether that's an embedded widget, a request form that routes to your front desk, or a link to your existing scheduler.",
+    q: "Can the site integrate with our scheduling software?",
+    a: "In most cases, yes, whether that's an embedded widget, a request form, or a link to your existing scheduler.",
   },
   {
     q: "Will our website be HIPAA compliant?",
-    a: "We build with patient privacy as a priority: privacy-conscious forms, secure hosting, and no unnecessary collection of health information on the public site. HIPAA compliance for your practice as a whole depends on your specific systems and processes beyond just the website, so we recommend confirming your full compliance setup with your own legal or compliance advisor.",
-  },
-  {
-    q: "Will the site help with local SEO for my practice?",
-    a: "Yes. Local SEO is available alongside the website build: Google Business Profile optimization, location-specific content, and medical schema markup that helps you show up for searches like 'dentist near me' or 'internal medicine doctor in [your city].'",
-  },
-  {
-    q: "Can you migrate content from our current website?",
-    a: "Yes. We audit your existing site's content, redirect old URLs properly to protect any search rankings you've already earned, and rebuild what's worth keeping into the new design.",
-  },
-  {
-    q: "How much does a medical practice website cost?",
-    a: "Every project is custom quoted based on the number of services, providers, and integrations you need. Reach out for a free, no-pressure quote scoped to your practice.",
-  },
-  {
-    q: "Do you offer ongoing website maintenance for medical practices?",
-    a: "Yes. Ongoing care plans keep your site secure, current, and updated as your providers, services, and hours change, without you needing an in-house web team.",
+    a: "We build with patient privacy as a priority. Full compliance depends on your systems beyond the website, so confirm your setup with your own advisor.",
   },
 ];
 
 export default function MedicalWebsiteDesignPage() {
-  const featuredProjects = pickProjects(["vue-optometry", "the-stat-clinic"]);
-  const heroProject = featuredProjects[0];
-
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
@@ -138,7 +106,7 @@ export default function MedicalWebsiteDesignPage() {
             </motion.h1>
 
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl leading-relaxed">
-              Custom-built websites for doctors, dentists, and private practices, designed to turn a nervous search into a booked appointment. Patient-first design, service pages built around real search intent, and a calm, credible experience from the first click.
+              Custom-built websites for doctors, dentists, and private practices, designed to turn a search into a booked appointment.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-8">
@@ -146,8 +114,8 @@ export default function MedicalWebsiteDesignPage() {
                 Get a Free Quote
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
-              <Link href="/work/vue-optometry" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
-                View a Practice Case Study <ChevronRight className="w-4 h-4" />
+              <Link href="/work" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
+                View Our Work <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -155,8 +123,8 @@ export default function MedicalWebsiteDesignPage() {
           <Reveal delay={0.15}>
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1600&auto=format&fit=crop"
-                alt="Modern private medical practice interior"
+                src="https://images.unsplash.com/photo-1762625570087-6d98fca29531?q=80&w=1600&auto=format&fit=crop"
+                alt="Modern medical practice waiting room"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -167,29 +135,32 @@ export default function MedicalWebsiteDesignPage() {
         </div>
       </section>
 
+      {/* ── CATCHPHRASE ──────────────────────────────── */}
+      <section className="py-16 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-4xl mx-auto text-center">
+          <Reveal>
+            <h2 className="text-3xl md:text-5xl font-light text-[var(--site-text-primary)] leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
+              Patients decide <span className="italic text-[#9a5423]">before they ever call.</span>
+            </h2>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ── WHY IT'S DIFFERENT ───────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-[1fr_0.85fr] gap-16 items-center">
           <div>
             <Reveal>
-              <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
-                Patients choose a provider before they ever call.
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed mb-4">
-                By the time someone picks up the phone to book, they&apos;ve already formed an opinion of your practice from your website. A slow, dated, or confusing site quietly pushes them toward a competitor, before you ever get the chance to make your case in person.
-              </p>
               <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">
-                We design medical and dental websites around that moment: calm, credible visuals, service pages written in plain language, provider profiles that build confidence, and a booking path simple enough to use from a phone in a waiting room. Every specialty, from general dentistry to internal medicine, gets content built around what that patient is actually searching for.
+                A slow, dated, or confusing site quietly pushes patients toward a competitor before you ever get the chance to make your case. We design around calm, credible visuals, plain-language service pages, and a booking path simple enough to use from a phone in a waiting room.
               </p>
             </Reveal>
           </div>
           <Reveal delay={0.15}>
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="/vue-optometry-reception.png"
-                alt="Vue Optometry practice reception and boutique interior"
+                src="https://images.unsplash.com/photo-1642844819197-5f5f21b89ff8?q=80&w=1200&auto=format&fit=crop"
+                alt="Modern private practice treatment room"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
@@ -204,12 +175,9 @@ export default function MedicalWebsiteDesignPage() {
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14 text-center">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Specialties</span>
-            <h2 className="mt-4 text-3xl md:text-4xl font-light text-[var(--site-text-primary)] mb-4" style={{ fontFamily: "var(--font-serif)" }}>
+            <h2 className="mt-4 text-3xl md:text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
               Built for every kind of practice.
             </h2>
-            <p className="text-[var(--site-text-secondary)] max-w-2xl mx-auto">
-              From solo private practices to multi-provider clinics, every specialty gets a site built around its patients.
-            </p>
           </Reveal>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {specialties.map((s, i) => (
@@ -253,11 +221,8 @@ export default function MedicalWebsiteDesignPage() {
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
             <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>What&apos;s included.</h2>
-            <p className="text-[var(--site-text-secondary)] text-base max-w-xl mt-3">
-              Every medical website engagement is built around one goal: turning a visitor&apos;s search into a booked appointment.
-            </p>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
               <Reveal key={f.label} delay={i * 0.07}>
                 <div className="border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 transition-colors">
@@ -272,40 +237,6 @@ export default function MedicalWebsiteDesignPage() {
           </div>
         </div>
       </section>
-
-      {/* ── CASE STUDY SHOWCASE ──────────────────────── */}
-      {heroProject && (
-        <section className="py-14 px-6 border-t border-[var(--site-border)]">
-          <div className="max-w-5xl mx-auto">
-            <Reveal className="mb-10">
-              <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Real Work</span>
-              <h2 className="mt-4 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-                Practice websites built the same way yours would be.
-              </h2>
-            </Reveal>
-            <div className="grid md:grid-cols-2 gap-8">
-              {featuredProjects.map((project, i) => (
-                <Reveal key={project.slug} delay={i * 0.1}>
-                  <Link href={`/work/${project.slug}`} className="group block border border-[var(--site-border)] p-2">
-                    <BrowserMockup
-                      url={project.domain}
-                      screenshotUrl={project.screenshotUrl}
-                      alt={`${project.title} website screenshot`}
-                      size="compact"
-                    />
-                    <div className="flex items-center justify-between px-4 py-4">
-                      <span className="text-sm font-semibold text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors">
-                        View the {project.title} case study
-                      </span>
-                      <ArrowUpRight className="w-4 h-4 text-[var(--site-text-muted)] group-hover:text-[#9a5423] transition-colors" />
-                    </div>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ── TESTIMONIAL ──────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
@@ -328,12 +259,9 @@ export default function MedicalWebsiteDesignPage() {
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-8" style={{ fontFamily: "var(--font-serif)" }}>
               What you walk away with.
             </h2>
-            <p className="text-[var(--site-text-secondary)] text-base mb-8 max-w-xl">
-              A complete, production-ready website, not a handoff to another team to finish.
-            </p>
             <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl">
               {deliverables.map((d) => (
                 <li key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
@@ -348,19 +276,6 @@ export default function MedicalWebsiteDesignPage() {
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── PROOF ─────────────────────────────────────── */}
-      <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <ProofGallery
-              slugs={["vue-optometry", "the-stat-clinic", "dearborn-cleaners"]}
-              heading="Real sites. Real practices."
-              subheading="A few recent projects, built the same way yours would be."
-            />
           </Reveal>
         </div>
       </section>
@@ -417,7 +332,7 @@ export default function MedicalWebsiteDesignPage() {
               Give your practice <span className="italic text-[#9a5423]">the site it deserves.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
-              Book a free strategy call. No sales pitch, just honest advice on what your practice&apos;s site needs to earn trust and fill your schedule.
+              Book a free strategy call. Honest advice on what your practice&apos;s site needs to earn trust and fill your schedule.
             </p>
             <div className="mt-10">
               <Link href="/contact" className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1">

@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronRight, CheckCircle2 } from "lucide-react";
-import { ProofGallery } from "@/components/ui/ProofGallery";
-import { BrowserMockup } from "@/components/ui/BrowserMockup";
-import { pickProjects } from "@/app/work/projects-data";
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -22,47 +20,42 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 }
 
 const features = [
-  { label: "Custom UI/UX Design", desc: "Interfaces built around your brand and the actions you want visitors to take, not a template." },
-  { label: "Next.js & React Development", desc: "Lightning-fast, SEO-ready builds that score green on Core Web Vitals and hold up under traffic." },
-  { label: "E-commerce & CMS Solutions", desc: "Shopify, WooCommerce, and headless CMS builds designed to grow with your business." },
-  { label: "Core Web Vitals & Speed", desc: "PageSpeed scores in the green. Faster sites rank higher and lose fewer visitors before the page loads." },
-  { label: "Accessibility & Security", desc: "WCAG-compliant, hardened against common vulnerabilities. Built right, not bolted on." },
-  { label: "Ongoing Maintenance", desc: "Monthly retainers keeping your site fast, secure, and always current, without the overhead." },
+  { label: "Custom UI/UX Design", desc: "Built around your brand and how visitors actually move through it." },
+  { label: "Next.js & React Development", desc: "Fast, SEO-ready builds that score green on Core Web Vitals." },
+  { label: "E-commerce & CMS", desc: "Shopify, WooCommerce, and headless CMS builds that grow with you." },
+  { label: "Ongoing Maintenance", desc: "Fast, secure, and current, every month, without the overhead." },
 ];
 
 const deliverables = [
   "Brand strategy & visual identity",
-  "Wireframes & interactive prototypes",
-  "Responsive, mobile-first design",
   "Full-stack development & CMS integration",
-  "Google Analytics 4 & conversion tracking setup",
-  "Launch support & post-launch optimization",
+  "Analytics & conversion tracking",
+  "Launch support & optimization",
+];
+
+const stats = [
+  { value: "2–4 wks", label: "Avg. build time" },
+  { value: "In-house", label: "No offshore teams" },
+  { value: "SEO-ready", label: "Every build" },
+  { value: "24hr", label: "Response guarantee" },
 ];
 
 const faqs = [
   {
-    q: "How much does a website cost for a small business?",
-    a: "Web design costs vary based on scope and goals. Simple brochure sites, custom web applications, and e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call. No hidden fees, no surprises.",
+    q: "How much does a website cost?",
+    a: "Every quote is custom scoped to your goals. Free 30-minute discovery call, no hidden fees.",
   },
   {
-    q: "How long does it take to build a website?",
-    a: "Most custom websites take a few weeks from kickoff to launch. Simpler brochure sites move faster. Timeline depends on feedback turnaround and the complexity of integrations required.",
+    q: "How long does a build take?",
+    a: "Most custom sites launch in a few weeks. Timeline depends on feedback speed and scope.",
   },
   {
-    q: "Do you build websites with SEO built in?",
-    a: "Yes. Every site we build includes on-page SEO from day one: proper heading structure, schema markup, fast load times, and Core Web Vitals optimization. SEO is not an afterthought.",
-  },
-  {
-    q: "What's included in your monthly website maintenance plans?",
-    a: "Maintenance retainers include performance monitoring, security patches, content updates, uptime monitoring, and priority support with fast response times.",
+    q: "Is SEO built in from day one?",
+    a: "Yes. Heading structure, schema, speed, and Core Web Vitals are never an afterthought.",
   },
 ];
 
-const PROOF_SLUGS = ["indoor-garden", "vue-optometry"];
-
 export default function WebDesignDetroitPage() {
-  const heroProject = pickProjects(["vue-optometry"])[0];
-
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
@@ -92,7 +85,7 @@ export default function WebDesignDetroitPage() {
             </motion.h1>
 
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl leading-relaxed">
-              Custom websites built to rank on Google, load before visitors leave, and convert traffic into paying customers. Every project is designed and developed in-house. No templates, no offshore teams.
+              Custom websites built to rank, load fast, and convert. No templates, no offshore teams.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-8">
@@ -106,17 +99,29 @@ export default function WebDesignDetroitPage() {
             </div>
           </div>
 
-          {heroProject && (
-            <Reveal delay={0.15}>
-              <Link href={`/work/${heroProject.slug}`} className="group block">
-                <BrowserMockup
-                  url={heroProject.domain}
-                  screenshotUrl={heroProject.screenshotUrl}
-                  alt={`${heroProject.title} website screenshot`}
-                />
-              </Link>
-            </Reveal>
-          )}
+          <Reveal delay={0.15}>
+            <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
+              <Image
+                src="https://images.unsplash.com/photo-1487523117656-d5d117ad47c5?q=80&w=1600&auto=format&fit=crop"
+                alt="Modern web design workspace"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── CATCHPHRASE ──────────────────────────────── */}
+      <section className="py-16 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-4xl mx-auto text-center">
+          <Reveal>
+            <h2 className="text-3xl md:text-5xl font-light text-[var(--site-text-primary)] leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
+              Built once. Built right. <span className="italic text-[#9a5423]">Built to convert.</span>
+            </h2>
+          </Reveal>
         </div>
       </section>
 
@@ -125,11 +130,8 @@ export default function WebDesignDetroitPage() {
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
             <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>What&apos;s included.</h2>
-            <p className="text-[var(--site-text-secondary)] text-base max-w-xl mt-3">
-              Every web design engagement covers the full stack, from initial concept to post-launch performance.
-            </p>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
             {features.map((f, i) => (
               <Reveal key={f.label} delay={i * 0.07}>
                 <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
@@ -147,10 +149,7 @@ export default function WebDesignDetroitPage() {
             <h2 className="text-4xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
               What you walk away with.
             </h2>
-            <p className="text-[var(--site-text-secondary)] text-base mb-8">
-              A complete, production-ready website, not a handoff to another team to finish.
-            </p>
-            <ul className="space-y-3">
+            <ul className="mt-8 space-y-3">
               {deliverables.map((d) => (
                 <li key={d} className="flex items-center gap-3 text-sm text-[var(--site-text-secondary)]">
                   <CheckCircle2 className="w-4 h-4 text-[#9a5423] shrink-0" />
@@ -166,33 +165,14 @@ export default function WebDesignDetroitPage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed mb-6">
-              We design and develop custom, high-performance websites for growing businesses everywhere. Using Next.js and React, we build sites that score green on Core Web Vitals, climb Google rankings, and convert visitors into paying customers.
-            </p>
-            <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed mb-8">
-              Whether you&apos;re a local service business, law firm, or national e-commerce brand, every project starts with your business goals, not a template.
-            </p>
-            <div className="border border-[var(--site-border)] p-2">
-              <BrowserMockup
-                url="glambyabeer.com"
-                screenshotUrl="/screenshots/glambyabeer.png"
-                alt="Custom website design and development example"
-                size="compact"
-              />
+            <div className="grid grid-cols-2 gap-6">
+              {stats.map((s) => (
+                <div key={s.label}>
+                  <div className="text-2xl font-light text-[#9a5423]" style={{ fontFamily: "var(--font-serif)" }}>{s.value}</div>
+                  <div className="text-xs text-[var(--site-text-muted)] mt-1">{s.label}</div>
+                </div>
+              ))}
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── PROOF ─────────────────────────────────────── */}
-      <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <ProofGallery
-              slugs={PROOF_SLUGS}
-              heading="Real sites. Real results."
-              subheading="A few recent projects, built the same way yours would be."
-            />
           </Reveal>
         </div>
       </section>
@@ -249,7 +229,7 @@ export default function WebDesignDetroitPage() {
               Proven craft. <span className="italic text-[#9a5423]">Nationwide reach.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
-              Book a free 30-minute strategy call. No sales pitch, just honest advice on what your site needs to rank and convert.
+              Book a free 30-minute strategy call. Honest advice on what your site needs to rank and convert.
             </p>
             <div className="mt-10">
               <Link href="/contact" className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1">

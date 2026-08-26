@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ProofGallery } from "@/components/ui/ProofGallery";
 import { AdaptivePricingCards, type PricingTier as AdaptivePricingTier } from "@/components/ui/AdaptivePricingCards";
 
 type DesignTier = {
@@ -88,30 +87,12 @@ function WebsiteDesignSection() {
   );
 }
 
-const PROOF_SLUGS = ["dearborn-cleaners", "vue-optometry", "mi-family-lawyer"];
-
-function ProofSection() {
-  return (
-    <div className="mt-16">
-      <ProofGallery
-        slugs={PROOF_SLUGS}
-        heading="See what businesses like yours are getting"
-        namesOnly
-      />
-    </div>
-  );
-}
-
 export function PricingSection() {
   return (
     <section className="relative px-6 pb-14">
-      <div className="max-w-6xl mx-auto space-y-14">
+      <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <WebsiteDesignSection />
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="pt-8 border-t border-[var(--site-border)]">
-          <ProofSection />
         </motion.div>
       </div>
     </section>

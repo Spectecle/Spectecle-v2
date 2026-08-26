@@ -62,7 +62,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3.5 cursor-pointer group" data-cursor>
             <LogoMark className="w-16 h-16 drop-shadow-sm" />
             <span
-              className="text-[13px] font-semibold uppercase tracking-[0.32em]"
+              className="text-[17px] sm:text-[19px] font-semibold uppercase tracking-[0.28em]"
               style={{ fontFamily: "var(--font-sans)", color: overDarkHero ? HERO_TEXT : "var(--site-text-primary)" }}
             >
               Spectecle
