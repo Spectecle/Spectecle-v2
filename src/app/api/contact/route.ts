@@ -2,8 +2,8 @@ import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM = `Hello from Spectecle <${process.env.RESEND_FROM ?? "onboarding@resend.dev"}>`;
-const TO = process.env.CONTACT_EMAIL ?? "hello@spectecle.com";
+const FROM = `Hello from Spectecle <${process.env.RESEND_FROM || "onboarding@resend.dev"}>`;
+const TO = process.env.CONTACT_EMAIL || "hello@spectecle.com";
 
 // Rate limiting: max 3 submissions per IP per hour
 const rateLimit = new Map<string, { count: number; resetAt: number }>();
@@ -33,17 +33,24 @@ function isSpam(fields: Record<string, string>): boolean {
 
 export async function POST(req: Request) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      console.error("[contact] RESEND_API_KEY is not set — cannot send email");
+      return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
+    }
+
     const body = await req.json() as Record<string, string>;
     const { name, email, company, service, budget, message, _honey, _ts } = body;
 
     // Honeypot — bots fill hidden fields, humans don't
     if (_honey) {
+      console.warn("[contact] silent reject: honeypot filled", { honey: _honey, email });
       return NextResponse.json({ success: true }); // silent reject
     }
 
     // Time check — bots submit instantly (< 3 s)
     const elapsed = Date.now() - Number(_ts || 0);
     if (elapsed < 3000) {
+      console.warn("[contact] silent reject: submitted too fast", { elapsedMs: elapsed, email });
       return NextResponse.json({ success: true }); // silent reject
     }
 
@@ -56,6 +63,7 @@ export async function POST(req: Request) {
 
     // Keyword spam filter
     if (isSpam({ name, email, company: company ?? "", message })) {
+      console.warn("[contact] silent reject: spam keyword match", { email });
       return NextResponse.json({ success: true }); // silent reject
     }
 
@@ -66,6 +74,7 @@ export async function POST(req: Request) {
     if (bucket) {
       if (now < bucket.resetAt) {
         if (bucket.count >= 3) {
+          console.warn("[contact] rejected: rate limited", { ip, email });
           return NextResponse.json({ error: "Too many submissions. Please try again later." }, { status: 429 });
         }
         bucket.count++;
@@ -94,7 +103,7 @@ export async function POST(req: Request) {
       )
       .join("");
 
-    await resend.emails.send({
+    const sendResult = await resend.emails.send({
       from: FROM,
       to: [TO],
       replyTo: email,
@@ -115,6 +124,12 @@ export async function POST(req: Request) {
       `,
     });
 
+    if (sendResult.error) {
+      console.error("[contact] resend API error:", sendResult.error);
+      return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
+    }
+
+    console.log("[contact] email sent", { id: sendResult.data?.id, to: TO, from: FROM, email });
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[contact] send error:", err);
