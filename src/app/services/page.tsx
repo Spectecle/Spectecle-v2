@@ -145,7 +145,7 @@ export default function ServicesPage() {
                     sizes="140px"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(20,14,8,0.4)_100%)]" />
+                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(20,14,8,0.85)_100%)]" />
                 </div>
                 <ArrowUpRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#9a5423] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all justify-self-end" />
               </Link>

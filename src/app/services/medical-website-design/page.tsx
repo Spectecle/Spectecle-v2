@@ -130,7 +130,7 @@ export default function MedicalWebsiteDesignPage() {
                 className="object-cover"
                 priority
               />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(20,14,8,0.4)_100%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(20,14,8,0.85)_100%)]" />
             </div>
           </Reveal>
         </div>
@@ -166,7 +166,7 @@ export default function MedicalWebsiteDesignPage() {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
               />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(20,14,8,0.4)_100%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(20,14,8,0.85)_100%)]" />
             </div>
           </Reveal>
         </div>
