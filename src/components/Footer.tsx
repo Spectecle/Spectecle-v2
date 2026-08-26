@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LogoMark } from "@/components/LogoMark";
 
 const navLinks = [
-  { label: "Sitemap", href: "/sitemap.xml" },
+  { label: "Sitemap", href: "/sitemap" },
   { label: "Blog", href: "/blog" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Instagram", href: "https://www.instagram.com/spectecle/" },
