@@ -54,10 +54,10 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 pt-[16px] transition-all duration-500 ${scrolled ? "backdrop-blur-xl border-b border-[var(--site-border)]" : ""}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "backdrop-blur-xl border-b border-[var(--site-border)]" : ""}`}
         style={{ background: scrolled ? "rgba(247,242,233,0.95)" : "transparent" }}
       >
-        <nav className="w-full px-6 lg:px-10 h-20 flex items-center justify-between">
+        <nav className="w-full px-6 lg:px-10 h-24 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3.5 cursor-pointer group" data-cursor>
             <LogoMark className="w-16 h-16 drop-shadow-sm" />
