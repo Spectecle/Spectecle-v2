@@ -7,19 +7,19 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const SLIDES = [
   {
-    slug: "vue-optometry",
-    image: "/screenshots/vueoptometry.png",
+    id: "web-design",
+    image: "/hero/web-design.jpg",
     caption: "Website & Development",
   },
   {
-    slug: "glam-by-abeer",
-    image: "/screenshots/glambyabeer.png",
+    id: "seo",
+    image: "/hero/seo.jpg",
     caption: "SEO & Ad Campaigns",
   },
   {
-    slug: "indoor-garden",
-    image: "/screenshots/indoorgarden.png",
-    caption: "AI & Automation",
+    id: "brand",
+    image: "/hero/typography.jpg",
+    caption: "Brand & Identity",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         {SLIDES.map((slide, i) => (
           <div
-            key={slide.slug}
+            key={slide.id}
             className="absolute inset-0 transition-opacity duration-[1400ms]"
             style={{ opacity: i === index ? 1 : 0 }}
           >
@@ -175,7 +175,7 @@ export default function Hero() {
               <span className="text-[var(--site-copper-soft)]">{String(index + 1).padStart(2, "0")}</span> / {String(SLIDES.length).padStart(2, "0")}
             </span>
             <Link
-              href={`/work/${SLIDES[index].slug}`}
+              href="/work"
               data-cursor
               className="hidden md:block text-[12.5px] tracking-[0.14em] uppercase text-[var(--site-text-primary)] truncate hover:text-[var(--site-copper-soft)] transition-colors"
             >
@@ -210,7 +210,7 @@ export default function Hero() {
             <div className="hidden sm:flex items-center gap-2 ml-1.5">
               {SLIDES.map((slide, i) => (
                 <button
-                  key={slide.slug}
+                  key={slide.id}
                   onClick={() => goTo(i)}
                   aria-label={`Go to work ${i + 1}`}
                   data-cursor

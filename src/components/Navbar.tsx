@@ -47,7 +47,7 @@ export default function Navbar() {
           scrolled ? "bg-[var(--site-bg)]/95 backdrop-blur-xl border-b border-[var(--site-border)]" : "bg-transparent"
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <nav className="w-full px-6 lg:px-10 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3.5 cursor-pointer group" data-cursor>
             <LogoMark className="w-16 h-16 drop-shadow-sm" />
@@ -60,16 +60,14 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-9">
+          <div className="hidden md:flex items-center gap-8">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 data-cursor
-                className={`group relative text-[11.5px] font-medium uppercase tracking-[0.22em] transition-colors cursor-pointer pb-1 ${
-                  pathname === link.href
-                    ? "text-[var(--site-text-primary)]"
-                    : "text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)]"
+                className={`group relative text-[13px] font-semibold uppercase tracking-[0.14em] transition-opacity cursor-pointer pb-1 text-[var(--site-text-primary)] ${
+                  pathname === link.href ? "opacity-100" : "opacity-65 hover:opacity-100"
                 }`}
               >
                 {link.label}

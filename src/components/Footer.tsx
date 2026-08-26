@@ -5,7 +5,6 @@ const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Contact", href: "/contact" },
   { label: "Instagram", href: "https://www.instagram.com/spectecle/" },
-  { label: "LinkedIn", href: "#" },
 ];
 
 export default function Footer() {

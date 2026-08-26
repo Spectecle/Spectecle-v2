@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -34,7 +33,6 @@ const projects = [
     tagline: "A bold beauty brand built for the Instagram generation.",
     result: "+65% Bookings",
     image: "/screenshots/glambyabeer.png",
-    video: "/videos/glambyabeer.mp4",
   },
   {
     slug: "vue-optometry",
@@ -104,43 +102,18 @@ const projects = [
 
 const featuredProjects = projects.slice(0, 6);
 
-function ProjectCard({ p, idx, delay }: { p: (typeof projects)[number]; idx: number; delay: number }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    videoRef.current?.play().catch(() => {});
-  }, []);
-
+function ProjectCard({ p, delay }: { p: (typeof projects)[number]; delay: number }) {
   return (
     <Reveal delay={delay}>
       <Link href={`/work/${p.slug}`} className="group block" data-cursor>
         <div className="relative aspect-[1600/557] overflow-hidden bg-[var(--site-surface)]">
-          <span
-            className="absolute top-4 left-4 z-10 text-sm text-[var(--site-text-primary)]/90"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            {String(idx + 1).padStart(2, "0")}
-          </span>
-          {"video" in p && p.video ? (
-            <video
-              ref={videoRef}
-              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[1200ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.06]"
-              src={p.video}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-            />
-          ) : (
-            <Image
-              src={p.image}
-              alt={`${p.title} homepage`}
-              fill
-              className="object-cover object-top transition-transform duration-[1200ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.06]"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          )}
+          <Image
+            src={p.image}
+            alt={`${p.title} homepage`}
+            fill
+            className="object-cover object-top transition-transform duration-[1200ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.06]"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
         </div>
         <div className="mt-5 pb-4 border-b border-[var(--site-border)] group-hover:border-[var(--site-copper-soft)] transition-colors duration-400">
           <h3
@@ -228,7 +201,7 @@ export default function HomePage() {
 
           <div className="grid sm:grid-cols-2 gap-x-8 gap-y-16 sm:gap-y-24 md:[&>*:nth-child(even)]:mt-16">
             {featuredProjects.map((p, i) => (
-              <ProjectCard key={p.slug} p={p} idx={i} delay={(i % 2) * 0.08} />
+              <ProjectCard key={p.slug} p={p} delay={(i % 2) * 0.08} />
             ))}
           </div>
 
