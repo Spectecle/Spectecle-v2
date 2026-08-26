@@ -19,7 +19,7 @@ export function TestimonialsSection({
   className,
 }: TestimonialsSectionProps) {
   return (
-    <section className={cn("bg-white text-[#1e1e1e]", "py-8 sm:py-14 md:py-20 px-0", className)}>
+    <section className={cn("bg-[var(--site-bg)] text-[var(--site-text-primary)]", "py-8 sm:py-14 md:py-20 px-0", className)}>
       <style>{`
         @keyframes testimonial-marquee {
           from { transform: translateX(0); }
@@ -37,7 +37,7 @@ export function TestimonialsSection({
           <h2 className="max-w-[720px] text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight">
             {title}
           </h2>
-          <p className="text-md max-w-[600px] font-medium text-neutral-500 sm:text-xl">
+          <p className="text-md max-w-[600px] font-medium text-[var(--site-text-secondary)] sm:text-xl">
             {description}
           </p>
         </div>
@@ -53,8 +53,8 @@ export function TestimonialsSection({
             </div>
           </div>
 
-          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/3 bg-gradient-to-r from-white sm:block" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 bg-gradient-to-l from-white sm:block" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/3 bg-gradient-to-r from-[var(--site-bg)] sm:block" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 bg-gradient-to-l from-[var(--site-bg)] sm:block" />
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 const STATUS_STYLES: Record<string, string> = {
-  new: "bg-[#f87444]/10 text-[#f87444] border-[#f87444]/20",
+  new: "bg-[#cb7c46]/10 text-[#cb7c46] border-[#cb7c46]/20",
   in_progress: "bg-amber-500/10 text-amber-400 border-amber-500/20",
   done: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
   deleted: "bg-rose-500/10 text-rose-400 border-rose-500/20",

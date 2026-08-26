@@ -87,7 +87,7 @@ export function DatePickerField({
         onClick={() => setOpen((v) => !v)}
         className={`w-full flex items-center justify-between bg-[var(--portal-card)] border ${
           error ? "border-rose-500/60" : "border-[var(--portal-border)]"
-        } text-[var(--portal-text-primary)] rounded-xl px-4 py-3.5 text-sm transition-all duration-200 focus:border-[#f87444]/50 outline-none cursor-pointer`}
+        } text-[var(--portal-text-primary)] rounded-xl px-4 py-3.5 text-sm transition-all duration-200 focus:border-[#cb7c46]/50 outline-none cursor-pointer`}
       >
         <span className={displayValue ? "text-[var(--portal-text-primary)]" : "text-[var(--portal-text-faint)]"}>
           {displayValue || placeholder}
@@ -143,9 +143,9 @@ export function DatePickerField({
                     onClick={() => handleSelectDay(day)}
                     className={`aspect-square rounded-lg text-sm font-medium transition-colors cursor-pointer ${
                       isSelected(day)
-                        ? "bg-[#f87444] text-[#1e1e1e]"
+                        ? "bg-[#cb7c46] text-[#1e1e1e]"
                         : isToday(day)
-                        ? "bg-[#f87444]/15 text-[#f87444]"
+                        ? "bg-[#cb7c46]/15 text-[#cb7c46]"
                         : "text-[var(--portal-text-secondary)] hover:bg-[var(--portal-border-strong)]"
                     }`}
                   >

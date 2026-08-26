@@ -43,7 +43,7 @@ export function TicketsChart({ data }: { data: { date: string; count: number }[]
           }}
           labelFormatter={formatFullDate}
         />
-        <Bar dataKey="count" fill="#f87444" radius={[3, 3, 0, 0]} />
+        <Bar dataKey="count" fill="#cb7c46" radius={[3, 3, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );

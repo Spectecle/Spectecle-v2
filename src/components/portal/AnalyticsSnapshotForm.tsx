@@ -99,7 +99,7 @@ export function AnalyticsSnapshotForm({
             value={periodMonth}
             onChange={(e) => setPeriodMonth(e.target.value)}
             required
-            className="w-full bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#f87444]/50"
+            className="w-full bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#cb7c46]/50"
           />
         </div>
         <div>
@@ -112,7 +112,7 @@ export function AnalyticsSnapshotForm({
             value={visitors}
             onChange={(e) => setVisitors(e.target.value)}
             placeholder="—"
-            className="w-full bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#f87444]/50"
+            className="w-full bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#cb7c46]/50"
           />
         </div>
         <div>
@@ -125,7 +125,7 @@ export function AnalyticsSnapshotForm({
             value={pageViews}
             onChange={(e) => setPageViews(e.target.value)}
             placeholder="—"
-            className="w-full bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#f87444]/50"
+            className="w-full bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#cb7c46]/50"
           />
         </div>
       </div>
@@ -157,7 +157,7 @@ export function AnalyticsSnapshotForm({
                 value={r.keyword}
                 onChange={(e) => updateRanking(i, { keyword: e.target.value })}
                 placeholder="Search term, e.g. eye exam dearborn"
-                className="flex-1 bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#f87444]/50"
+                className="flex-1 bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#cb7c46]/50"
               />
               <input
                 type="number"
@@ -167,7 +167,7 @@ export function AnalyticsSnapshotForm({
                   updateRanking(i, { position: e.target.value ? Number(e.target.value) : null })
                 }
                 placeholder="Position"
-                className="w-24 bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#f87444]/50"
+                className="w-24 bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#cb7c46]/50"
               />
               <button
                 type="button"
@@ -183,7 +183,7 @@ export function AnalyticsSnapshotForm({
         <button
           type="button"
           onClick={() => setRankings((prev) => [...prev, { keyword: "", position: null }])}
-          className="flex items-center gap-1.5 text-sm text-[#f87444] hover:text-[#f87444]/80 mt-2 cursor-pointer"
+          className="flex items-center gap-1.5 text-sm text-[#cb7c46] hover:text-[#cb7c46]/80 mt-2 cursor-pointer"
         >
           <Plus className="w-3.5 h-3.5" />
           Add keyword
@@ -199,7 +199,7 @@ export function AnalyticsSnapshotForm({
           onChange={(e) => setNotes(e.target.value)}
           rows={2}
           placeholder="Anything worth highlighting for the client this month…"
-          className="w-full bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#f87444]/50 resize-none"
+          className="w-full bg-[var(--portal-input-bg)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1.5 text-sm outline-none focus:border-[#cb7c46]/50 resize-none"
         />
       </div>
 
@@ -207,7 +207,7 @@ export function AnalyticsSnapshotForm({
         <button
           type="submit"
           disabled={saving}
-          className="bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-sm font-semibold px-4 py-2 cursor-pointer transition-colors disabled:opacity-60"
+          className="bg-[#cb7c46]/15 hover:bg-[#cb7c46]/25 text-[#cb7c46] text-sm font-semibold px-4 py-2 cursor-pointer transition-colors disabled:opacity-60"
         >
           {saving ? "Saving…" : "Save Snapshot"}
         </button>

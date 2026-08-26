@@ -66,7 +66,7 @@ export function Ga4PropertyIdEditor({
             }}
             placeholder="GA4 property ID, e.g. 123456789"
             autoFocus
-            className="bg-[var(--portal-input-bg)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] px-2 py-1 text-sm outline-none focus:border-[#f87444]/50 w-56"
+            className="bg-[var(--portal-input-bg)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] px-2 py-1 text-sm outline-none focus:border-[#cb7c46]/50 w-56"
           />
           <button
             type="button"

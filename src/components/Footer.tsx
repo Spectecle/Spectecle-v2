@@ -71,7 +71,7 @@ function NewsletterForm() {
   };
 
   if (status === "success") {
-    return <p className="text-sm text-[#f87444]">You&apos;re subscribed. Thank you.</p>;
+    return <p className="text-sm text-[#cb7c46]">You&apos;re subscribed. Thank you.</p>;
   }
 
   return (
@@ -82,7 +82,7 @@ function NewsletterForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Your email address"
-        className="flex-1 min-w-0 bg-transparent border-b border-[var(--site-border)] px-0 py-2 text-sm text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] focus:border-[#f87444] outline-none"
+        className="flex-1 min-w-0 bg-transparent border-b border-[var(--site-border)] px-0 py-2 text-sm text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] focus:border-[#cb7c46] outline-none"
       />
       <button
         type="submit"
@@ -106,7 +106,7 @@ export default function Footer() {
               className="text-4xl md:text-5xl font-light text-[var(--site-text-primary)]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Ready to build something <span className="italic text-[#f87444]">extraordinary?</span>
+              Ready to build something <span className="italic text-[#cb7c46]">extraordinary?</span>
             </h2>
             <p className="mt-3 text-[var(--site-text-secondary)] text-base">
               Let&apos;s discuss your project and create something remarkable together.
@@ -114,10 +114,13 @@ export default function Footer() {
           </div>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1 shrink-0"
+            data-cursor
+            className="btn-primary inline-flex items-center gap-2 text-[15px] font-medium px-[30px] py-[17px] shrink-0"
           >
-            Start a Project
-            <ArrowUpRight className="w-5 h-5" />
+            <span className="flex items-center gap-2">
+              Start a Project
+              <ArrowUpRight className="w-5 h-5" />
+            </span>
           </Link>
         </div>
       </div>

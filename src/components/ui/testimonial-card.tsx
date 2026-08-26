@@ -31,10 +31,10 @@ export function TestimonialCard({ author, text, href, className }: TestimonialCa
     <Card
       {...(href ? { href, target: "_blank", rel: "noopener noreferrer" } : {})}
       className={cn(
-        "flex flex-col rounded-lg border-t border-neutral-200",
-        "bg-gradient-to-b from-neutral-100 to-neutral-50",
+        "flex flex-col rounded-lg border-t border-[var(--site-border)]",
+        "bg-[var(--site-surface)]",
         "p-4 text-start sm:p-6",
-        "hover:from-neutral-200 hover:to-neutral-100",
+        "hover:border-[var(--site-copper-soft)]",
         "max-w-[320px] sm:max-w-[320px]",
         "transition-colors duration-300",
         className
@@ -46,15 +46,15 @@ export function TestimonialCard({ author, text, href, className }: TestimonialCa
           <AvatarFallback>{initials(author.name)}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col items-start">
-          <h3 className="text-md font-semibold leading-none text-[#1e1e1e]">
+          <h3 className="text-md font-semibold leading-none text-[var(--site-text-primary)]">
             {author.name}
           </h3>
-          <p className="text-sm text-neutral-500">
+          <p className="text-sm text-[var(--site-text-muted)]">
             {author.handle}
           </p>
         </div>
       </div>
-      <p className="sm:text-md mt-4 text-sm text-neutral-600">
+      <p className="sm:text-md mt-4 text-sm text-[var(--site-text-secondary)]">
         {text}
       </p>
     </Card>

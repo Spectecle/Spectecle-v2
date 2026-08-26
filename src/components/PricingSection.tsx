@@ -143,7 +143,7 @@ function AddOnsSection() {
     <div className="mt-16">
       <div className="mb-10">
         <h2 className="text-4xl md:text-5xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
-          Want to grow faster? <span className="italic text-[#f87444]">Add these on.</span>
+          Want to grow faster? <span className="italic text-[#cb7c46]">Add these on.</span>
         </h2>
         <p className="text-[var(--site-text-secondary)] max-w-xl text-sm">
           Available alongside your website design, priced separately because the right amount
@@ -154,12 +154,12 @@ function AddOnsSection() {
         {addOns.map((addOn) => (
           <div key={addOn.name} className="flex flex-col sm:pl-8 sm:first:pl-0">
             <h3 className="text-xl font-light text-[var(--site-text-primary)] mb-1" style={{ fontFamily: "var(--font-serif)" }}>{addOn.name}</h3>
-            <p className="text-sm font-semibold text-[#f87444] mb-3">{addOn.price}</p>
+            <p className="text-sm font-semibold text-[#cb7c46] mb-3">{addOn.price}</p>
             <p className="text-sm text-[var(--site-text-secondary)] leading-relaxed mb-5">{addOn.description}</p>
             <ul className="space-y-2 mb-6 flex-1">
               {addOn.items.map((item, ii) => (
                 <li key={ii} className="flex items-start gap-2.5 text-sm text-[var(--site-text-secondary)]">
-                  <Check className="w-4 h-4 text-[#f87444] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[#cb7c46] shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </li>
               ))}

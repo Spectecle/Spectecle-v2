@@ -51,11 +51,11 @@ export function ConfirmDialog({
             <div className="flex items-start gap-3 mb-5">
               <div
                 className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                  destructive ? "bg-rose-500/10" : "bg-[#f87444]/10"
+                  destructive ? "bg-rose-500/10" : "bg-[#cb7c46]/10"
                 }`}
               >
                 <AlertTriangle
-                  className={`w-4.5 h-4.5 ${destructive ? "text-rose-400" : "text-[#f87444]"}`}
+                  className={`w-4.5 h-4.5 ${destructive ? "text-rose-400" : "text-[#cb7c46]"}`}
                 />
               </div>
               <div>
@@ -80,7 +80,7 @@ export function ConfirmDialog({
                 className={`text-sm font-medium rounded-lg px-3 py-2 cursor-pointer disabled:opacity-60 transition-colors ${
                   destructive
                     ? "bg-rose-500/15 text-rose-400 hover:bg-rose-500/25"
-                    : "bg-[#f87444]/15 text-[#f87444] hover:bg-[#f87444]/25"
+                    : "bg-[#cb7c46]/15 text-[#cb7c46] hover:bg-[#cb7c46]/25"
                 }`}
               >
                 {loading ? "Working…" : confirmLabel}

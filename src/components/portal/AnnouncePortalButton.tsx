@@ -74,7 +74,7 @@ export function AnnouncePortalButton({ activeCount }: { activeCount: number }) {
             setIndividualResult(null);
           }}
           placeholder="client@company.com"
-          className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] px-3 py-2 text-sm outline-none focus:border-[#f87444]/50 w-56"
+          className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] px-3 py-2 text-sm outline-none focus:border-[#cb7c46]/50 w-56"
         />
         <button
           type="button"
@@ -117,7 +117,7 @@ export function AnnouncePortalButton({ activeCount }: { activeCount: number }) {
             type="button"
             onClick={() => setOpen(true)}
             disabled={activeCount === 0}
-            className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-sm font-medium px-3 py-2 cursor-pointer disabled:opacity-50 transition-colors"
+            className="flex items-center gap-1.5 bg-[#cb7c46]/15 hover:bg-[#cb7c46]/25 text-[#cb7c46] text-sm font-medium px-3 py-2 cursor-pointer disabled:opacity-50 transition-colors"
           >
             <Megaphone className="w-3.5 h-3.5" />
             Announce Portal to All Clients

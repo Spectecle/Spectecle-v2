@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #f4f1e9;
-  --color-cream-light: #fdfbf5;
-  --color-cream-dark: #e6e4e0;
-  --color-ink: #1e1e1e;
-  --color-ink-soft: #41433a;
-  --color-taupe: #7c776b;
+  --color-cream: #0c0a08;
+  --color-cream-light: #171210;
+  --color-cream-dark: #060504;
+  --color-ink: #f2ece1;
+  --color-ink-soft: #b0a493;
+  --color-taupe: #7c7264;
   --color-espresso: #38190c;
-  --color-brass: #f87444;
-  --color-brass-light: #d9b568;
+  --color-brass: #cb7c46;
+  --color-brass-light: #e3a876;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #f4f1e9;
+  background-color: #0c0a08;
   overflow-x: clip;
 }
 
 body {
-  background-color: #f4f1e9;
-  color: #1e1e1e;
+  background-color: #0c0a08;
+  color: #f2ece1;
   font-family: var(--font-sans, system-ui, sans-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,8 +28,8 @@ body {
 }
 
 ::selection {
-  background: rgba(198, 153, 71, 0.35);
-  color: #1e1e1e;
+  background: rgba(203, 124, 70, 0.4);
+  color: #f2ece1;
 }
 
 /* Scrollbar */
@@ -37,26 +37,26 @@ body {
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #f4f1e9;
+  background: #0c0a08;
 }
 ::-webkit-scrollbar-thumb {
-  background: #f87444;
+  background: #cb7c46;
   border-radius: 0;
 }
 
-/* Emphasis text utility — solid brass, no gradient-clip */
+/* Emphasis text utility — solid copper, no gradient-clip */
 .gradient-text {
-  color: #f87444;
+  color: #e3a876;
 }
 
 .gradient-text-gold {
-  color: #f87444;
+  color: #e3a876;
 }
 
 /* Flat bordered card — no blur, no radius */
 .glass {
-  background: #fdfbf5;
-  border: 1px solid rgba(30, 30, 30, 0.1);
+  background: #171210;
+  border: 1px solid rgba(242, 236, 225, 0.1);
   border-radius: 0 !important;
 }
 
@@ -65,27 +65,39 @@ body {
 }
 
 .glass-hover:hover {
-  background: #ffffff;
-  border-color: rgba(198, 153, 71, 0.5);
+  background: #1c1614;
+  border-color: rgba(227, 168, 118, 0.4);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(30, 30, 30, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Solid button */
+/* Pill CTA button — bone fill, copper hover-slide */
 .btn-primary {
-  background: #1e1e1e;
-  color: #f4f1e9;
+  background: #f2ece1;
+  color: #160f09;
   border: none;
-  border-radius: 0 !important;
+  border-radius: 100px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: background 0.25s ease, transform 0.2s ease;
+  transition: transform 0.25s ease;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #cb7c46;
+  transform: translateY(101%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+
+.btn-primary:hover::before {
+  transform: translateY(0);
 }
 
 .btn-primary:hover {
-  background: #f87444;
-  color: #1e1e1e;
   transform: translateY(-2px);
 }
 
@@ -104,7 +116,7 @@ body {
   position: absolute;
   inset: -1px;
   background: transparent;
-  border: 1px solid rgba(198, 153, 71, 0.5);
+  border: 1px solid rgba(203, 124, 70, 0.5);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -114,7 +126,7 @@ body {
   opacity: 1;
 }
 
-/* Noise texture overlay */
+/* Grain texture overlay */
 .noise-overlay {
   position: fixed;
   top: 0;
@@ -123,7 +135,8 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.025;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px;
@@ -131,7 +144,7 @@ body {
 
 /* Section patterns — subtle, being phased out in favor of flat negative space */
 .dot-pattern {
-  background-image: radial-gradient(rgba(30, 30, 30, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(242, 236, 225, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -147,6 +160,18 @@ body {
 
 .marquee-track:hover {
   animation-play-state: paused;
+}
+
+/* Custom cursor hover expansion */
+.cb-cursor {
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.cb-cursor.is-hover {
+  width: 64px;
+  height: 64px;
+  background: rgba(242, 236, 225, 0.08);
 }
 
 /* Input focus styles */
@@ -215,45 +240,27 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 60px rgba(198, 153, 71, 0.08);
 }
 
-/* ── Marketing site theme (light/dark) ───────────────────────
-   Scoped under .site-shell, mirrors .portal-shell's mechanism. */
+/* ── Marketing site theme ─────────────────────────────────────
+   Single fixed dark editorial theme — supersedes the old light/dark
+   toggle. Scoped under .site-shell so the portal keeps its own system. */
 .site-shell {
   min-height: 100vh;
   background-color: var(--site-bg);
   color: var(--site-text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.site-shell,
-.site-shell[data-theme="light"] {
-  --site-bg: #f4f1e9;
-  --site-surface: #fdfbf5;
-  --site-text-primary: #1e1e1e;
-  --site-text-secondary: #41433a;
-  --site-text-muted: #7c776b;
-  --site-border: rgba(30, 30, 30, 0.1);
+.site-shell {
+  --site-bg: #0c0a08;
+  --site-surface: #171210;
+  --site-text-primary: #f2ece1;
+  --site-text-secondary: #b0a493;
+  --site-text-muted: #7c7264;
+  --site-border: rgba(242, 236, 225, 0.14);
+  --site-copper: #cb7c46;
+  --site-copper-soft: #e3a876;
 }
 
-.site-shell[data-theme="dark"] {
-  --site-bg: #1e1e1e;
-  --site-surface: #262622;
-  --site-text-primary: #f4f1e9;
-  --site-text-secondary: #c9c4b8;
-  --site-text-muted: #9c9686;
-  --site-border: rgba(244, 241, 233, 0.12);
-}
-
-.site-shell[data-theme="dark"] .glass {
+.site-shell .glass {
   background: var(--site-surface);
   border-color: var(--site-border);
-}
-
-.site-shell[data-theme="dark"] .btn-primary {
-  background: #f87444;
-  color: #1e1e1e;
-}
-
-.site-shell[data-theme="dark"] .btn-primary:hover {
-  background: #f4f1e9;
-  color: #1e1e1e;
 }

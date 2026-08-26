@@ -49,32 +49,35 @@ export default function Navbar() {
       >
         <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center cursor-pointer group">
+          <Link href="/" className="flex items-center cursor-pointer group" data-cursor>
             <LogoMark className="w-16 h-16 drop-shadow-sm" />
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-9">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-base font-medium transition-colors cursor-pointer ${
+                data-cursor
+                className={`group relative text-[11.5px] font-medium uppercase tracking-[0.22em] transition-colors cursor-pointer pb-1 ${
                   pathname === link.href
                     ? "text-[var(--site-text-primary)]"
                     : "text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)]"
                 }`}
               >
                 {link.label}
+                <span className="absolute left-0 bottom-0 h-px w-0 bg-[var(--site-copper-soft)] transition-[width] duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
 
-          {/* Theme toggle + desktop CTA + mobile menu button */}
+          {/* Phone + portal + desktop CTA + mobile menu button */}
           <div className="flex items-center gap-4">
             <div className="hidden lg:flex items-center gap-4 pr-4 mr-1 border-r border-[var(--site-border)]">
               <a
                 href="tel:+13133534105"
+                data-cursor
                 className="flex items-center gap-1.5 text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
               >
                 <Phone className="w-3.5 h-3.5" />
@@ -83,6 +86,7 @@ export default function Navbar() {
             </div>
             <Link
               href="/portal"
+              data-cursor
               className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer"
             >
               <User className="w-3.5 h-3.5" />
@@ -90,10 +94,10 @@ export default function Navbar() {
             </Link>
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
+              data-cursor
+              className="hidden md:inline-flex items-center gap-2 text-[11.5px] font-medium uppercase tracking-[0.2em] border border-[var(--site-border)] rounded-full px-[22px] py-3 cursor-pointer transition-colors duration-300 hover:border-[var(--site-copper-soft)] hover:bg-[var(--site-copper)] hover:text-[#160f09]"
             >
-              Start a Project
-              <ArrowUpRight className="w-4 h-4" />
+              Start a project
             </Link>
             <button
               onClick={() => setMenuOpen(!menuOpen)}

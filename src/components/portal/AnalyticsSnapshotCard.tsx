@@ -28,13 +28,13 @@ export function AnalyticsSnapshotCard({
 
       <div className="flex gap-8 mb-3">
         <div>
-          <p className="text-2xl font-light text-[#f87444]" style={{ fontFamily: "var(--font-serif, inherit)" }}>
+          <p className="text-2xl font-light text-[#cb7c46]" style={{ fontFamily: "var(--font-serif, inherit)" }}>
             {snapshot.visitors ?? "—"}
           </p>
           <p className="text-xs text-[var(--portal-text-faint)] uppercase tracking-wide">Visitors</p>
         </div>
         <div>
-          <p className="text-2xl font-light text-[#f87444]" style={{ fontFamily: "var(--font-serif, inherit)" }}>
+          <p className="text-2xl font-light text-[#cb7c46]" style={{ fontFamily: "var(--font-serif, inherit)" }}>
             {snapshot.page_views ?? "—"}
           </p>
           <p className="text-xs text-[var(--portal-text-faint)] uppercase tracking-wide">Page Views</p>

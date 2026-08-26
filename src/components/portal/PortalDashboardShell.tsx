@@ -79,14 +79,14 @@ export function PortalDashboardShell({
                 onClick={() => setIsOpen(false)}
                 className={`flex items-center gap-3 px-3.5 py-2.5 text-sm font-medium transition-colors cursor-pointer ${
                   isActive
-                    ? "bg-[#f87444]/15 text-[#f87444]"
+                    ? "bg-[#cb7c46]/15 text-[#cb7c46]"
                     : "text-[var(--portal-text-secondary)] hover:bg-[var(--portal-border)] hover:text-[var(--portal-text-primary)]"
                 }`}
               >
                 <Icon size={18} className="shrink-0" />
                 {!isCollapsed && <span className="truncate">{item.label}</span>}
                 {isActive && !isCollapsed && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#f87444]" />
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#cb7c46]" />
                 )}
               </Link>
             );

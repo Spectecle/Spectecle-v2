@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Playfair_Display } from "next/font/google";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import ConditionalShell from "@/components/ConditionalShell";
@@ -8,24 +7,19 @@ import { Analytics } from "@vercel/analytics/react";
 
 const GA_MEASUREMENT_ID = "G-VK8T7HE7NR";
 
-const generalSans = localFont({
+const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-sans",
-  display: "swap",
-  src: [
-    { path: "../fonts/general-sans/GeneralSans-extralight.woff2", weight: "200", style: "normal" },
-    { path: "../fonts/general-sans/GeneralSans-light.woff2", weight: "300", style: "normal" },
-    { path: "../fonts/general-sans/GeneralSans-regular.woff2", weight: "400", style: "normal" },
-    { path: "../fonts/general-sans/GeneralSans-medium.woff2", weight: "500", style: "normal" },
-    { path: "../fonts/general-sans/GeneralSans-semibold.woff2", weight: "600", style: "normal" },
-    { path: "../fonts/general-sans/GeneralSans-bold.woff2", weight: "700", style: "normal" },
-  ],
-});
-
-const playfairDisplay = Playfair_Display({
-  variable: "--font-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
   style: ["normal", "italic"],
+  display: "swap",
 });
 
 const BASE_URL = "https://spectecle.com";
@@ -182,7 +176,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${generalSans.variable} ${playfairDisplay.variable}`}>
+    <html lang="en" className={`${hankenGrotesk.variable} ${fraunces.variable}`}>
       <head>
         <script
           type="application/ld+json"

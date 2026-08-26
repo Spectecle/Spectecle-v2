@@ -92,10 +92,10 @@ export default function PortalRequestPage() {
               key="success"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="glass border border-[#f87444]/20 p-14 text-center"
+              className="glass border border-[#cb7c46]/20 p-14 text-center"
             >
-              <div className="w-16 h-16 mx-auto bg-[#f87444]/10 flex items-center justify-center mb-6">
-                <CheckCircle2 className="w-8 h-8 text-[#f87444]" />
+              <div className="w-16 h-16 mx-auto bg-[#cb7c46]/10 flex items-center justify-center mb-6">
+                <CheckCircle2 className="w-8 h-8 text-[#cb7c46]" />
               </div>
               <h2
                 className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"

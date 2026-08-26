@@ -133,7 +133,7 @@ export default async function AdminClientDetailPage({
                     href={websiteUrl.startsWith("http") ? websiteUrl : `https://${websiteUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm text-[#f87444] hover:text-[#f87444] transition-colors"
+                    className="flex items-center gap-1.5 text-sm text-[#cb7c46] hover:text-[#cb7c46] transition-colors"
                   >
                     <Globe className="w-3 h-3" />
                     {websiteUrl}
@@ -235,7 +235,7 @@ export default async function AdminClientDetailPage({
           <div className="flex items-center gap-2 mb-4 text-sm text-[var(--portal-text-muted)]">
             <Trash2 className="w-3.5 h-3.5" />
             <span>Recycle Bin — deleted tickets. Change a ticket&apos;s status to restore it.</span>
-            <Link href="?" className="text-[#f87444] hover:underline ml-1">
+            <Link href="?" className="text-[#cb7c46] hover:underline ml-1">
               Back to Requests
             </Link>
           </div>

@@ -123,7 +123,7 @@ function FeaturedWorkCard({ p }: { p: (typeof projects)[number] }) {
         )}
       </div>
       <div className="mt-4">
-        <span className="text-[var(--site-text-primary)] font-semibold text-sm group-hover:text-[#f87444] transition-colors">{p.title}</span>
+        <span className="text-[var(--site-text-primary)] font-semibold text-sm group-hover:text-[#cb7c46] transition-colors">{p.title}</span>
       </div>
       <p className="mt-1 text-[var(--site-text-muted)] text-xs leading-relaxed line-clamp-2">{p.cardDesc}</p>
     </Link>
@@ -146,7 +146,7 @@ export default function HelloPage() {
           <Reveal className="mb-16">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">What We Do</span>
             <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Four disciplines. <span className="italic text-[#f87444]">One agency.</span>
+              Four disciplines. <span className="italic text-[#cb7c46]">One agency.</span>
             </h2>
           </Reveal>
 
@@ -168,7 +168,7 @@ export default function HelloPage() {
           <Reveal className="mb-16">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Selected Work</span>
             <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Real results. <span className="italic text-[#f87444]">Real clients.</span>
+              Real results. <span className="italic text-[#cb7c46]">Real clients.</span>
             </h2>
           </Reveal>
 
@@ -226,7 +226,7 @@ export default function HelloPage() {
           <Reveal className="mb-16">
             <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Common Questions</span>
             <h2 className="mt-4 text-4xl md:text-5xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Everything you&apos;re <span className="italic text-[#f87444]">probably wondering.</span>
+              Everything you&apos;re <span className="italic text-[#cb7c46]">probably wondering.</span>
             </h2>
           </Reveal>
 
@@ -241,7 +241,7 @@ export default function HelloPage() {
                   >
                     <span className="text-[var(--site-text-primary)] font-semibold text-sm leading-snug">{item.question}</span>
                     <ChevronDown
-                      className="w-5 h-5 text-[#f87444] shrink-0 transition-transform duration-300"
+                      className="w-5 h-5 text-[#cb7c46] shrink-0 transition-transform duration-300"
                       style={{ transform: openFaq === i ? "rotate(180deg)" : "rotate(0deg)" }}
                     />
                   </button>
@@ -271,7 +271,7 @@ export default function HelloPage() {
         <Reveal className="max-w-3xl mx-auto text-center">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Let&apos;s Talk</span>
           <h2 className="mt-4 text-5xl md:text-6xl font-light text-[var(--site-text-primary)] leading-tight mb-6" style={{ fontFamily: "var(--font-serif)" }}>
-            Ready to build something <span className="italic text-[#f87444]">that actually works?</span>
+            Ready to build something <span className="italic text-[#cb7c46]">that actually works?</span>
           </h2>
           <p className="text-[var(--site-text-secondary)] text-lg mb-10 max-w-xl mx-auto">
             You found us. That&apos;s the first step. The second one is a quick conversation about what your business actually needs.
@@ -283,12 +283,12 @@ export default function HelloPage() {
               <ArrowUpRight className="w-5 h-5" />
             </Link>
             <a href="tel:+13133534105" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
-              <Phone className="w-4 h-4 text-[#f87444]" />
+              <Phone className="w-4 h-4 text-[#cb7c46]" />
               (313) 353-4105
             </a>
           </div>
 
-          <a href="mailto:hello@spectecle.com" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[#f87444] text-sm transition-colors">
+          <a href="mailto:hello@spectecle.com" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[#cb7c46] text-sm transition-colors">
             <Mail className="w-4 h-4" />
             hello@spectecle.com
           </a>

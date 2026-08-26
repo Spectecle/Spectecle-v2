@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { SiteThemeProvider } from "./SiteThemeProvider";
+import CustomCursor from "./CustomCursor";
 
 const STANDALONE_ROUTES: string[] = [];
 
@@ -28,6 +29,7 @@ export default function ConditionalShell({ children }: { children: React.ReactNo
 
   return (
     <SiteThemeProvider>
+      <CustomCursor />
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />

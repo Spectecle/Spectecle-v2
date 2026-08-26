@@ -64,7 +64,7 @@ export function DashboardTierEditor({
       value={value}
       onChange={handleChange}
       disabled={isPending}
-      className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1 text-sm cursor-pointer outline-none focus:border-[#f87444]/50 disabled:opacity-60"
+      className="bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] px-2.5 py-1 text-sm cursor-pointer outline-none focus:border-[#cb7c46]/50 disabled:opacity-60"
     >
       {TIER_OPTIONS.map((opt) => (
         <option key={opt.value} value={opt.value}>

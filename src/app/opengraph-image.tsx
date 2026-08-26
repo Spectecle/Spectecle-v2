@@ -53,7 +53,7 @@ export default function OGImage() {
               style={{
                 width: 8,
                 height: 8,
-                background: "#f87444",
+                background: "#cb7c46",
               }}
             />
             Serving Clients Nationwide
@@ -116,7 +116,7 @@ export default function OGImage() {
                   style={{
                     fontSize: "36px",
                     fontWeight: "700",
-                    color: "#f87444",
+                    color: "#cb7c46",
                     letterSpacing: "-1px",
                   }}
                 >

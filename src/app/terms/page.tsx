@@ -246,8 +246,8 @@ export default function TermsPage() {
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="relative pt-40 pb-10 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#f87444]/20 text-sm text-[#f87444] font-medium mb-8">
-            <span className="w-2 h-2 bg-[#f87444]" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#cb7c46]/20 text-sm text-[#cb7c46] font-medium mb-8">
+            <span className="w-2 h-2 bg-[#cb7c46]" />
             Legal
           </div>
 
@@ -260,14 +260,14 @@ export default function TermsPage() {
           <p className="mt-4 text-[var(--site-text-secondary)] text-base">
             Effective Date: {EFFECTIVE_DATE} &nbsp;·&nbsp; {COMPANY} &nbsp;·&nbsp; Dearborn, Michigan
             &nbsp;·&nbsp;{" "}
-            <a href={`https://${WEBSITE}`} className="text-[#f87444] hover:underline">
+            <a href={`https://${WEBSITE}`} className="text-[#cb7c46] hover:underline">
               {WEBSITE}
             </a>
           </p>
           <p className="mt-6 text-[var(--site-text-secondary)] leading-relaxed max-w-2xl">
             These Terms and Conditions govern any website design, SEO, paid advertising, or AI
             automation services Spectecle provides. Please read them together with our{" "}
-            <Link href="/privacy" className="text-[#f87444] hover:underline">
+            <Link href="/privacy" className="text-[#cb7c46] hover:underline">
               Privacy Policy
             </Link>
             .
@@ -287,7 +287,7 @@ export default function TermsPage() {
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  className="text-sm text-[var(--site-text-secondary)] hover:text-[#f87444] transition-colors py-1"
+                  className="text-sm text-[var(--site-text-secondary)] hover:text-[#cb7c46] transition-colors py-1"
                 >
                   {s.title}
                 </a>
@@ -311,7 +311,7 @@ export default function TermsPage() {
               <div className="space-y-6">
                 {section.content.map((item, i) => (
                   <div key={i}>
-                    <h3 className="text-base font-semibold text-[#f87444] mb-2">
+                    <h3 className="text-base font-semibold text-[#cb7c46] mb-2">
                       {item.subtitle}
                     </h3>
                     <p className="text-[var(--site-text-secondary)] leading-relaxed text-sm whitespace-pre-line">
@@ -339,7 +339,7 @@ export default function TermsPage() {
           </h2>
           <p className="mt-4 text-[var(--site-text-secondary)] text-base max-w-lg mx-auto">
             Email us at{" "}
-            <a href={`mailto:${EMAIL}`} className="text-[#f87444] hover:underline">
+            <a href={`mailto:${EMAIL}`} className="text-[#cb7c46] hover:underline">
               {EMAIL}
             </a>{" "}
             with any questions about these Terms.

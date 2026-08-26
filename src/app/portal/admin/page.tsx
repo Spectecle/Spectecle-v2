@@ -303,7 +303,7 @@ function StatCard({
       <div className="flex items-center justify-between mb-3">
         <Icon className="w-4 h-4 text-[var(--portal-text-faint)]" />
       </div>
-      <p className="text-3xl font-light text-[#f87444]" style={{ fontFamily: "var(--font-serif, inherit)" }}>
+      <p className="text-3xl font-light text-[#cb7c46]" style={{ fontFamily: "var(--font-serif, inherit)" }}>
         {unavailable ? "—" : error ? "!" : (value ?? "—")}
       </p>
       <p className="text-sm text-[var(--portal-text-muted)] mt-1">
@@ -398,7 +398,7 @@ async function RequestsSection({
       {(userFilter || orgFilter) && (
         <div className="flex items-center gap-2 mb-4">
           <span className="text-sm text-[var(--portal-text-secondary)]">Filtered by:</span>
-          <span className="flex items-center gap-1.5 text-sm text-[#f87444] bg-[#f87444]/10 px-2.5 py-1">
+          <span className="flex items-center gap-1.5 text-sm text-[#cb7c46] bg-[#cb7c46]/10 px-2.5 py-1">
             {userFilter ?? orgFilterLabel}
             <Link href="?section=requests" className="hover:text-[var(--portal-text-primary)] cursor-pointer">
               <X className="w-3 h-3" />
@@ -411,7 +411,7 @@ async function RequestsSection({
         <div className="flex items-center gap-2 mb-4 text-sm text-[var(--portal-text-muted)]">
           <Trash2 className="w-3.5 h-3.5" />
           <span>Recycle Bin — deleted tickets. Change a ticket&apos;s status to restore it.</span>
-          <Link href="?section=requests" className="text-[#f87444] hover:underline ml-1">
+          <Link href="?section=requests" className="text-[#cb7c46] hover:underline ml-1">
             Back to Requests
           </Link>
         </div>

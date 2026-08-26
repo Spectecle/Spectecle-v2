@@ -52,12 +52,12 @@ export function UserManagementPanel({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search organizations or users…"
-              className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] pl-8 pr-3 py-2 text-sm outline-none focus:border-[#f87444]/50"
+              className="w-full bg-[var(--portal-card)] border border-[var(--portal-border)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] pl-8 pr-3 py-2 text-sm outline-none focus:border-[#cb7c46]/50"
             />
           </div>
           <Link
             href="/portal/admin/clients/new"
-            className="flex items-center gap-1.5 bg-[#f87444]/15 hover:bg-[#f87444]/25 text-[#f87444] text-sm font-medium px-3 py-2 cursor-pointer transition-colors"
+            className="flex items-center gap-1.5 bg-[#cb7c46]/15 hover:bg-[#cb7c46]/25 text-[#cb7c46] text-sm font-medium px-3 py-2 cursor-pointer transition-colors"
           >
             <UserPlus className="w-3.5 h-3.5" />
             Add Client
@@ -80,8 +80,8 @@ export function UserManagementPanel({
           >
             <div className="flex items-center justify-between gap-4 flex-wrap mb-4 pb-4 border-b border-[var(--portal-border)]">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 bg-[#f87444]/10 flex items-center justify-center shrink-0">
-                  <Building2 className="w-4 h-4 text-[#f87444]" />
+                <div className="w-8 h-8 bg-[#cb7c46]/10 flex items-center justify-center shrink-0">
+                  <Building2 className="w-4 h-4 text-[#cb7c46]" />
                 </div>
                 <div>
                   <OrganizationNameEditor
@@ -106,7 +106,7 @@ export function UserManagementPanel({
                 />
                 <Link
                   href={`?section=requests&org=${encodeURIComponent(group.key)}`}
-                  className="flex items-center gap-1.5 text-sm text-[#f87444] hover:text-[#f87444] bg-[#f87444]/10 px-3 py-1.5 cursor-pointer transition-colors"
+                  className="flex items-center gap-1.5 text-sm text-[#cb7c46] hover:text-[#cb7c46] bg-[#cb7c46]/10 px-3 py-1.5 cursor-pointer transition-colors"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   View All Tickets ({group.ticketCount})

@@ -19,7 +19,7 @@ export function ImpersonationBanner({ email }: { email: string }) {
   };
 
   return (
-    <div className="bg-[#f87444] text-white -mx-6 lg:-mx-10 -mt-10 mb-8 px-6 lg:px-10 py-2.5">
+    <div className="bg-[#cb7c46] text-white -mx-6 lg:-mx-10 -mt-10 mb-8 px-6 lg:px-10 py-2.5">
       <div className="flex items-start justify-between gap-4 text-sm flex-wrap">
         <span className="flex items-start gap-2 py-0.5">
           <Eye className="w-3.5 h-3.5 shrink-0 mt-0.5" />
