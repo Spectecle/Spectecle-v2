@@ -99,7 +99,7 @@ export default function LawFirmWebsiteDesignPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-40 pb-14 px-6">
+      <section className="pt-[260px] pb-14 px-6">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
           <div>
             <nav className="flex items-center gap-2 text-xs text-[var(--site-text-muted)] mb-8" aria-label="Breadcrumb">

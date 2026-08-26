@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Phone, User } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 import { HERO_TEXT, HERO_TEXT_MUTED, HERO_BORDER, HERO_ACCENT } from "@/components/ui/hero";
+import { trackEvent } from "@/lib/track";
 
 const DARK_HERO_ROUTES = ["/", "/hello"];
 
@@ -30,7 +31,11 @@ export default function Navbar() {
   // "/" and "/hello" open on the dark photo hero, so the transparent,
   // pre-scroll navbar needs the hero's light text instead of the site's
   // (now light-theme) dark ink, or it disappears against the photo.
-  const overDarkHero = DARK_HERO_ROUTES.includes(pathname) && !scrolled;
+  // Once the mobile slide-in menu is open, a full-width light panel covers
+  // the screen (see w-full below), so the header's icon/logo must switch to
+  // the light-theme (dark) colors even while technically "over" the dark
+  // hero — otherwise the white X blends into that light panel.
+  const overDarkHero = DARK_HERO_ROUTES.includes(pathname) && !scrolled && !menuOpen;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -50,7 +55,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "backdrop-blur-xl border-b border-[var(--site-border)]" : ""}`}
+        className={`fixed top-0 left-0 right-0 z-50 pt-[100px] transition-all duration-500 ${scrolled ? "backdrop-blur-xl border-b border-[var(--site-border)]" : ""}`}
         style={{ background: scrolled ? "rgba(247,242,233,0.95)" : "transparent" }}
       >
         <nav className="w-full px-6 lg:px-10 h-20 flex items-center justify-between">
@@ -95,6 +100,7 @@ export default function Navbar() {
               <a
                 href="tel:+13133534105"
                 data-cursor
+                onClick={() => trackEvent("phone_click", { page_path: pathname })}
                 className="flex items-center gap-1.5 text-sm transition-colors cursor-pointer"
                 style={{ color: overDarkHero ? HERO_TEXT_MUTED : "var(--site-text-secondary)" }}
               >
@@ -150,7 +156,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="absolute right-0 top-0 h-full w-full sm:w-96 bg-[var(--site-bg)] border-l border-[var(--site-border)] p-10 pt-28 flex flex-col gap-2"
+              className="absolute right-0 top-0 h-full w-full sm:w-96 bg-[var(--site-bg)] border-l border-[var(--site-border)] p-10 pt-[200px] flex flex-col gap-2"
             >
               {links.map((link, i) => (
                 <motion.div
@@ -189,6 +195,7 @@ export default function Navbar() {
                 </Link>
                 <a
                   href="tel:+13133534105"
+                  onClick={() => trackEvent("phone_click", { page_path: pathname })}
                   className="inline-flex items-center gap-2 text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors w-fit"
                 >
                   <Phone className="w-3.5 h-3.5" />

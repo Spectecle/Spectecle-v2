@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ProofGallery } from "@/components/ui/ProofGallery";
 import { ArrowUpRight } from "lucide-react";
@@ -34,6 +35,7 @@ const services = [
     tagline: "Custom websites built to rank, convert, and scale.",
     desc: "High-performance, Next.js-powered websites that score green on Core Web Vitals, climb Google rankings, and convert traffic into paying customers. No templates. No offshore handoffs.",
     href: "/services/web-design-detroit",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop",
   },
   {
     n: "02",
@@ -41,6 +43,7 @@ const services = [
     tagline: "Page-one rankings for searches that actually matter.",
     desc: "Technical SEO, local search, and content strategy built around what your customers are actually searching for. Tracked with real numbers, not vanity metrics.",
     href: "/services/seo-agency-detroit",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
   },
   {
     n: "03",
@@ -48,6 +51,7 @@ const services = [
     tagline: "Eliminate manual work. Scale without hiring.",
     desc: "Custom AI agents and workflow automation built from scratch: trained on your services, connected to your CRM, and tested until they actually work. Not a chatbot plugin.",
     href: "/services/ai-automation",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
   },
 ];
 
@@ -101,16 +105,13 @@ export default function ServicesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       {/* ── HERO ────────────────────────────────────── */}
-      <section className="pt-40 pb-14 px-6">
+      <section className="pt-[260px] pb-14 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
-            Serving Clients Nationwide
-          </span>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Three disciplines. <span className="italic text-[#9a5423]">One obsession.</span>
@@ -126,7 +127,7 @@ export default function ServicesPage() {
         <div className="max-w-5xl mx-auto divide-y divide-[var(--site-border)]">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08}>
-              <Link href={s.href} className="group grid md:grid-cols-[80px_1fr_auto] items-start gap-4 py-8">
+              <Link href={s.href} className="group grid md:grid-cols-[80px_1fr_140px_auto] items-center gap-6 py-8">
                 <span className="text-sm text-[var(--site-text-muted)] font-mono">{s.n}</span>
                 <div>
                   <h2 className="text-3xl font-light text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
@@ -135,10 +136,41 @@ export default function ServicesPage() {
                   <p className="mt-2 text-[#9a5423] text-sm font-medium">{s.tagline}</p>
                   <p className="mt-3 text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-xl">{s.desc}</p>
                 </div>
-                <ArrowUpRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#9a5423] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all justify-self-end mt-2" />
+                <div className="hidden md:block relative w-full aspect-[4/3] overflow-hidden rounded-sm">
+                  <Image
+                    src={s.image}
+                    alt=""
+                    fill
+                    sizes="140px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </div>
+                <ArrowUpRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#9a5423] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all justify-self-end" />
               </Link>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* ── VISUAL BREAK ──────────────────────────────── */}
+      <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
+        <Image
+          src="https://images.unsplash.com/photo-1758800601575-1bf72a461248?q=80&w=2000&auto=format&fit=crop"
+          alt="Elegant curved staircase with warm architectural lighting"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+        <div className="absolute inset-0 flex items-end">
+          <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
+            <Reveal>
+              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">Craft, Not Templates</p>
+              <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
+                Every detail considered, the same way we build a site.
+              </h2>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -156,17 +188,37 @@ export default function ServicesPage() {
           </Reveal>
           <div className="grid sm:grid-cols-2 gap-8">
             {[
-              { title: "Law Firm Website Design", desc: "Authority-first sites for attorneys and law firms, built to turn a stressful search into a booked consultation.", href: "/services/law-firm-website-design" },
-              { title: "Medical Website Design", desc: "Patient-first sites for doctors, dentists, and private practices, built to turn a search into a booked appointment.", href: "/services/medical-website-design" },
+              {
+                title: "Law Firm Website Design",
+                desc: "Authority-first sites for attorneys and law firms, built to turn a stressful search into a booked consultation.",
+                href: "/services/law-firm-website-design",
+                image: "https://images.unsplash.com/photo-1764410481612-7544525b2991?q=80&w=1200&auto=format&fit=crop",
+              },
+              {
+                title: "Medical Website Design",
+                desc: "Patient-first sites for doctors, dentists, and private practices, built to turn a search into a booked appointment.",
+                href: "/services/medical-website-design",
+                image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1200&auto=format&fit=crop",
+              },
             ].map((s) => (
               <Reveal key={s.title}>
-                <Link href={s.href} className="group block border border-[var(--site-border)] p-8 h-full hover:border-[var(--site-text-muted)] transition-colors">
-                  <h3 className="text-2xl font-light text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
-                    {s.title}
-                  </h3>
-                  <p className="mt-3 text-[var(--site-text-secondary)] text-sm leading-relaxed">{s.desc}</p>
-                  <div className="mt-5 flex items-center gap-1.5 text-xs font-semibold text-[#9a5423]">
-                    Learn more <ArrowUpRight className="w-3.5 h-3.5" />
+                <Link href={s.href} className="group relative block h-72 overflow-hidden">
+                  <Image
+                    src={s.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/5" />
+                  <div className="absolute inset-0 flex flex-col justify-end p-8">
+                    <h3 className="text-2xl font-light text-white" style={{ fontFamily: "var(--font-serif)" }}>
+                      {s.title}
+                    </h3>
+                    <p className="mt-3 text-white/75 text-sm leading-relaxed max-w-sm">{s.desc}</p>
+                    <div className="mt-5 flex items-center gap-1.5 text-xs font-semibold text-white">
+                      Learn more <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </div>
                 </Link>
               </Reveal>

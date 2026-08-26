@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -83,7 +84,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ── HERO ──────────────────────────────────────── */}
-      <section className="pt-40 pb-14 px-6">
+      <section className="pt-[260px] pb-14 px-6">
         <div className="max-w-3xl mx-auto">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
             About Spectecle · Serving Businesses Nationwide
@@ -181,6 +182,28 @@ export default function AboutPage() {
               existing tools. Not a widget. Actual automation that saves real team hours
               and compounds over time.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── VISUAL BREAK ──────────────────────────────── */}
+      <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
+        <Image
+          src="https://images.unsplash.com/photo-1774477178005-bff823e43be8?q=80&w=2000&auto=format&fit=crop"
+          alt="Warm, considered interior at golden hour"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+        <div className="absolute inset-0 flex items-end">
+          <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
+            <Reveal>
+              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">How We Work</p>
+              <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
+                Small enough to care about every detail. Senior enough to get it right the first time.
+              </h2>
+            </Reveal>
           </div>
         </div>
       </section>

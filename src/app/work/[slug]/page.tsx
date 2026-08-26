@@ -43,14 +43,12 @@ export default async function CaseStudyPage({
   const project = projects[projectIndex];
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
-  const resultsSummary = project.results.map((r) => `${r.value} ${r.label}`).join(", ");
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name: project.title,
     headline: project.title,
-    description: `${project.metaDescription} Results: ${resultsSummary}.`,
+    description: project.metaDescription,
     url: `${BASE_URL}/work/${slug}`,
     image: `${BASE_URL}${project.screenshotUrl}`,
     about: project.industry,

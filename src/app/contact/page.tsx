@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ProofGallery } from "@/components/ui/ProofGallery";
+import { trackEvent } from "@/lib/track";
 import {
   Mail,
   Phone,
@@ -95,6 +96,7 @@ export default function ContactPage() {
         body: JSON.stringify({ ...formData, _honey: honey, _ts: loadedAt.current }),
       });
       setStatus(res.ok ? "success" : "error");
+      if (res.ok) trackEvent("contact_submit", { page_path: "/contact" });
     } catch {
       setStatus("error");
     }
@@ -115,7 +117,7 @@ export default function ContactPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="pt-40 pb-12 px-6">
+      <section className="pt-[260px] pb-12 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
             Serving Businesses Nationwide
@@ -292,7 +294,14 @@ export default function ContactPage() {
               <h3 className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Contact Details</h3>
               <div className="space-y-4">
                 {contactInfo.map((c) => (
-                  <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined} className="flex items-center gap-3 group cursor-pointer">
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    target={c.href.startsWith("http") ? "_blank" : undefined}
+                    rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    onClick={() => { if (c.label === "Phone") trackEvent("phone_click", { page_path: "/contact" }); }}
+                    className="flex items-center gap-3 group cursor-pointer"
+                  >
                     <c.icon className="w-4 h-4 text-[#9a5423] shrink-0" />
                     <div>
                       <span className="text-xs text-[var(--site-text-muted)] uppercase tracking-wider mr-2">{c.label}</span>

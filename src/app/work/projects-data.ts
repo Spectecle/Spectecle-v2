@@ -28,13 +28,11 @@ export type ProjectData = {
   metaTitle: string;
   metaDescription: string;
   metaKeywords: string[];
-  heroMetrics: Array<{ value: string; label: string }>;
   challenge: string;
   solution: string;
   features: CaseStudyFeature[];
   deliverables: string[];
   services: string[];
-  results: Array<{ value: string; label: string }>;
   testimonial?: CaseStudyTestimonial;
   year: string;
   liveUrl: string;
@@ -65,16 +63,10 @@ export const projects: ProjectData[] = [
       "optometrist web design case study",
       "Spectecle healthcare web design",
     ],
-    heroMetrics: [
-      { value: "Membership", label: "Business Model" },
-      { value: "Ongoing", label: "Site Care & Updates" },
-      { value: "Boutique", label: "Brand Positioning" },
-      { value: "Dearborn, MI", label: "Location" },
-    ],
     challenge:
-      "Vùe Eye Boutique Optometry runs on a distinctive model: affordable, membership-based eye care with no insurance needed. That message has to come through clearly and stay current on the site as plans, promotions, and services evolve, without the practice needing an in-house web team to manage it.",
+      "Vùe runs a distinctive membership model with no insurance needed, a message that has to stay clear and current as plans and promotions change, without an in-house web team.",
     solution:
-      "Beyond the initial build, we act as Vue's ongoing web partner, handling content updates, reorganizing information as their offerings change (like restructuring their insurance list into a clearer format, or refreshing seasonal promotions), and making sure the site always reflects how the practice actually operates today, not how it operated at launch.",
+      "We act as Vue's ongoing web partner: fast content updates, reorganized plan information, and messaging that always matches how the practice operates today.",
     features: [
       { icon: "repeat", label: "Ongoing Content Updates", desc: "Fast turnaround on copy, imagery, and page changes as the practice evolves" },
       { icon: "list", label: "Information Architecture", desc: "Reorganizing complex content, like insurance and plan details, into something scannable" },
@@ -90,11 +82,6 @@ export const projects: ProjectData[] = [
       "Client portal access for update requests",
     ],
     services: ["Web Design & Development", "Ongoing Website Care"],
-    results: [
-      { value: "Live", label: "Active, evolving site" },
-      { value: "Fast Turnaround", label: "On update requests" },
-      { value: "Boutique", label: "Brand-consistent design" },
-    ],
     year: "2026",
     liveUrl: "https://vueoptometry.com",
     screenshotUrl: "/screenshots/vueoptometry.png",
@@ -122,16 +109,10 @@ export const projects: ProjectData[] = [
       "beauty brand website design",
       "Spectecle beauty web design case study",
     ],
-    heroMetrics: [
-      { value: "15+", label: "Keywords Ranked" },
-      { value: "5×", label: "Instagram-to-Site Traffic" },
-      { value: "3 mo", label: "Booked in Advance" },
-      { value: "5 wks", label: "Delivery Time" },
-    ],
     challenge:
-      "Glam by Abeer had a loyal clientele and a beautifully curated Instagram presence, but no website. Potential clients were searching 'makeup artist near me' and 'lash extensions Michigan,' finding other artists instead. Abeer's quality was unmatched, but without a web presence, she was invisible in the search results where clients were looking.",
+      "Abeer had loyal clients and a strong Instagram following, but no website, so searches like 'makeup artist near me' sent business to competitors instead.",
     solution:
-      "We designed a luxury-aesthetic portfolio website that put her work front and center: full-bleed galleries filtered by service type, with an elegant booking flow and clear pricing architecture. We then launched a local SEO strategy targeting Michigan beauty keywords across all her service offerings, optimized her Google Business Profile, and implemented structured data for her services to capture both map and organic search placements.",
+      "We built a luxury portfolio site with a clear booking flow, then ran a local SEO campaign that put her on page one for 15+ Michigan beauty searches.",
     features: [
       { icon: "camera", label: "Luxury Portfolio Design", desc: "Full-screen galleries with category filtering by service: bridal, lashes, glam, and more" },
       { icon: "calendar", label: "Online Booking Integration", desc: "Appointment booking with service selection, pricing display, and deposit collection" },
@@ -150,12 +131,6 @@ export const projects: ProjectData[] = [
       "Instagram feed integration",
     ],
     services: ["Web Design & Development", "Local SEO", "Google Business Profile"],
-    results: [
-      { value: "15+", label: "Beauty keywords ranked page one" },
-      { value: "5×", label: "Instagram-to-website traffic" },
-      { value: "3 mo", label: "Booking calendar filled in advance" },
-      { value: "98", label: "PageSpeed score" },
-    ],
     year: "2024",
     liveUrl: "https://glambyabeer.com",
     screenshotUrl: "/screenshots/glambyabeer.png",
@@ -183,16 +158,10 @@ export const projects: ProjectData[] = [
       "lawyer website design Detroit",
       "Spectecle law firm web design case study",
     ],
-    heroMetrics: [
-      { value: "Custom", label: "Design & Build" },
-      { value: "Family Law", label: "Practice Focus" },
-      { value: "100%", label: "Mobile Optimized" },
-      { value: "Michigan", label: "Local SEO Focus" },
-    ],
     challenge:
-      "Attorney Neda Mohiedeen needed a website that reflected the trust and sensitivity family law requires. Clients are often reaching out during one of the hardest moments in their lives. A generic, template-driven site wasn't building that trust, and wasn't showing up in local search when Michigan families needed her most.",
+      "Family law clients reach out during hard moments. A generic template site wasn't building trust, and wasn't showing up when Michigan families searched for help.",
     solution:
-      "We designed a custom family law website built around trust and approachability: clear practice area pages, credentials and bar membership front and center, and a consultation flow that feels like a first conversation, not a form. Alongside the redesign, we launched a local SEO strategy targeting her specific practice areas and service area in Michigan.",
+      "We built a credibility-first site around trust and practice-area clarity, then ran local SEO targeting her specific practice areas across Michigan.",
     features: [
       { icon: "briefcase", label: "Authority-First Design", desc: "Trust signals, credentials, bar membership, and a warm, approachable tone throughout" },
       { icon: "file-text", label: "Practice Area Pages", desc: "SEO-optimized pages for each family law service, from divorce to custody to support" },
@@ -211,11 +180,6 @@ export const projects: ProjectData[] = [
       "GA4 & Search Console setup",
     ],
     services: ["Web Design & Development", "SEO Strategy"],
-    results: [
-      { value: "Custom", label: "Design built around trust, not templates" },
-      { value: "Local", label: "SEO targeting Michigan family law searches" },
-      { value: "Mobile-Ready", label: "Fast and accessible on every device" },
-    ],
     testimonial: {
       quote:
         "Working with Spectecle was hands down the best investment I made for my firm. The website looks professional and authoritative, and within a few months I was getting consultation requests from clients who found me on Google. Highly recommend.",
@@ -251,16 +215,10 @@ export const projects: ProjectData[] = [
       "home services website redesign",
       "Spectecle case study",
     ],
-    heroMetrics: [
-      { value: "Full", label: "Website Rebuild" },
-      { value: "Mold & Cleaning", label: "Specialty Focus" },
-      { value: "Mobile-First", label: "Design Approach" },
-      { value: "Michigan", label: "Service Area" },
-    ],
     challenge:
-      "Mold remediation is an urgent, high-stress service. Customers searching for help are usually dealing with property damage, insurance claims, and a ticking clock. Dearborn Cleaners needed a website that could meet that urgency head-on: build trust fast, explain the process clearly, and make it easy to book an inspection without adding to the stress.",
+      "Mold remediation is urgent. Customers searching for help are already stressed, and the old site wasn't built to move them quickly toward booking.",
     solution:
-      "We rebuilt the site from the ground up around that urgency: a direct homepage leading with the core message (\"Mold doesn't wait. Neither should you.\"), clear service breakdowns, and messaging built around the insurance-documentation process customers actually care about. Every page is built to move a stressed-out homeowner toward one clear next step: schedule an inspection.",
+      "We rebuilt the site around that urgency, leading with a clear next step and insurance-process messaging that turns a stressful search into one easy call.",
     features: [
       { icon: "zap", label: "Urgency-First Messaging", desc: "Homepage built around the real reason customers are searching: a problem that can't wait" },
       { icon: "shield", label: "Insurance-Ready Positioning", desc: "Clear messaging around documentation and process for insurance claims" },
@@ -276,11 +234,6 @@ export const projects: ProjectData[] = [
       "Inspection scheduling flow",
     ],
     services: ["Web Design & Development"],
-    results: [
-      { value: "Rebuilt", label: "From the ground up" },
-      { value: "Live", label: "New site now serving customers" },
-      { value: "Mobile-First", label: "Built for on-the-go search" },
-    ],
     year: "2026",
     liveUrl: "https://dearborncleaners.com",
     screenshotUrl: "/screenshots/dearborncleaners.png",
@@ -308,16 +261,10 @@ export const projects: ProjectData[] = [
       "glass shop SEO Michigan",
       "Spectecle Detroit web design case study",
     ],
-    heroMetrics: [
-      { value: "Top 3", label: "Google Map Pack" },
-      { value: "2×", label: "Monthly Quote Requests" },
-      { value: "35+", label: "Citations Corrected" },
-      { value: "4 wks", label: "Delivery Time" },
-    ],
     challenge:
-      "Detroit Glass and Mirror had been serving the community for over a decade, but their website was frozen in 2012. It was slow, not mobile-friendly, and completely invisible in local search results. Out-of-area competitors with polished websites and stronger Google profiles were winning Detroit jobs that rightfully belonged to this long-standing local shop. They needed a modern digital presence that matched their reputation.",
+      "A decade-old, slow, non-mobile site was losing local jobs to out-of-area competitors who simply ranked higher on Google.",
     solution:
-      "We redesigned the website with a clean, professional look that loaded fast and worked flawlessly on mobile. We created dedicated service pages for shower glass, custom mirrors, commercial glazing, and auto glass, each optimized for specific search terms. A full local SEO campaign followed: Google Business Profile optimization, NAP cleanup across 35+ directories, a review acquisition strategy, and structured data targeting Detroit-area glass searches.",
+      "We rebuilt the site fast and mobile-first, then ran a local SEO campaign, citation cleanup, service pages, and schema, that landed them in the Map Pack for Detroit glass searches.",
     features: [
       { icon: "layers", label: "Service-Specific Pages", desc: "Individual pages for shower glass, mirrors, commercial glazing, and auto glass with keyword targeting" },
       { icon: "map-pin", label: "Google Map Pack Optimization", desc: "Technical and off-page work targeting top-3 Map Pack placement in Detroit search results" },
@@ -336,12 +283,6 @@ export const projects: ProjectData[] = [
       "Structured data & schema markup",
     ],
     services: ["Web Design & Development", "Local SEO", "Citation Building", "Google Business Profile"],
-    results: [
-      { value: "Top 3", label: "Google Map Pack for primary keywords" },
-      { value: "2×", label: "Monthly quote requests" },
-      { value: "35+", label: "Citations corrected and unified" },
-      { value: "94", label: "PageSpeed score (was 31)" },
-    ],
     year: "2024",
     liveUrl: "https://detroitglassandmirror.com",
     screenshotUrl: "/screenshots/detroitglassandmirror.png",
@@ -369,16 +310,10 @@ export const projects: ProjectData[] = [
       "contractor local SEO Michigan",
       "Spectecle local SEO case study",
     ],
-    heroMetrics: [
-      { value: "#1", label: "Local Search Ranking" },
-      { value: "4×", label: "Lead Generation" },
-      { value: "40+", label: "Directory Listings" },
-      { value: "5 wks", label: "Delivery Time" },
-    ],
     challenge:
-      "Salazar Drywall Pros was a family-owned contracting business that relied entirely on word-of-mouth referrals. They had no website, no Google presence, and no way for new customers to find them online. Meanwhile, competitors, many with inferior craftsmanship, were winning jobs simply because they showed up first on Google. The family knew their work spoke for itself. They needed digital presence to match.",
+      "A word-of-mouth contractor with no website and no Google presence was losing jobs to competitors who simply showed up first in search.",
     solution:
-      "We built a professional, trust-first website showcasing their project portfolio, crew credentials, and service coverage area. Then we launched an aggressive local SEO campaign: Google Business Profile setup and optimization, local citation building across 40+ directories, geo-targeted landing pages for each service area, and a systematic review generation strategy. We targeted high-intent keywords like 'drywall contractor near me' and 'drywall repair [city name]' across their full coverage area.",
+      "We built a trust-first site and ran an aggressive local SEO push, citations, geo-targeted pages, and reviews, to rank #1 for Michigan drywall searches.",
     features: [
       { icon: "monitor", label: "Project Portfolio Gallery", desc: "Before/after galleries organized by service type, showcasing craftsmanship and quality" },
       { icon: "map-pin", label: "Service Area Landing Pages", desc: "Geo-targeted pages for each city and neighborhood in their coverage area" },
@@ -398,12 +333,6 @@ export const projects: ProjectData[] = [
       "Monthly local SEO reporting",
     ],
     services: ["Web Design & Development", "Local SEO", "Google Business Profile", "Citation Building"],
-    results: [
-      { value: "#1", label: "Ranked for primary drywall keywords" },
-      { value: "4×", label: "More leads per month" },
-      { value: "40+", label: "Directory listings established" },
-      { value: "Top 3", label: "Google Map Pack placement" },
-    ],
     year: "2024",
     liveUrl: "https://salazardrywallpros.com",
     screenshotUrl: "/screenshots/salazardrywallpros.png",
@@ -431,16 +360,10 @@ export const projects: ProjectData[] = [
       "indoor garden website SEO",
       "Spectecle e-commerce case study",
     ],
-    heroMetrics: [
-      { value: "+220%", label: "Organic Traffic" },
-      { value: "40%", label: "Revenue from Website" },
-      { value: "1.2s", label: "Avg Load Time" },
-      { value: "8 wks", label: "Delivery Time" },
-    ],
     challenge:
-      "Indoor Garden had built a loyal following on Instagram but had no website. Every order was processed through DMs, creating a chaotic, unscalable ordering process with no checkout flow, no inventory management, and no way for new customers to discover them through search. They needed an e-commerce presence that was as beautiful as their product photography and could grow beyond social media.",
+      "A loyal Instagram following had no way to check out, and no way for new customers to find the shop through search.",
     solution:
-      "We designed and built a full-featured e-commerce site with a warm, organic aesthetic that matched their brand identity. Product pages were designed to let the photography shine, with a streamlined 3-step checkout flow. Alongside the build, we developed an SEO content strategy targeting plant care and indoor gardening keywords, turning search traffic into a predictable acquisition channel.",
+      "We built a full e-commerce storefront, then ran an SEO content strategy around plant-care searches that grew organic traffic 220% in five months.",
     features: [
       { icon: "shopping-cart", label: "E-commerce Storefront", desc: "Full product catalog with variant selection, cart, and optimized checkout flow" },
       { icon: "layers", label: "Brand & Visual Design", desc: "Warm, organic visual language across all pages, product cards, and marketing materials" },
@@ -459,12 +382,6 @@ export const projects: ProjectData[] = [
       "Analytics & conversion tracking",
     ],
     services: ["Web Design & Development", "E-commerce", "SEO Strategy"],
-    results: [
-      { value: "+220%", label: "Organic traffic growth in 5 months" },
-      { value: "40%", label: "Revenue now from website" },
-      { value: "0→100%", label: "Online sales presence launched" },
-      { value: "1.2s", label: "Average page load time" },
-    ],
     year: "2024",
     liveUrl: "https://indoorgarden.com",
     screenshotUrl: "/screenshots/indoorgarden.png",
@@ -492,16 +409,10 @@ export const projects: ProjectData[] = [
       "AI chatbot for business Michigan",
       "Spectecle AI automation case study",
     ],
-    heroMetrics: [
-      { value: "68%", label: "Inquiries Automated" },
-      { value: "3×", label: "Enterprise Lead Quality" },
-      { value: "96", label: "PageSpeed Score" },
-      { value: "10 wks", label: "Delivery Time" },
-    ],
     challenge:
-      "Thematek's website didn't reflect their sophistication as a technology company. It looked like a template site, not the work of an innovative IT firm. Beyond aesthetics, they were spending significant team time answering the same introductory client questions over and over. They wanted to reclaim that time without sacrificing the quality of their client experience.",
+      "Thematek's site didn't match their sophistication as an IT firm, and their team was losing hours answering the same intake questions daily.",
     solution:
-      "We rebuilt their website with a modern, technology-forward design system that positioned Thematek as the premium IT firm they are. Then we built and deployed a custom AI intake agent trained on their full service catalog, capable of qualifying leads, answering detailed service questions, capturing project requirements, and routing complex inquiries to the right team member. The agent runs 24/7 and integrates directly with their CRM.",
+      "We rebuilt the site with a tech-forward design, then deployed a custom AI intake agent that now handles 68% of inquiries around the clock.",
     features: [
       { icon: "monitor", label: "Brand & Design Refresh", desc: "Modern, tech-forward visual identity that communicates innovation and expertise" },
       { icon: "bot", label: "Custom AI Intake Agent", desc: "LLM-powered agent trained on Thematek's services, qualifying leads around the clock" },
@@ -519,12 +430,6 @@ export const projects: ProjectData[] = [
       "Analytics & lead tracking setup",
     ],
     services: ["Web Design & Development", "AI & Automation", "Workflow Automation"],
-    results: [
-      { value: "68%", label: "Client inquiries handled by AI" },
-      { value: "3×", label: "Improvement in enterprise lead quality" },
-      { value: "96", label: "Google PageSpeed score" },
-      { value: "40 hrs", label: "Team time saved per month" },
-    ],
     year: "2024",
     liveUrl: "https://thematek.com",
     screenshotUrl: "/screenshots/thematek.png",
@@ -552,16 +457,10 @@ export const projects: ProjectData[] = [
       "medical clinic website Michigan",
       "Spectecle healthcare web design",
     ],
-    heroMetrics: [
-      { value: "+156%", label: "Organic Traffic" },
-      { value: "+85%", label: "Online Bookings" },
-      { value: "3×", label: "New Client Inquiries" },
-      { value: "7 wks", label: "Delivery Time" },
-    ],
     challenge:
-      "The Stat Clinic's previous website made it hard for prospective clients to understand the depth of their services or take the next step and book. Their data-driven, performance-first approach to athletic health deserved a digital presence that matched that precision. Instead, they had a generic template site that buried their expertise and made booking an afterthought.",
+      "A generic template site buried the clinic's expertise and made booking an afterthought for prospective clients.",
     solution:
-      "We built a new site with a clear service architecture, practitioner profiles that established clinical authority, and an integrated online booking system that made scheduling effortless. We then developed an SEO strategy targeting sports performance, athletic recovery, and local health searches, creating content that answered the specific questions athletes and trainers were typing into Google.",
+      "We built a clear service architecture with integrated booking, then ran an SEO strategy around sports-performance searches that grew organic traffic 156% and bookings 85%.",
     features: [
       { icon: "layers", label: "Service Architecture", desc: "Individual service pages for each clinic offering with clear outcomes and booking prompts" },
       { icon: "calendar", label: "Online Booking System", desc: "Integrated scheduling with appointment type selection, reminders, and confirmation flows" },
@@ -580,12 +479,6 @@ export const projects: ProjectData[] = [
       "GA4 & conversion tracking setup",
     ],
     services: ["Web Design & Development", "SEO Strategy", "Content Marketing"],
-    results: [
-      { value: "+156%", label: "Organic traffic growth" },
-      { value: "+85%", label: "Online appointment bookings" },
-      { value: "3×", label: "New client inquiry volume" },
-      { value: "97", label: "PageSpeed score" },
-    ],
     year: "2024",
     liveUrl: "https://thestatclinic.com",
     screenshotUrl: "/screenshots/thestatclinic.png",

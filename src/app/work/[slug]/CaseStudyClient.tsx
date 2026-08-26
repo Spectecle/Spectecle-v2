@@ -100,7 +100,7 @@ export default function CaseStudyClient({
   return (
     <>
       {/* ── HEADER ───────────────────────────────────── */}
-      <section className="pt-32 pb-8 px-6">
+      <section className="pt-[228px] pb-8 px-6">
         <div className="max-w-6xl mx-auto">
           <Link href="/work" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors text-sm mb-8">
             <ArrowLeft className="w-4 h-4" />
@@ -134,20 +134,6 @@ export default function CaseStudyClient({
               priority
             />
           </Reveal>
-        </div>
-      </section>
-
-      {/* ── METRICS ──────────────────────────────────── */}
-      <section className="py-10 px-6 border-b border-[var(--site-border)]">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-          {project.heroMetrics.map((m) => (
-            <div key={m.label}>
-              <div className="text-3xl md:text-4xl font-light text-[#9a5423]" style={{ fontFamily: "var(--font-serif)" }}>
-                {m.value}
-              </div>
-              <p className="mt-1 text-[var(--site-text-muted)] text-xs uppercase tracking-wider">{m.label}</p>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -207,29 +193,6 @@ export default function CaseStudyClient({
         </div>
       </section>
 
-      {/* ── RESULTS ──────────────────────────────────── */}
-      <section className="py-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto">
-          <Reveal className="mb-14">
-            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">The Impact</span>
-            <h2 className="mt-3 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Results that speak for themselves.
-            </h2>
-          </Reveal>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {project.results.map((r, i) => (
-              <Reveal key={r.label} delay={i * 0.08}>
-                <div className="text-3xl md:text-4xl font-light text-[#9a5423]" style={{ fontFamily: "var(--font-serif)" }}>
-                  {r.value}
-                </div>
-                <p className="mt-2 text-[var(--site-text-secondary)] text-sm leading-snug">{r.label}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── DELIVERABLES ─────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-14 items-start">
@@ -239,8 +202,7 @@ export default function CaseStudyClient({
               Everything included in this engagement.
             </h2>
             <p className="mt-4 text-[var(--site-text-secondary)]">
-              Every deliverable below was scoped, built, and handed off as part of this project.
-              No half-finished work. Everything is production-ready and live.
+              Scoped, built, and handed off, production-ready and live.
             </p>
           </Reveal>
 

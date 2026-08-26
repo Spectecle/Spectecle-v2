@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { Inbox, X, ArrowUpRight, Trash2, Users as UsersIcon, Radio, TrendingUp, Send, MailOpen } from "lucide-react";
+import { Inbox, X, ArrowUpRight, Trash2, Users as UsersIcon, Radio, TrendingUp, Send, MailOpen, Phone, MessageSquare, FileText } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
@@ -9,7 +9,14 @@ import { TicketCard } from "@/components/portal/TicketCard";
 import { UserManagementPanel } from "@/components/portal/UserManagementPanel";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
 import { organizationKeyFor, prettifyDomain, type OrgRecord } from "@/lib/organizations";
-import { fetchGA4ActiveUsersNow, fetchGA4MonthToDate, fetchGA4DailyVisitors } from "@/lib/ga4";
+import {
+  fetchGA4ActiveUsersNow,
+  fetchGA4MonthToDate,
+  fetchGA4DailyVisitors,
+  fetchGA4EventCounts,
+  fetchGA4TopPages,
+  type GA4PageRow,
+} from "@/lib/ga4";
 import { fetchEmailCountsThisMonth } from "@/lib/gmail";
 import { VisitorsChart } from "@/components/portal/VisitorsChart";
 import { TicketsChart } from "@/components/portal/TicketsChart";
@@ -153,16 +160,25 @@ async function DashboardSection({
   let dailyVisitors: { date: string; visitors: number }[] = [];
   let ga4Error = false;
 
+  let phoneClicks: number | null = null;
+  let contactSubmits: number | null = null;
+  let topPages: GA4PageRow[] = [];
+
   if (spectecleGa4PropertyId) {
     try {
-      const [active, monthToDate, daily] = await Promise.all([
+      const [active, monthToDate, daily, eventCounts, pages] = await Promise.all([
         fetchGA4ActiveUsersNow(spectecleGa4PropertyId),
         fetchGA4MonthToDate(spectecleGa4PropertyId),
         fetchGA4DailyVisitors(spectecleGa4PropertyId),
+        fetchGA4EventCounts(spectecleGa4PropertyId, ["phone_click", "contact_submit"], 30),
+        fetchGA4TopPages(spectecleGa4PropertyId, 30, 8),
       ]);
       activeNow = active;
       monthVisitors = monthToDate.visitors;
       dailyVisitors = daily;
+      phoneClicks = eventCounts.phone_click;
+      contactSubmits = eventCounts.contact_submit;
+      topPages = pages;
     } catch (error) {
       console.error("[admin/dashboard] GA4 fetch error:", error);
       ga4Error = true;
@@ -278,6 +294,50 @@ async function DashboardSection({
             <code className="bg-[var(--portal-border)] px-1.5 py-0.5 rounded">.env.local.example</code>.
           </p>
         )}
+      </div>
+
+      <div>
+        <p className="text-sm font-semibold text-[var(--portal-text-muted)] uppercase tracking-wider mb-3">
+          Site Activity (Last 30 Days)
+        </p>
+        <div className="grid sm:grid-cols-2 gap-4 mb-4">
+          <StatCard
+            label="Phone Number Clicks"
+            value={phoneClicks}
+            icon={Phone}
+            unavailable={!spectecleGa4PropertyId}
+            error={ga4Error}
+          />
+          <StatCard
+            label="Contact Form Submits"
+            value={contactSubmits}
+            icon={MessageSquare}
+            unavailable={!spectecleGa4PropertyId}
+            error={ga4Error}
+          />
+        </div>
+        <div className="glass border border-[var(--portal-border)] p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <FileText className="w-4 h-4 text-[var(--portal-text-faint)]" />
+            <p className="text-sm font-semibold text-[var(--portal-text-primary)]">Most Viewed Pages</p>
+          </div>
+          {!spectecleGa4PropertyId ? (
+            <p className="text-sm text-[var(--portal-text-faint)] py-6 text-center">Connect GA4 to see this.</p>
+          ) : ga4Error ? (
+            <p className="text-sm text-[var(--portal-text-faint)] py-6 text-center">Failed to load.</p>
+          ) : topPages.length === 0 ? (
+            <p className="text-sm text-[var(--portal-text-faint)] py-6 text-center">No page view data yet.</p>
+          ) : (
+            <div className="space-y-2">
+              {topPages.map((p) => (
+                <div key={p.path} className="flex items-center justify-between gap-4 text-sm py-1.5 border-b border-[var(--portal-border)] last:border-b-0">
+                  <span className="text-[var(--portal-text-secondary)] truncate">{p.path}</span>
+                  <span className="text-[var(--portal-text-primary)] font-semibold shrink-0">{p.views.toLocaleString()}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

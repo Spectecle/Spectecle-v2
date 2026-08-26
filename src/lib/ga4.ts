@@ -98,3 +98,51 @@ export async function fetchGA4DailyVisitors(propertyId: string): Promise<DailyVi
     return { date, visitors: Number(row.metricValues?.[0]?.value ?? 0) };
   });
 }
+
+/** Counts of specific custom events (e.g. "phone_click", "contact_submit")
+ * over the trailing N days. Missing events come back as 0, not omitted. */
+export async function fetchGA4EventCounts(
+  propertyId: string,
+  eventNames: string[],
+  days = 30
+): Promise<Record<string, number>> {
+  const analyticsClient = getClient();
+
+  const [response] = await analyticsClient.runReport({
+    property: `properties/${propertyId}`,
+    dateRanges: [{ startDate: `${days}daysAgo`, endDate: "today" }],
+    dimensions: [{ name: "eventName" }],
+    metrics: [{ name: "eventCount" }],
+    dimensionFilter: {
+      filter: { fieldName: "eventName", inListFilter: { values: eventNames } },
+    },
+  });
+
+  const counts: Record<string, number> = Object.fromEntries(eventNames.map((n) => [n, 0]));
+  for (const row of response.rows ?? []) {
+    const name = row.dimensionValues?.[0]?.value;
+    if (name) counts[name] = Number(row.metricValues?.[0]?.value ?? 0);
+  }
+  return counts;
+}
+
+export type GA4PageRow = { path: string; views: number };
+
+/** Most-viewed pages over the trailing N days, highest views first. */
+export async function fetchGA4TopPages(propertyId: string, days = 30, limit = 10): Promise<GA4PageRow[]> {
+  const analyticsClient = getClient();
+
+  const [response] = await analyticsClient.runReport({
+    property: `properties/${propertyId}`,
+    dateRanges: [{ startDate: `${days}daysAgo`, endDate: "today" }],
+    dimensions: [{ name: "pagePath" }],
+    metrics: [{ name: "screenPageViews" }],
+    orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+    limit,
+  });
+
+  return (response.rows ?? []).map((row) => ({
+    path: row.dimensionValues?.[0]?.value ?? "",
+    views: Number(row.metricValues?.[0]?.value ?? 0),
+  }));
+}

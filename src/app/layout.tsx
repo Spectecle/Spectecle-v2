@@ -3,6 +3,7 @@ import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import ConditionalShell from "@/components/ConditionalShell";
+import GA4PageViewTracker from "@/components/GA4PageViewTracker";
 import { Analytics } from "@vercel/analytics/react";
 
 const GA_MEASUREMENT_ID = "G-VK8T7HE7NR";
@@ -186,6 +187,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col antialiased" suppressHydrationWarning>
         <div className="noise-overlay" aria-hidden="true" />
         <ConditionalShell>{children}</ConditionalShell>
+        <GA4PageViewTracker />
         <Analytics />
         {/* Google Consent Mode: default to denied until CookieConsent grants it,
             so analytics_storage/ad_storage stay off for first-time visitors. */}
@@ -206,7 +208,7 @@ export default function RootLayout({
         <Script id="google-tag" strategy="afterInteractive">
           {`
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
+            gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });
           `}
         </Script>
       </body>

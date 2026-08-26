@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-const EFFECTIVE_DATE = "May 1, 2024";
+const EFFECTIVE_DATE = "August 26, 2026";
 const COMPANY = "Spectecle SEO & Web Design";
 const EMAIL = "hello@spectecle.com";
 const WEBSITE = "spectecle.com";
@@ -21,7 +21,7 @@ const sections = [
       },
       {
         subtitle: "Communications",
-        body: `If you contact us by email at hello@spectecle.com, we retain a record of that communication, including your email address and message content, in order to respond to your inquiry and maintain accurate records.`,
+        body: `If you contact us by email at ${EMAIL}, we retain a record of that communication, including your email address and message content, in order to respond to your inquiry and maintain accurate records.`,
       },
     ],
   },
@@ -52,8 +52,12 @@ const sections = [
         body: `Cookies are small text files stored on your device by your web browser. They help websites remember preferences, understand traffic patterns, and improve user experience.`,
       },
       {
+        subtitle: "Cookie Consent",
+        body: `When you first visit spectecle.com, a cookie banner asks whether you'd like to accept or decline non-essential cookies. If you accept, analytics cookies are enabled. If you decline, only strictly necessary cookies run and analytics tracking stays off. Your choice is remembered on this device; you can change it at any time by clearing your browser's site data for spectecle.com and reloading the page.`,
+      },
+      {
         subtitle: "Google Analytics 4",
-        body: `We use Google Analytics 4 (GA4) to understand how visitors interact with our website. GA4 uses cookies to collect anonymized data about page views, session duration, device type, and referral sources. This data is processed by Google in accordance with their Privacy Policy. We do not use GA4 to collect personally identifiable information. You can opt out of Google Analytics tracking by installing the Google Analytics Opt-out Browser Add-on.`,
+        body: `We use Google Analytics 4 (GA4) to understand how visitors interact with our website, using Google's Consent Mode: analytics cookies are switched off by default and only activate if you accept our cookie banner. GA4 collects anonymized data about page views, session duration, device type, and referral sources, processed by Google in accordance with their Privacy Policy. We do not use GA4 to collect personally identifiable information.`,
       },
       {
         subtitle: "Essential Cookies",
@@ -61,7 +65,7 @@ const sections = [
       },
       {
         subtitle: "Managing Cookies",
-        body: `Most web browsers allow you to control cookies through your browser settings. You can set your browser to refuse cookies or delete existing cookies. Note that disabling cookies may affect the functionality of certain parts of this website.`,
+        body: `Most web browsers also allow you to control cookies through your browser settings. You can set your browser to refuse cookies or delete existing cookies. Note that disabling cookies may affect the functionality of certain parts of this website.`,
       },
     ],
   },
@@ -97,7 +101,7 @@ const sections = [
       },
       {
         subtitle: "Deletion Requests",
-        body: `You may request deletion of your personal data at any time by emailing hello@spectecle.com. We will process deletion requests within 30 days, subject to any legal obligations to retain certain records.`,
+        body: `You may request deletion of your personal data at any time by emailing ${EMAIL}. We will process deletion requests within 30 days, subject to any legal obligations to retain certain records.`,
       },
     ],
   },
@@ -119,7 +123,7 @@ const sections = [
       },
       {
         subtitle: "Exercising Your Rights",
-        body: `To exercise any of these rights, please contact us at hello@spectecle.com. We will respond to all verifiable requests within 30 days. We may need to verify your identity before processing certain requests.`,
+        body: `To exercise any of these rights, please contact us at ${EMAIL}. We will respond to all verifiable requests within 30 days. We may need to verify your identity before processing certain requests.`,
       },
     ],
   },
@@ -153,7 +157,7 @@ const sections = [
     content: [
       {
         subtitle: "Not Directed at Children",
-        body: `Spectecle SEO & Web Design's website and services are intended for adults and business owners. We do not knowingly collect personal information from children under the age of 13. If you believe we have inadvertently collected information from a child, please contact us at hello@spectecle.com and we will delete it promptly.`,
+        body: `Spectecle SEO & Web Design's website and services are intended for adults and business owners. We do not knowingly collect personal information from children under the age of 13. If you believe we have inadvertently collected information from a child, please contact us at ${EMAIL} and we will delete it promptly.`,
       },
     ],
   },
@@ -173,7 +177,7 @@ const sections = [
     content: [
       {
         subtitle: "Privacy Questions",
-        body: `If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your personal information, please contact us at:\n\nSpectecle SEO & Web Design\nEmail: hello@spectecle.com\nPhone: +1 (313) 353-4105\n\nWe will respond to all privacy-related inquiries within 30 days.`,
+        body: `If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your personal information, please contact us at:\n\nSpectecle SEO & Web Design\nEmail: ${EMAIL}\nPhone: +1 (313) 353-4105\n\nWe will respond to all privacy-related inquiries within 30 days.`,
       },
     ],
   },
@@ -188,7 +192,7 @@ export default function PrivacyPage() {
       />
 
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="relative pt-40 pb-10 px-6">
+      <section className="relative pt-[260px] pb-10 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#9a5423]/20 text-sm text-[#9a5423] font-medium mb-8">
             <span className="w-2 h-2 bg-[#9a5423]" />
@@ -281,10 +285,10 @@ export default function PrivacyPage() {
           <p className="mt-4 text-[var(--site-text-secondary)] text-base max-w-lg mx-auto">
             Email us at{" "}
             <a
-              href="mailto:hello@spectecle.com"
+              href={`mailto:${EMAIL}`}
               className="text-[#9a5423] hover:underline"
             >
-              hello@spectecle.com
+              {EMAIL}
             </a>{" "}
             or call{" "}
             <a href="tel:+13133534105" className="text-[#9a5423] hover:underline">

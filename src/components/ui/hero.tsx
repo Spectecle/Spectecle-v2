@@ -89,7 +89,10 @@ export default function Hero() {
           >
             <div
               className="absolute inset-0 overflow-hidden"
-              style={{ animation: i === index ? "kenburns 8s ease-out forwards" : undefined }}
+              style={{
+                animation: "kenburns 8s ease-out forwards",
+                animationPlayState: i === index ? "running" : "paused",
+              }}
             >
               <Image
                 src={slide.image}
@@ -125,7 +128,7 @@ export default function Hero() {
               className="font-normal leading-[0.99] tracking-tight text-[11vw] sm:text-[6vw] lg:text-[4.6vw]"
               style={{ fontFamily: "var(--font-serif)", color: HERO_TEXT }}
             >
-              <span className="block overflow-hidden pb-[0.06em]">
+              <span className="block overflow-hidden pb-[0.18em]">
                 <span
                   className="block transition-transform duration-[1050ms]"
                   style={{ transform: loaded ? "none" : "translateY(112%)", transitionDelay: "180ms" }}
@@ -133,12 +136,12 @@ export default function Hero() {
                   Websites worth
                 </span>
               </span>
-              <span className="block overflow-hidden pb-[0.06em]">
+              <span className="block overflow-hidden pb-[0.18em]">
                 <span
                   className="block transition-transform duration-[1050ms]"
                   style={{ transform: loaded ? "none" : "translateY(112%)", transitionDelay: "300ms" }}
                 >
-                  looking <em className="italic" style={{ color: HERO_ACCENT }}>twice.</em>
+                  looking at <em className="italic" style={{ color: HERO_ACCENT }}>twice.</em>
                 </span>
               </span>
             </h1>
@@ -147,8 +150,9 @@ export default function Hero() {
               className="mt-6 sm:mt-8 max-w-[32em] text-base sm:text-[1.16rem] leading-[1.6] transition-all duration-1000"
               style={{ color: HERO_TEXT_MUTED, opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(16px)", transitionDelay: "500ms" }}
             >
-              Custom design and growth marketing for brands that refuse to blend in.{" "}
-              <b className="font-medium" style={{ color: HERO_TEXT }}>Built to load fast, rank, and convert</b>, then kept growing long after launch.
+              Every brand has a moment it&apos;s finally seen: someone stops scrolling, looks twice, and stays.
+              We build that moment into your site,{" "}
+              <b className="font-medium" style={{ color: HERO_TEXT }}>engineered to load fast, rank higher, and convert</b>, then keep it growing long after launch.
             </p>
 
             <div
