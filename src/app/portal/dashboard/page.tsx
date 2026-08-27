@@ -11,7 +11,7 @@ import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier } from "@/lib/d
 import { getRequestQuotaStatusForUser } from "@/lib/request-quota";
 import { PLAN_PRICES } from "@/lib/stripe";
 import { fetchGA4ActiveUsersNow, fetchGA4MonthToDate, fetchGA4DailyVisitors, fetchGA4EventCounts } from "@/lib/ga4";
-import { UpgradeCards, ManageBillingButton } from "@/components/portal/BillingActions";
+import { PlanComparison, ManageBillingButton } from "@/components/portal/BillingActions";
 import { getImpersonatedUser } from "@/lib/impersonation";
 import { TicketCard } from "@/components/portal/TicketCard";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
@@ -327,23 +327,9 @@ async function BillingSection({ userId }: { userId: string }) {
     .maybeSingle();
 
   const isActive = subscription && (subscription.status === "active" || subscription.status === "trialing" || subscription.status === "past_due");
+  const currentTier: DashboardTier = isActive ? (subscription.tier as DashboardTier) : "free";
 
-  if (!isActive) {
-    return (
-      <div className="space-y-8">
-        <div className="glass rounded-2xl border border-[var(--portal-border)] p-6">
-          <p className="text-sm text-[var(--portal-text-muted)] mb-1">Current plan</p>
-          <p className="text-lg font-semibold text-[var(--portal-text-primary)]">Free</p>
-        </div>
-        <div>
-          <h2 className="text-lg font-semibold text-[var(--portal-text-primary)] mb-4">Upgrade your plan</h2>
-          <UpgradeCards prices={PLAN_PRICES} />
-        </div>
-      </div>
-    );
-  }
-
-  const renewalLabel = subscription.current_period_end
+  const renewalLabel = isActive && subscription.current_period_end
     ? new Date(subscription.current_period_end).toLocaleDateString("en-US", {
         month: "long",
         day: "numeric",
@@ -352,30 +338,44 @@ async function BillingSection({ userId }: { userId: string }) {
     : null;
 
   return (
-    <div className="space-y-4">
-      {subscription.status === "past_due" && (
-        <div className="rounded-2xl border border-rose-400/40 bg-rose-400/10 p-5">
-          <p className="text-sm text-rose-300 font-medium mb-1">Your last payment failed</p>
-          <p className="text-sm text-[var(--portal-text-secondary)]">
-            Update your card to keep your {DASHBOARD_TIER_LABELS[subscription.tier as DashboardTier]} plan active.
-          </p>
+    <div className="space-y-8">
+      {isActive ? (
+        <>
+          {subscription.status === "past_due" && (
+            <div className="rounded-2xl border border-rose-400/40 bg-rose-400/10 p-5">
+              <p className="text-sm text-rose-300 font-medium mb-1">Your last payment failed</p>
+              <p className="text-sm text-[var(--portal-text-secondary)]">
+                Update your card to keep your {DASHBOARD_TIER_LABELS[subscription.tier as DashboardTier]} plan active.
+              </p>
+            </div>
+          )}
+          <div className="glass rounded-2xl border border-[var(--portal-border)] p-6 flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <p className="text-sm text-[var(--portal-text-muted)] mb-1">Current plan</p>
+              <p className="text-lg font-semibold text-[var(--portal-text-primary)]">
+                {DASHBOARD_TIER_LABELS[subscription.tier as DashboardTier]}
+                {" · "}
+                {subscription.billing_interval === "annual" ? "Annual" : "Monthly"}
+              </p>
+              {renewalLabel && (
+                <p className="text-sm text-[var(--portal-text-muted)] mt-1">
+                  {subscription.cancel_at_period_end ? "Ends" : "Renews"} {renewalLabel}
+                </p>
+              )}
+            </div>
+            <ManageBillingButton />
+          </div>
+        </>
+      ) : (
+        <div className="glass rounded-2xl border border-[var(--portal-border)] p-6">
+          <p className="text-sm text-[var(--portal-text-muted)] mb-1">Current plan</p>
+          <p className="text-lg font-semibold text-[var(--portal-text-primary)]">Free</p>
         </div>
       )}
-      <div className="glass rounded-2xl border border-[var(--portal-border)] p-6 flex items-center justify-between flex-wrap gap-4">
-        <div>
-          <p className="text-sm text-[var(--portal-text-muted)] mb-1">Current plan</p>
-          <p className="text-lg font-semibold text-[var(--portal-text-primary)]">
-            {DASHBOARD_TIER_LABELS[subscription.tier as DashboardTier]}
-            {" · "}
-            {subscription.billing_interval === "annual" ? "Annual" : "Monthly"}
-          </p>
-          {renewalLabel && (
-            <p className="text-sm text-[var(--portal-text-muted)] mt-1">
-              {subscription.cancel_at_period_end ? "Ends" : "Renews"} {renewalLabel}
-            </p>
-          )}
-        </div>
-        <ManageBillingButton />
+
+      <div>
+        <h2 className="text-lg font-semibold text-[var(--portal-text-primary)] mb-4">Compare plans</h2>
+        <PlanComparison prices={PLAN_PRICES} currentTier={currentTier} />
       </div>
     </div>
   );

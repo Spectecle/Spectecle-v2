@@ -38,7 +38,7 @@ export const DASHBOARD_FEATURE_LABELS: Record<DashboardFeature, string> = {
   callTracking: "Call Tracking",
 };
 
-const TIER_FEATURES: Record<DashboardTier, DashboardFeature[]> = {
+export const TIER_FEATURES: Record<DashboardTier, DashboardFeature[]> = {
   free: ["siteStatus"],
   growth: [
     "siteStatus",
