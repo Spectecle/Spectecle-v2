@@ -5,7 +5,10 @@ function normalizeUrl(url: string): string {
   return url.startsWith("http") ? url : `https://${url}`;
 }
 
-export type UptimeStatus = { up: boolean; statusCode: number | null; responseTimeMs: number | null };
+export type UptimeState = "up" | "blocked" | "down";
+export type UptimeStatus = { state: UptimeState; statusCode: number | null; responseTimeMs: number | null };
+
+const BLOCKED_STATUS_CODES = new Set([401, 403, 429]);
 
 /** A single timed HTTP check — not historical uptime tracking, just "is it
  * up right now," fetched live on dashboard load the same way GA4's
@@ -13,7 +16,18 @@ export type UptimeStatus = { up: boolean; statusCode: number | null; responseTim
  * tested against a real client site protected by a WAF/security plugin, a
  * plain unheadered request came back 200, while adding a realistic-looking
  * browser User-Agent (with no other browser-typical headers to back it up)
- * got 403'd as an impersonation attempt. Don't "fix" this by adding one. */
+ * got 403'd as an impersonation attempt. Don't "fix" this by adding one.
+ *
+ * Confirmed against dearborncleaners.com (a real client site) that this can
+ * still happen with no custom headers at all: a plain request from a normal
+ * network gets 200, the identical request from Vercel's serverless IPs gets
+ * 403 — the site's WAF/security plugin is blocking known datacenter IP
+ * ranges, which Vercel's shared, unpublished, rotating IP pool falls under
+ * and can't be allowlisted. That's a real signal (the check IS being
+ * blocked) but not proof the site is actually down for real visitors, so a
+ * 401/403/429 is reported as "blocked" rather than folded into "down" —
+ * conflating the two would tell a client their live site is offline when
+ * it's only this automated check that got refused. */
 export async function checkUptime(url: string): Promise<UptimeStatus> {
   const target = normalizeUrl(url);
   const started = Date.now();
@@ -22,13 +36,19 @@ export async function checkUptime(url: string): Promise<UptimeStatus> {
 
   try {
     const res = await fetch(target, { method: "GET", redirect: "follow", signal: controller.signal });
-    if (!res.ok) {
-      console.warn(`[site-status] uptime check for ${target} got ${res.status} ${res.statusText}`);
+    const responseTimeMs = Date.now() - started;
+    if (res.ok) {
+      return { state: "up", statusCode: res.status, responseTimeMs };
     }
-    return { up: res.ok, statusCode: res.status, responseTimeMs: Date.now() - started };
+    if (BLOCKED_STATUS_CODES.has(res.status)) {
+      console.warn(`[site-status] uptime check for ${target} was blocked: ${res.status} ${res.statusText}`);
+      return { state: "blocked", statusCode: res.status, responseTimeMs };
+    }
+    console.warn(`[site-status] uptime check for ${target} got ${res.status} ${res.statusText}`);
+    return { state: "down", statusCode: res.status, responseTimeMs };
   } catch (error) {
     console.error(`[site-status] uptime check for ${target} failed:`, error);
-    return { up: false, statusCode: null, responseTimeMs: null };
+    return { state: "down", statusCode: null, responseTimeMs: null };
   } finally {
     clearTimeout(timeout);
   }

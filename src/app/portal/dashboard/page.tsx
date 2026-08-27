@@ -375,22 +375,42 @@ async function StatusSection({ userId }: { userId: string }) {
 
   return (
     <div className="space-y-6">
-      <div className="glass border border-[var(--portal-border)] p-5 flex items-center justify-between flex-wrap gap-3">
-        <div className="flex items-center gap-3">
-          <span
-            className={`w-2.5 h-2.5 rounded-full ${
-              uptimeError ? "bg-[var(--portal-text-faint)]" : uptime?.up ? "bg-emerald-400" : "bg-rose-400"
-            }`}
-          />
-          <div>
-            <p className="text-sm font-semibold text-[var(--portal-text-primary)]">
-              {uptimeError ? "Status check failed" : uptime?.up ? "Site is up" : "Site is down"}
-            </p>
-            <p className="text-xs text-[var(--portal-text-faint)]">{websiteUrl}</p>
+      <div className="glass border border-[var(--portal-border)] p-5">
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <div className="flex items-center gap-3">
+            <span
+              className={`w-2.5 h-2.5 rounded-full ${
+                uptimeError
+                  ? "bg-[var(--portal-text-faint)]"
+                  : uptime?.state === "up"
+                    ? "bg-emerald-400"
+                    : uptime?.state === "blocked"
+                      ? "bg-amber-400"
+                      : "bg-rose-400"
+              }`}
+            />
+            <div>
+              <p className="text-sm font-semibold text-[var(--portal-text-primary)]">
+                {uptimeError
+                  ? "Status check failed"
+                  : uptime?.state === "up"
+                    ? "Site is up"
+                    : uptime?.state === "blocked"
+                      ? "Reachable, but blocked our check"
+                      : "Site is down"}
+              </p>
+              <p className="text-xs text-[var(--portal-text-faint)]">{websiteUrl}</p>
+            </div>
           </div>
+          {uptime?.responseTimeMs != null && (
+            <span className="text-sm text-[var(--portal-text-muted)]">{uptime.responseTimeMs}ms</span>
+          )}
         </div>
-        {uptime?.responseTimeMs != null && (
-          <span className="text-sm text-[var(--portal-text-muted)]">{uptime.responseTimeMs}ms</span>
+        {uptime?.state === "blocked" && (
+          <p className="text-xs text-[var(--portal-text-faint)] mt-3 pt-3 border-t border-[var(--portal-border)]">
+            Your site&apos;s security settings blocked this automated check (HTTP {uptime.statusCode}) — this
+            doesn&apos;t necessarily mean the site is down for real visitors.
+          </p>
         )}
       </div>
 
