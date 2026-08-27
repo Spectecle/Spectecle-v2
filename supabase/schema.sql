@@ -276,3 +276,12 @@ create table if not exists subscriptions (
 );
 create index if not exists subscriptions_org_idx on subscriptions (organization_id, updated_at desc);
 alter table subscriptions enable row level security;
+
+-- ============================================================
+-- Migration: Search Console site linkage
+-- ============================================================
+-- The property identifier as registered in Search Console, either
+-- URL-prefix form (e.g. "https://example.com/") or domain-property form
+-- ("sc-domain:example.com"), for orgs linked up for the Search Console
+-- "Top Queries" card. See src/lib/search-console.ts.
+alter table organizations add column if not exists search_console_site_url text;

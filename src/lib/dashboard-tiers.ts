@@ -15,11 +15,8 @@ export type DashboardFeature =
   | "leadsInbox" // Growth+
   | "reviewsMonitor" // Growth+: Google reviews monitor
   | "monthlyReport" // Growth+: automated monthly PDF report
-  | "aiContentStudio" // Pro only
-  | "aiChatWidget" // Pro only
   | "adReports" // Pro only: Google + Meta ads reporting
   | "rankTracking" // Pro only: keyword rank tracking + competitor snapshot
-  | "aiReviewResponses" // Pro only
   | "callTracking"; // Pro only
 
 export const DASHBOARD_FEATURE_LABELS: Record<DashboardFeature, string> = {
@@ -30,11 +27,8 @@ export const DASHBOARD_FEATURE_LABELS: Record<DashboardFeature, string> = {
   leadsInbox: "Leads Inbox",
   reviewsMonitor: "Reviews Monitor",
   monthlyReport: "Monthly PDF Report",
-  aiContentStudio: "AI Content Studio",
-  aiChatWidget: "AI Chat Widget",
   adReports: "Ads Reporting",
   rankTracking: "Rank Tracking",
-  aiReviewResponses: "AI Review Responses",
   callTracking: "Call Tracking",
 };
 
@@ -57,19 +51,19 @@ export const TIER_FEATURES: Record<DashboardTier, DashboardFeature[]> = {
     "leadsInbox",
     "reviewsMonitor",
     "monthlyReport",
-    "aiContentStudio",
-    "aiChatWidget",
     "adReports",
     "rankTracking",
-    "aiReviewResponses",
     "callTracking",
   ],
 };
 
+/** Free doesn't include any service requests at all — minor-change work on
+ * a Free site is quoted and billed individually rather than pooled into a
+ * monthly allowance. */
 export const REQUEST_QUOTAS: Record<DashboardTier, number> = {
-  free: 2,
-  growth: 6,
-  pro: 20,
+  free: 0,
+  growth: 4,
+  pro: 10,
 };
 
 export function isDashboardTier(value: unknown): value is DashboardTier {

@@ -21,6 +21,7 @@ export async function POST(req: Request) {
     websiteUrl?: string;
     dashboardTier?: string | null;
     ga4PropertyId?: string | null;
+    searchConsoleSiteUrl?: string | null;
   } | null;
   const id = body?.id?.trim();
   const domain = body?.domain?.trim().toLowerCase();
@@ -48,10 +49,15 @@ export async function POST(req: Request) {
     ga4Update = { ga4_property_id: body.ga4PropertyId?.trim() || null };
   }
 
+  let searchConsoleUpdate: { search_console_site_url: string | null } | null = null;
+  if (body && "searchConsoleSiteUrl" in body) {
+    searchConsoleUpdate = { search_console_site_url: body.searchConsoleSiteUrl?.trim() || null };
+  }
+
   if (id) {
     const { error } = await supabase
       .from("organizations")
-      .update({ name, website_url: websiteUrl, ...dashboardTierUpdate, ...ga4Update })
+      .update({ name, website_url: websiteUrl, ...dashboardTierUpdate, ...ga4Update, ...searchConsoleUpdate })
       .eq("id", id);
     if (error) {
       console.error("[portal/admin/organizations] update error:", error);
@@ -64,7 +70,7 @@ export async function POST(req: Request) {
   // backfill every currently-unassigned user on that domain into it.
   const { data: created, error: createError } = await supabase
     .from("organizations")
-    .insert({ name, website_url: websiteUrl, domain, ...dashboardTierUpdate, ...ga4Update })
+    .insert({ name, website_url: websiteUrl, domain, ...dashboardTierUpdate, ...ga4Update, ...searchConsoleUpdate })
     .select("id")
     .single();
 

@@ -12,6 +12,7 @@
     "@google-analytics/data": "^7.0.0",
     "@paper-design/shaders-react": "^0.0.77",
     "@radix-ui/react-avatar": "^1.2.6",
+    "@react-pdf/renderer": "^4.8.1",
     "@supabase/supabase-js": "^2.110.7",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",

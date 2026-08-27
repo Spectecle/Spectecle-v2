@@ -9,6 +9,7 @@ import { SERVICE_TYPES, BUDGET_OPTIONS, getServiceFields, getFieldErrors } from 
 import { useFileUploads } from "@/hooks/useFileUploads";
 import { FileUploadField } from "@/components/portal/FileUploadField";
 import { DynamicField, inputClass, type DetailValue } from "@/components/portal/DynamicField";
+import { RequestScopeGuide } from "@/components/portal/RequestScopeGuide";
 
 export default function PortalRequestPage() {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function PortalRequestPage() {
   const fileUpload = useFileUploads();
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error" | "quota_exceeded">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [quotaMessage, setQuotaMessage] = useState("");
 
   const fields = getServiceFields(serviceType);
 
@@ -70,7 +72,12 @@ export default function PortalRequestPage() {
         setStatus("success");
       } else {
         const body = await res.json().catch(() => null);
-        setStatus(body?.error === "quota_exceeded" ? "quota_exceeded" : "error");
+        if (body?.error === "quota_exceeded") {
+          setQuotaMessage(body?.message ?? "");
+          setStatus("quota_exceeded");
+        } else {
+          setStatus("error");
+        }
       }
     } catch {
       setStatus("error");
@@ -91,6 +98,11 @@ export default function PortalRequestPage() {
           <ArrowLeft className="w-3.5 h-3.5" />
           Back to Dashboard
         </Link>
+        {status === "idle" && (
+          <div className="mb-5">
+            <RequestScopeGuide />
+          </div>
+        )}
         <AnimatePresence mode="wait">
           {status === "quota_exceeded" ? (
             <motion.div
@@ -103,10 +115,10 @@ export default function PortalRequestPage() {
                 className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"
                 style={{ fontFamily: "var(--font-sans)" }}
               >
-                You&apos;ve used all your requests this month
+                Can&apos;t submit that request right now
               </h2>
               <p className="text-[var(--portal-text-secondary)] mb-8 text-sm">
-                Your plan resets on the 1st of next month. Upgrade to submit more requests right away.
+                {quotaMessage || "Upgrade your plan to submit requests."}
               </p>
               <div className="flex items-center justify-center gap-6">
                 <Link

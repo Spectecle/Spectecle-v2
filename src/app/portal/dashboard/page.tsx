@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, Inbox, Receipt, Radio, TrendingUp, Phone, MessageSquare } from "lucide-react";
+import { ArrowUpRight, Inbox, Receipt, Radio, TrendingUp, Phone, MessageSquare, Search, ShieldCheck } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
@@ -11,6 +11,10 @@ import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier } from "@/lib/d
 import { getRequestQuotaStatusForUser } from "@/lib/request-quota";
 import { PLAN_PRICES } from "@/lib/stripe";
 import { fetchGA4ActiveUsersNow, fetchGA4MonthToDate, fetchGA4DailyVisitors, fetchGA4EventCounts } from "@/lib/ga4";
+import { fetchSearchConsoleTopQueries, type SearchConsoleQueryRow } from "@/lib/search-console";
+import { checkUptime, checkSslCertificate, type UptimeStatus, type SslStatus } from "@/lib/site-status";
+import { PageSpeedCard } from "@/components/portal/PageSpeedCard";
+import { RequestScopeGuide } from "@/components/portal/RequestScopeGuide";
 import { PlanComparison, ManageBillingButton } from "@/components/portal/BillingActions";
 import { getImpersonatedUser } from "@/lib/impersonation";
 import { TicketCard } from "@/components/portal/TicketCard";
@@ -35,11 +39,12 @@ type ServiceRequest = {
 };
 
 const CLIENT_TAB_STATUSES = new Set(["new", "in_progress", "done"]);
-const SECTIONS = new Set(["requests", "analytics", "reports", "invoices"]);
+const SECTIONS = new Set(["requests", "analytics", "status", "reports", "invoices"]);
 
 const SECTION_LABELS: Record<string, string> = {
   requests: "Requests",
   analytics: "Analytics",
+  status: "Site Status",
   reports: "Reports",
   invoices: "Billing",
 };
@@ -80,6 +85,7 @@ export default async function PortalDashboardPage({
 
           {section === "requests" && <RequestsSection userId={effectiveUser.id} statusParam={statusParam} />}
           {section === "analytics" && <AnalyticsSection userId={effectiveUser.id} />}
+          {section === "status" && <StatusSection userId={effectiveUser.id} />}
           {section === "reports" && <ReportsSection userId={effectiveUser.id} />}
           {section === "invoices" && <BillingSection userId={effectiveUser.id} />}
         </div>
@@ -129,18 +135,24 @@ async function RequestsSection({
       <div className="flex items-center justify-between mb-4 gap-4">
         {quota && (
           <p className="text-sm text-[var(--portal-text-muted)]">
-            {quota.exceeded
-              ? `You've used all ${quota.limit} requests included in your plan this month.`
-              : `${quota.remaining} of ${quota.limit} requests remaining this month`}
+            {quota.limit === 0
+              ? "Service requests aren't included on the Free plan."
+              : quota.exceeded
+                ? `You've used all ${quota.limit} requests included in your plan this month.`
+                : `${quota.remaining} of ${quota.limit} requests remaining this month`}
           </p>
         )}
         <Link
           href={quota?.exceeded ? "/portal/dashboard?section=invoices" : "/portal/request"}
           className="btn-primary flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer shrink-0"
         >
-          <span>{quota?.exceeded ? "Upgrade to Submit More" : "Request a Service"}</span>
+          <span>{quota?.exceeded ? "Upgrade to Submit Requests" : "Request a Service"}</span>
           <ArrowUpRight className="w-4 h-4 relative z-10" />
         </Link>
+      </div>
+
+      <div className="mb-4">
+        <RequestScopeGuide />
       </div>
 
       <StatusTabs tabs={tabs} active={active} />
@@ -182,7 +194,7 @@ async function RequestsSection({
 }
 
 async function AnalyticsSection({ userId }: { userId: string }) {
-  const { organizationId, tier, ga4PropertyId } = await getDashboardContextForUser(userId);
+  const { organizationId, tier, ga4PropertyId, searchConsoleSiteUrl } = await getDashboardContextForUser(userId);
   const hasAnalytics = tierIncludes(tier, "analytics");
   const showRankings = tierIncludes(tier, "rankTracking");
 
@@ -206,6 +218,17 @@ async function AnalyticsSection({ userId }: { userId: string }) {
   if (!hasAnalytics) return lockedPlaceholders;
 
   const snapshots = organizationId ? await getAnalyticsSnapshotsForOrg(organizationId) : [];
+
+  let topQueries: SearchConsoleQueryRow[] = [];
+  let searchConsoleError = false;
+  if (searchConsoleSiteUrl) {
+    try {
+      topQueries = await fetchSearchConsoleTopQueries(searchConsoleSiteUrl, 28, 8);
+    } catch (error) {
+      console.error("[portal/dashboard] Search Console fetch error:", error);
+      searchConsoleError = true;
+    }
+  }
 
   let activeNow: number | null = null;
   let monthVisitors: number | null = null;
@@ -268,6 +291,34 @@ async function AnalyticsSection({ userId }: { userId: string }) {
         </div>
       )}
 
+      {searchConsoleSiteUrl && (
+        <div className="glass border border-[var(--portal-border)] p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <Search className="w-4 h-4 text-[var(--portal-text-faint)]" />
+            <p className="text-sm font-semibold text-[var(--portal-text-primary)]">Top Search Queries</p>
+          </div>
+          {searchConsoleError ? (
+            <p className="text-sm text-[var(--portal-text-faint)] py-6 text-center">Failed to load.</p>
+          ) : topQueries.length === 0 ? (
+            <p className="text-sm text-[var(--portal-text-faint)] py-6 text-center">No query data yet.</p>
+          ) : (
+            <div className="space-y-2">
+              {topQueries.map((q) => (
+                <div
+                  key={q.query}
+                  className="flex items-center justify-between gap-4 text-sm py-1.5 border-b border-[var(--portal-border)] last:border-b-0"
+                >
+                  <span className="text-[var(--portal-text-secondary)] truncate">{q.query}</span>
+                  <span className="text-[var(--portal-text-primary)] font-semibold shrink-0">
+                    {q.clicks.toLocaleString()} clicks · #{q.position.toFixed(1)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       {showRankings && snapshots.every((s) => s.rankings.length === 0) && (
         <DashboardFeatureCard
           title="SEO Ranking Status"
@@ -288,10 +339,125 @@ async function AnalyticsSection({ userId }: { userId: string }) {
   );
 }
 
+async function StatusSection({ userId }: { userId: string }) {
+  const { tier, websiteUrl } = await getDashboardContextForUser(userId);
+  const hasStatusBundle = tierIncludes(tier, "statusBundle");
+
+  if (!websiteUrl) {
+    return (
+      <div className="glass rounded-2xl border border-[var(--portal-border)] p-6">
+        <p className="text-sm text-[var(--portal-text-secondary)]">
+          No website on file for your account yet — reach out and we&apos;ll get this connected.
+        </p>
+      </div>
+    );
+  }
+
+  let uptime: UptimeStatus | null = null;
+  let uptimeError = false;
+  try {
+    uptime = await checkUptime(websiteUrl);
+  } catch (error) {
+    console.error("[portal/dashboard] uptime check error:", error);
+    uptimeError = true;
+  }
+
+  let ssl: SslStatus | null = null;
+  let sslError = false;
+  if (hasStatusBundle) {
+    try {
+      ssl = await checkSslCertificate(websiteUrl);
+    } catch (error) {
+      console.error("[portal/dashboard] SSL check error:", error);
+      sslError = true;
+    }
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="glass border border-[var(--portal-border)] p-5 flex items-center justify-between flex-wrap gap-3">
+        <div className="flex items-center gap-3">
+          <span
+            className={`w-2.5 h-2.5 rounded-full ${
+              uptimeError ? "bg-[var(--portal-text-faint)]" : uptime?.up ? "bg-emerald-400" : "bg-rose-400"
+            }`}
+          />
+          <div>
+            <p className="text-sm font-semibold text-[var(--portal-text-primary)]">
+              {uptimeError ? "Status check failed" : uptime?.up ? "Site is up" : "Site is down"}
+            </p>
+            <p className="text-xs text-[var(--portal-text-faint)]">{websiteUrl}</p>
+          </div>
+        </div>
+        {uptime?.responseTimeMs != null && (
+          <span className="text-sm text-[var(--portal-text-muted)]">{uptime.responseTimeMs}ms</span>
+        )}
+      </div>
+
+      {hasStatusBundle ? (
+        <div className="grid sm:grid-cols-2 gap-4">
+          <PageSpeedCard />
+          <div className="glass border border-[var(--portal-border)] p-5 h-full">
+            <div className="flex items-center justify-between mb-3">
+              <ShieldCheck className="w-4 h-4 text-[var(--portal-text-faint)]" />
+            </div>
+            <p
+              className={`text-3xl font-light ${
+                sslError ? "text-[#cb7c46]" : ssl?.valid ? "text-emerald-400" : "text-rose-400"
+              }`}
+              style={{ fontFamily: "var(--font-serif, inherit)" }}
+            >
+              {sslError ? "!" : (ssl?.daysRemaining ?? "—")}
+            </p>
+            <p className="text-sm text-[var(--portal-text-muted)] mt-1">
+              {sslError
+                ? "SSL Certificate (fetch failed)"
+                : ssl?.valid
+                  ? "Days until SSL renewal"
+                  : "SSL Certificate Invalid"}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <DashboardFeatureCard
+          title="PageSpeed & SSL Monitoring"
+          description="Site speed score and certificate health, checked automatically."
+          feature="statusBundle"
+          tier={tier}
+        />
+      )}
+    </div>
+  );
+}
+
 async function ReportsSection({ userId }: { userId: string }) {
   const tier = await getDashboardTierForUser(userId);
+  const hasMonthlyReport = tierIncludes(tier, "monthlyReport");
+  const monthLabel = new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
   return (
     <div className="space-y-4">
+      {hasMonthlyReport ? (
+        <div className="glass border border-[var(--portal-border)] p-6 flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <p className="text-sm font-semibold text-[var(--portal-text-primary)] mb-1">Monthly Report</p>
+            <p className="text-sm text-[var(--portal-text-faint)]">{monthLabel} — traffic, search, and requests</p>
+          </div>
+          <a
+            href="/api/portal/dashboard/report"
+            className="btn-primary px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer"
+          >
+            Download PDF
+          </a>
+        </div>
+      ) : (
+        <DashboardFeatureCard
+          title="Monthly Report"
+          description="A downloadable summary of your site's traffic, search performance, and requests."
+          feature="monthlyReport"
+          tier={tier}
+        />
+      )}
       <DashboardFeatureCard
         title="Weekly Ad Reports"
         description="Meta and Google ad performance, summarized every week."

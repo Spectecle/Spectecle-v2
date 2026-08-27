@@ -14,6 +14,7 @@ import { UserDeleteButton } from "@/components/portal/UserDeleteButton";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
 import { DashboardTierEditor } from "@/components/portal/DashboardTierEditor";
 import { Ga4PropertyIdEditor } from "@/components/portal/Ga4PropertyIdEditor";
+import { SearchConsoleSiteUrlEditor } from "@/components/portal/SearchConsoleSiteUrlEditor";
 import { AnalyticsSnapshotForm } from "@/components/portal/AnalyticsSnapshotForm";
 import { AnalyticsSnapshotCard } from "@/components/portal/AnalyticsSnapshotCard";
 import { DeleteSnapshotButton } from "@/components/portal/DeleteSnapshotButton";
@@ -48,7 +49,9 @@ export default async function AdminClientDetailPage({
 
   const { data: orgRows } = await supabase
     .from("organizations")
-    .select("id, domain, name, website_url, dashboard_tier, ga4_property_id, stripe_customer_id")
+    .select(
+      "id, domain, name, website_url, dashboard_tier, ga4_property_id, search_console_site_url, stripe_customer_id"
+    )
     .order("name", { ascending: true });
   const orgs = (orgRows ?? []) as OrgRecord[];
   const org = orgs.find((o) => o.id === client.organization_id) ?? null;
@@ -248,6 +251,13 @@ export default async function AdminClientDetailPage({
               orgName={displayName}
               websiteUrl={websiteUrl}
               currentPropertyId={org.ga4_property_id ?? null}
+            />
+            <SearchConsoleSiteUrlEditor
+              organizationId={org.id}
+              domain={domain}
+              orgName={displayName}
+              websiteUrl={websiteUrl}
+              currentSiteUrl={org.search_console_site_url ?? null}
             />
             <AnalyticsSnapshotForm organizationId={org.id} ga4Connected={!!org.ga4_property_id} />
 
