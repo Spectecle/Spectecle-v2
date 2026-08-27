@@ -29,16 +29,20 @@ const features = [
 
 const faqs = [
   {
-    q: "How much does a website cost?",
-    a: "Every quote is custom scoped to your goals. Free 30-minute discovery call, no hidden fees.",
+    q: "How much does a website cost for a small business?",
+    a: "Web design costs vary based on scope and goals. Simple brochure sites, custom web applications, and e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call. No hidden fees, no surprises.",
   },
   {
-    q: "How long does a build take?",
-    a: "Most custom sites launch in a few weeks. Timeline depends on feedback speed and scope.",
+    q: "How long does it take to build a website?",
+    a: "Most custom websites take a few weeks from kickoff to launch. Simpler brochure sites move faster. Timeline depends on feedback turnaround and the complexity of integrations required.",
   },
   {
-    q: "Is SEO built in from day one?",
-    a: "Yes. Heading structure, schema, speed, and Core Web Vitals are never an afterthought.",
+    q: "Do you build websites with SEO built in?",
+    a: "Yes. Every site we build includes on-page SEO from day one: proper heading structure, schema markup, fast load times, and Core Web Vitals optimization. SEO is not an afterthought.",
+  },
+  {
+    q: "What's included in your monthly website maintenance plans?",
+    a: "Maintenance retainers include performance monitoring, security patches, content updates, uptime monitoring, and priority support with fast response times.",
   },
 ];
 
@@ -64,7 +68,7 @@ export default function WebDesignDetroitPage() {
               className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Web Design & <span className="italic text-[#9a5423]">Development</span> that performs.
+              Web Design & <span className="italic text-[#9a5423]">Development</span> for Detroit businesses.
             </motion.h1>
 
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl leading-relaxed">
@@ -124,6 +128,40 @@ export default function WebDesignDetroitPage() {
                   <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
                   <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{f.desc}</p>
                 </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── LOCAL PROOF ──────────────────────────────── */}
+      <section className="py-14 px-6 border-t border-[var(--site-border)] bg-[var(--site-surface)]">
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="mb-4">
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              Built for Detroit businesses.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.05} className="mb-10">
+            <p className="text-[var(--site-text-secondary)] text-lg max-w-2xl">
+              We&apos;ve designed and built websites for businesses across Detroit, Dearborn, and the surrounding Michigan suburbs: sites that show up on Google Maps, rank locally, and turn visitors into customers.
+            </p>
+          </Reveal>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              { title: "Detroit Glass & Mirror", location: "Detroit, MI", result: "Google Map Pack", href: "/work/detroit-glass-mirror" },
+              { title: "Salazar Drywall Pros", location: "Michigan", result: "#1 Local Rankings", href: "/work/salazar-drywall-pros" },
+              { title: "Dearborn Cleaners", location: "Dearborn, MI", result: "Complete Rebuild", href: "/work/dearborn-cleaners" },
+            ].map((p) => (
+              <Reveal key={p.title}>
+                <Link href={p.href} className="group block border border-[var(--site-border)] bg-[var(--site-bg)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
+                  <p className="text-xs uppercase tracking-widest text-[var(--site-text-muted)] mb-2">{p.location}</p>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-1">{p.title}</h3>
+                  <p className="text-sm font-semibold text-[#9a5423] mb-3">{p.result}</p>
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--site-text-secondary)] group-hover:text-[#9a5423] transition-colors">
+                    View case study <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -194,7 +232,7 @@ export default function WebDesignDetroitPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Proven craft. <span className="italic text-[#9a5423]">Nationwide reach.</span>
+              Proven craft. <span className="italic text-[#9a5423]">Built in Detroit.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. Honest advice on what your site needs to rank and convert.
