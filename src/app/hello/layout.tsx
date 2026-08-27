@@ -55,8 +55,6 @@ export const metadata: Metadata = {
     description:
       "Web design, SEO, ad campaigns & AI automation agency serving businesses nationwide.",
     images: [`${BASE_URL}/opengraph-image`],
-    creator: "@spectecle",
-    site: "@spectecle",
   },
   alternates: { canonical: `${BASE_URL}/hello` },
   robots: {
@@ -194,11 +192,6 @@ const jsonLd = {
           },
         ],
       },
-      sameAs: [
-        "https://x.com/spectecle",
-        "https://www.instagram.com/spectecle/",
-        "https://github.com/Spectecle",
-      ],
     },
     {
       "@type": "FAQPage",

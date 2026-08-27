@@ -80,8 +80,6 @@ export const metadata: Metadata = {
     title: "Spectecle | Web Design, SEO & AI Agency",
     description:
       "Premium web design, SEO & AI automation agency serving businesses nationwide. We build websites that convert and scale.",
-    site: "@spectecle",
-    creator: "@spectecle",
   },
   alternates: {
     canonical: BASE_URL,
@@ -114,11 +112,6 @@ const jsonLd = {
       foundingDate: "2014",
       priceRange: "$$",
       areaServed: [{ "@type": "Country", name: "United States" }],
-      sameAs: [
-        "https://x.com/spectecle",
-        "https://www.instagram.com/spectecle/",
-        "https://github.com/Spectecle",
-      ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Digital Services",

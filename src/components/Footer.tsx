@@ -5,7 +5,6 @@ const navLinks = [
   { label: "Sitemap", href: "/sitemap" },
   { label: "Blog", href: "/blog" },
   { label: "Privacy Policy", href: "/privacy" },
-  { label: "Instagram", href: "https://www.instagram.com/spectecle/" },
 ];
 
 export default function Footer() {

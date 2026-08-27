@@ -147,7 +147,7 @@ const sections = [
     content: [
       {
         subtitle: "External Sites",
-        body: `Our website may contain links to third-party websites, including our social media profiles (X/Twitter, Instagram, GitHub). This Privacy Policy applies only to spectecle.com. We are not responsible for the privacy practices of external sites and encourage you to review their privacy policies before providing any personal information.`,
+        body: `Our website may contain links to third-party websites. This Privacy Policy applies only to spectecle.com. We are not responsible for the privacy practices of external sites and encourage you to review their privacy policies before providing any personal information.`,
       },
     ],
   },
