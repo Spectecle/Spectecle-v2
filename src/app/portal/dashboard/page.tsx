@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, Inbox, Receipt } from "lucide-react";
+import { ArrowUpRight, Inbox, Receipt, Radio, TrendingUp, Phone, MessageSquare } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
@@ -10,12 +10,15 @@ import { getAnalyticsSnapshotsForOrg } from "@/lib/analytics-snapshots";
 import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier } from "@/lib/dashboard-tiers";
 import { getRequestQuotaStatusForUser } from "@/lib/request-quota";
 import { PLAN_PRICES } from "@/lib/stripe";
+import { fetchGA4ActiveUsersNow, fetchGA4MonthToDate, fetchGA4DailyVisitors, fetchGA4EventCounts } from "@/lib/ga4";
 import { UpgradeCards, ManageBillingButton } from "@/components/portal/BillingActions";
 import { getImpersonatedUser } from "@/lib/impersonation";
 import { TicketCard } from "@/components/portal/TicketCard";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
 import { DashboardFeatureCard } from "@/components/portal/DashboardFeatureCard";
 import { AnalyticsSnapshotCard } from "@/components/portal/AnalyticsSnapshotCard";
+import { StatCard } from "@/components/portal/StatCard";
+import { VisitorsChart } from "@/components/portal/VisitorsChart";
 import { PortalDashboardShell } from "@/components/portal/PortalDashboardShell";
 import { ImpersonationBanner } from "@/components/portal/ImpersonationBanner";
 
@@ -179,23 +182,11 @@ async function RequestsSection({
 }
 
 async function AnalyticsSection({ userId }: { userId: string }) {
-  const { organizationId, tier } = await getDashboardContextForUser(userId);
+  const { organizationId, tier, ga4PropertyId } = await getDashboardContextForUser(userId);
   const hasAnalytics = tierIncludes(tier, "analytics");
   const showRankings = tierIncludes(tier, "rankTracking");
 
-  const snapshots = hasAnalytics && organizationId ? await getAnalyticsSnapshotsForOrg(organizationId) : [];
-
-  if (snapshots.length > 0) {
-    return (
-      <div className="space-y-3">
-        {snapshots.map((snapshot) => (
-          <AnalyticsSnapshotCard key={snapshot.id} snapshot={snapshot} showRankings={showRankings} />
-        ))}
-      </div>
-    );
-  }
-
-  return (
+  const lockedPlaceholders = (
     <div className="space-y-4">
       <DashboardFeatureCard
         title="Website Analytics"
@@ -209,6 +200,90 @@ async function AnalyticsSection({ userId }: { userId: string }) {
         feature="rankTracking"
         tier={tier}
       />
+    </div>
+  );
+
+  if (!hasAnalytics) return lockedPlaceholders;
+
+  const snapshots = organizationId ? await getAnalyticsSnapshotsForOrg(organizationId) : [];
+
+  let activeNow: number | null = null;
+  let monthVisitors: number | null = null;
+  let dailyVisitors: { date: string; visitors: number }[] = [];
+  let phoneClicks: number | null = null;
+  let contactSubmits: number | null = null;
+  let ga4Error = false;
+
+  if (ga4PropertyId) {
+    try {
+      const [active, monthToDate, daily, eventCounts] = await Promise.all([
+        fetchGA4ActiveUsersNow(ga4PropertyId),
+        fetchGA4MonthToDate(ga4PropertyId),
+        fetchGA4DailyVisitors(ga4PropertyId),
+        fetchGA4EventCounts(ga4PropertyId, ["phone_click", "contact_submit"], 30),
+      ]);
+      activeNow = active;
+      monthVisitors = monthToDate.visitors;
+      dailyVisitors = daily;
+      phoneClicks = eventCounts.phone_click;
+      contactSubmits = eventCounts.contact_submit;
+    } catch (error) {
+      console.error("[portal/dashboard] GA4 fetch error:", error);
+      ga4Error = true;
+    }
+  }
+
+  return (
+    <div className="space-y-6">
+      {ga4PropertyId ? (
+        <>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <StatCard label="Active on Site Now" value={activeNow} icon={Radio} error={ga4Error} />
+            <StatCard label="Visitors This Month" value={monthVisitors} icon={TrendingUp} error={ga4Error} />
+          </div>
+          <div className="glass border border-[var(--portal-border)] p-5">
+            <p className="text-sm font-semibold text-[var(--portal-text-primary)] mb-0.5">Visitors This Month</p>
+            <p className="text-xs text-[var(--portal-text-faint)] mb-2">Daily visitors to your site</p>
+            {ga4Error ? (
+              <p className="text-sm text-[var(--portal-text-faint)] py-10 text-center">Failed to load.</p>
+            ) : (
+              <VisitorsChart data={dailyVisitors} />
+            )}
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-[var(--portal-text-muted)] uppercase tracking-wider mb-3">
+              Leads Signal (Last 30 Days)
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <StatCard label="Phone Number Clicks" value={phoneClicks} icon={Phone} error={ga4Error} />
+              <StatCard label="Contact Form Submits" value={contactSubmits} icon={MessageSquare} error={ga4Error} />
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="glass rounded-2xl border border-[var(--portal-border)] p-6">
+          <p className="text-sm text-[var(--portal-text-secondary)]">
+            Analytics isn&apos;t connected yet — reach out and we&apos;ll get this set up.
+          </p>
+        </div>
+      )}
+
+      {showRankings && snapshots.every((s) => s.rankings.length === 0) && (
+        <DashboardFeatureCard
+          title="SEO Ranking Status"
+          description="Where your site ranks for the searches that matter to your business."
+          feature="rankTracking"
+          tier={tier}
+        />
+      )}
+
+      {snapshots.length > 0 && (
+        <div className="space-y-3">
+          {snapshots.map((snapshot) => (
+            <AnalyticsSnapshotCard key={snapshot.id} snapshot={snapshot} showRankings={showRankings} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

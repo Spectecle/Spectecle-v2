@@ -1,23 +1,28 @@
 import { supabase } from "@/lib/supabase";
 
-/** A signed-in user's organization + dashboard tier in one lookup, for
- * pages that need both (e.g. to fetch org-scoped data gated by tier). */
+/** A signed-in user's organization + dashboard tier + GA4 property linkage
+ * in one lookup, for pages that need it (e.g. to fetch org-scoped data
+ * gated by tier, or to know whether live analytics are connected). */
 export async function getDashboardContextForUser(
   userId: string
-): Promise<{ organizationId: string | null; tier: string | null }> {
+): Promise<{ organizationId: string | null; tier: string | null; ga4PropertyId: string | null }> {
   const { data: user } = await supabase
     .from("portal_users")
     .select("organization_id")
     .eq("id", userId)
     .maybeSingle();
-  if (!user?.organization_id) return { organizationId: null, tier: null };
+  if (!user?.organization_id) return { organizationId: null, tier: null, ga4PropertyId: null };
 
   const { data: org } = await supabase
     .from("organizations")
-    .select("dashboard_tier")
+    .select("dashboard_tier, ga4_property_id")
     .eq("id", user.organization_id)
     .maybeSingle();
-  return { organizationId: user.organization_id, tier: org?.dashboard_tier ?? null };
+  return {
+    organizationId: user.organization_id,
+    tier: org?.dashboard_tier ?? null,
+    ga4PropertyId: org?.ga4_property_id ?? null,
+  };
 }
 
 /** Resolves a signed-in user's dashboard tier via their organization.
