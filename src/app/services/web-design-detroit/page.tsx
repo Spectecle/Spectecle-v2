@@ -171,8 +171,8 @@ export default function WebDesignDetroitPage() {
       {/* ── VISUAL BREAK ──────────────────────────────── */}
       <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
         <Image
-          src="https://images.unsplash.com/photo-1753162657497-82d7964273bd?q=80&w=2000&auto=format&fit=crop"
-          alt="A designer sketching a concept by hand"
+          src="/hero/detroit-office.jpg"
+          alt="A lit office workspace inside a modern Detroit building at dusk"
           fill
           sizes="100vw"
           className="object-cover"
