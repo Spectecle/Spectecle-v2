@@ -12,8 +12,9 @@ import { getRequestQuotaStatusForUser } from "@/lib/request-quota";
 import { PLAN_PRICES } from "@/lib/stripe";
 import { fetchGA4ActiveUsersNow, fetchGA4MonthToDate, fetchGA4DailyVisitors, fetchGA4EventCounts } from "@/lib/ga4";
 import { fetchSearchConsoleTopQueries, type SearchConsoleQueryRow } from "@/lib/search-console";
-import { checkUptime, checkSslCertificate, type UptimeStatus, type SslStatus } from "@/lib/site-status";
+import { checkSslCertificate, type SslStatus } from "@/lib/site-status";
 import { PageSpeedCard } from "@/components/portal/PageSpeedCard";
+import { UptimeCard } from "@/components/portal/UptimeCard";
 import { RequestScopeGuide } from "@/components/portal/RequestScopeGuide";
 import { PlanComparison, ManageBillingButton } from "@/components/portal/BillingActions";
 import { getImpersonatedUser } from "@/lib/impersonation";
@@ -353,15 +354,6 @@ async function StatusSection({ userId }: { userId: string }) {
     );
   }
 
-  let uptime: UptimeStatus | null = null;
-  let uptimeError = false;
-  try {
-    uptime = await checkUptime(websiteUrl);
-  } catch (error) {
-    console.error("[portal/dashboard] uptime check error:", error);
-    uptimeError = true;
-  }
-
   let ssl: SslStatus | null = null;
   let sslError = false;
   if (hasStatusBundle) {
@@ -375,44 +367,7 @@ async function StatusSection({ userId }: { userId: string }) {
 
   return (
     <div className="space-y-6">
-      <div className="glass border border-[var(--portal-border)] p-5">
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center gap-3">
-            <span
-              className={`w-2.5 h-2.5 rounded-full ${
-                uptimeError
-                  ? "bg-[var(--portal-text-faint)]"
-                  : uptime?.state === "up"
-                    ? "bg-emerald-400"
-                    : uptime?.state === "blocked"
-                      ? "bg-amber-400"
-                      : "bg-rose-400"
-              }`}
-            />
-            <div>
-              <p className="text-sm font-semibold text-[var(--portal-text-primary)]">
-                {uptimeError
-                  ? "Status check failed"
-                  : uptime?.state === "up"
-                    ? "Site is up"
-                    : uptime?.state === "blocked"
-                      ? "Reachable, but blocked our check"
-                      : "Site is down"}
-              </p>
-              <p className="text-xs text-[var(--portal-text-faint)]">{websiteUrl}</p>
-            </div>
-          </div>
-          {uptime?.responseTimeMs != null && (
-            <span className="text-sm text-[var(--portal-text-muted)]">{uptime.responseTimeMs}ms</span>
-          )}
-        </div>
-        {uptime?.state === "blocked" && (
-          <p className="text-xs text-[var(--portal-text-faint)] mt-3 pt-3 border-t border-[var(--portal-border)]">
-            Your site&apos;s security settings blocked this automated check (HTTP {uptime.statusCode}) — this
-            doesn&apos;t necessarily mean the site is down for real visitors.
-          </p>
-        )}
-      </div>
+      <UptimeCard websiteUrl={websiteUrl} />
 
       {hasStatusBundle ? (
         <div className="grid sm:grid-cols-2 gap-4">
