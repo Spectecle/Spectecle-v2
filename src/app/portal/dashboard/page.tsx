@@ -13,8 +13,10 @@ import { PLAN_PRICES } from "@/lib/stripe";
 import { fetchGA4ActiveUsersNow, fetchGA4MonthToDate, fetchGA4DailyVisitors, fetchGA4EventCounts } from "@/lib/ga4";
 import { fetchSearchConsoleTopQueries, type SearchConsoleQueryRow } from "@/lib/search-console";
 import { checkSslCertificate, type SslStatus } from "@/lib/site-status";
+import { getLeadsForOrg } from "@/lib/leads";
 import { PageSpeedCard } from "@/components/portal/PageSpeedCard";
 import { UptimeCard } from "@/components/portal/UptimeCard";
+import { LeadCard } from "@/components/portal/LeadCard";
 import { RequestScopeGuide } from "@/components/portal/RequestScopeGuide";
 import { PlanComparison, ManageBillingButton } from "@/components/portal/BillingActions";
 import { getImpersonatedUser } from "@/lib/impersonation";
@@ -40,12 +42,13 @@ type ServiceRequest = {
 };
 
 const CLIENT_TAB_STATUSES = new Set(["new", "in_progress", "done"]);
-const SECTIONS = new Set(["requests", "analytics", "status", "reports", "invoices"]);
+const SECTIONS = new Set(["requests", "analytics", "status", "leads", "reports", "invoices"]);
 
 const SECTION_LABELS: Record<string, string> = {
   requests: "Requests",
   analytics: "Analytics",
   status: "Site Status",
+  leads: "Leads",
   reports: "Reports",
   invoices: "Billing",
 };
@@ -87,6 +90,7 @@ export default async function PortalDashboardPage({
           {section === "requests" && <RequestsSection userId={effectiveUser.id} statusParam={statusParam} />}
           {section === "analytics" && <AnalyticsSection userId={effectiveUser.id} />}
           {section === "status" && <StatusSection userId={effectiveUser.id} />}
+          {section === "leads" && <LeadsSection userId={effectiveUser.id} />}
           {section === "reports" && <ReportsSection userId={effectiveUser.id} />}
           {section === "invoices" && <BillingSection userId={effectiveUser.id} />}
         </div>
@@ -401,6 +405,43 @@ async function StatusSection({ userId }: { userId: string }) {
           tier={tier}
         />
       )}
+    </div>
+  );
+}
+
+async function LeadsSection({ userId }: { userId: string }) {
+  const { organizationId, tier } = await getDashboardContextForUser(userId);
+  const hasLeadsInbox = tierIncludes(tier, "leadsInbox");
+
+  if (!hasLeadsInbox) {
+    return (
+      <DashboardFeatureCard
+        title="Leads Inbox"
+        description="Inquiries from your website's contact form, all in one place."
+        feature="leadsInbox"
+        tier={tier}
+      />
+    );
+  }
+
+  const leads = organizationId ? await getLeadsForOrg(organizationId) : [];
+
+  if (leads.length === 0) {
+    return (
+      <div className="glass rounded-2xl border border-[var(--portal-border)] p-14 text-center">
+        <div className="w-14 h-14 mx-auto rounded-full bg-[var(--portal-border)] flex items-center justify-center mb-5">
+          <Inbox className="w-6 h-6 text-[var(--portal-text-muted)]" />
+        </div>
+        <p className="text-[var(--portal-text-secondary)] text-sm">No leads yet.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3">
+      {leads.map((lead) => (
+        <LeadCard key={lead.id} lead={lead} />
+      ))}
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronLeft, Inbox, BarChart3, Activity, Radar, Receipt } from "lucide-react";
+import { Menu, X, ChevronLeft, Inbox, BarChart3, Activity, Users, Radar, Receipt } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 import { SignOutButton } from "@/components/portal/SignOutButton";
 import { ExitImpersonationButton } from "@/components/portal/ExitImpersonationButton";
@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { value: "requests", label: "Requests", icon: Inbox },
   { value: "analytics", label: "Analytics", icon: BarChart3 },
   { value: "status", label: "Site Status", icon: Activity },
+  { value: "leads", label: "Leads", icon: Users },
   { value: "reports", label: "Reports", icon: Radar },
   { value: "invoices", label: "Billing", icon: Receipt },
 ];

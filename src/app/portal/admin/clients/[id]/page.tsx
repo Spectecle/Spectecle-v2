@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ArrowLeft, Globe, Mail, Inbox, Receipt, Gauge, BarChart3, Trash2 } from "lucide-react";
+import { ArrowLeft, Globe, Mail, Inbox, Receipt, Gauge, BarChart3, Users, Trash2 } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
@@ -15,11 +15,14 @@ import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
 import { DashboardTierEditor } from "@/components/portal/DashboardTierEditor";
 import { Ga4PropertyIdEditor } from "@/components/portal/Ga4PropertyIdEditor";
 import { SearchConsoleSiteUrlEditor } from "@/components/portal/SearchConsoleSiteUrlEditor";
+import { LeadCaptureKeyEditor } from "@/components/portal/LeadCaptureKeyEditor";
+import { LeadCard } from "@/components/portal/LeadCard";
 import { AnalyticsSnapshotForm } from "@/components/portal/AnalyticsSnapshotForm";
 import { AnalyticsSnapshotCard } from "@/components/portal/AnalyticsSnapshotCard";
 import { DeleteSnapshotButton } from "@/components/portal/DeleteSnapshotButton";
 import { ViewAsClientButton } from "@/components/portal/ViewAsClientButton";
 import { getAnalyticsSnapshotsForOrg } from "@/lib/analytics-snapshots";
+import { getLeadsForOrg } from "@/lib/leads";
 import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier } from "@/lib/dashboard-tiers";
 import { stripeDashboardCustomerUrl } from "@/lib/stripe";
 
@@ -50,7 +53,7 @@ export default async function AdminClientDetailPage({
   const { data: orgRows } = await supabase
     .from("organizations")
     .select(
-      "id, domain, name, website_url, dashboard_tier, ga4_property_id, search_console_site_url, stripe_customer_id"
+      "id, domain, name, website_url, dashboard_tier, ga4_property_id, search_console_site_url, lead_capture_key, stripe_customer_id"
     )
     .order("name", { ascending: true });
   const orgs = (orgRows ?? []) as OrgRecord[];
@@ -72,6 +75,7 @@ export default async function AdminClientDetailPage({
   const groups = groupByOrganization(allUsers ?? [], orgNames, {}, orgsById);
 
   const analyticsSnapshots = org ? await getAnalyticsSnapshotsForOrg(org.id) : [];
+  const leads = org ? await getLeadsForOrg(org.id) : [];
   const showRankings = tierIncludes(org?.dashboard_tier ?? null, "rankTracking");
 
   const { data: subscription } = org
@@ -276,6 +280,24 @@ export default async function AdminClientDetailPage({
                       />
                     }
                   />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {org && (
+          <div className="glass border border-[var(--portal-border)] p-6 mb-6">
+            <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-4">
+              <Users className="w-3.5 h-3.5" />
+              Leads Capture
+            </p>
+            <LeadCaptureKeyEditor organizationId={org.id} currentKey={org.lead_capture_key ?? null} />
+
+            {leads.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-[var(--portal-border)] space-y-3">
+                {leads.map((lead) => (
+                  <LeadCard key={lead.id} lead={lead} />
                 ))}
               </div>
             )}

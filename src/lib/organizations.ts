@@ -30,6 +30,7 @@ export type OrgRecord = {
   dashboard_tier?: string | null;
   ga4_property_id?: string | null;
   search_console_site_url?: string | null;
+  lead_capture_key?: string | null;
   stripe_customer_id?: string | null;
 };
 

@@ -285,3 +285,26 @@ alter table subscriptions enable row level security;
 -- ("sc-domain:example.com"), for orgs linked up for the Search Console
 -- "Top Queries" card. See src/lib/search-console.ts.
 alter table organizations add column if not exists search_console_site_url text;
+
+-- ============================================================
+-- Migration: Leads Inbox
+-- ============================================================
+-- lead_capture_key authenticates inbound POSTs to /api/leads from a
+-- client's own website (their WordPress install, not a portal session) --
+-- generated on demand per org from the admin client-detail page, embedded
+-- into that site's mu-plugin at deploy time. One row per captured inquiry;
+-- source distinguishes capture mechanisms as more are added later.
+alter table organizations add column if not exists lead_capture_key text unique;
+
+create table if not exists leads (
+  id uuid primary key default gen_random_uuid(),
+  organization_id uuid not null references organizations(id) on delete cascade,
+  name text,
+  email text,
+  phone text,
+  message text,
+  source text not null default 'contact_form',
+  created_at timestamptz not null default now()
+);
+create index if not exists leads_org_idx on leads (organization_id, created_at desc);
+alter table leads enable row level security;
