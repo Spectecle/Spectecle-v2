@@ -20,6 +20,7 @@ const mainPages = [
 
 const services = [
   { label: "Web Design & Development", href: "/services/web-design-detroit" },
+  { label: "Web Design & Development: Birmingham, MI", href: "/services/web-design-birmingham-mi" },
   { label: "SEO Agency Detroit", href: "/services/seo-agency-detroit" },
   { label: "AI & Automation", href: "/services/ai-automation" },
   { label: "Law Firm Website Design", href: "/services/law-firm-website-design" },

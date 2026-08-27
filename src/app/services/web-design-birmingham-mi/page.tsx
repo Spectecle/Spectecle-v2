@@ -21,16 +21,16 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 }
 
 const features = [
-  { label: "Custom UI/UX Design", desc: "Built around your brand and how visitors actually move through it.", Icon: Palette },
-  { label: "Next.js & React Development", desc: "Fast, SEO-ready builds that score green on Core Web Vitals.", Icon: Code2 },
-  { label: "E-commerce & CMS", desc: "Shopify, WooCommerce, and headless CMS builds that grow with you.", Icon: ShoppingCart },
-  { label: "Ongoing Maintenance", desc: "Fast, secure, and current, every month, without the overhead.", Icon: RefreshCw },
+  { label: "Custom UI/UX Design", desc: "Refined interfaces built around your brand and how Birmingham clients actually shop, book, and inquire.", Icon: Palette },
+  { label: "Next.js & React Development", desc: "Fast, SEO-ready builds that score green on Core Web Vitals, with no compromise on polish.", Icon: Code2 },
+  { label: "E-commerce & CMS", desc: "Shopify, WooCommerce, and headless CMS builds for boutiques and professional practices alike.", Icon: ShoppingCart },
+  { label: "Ongoing Maintenance", desc: "Fast, secure, and current every month, without adding another thing to your plate.", Icon: RefreshCw },
 ];
 
 const faqs = [
   {
-    q: "How much does a website cost for a small business?",
-    a: "Web design costs vary based on scope and goals. Simple brochure sites, custom web applications, and e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call. No hidden fees, no surprises.",
+    q: "How much does a website cost in Birmingham, MI?",
+    a: "Web design costs vary based on scope and goals. Brochure sites, custom web applications, and e-commerce stores for boutiques or practices each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call. No hidden fees, no surprises.",
   },
   {
     q: "How long does it take to build a website?",
@@ -41,12 +41,12 @@ const faqs = [
     a: "Yes. Every site we build includes on-page SEO from day one: proper heading structure, schema markup, fast load times, and Core Web Vitals optimization. SEO is not an afterthought.",
   },
   {
-    q: "What's included in your monthly website maintenance plans?",
-    a: "Maintenance retainers include performance monitoring, security patches, content updates, uptime monitoring, and priority support with fast response times.",
+    q: "Do you only work with businesses in Birmingham?",
+    a: "No. Birmingham is a core part of our Oakland County service area alongside Bloomfield Hills, Royal Oak, Troy, and Franklin, and we work with businesses across Metro Detroit and beyond. If your brand holds itself to a high standard, we're a fit regardless of zip code.",
   },
 ];
 
-export default function WebDesignDetroitPage() {
+export default function WebDesignBirminghamPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
@@ -68,11 +68,11 @@ export default function WebDesignDetroitPage() {
               className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Web Design & <span className="italic text-[#9a5423]">Development</span> for Detroit businesses.
+              Web Design & <span className="italic text-[#9a5423]">Development</span> for Birmingham businesses.
             </motion.h1>
 
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl leading-relaxed">
-              Custom websites built to rank, load fast, and convert. No templates, no offshore teams.
+              Refined websites for Birmingham and Oakland County brands, built to rank, load fast, and convert. No templates, no offshore teams.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-8">
@@ -89,8 +89,8 @@ export default function WebDesignDetroitPage() {
           <Reveal delay={0.15}>
             <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
               <Image
-                src="https://images.unsplash.com/photo-1487523117656-d5d117ad47c5?q=80&w=1600&auto=format&fit=crop"
-                alt="Modern web design workspace"
+                src="https://images.unsplash.com/photo-1758448500688-3ababa93fd67?q=80&w=1600&auto=format&fit=crop"
+                alt="A refined modern lobby with marble and warm lighting"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -106,7 +106,7 @@ export default function WebDesignDetroitPage() {
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
             <h2 className="text-3xl md:text-5xl font-light text-[var(--site-text-primary)] leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
-              Built once. Built right. <span className="italic text-[#9a5423]">Built to convert.</span>
+              Thoughtful design. Flawless execution. <span className="italic text-[#9a5423]">Built to convert.</span>
             </h2>
           </Reveal>
         </div>
@@ -139,19 +139,19 @@ export default function WebDesignDetroitPage() {
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-4">
             <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Built for Detroit businesses.
+              Built for Oakland County businesses.
             </h2>
           </Reveal>
           <Reveal delay={0.05} className="mb-10">
             <p className="text-[var(--site-text-secondary)] text-lg max-w-2xl">
-              We&apos;ve designed and built websites for businesses across Detroit, Dearborn, and the surrounding Michigan suburbs, including <Link href="/services/web-design-birmingham-mi" className="text-[#9a5423] hover:underline">Birmingham and Oakland County</Link>: sites that show up on Google Maps, rank locally, and turn visitors into customers.
+              From Birmingham to Bloomfield Hills, Royal Oak, and Troy, we&apos;ve designed and grown websites for boutiques, practices, and professional brands across <Link href="/services/web-design-detroit" className="text-[#9a5423] hover:underline">Metro Detroit</Link> that hold themselves to a high standard.
             </p>
           </Reveal>
           <div className="grid sm:grid-cols-3 gap-6">
             {[
-              { title: "Detroit Glass & Mirror", location: "Detroit, MI", result: "Google Map Pack", href: "/work/detroit-glass-mirror" },
-              { title: "Salazar Drywall Pros", location: "Michigan", result: "#1 Local Rankings", href: "/work/salazar-drywall-pros" },
-              { title: "Dearborn Cleaners", location: "Dearborn, MI", result: "Complete Rebuild", href: "/work/dearborn-cleaners" },
+              { title: "Glam by Abeer", location: "Michigan", result: "15+ Keywords Ranked", href: "/work/glam-by-abeer" },
+              { title: "The Stat Clinic", location: "Michigan", result: "+85% Appointments", href: "/work/the-stat-clinic" },
+              { title: "MI Family Lawyer", location: "Michigan", result: "Custom Law Firm Site", href: "/work/mi-family-lawyer" },
             ].map((p) => (
               <Reveal key={p.title}>
                 <Link href={p.href} className="group block border border-[var(--site-border)] bg-[var(--site-bg)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
@@ -171,8 +171,8 @@ export default function WebDesignDetroitPage() {
       {/* ── VISUAL BREAK ──────────────────────────────── */}
       <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
         <Image
-          src="/hero/detroit-office.jpg"
-          alt="A lit office workspace inside a modern Detroit building at dusk"
+          src="https://images.unsplash.com/photo-1745761321026-896e9d1c76b8?q=80&w=2000&auto=format&fit=crop"
+          alt="An upscale boutique storefront with warm evening lighting"
           fill
           sizes="100vw"
           className="object-cover"
@@ -181,9 +181,9 @@ export default function WebDesignDetroitPage() {
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
             <Reveal>
-              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">Built In-House</p>
+              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">Refined By Design</p>
               <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
-                Every project shaped by real people, not a template.
+                Every detail considered, nothing left templated.
               </h2>
             </Reveal>
           </div>
@@ -210,8 +210,8 @@ export default function WebDesignDetroitPage() {
           </Reveal>
           <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
             {[
-              { title: "SEO & Digital Marketing", desc: "A great website needs to be found. We handle search rankings too.", href: "/services/seo-agency-detroit" },
-              { title: "AI & Automation", desc: "Automate lead follow-up, customer support, and internal workflows.", href: "/services/ai-automation" },
+              { title: "SEO & Digital Marketing", desc: "A refined site still needs to be found. We handle search rankings too.", href: "/services/seo-agency-detroit" },
+              { title: "AI & Automation", desc: "Automate lead follow-up, client intake, and internal workflows.", href: "/services/ai-automation" },
             ].map((s) => (
               <Reveal key={s.title}>
                 <Link href={s.href} className="group block border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
@@ -232,7 +232,7 @@ export default function WebDesignDetroitPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Proven craft. <span className="italic text-[#9a5423]">Built in Detroit.</span>
+              Proven craft. <span className="italic text-[#9a5423]">Refined in Birmingham.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. Honest advice on what your site needs to rank and convert.

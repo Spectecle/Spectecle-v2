@@ -24,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: base, lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: `${base}/services`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/services/web-design-detroit`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/services/web-design-birmingham-mi`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/services/seo-agency-detroit`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/services/ai-automation`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/services/law-firm-website-design`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
