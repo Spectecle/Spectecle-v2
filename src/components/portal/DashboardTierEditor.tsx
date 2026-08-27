@@ -4,10 +4,7 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { DASHBOARD_TIERS, DASHBOARD_TIER_LABELS } from "@/lib/dashboard-tiers";
 
-const TIER_OPTIONS = [
-  { value: "", label: "No dashboard access" },
-  ...DASHBOARD_TIERS.map((t) => ({ value: t, label: DASHBOARD_TIER_LABELS[t] })),
-];
+const TIER_OPTIONS = DASHBOARD_TIERS.map((t) => ({ value: t, label: DASHBOARD_TIER_LABELS[t] }));
 
 export function DashboardTierEditor({
   organizationId,
@@ -23,7 +20,7 @@ export function DashboardTierEditor({
   currentTier: string | null;
 }) {
   const router = useRouter();
-  const [value, setValue] = useState(currentTier ?? "");
+  const [value, setValue] = useState(currentTier ?? "free");
   const [isPending, startTransition] = useTransition();
 
   if (!organizationId) {
@@ -49,7 +46,7 @@ export function DashboardTierEditor({
         domain,
         name: orgName,
         websiteUrl,
-        dashboardTier: next || null,
+        dashboardTier: next,
       }),
     });
     if (res.ok) {

@@ -68,7 +68,7 @@ export default async function AdminClientDetailPage({
   const groups = groupByOrganization(allUsers ?? [], orgNames, {}, orgsById);
 
   const analyticsSnapshots = org ? await getAnalyticsSnapshotsForOrg(org.id) : [];
-  const showRankings = tierIncludes(org?.dashboard_tier ?? null, "rankings");
+  const showRankings = tierIncludes(org?.dashboard_tier ?? null, "rankTracking");
 
   const { data: allRequests } = await supabase
     .from("service_requests")

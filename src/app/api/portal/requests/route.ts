@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { isTrustedOrigin } from "@/lib/origin-check";
 import { isValidServiceType, validateDetails, getServiceFields } from "@/lib/service-fields";
 import { MAX_FILES_PER_REQUEST } from "@/lib/uploads";
+import { getRequestQuotaStatusForUser } from "@/lib/request-quota";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = `Hello from Spectecle <${process.env.RESEND_FROM ?? "onboarding@resend.dev"}>`;
@@ -78,6 +79,19 @@ export async function POST(req: Request) {
     }
     ticketOwner = target;
     createdByAdmin = true;
+  }
+
+  // Enforced server-side, not just hidden in the UI — a plan's monthly
+  // request quota is pooled per organization (see request-quota.ts).
+  const quota = await getRequestQuotaStatusForUser(ticketOwner.id);
+  if (quota?.exceeded) {
+    return NextResponse.json(
+      {
+        error: "quota_exceeded",
+        message: `You've used all ${quota.limit} requests included in your plan this month. Upgrade to submit more.`,
+      },
+      { status: 403 }
+    );
   }
 
   const { clean: details, missing } = validateDetails(serviceType, body?.details ?? {});

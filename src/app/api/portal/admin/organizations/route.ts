@@ -31,13 +31,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Missing name or organization" }, { status: 400 });
   }
 
-  let dashboardTierUpdate: { dashboard_tier: string | null; dashboard_tier_updated_at: string; dashboard_tier_updated_by: string } | null = null;
+  let dashboardTierUpdate: { dashboard_tier: string; dashboard_tier_updated_at: string; dashboard_tier_updated_by: string } | null = null;
   if (body && "dashboardTier" in body) {
-    if (body.dashboardTier !== null && !isDashboardTier(body.dashboardTier)) {
+    if (!isDashboardTier(body.dashboardTier)) {
       return NextResponse.json({ error: "Invalid dashboard tier" }, { status: 400 });
     }
     dashboardTierUpdate = {
-      dashboard_tier: body.dashboardTier ?? null,
+      dashboard_tier: body.dashboardTier,
       dashboard_tier_updated_at: new Date().toISOString(),
       dashboard_tier_updated_by: user.email,
     };

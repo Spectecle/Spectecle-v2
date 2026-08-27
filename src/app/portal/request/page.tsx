@@ -18,7 +18,7 @@ export default function PortalRequestPage() {
   const [customBudget, setCustomBudget] = useState("");
   const [message, setMessage] = useState("");
   const fileUpload = useFileUploads();
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error" | "quota_exceeded">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const fields = getServiceFields(serviceType);
@@ -66,7 +66,12 @@ export default function PortalRequestPage() {
           files: fileUpload.getUploadedFiles(),
         }),
       });
-      setStatus(res.ok ? "success" : "error");
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        const body = await res.json().catch(() => null);
+        setStatus(body?.error === "quota_exceeded" ? "quota_exceeded" : "error");
+      }
     } catch {
       setStatus("error");
     }
@@ -87,7 +92,38 @@ export default function PortalRequestPage() {
           Back to Dashboard
         </Link>
         <AnimatePresence mode="wait">
-          {status === "success" ? (
+          {status === "quota_exceeded" ? (
+            <motion.div
+              key="quota"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="glass border border-[#cb7c46]/20 p-14 text-center"
+            >
+              <h2
+                className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                You&apos;ve used all your requests this month
+              </h2>
+              <p className="text-[var(--portal-text-secondary)] mb-8 text-sm">
+                Your plan resets on the 1st of next month. Upgrade to submit more requests right away.
+              </p>
+              <div className="flex items-center justify-center gap-6">
+                <Link
+                  href="/portal/dashboard?section=invoices"
+                  className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold cursor-pointer"
+                >
+                  View Plans
+                </Link>
+                <button
+                  onClick={() => router.push("/portal/dashboard")}
+                  className="text-sm text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] cursor-pointer transition-colors"
+                >
+                  Back to Dashboard
+                </button>
+              </div>
+            </motion.div>
+          ) : status === "success" ? (
             <motion.div
               key="success"
               initial={{ opacity: 0, scale: 0.95 }}

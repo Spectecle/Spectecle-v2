@@ -8,6 +8,7 @@ import { getMessagesForRequests } from "@/lib/request-messages";
 import { getDashboardTierForUser, getDashboardContextForUser } from "@/lib/dashboard-access";
 import { getAnalyticsSnapshotsForOrg } from "@/lib/analytics-snapshots";
 import { tierIncludes } from "@/lib/dashboard-tiers";
+import { getRequestQuotaStatusForUser } from "@/lib/request-quota";
 import { getImpersonatedUser } from "@/lib/impersonation";
 import { TicketCard } from "@/components/portal/TicketCard";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
@@ -116,15 +117,23 @@ async function RequestsSection({
   const requestIds = filtered.map((r) => r.id);
   const filesByRequest = await getFilesForRequests(requestIds);
   const messagesByRequest = await getMessagesForRequests(requestIds);
+  const quota = await getRequestQuotaStatusForUser(userId);
 
   return (
     <>
-      <div className="flex items-center justify-end mb-4">
+      <div className="flex items-center justify-between mb-4 gap-4">
+        {quota && (
+          <p className="text-sm text-[var(--portal-text-muted)]">
+            {quota.exceeded
+              ? `You've used all ${quota.limit} requests included in your plan this month.`
+              : `${quota.remaining} of ${quota.limit} requests remaining this month`}
+          </p>
+        )}
         <Link
-          href="/portal/request"
-          className="btn-primary flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer"
+          href={quota?.exceeded ? "/portal/dashboard?section=invoices" : "/portal/request"}
+          className="btn-primary flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer shrink-0"
         >
-          <span>Request a Service</span>
+          <span>{quota?.exceeded ? "Upgrade to Submit More" : "Request a Service"}</span>
           <ArrowUpRight className="w-4 h-4 relative z-10" />
         </Link>
       </div>
@@ -170,7 +179,7 @@ async function RequestsSection({
 async function AnalyticsSection({ userId }: { userId: string }) {
   const { organizationId, tier } = await getDashboardContextForUser(userId);
   const hasAnalytics = tierIncludes(tier, "analytics");
-  const showRankings = tierIncludes(tier, "rankings");
+  const showRankings = tierIncludes(tier, "rankTracking");
 
   const snapshots = hasAnalytics && organizationId ? await getAnalyticsSnapshotsForOrg(organizationId) : [];
 
@@ -195,7 +204,7 @@ async function AnalyticsSection({ userId }: { userId: string }) {
       <DashboardFeatureCard
         title="SEO Ranking Status"
         description="Where your site ranks for the searches that matter to your business."
-        feature="rankings"
+        feature="rankTracking"
         tier={tier}
       />
     </div>

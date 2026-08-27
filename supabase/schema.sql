@@ -228,3 +228,51 @@ alter table service_requests alter column ticket_number set not null;
 
 alter table service_requests drop constraint if exists service_requests_ticket_number_key;
 alter table service_requests add constraint service_requests_ticket_number_key unique (ticket_number);
+
+-- ============================================================
+-- Migration: rebuild dashboard tiers as real billing plans
+-- (Free / Growth / Pro) + Stripe subscriptions
+-- ============================================================
+-- Replaces the Pulse/Signal/Radar add-on tiers above with real,
+-- Stripe-billed plans. dashboard_tier was never a Postgres enum (just a
+-- plain text column with an inline check), so this is a data rename +
+-- constraint swap, not a type migration.
+--
+-- Free becomes a real, meaningful tier rather than "no plan" — every
+-- organization must resolve to a concrete billing state now that Stripe is
+-- involved, so the old NULL-as-"no dashboard access" state is retired in
+-- favor of a NOT NULL column defaulting to 'free'.
+alter table organizations drop constraint if exists organizations_dashboard_tier_check;
+update organizations set dashboard_tier = 'free' where dashboard_tier is null or dashboard_tier = 'pulse';
+update organizations set dashboard_tier = 'growth' where dashboard_tier = 'signal';
+update organizations set dashboard_tier = 'pro' where dashboard_tier = 'radar';
+alter table organizations alter column dashboard_tier set default 'free';
+alter table organizations alter column dashboard_tier set not null;
+alter table organizations add constraint organizations_dashboard_tier_check
+  check (dashboard_tier in ('free', 'growth', 'pro'));
+
+-- One Stripe customer per org. Lives here (not only on subscriptions)
+-- because the checkout and billing-portal routes both need to find-or-
+-- create a customer even when the org has no subscription yet (e.g. a
+-- Free org upgrading for the first time).
+alter table organizations add column if not exists stripe_customer_id text unique;
+
+-- One row per Stripe subscription object — history-preserving, not
+-- overwritten on renewal/cancel/resubscribe. Only the newest-by-updated_at
+-- row per organization_id is treated as "current" by app code.
+create table if not exists subscriptions (
+  id uuid primary key default gen_random_uuid(),
+  organization_id uuid not null references organizations(id) on delete cascade,
+  stripe_customer_id text not null,
+  stripe_subscription_id text not null unique,
+  stripe_price_id text not null,
+  tier text not null check (tier in ('growth', 'pro')), -- free never has a subscription row
+  billing_interval text not null check (billing_interval in ('monthly', 'annual')),
+  status text not null, -- mirrors Stripe's subscription.status verbatim
+  current_period_end timestamptz,
+  cancel_at_period_end boolean not null default false,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create index if not exists subscriptions_org_idx on subscriptions (organization_id, updated_at desc);
+alter table subscriptions enable row level security;
