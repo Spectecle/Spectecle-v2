@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { value: "requests", label: "Requests", icon: Inbox },
   { value: "analytics", label: "Analytics", icon: BarChart3 },
   { value: "reports", label: "Reports", icon: Radar },
-  { value: "invoices", label: "Invoices", icon: Receipt },
+  { value: "invoices", label: "Billing", icon: Receipt },
 ];
 
 export function PortalDashboardShell({

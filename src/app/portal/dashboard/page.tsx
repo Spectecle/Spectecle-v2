@@ -7,8 +7,10 @@ import { getFilesForRequests } from "@/lib/request-files";
 import { getMessagesForRequests } from "@/lib/request-messages";
 import { getDashboardTierForUser, getDashboardContextForUser } from "@/lib/dashboard-access";
 import { getAnalyticsSnapshotsForOrg } from "@/lib/analytics-snapshots";
-import { tierIncludes } from "@/lib/dashboard-tiers";
+import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier } from "@/lib/dashboard-tiers";
 import { getRequestQuotaStatusForUser } from "@/lib/request-quota";
+import { PLAN_PRICES } from "@/lib/stripe";
+import { UpgradeCards, ManageBillingButton } from "@/components/portal/BillingActions";
 import { getImpersonatedUser } from "@/lib/impersonation";
 import { TicketCard } from "@/components/portal/TicketCard";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
@@ -36,7 +38,7 @@ const SECTION_LABELS: Record<string, string> = {
   requests: "Requests",
   analytics: "Analytics",
   reports: "Reports",
-  invoices: "Invoices",
+  invoices: "Billing",
 };
 
 export default async function PortalDashboardPage({
@@ -76,7 +78,7 @@ export default async function PortalDashboardPage({
           {section === "requests" && <RequestsSection userId={effectiveUser.id} statusParam={statusParam} />}
           {section === "analytics" && <AnalyticsSection userId={effectiveUser.id} />}
           {section === "reports" && <ReportsSection userId={effectiveUser.id} />}
-          {section === "invoices" && <InvoicesSection />}
+          {section === "invoices" && <BillingSection userId={effectiveUser.id} />}
         </div>
       </section>
     </PortalDashboardShell>
@@ -225,16 +227,80 @@ async function ReportsSection({ userId }: { userId: string }) {
   );
 }
 
-function InvoicesSection() {
-  return (
-    <div className="space-y-4">
+async function BillingSection({ userId }: { userId: string }) {
+  const { organizationId } = await getDashboardContextForUser(userId);
+
+  if (!organizationId) {
+    return (
       <div className="glass rounded-2xl border border-[var(--portal-border)] p-14 text-center">
         <div className="w-14 h-14 mx-auto rounded-full bg-[var(--portal-border)] flex items-center justify-center mb-5">
           <Receipt className="w-6 h-6 text-[var(--portal-text-muted)]" />
         </div>
         <p className="text-[var(--portal-text-secondary)] text-sm">
-          Online invoices and payments are coming soon.
+          No business is set up on your account yet — contact us to get started.
         </p>
+      </div>
+    );
+  }
+
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select("tier, billing_interval, status, current_period_end, cancel_at_period_end")
+    .eq("organization_id", organizationId)
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  const isActive = subscription && (subscription.status === "active" || subscription.status === "trialing" || subscription.status === "past_due");
+
+  if (!isActive) {
+    return (
+      <div className="space-y-8">
+        <div className="glass rounded-2xl border border-[var(--portal-border)] p-6">
+          <p className="text-sm text-[var(--portal-text-muted)] mb-1">Current plan</p>
+          <p className="text-lg font-semibold text-[var(--portal-text-primary)]">Free</p>
+        </div>
+        <div>
+          <h2 className="text-lg font-semibold text-[var(--portal-text-primary)] mb-4">Upgrade your plan</h2>
+          <UpgradeCards prices={PLAN_PRICES} />
+        </div>
+      </div>
+    );
+  }
+
+  const renewalLabel = subscription.current_period_end
+    ? new Date(subscription.current_period_end).toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      })
+    : null;
+
+  return (
+    <div className="space-y-4">
+      {subscription.status === "past_due" && (
+        <div className="rounded-2xl border border-rose-400/40 bg-rose-400/10 p-5">
+          <p className="text-sm text-rose-300 font-medium mb-1">Your last payment failed</p>
+          <p className="text-sm text-[var(--portal-text-secondary)]">
+            Update your card to keep your {DASHBOARD_TIER_LABELS[subscription.tier as DashboardTier]} plan active.
+          </p>
+        </div>
+      )}
+      <div className="glass rounded-2xl border border-[var(--portal-border)] p-6 flex items-center justify-between flex-wrap gap-4">
+        <div>
+          <p className="text-sm text-[var(--portal-text-muted)] mb-1">Current plan</p>
+          <p className="text-lg font-semibold text-[var(--portal-text-primary)]">
+            {DASHBOARD_TIER_LABELS[subscription.tier as DashboardTier]}
+            {" · "}
+            {subscription.billing_interval === "annual" ? "Annual" : "Monthly"}
+          </p>
+          {renewalLabel && (
+            <p className="text-sm text-[var(--portal-text-muted)] mt-1">
+              {subscription.cancel_at_period_end ? "Ends" : "Renews"} {renewalLabel}
+            </p>
+          )}
+        </div>
+        <ManageBillingButton />
       </div>
     </div>
   );

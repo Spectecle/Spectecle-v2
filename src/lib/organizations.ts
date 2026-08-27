@@ -29,6 +29,7 @@ export type OrgRecord = {
   website_url: string | null;
   dashboard_tier?: string | null;
   ga4_property_id?: string | null;
+  stripe_customer_id?: string | null;
 };
 
 /** A group of users sharing an organization. `key` is the stable identifier

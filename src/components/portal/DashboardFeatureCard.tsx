@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { tierIncludes, type DashboardFeature } from "@/lib/dashboard-tiers";
 
 export function DashboardFeatureCard({
@@ -21,9 +22,9 @@ export function DashboardFeatureCard({
       ) : (
         <p className="text-sm text-[var(--portal-text-muted)]">
           Not included in your current plan.{" "}
-          <a href="mailto:hello@spectecle.com" className="text-[#cb7c46] hover:underline">
-            Contact us to upgrade.
-          </a>
+          <Link href="/portal/dashboard?section=invoices" className="text-[#cb7c46] hover:underline">
+            Upgrade your plan.
+          </Link>
         </p>
       )}
     </div>

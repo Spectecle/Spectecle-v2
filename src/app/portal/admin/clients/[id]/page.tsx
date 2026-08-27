@@ -19,7 +19,8 @@ import { AnalyticsSnapshotCard } from "@/components/portal/AnalyticsSnapshotCard
 import { DeleteSnapshotButton } from "@/components/portal/DeleteSnapshotButton";
 import { ViewAsClientButton } from "@/components/portal/ViewAsClientButton";
 import { getAnalyticsSnapshotsForOrg } from "@/lib/analytics-snapshots";
-import { tierIncludes } from "@/lib/dashboard-tiers";
+import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier } from "@/lib/dashboard-tiers";
+import { stripeDashboardCustomerUrl } from "@/lib/stripe";
 
 const TAB_STATUSES = new Set(["new", "in_progress", "done", "deleted"]);
 
@@ -47,7 +48,7 @@ export default async function AdminClientDetailPage({
 
   const { data: orgRows } = await supabase
     .from("organizations")
-    .select("id, domain, name, website_url, dashboard_tier, ga4_property_id")
+    .select("id, domain, name, website_url, dashboard_tier, ga4_property_id, stripe_customer_id")
     .order("name", { ascending: true });
   const orgs = (orgRows ?? []) as OrgRecord[];
   const org = orgs.find((o) => o.id === client.organization_id) ?? null;
@@ -69,6 +70,16 @@ export default async function AdminClientDetailPage({
 
   const analyticsSnapshots = org ? await getAnalyticsSnapshotsForOrg(org.id) : [];
   const showRankings = tierIncludes(org?.dashboard_tier ?? null, "rankTracking");
+
+  const { data: subscription } = org
+    ? await supabase
+        .from("subscriptions")
+        .select("tier, billing_interval, status, current_period_end, cancel_at_period_end")
+        .eq("organization_id", org.id)
+        .order("updated_at", { ascending: false })
+        .limit(1)
+        .maybeSingle()
+    : { data: null };
 
   const { data: allRequests } = await supabase
     .from("service_requests")
@@ -189,9 +200,39 @@ export default async function AdminClientDetailPage({
               <Receipt className="w-3.5 h-3.5" />
               Billing
             </p>
-            <p className="text-sm text-[var(--portal-text-faint)]">
-              Not connected yet — online invoicing is planned.
-            </p>
+            {subscription ? (
+              <div className="space-y-1">
+                <p className="text-sm text-[var(--portal-text-primary)] font-medium">
+                  {DASHBOARD_TIER_LABELS[subscription.tier as DashboardTier]}
+                  {" · "}
+                  {subscription.billing_interval === "annual" ? "Annual" : "Monthly"}
+                  {" · "}
+                  <span className="text-[var(--portal-text-muted)] font-normal">{subscription.status}</span>
+                </p>
+                {subscription.current_period_end && (
+                  <p className="text-sm text-[var(--portal-text-faint)]">
+                    {subscription.cancel_at_period_end ? "Ends" : "Renews"}{" "}
+                    {new Date(subscription.current_period_end).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </p>
+                )}
+              </div>
+            ) : (
+              <p className="text-sm text-[var(--portal-text-faint)]">Free plan — no active subscription.</p>
+            )}
+            {org?.stripe_customer_id && (
+              <a
+                href={stripeDashboardCustomerUrl(org.stripe_customer_id)}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block mt-3 text-sm text-[#cb7c46] hover:underline"
+              >
+                View in Stripe →
+              </a>
+            )}
           </div>
         </div>
 
