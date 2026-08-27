@@ -9,7 +9,11 @@ export type UptimeStatus = { up: boolean; statusCode: number | null; responseTim
 
 /** A single timed HTTP check — not historical uptime tracking, just "is it
  * up right now," fetched live on dashboard load the same way GA4's
- * realtime active-users check is. */
+ * realtime active-users check is. Deliberately sends no custom User-Agent —
+ * tested against a real client site protected by a WAF/security plugin, a
+ * plain unheadered request came back 200, while adding a realistic-looking
+ * browser User-Agent (with no other browser-typical headers to back it up)
+ * got 403'd as an impersonation attempt. Don't "fix" this by adding one. */
 export async function checkUptime(url: string): Promise<UptimeStatus> {
   const target = normalizeUrl(url);
   const started = Date.now();
@@ -18,8 +22,12 @@ export async function checkUptime(url: string): Promise<UptimeStatus> {
 
   try {
     const res = await fetch(target, { method: "GET", redirect: "follow", signal: controller.signal });
+    if (!res.ok) {
+      console.warn(`[site-status] uptime check for ${target} got ${res.status} ${res.statusText}`);
+    }
     return { up: res.ok, statusCode: res.status, responseTimeMs: Date.now() - started };
-  } catch {
+  } catch (error) {
+    console.error(`[site-status] uptime check for ${target} failed:`, error);
     return { up: false, statusCode: null, responseTimeMs: null };
   } finally {
     clearTimeout(timeout);
