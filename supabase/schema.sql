@@ -308,3 +308,12 @@ create table if not exists leads (
 );
 create index if not exists leads_org_idx on leads (organization_id, created_at desc);
 alter table leads enable row level security;
+
+-- ============================================================
+-- Migration: scheduled monthly report emails
+-- ============================================================
+-- The YYYY-MM of the last month this org was actually emailed a report
+-- (src/app/api/cron/send-monthly-reports). Guards against double-sending
+-- if the cron route is ever manually re-triggered or fires twice for the
+-- same period -- not a feature in its own right, just a send guard.
+alter table organizations add column if not exists monthly_report_last_sent text;
