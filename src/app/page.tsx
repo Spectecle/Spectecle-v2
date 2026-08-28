@@ -291,7 +291,7 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
             <Reveal>
               <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
-                We don&apos;t call anything finished until it&apos;s right. That&apos;s the standard, every time.
+                Precision is the standard.
               </h2>
             </Reveal>
           </div>
