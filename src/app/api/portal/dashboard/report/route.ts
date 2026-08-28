@@ -24,7 +24,7 @@ export async function GET(req: Request) {
   const month = searchParams.get("month");
   const periodMonth = month && MONTH_RE.test(month) ? month : currentMonthValue();
 
-  const { buffer } = await buildMonthlyReportPdf(organizationId, periodMonth);
+  const buffer = await buildMonthlyReportPdf(organizationId, periodMonth);
 
   return new NextResponse(new Uint8Array(buffer), {
     headers: {

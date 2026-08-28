@@ -17,13 +17,19 @@ export function previousMonthValue(): string {
   return `${prev.getUTCFullYear()}-${String(prev.getUTCMonth() + 1).padStart(2, "0")}`;
 }
 
-/** Builds the same PDF the on-demand "Download PDF" button produces --
- * shared by that route and the scheduled cron job so there's one
- * implementation, not two copies that can drift. */
-export async function buildMonthlyReportPdf(
-  organizationId: string,
-  periodMonth: string
-): Promise<{ buffer: Buffer; orgName: string }> {
+export type MonthlyReportData = {
+  orgName: string;
+  periodMonth: string;
+  visitors: number | null;
+  pageViews: number | null;
+  topQueries: SearchConsoleQueryRow[] | null;
+  requestCount: number;
+};
+
+/** Gathers everything a monthly report needs -- shared by the PDF download
+ * and the report email so both pull from one implementation, not two
+ * copies that can drift. */
+export async function getMonthlyReportData(organizationId: string, periodMonth: string): Promise<MonthlyReportData> {
   const { data: org } = await supabase
     .from("organizations")
     .select("name, ga4_property_id, search_console_site_url")
@@ -73,10 +79,11 @@ export async function buildMonthlyReportPdf(
     requestCount = count ?? 0;
   }
 
-  const orgName = org?.name ?? "Your Business";
-  const buffer = await renderToBuffer(
-    MonthlyReportDocument({ orgName, periodMonth, visitors, pageViews, topQueries, requestCount })
-  );
+  return { orgName: org?.name ?? "Your Business", periodMonth, visitors, pageViews, topQueries, requestCount };
+}
 
-  return { buffer, orgName };
+/** Builds the same PDF the on-demand "Download PDF" button produces. */
+export async function buildMonthlyReportPdf(organizationId: string, periodMonth: string): Promise<Buffer> {
+  const data = await getMonthlyReportData(organizationId, periodMonth);
+  return renderToBuffer(MonthlyReportDocument(data));
 }
