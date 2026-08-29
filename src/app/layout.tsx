@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const GA_MEASUREMENT_ID = "G-VK8T7HE7NR";
+const GOOGLE_ADS_CONVERSION_ID = "AW-18414328207";
 
 const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-sans",
@@ -204,6 +205,7 @@ export default function RootLayout({
           {`
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });
+            gtag('config', '${GOOGLE_ADS_CONVERSION_ID}');
           `}
         </Script>
       </body>
