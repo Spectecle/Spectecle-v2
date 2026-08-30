@@ -11,6 +11,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { projects } from "@/app/work/projects-data";
+import { reportPhoneConversion } from "@/lib/report-phone-conversion";
 import Hero from "@/components/ui/hero";
 import ServiceGrid from "@/components/ui/ServiceGrid";
 import ServiceStickyScale from "@/components/ui/ServiceStickyScale";
@@ -282,7 +283,11 @@ export default function HelloPage() {
               Start a Project
               <ArrowUpRight className="w-5 h-5" />
             </Link>
-            <a href="tel:+13133534105" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
+            <a
+              href="tel:+13133534105"
+              onClick={(e) => reportPhoneConversion(e, "tel:+13133534105")}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors"
+            >
               <Phone className="w-4 h-4 text-[#9a5423]" />
               (313) 353-4105
             </a>

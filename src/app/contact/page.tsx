@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ProofGallery } from "@/components/ui/ProofGallery";
 import { trackEvent } from "@/lib/track";
+import { reportPhoneConversion } from "@/lib/report-phone-conversion";
 import {
   Mail,
   Phone,
@@ -281,7 +282,12 @@ export default function ContactPage() {
                     href={c.href}
                     target={c.href.startsWith("http") ? "_blank" : undefined}
                     rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    onClick={() => { if (c.label === "Phone") trackEvent("phone_click", { page_path: "/contact" }); }}
+                    onClick={(e) => {
+                      if (c.label === "Phone") {
+                        trackEvent("phone_click", { page_path: "/contact" });
+                        reportPhoneConversion(e, c.href);
+                      }
+                    }}
                     className="flex items-center gap-3 group cursor-pointer"
                   >
                     <c.icon className="w-4 h-4 text-[#9a5423] shrink-0" />

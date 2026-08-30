@@ -8,6 +8,7 @@ import { Menu, X, ArrowUpRight, Phone, User } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 import { HERO_TEXT, HERO_TEXT_MUTED, HERO_BORDER, HERO_ACCENT } from "@/components/ui/hero";
 import { trackEvent } from "@/lib/track";
+import { reportPhoneConversion } from "@/lib/report-phone-conversion";
 
 const DARK_HERO_ROUTES = ["/", "/hello"];
 
@@ -99,7 +100,10 @@ export default function Navbar() {
               <a
                 href="tel:+13133534105"
                 data-cursor
-                onClick={() => trackEvent("phone_click", { page_path: pathname })}
+                onClick={(e) => {
+                  trackEvent("phone_click", { page_path: pathname });
+                  reportPhoneConversion(e, "tel:+13133534105");
+                }}
                 className="flex items-center gap-1.5 text-sm transition-colors cursor-pointer"
                 style={{ color: overDarkHero ? HERO_TEXT_MUTED : "var(--site-text-secondary)" }}
               >
@@ -194,7 +198,10 @@ export default function Navbar() {
                 </Link>
                 <a
                   href="tel:+13133534105"
-                  onClick={() => trackEvent("phone_click", { page_path: pathname })}
+                  onClick={(e) => {
+                    trackEvent("phone_click", { page_path: pathname });
+                    reportPhoneConversion(e, "tel:+13133534105");
+                  }}
                   className="inline-flex items-center gap-2 text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors w-fit"
                 >
                   <Phone className="w-3.5 h-3.5" />
