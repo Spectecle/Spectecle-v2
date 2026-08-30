@@ -57,7 +57,7 @@ export default function WorkPage() {
             <div className="grid md:grid-cols-2 gap-x-10 gap-y-16">
               {projects.map((p) => (
                 <Link key={p.slug} href={`/work/${p.slug}`} className="group block">
-                  <div className="relative h-72 overflow-hidden">
+                  <div className="relative aspect-[1600/557] overflow-hidden">
                     <Image
                       src={p.screenshotUrl}
                       alt={`${p.title} homepage`}

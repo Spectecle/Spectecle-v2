@@ -39,7 +39,7 @@ const contactInfo = [
   { icon: Phone, label: "Phone", value: "+1 (313) 353-4105", href: "tel:+13133534105" },
 ];
 
-const budgetOptions = ["Under $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+", "Not sure yet"];
+const budgetOptions = ["$1,000 – $3,000", "$5,000 – $10,000", "$10,000 – $15,000", "Enterprise", "Not Sure"];
 
 const serviceOptions = ["Web Design & Development", "SEO & Digital Marketing", "AI & Automation", "All Three", "Something Else"];
 

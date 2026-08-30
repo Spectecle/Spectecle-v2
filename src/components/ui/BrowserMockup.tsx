@@ -15,7 +15,7 @@ export function BrowserMockup({
   const compact = size === "compact";
 
   return (
-    <div className={`relative w-full overflow-hidden ${compact ? "h-52" : "h-64 md:h-[420px]"}`}>
+    <div className="relative w-full aspect-[1600/557] overflow-hidden">
       <Image
         src={screenshotUrl}
         alt={alt}

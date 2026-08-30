@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { buildContactAutoReplyEmailHtml } from "@/lib/contact-auto-reply-email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = `Hello from Spectecle <${process.env.RESEND_FROM || "onboarding@resend.dev"}>`;
@@ -136,6 +137,23 @@ export async function POST(req: Request) {
     }
 
     console.log("[contact] email sent", { id: sendResult.data?.id, to: TO, from: FROM, email });
+
+    // Best-effort auto-reply -- never let a failure here affect the
+    // response to the visitor, since the real inquiry already landed above.
+    try {
+      const autoReply = await resend.emails.send({
+        from: FROM,
+        to: [email],
+        subject: "Thanks for reaching out to Spectecle",
+        html: buildContactAutoReplyEmailHtml(name),
+      });
+      if (autoReply.error) {
+        console.error("[contact] auto-reply error:", autoReply.error);
+      }
+    } catch (autoReplyErr) {
+      console.error("[contact] auto-reply send error:", autoReplyErr);
+    }
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[contact] send error:", err);

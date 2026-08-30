@@ -161,6 +161,44 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* ── VISUAL BREAK ──────────────────────────────── */}
+      <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
+        <Image
+          src="https://images.unsplash.com/photo-1758800601575-1bf72a461248?q=80&w=2000&auto=format&fit=crop"
+          alt="Elegant curved staircase with warm architectural lighting"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+        <div className="absolute inset-0 flex items-end">
+          <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
+            <Reveal>
+              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">Craft, Not Templates</p>
+              <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
+                Every detail considered, the same way we build a site.
+              </h2>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PRICING ───────────────────────────────────── */}
+      <div className="pt-14 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-6xl mx-auto">
+          <Reveal className="mb-4">
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Pricing</span>
+            <h2 className="mt-4 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              Plans built to <span className="italic text-[#9a5423]">grow with your business.</span>
+            </h2>
+            <p className="text-[var(--site-text-secondary)] text-base max-w-xl mt-3">
+              A one-time design investment to get your website built, tailored to the level of customization your business needs.
+            </p>
+          </Reveal>
+        </div>
+      </div>
+      <PricingSection />
+
       {/* ── THE LOOP ─────────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)] bg-[var(--site-surface)]">
         <div className="max-w-5xl mx-auto">
@@ -194,44 +232,6 @@ export default function ServicesPage() {
               </div>
             </Link>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ── PRICING ───────────────────────────────────── */}
-      <div className="pt-14 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-6xl mx-auto">
-          <Reveal className="mb-4">
-            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Pricing</span>
-            <h2 className="mt-4 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Plans built to <span className="italic text-[#9a5423]">grow with your business.</span>
-            </h2>
-            <p className="text-[var(--site-text-secondary)] text-base max-w-xl mt-3">
-              A one-time design investment to get your website built, tailored to the level of customization your business needs.
-            </p>
-          </Reveal>
-        </div>
-      </div>
-      <PricingSection />
-
-      {/* ── VISUAL BREAK ──────────────────────────────── */}
-      <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
-        <Image
-          src="https://images.unsplash.com/photo-1758800601575-1bf72a461248?q=80&w=2000&auto=format&fit=crop"
-          alt="Elegant curved staircase with warm architectural lighting"
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="max-w-5xl mx-auto px-6 pb-14 w-full">
-            <Reveal>
-              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-3">Craft, Not Templates</p>
-              <h2 className="text-3xl md:text-5xl font-light text-white max-w-2xl leading-[1.15]" style={{ fontFamily: "var(--font-serif)" }}>
-                Every detail considered, the same way we build a site.
-              </h2>
-            </Reveal>
-          </div>
         </div>
       </section>
 
