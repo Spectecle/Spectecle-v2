@@ -15,7 +15,7 @@ const GOOGLE_REVIEW_URL =
   process.env.GOOGLE_REVIEW_URL ?? "https://g.page/r/CbSs-g26jjLnEBM/review";
 const CONTRACT_URL_EXPIRY_SECONDS = 60 * 60 * 24 * 30; // 30 days — a client may open this well after send
 
-type LetterTemplate = "onboarding" | "complete";
+type LetterTemplate = "onboarding" | "complete" | "reminder";
 
 type ContractFile = { path: string; name: string };
 
@@ -29,6 +29,7 @@ type LetterBody = {
   invoiceNumber?: string;
   dueDate?: string;
   invoiceLink?: string;
+  pastDue?: boolean;
   contracts?: ContractFile[];
   preview?: boolean;
 };
@@ -285,6 +286,98 @@ function projectCompleteLetterHtml({
   );
 }
 
+function invoiceReminderLetterHtml({
+  businessName,
+  email,
+  note,
+  link,
+  invoiceBalance,
+  invoiceNumber,
+  dueDate,
+  invoiceLink,
+  pastDue,
+}: {
+  businessName: string;
+  email: string;
+  note: string;
+  link: string;
+  invoiceBalance: string;
+  invoiceNumber?: string;
+  dueDate?: string;
+  invoiceLink?: string;
+  pastDue: boolean;
+}) {
+  const hasMeta = !!(invoiceNumber?.trim() || dueDate?.trim());
+  const boxBg = pastDue ? "#2a0e0a" : "#1a0d08";
+  const boxBorder = pastDue ? "rgba(220,90,60,0.4)" : "rgba(198,153,71,0.3)";
+
+  const amountCell = `
+    <p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">${pastDue ? "Past Due Amount" : "Amount Due"}</p>
+    <p style="margin:0 0 ${invoiceLink?.trim() ? "12" : "0"}px;color:#1e1e1e;font-size:24px;font-weight:800;">${esc(invoiceBalance)}</p>
+    ${
+      invoiceLink?.trim()
+        ? `<a href="${esc(invoiceLink)}" style="display:inline-block;background-color:#cb7c46;color:#1e1e1e;text-decoration:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:13.5px;">Pay Now &rarr;</a>`
+        : ""
+    }
+  `;
+
+  const metaCell = `
+    ${
+      invoiceNumber?.trim()
+        ? `<p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Invoice #</p>
+           <p style="margin:0 0 12px;color:#1e1e1e;font-size:14px;font-weight:600;">${esc(invoiceNumber)}</p>`
+        : ""
+    }
+    ${
+      dueDate?.trim()
+        ? `<p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">${pastDue ? "Was Due" : "Due Date"}</p>
+           <p style="margin:0;color:#1e1e1e;font-size:14px;font-weight:600;">${esc(dueDate)}</p>`
+        : ""
+    }
+  `;
+
+  const invoiceSection = `
+    ${sectionHeading(pastDue ? "Past Due Balance" : "Balance Due")}
+    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:${boxBg};border:1px solid ${boxBorder};border-radius:10px;margin:0 0 16px;">
+      <tr>
+        <td style="padding:18px 20px;vertical-align:top;${hasMeta ? "width:55%;" : ""}">
+          ${amountCell}
+        </td>
+        ${
+          hasMeta
+            ? `<td style="padding:18px 20px;vertical-align:top;border-left:1px solid ${boxBorder};">${metaCell}</td>`
+            : ""
+        }
+      </tr>
+    </table>
+    <p style="margin:0 0 24px;color:#64748b;font-size:12.5px;line-height:1.6;">
+      This is the total needed to keep ${esc(businessName)}&rsquo;s website online and in good standing.
+    </p>
+    ${divider()}
+  `;
+
+  const body = `
+    <p style="margin:0 0 4px;color:#94a3b8;font-size:13px;">Hi ${esc(businessName)},</p>
+    ${noteBlock(
+      note ||
+        (pastDue
+          ? "This is a friendly reminder that your invoice is now past due. To keep your website online and avoid any interruption, please take care of the balance below at your earliest convenience."
+          : "This is a friendly reminder that your invoice is coming due. To keep your website up and running without interruption, please take care of the balance below by the date noted.")
+    )}
+
+    ${invoiceSection}
+
+    ${portalIntroBlock(email, link)}
+  `;
+
+  return emailShell(
+    pastDue ? "Your Spectecle invoice is past due — action needed." : "Your Spectecle invoice is due soon.",
+    pastDue ? "Past Due" : "Payment Reminder",
+    pastDue ? `Action Needed, ${businessName}` : `Invoice Reminder, ${businessName}`,
+    body
+  );
+}
+
 export async function POST(req: Request) {
   if (!isTrustedOrigin(req)) {
     return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
@@ -305,11 +398,20 @@ export async function POST(req: Request) {
   const invoiceNumber = body?.invoiceNumber?.trim();
   const dueDate = body?.dueDate?.trim();
   const invoiceLink = body?.invoiceLink?.trim();
+  const pastDue = body?.pastDue === true;
   const contracts = Array.isArray(body?.contracts) ? body.contracts : [];
   const preview = body?.preview === true;
 
-  if (!userId || (template !== "onboarding" && template !== "complete") || !businessName || !subject) {
+  if (
+    !userId ||
+    (template !== "onboarding" && template !== "complete" && template !== "reminder") ||
+    !businessName ||
+    !subject
+  ) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  }
+  if (template === "reminder" && !invoiceBalance) {
+    return NextResponse.json({ error: "Invoice balance is required for a reminder email" }, { status: 400 });
   }
 
   const { data: recipient } = await supabase
@@ -341,6 +443,18 @@ export async function POST(req: Request) {
   const html =
     template === "onboarding"
       ? onboardingLetterHtml({ businessName, email: recipient.email, note, link, contractLinks })
+      : template === "reminder"
+      ? invoiceReminderLetterHtml({
+          businessName,
+          email: recipient.email,
+          note,
+          link,
+          invoiceBalance: invoiceBalance!,
+          invoiceNumber,
+          dueDate,
+          invoiceLink,
+          pastDue,
+        })
       : projectCompleteLetterHtml({
           businessName,
           email: recipient.email,

@@ -10,7 +10,7 @@ import { FileUploadField } from "@/components/portal/FileUploadField";
 import { useFileUploads } from "@/hooks/useFileUploads";
 import type { OrgGroup } from "@/lib/organizations";
 
-type LetterTemplate = "onboarding" | "complete";
+type LetterTemplate = "onboarding" | "complete" | "reminder";
 
 const NOTE_TEMPLATES: { label: string; text: string }[] = [
   {
@@ -31,16 +31,30 @@ const NOTE_TEMPLATES: { label: string; text: string }[] = [
   },
 ];
 
-function defaultSubject(template: LetterTemplate, businessName: string): string {
-  return template === "onboarding"
-    ? `Welcome to Spectecle${businessName ? `, ${businessName}` : ""}`
-    : `Your Project Is Complete — Thank You From Spectecle`;
+function templateLabel(template: LetterTemplate): string {
+  return template === "complete" ? "Project Complete" : template === "onboarding" ? "Onboarding" : "Invoice Reminder";
 }
 
-function defaultNote(template: LetterTemplate): string {
-  return template === "onboarding"
-    ? "Welcome to Spectecle! We're excited to get started — here's your portal so you always know where things stand."
-    : "We just wrapped up work on your project — thank you for choosing Spectecle, it's been a pleasure working with you.";
+function defaultSubject(template: LetterTemplate, businessName: string, pastDue = false): string {
+  if (template === "onboarding") return `Welcome to Spectecle${businessName ? `, ${businessName}` : ""}`;
+  if (template === "reminder") {
+    return pastDue
+      ? "Action Needed — Your Spectecle Invoice Is Past Due"
+      : "Your Spectecle Invoice Is Due";
+  }
+  return `Your Project Is Complete — Thank You From Spectecle`;
+}
+
+function defaultNote(template: LetterTemplate, pastDue = false): string {
+  if (template === "onboarding") {
+    return "Welcome to Spectecle! We're excited to get started — here's your portal so you always know where things stand.";
+  }
+  if (template === "reminder") {
+    return pastDue
+      ? "This is a friendly reminder that your invoice is now past due. To keep your website online and avoid any interruption, please take care of the balance below at your earliest convenience."
+      : "This is a friendly reminder that your invoice is coming due. To keep your website up and running without interruption, please take care of the balance below by the date noted.";
+  }
+  return "We just wrapped up work on your project — thank you for choosing Spectecle, it's been a pleasure working with you.";
 }
 
 export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
@@ -58,6 +72,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
   const [invoiceNumber, setInvoiceNumber] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [invoiceLink, setInvoiceLink] = useState("");
+  const [pastDue, setPastDue] = useState(false);
   const contractUpload = useFileUploads("/api/portal/admin/send-letter/upload-url");
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -82,9 +97,17 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
 
   const handleTemplateChange = (value: LetterTemplate) => {
     setTemplate(value);
-    if (!subjectTouched) setSubject(defaultSubject(value, businessName));
-    if (!noteTouched) setNote(defaultNote(value));
+    if (!subjectTouched) setSubject(defaultSubject(value, businessName, pastDue));
+    if (!noteTouched) setNote(defaultNote(value, pastDue));
   };
+
+  const handlePastDueChange = (value: boolean) => {
+    setPastDue(value);
+    if (!subjectTouched) setSubject(defaultSubject(template, businessName, value));
+    if (!noteTouched) setNote(defaultNote(template, value));
+  };
+
+  const showInvoiceFields = template === "complete" || template === "reminder";
 
   const buildPayload = (preview: boolean) => ({
     userId,
@@ -92,10 +115,11 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
     businessName,
     subject,
     note,
-    invoiceBalance: template === "complete" ? invoiceBalance : undefined,
-    invoiceNumber: template === "complete" ? invoiceNumber : undefined,
-    dueDate: template === "complete" ? dueDate : undefined,
-    invoiceLink: template === "complete" ? invoiceLink : undefined,
+    invoiceBalance: showInvoiceFields ? invoiceBalance : undefined,
+    invoiceNumber: showInvoiceFields ? invoiceNumber : undefined,
+    dueDate: showInvoiceFields ? dueDate : undefined,
+    invoiceLink: showInvoiceFields ? invoiceLink : undefined,
+    pastDue: template === "reminder" ? pastDue : undefined,
     contracts: contractUpload.getUploadedFiles().map((f) => ({ path: f.path, name: f.name })),
     preview,
   });
@@ -105,6 +129,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
     if (!userId) e.client = "Select a client";
     if (!businessName.trim()) e.businessName = "Enter a business name";
     if (!subject.trim()) e.subject = "Enter a subject";
+    if (template === "reminder" && !invoiceBalance.trim()) e.invoiceBalance = "Enter the amount due";
     return e;
   };
 
@@ -211,7 +236,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
               Send Client Email
             </h1>
             <p className="text-[var(--portal-text-muted)] text-sm">
-              Push a branded onboarding or project-complete email to one client.
+              Push a branded onboarding, project-complete, or invoice reminder email to one client.
             </p>
           </div>
 
@@ -260,7 +285,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
               Template <span className="text-rose-400">*</span>
             </label>
             <div className="flex gap-2">
-              {(["complete", "onboarding"] as LetterTemplate[]).map((t) => (
+              {(["complete", "onboarding", "reminder"] as LetterTemplate[]).map((t) => (
                 <button
                   type="button"
                   key={t}
@@ -271,7 +296,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                       : "bg-[var(--portal-card)] border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)]"
                   }`}
                 >
-                  {t === "complete" ? "Project Complete" : "Onboarding"}
+                  {templateLabel(t)}
                 </button>
               ))}
             </div>
@@ -357,7 +382,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
           />
 
           <AnimatePresence mode="wait">
-            {template === "complete" && (
+            {showInvoiceFields && (
               <motion.div
                 key="invoice"
                 initial={{ opacity: 0, y: -8 }}
@@ -366,18 +391,47 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                 transition={{ duration: 0.2 }}
                 className="grid sm:grid-cols-2 gap-4"
               >
+                {template === "reminder" && (
+                  <div className="sm:col-span-2">
+                    <button
+                      type="button"
+                      onClick={() => handlePastDueChange(!pastDue)}
+                      className={`px-4 py-2 rounded-xl text-sm font-medium border transition-colors cursor-pointer ${
+                        pastDue
+                          ? "bg-rose-500/15 border-rose-500/40 text-rose-400"
+                          : "bg-[var(--portal-card)] border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)]"
+                      }`}
+                    >
+                      {pastDue ? "Marked Past Due" : "Mark as Past Due"}
+                    </button>
+                  </div>
+                )}
                 <div>
                   <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
                     Invoice Balance{" "}
-                    <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
+                    <span
+                      className={
+                        template === "reminder"
+                          ? "text-rose-400"
+                          : "text-[var(--portal-text-faint)] normal-case tracking-normal"
+                      }
+                    >
+                      {template === "reminder" ? "*" : "(optional)"}
+                    </span>
                   </label>
                   <input
                     type="text"
                     value={invoiceBalance}
-                    onChange={(e) => setInvoiceBalance(e.target.value)}
+                    onChange={(e) => {
+                      setInvoiceBalance(e.target.value);
+                      if (errors.invoiceBalance) setErrors((prev) => ({ ...prev, invoiceBalance: "" }));
+                    }}
                     placeholder="e.g. $450.00"
-                    className={inputClass(false)}
+                    className={inputClass(!!errors.invoiceBalance)}
                   />
+                  {errors.invoiceBalance && (
+                    <p className="mt-1.5 text-sm text-rose-400">{errors.invoiceBalance}</p>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
@@ -407,7 +461,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[var(--portal-text-secondary)] mb-2 uppercase tracking-wider">
-                    Due Date{" "}
+                    {template === "reminder" && pastDue ? "Was Due" : "Due Date"}{" "}
                     <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
                   </label>
                   <input
@@ -419,7 +473,9 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                   />
                 </div>
                 <p className="sm:col-span-2 text-[11px] text-[var(--portal-text-faint)] -mt-1">
-                  Leave the balance blank to omit the invoice section entirely (e.g. paid in full).
+                  {template === "reminder"
+                    ? "This is the total needed to keep the client's website online."
+                    : "Leave the balance blank to omit the invoice section entirely (e.g. paid in full)."}
                 </p>
               </motion.div>
             )}
@@ -464,7 +520,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
       <ConfirmDialog
         open={confirmOpen}
         title="Send this email?"
-        message={`This sends the ${template === "complete" ? "Project Complete" : "Onboarding"} email to ${
+        message={`This sends the ${templateLabel(template)} email to ${
           selectedClient?.email ?? "the selected client"
         } right now. Make sure you've previewed it first.`}
         confirmLabel="Send"
