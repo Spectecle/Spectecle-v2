@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle2, Eye, Loader2 } from "lucide-react";
 import { inputClass } from "@/components/portal/DynamicField";
+import { DatePickerField } from "@/components/portal/DatePickerField";
 import { ConfirmDialog } from "@/components/portal/ConfirmDialog";
 import { FileUploadField } from "@/components/portal/FileUploadField";
 import { useFileUploads } from "@/hooks/useFileUploads";
@@ -464,12 +465,10 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                     {template === "reminder" && pastDue ? "Was Due" : "Due Date"}{" "}
                     <span className="text-[var(--portal-text-faint)] normal-case tracking-normal">(optional)</span>
                   </label>
-                  <input
-                    type="text"
+                  <DatePickerField
                     value={dueDate}
-                    onChange={(e) => setDueDate(e.target.value)}
-                    placeholder="e.g. August 15, 2026"
-                    className={inputClass(false)}
+                    onChange={setDueDate}
+                    placeholder="Select a date"
                   />
                 </div>
                 <p className="sm:col-span-2 text-[11px] text-[var(--portal-text-faint)] -mt-1">

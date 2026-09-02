@@ -15,6 +15,18 @@ const GOOGLE_REVIEW_URL =
   process.env.GOOGLE_REVIEW_URL ?? "https://g.page/r/CbSs-g26jjLnEBM/review";
 const CONTRACT_URL_EXPIRY_SECONDS = 60 * 60 * 24 * 30; // 30 days — a client may open this well after send
 
+// Due date now comes from a calendar picker as an ISO "YYYY-MM-DD" string;
+// render it human-readable in the email itself.
+function formatDueDate(value: string): string {
+  const [y, m, d] = value.split("-").map(Number);
+  if (!y || !m || !d) return value;
+  return new Date(y, m - 1, d).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 type LetterTemplate = "onboarding" | "complete" | "reminder";
 
 type ContractFile = { path: string; name: string };
@@ -243,7 +255,7 @@ function projectCompleteLetterHtml({
     ${
       dueDate?.trim()
         ? `<div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:${COLOR.accent};margin-bottom:4px;">Due Date</div>
-           <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;color:${COLOR.textPrimary};">${esc(dueDate)}</div>`
+           <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;color:${COLOR.textPrimary};">${esc(formatDueDate(dueDate))}</div>`
         : ""
     }
   `;
@@ -343,7 +355,7 @@ function invoiceReminderLetterHtml({
     ${
       dueDate?.trim()
         ? `<div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:${COLOR.accent};margin-bottom:4px;">${pastDue ? "Was Due" : "Due Date"}</div>
-           <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;color:${COLOR.textPrimary};">${esc(dueDate)}</div>`
+           <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;color:${COLOR.textPrimary};">${esc(formatDueDate(dueDate))}</div>`
         : ""
     }
   `;
