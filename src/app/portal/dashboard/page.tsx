@@ -69,7 +69,7 @@ export default async function PortalDashboardPage({
 
   return (
     <PortalDashboardShell active={section} email={effectiveUser.email} impersonating={!!impersonated}>
-      <section className="relative min-h-[calc(100vh-4rem)] pt-10 pb-20 px-6 lg:px-10 overflow-hidden">
+      <section className="relative min-h-[calc(100vh-4rem)] pt-10 pb-20 px-6 lg:px-10 overflow-x-hidden">
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
           style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.12) 0%, transparent 70%)" }}

@@ -29,7 +29,7 @@ export default async function AdminAddClientPage() {
   const groups = groupByOrganization(allUsers ?? [], orgNames, {}, orgsById);
 
   return (
-    <section className="relative min-h-[80vh] pt-32 pb-20 px-6 overflow-hidden">
+    <section className="relative min-h-[80vh] pt-32 pb-20 px-6 overflow-x-hidden">
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
         style={{ background: "radial-gradient(ellipse, rgba(210,81,36,0.12) 0%, transparent 70%)" }}

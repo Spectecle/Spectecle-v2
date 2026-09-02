@@ -85,7 +85,7 @@ export default function PortalRequestPage() {
   };
 
   return (
-    <section className="relative min-h-[80vh] pt-32 pb-20 px-6 overflow-hidden">
+    <section className="relative min-h-[80vh] pt-32 pb-20 px-6 overflow-x-hidden">
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
         style={{ background: "radial-gradient(ellipse, rgba(198,153,71,0.12) 0%, transparent 70%)" }}
