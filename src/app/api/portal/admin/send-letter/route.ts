@@ -308,8 +308,6 @@ function invoiceReminderLetterHtml({
   pastDue: boolean;
 }) {
   const hasMeta = !!(invoiceNumber?.trim() || dueDate?.trim());
-  const boxBg = pastDue ? "#2a0e0a" : "#1a0d08";
-  const boxBorder = pastDue ? "rgba(220,90,60,0.4)" : "rgba(198,153,71,0.3)";
 
   const amountCell = `
     <p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">${pastDue ? "Past Due Amount" : "Amount Due"}</p>
@@ -338,14 +336,14 @@ function invoiceReminderLetterHtml({
 
   const invoiceSection = `
     ${sectionHeading(pastDue ? "Past Due Balance" : "Balance Due")}
-    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:${boxBg};border:1px solid ${boxBorder};border-radius:10px;margin:0 0 16px;">
+    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(198,153,71,0.3);border-radius:10px;margin:0 0 16px;">
       <tr>
         <td style="padding:18px 20px;vertical-align:top;${hasMeta ? "width:55%;" : ""}">
           ${amountCell}
         </td>
         ${
           hasMeta
-            ? `<td style="padding:18px 20px;vertical-align:top;border-left:1px solid ${boxBorder};">${metaCell}</td>`
+            ? `<td style="padding:18px 20px;vertical-align:top;border-left:1px solid rgba(198,153,71,0.3);">${metaCell}</td>`
             : ""
         }
       </tr>
