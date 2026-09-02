@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getSession, isAdmin, createMagicLink } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { isTrustedOrigin } from "@/lib/origin-check";
-import { esc, wrapEmailDocument } from "@/lib/email-html";
+import { esc } from "@/lib/email-html";
 import { UPLOAD_BUCKET } from "@/lib/uploads";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -34,65 +34,79 @@ type LetterBody = {
   preview?: boolean;
 };
 
-function emailShell(preheader: string, heroEyebrow: string, heroTitle: string, bodyHtml: string) {
-  const doc = `
-<div style="background-color:#f4f1e9;padding:40px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
-  <div style="display:none;max-height:0;overflow:hidden;color:#f4f1e9;font-size:1px;line-height:1px;">${esc(preheader)}</div>
-  <table role="presentation" width="100%" style="max-width:600px;margin:0 auto;border-collapse:collapse;">
+// Same email-safe color/type system as the other transactional emails
+// (monthly report, contact auto-reply) — literal site token values (no CSS
+// variables, tables instead of flex/grid) so this actually matches the
+// site's theme and stays legible across every mail client.
+const COLOR = {
+  bg: "#efe6d3",
+  card: "#f7f2e9",
+  border: "#e4d8bd",
+  textPrimary: "#211a13",
+  textSecondary: "#5b4e3f",
+  textMuted: "#8b7e6a",
+  accent: "#9a5423",
+  accentStrong: "#7a4119",
+};
+
+function emailShell(preheader: string, eyebrow: string, headline: string, bodyHtml: string) {
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>${esc(headline)}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap');
+  body { margin:0; padding:0; background:${COLOR.bg}; }
+  a { color:${COLOR.accentStrong}; }
+</style>
+</head>
+<body style="margin:0;padding:0;background:${COLOR.bg};">
+  <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:${COLOR.bg};">${esc(preheader)}</div>
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:${COLOR.bg};">
     <tr>
-      <td style="padding:0 0 28px;text-align:center;">
-        <table role="presentation" style="margin:0 auto;border-collapse:collapse;">
+      <td align="center" style="padding:48px 20px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;background:${COLOR.card};border:1px solid ${COLOR.border};">
           <tr>
-            <td style="padding-right:10px;vertical-align:middle;">
-              <img src="${SITE_URL}/logo-email.png" width="40" height="40" alt="" style="display:block;border:0;" />
-            </td>
-            <td style="vertical-align:middle;">
-              <span style="color:#1e1e1e;font-size:21px;font-weight:800;letter-spacing:0.3px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">Spectecle</span>
+            <td style="padding:44px 44px 8px;">
+              <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:${COLOR.accent};margin-bottom:14px;">${esc(eyebrow)}</div>
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:28px;line-height:1.25;color:${COLOR.textPrimary};font-weight:400;">${esc(headline)}</div>
             </td>
           </tr>
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td style="background-color:#fdfbf5;border-radius:16px;">
-        <table role="presentation" width="100%" style="border-collapse:collapse;">
           <tr>
-            <td style="background-color:#cb7c46;background-image:linear-gradient(135deg,#d9b568,#cb7c46);padding:40px 40px 32px;border-radius:16px 16px 0 0;text-align:center;">
-              <p style="margin:0 0 10px;color:rgba(255,255,255,0.85);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">${esc(heroEyebrow)}</p>
-              <h1 style="margin:0;color:#1e1e1e;font-size:26px;font-weight:800;line-height:1.3;">${esc(heroTitle)}</h1>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding:36px 40px 36px;">
+            <td style="padding:20px 44px 44px;">
               ${bodyHtml}
             </td>
           </tr>
         </table>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:28px 12px 0;text-align:center;">
-        <p style="margin:0 0 4px;color:#475569;font-size:12px;">Spectecle</p>
-        <p style="margin:0;color:#475569;font-size:12px;">Questions? Reply to this email &mdash; we read every one.</p>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
+          <tr>
+            <td style="padding:24px 10px 0;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:12px;color:${COLOR.textMuted};text-align:center;">
+              Spectecle &middot; spectecle.com<br>
+              Questions? Reply to this email &mdash; we read every one.
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
   </table>
-</div>
-`;
-  return wrapEmailDocument(doc, heroTitle);
+</body>
+</html>`;
 }
 
 function noteBlock(note: string) {
   if (!note.trim()) return "";
-  return `<p style="margin:0 0 24px;color:#cbd5e1;font-size:15px;line-height:1.7;white-space:pre-wrap;">${esc(note)}</p>`;
+  return `<p style="margin:0 0 24px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:${COLOR.textSecondary};white-space:pre-wrap;">${esc(note)}</p>`;
 }
 
 function sectionHeading(text: string) {
-  return `<p style="margin:0 0 14px;color:#1e1e1e;font-size:12.5px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">${esc(text)}</p>`;
+  return `<div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:${COLOR.accent};font-weight:600;margin-bottom:14px;">${esc(text)}</div>`;
 }
 
 function divider() {
-  return `<div style="border-top:1px solid rgba(255,255,255,0.08);margin:28px 0;"></div>`;
+  return `<div style="border-top:1px solid ${COLOR.border};margin:28px 0;line-height:0;font-size:0;">&nbsp;</div>`;
 }
 
 function termsAndDocumentsSection(contractLinks: { name: string; url: string }[]) {
@@ -103,8 +117,8 @@ function termsAndDocumentsSection(contractLinks: { name: string; url: string }[]
         <td style="padding:${i > 0 ? "8px 0 0" : "0"};">
           <table role="presentation" width="100%" style="border-collapse:collapse;">
             <tr>
-              <td style="padding:12px 16px;background-color:#1a0d08;border:1px solid rgba(198,153,71,0.3);border-radius:10px;">
-                <a href="${esc(c.url)}" style="color:#38190c;text-decoration:none;font-weight:600;font-size:14px;">&#128206; ${esc(c.name)}</a>
+              <td style="padding:12px 16px;background-color:${COLOR.bg};border:1px solid ${COLOR.border};">
+                <a href="${esc(c.url)}" style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;color:${COLOR.accentStrong};text-decoration:none;font-weight:600;font-size:14px;">&#128206; ${esc(c.name)}</a>
               </td>
             </tr>
           </table>
@@ -115,8 +129,8 @@ function termsAndDocumentsSection(contractLinks: { name: string; url: string }[]
 
   return `
     ${sectionHeading("Terms & Documents")}
-    <p style="margin:0 0 ${contractLinks.length > 0 ? "16" : "24"}px;color:#cbd5e1;font-size:13.5px;line-height:1.7;">
-      Please review our <a href="${TERMS_URL}" style="color:#38190c;">Terms & Conditions</a> and <a href="${PRIVACY_URL}" style="color:#38190c;">Privacy Policy</a> for details on how we handle your information.
+    <p style="margin:0 0 ${contractLinks.length > 0 ? "16" : "24"}px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.7;color:${COLOR.textSecondary};">
+      Please review our <a href="${TERMS_URL}" style="color:${COLOR.accentStrong};">Terms &amp; Conditions</a> and <a href="${PRIVACY_URL}" style="color:${COLOR.accentStrong};">Privacy Policy</a> for details on how we handle your information.
     </p>
     ${
       contractLinks.length > 0
@@ -130,27 +144,27 @@ function termsAndDocumentsSection(contractLinks: { name: string; url: string }[]
 function portalIntroBlock(email: string, link: string) {
   return `
     ${sectionHeading("Your Client Portal")}
-    <p style="margin:0 0 20px;color:#cbd5e1;font-size:14.5px;line-height:1.7;">
+    <p style="margin:0 0 20px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:14.5px;line-height:1.7;color:${COLOR.textSecondary};">
       Use the Spectecle portal to request website changes or edits, ask for new services, track the status of every request, and message us directly &mdash; all in one place.
     </p>
-    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(198,153,71,0.3);border-radius:10px;margin:0 0 24px;">
+    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:${COLOR.bg};border:1px solid ${COLOR.border};margin:0 0 24px;">
       <tr>
         <td style="padding:16px 20px;text-align:center;">
-          <p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Your Sign-In Email</p>
-          <p style="margin:0;color:#1e1e1e;font-size:16px;font-weight:600;">${esc(email)}</p>
+          <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:${COLOR.accent};margin-bottom:4px;">Your Sign-In Email</div>
+          <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:16px;font-weight:600;color:${COLOR.textPrimary};">${esc(email)}</div>
         </td>
       </tr>
     </table>
     <table role="presentation" width="100%" style="border-collapse:collapse;margin:0 0 16px;">
       <tr>
         <td align="center">
-          <a href="${link}" style="display:inline-block;background-color:#cb7c46;background-image:linear-gradient(135deg,#d9b568,#cb7c46);color:#1e1e1e;text-decoration:none;padding:16px 44px;border-radius:10px;font-weight:700;font-size:16px;">
+          <a href="${link}" style="display:inline-block;background-color:${COLOR.accent};color:${COLOR.card};text-decoration:none;padding:16px 44px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-weight:700;font-size:16px;">
             Sign In to Your Portal &rarr;
           </a>
         </td>
       </tr>
     </table>
-    <p style="margin:0;color:#64748b;font-size:12.5px;line-height:1.6;text-align:center;">
+    <p style="margin:0;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:12.5px;line-height:1.6;color:${COLOR.textMuted};text-align:center;">
       No password needed &mdash; this link signs you in instantly. It expires in 15 minutes; after that, just visit spectecle.com/portal and enter your email above to get a new one anytime.
     </p>
   `;
@@ -170,7 +184,7 @@ function onboardingLetterHtml({
   contractLinks: { name: string; url: string }[];
 }) {
   const body = `
-    <p style="margin:0 0 4px;color:#94a3b8;font-size:13px;">Hi ${esc(businessName)},</p>
+    <p style="margin:0 0 4px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:13px;color:${COLOR.textMuted};">Hi ${esc(businessName)},</p>
     ${noteBlock(
       note ||
         "Welcome to Spectecle! We're excited to get started — here's your portal so you always know where things stand."
@@ -210,11 +224,11 @@ function projectCompleteLetterHtml({
   const hasMeta = !!(invoiceNumber?.trim() || dueDate?.trim());
 
   const amountCell = `
-    <p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Amount Due</p>
-    <p style="margin:0 0 ${invoiceLink?.trim() ? "12" : "0"}px;color:#1e1e1e;font-size:20px;font-weight:700;">${esc(invoiceBalance ?? "")}</p>
+    <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:${COLOR.accent};margin-bottom:4px;">Amount Due</div>
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;color:${COLOR.textPrimary};margin-bottom:${invoiceLink?.trim() ? "12" : "0"}px;">${esc(invoiceBalance ?? "")}</div>
     ${
       invoiceLink?.trim()
-        ? `<a href="${esc(invoiceLink)}" style="display:inline-block;background-color:#cb7c46;color:#1e1e1e;text-decoration:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:13.5px;">Pay Invoice &rarr;</a>`
+        ? `<a href="${esc(invoiceLink)}" style="display:inline-block;background-color:${COLOR.accent};color:${COLOR.card};text-decoration:none;padding:10px 20px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-weight:600;font-size:13.5px;">Pay Invoice &rarr;</a>`
         : ""
     }
   `;
@@ -222,14 +236,14 @@ function projectCompleteLetterHtml({
   const metaCell = `
     ${
       invoiceNumber?.trim()
-        ? `<p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Invoice #</p>
-           <p style="margin:0 0 12px;color:#1e1e1e;font-size:14px;font-weight:600;">${esc(invoiceNumber)}</p>`
+        ? `<div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:${COLOR.accent};margin-bottom:4px;">Invoice #</div>
+           <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;color:${COLOR.textPrimary};margin-bottom:12px;">${esc(invoiceNumber)}</div>`
         : ""
     }
     ${
       dueDate?.trim()
-        ? `<p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Due Date</p>
-           <p style="margin:0;color:#1e1e1e;font-size:14px;font-weight:600;">${esc(dueDate)}</p>`
+        ? `<div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:${COLOR.accent};margin-bottom:4px;">Due Date</div>
+           <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;color:${COLOR.textPrimary};">${esc(dueDate)}</div>`
         : ""
     }
   `;
@@ -237,14 +251,14 @@ function projectCompleteLetterHtml({
   const invoiceSection = invoiceBalance?.trim()
     ? `
     ${sectionHeading("Remaining Balance")}
-    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(198,153,71,0.3);border-radius:10px;margin:0 0 24px;">
+    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:${COLOR.bg};border:1px solid ${COLOR.border};margin:0 0 24px;">
       <tr>
-        <td style="padding:16px 20px;vertical-align:top;${hasMeta ? "width:55%;" : ""}">
+        <td style="padding:18px 20px;vertical-align:top;${hasMeta ? "width:55%;" : ""}">
           ${amountCell}
         </td>
         ${
           hasMeta
-            ? `<td style="padding:16px 20px;vertical-align:top;border-left:1px solid rgba(198,153,71,0.3);">${metaCell}</td>`
+            ? `<td style="padding:18px 20px;vertical-align:top;border-left:1px solid ${COLOR.border};">${metaCell}</td>`
             : ""
         }
       </tr>
@@ -254,7 +268,7 @@ function projectCompleteLetterHtml({
     : "";
 
   const body = `
-    <p style="margin:0 0 4px;color:#94a3b8;font-size:13px;">Hi ${esc(businessName)},</p>
+    <p style="margin:0 0 4px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:13px;color:${COLOR.textMuted};">Hi ${esc(businessName)},</p>
     ${noteBlock(
       note ||
         `We just wrapped up work on your project — thank you for choosing Spectecle, it's been a pleasure working with you.`
@@ -267,8 +281,8 @@ function projectCompleteLetterHtml({
     <table role="presentation" width="100%" style="border-collapse:collapse;margin:0 0 28px;">
       <tr>
         <td style="text-align:center;">
-          <p style="margin:0 0 12px;color:#e2e8f0;font-size:14.5px;font-weight:600;">Enjoying working with us?</p>
-          <a href="${esc(GOOGLE_REVIEW_URL)}" style="display:inline-block;background-color:transparent;border:1px solid rgba(198,153,71,0.4);color:#38190c;text-decoration:none;padding:12px 28px;border-radius:10px;font-weight:600;font-size:14px;">
+          <p style="margin:0 0 12px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:14.5px;font-weight:600;color:${COLOR.textPrimary};">Enjoying working with us?</p>
+          <a href="${esc(GOOGLE_REVIEW_URL)}" style="display:inline-block;background-color:transparent;border:1px solid ${COLOR.accent};color:${COLOR.accentStrong};text-decoration:none;padding:12px 28px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-weight:600;font-size:14px;">
             &#9733; Leave Us a Review
           </a>
         </td>
@@ -310,11 +324,11 @@ function invoiceReminderLetterHtml({
   const hasMeta = !!(invoiceNumber?.trim() || dueDate?.trim());
 
   const amountCell = `
-    <p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">${pastDue ? "Past Due Amount" : "Amount Due"}</p>
-    <p style="margin:0 0 ${invoiceLink?.trim() ? "12" : "0"}px;color:#1e1e1e;font-size:24px;font-weight:800;">${esc(invoiceBalance)}</p>
+    <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:${COLOR.accent};margin-bottom:4px;">${pastDue ? "Past Due Amount" : "Amount Due"}</div>
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:26px;color:${COLOR.textPrimary};margin-bottom:${invoiceLink?.trim() ? "12" : "0"}px;">${esc(invoiceBalance)}</div>
     ${
       invoiceLink?.trim()
-        ? `<a href="${esc(invoiceLink)}" style="display:inline-block;background-color:#cb7c46;color:#1e1e1e;text-decoration:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:13.5px;">Pay Now &rarr;</a>`
+        ? `<a href="${esc(invoiceLink)}" style="display:inline-block;background-color:${COLOR.accent};color:${COLOR.card};text-decoration:none;padding:10px 20px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-weight:600;font-size:13.5px;">Pay Now &rarr;</a>`
         : ""
     }
   `;
@@ -322,40 +336,40 @@ function invoiceReminderLetterHtml({
   const metaCell = `
     ${
       invoiceNumber?.trim()
-        ? `<p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Invoice #</p>
-           <p style="margin:0 0 12px;color:#1e1e1e;font-size:14px;font-weight:600;">${esc(invoiceNumber)}</p>`
+        ? `<div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:${COLOR.accent};margin-bottom:4px;">Invoice #</div>
+           <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;color:${COLOR.textPrimary};margin-bottom:12px;">${esc(invoiceNumber)}</div>`
         : ""
     }
     ${
       dueDate?.trim()
-        ? `<p style="margin:0 0 4px;color:#38190c;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">${pastDue ? "Was Due" : "Due Date"}</p>
-           <p style="margin:0;color:#1e1e1e;font-size:14px;font-weight:600;">${esc(dueDate)}</p>`
+        ? `<div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:${COLOR.accent};margin-bottom:4px;">${pastDue ? "Was Due" : "Due Date"}</div>
+           <div style="font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;color:${COLOR.textPrimary};">${esc(dueDate)}</div>`
         : ""
     }
   `;
 
   const invoiceSection = `
     ${sectionHeading(pastDue ? "Past Due Balance" : "Balance Due")}
-    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:#1a0d08;border:1px solid rgba(198,153,71,0.3);border-radius:10px;margin:0 0 16px;">
+    <table role="presentation" width="100%" style="border-collapse:collapse;background-color:${COLOR.bg};border:1px solid ${COLOR.border};margin:0 0 16px;">
       <tr>
         <td style="padding:18px 20px;vertical-align:top;${hasMeta ? "width:55%;" : ""}">
           ${amountCell}
         </td>
         ${
           hasMeta
-            ? `<td style="padding:18px 20px;vertical-align:top;border-left:1px solid rgba(198,153,71,0.3);">${metaCell}</td>`
+            ? `<td style="padding:18px 20px;vertical-align:top;border-left:1px solid ${COLOR.border};">${metaCell}</td>`
             : ""
         }
       </tr>
     </table>
-    <p style="margin:0 0 24px;color:#64748b;font-size:12.5px;line-height:1.6;">
+    <p style="margin:0 0 24px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:12.5px;line-height:1.6;color:${COLOR.textMuted};">
       This is the total needed to keep ${esc(businessName)}&rsquo;s website online and in good standing.
     </p>
     ${divider()}
   `;
 
   const body = `
-    <p style="margin:0 0 4px;color:#94a3b8;font-size:13px;">Hi ${esc(businessName)},</p>
+    <p style="margin:0 0 4px;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;font-size:13px;color:${COLOR.textMuted};">Hi ${esc(businessName)},</p>
     ${noteBlock(
       note ||
         (pastDue
