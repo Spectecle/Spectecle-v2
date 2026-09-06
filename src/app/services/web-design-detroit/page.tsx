@@ -3,8 +3,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronRight, Palette, Code2, ShoppingCart, RefreshCw } from "lucide-react";
+import { ArrowUpRight, ChevronRight, TrendingUp, Award, Users, Quote } from "lucide-react";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
+import { LandingLeadForm } from "@/components/LandingLeadForm";
+import { StickyMobileCallBar } from "@/components/StickyMobileCallBar";
+import { testimonials } from "@/lib/testimonials-data";
+
+const PAGE_PATH = "/services/web-design-detroit";
+const SOURCE = "Web Design Detroit Landing Page";
+const GOOGLE_REVIEW_URL = "https://g.page/r/CbSs-g26jjLnEBM/review";
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -20,14 +27,29 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
-const features = [
-  { label: "Custom UI/UX Design", desc: "Built around your brand and how visitors actually move through it.", Icon: Palette },
-  { label: "Next.js & React Development", desc: "Fast, SEO-ready builds that score green on Core Web Vitals.", Icon: Code2 },
-  { label: "E-commerce & CMS", desc: "Shopify, WooCommerce, and headless CMS builds that grow with you.", Icon: ShoppingCart },
-  { label: "Ongoing Maintenance", desc: "Fast, secure, and current, every month, without the overhead.", Icon: RefreshCw },
+const outcomes = [
+  {
+    label: "More calls, more booked appointments",
+    desc: "A site built around one job: turning the people already searching for you into people who reach out. Clear paths to call or contact you, on every page.",
+    Icon: TrendingUp,
+  },
+  {
+    label: "A site that looks as established as you are",
+    desc: "No templates, no drag-and-drop builders. A custom design that matches the standard you already hold your business to, so visitors trust you the second the page loads.",
+    Icon: Award,
+  },
+  {
+    label: "Stop losing customers to competitors who rank higher",
+    desc: "Fast load times, proper structure, and local SEO built in from day one, so you show up when someone nearby searches for what you do.",
+    Icon: Users,
+  },
 ];
 
 const faqs = [
+  {
+    q: "What happens after I submit the form?",
+    a: "We reply within one business day, usually sooner. No hard sell: we'll ask a few questions about your business and goals, then give you honest advice and a clear, itemized plan. If we're not the right fit, we'll tell you that too.",
+  },
   {
     q: "How much does a website cost for a small business?",
     a: "Web design costs vary based on scope and goals. Simple brochure sites, custom web applications, and e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call. No hidden fees, no surprises.",
@@ -40,18 +62,18 @@ const faqs = [
     q: "Do you build websites with SEO built in?",
     a: "Yes. Every site we build includes on-page SEO from day one: proper heading structure, schema markup, fast load times, and Core Web Vitals optimization. SEO is not an afterthought.",
   },
-  {
-    q: "What's included in your monthly website maintenance plans?",
-    a: "Maintenance retainers include performance monitoring, security patches, content updates, uptime monitoring, and priority support with fast response times.",
-  },
 ];
+
+const featuredTestimonials = testimonials.filter((t) =>
+  ["Hassan MB", "Ali Saab", "Tim Kwiatkowski"].includes(t.name)
+);
 
 export default function WebDesignDetroitPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="pt-[176px] pb-14 px-6">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_1fr] gap-14 items-start">
           <div className="max-w-2xl">
             <nav className="flex items-center gap-2 text-xs text-[var(--site-text-muted)] mb-8" aria-label="Breadcrumb">
               <Link href="/" className="hover:text-[var(--site-text-primary)] transition-colors">Home</Link>
@@ -68,35 +90,32 @@ export default function WebDesignDetroitPage() {
               className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Web Design & <span className="italic text-[#9a5423]">Development</span> for Detroit businesses.
+              A website that turns clicks into <span className="italic text-[#9a5423]">clients.</span>
             </motion.h1>
 
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl leading-relaxed">
-              Custom websites built to rank, load fast, and convert. No templates, no offshore teams.
+              Custom-built, fast-loading, and designed to convert the traffic you&apos;re already paying
+              for. Tell us about your business below, we&apos;ll tell you exactly what it needs.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-8">
-              <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
-                Get a Free Quote
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-              <Link href="/work" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
-                View Our Work <ChevronRight className="w-4 h-4" />
-              </Link>
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-[var(--site-text-muted)]">
+              <span>Serving Metro Detroit &amp; Oakland County</span>
+              <span className="hidden sm:inline text-[var(--site-border)]">|</span>
+              <a
+                href={GOOGLE_REVIEW_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#9a5423] hover:underline font-medium"
+              >
+                Read our Google reviews
+              </a>
+              <span className="hidden sm:inline text-[var(--site-border)]">|</span>
+              <span>Reply within 1 business day</span>
             </div>
           </div>
 
           <Reveal delay={0.15}>
-            <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
-              <Image
-                src="https://images.unsplash.com/photo-1487523117656-d5d117ad47c5?q=80&w=1600&auto=format&fit=crop"
-                alt="Modern web design workspace"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-                priority
-              />
-            </div>
+            <LandingLeadForm id="lead-form" pagePath={PAGE_PATH} source={SOURCE} />
           </Reveal>
         </div>
       </section>
@@ -112,61 +131,93 @@ export default function WebDesignDetroitPage() {
         </div>
       </section>
 
-      {/* ── FEATURES ─────────────────────────────────── */}
+      {/* ── OUTCOMES ─────────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
-          <Reveal className="mb-14">
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>What&apos;s included.</h2>
+          <Reveal className="mb-14 text-center max-w-2xl mx-auto">
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              What you actually get.
+            </h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((f, i) => (
-              <Reveal key={f.label} delay={i * 0.07}>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {outcomes.map((o, i) => (
+              <Reveal key={o.label} delay={i * 0.08}>
                 <div className="group border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
                   <div className="w-10 h-10 rounded-full bg-[#9a5423]/10 flex items-center justify-center mb-4 group-hover:bg-[#9a5423]/20 transition-colors">
-                    <f.Icon className="w-5 h-5 text-[#9a5423]" strokeWidth={1.75} />
+                    <o.Icon className="w-5 h-5 text-[#9a5423]" strokeWidth={1.75} />
                   </div>
-                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
-                  <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{f.desc}</p>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2">{o.label}</h3>
+                  <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{o.desc}</p>
                 </div>
               </Reveal>
             ))}
           </div>
+          <Reveal delay={0.2} className="mt-12 text-center">
+            <a
+              href="#lead-form"
+              className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold cursor-pointer"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Get My Free Quote
+                <ArrowUpRight className="w-4 h-4" />
+              </span>
+            </a>
+          </Reveal>
         </div>
       </section>
 
-      {/* ── LOCAL PROOF ──────────────────────────────── */}
+      {/* ── STORY ────────────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)] bg-[var(--site-surface)]">
-        <div className="max-w-5xl mx-auto">
-          <Reveal className="mb-4">
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Built for Detroit businesses.
+        <div className="max-w-3xl mx-auto">
+          <Reveal>
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Why Spectecle</span>
+            <h2 className="mt-4 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              Not another web design mill.
             </h2>
           </Reveal>
-          <Reveal delay={0.05} className="mb-10">
-            <p className="text-[var(--site-text-secondary)] text-lg max-w-2xl">
-              We&apos;ve designed and built websites for businesses across Detroit, Dearborn, and the surrounding Michigan suburbs, including <Link href="/services/web-design-birmingham-mi" className="text-[#9a5423] hover:underline">Birmingham and Oakland County</Link>: sites that show up on Google Maps, rank locally, and turn visitors into customers.
+          <Reveal delay={0.08} className="mt-6 space-y-5 text-[var(--site-text-secondary)] leading-relaxed">
+            <p>
+              Spectecle grew out of hands-on experience in enterprise IT and systems engineering,
+              learning firsthand what makes software perform, scale, and stay secure under real-world
+              conditions. That background shapes everything we build, including yours.
+            </p>
+            <p>
+              We built Spectecle specifically to serve businesses that are often underserved by the
+              industry: medical and legal practices that need a digital presence as precise as their
+              work, contractors who do excellent work but show up nowhere on Google, and owners who are
+              tired of agencies that hand off their site to a junior designer and an offshore team.
+            </p>
+            <p>
+              Small enough to care about every detail. Senior enough to get it right the first time.
             </p>
           </Reveal>
-          <div className="grid sm:grid-cols-3 gap-6">
-            {[
-              { title: "Detroit Glass & Mirror", location: "Detroit, MI", result: "Google Map Pack", href: "/work/detroit-glass-mirror" },
-              { title: "Salazar Drywall Pros", location: "Michigan", result: "#1 Local Rankings", href: "/work/salazar-drywall-pros" },
-              { title: "Dearborn Cleaners", location: "Dearborn, MI", result: "Complete Rebuild", href: "/work/dearborn-cleaners" },
-            ].map((p) => (
-              <Reveal key={p.title}>
-                <Link href={p.href} className="group block border border-[var(--site-border)] bg-[var(--site-bg)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
-                  <p className="text-xs uppercase tracking-widest text-[var(--site-text-muted)] mb-2">{p.location}</p>
-                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-1">{p.title}</h3>
-                  <p className="text-sm font-semibold text-[#9a5423] mb-3">{p.result}</p>
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--site-text-secondary)] group-hover:text-[#9a5423] transition-colors">
-                    View case study <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
+
+      {/* ── TESTIMONIALS ─────────────────────────────── */}
+      {featuredTestimonials.length > 0 && (
+        <section className="py-14 px-6 border-t border-[var(--site-border)]">
+          <div className="max-w-5xl mx-auto">
+            <Reveal className="mb-10 text-center">
+              <h2 className="text-3xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+                What clients say.
+              </h2>
+            </Reveal>
+            <div className="grid sm:grid-cols-3 gap-6">
+              {featuredTestimonials.map((t, i) => (
+                <Reveal key={t.name} delay={i * 0.08}>
+                  <div className="border border-[var(--site-border)] p-6 h-full">
+                    <Quote className="w-5 h-5 text-[#9a5423]/50 mb-3" />
+                    <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
+                    <p className="text-[var(--site-text-primary)] text-sm font-semibold">{t.name}</p>
+                    <p className="text-[var(--site-text-muted)] text-xs">{t.role}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── VISUAL BREAK ──────────────────────────────── */}
       <section className="relative h-[50vh] min-h-[340px] overflow-hidden border-t border-[var(--site-border)]">
@@ -202,50 +253,37 @@ export default function WebDesignDetroitPage() {
         </div>
       </section>
 
-      {/* ── RELATED SERVICES ─────────────────────────── */}
-      <section className="py-12 px-6 border-t border-[var(--site-border)]">
-        <div className="max-w-5xl mx-auto">
-          <Reveal className="mb-8">
-            <h2 className="text-2xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Pair it with</h2>
+      {/* ── FINAL CTA ────────────────────────────────── */}
+      <section className="py-20 px-6 border-t border-[var(--site-border)] pb-32 md:pb-20">
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
+          <Reveal>
+            <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)] leading-[1.1]" style={{ fontFamily: "var(--font-serif)" }}>
+              Proven craft. <span className="italic text-[#9a5423]">Built in Detroit.</span>
+            </h2>
+            <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-lg">
+              Book a free 30-minute strategy call, or fill out the form. Honest advice on what your site
+              needs to rank and convert, no hard sell.
+            </p>
+            <a
+              href="tel:+13133534105"
+              className="mt-6 inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1"
+            >
+              (313) 353-4105
+              <ArrowUpRight className="w-5 h-5" />
+            </a>
           </Reveal>
-          <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
-            {[
-              { title: "SEO & Digital Marketing", desc: "A great website needs to be found. We handle search rankings too.", href: "/services/seo-agency-detroit" },
-              { title: "AI & Automation", desc: "Automate lead follow-up, customer support, and internal workflows.", href: "/services/ai-automation" },
-            ].map((s) => (
-              <Reveal key={s.title}>
-                <Link href={s.href} className="group block border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
-                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#9a5423] transition-colors">{s.title}</h3>
-                  <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{s.desc}</p>
-                  <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#9a5423]">
-                    Learn more <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={0.1}>
+            <LandingLeadForm
+              pagePath={PAGE_PATH}
+              source={SOURCE}
+              heading="Ready when you are."
+              subheading="Same form, same one-business-day reply."
+            />
+          </Reveal>
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-[var(--site-border)]">
-        <Reveal>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Proven craft. <span className="italic text-[#9a5423]">Built in Detroit.</span>
-            </h2>
-            <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
-              Book a free 30-minute strategy call. Honest advice on what your site needs to rank and convert.
-            </p>
-            <div className="mt-10">
-              <Link href="/contact" className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1">
-                Book a Free Strategy Call
-                <ArrowUpRight className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
-        </Reveal>
-      </section>
+      <StickyMobileCallBar pagePath={PAGE_PATH} />
     </>
   );
 }

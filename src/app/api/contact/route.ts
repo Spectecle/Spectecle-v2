@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json() as Record<string, string>;
-    const { name, email, company, service, budget, message, _honey, _ts } = body;
+    const { name, email, phone, company, businessType, service, budget, message, source, _honey, _ts } = body;
 
     const elapsed = Date.now() - Number(_ts || 0);
 
@@ -95,9 +95,12 @@ export async function POST(req: Request) {
     const rows: [string, string][] = [
       ["Name", esc(name)],
       ["Email", `<a href="mailto:${esc(email)}" style="color:#cb7c46;">${esc(email)}</a>`],
+      ...(phone ? [["Phone", `<a href="tel:${esc(phone.replace(/[^\d+]/g, ""))}" style="color:#cb7c46;">${esc(phone)}</a>`] as [string, string]] : []),
       ...(company ? [["Company", esc(company)] as [string, string]] : []),
+      ...(businessType ? [["Business Type", esc(businessType)] as [string, string]] : []),
       ...(service ? [["Service", esc(service)] as [string, string]] : []),
       ...(budget ? [["Budget", esc(budget)] as [string, string]] : []),
+      ...(source ? [["Source", esc(source)] as [string, string]] : []),
     ];
 
     const tableRows = rows

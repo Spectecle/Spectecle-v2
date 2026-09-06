@@ -49,6 +49,14 @@ const jsonLd = [
     mainEntity: [
       {
         "@type": "Question",
+        name: "What happens after I submit the form?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "We reply within one business day, usually sooner. No hard sell: we'll ask a few questions about your business and goals, then give you honest advice and a clear, itemized plan. If we're not the right fit, we'll tell you that too.",
+        },
+      },
+      {
+        "@type": "Question",
         name: "How much does a website cost for a small business?",
         acceptedAnswer: {
           "@type": "Answer",
@@ -69,14 +77,6 @@ const jsonLd = [
         acceptedAnswer: {
           "@type": "Answer",
           text: "Yes. Every site we build includes on-page SEO from day one: proper heading structure, schema markup, fast load times, and Core Web Vitals optimization. SEO is not an afterthought.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What's included in your monthly website maintenance plans?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Maintenance retainers include performance monitoring, security patches, content updates, uptime monitoring, and priority support with fast response times.",
         },
       },
     ],
