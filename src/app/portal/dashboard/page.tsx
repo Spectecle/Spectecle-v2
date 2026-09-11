@@ -7,9 +7,9 @@ import { getFilesForRequests } from "@/lib/request-files";
 import { getMessagesForRequests } from "@/lib/request-messages";
 import { getDashboardTierForUser, getDashboardContextForUser } from "@/lib/dashboard-access";
 import { getAnalyticsSnapshotsForOrg } from "@/lib/analytics-snapshots";
-import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier } from "@/lib/dashboard-tiers";
+import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier, type DashboardAddon } from "@/lib/dashboard-tiers";
 import { getRequestQuotaStatusForUser } from "@/lib/request-quota";
-import { PLAN_PRICES } from "@/lib/stripe";
+import { PLAN_PRICES, ADDON_PRICES } from "@/lib/stripe";
 import { fetchGA4ActiveUsersNow, fetchGA4MonthToDate, fetchGA4DailyVisitors, fetchGA4EventCounts } from "@/lib/ga4";
 import { fetchSearchConsoleTopQueries, type SearchConsoleQueryRow } from "@/lib/search-console";
 import { checkSslCertificate, type SslStatus } from "@/lib/site-status";
@@ -18,7 +18,7 @@ import { PageSpeedCard } from "@/components/portal/PageSpeedCard";
 import { UptimeCard } from "@/components/portal/UptimeCard";
 import { LeadCard } from "@/components/portal/LeadCard";
 import { RequestScopeGuide } from "@/components/portal/RequestScopeGuide";
-import { PlanComparison, ManageBillingButton } from "@/components/portal/BillingActions";
+import { PlanComparison, AddonSection, ManageBillingButton } from "@/components/portal/BillingActions";
 import { getImpersonatedUser } from "@/lib/impersonation";
 import { TicketCard } from "@/components/portal/TicketCard";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
@@ -511,6 +511,23 @@ async function BillingSection({ userId }: { userId: string }) {
   const isActive = subscription && (subscription.status === "active" || subscription.status === "trialing" || subscription.status === "past_due");
   const currentTier: DashboardTier = isActive ? (subscription.tier as DashboardTier) : "free";
 
+  // Newest row per addon, active/trialing only — an org can have 0-2 add-ons
+  // active independently of its tier (or lack of one).
+  const { data: addonRows } = await supabase
+    .from("addon_subscriptions")
+    .select("addon, status, updated_at")
+    .eq("organization_id", organizationId)
+    .in("status", ["active", "trialing"])
+    .order("updated_at", { ascending: false });
+  const seenAddons = new Set<string>();
+  const activeAddons: DashboardAddon[] = [];
+  for (const row of addonRows ?? []) {
+    const addon: DashboardAddon = row.addon === "paid_ads" ? "paidAds" : "seo";
+    if (seenAddons.has(addon)) continue;
+    seenAddons.add(addon);
+    activeAddons.push(addon);
+  }
+
   const renewalLabel = isActive && subscription.current_period_end
     ? new Date(subscription.current_period_end).toLocaleDateString("en-US", {
         month: "long",
@@ -549,15 +566,27 @@ async function BillingSection({ userId }: { userId: string }) {
           </div>
         </>
       ) : (
-        <div className="glass rounded-2xl border border-[var(--portal-border)] p-6">
-          <p className="text-sm text-[var(--portal-text-muted)] mb-1">Current plan</p>
-          <p className="text-lg font-semibold text-[var(--portal-text-primary)]">Free</p>
+        <div className="glass rounded-2xl border border-[var(--portal-border)] p-6 flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <p className="text-sm text-[var(--portal-text-muted)] mb-1">Current plan</p>
+            <p className="text-lg font-semibold text-[var(--portal-text-primary)]">{DASHBOARD_TIER_LABELS.free}</p>
+          </div>
+          {activeAddons.length > 0 && <ManageBillingButton />}
         </div>
       )}
 
       <div>
         <h2 className="text-lg font-semibold text-[var(--portal-text-primary)] mb-4">Compare plans</h2>
         <PlanComparison prices={PLAN_PRICES} currentTier={currentTier} />
+      </div>
+
+      <div>
+        <AddonSection
+          addonPrices={ADDON_PRICES}
+          activeAddons={activeAddons}
+          currentTier={currentTier}
+          currentInterval={isActive ? (subscription.billing_interval as "monthly" | "annual") : null}
+        />
       </div>
     </div>
   );

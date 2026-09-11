@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
-import { stripe, PRICE_TO_PLAN } from "@/lib/stripe";
+import { stripe, PRICE_TO_PLAN, PRICE_TO_ADDON } from "@/lib/stripe";
 import { supabase } from "@/lib/supabase";
 
 // Stripe calls this server-to-server — there's no browser Origin header, so
@@ -19,6 +19,11 @@ async function resolveOrgIdByCustomerId(customerId: string): Promise<string | nu
 function planFromSubscription(sub: Stripe.Subscription) {
   const priceId = sub.items.data[0]?.price.id;
   return priceId ? PRICE_TO_PLAN[priceId] : undefined;
+}
+
+function addonFromSubscription(sub: Stripe.Subscription) {
+  const priceId = sub.items.data[0]?.price.id;
+  return priceId ? PRICE_TO_ADDON[priceId] : undefined;
 }
 
 async function upsertSubscriptionRow(sub: Stripe.Subscription, organizationId: string) {
@@ -72,6 +77,53 @@ async function upsertSubscriptionRow(sub: Stripe.Subscription, organizationId: s
   }
 }
 
+// Add-ons never touch organizations.dashboard_tier — they're independent
+// of tier and tracked purely in their own table. See addon_subscriptions
+// in supabase/schema.sql.
+async function upsertAddonSubscriptionRow(sub: Stripe.Subscription, organizationId: string) {
+  const resolved = addonFromSubscription(sub);
+  if (!resolved) {
+    console.error("[stripe webhook] subscription has an unrecognized price id:", sub.id);
+    return;
+  }
+
+  const item = sub.items.data[0];
+  const row = {
+    organization_id: organizationId,
+    stripe_customer_id: typeof sub.customer === "string" ? sub.customer : sub.customer.id,
+    stripe_subscription_id: sub.id,
+    stripe_price_id: item.price.id,
+    addon: resolved.addon === "paidAds" ? "paid_ads" : resolved.addon,
+    status: sub.status,
+    current_period_end: item.current_period_end
+      ? new Date(item.current_period_end * 1000).toISOString()
+      : null,
+    cancel_at_period_end: sub.cancel_at_period_end,
+    updated_at: new Date().toISOString(),
+  };
+
+  const { error } = await supabase
+    .from("addon_subscriptions")
+    .upsert(row, { onConflict: "stripe_subscription_id" });
+  if (error) {
+    console.error("[stripe webhook] failed to upsert addon subscription row:", error);
+  }
+}
+
+/** A subscription is either a tier subscription or an add-on subscription
+ * (their price ids are disjoint sets) — this dispatches to the right
+ * upsert path, or logs if the price id matches neither (shouldn't happen
+ * outside a misconfigured env var). */
+async function upsertSubscription(sub: Stripe.Subscription, organizationId: string) {
+  if (planFromSubscription(sub)) {
+    await upsertSubscriptionRow(sub, organizationId);
+  } else if (addonFromSubscription(sub)) {
+    await upsertAddonSubscriptionRow(sub, organizationId);
+  } else {
+    console.error("[stripe webhook] subscription price id matches neither a tier nor an add-on:", sub.id);
+  }
+}
+
 export async function POST(req: Request) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!webhookSecret) {
@@ -113,7 +165,7 @@ export async function POST(req: Request) {
       }
       if (typeof session.subscription === "string") {
         const subscription = await stripe.subscriptions.retrieve(session.subscription);
-        await upsertSubscriptionRow(subscription, organizationId);
+        await upsertSubscription(subscription, organizationId);
       }
       break;
     }
@@ -126,7 +178,7 @@ export async function POST(req: Request) {
         console.error("[stripe webhook] no organization found for customer:", customerId);
         break;
       }
-      await upsertSubscriptionRow(subscription, organizationId);
+      await upsertSubscription(subscription, organizationId);
       break;
     }
 
@@ -134,16 +186,19 @@ export async function POST(req: Request) {
       const subscription = event.data.object as Stripe.Subscription;
       const customerId = typeof subscription.customer === "string" ? subscription.customer : subscription.customer.id;
       const organizationId = await resolveOrgIdByCustomerId(customerId);
+      const isAddon = !!addonFromSubscription(subscription);
 
       const { error: subError } = await supabase
-        .from("subscriptions")
+        .from(isAddon ? "addon_subscriptions" : "subscriptions")
         .update({ status: "canceled", updated_at: new Date().toISOString() })
         .eq("stripe_subscription_id", subscription.id);
       if (subError) {
         console.error("[stripe webhook] failed to mark subscription canceled:", subError);
       }
 
-      if (organizationId) {
+      // Only a *tier* cancellation reverts organizations.dashboard_tier —
+      // canceling an add-on never touches it.
+      if (organizationId && !isAddon) {
         const { error: orgError } = await supabase
           .from("organizations")
           .update({

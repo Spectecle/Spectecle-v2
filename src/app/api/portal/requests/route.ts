@@ -90,7 +90,7 @@ export async function POST(req: Request) {
         error: "quota_exceeded",
         message:
           quota.limit === 0
-            ? "Service requests aren't included on the Free plan. Upgrade to Growth or Pro to submit requests."
+            ? "Service requests require an active plan. Choose a plan to get started."
             : `You've used all ${quota.limit} requests included in your plan this month. Upgrade to submit more.`,
       },
       { status: 403 }

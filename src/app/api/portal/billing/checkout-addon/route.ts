@@ -1,11 +1,18 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { isTrustedOrigin } from "@/lib/origin-check";
+import { supabase } from "@/lib/supabase";
 import { getDashboardContextForUser } from "@/lib/dashboard-access";
-import { stripe, isKnownPriceId, getOrCreateStripeCustomer } from "@/lib/stripe";
+import { stripe, isKnownAddonPriceId, getOrCreateStripeCustomer } from "@/lib/stripe";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://spectecle.com";
 
+// Sibling to /api/portal/billing/checkout, kept as a separate route rather
+// than a branch in that one: an add-on purchase creates its own
+// independent Stripe Subscription (same customer, separate subscription
+// object) instead of a line item on the tier subscription, so it needs its
+// own "already have this?" guard and its own webhook-side handling. See
+// addon_subscriptions in supabase/schema.sql for why.
 export async function POST(req: Request) {
   if (!isTrustedOrigin(req)) {
     return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
@@ -17,7 +24,7 @@ export async function POST(req: Request) {
   }
 
   const body = (await req.json().catch(() => null)) as { priceId?: string } | null;
-  if (!isKnownPriceId(body?.priceId)) {
+  if (!isKnownAddonPriceId(body?.priceId)) {
     return NextResponse.json({ error: "Invalid price" }, { status: 400 });
   }
   const priceId = body.priceId;
@@ -27,9 +34,21 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "No business on your account yet — contact us to get set up." }, { status: 400 });
   }
 
-  // Find-or-create the Stripe customer for this org. One customer per
-  // organization, reused across upgrades/downgrades/resubscribes and
-  // shared with the add-on checkout route.
+  // Refuse to start a second checkout for an add-on the org already has
+  // active/trialing — Stripe would happily create a duplicate subscription,
+  // this is app-level protection against a double-click or a stale tab.
+  const { data: existing } = await supabase
+    .from("addon_subscriptions")
+    .select("status")
+    .eq("organization_id", organizationId)
+    .eq("stripe_price_id", priceId)
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (existing && (existing.status === "active" || existing.status === "trialing")) {
+    return NextResponse.json({ error: "You already have this add-on." }, { status: 400 });
+  }
+
   const customerId = await getOrCreateStripeCustomer(organizationId, user.email);
   if (!customerId) {
     return NextResponse.json({ error: "Business not found" }, { status: 404 });
@@ -45,7 +64,7 @@ export async function POST(req: Request) {
   });
 
   if (!session.url) {
-    console.error("[portal/billing/checkout] Stripe returned no session url:", session.id);
+    console.error("[portal/billing/checkout-addon] Stripe returned no session url:", session.id);
     return NextResponse.json({ error: "Failed to start checkout" }, { status: 500 });
   }
 

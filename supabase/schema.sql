@@ -317,3 +317,50 @@ alter table leads enable row level security;
 -- if the cron route is ever manually re-triggered or fires twice for the
 -- same period -- not a feature in its own right, just a send guard.
 alter table organizations add column if not exists monthly_report_last_sent text;
+
+-- ============================================================
+-- Migration: replace Free/Growth/Pro with Essentials/Growth/Scale
+-- + standalone recurring add-ons (SEO Optimization, Paid Ads Management)
+-- ============================================================
+-- 'free' is retained as a valid value but demoted to an internal-only "no
+-- active plan" state (see src/lib/dashboard-tiers.ts) -- it's never shown
+-- as a purchasable option, just what an org resolves to before ever
+-- subscribing or after a tier subscription is canceled. 'growth' keeps its
+-- name (its price changed, so its Stripe price ids are new regardless).
+--
+-- Verified before running this in production: every current dashboard_tier
+-- assignment (8 free, 1 growth, 1 pro) is a manual admin override -- zero
+-- organizations have a stripe_customer_id and the subscriptions table is
+-- empty, so there is no real billing relationship this rename can break.
+alter table organizations drop constraint if exists organizations_dashboard_tier_check;
+update organizations set dashboard_tier = 'essentials' where dashboard_tier = 'free';
+update organizations set dashboard_tier = 'scale' where dashboard_tier = 'pro';
+alter table organizations add constraint organizations_dashboard_tier_check
+  check (dashboard_tier in ('free', 'essentials', 'growth', 'scale'));
+
+alter table subscriptions drop constraint if exists subscriptions_tier_check;
+alter table subscriptions add constraint subscriptions_tier_check
+  check (tier in ('essentials', 'growth', 'scale')); -- free (no active plan) never has a row
+
+-- Add-ons are sold as independent Stripe Subscriptions against the same
+-- stripe_customer_id as the org's tier subscription -- not a second line
+-- item on that subscription -- so this is a sibling table to
+-- `subscriptions`, not a column on it. Same history-preserving shape:
+-- one row per Stripe subscription object, newest-by-updated_at per
+-- (organization_id, addon) is "current".
+create table if not exists addon_subscriptions (
+  id uuid primary key default gen_random_uuid(),
+  organization_id uuid not null references organizations(id) on delete cascade,
+  stripe_customer_id text not null,
+  stripe_subscription_id text not null unique,
+  stripe_price_id text not null,
+  addon text not null check (addon in ('seo', 'paid_ads')),
+  status text not null, -- mirrors Stripe's subscription.status verbatim
+  current_period_end timestamptz,
+  cancel_at_period_end boolean not null default false,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create index if not exists addon_subscriptions_org_idx
+  on addon_subscriptions (organization_id, addon, updated_at desc);
+alter table addon_subscriptions enable row level security;
