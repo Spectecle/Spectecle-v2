@@ -28,9 +28,9 @@ if (!secretKey.includes("_test_")) {
 const stripe = new Stripe(secretKey);
 
 const TIERS = [
-  { key: "ESSENTIALS", name: "Essentials", monthly: 9900, annual: 99000 },
-  { key: "GROWTH", name: "Growth", monthly: 14900, annual: 149000 },
-  { key: "SCALE", name: "Scale", monthly: 25000, annual: 250000 },
+  { key: "ESSENTIALS", name: "Essentials", monthly: 9900, annual: 118800 },
+  { key: "GROWTH", name: "Growth", monthly: 14900, annual: 178800 },
+  { key: "SCALE", name: "Scale", monthly: 25000, annual: 300000 },
 ];
 
 const ADDONS = [

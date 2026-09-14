@@ -20,9 +20,9 @@ type Interval = "monthly" | "annual";
 type PlanPrices = Record<PurchasableTier, Record<Interval, string>>;
 
 const PRICE_DISPLAY: Record<PurchasableTier, { monthly: string; annual: string }> = {
-  essentials: { monthly: "$99", annual: "$990" },
-  growth: { monthly: "$149", annual: "$1,490" },
-  scale: { monthly: "$250", annual: "$2,500" },
+  essentials: { monthly: "$99", annual: "$1,188" },
+  growth: { monthly: "$149", annual: "$1,788" },
+  scale: { monthly: "$250", annual: "$3,000" },
 };
 
 const TIER_MONTHLY_AMOUNT: Record<PurchasableTier, number> = { essentials: 99, growth: 149, scale: 250 };
@@ -69,7 +69,7 @@ export function PlanComparison({ prices, currentTier }: { prices: PlanPrices; cu
                 : "text-[var(--portal-text-muted)]"
             }`}
           >
-            {opt === "monthly" ? "Monthly" : "Annual — 2 months free"}
+            {opt === "monthly" ? "Monthly" : "Annual"}
           </button>
         ))}
       </div>
