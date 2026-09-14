@@ -35,7 +35,7 @@ const TIERS = [
 
 const ADDONS = [
   { key: "ADDON_SEO", name: "SEO Optimization", monthly: 14900 },
-  { key: "ADDON_PAIDADS", name: "Paid Ads Management", monthly: 20000 },
+  { key: "ADDON_PAIDADS", name: "Paid Ads Management", monthly: 25000 },
 ];
 
 async function createTierPrices({ key, name, monthly, annual }) {

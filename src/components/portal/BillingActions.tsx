@@ -154,8 +154,8 @@ export function PlanComparison({ prices, currentTier }: { prices: PlanPrices; cu
   );
 }
 
-const ADDON_MONTHLY_AMOUNT: Record<DashboardAddon, number> = { seo: 149, paidAds: 200 };
-const ADDON_PRICE_DISPLAY: Record<DashboardAddon, string> = { seo: "$149", paidAds: "$200" };
+const ADDON_MONTHLY_AMOUNT: Record<DashboardAddon, number> = { seo: 149, paidAds: 250 };
+const ADDON_PRICE_DISPLAY: Record<DashboardAddon, string> = { seo: "$149", paidAds: "$250" };
 
 export function AddonSection({
   addonPrices,
