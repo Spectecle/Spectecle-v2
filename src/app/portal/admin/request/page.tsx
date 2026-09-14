@@ -6,10 +6,16 @@ import { supabase } from "@/lib/supabase";
 import { groupByOrganization, type OrgRecord } from "@/lib/organizations";
 import { AdminCreateRequestForm } from "@/components/portal/AdminCreateRequestForm";
 
-export default async function AdminCreateRequestPage() {
+export default async function AdminCreateRequestPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ userId?: string }>;
+}) {
   const user = await getSession();
   if (!user) redirect("/portal/sign-in?next=/portal/admin/request");
   if (!isAdmin(user.email)) notFound();
+
+  const { userId: initialUserId } = await searchParams;
 
   const { data: registeredUsers } = await supabase
     .from("portal_users")
@@ -44,7 +50,7 @@ export default async function AdminCreateRequestPage() {
           <ArrowLeft className="w-3.5 h-3.5" />
           Back to Admin
         </Link>
-        <AdminCreateRequestForm groups={groups} />
+        <AdminCreateRequestForm groups={groups} initialUserId={initialUserId} />
       </div>
     </section>
   );

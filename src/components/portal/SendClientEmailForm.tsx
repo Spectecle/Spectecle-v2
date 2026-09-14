@@ -58,14 +58,25 @@ function defaultNote(template: LetterTemplate, pastDue = false): string {
   return "We just wrapped up work on your project — thank you for choosing Spectecle, it's been a pleasure working with you.";
 }
 
-export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
+export function SendClientEmailForm({
+  groups,
+  initialUserId,
+}: {
+  groups: OrgGroup[];
+  /** Deep-linked from a specific client's admin page (?userId=) so the
+   * dropdown starts pre-selected instead of forcing a re-search. */
+  initialUserId?: string;
+}) {
   const router = useRouter();
-  const [orgKey, setOrgKey] = useState("");
-  const [userId, setUserId] = useState("");
+  const initialGroup = initialUserId ? groups.find((g) => g.users.some((u) => u.id === initialUserId)) : undefined;
+  const initialBusinessName = initialGroup?.name ?? "";
+
+  const [orgKey, setOrgKey] = useState(initialGroup?.key ?? "");
+  const [userId, setUserId] = useState(initialUserId ?? "");
   const [template, setTemplate] = useState<LetterTemplate>("complete");
-  const [businessName, setBusinessName] = useState("");
-  const [businessNameTouched, setBusinessNameTouched] = useState(false);
-  const [subject, setSubject] = useState(defaultSubject("complete", ""));
+  const [businessName, setBusinessName] = useState(initialBusinessName);
+  const [businessNameTouched, setBusinessNameTouched] = useState(!!initialBusinessName);
+  const [subject, setSubject] = useState(defaultSubject("complete", initialBusinessName));
   const [subjectTouched, setSubjectTouched] = useState(false);
   const [note, setNote] = useState(defaultNote("complete"));
   const [noteTouched, setNoteTouched] = useState(false);
@@ -201,10 +212,10 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
           key="success"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="glass border border-[#cb7c46]/20 p-14 text-center"
+          className="glass border border-[var(--portal-accent)]/20 p-14 text-center"
         >
-          <div className="w-16 h-16 mx-auto bg-[#cb7c46]/10 flex items-center justify-center mb-6">
-            <CheckCircle2 className="w-8 h-8 text-[#cb7c46]" />
+          <div className="w-16 h-16 mx-auto bg-[var(--portal-accent)]/10 flex items-center justify-center mb-6">
+            <CheckCircle2 className="w-8 h-8 text-[var(--portal-accent)]" />
           </div>
           <h2
             className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"
@@ -293,7 +304,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                   onClick={() => handleTemplateChange(t)}
                   className={`flex-1 px-4 py-3 rounded-xl text-sm font-medium border transition-colors cursor-pointer ${
                     template === t
-                      ? "bg-[#cb7c46]/15 border-[#cb7c46]/40 text-[#cb7c46]"
+                      ? "bg-[var(--portal-accent)]/15 border-[var(--portal-accent)]/40 text-[var(--portal-accent)]"
                       : "bg-[var(--portal-card)] border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)]"
                   }`}
                 >
@@ -356,7 +367,7 @@ export function SendClientEmailForm({ groups }: { groups: OrgGroup[] }) {
                       setNote(t.text);
                       setNoteTouched(true);
                     }}
-                    className="text-[11px] font-medium px-2.5 py-1 border border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[#cb7c46] hover:border-[#cb7c46]/40 cursor-pointer transition-colors"
+                    className="text-[11px] font-medium px-2.5 py-1 border border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-accent)] hover:border-[var(--portal-accent)]/40 cursor-pointer transition-colors"
                   >
                     {t.label}
                   </button>

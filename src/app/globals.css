@@ -201,6 +201,7 @@ input:focus, textarea:focus, select:focus {
   --portal-text-muted: #9c9686;
   --portal-text-faint: #6e6a5e;
   --portal-input-bg: #2a2a26;
+  --portal-accent: #cb7c46;
 }
 
 .portal-shell[data-theme="light"] {
@@ -215,6 +216,7 @@ input:focus, textarea:focus, select:focus {
   --portal-text-muted: #7c776b;
   --portal-text-faint: #a39d8f;
   --portal-input-bg: #ffffff;
+  --portal-accent: #cb7c46;
 }
 
 .portal-shell[data-theme="light"] .glass {

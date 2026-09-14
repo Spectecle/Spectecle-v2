@@ -6,10 +6,16 @@ import { supabase } from "@/lib/supabase";
 import { groupByOrganization, type OrgRecord } from "@/lib/organizations";
 import { SendClientEmailForm } from "@/components/portal/SendClientEmailForm";
 
-export default async function AdminSendEmailPage() {
+export default async function AdminSendEmailPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ userId?: string }>;
+}) {
   const user = await getSession();
   if (!user) redirect("/portal/sign-in?next=/portal/admin/email");
   if (!isAdmin(user.email)) notFound();
+
+  const { userId: initialUserId } = await searchParams;
 
   const { data: registeredUsers } = await supabase
     .from("portal_users")
@@ -44,7 +50,7 @@ export default async function AdminSendEmailPage() {
           <ArrowLeft className="w-3.5 h-3.5" />
           Back to Admin
         </Link>
-        <SendClientEmailForm groups={groups} />
+        <SendClientEmailForm groups={groups} initialUserId={initialUserId} />
       </div>
     </section>
   );

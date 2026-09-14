@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ArrowLeft, Globe, Mail, Inbox, Receipt, Gauge, BarChart3, Users, Trash2, Star } from "lucide-react";
+import { ChevronRight, Globe, Mail, Inbox, Receipt, Gauge, BarChart3, Users, Trash2, Star, Send, FilePlus2 } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
@@ -12,6 +12,7 @@ import { ClientContactCard } from "@/components/portal/ClientContactCard";
 import { UserStatusToggle } from "@/components/portal/UserStatusToggle";
 import { UserDeleteButton } from "@/components/portal/UserDeleteButton";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
+import { AdminTabs, type AdminTab } from "@/components/portal/AdminTabs";
 import { DashboardTierEditor } from "@/components/portal/DashboardTierEditor";
 import { Ga4PropertyIdEditor } from "@/components/portal/Ga4PropertyIdEditor";
 import { SearchConsoleSiteUrlEditor } from "@/components/portal/SearchConsoleSiteUrlEditor";
@@ -31,20 +32,22 @@ import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier } from "@/lib/d
 import { stripeDashboardCustomerUrl } from "@/lib/stripe";
 
 const TAB_STATUSES = new Set(["new", "in_progress", "done", "deleted"]);
+const DETAIL_TABS = new Set(["overview", "analytics", "reviews", "leads", "tickets"]);
 
 export default async function AdminClientDetailPage({
   params,
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ status?: string }>;
+  searchParams: Promise<{ status?: string; tab?: string }>;
 }) {
   const admin = await getSession();
   if (!admin) redirect("/portal/sign-in?next=/portal/admin");
   if (!isAdmin(admin.email)) notFound();
 
   const { id } = await params;
-  const { status: statusParam } = await searchParams;
+  const { status: statusParam, tab: tabParam } = await searchParams;
+  const activeTab = tabParam && DETAIL_TABS.has(tabParam) ? tabParam : "overview";
 
   const { data: client } = await supabase
     .from("portal_users")
@@ -100,14 +103,14 @@ export default async function AdminClientDetailPage({
     .order("created_at", { ascending: false });
 
   const requests = allRequests ?? [];
-  const active = statusParam && TAB_STATUSES.has(statusParam) ? statusParam : "all";
+  const activeStatus = statusParam && TAB_STATUSES.has(statusParam) ? statusParam : "all";
   const filtered =
-    active === "all"
+    activeStatus === "all"
       ? requests.filter((r) => r.status !== "deleted")
-      : requests.filter((r) => r.status === active);
+      : requests.filter((r) => r.status === activeStatus);
   const deletedCount = requests.filter((r) => r.status === "deleted").length;
 
-  const tabs: StatusTab[] = [
+  const statusTabs: StatusTab[] = [
     { value: "new", label: "New", count: requests.filter((r) => r.status === "new").length },
     {
       value: "in_progress",
@@ -122,6 +125,14 @@ export default async function AdminClientDetailPage({
   const filesByRequest = await getFilesForRequests(requestIds);
   const messagesByRequest = await getMessagesForRequests(requestIds);
 
+  const detailTabs: AdminTab[] = [
+    { value: "overview", label: "Overview" },
+    { value: "analytics", label: "Analytics" },
+    { value: "reviews", label: "Reviews" },
+    { value: "leads", label: "Leads" },
+    { value: "tickets", label: "Tickets", count: requests.filter((r) => r.status !== "deleted").length },
+  ];
+
   return (
     <section className="relative min-h-[80vh] pt-32 pb-20 px-6 overflow-x-hidden">
       <div
@@ -129,13 +140,17 @@ export default async function AdminClientDetailPage({
         style={{ background: "radial-gradient(ellipse, rgba(198,153,71,0.12) 0%, transparent 70%)" }}
       />
       <div className="relative max-w-3xl mx-auto">
-        <Link
-          href="/portal/admin?section=users"
-          className="inline-flex items-center gap-1.5 text-sm text-[var(--portal-text-muted)] hover:text-[var(--portal-text-primary)] cursor-pointer transition-colors mb-6"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          Back to Admin
-        </Link>
+        <nav className="flex items-center gap-1.5 text-sm text-[var(--portal-text-faint)] mb-6" aria-label="Breadcrumb">
+          <Link href="/portal/admin" className="hover:text-[var(--portal-text-primary)] transition-colors">
+            Admin
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5" />
+          <Link href="/portal/admin?section=users" className="hover:text-[var(--portal-text-primary)] transition-colors">
+            Clients
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5" />
+          <span className="text-[var(--portal-text-secondary)]">{displayName}</span>
+        </nav>
 
         <div className="glass border border-[var(--portal-border)] p-6 mb-6">
           <div className="flex items-start justify-between gap-4 flex-wrap mb-5">
@@ -156,7 +171,7 @@ export default async function AdminClientDetailPage({
                     href={websiteUrl.startsWith("http") ? websiteUrl : `https://${websiteUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm text-[#cb7c46] hover:text-[#cb7c46] transition-colors"
+                    className="flex items-center gap-1.5 text-sm text-[var(--portal-accent)] hover:text-[var(--portal-accent)] transition-colors"
                   >
                     <Globe className="w-3 h-3" />
                     {websiteUrl}
@@ -174,7 +189,6 @@ export default async function AdminClientDetailPage({
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">
-              {client.status === "active" && <ViewAsClientButton userId={client.id} />}
               <UserStatusToggle userId={client.id} status={client.status} />
               <UserDeleteButton userId={client.id} email={client.email} ticketCount={requests.length} />
             </div>
@@ -192,205 +206,256 @@ export default async function AdminClientDetailPage({
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6 mb-6">
-          <div className="glass border border-[var(--portal-border)] p-6">
-            <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
-              <Gauge className="w-3.5 h-3.5" />
-              Dashboard Access
-            </p>
-            <DashboardTierEditor
-              organizationId={org?.id ?? null}
-              domain={domain}
-              orgName={displayName}
-              websiteUrl={websiteUrl}
-              currentTier={org?.dashboard_tier ?? null}
-            />
-          </div>
+        <AdminTabs tabs={detailTabs} active={activeTab} defaultValue="overview" />
 
-          <div className="glass border border-[var(--portal-border)] p-6">
-            <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
-              <Receipt className="w-3.5 h-3.5" />
-              Billing
-            </p>
-            {subscription ? (
-              <div className="space-y-1">
-                <p className="text-sm text-[var(--portal-text-primary)] font-medium">
-                  {DASHBOARD_TIER_LABELS[subscription.tier as DashboardTier]}
-                  {" · "}
-                  {subscription.billing_interval === "annual" ? "Annual" : "Monthly"}
-                  {" · "}
-                  <span className="text-[var(--portal-text-muted)] font-normal">{subscription.status}</span>
+        {activeTab === "overview" && (
+          <div className="space-y-6">
+            <div className="glass border border-[var(--portal-border)] p-6">
+              <p className="text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
+                Quick Actions
+              </p>
+              <div className="flex items-center gap-2 flex-wrap">
+                {client.status === "active" && <ViewAsClientButton userId={client.id} />}
+                <Link
+                  href={`/portal/admin/email?userId=${client.id}`}
+                  className="flex items-center gap-1.5 text-sm font-semibold cursor-pointer border border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:border-[var(--portal-border-strong)] transition-colors px-3.5 py-2"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  Email This Client
+                </Link>
+                <Link
+                  href={`/portal/admin/request?userId=${client.id}`}
+                  className="flex items-center gap-1.5 text-sm font-semibold cursor-pointer border border-[var(--portal-border)] text-[var(--portal-text-secondary)] hover:text-[var(--portal-text-primary)] hover:border-[var(--portal-border-strong)] transition-colors px-3.5 py-2"
+                >
+                  <FilePlus2 className="w-3.5 h-3.5" />
+                  New Request for This Client
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="glass border border-[var(--portal-border)] p-6">
+                <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
+                  <Gauge className="w-3.5 h-3.5" />
+                  Dashboard Access
                 </p>
-                {subscription.current_period_end && (
-                  <p className="text-sm text-[var(--portal-text-faint)]">
-                    {subscription.cancel_at_period_end ? "Ends" : "Renews"}{" "}
-                    {new Date(subscription.current_period_end).toLocaleDateString("en-US", {
-                      month: "long",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
-                  </p>
+                <DashboardTierEditor
+                  organizationId={org?.id ?? null}
+                  domain={domain}
+                  orgName={displayName}
+                  websiteUrl={websiteUrl}
+                  currentTier={org?.dashboard_tier ?? null}
+                />
+              </div>
+
+              <div className="glass border border-[var(--portal-border)] p-6">
+                <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-3">
+                  <Receipt className="w-3.5 h-3.5" />
+                  Billing
+                </p>
+                {subscription ? (
+                  <div className="space-y-1">
+                    <p className="text-sm text-[var(--portal-text-primary)] font-medium">
+                      {DASHBOARD_TIER_LABELS[subscription.tier as DashboardTier]}
+                      {" · "}
+                      {subscription.billing_interval === "annual" ? "Annual" : "Monthly"}
+                      {" · "}
+                      <span className="text-[var(--portal-text-muted)] font-normal">{subscription.status}</span>
+                    </p>
+                    {subscription.current_period_end && (
+                      <p className="text-sm text-[var(--portal-text-faint)]">
+                        {subscription.cancel_at_period_end ? "Ends" : "Renews"}{" "}
+                        {new Date(subscription.current_period_end).toLocaleDateString("en-US", {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <p className="text-sm text-[var(--portal-text-faint)]">No active subscription.</p>
+                )}
+                {org?.stripe_customer_id && (
+                  <a
+                    href={stripeDashboardCustomerUrl(org.stripe_customer_id)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-block mt-3 text-sm text-[var(--portal-accent)] hover:underline"
+                  >
+                    View in Stripe →
+                  </a>
                 )}
               </div>
-            ) : (
-              <p className="text-sm text-[var(--portal-text-faint)]">Free plan — no active subscription.</p>
-            )}
-            {org?.stripe_customer_id && (
-              <a
-                href={stripeDashboardCustomerUrl(org.stripe_customer_id)}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-block mt-3 text-sm text-[#cb7c46] hover:underline"
-              >
-                View in Stripe →
-              </a>
-            )}
+            </div>
           </div>
-        </div>
+        )}
 
-        {org && (
-          <div className="glass border border-[var(--portal-border)] p-6 mb-6">
+        {activeTab === "analytics" && (
+          <div className="glass border border-[var(--portal-border)] p-6">
             <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-4">
               <BarChart3 className="w-3.5 h-3.5" />
               Analytics &amp; Rankings
             </p>
-            <Ga4PropertyIdEditor
-              organizationId={org.id}
-              domain={domain}
-              orgName={displayName}
-              websiteUrl={websiteUrl}
-              currentPropertyId={org.ga4_property_id ?? null}
-            />
-            <SearchConsoleSiteUrlEditor
-              organizationId={org.id}
-              domain={domain}
-              orgName={displayName}
-              websiteUrl={websiteUrl}
-              currentSiteUrl={org.search_console_site_url ?? null}
-            />
-            <AnalyticsSnapshotForm organizationId={org.id} ga4Connected={!!org.ga4_property_id} />
+            {org ? (
+              <>
+                <Ga4PropertyIdEditor
+                  organizationId={org.id}
+                  domain={domain}
+                  orgName={displayName}
+                  websiteUrl={websiteUrl}
+                  currentPropertyId={org.ga4_property_id ?? null}
+                />
+                <SearchConsoleSiteUrlEditor
+                  organizationId={org.id}
+                  domain={domain}
+                  orgName={displayName}
+                  websiteUrl={websiteUrl}
+                  currentSiteUrl={org.search_console_site_url ?? null}
+                />
+                <AnalyticsSnapshotForm organizationId={org.id} ga4Connected={!!org.ga4_property_id} />
 
-            {analyticsSnapshots.length > 0 && (
-              <div className="mt-6 pt-6 border-t border-[var(--portal-border)] space-y-3">
-                {analyticsSnapshots.map((snapshot) => (
-                  <AnalyticsSnapshotCard
-                    key={snapshot.id}
-                    snapshot={snapshot}
-                    showRankings={showRankings}
-                    actions={
-                      <DeleteSnapshotButton
-                        deleteUrl={`/api/portal/admin/organizations/${org.id}/analytics?snapshotId=${snapshot.id}`}
-                        monthLabel={snapshot.period_month}
+                {analyticsSnapshots.length > 0 && (
+                  <div className="mt-6 pt-6 border-t border-[var(--portal-border)] space-y-3">
+                    {analyticsSnapshots.map((snapshot) => (
+                      <AnalyticsSnapshotCard
+                        key={snapshot.id}
+                        snapshot={snapshot}
+                        showRankings={showRankings}
+                        actions={
+                          <DeleteSnapshotButton
+                            deleteUrl={`/api/portal/admin/organizations/${org.id}/analytics?snapshotId=${snapshot.id}`}
+                            monthLabel={snapshot.period_month}
+                          />
+                        }
                       />
-                    }
-                  />
-                ))}
-              </div>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <p className="text-sm text-[var(--portal-text-faint)]">No business set up on this client yet.</p>
             )}
           </div>
         )}
 
-        {org && (
-          <div className="glass border border-[var(--portal-border)] p-6 mb-6">
+        {activeTab === "reviews" && (
+          <div className="glass border border-[var(--portal-border)] p-6">
             <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-4">
               <Star className="w-3.5 h-3.5" />
               Reviews Monitor
             </p>
-            <GoogleReviewUrlEditor
-              organizationId={org.id}
-              domain={domain}
-              orgName={displayName}
-              websiteUrl={websiteUrl}
-              currentReviewUrl={org.google_review_url ?? null}
-            />
-            <ReviewSnapshotForm organizationId={org.id} />
+            {org ? (
+              <>
+                <GoogleReviewUrlEditor
+                  organizationId={org.id}
+                  domain={domain}
+                  orgName={displayName}
+                  websiteUrl={websiteUrl}
+                  currentReviewUrl={org.google_review_url ?? null}
+                />
+                <ReviewSnapshotForm organizationId={org.id} />
 
-            {reviewSnapshots.length > 0 && (
-              <div className="mt-6 pt-6 border-t border-[var(--portal-border)] space-y-3">
-                {reviewSnapshots.map((snapshot) => (
-                  <ReviewSnapshotCard
-                    key={snapshot.id}
-                    snapshot={snapshot}
-                    actions={
-                      <DeleteSnapshotButton
-                        deleteUrl={`/api/portal/admin/organizations/${org.id}/reviews?snapshotId=${snapshot.id}`}
-                        monthLabel={snapshot.period_month}
+                {reviewSnapshots.length > 0 && (
+                  <div className="mt-6 pt-6 border-t border-[var(--portal-border)] space-y-3">
+                    {reviewSnapshots.map((snapshot) => (
+                      <ReviewSnapshotCard
+                        key={snapshot.id}
+                        snapshot={snapshot}
+                        actions={
+                          <DeleteSnapshotButton
+                            deleteUrl={`/api/portal/admin/organizations/${org.id}/reviews?snapshotId=${snapshot.id}`}
+                            monthLabel={snapshot.period_month}
+                          />
+                        }
                       />
-                    }
-                  />
-                ))}
-              </div>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <p className="text-sm text-[var(--portal-text-faint)]">No business set up on this client yet.</p>
             )}
           </div>
         )}
 
-        {org && (
-          <div className="glass border border-[var(--portal-border)] p-6 mb-6">
+        {activeTab === "leads" && (
+          <div className="glass border border-[var(--portal-border)] p-6">
             <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-4">
               <Users className="w-3.5 h-3.5" />
               Leads Capture
             </p>
-            <LeadCaptureKeyEditor organizationId={org.id} currentKey={org.lead_capture_key ?? null} />
+            {org ? (
+              <>
+                <LeadCaptureKeyEditor organizationId={org.id} currentKey={org.lead_capture_key ?? null} />
 
-            {leads.length > 0 && (
-              <div className="mt-6 pt-6 border-t border-[var(--portal-border)] space-y-3">
-                {leads.map((lead) => (
-                  <LeadCard key={lead.id} lead={lead} />
-                ))}
-              </div>
+                {leads.length > 0 && (
+                  <div className="mt-6 pt-6 border-t border-[var(--portal-border)] space-y-3">
+                    {leads.map((lead) => (
+                      <LeadCard key={lead.id} lead={lead} />
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <p className="text-sm text-[var(--portal-text-faint)]">No business set up on this client yet.</p>
             )}
           </div>
         )}
 
-        {active === "deleted" ? (
-          <div className="flex items-center gap-2 mb-4 text-sm text-[var(--portal-text-muted)]">
-            <Trash2 className="w-3.5 h-3.5" />
-            <span>Recycle Bin — deleted tickets. Change a ticket&apos;s status to restore it.</span>
-            <Link href="?" className="text-[#cb7c46] hover:underline ml-1">
-              Back to Requests
-            </Link>
-          </div>
-        ) : (
-          <div className="flex items-center justify-between gap-2 mb-4">
-            <StatusTabs tabs={tabs} active={active} />
-            <Link
-              href="?status=deleted"
-              className="flex items-center gap-1.5 text-sm text-[var(--portal-text-faint)] hover:text-[var(--portal-text-secondary)] transition-colors cursor-pointer shrink-0"
-            >
-              <Trash2 className="w-3.5 h-3.5" />
-              Recycle Bin{deletedCount > 0 ? ` (${deletedCount})` : ""}
-            </Link>
-          </div>
-        )}
+        {activeTab === "tickets" && (
+          <div>
+            {activeStatus === "deleted" ? (
+              <div className="flex items-center gap-2 mb-4 text-sm text-[var(--portal-text-muted)]">
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Recycle Bin — deleted tickets. Change a ticket&apos;s status to restore it.</span>
+                <Link href="?tab=tickets" className="text-[var(--portal-accent)] hover:underline ml-1">
+                  Back to Requests
+                </Link>
+              </div>
+            ) : (
+              <div className="flex items-center justify-between gap-2 mb-4">
+                <StatusTabs tabs={statusTabs} active={activeStatus} extraParams={{ tab: "tickets" }} />
+                <Link
+                  href="?tab=tickets&status=deleted"
+                  className="flex items-center gap-1.5 text-sm text-[var(--portal-text-faint)] hover:text-[var(--portal-text-secondary)] transition-colors cursor-pointer shrink-0"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  Recycle Bin{deletedCount > 0 ? ` (${deletedCount})` : ""}
+                </Link>
+              </div>
+            )}
 
-        {filtered.length === 0 ? (
-          <div className="glass border border-[var(--portal-border)] p-14 text-center mt-4">
-            <div className="w-14 h-14 mx-auto bg-[var(--portal-border)] flex items-center justify-center mb-5">
-              <Inbox className="w-6 h-6 text-[var(--portal-text-muted)]" />
-            </div>
-            <p className="text-[var(--portal-text-secondary)] text-sm">
-              {requests.length === 0 ? "No requests yet." : "No requests in this view."}
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-3 mt-4">
-            {filtered.map((r) => (
-              <TicketCard
-                key={r.id}
-                id={r.id}
-                ticketNumber={r.ticket_number}
-                serviceType={r.service_type}
-                message={r.message}
-                budget={r.budget}
-                createdAt={r.created_at}
-                updatedAt={r.updated_at}
-                status={r.status}
-                details={r.details}
-                files={filesByRequest[r.id] ?? []}
-                messages={messagesByRequest[r.id] ?? []}
-                viewerRole="admin"
-              />
-            ))}
+            {filtered.length === 0 ? (
+              <div className="glass border border-[var(--portal-border)] p-14 text-center mt-4">
+                <div className="w-14 h-14 mx-auto bg-[var(--portal-border)] flex items-center justify-center mb-5">
+                  <Inbox className="w-6 h-6 text-[var(--portal-text-muted)]" />
+                </div>
+                <p className="text-[var(--portal-text-secondary)] text-sm">
+                  {requests.length === 0 ? "No requests yet." : "No requests in this view."}
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-3 mt-4">
+                {filtered.map((r) => (
+                  <TicketCard
+                    key={r.id}
+                    id={r.id}
+                    ticketNumber={r.ticket_number}
+                    serviceType={r.service_type}
+                    message={r.message}
+                    budget={r.budget}
+                    createdAt={r.created_at}
+                    updatedAt={r.updated_at}
+                    status={r.status}
+                    details={r.details}
+                    files={filesByRequest[r.id] ?? []}
+                    messages={messagesByRequest[r.id] ?? []}
+                    viewerRole="admin"
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

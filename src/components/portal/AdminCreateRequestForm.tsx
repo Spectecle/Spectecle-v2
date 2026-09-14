@@ -15,10 +15,19 @@ import { FileUploadField } from "@/components/portal/FileUploadField";
 import { DynamicField, inputClass, type DetailValue } from "@/components/portal/DynamicField";
 import type { OrgGroup } from "@/lib/organizations";
 
-export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
+export function AdminCreateRequestForm({
+  groups,
+  initialUserId,
+}: {
+  groups: OrgGroup[];
+  /** Deep-linked from a specific client's admin page (?userId=) so the
+   * dropdown starts pre-selected instead of forcing a re-search. */
+  initialUserId?: string;
+}) {
   const router = useRouter();
-  const [orgKey, setOrgKey] = useState("");
-  const [userId, setUserId] = useState("");
+  const initialGroup = initialUserId ? groups.find((g) => g.users.some((u) => u.id === initialUserId)) : undefined;
+  const [orgKey, setOrgKey] = useState(initialGroup?.key ?? "");
+  const [userId, setUserId] = useState(initialUserId ?? "");
   const [serviceType, setServiceType] = useState("");
   const [details, setDetails] = useState<Record<string, DetailValue>>({});
   const [budget, setBudget] = useState("");
@@ -96,10 +105,10 @@ export function AdminCreateRequestForm({ groups }: { groups: OrgGroup[] }) {
           key="success"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="glass border border-[#cb7c46]/20 p-14 text-center"
+          className="glass border border-[var(--portal-accent)]/20 p-14 text-center"
         >
-          <div className="w-16 h-16 mx-auto bg-[#cb7c46]/10 flex items-center justify-center mb-6">
-            <CheckCircle2 className="w-8 h-8 text-[#cb7c46]" />
+          <div className="w-16 h-16 mx-auto bg-[var(--portal-accent)]/10 flex items-center justify-center mb-6">
+            <CheckCircle2 className="w-8 h-8 text-[var(--portal-accent)]" />
           </div>
           <h2
             className="text-2xl font-bold text-[var(--portal-text-primary)] mb-3"

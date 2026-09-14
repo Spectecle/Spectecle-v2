@@ -5,7 +5,7 @@ import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
 import { getMessagesForRequests } from "@/lib/request-messages";
-import { TicketCard } from "@/components/portal/TicketCard";
+import { RequestSearchList, type SearchableRequest } from "@/components/portal/RequestSearchList";
 import { UserManagementPanel } from "@/components/portal/UserManagementPanel";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
 import { organizationKeyFor, prettifyDomain, type OrgRecord } from "@/lib/organizations";
@@ -421,7 +421,7 @@ async function RequestsSection({
       {(userFilter || orgFilter) && (
         <div className="flex items-center gap-2 mb-4">
           <span className="text-sm text-[var(--portal-text-secondary)]">Filtered by:</span>
-          <span className="flex items-center gap-1.5 text-sm text-[#cb7c46] bg-[#cb7c46]/10 px-2.5 py-1">
+          <span className="flex items-center gap-1.5 text-sm text-[var(--portal-accent)] bg-[var(--portal-accent)]/10 px-2.5 py-1">
             {userFilter ?? orgFilterLabel}
             <Link href="?section=requests" className="hover:text-[var(--portal-text-primary)] cursor-pointer">
               <X className="w-3 h-3" />
@@ -434,45 +434,41 @@ async function RequestsSection({
         <div className="flex items-center gap-2 mb-4 text-sm text-[var(--portal-text-muted)]">
           <Trash2 className="w-3.5 h-3.5" />
           <span>Recycle Bin — deleted tickets. Change a ticket&apos;s status to restore it.</span>
-          <Link href="?section=requests" className="text-[#cb7c46] hover:underline ml-1">
+          <Link href="?section=requests" className="text-[var(--portal-accent)] hover:underline ml-1">
             Back to Requests
           </Link>
         </div>
       ) : (
-        <StatusTabs tabs={tabs} active={active} />
+        <StatusTabs
+          tabs={tabs}
+          active={active}
+          extraParams={{
+            section: "requests",
+            ...(userFilter ? { user: userFilter } : {}),
+            ...(orgFilter ? { org: orgFilter } : {}),
+          }}
+        />
       )}
 
-      {filtered.length === 0 ? (
-        <div className="glass border border-[var(--portal-border)] p-14 text-center">
-          <div className="w-14 h-14 mx-auto bg-[var(--portal-border)] flex items-center justify-center mb-5">
-            <Inbox className="w-6 h-6 text-[var(--portal-text-muted)]" />
-          </div>
-          <p className="text-[var(--portal-text-secondary)] text-sm">
-            {requests.length === 0 ? "No requests yet." : "No requests in this view."}
-          </p>
-        </div>
-      ) : (
-        <div className="space-y-3">
-          {filtered.map((r) => (
-            <TicketCard
-              key={r.id}
-              id={r.id}
-              ticketNumber={r.ticket_number}
-              serviceType={r.service_type}
-              message={r.message}
-              budget={r.budget}
-              createdAt={r.created_at}
-              updatedAt={r.updated_at}
-              status={r.status}
-              details={r.details}
-              files={filesByRequest[r.id] ?? []}
-              messages={messagesByRequest[r.id] ?? []}
-              viewerRole="admin"
-              clientEmail={clientInfo(r).email}
-            />
-          ))}
-        </div>
-      )}
+      <RequestSearchList
+        requests={filtered.map(
+          (r): SearchableRequest => ({
+            id: r.id,
+            ticketNumber: r.ticket_number,
+            serviceType: r.service_type,
+            message: r.message,
+            budget: r.budget,
+            createdAt: r.created_at,
+            updatedAt: r.updated_at,
+            status: r.status,
+            details: r.details,
+            files: filesByRequest[r.id] ?? [],
+            messages: messagesByRequest[r.id] ?? [],
+            clientEmail: clientInfo(r).email,
+            orgName: organizationKeyFor(clientInfo(r), orgNames, orgsById).org?.name,
+          })
+        )}
+      />
     </>
   );
 }
