@@ -6,12 +6,13 @@ import { Trash2 } from "lucide-react";
 import { ConfirmDialog } from "@/components/portal/ConfirmDialog";
 
 export function DeleteSnapshotButton({
-  organizationId,
-  snapshotId,
+  deleteUrl,
   monthLabel,
 }: {
-  organizationId: string;
-  snapshotId: string;
+  /** Full DELETE endpoint, e.g. `/api/portal/admin/organizations/{id}/analytics?snapshotId={id}`
+   * or the equivalent `/reviews` route -- this component is shared across
+   * every kind of monthly snapshot (analytics, reviews), not just one. */
+  deleteUrl: string;
   monthLabel: string;
 }) {
   const router = useRouter();
@@ -21,10 +22,7 @@ export function DeleteSnapshotButton({
 
   const handleDelete = async () => {
     setDeleting(true);
-    const res = await fetch(
-      `/api/portal/admin/organizations/${organizationId}/analytics?snapshotId=${snapshotId}`,
-      { method: "DELETE" }
-    );
+    const res = await fetch(deleteUrl, { method: "DELETE" });
     setDeleting(false);
     setOpen(false);
     if (res.ok) {

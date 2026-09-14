@@ -364,3 +364,30 @@ create table if not exists addon_subscriptions (
 create index if not exists addon_subscriptions_org_idx
   on addon_subscriptions (organization_id, addon, updated_at desc);
 alter table addon_subscriptions enable row level security;
+
+-- ============================================================
+-- Migration: Reviews Monitor (manual entry)
+-- ============================================================
+-- Same shape and reasoning as analytics_snapshots above: one row per
+-- organization per month, admin-entered by hand (pulled from the client's
+-- Google Business Profile) until Google approves live Business Profile API
+-- access for a later phase. `highlighted_reviews` is a jsonb array of
+-- {reviewer, rating, text} objects. Gated by dashboard-tiers.ts's
+-- "reviewsMonitor" feature (Growth+).
+alter table organizations add column if not exists google_review_url text;
+
+create table if not exists reviews_snapshots (
+  id uuid primary key default gen_random_uuid(),
+  organization_id uuid not null references organizations(id) on delete cascade,
+  period_month date not null,
+  rating numeric(2,1),
+  review_count integer,
+  notes text,
+  highlighted_reviews jsonb not null default '[]'::jsonb,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  created_by text not null,
+  unique (organization_id, period_month)
+);
+create index if not exists reviews_snapshots_org_idx on reviews_snapshots (organization_id, period_month desc);
+alter table reviews_snapshots enable row level security;

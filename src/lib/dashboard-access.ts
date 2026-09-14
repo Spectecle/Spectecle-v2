@@ -8,6 +8,7 @@ export async function getDashboardContextForUser(userId: string): Promise<{
   tier: string | null;
   ga4PropertyId: string | null;
   searchConsoleSiteUrl: string | null;
+  googleReviewUrl: string | null;
   websiteUrl: string | null;
 }> {
   const { data: user } = await supabase
@@ -21,13 +22,14 @@ export async function getDashboardContextForUser(userId: string): Promise<{
       tier: null,
       ga4PropertyId: null,
       searchConsoleSiteUrl: null,
+      googleReviewUrl: null,
       websiteUrl: null,
     };
   }
 
   const { data: org } = await supabase
     .from("organizations")
-    .select("dashboard_tier, ga4_property_id, search_console_site_url, website_url")
+    .select("dashboard_tier, ga4_property_id, search_console_site_url, google_review_url, website_url")
     .eq("id", user.organization_id)
     .maybeSingle();
   return {
@@ -35,6 +37,7 @@ export async function getDashboardContextForUser(userId: string): Promise<{
     tier: org?.dashboard_tier ?? null,
     ga4PropertyId: org?.ga4_property_id ?? null,
     searchConsoleSiteUrl: org?.search_console_site_url ?? null,
+    googleReviewUrl: org?.google_review_url ?? null,
     websiteUrl: org?.website_url ?? null,
   };
 }

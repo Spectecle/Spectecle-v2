@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ArrowLeft, Globe, Mail, Inbox, Receipt, Gauge, BarChart3, Users, Trash2 } from "lucide-react";
+import { ArrowLeft, Globe, Mail, Inbox, Receipt, Gauge, BarChart3, Users, Trash2, Star } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
@@ -20,8 +20,12 @@ import { LeadCard } from "@/components/portal/LeadCard";
 import { AnalyticsSnapshotForm } from "@/components/portal/AnalyticsSnapshotForm";
 import { AnalyticsSnapshotCard } from "@/components/portal/AnalyticsSnapshotCard";
 import { DeleteSnapshotButton } from "@/components/portal/DeleteSnapshotButton";
+import { GoogleReviewUrlEditor } from "@/components/portal/GoogleReviewUrlEditor";
+import { ReviewSnapshotForm } from "@/components/portal/ReviewSnapshotForm";
+import { ReviewSnapshotCard } from "@/components/portal/ReviewSnapshotCard";
 import { ViewAsClientButton } from "@/components/portal/ViewAsClientButton";
 import { getAnalyticsSnapshotsForOrg } from "@/lib/analytics-snapshots";
+import { getReviewSnapshotsForOrg } from "@/lib/reviews-snapshots";
 import { getLeadsForOrg } from "@/lib/leads";
 import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier } from "@/lib/dashboard-tiers";
 import { stripeDashboardCustomerUrl } from "@/lib/stripe";
@@ -53,7 +57,7 @@ export default async function AdminClientDetailPage({
   const { data: orgRows } = await supabase
     .from("organizations")
     .select(
-      "id, domain, name, website_url, dashboard_tier, ga4_property_id, search_console_site_url, lead_capture_key, stripe_customer_id"
+      "id, domain, name, website_url, dashboard_tier, ga4_property_id, search_console_site_url, google_review_url, lead_capture_key, stripe_customer_id"
     )
     .order("name", { ascending: true });
   const orgs = (orgRows ?? []) as OrgRecord[];
@@ -75,6 +79,7 @@ export default async function AdminClientDetailPage({
   const groups = groupByOrganization(allUsers ?? [], orgNames, {}, orgsById);
 
   const analyticsSnapshots = org ? await getAnalyticsSnapshotsForOrg(org.id) : [];
+  const reviewSnapshots = org ? await getReviewSnapshotsForOrg(org.id) : [];
   const leads = org ? await getLeadsForOrg(org.id) : [];
   const showRankings = tierIncludes(org?.dashboard_tier ?? null, "rankTracking");
 
@@ -274,8 +279,41 @@ export default async function AdminClientDetailPage({
                     showRankings={showRankings}
                     actions={
                       <DeleteSnapshotButton
-                        organizationId={org.id}
-                        snapshotId={snapshot.id}
+                        deleteUrl={`/api/portal/admin/organizations/${org.id}/analytics?snapshotId=${snapshot.id}`}
+                        monthLabel={snapshot.period_month}
+                      />
+                    }
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {org && (
+          <div className="glass border border-[var(--portal-border)] p-6 mb-6">
+            <p className="flex items-center gap-2 text-sm font-semibold text-[var(--portal-text-secondary)] uppercase tracking-wider mb-4">
+              <Star className="w-3.5 h-3.5" />
+              Reviews Monitor
+            </p>
+            <GoogleReviewUrlEditor
+              organizationId={org.id}
+              domain={domain}
+              orgName={displayName}
+              websiteUrl={websiteUrl}
+              currentReviewUrl={org.google_review_url ?? null}
+            />
+            <ReviewSnapshotForm organizationId={org.id} />
+
+            {reviewSnapshots.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-[var(--portal-border)] space-y-3">
+                {reviewSnapshots.map((snapshot) => (
+                  <ReviewSnapshotCard
+                    key={snapshot.id}
+                    snapshot={snapshot}
+                    actions={
+                      <DeleteSnapshotButton
+                        deleteUrl={`/api/portal/admin/organizations/${org.id}/reviews?snapshotId=${snapshot.id}`}
                         monthLabel={snapshot.period_month}
                       />
                     }

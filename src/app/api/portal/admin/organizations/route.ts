@@ -22,6 +22,7 @@ export async function POST(req: Request) {
     dashboardTier?: string | null;
     ga4PropertyId?: string | null;
     searchConsoleSiteUrl?: string | null;
+    googleReviewUrl?: string | null;
   } | null;
   const id = body?.id?.trim();
   const domain = body?.domain?.trim().toLowerCase();
@@ -54,10 +55,15 @@ export async function POST(req: Request) {
     searchConsoleUpdate = { search_console_site_url: body.searchConsoleSiteUrl?.trim() || null };
   }
 
+  let googleReviewUpdate: { google_review_url: string | null } | null = null;
+  if (body && "googleReviewUrl" in body) {
+    googleReviewUpdate = { google_review_url: body.googleReviewUrl?.trim() || null };
+  }
+
   if (id) {
     const { error } = await supabase
       .from("organizations")
-      .update({ name, website_url: websiteUrl, ...dashboardTierUpdate, ...ga4Update, ...searchConsoleUpdate })
+      .update({ name, website_url: websiteUrl, ...dashboardTierUpdate, ...ga4Update, ...searchConsoleUpdate, ...googleReviewUpdate })
       .eq("id", id);
     if (error) {
       console.error("[portal/admin/organizations] update error:", error);
@@ -70,7 +76,7 @@ export async function POST(req: Request) {
   // backfill every currently-unassigned user on that domain into it.
   const { data: created, error: createError } = await supabase
     .from("organizations")
-    .insert({ name, website_url: websiteUrl, domain, ...dashboardTierUpdate, ...ga4Update, ...searchConsoleUpdate })
+    .insert({ name, website_url: websiteUrl, domain, ...dashboardTierUpdate, ...ga4Update, ...searchConsoleUpdate, ...googleReviewUpdate })
     .select("id")
     .single();
 

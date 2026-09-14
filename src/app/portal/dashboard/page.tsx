@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, Inbox, Receipt, Radio, TrendingUp, Phone, MessageSquare, Search, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Inbox, Receipt, Radio, TrendingUp, Phone, MessageSquare, Search, ShieldCheck, Star } from "lucide-react";
 import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { getFilesForRequests } from "@/lib/request-files";
 import { getMessagesForRequests } from "@/lib/request-messages";
 import { getDashboardTierForUser, getDashboardContextForUser } from "@/lib/dashboard-access";
 import { getAnalyticsSnapshotsForOrg } from "@/lib/analytics-snapshots";
+import { getReviewSnapshotsForOrg } from "@/lib/reviews-snapshots";
 import { tierIncludes, DASHBOARD_TIER_LABELS, type DashboardTier, type DashboardAddon } from "@/lib/dashboard-tiers";
 import { getRequestQuotaStatusForUser } from "@/lib/request-quota";
 import { PLAN_PRICES, ADDON_PRICES } from "@/lib/stripe";
@@ -24,6 +25,7 @@ import { TicketCard } from "@/components/portal/TicketCard";
 import { StatusTabs, type StatusTab } from "@/components/portal/StatusTabs";
 import { DashboardFeatureCard } from "@/components/portal/DashboardFeatureCard";
 import { AnalyticsSnapshotCard } from "@/components/portal/AnalyticsSnapshotCard";
+import { ReviewSnapshotCard } from "@/components/portal/ReviewSnapshotCard";
 import { StatCard } from "@/components/portal/StatCard";
 import { VisitorsChart } from "@/components/portal/VisitorsChart";
 import { PortalDashboardShell } from "@/components/portal/PortalDashboardShell";
@@ -42,7 +44,7 @@ type ServiceRequest = {
 };
 
 const CLIENT_TAB_STATUSES = new Set(["new", "in_progress", "done"]);
-const SECTIONS = new Set(["requests", "analytics", "status", "leads", "reports", "invoices"]);
+const SECTIONS = new Set(["requests", "analytics", "status", "leads", "reviews", "reports", "invoices"]);
 
 const SECTION_LABELS: Record<string, string> = {
   requests: "Requests",
@@ -91,6 +93,7 @@ export default async function PortalDashboardPage({
           {section === "analytics" && <AnalyticsSection userId={effectiveUser.id} />}
           {section === "status" && <StatusSection userId={effectiveUser.id} />}
           {section === "leads" && <LeadsSection userId={effectiveUser.id} />}
+          {section === "reviews" && <ReviewsSection userId={effectiveUser.id} />}
           {section === "reports" && <ReportsSection userId={effectiveUser.id} />}
           {section === "invoices" && <BillingSection userId={effectiveUser.id} />}
         </div>
@@ -442,6 +445,55 @@ async function LeadsSection({ userId }: { userId: string }) {
       {leads.map((lead) => (
         <LeadCard key={lead.id} lead={lead} />
       ))}
+    </div>
+  );
+}
+
+async function ReviewsSection({ userId }: { userId: string }) {
+  const { organizationId, tier, googleReviewUrl } = await getDashboardContextForUser(userId);
+  const hasReviewsMonitor = tierIncludes(tier, "reviewsMonitor");
+
+  if (!hasReviewsMonitor) {
+    return (
+      <DashboardFeatureCard
+        title="Reviews Monitor"
+        description="Your Google rating, review count, and notable reviews, tracked over time."
+        feature="reviewsMonitor"
+        tier={tier}
+      />
+    );
+  }
+
+  const snapshots = organizationId ? await getReviewSnapshotsForOrg(organizationId) : [];
+
+  return (
+    <div className="space-y-4">
+      {googleReviewUrl && (
+        <a
+          href={googleReviewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-sm text-[#cb7c46] hover:underline"
+        >
+          <Star className="w-3.5 h-3.5" />
+          View on Google
+        </a>
+      )}
+
+      {snapshots.length === 0 ? (
+        <div className="glass rounded-2xl border border-[var(--portal-border)] p-14 text-center">
+          <div className="w-14 h-14 mx-auto rounded-full bg-[var(--portal-border)] flex items-center justify-center mb-5">
+            <Star className="w-6 h-6 text-[var(--portal-text-muted)]" />
+          </div>
+          <p className="text-[var(--portal-text-secondary)] text-sm">No review data yet.</p>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {snapshots.map((snapshot) => (
+            <ReviewSnapshotCard key={snapshot.id} snapshot={snapshot} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
