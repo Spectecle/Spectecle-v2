@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, Loader2 } from "lucide-react";
+import { PLACE_TYPE_GROUPS } from "@/lib/google-place-types";
 
 export function ProspectSearchForm() {
   const router = useRouter();
-  const [category, setCategory] = useState("");
+  const [includedType, setIncludedType] = useState("");
   const [location, setLocation] = useState("");
   const [searching, setSearching] = useState(false);
   const [error, setError] = useState("");
@@ -15,14 +16,14 @@ export function ProspectSearchForm() {
   );
 
   const runSearch = async (pageToken?: string) => {
-    if (!category.trim() || !location.trim()) return;
+    if (!includedType || !location.trim()) return;
     setSearching(true);
     setError("");
     try {
       const res = await fetch("/api/portal/admin/prospects/search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ category, location, pageToken }),
+        body: JSON.stringify({ includedType, location, pageToken }),
       });
       const data = await res.json().catch(() => null);
       if (!res.ok) {
@@ -48,15 +49,24 @@ export function ProspectSearchForm() {
         }}
         className="flex items-end gap-3 flex-wrap"
       >
-        <div className="flex-1 min-w-[160px]">
+        <div className="flex-1 min-w-[200px]">
           <label className="block text-xs text-[var(--portal-text-muted)] mb-1">Category</label>
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            placeholder="e.g. roofers, plumbers"
-            className="w-full bg-[var(--portal-input-bg)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] placeholder-[var(--portal-text-faint)] px-3 py-2 text-sm outline-none focus:border-[var(--portal-accent)]/50"
-          />
+          <select
+            value={includedType}
+            onChange={(e) => setIncludedType(e.target.value)}
+            className="w-full bg-[var(--portal-input-bg)] border border-[var(--portal-border-strong)] text-[var(--portal-text-primary)] px-3 py-2 text-sm outline-none focus:border-[var(--portal-accent)]/50"
+          >
+            <option value="">Select a category…</option>
+            {PLACE_TYPE_GROUPS.map((group) => (
+              <optgroup key={group.group} label={group.group}>
+                {group.options.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
         </div>
         <div className="flex-1 min-w-[160px]">
           <label className="block text-xs text-[var(--portal-text-muted)] mb-1">Location</label>
@@ -70,7 +80,7 @@ export function ProspectSearchForm() {
         </div>
         <button
           type="submit"
-          disabled={searching || !category.trim() || !location.trim()}
+          disabled={searching || !includedType || !location.trim()}
           className="btn-primary flex items-center gap-2 px-4 py-2.5 text-sm font-semibold cursor-pointer disabled:opacity-60"
         >
           {searching ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}

@@ -35,10 +35,19 @@ const FIELD_MASK =
  * tier -- see GOOGLE_PLACES_API_KEY in .env.local.example. */
 export async function searchBusinessesWithoutWebsite(
   query: string,
-  pageToken?: string
+  pageToken?: string,
+  includedType?: string
 ): Promise<{ results: ProspectResult[]; nextPageToken: string | null }> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   if (!apiKey) throw new Error("GOOGLE_PLACES_API_KEY is not set");
+
+  // includedType is one of Google's own Place Types (see
+  // src/lib/google-place-types.ts) -- strictTypeFiltering makes this an
+  // actual filter, not just a text-relevance hint, so picking "Electrician"
+  // only returns places Google itself categorizes as an electrician.
+  const body: Record<string, unknown> = pageToken
+    ? { textQuery: query, pageToken }
+    : { textQuery: query, ...(includedType ? { includedType, strictTypeFiltering: true } : {}) };
 
   const res = await fetch("https://places.googleapis.com/v1/places:searchText", {
     method: "POST",
@@ -47,7 +56,7 @@ export async function searchBusinessesWithoutWebsite(
       "X-Goog-Api-Key": apiKey,
       "X-Goog-FieldMask": FIELD_MASK,
     },
-    body: JSON.stringify(pageToken ? { textQuery: query, pageToken } : { textQuery: query }),
+    body: JSON.stringify(body),
   });
 
   if (!res.ok) {

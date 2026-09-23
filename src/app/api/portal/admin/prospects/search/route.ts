@@ -3,6 +3,7 @@ import { getSession, isAdmin } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { isTrustedOrigin } from "@/lib/origin-check";
 import { searchBusinessesWithoutWebsite } from "@/lib/places";
+import { PLACE_TYPE_LABEL_BY_VALUE } from "@/lib/google-place-types";
 
 export async function POST(req: Request) {
   if (!isTrustedOrigin(req)) {
@@ -15,15 +16,16 @@ export async function POST(req: Request) {
   }
 
   const body = (await req.json().catch(() => null)) as {
-    category?: string;
+    includedType?: string;
     location?: string;
     pageToken?: string;
   } | null;
 
-  const category = body?.category?.trim();
+  const includedType = body?.includedType?.trim();
   const location = body?.location?.trim();
-  if (!category || !location) {
-    return NextResponse.json({ error: "Category and location are required" }, { status: 400 });
+  const category = includedType ? PLACE_TYPE_LABEL_BY_VALUE[includedType] : undefined;
+  if (!includedType || !category || !location) {
+    return NextResponse.json({ error: "A valid category and location are required" }, { status: 400 });
   }
 
   let results;
@@ -31,7 +33,8 @@ export async function POST(req: Request) {
   try {
     ({ results, nextPageToken } = await searchBusinessesWithoutWebsite(
       `${category} in ${location}`,
-      body?.pageToken
+      body?.pageToken,
+      includedType
     ));
   } catch (err) {
     console.error("[prospects/search] Places API error:", err);
