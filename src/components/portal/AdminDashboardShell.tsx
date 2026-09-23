@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { Menu, X, ChevronLeft, LayoutDashboard, Inbox, Users, Mail } from "lucide-react";
+import { Menu, X, ChevronLeft, LayoutDashboard, Inbox, Users, Mail, Target } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 import { SignOutButton } from "@/components/portal/SignOutButton";
 
@@ -39,6 +39,13 @@ const NAV_ITEMS = [
     icon: Mail,
     href: "/portal/admin/email",
     isActive: (pathname: string) => pathname.startsWith("/portal/admin/email"),
+  },
+  {
+    value: "prospecting",
+    label: "Prospecting",
+    icon: Target,
+    href: "/portal/admin/prospecting",
+    isActive: (pathname: string) => pathname.startsWith("/portal/admin/prospecting"),
   },
 ];
 

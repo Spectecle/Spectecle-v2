@@ -390,4 +390,33 @@ create table if not exists reviews_snapshots (
   unique (organization_id, period_month)
 );
 create index if not exists reviews_snapshots_org_idx on reviews_snapshots (organization_id, period_month desc);
+
+-- ============================================================
+-- Migration: Prospecting (Google Places lead scraper)
+-- ============================================================
+-- Spectecle's own outbound prospect list -- businesses found via a Places
+-- API search that have no `websiteUri` on file with Google, saved here so
+-- the admin can work through them as a cold-call list. Deliberately the
+-- only business-data table with no organization_id: this is Spectecle's
+-- own internal data, not a client's. Dedup is on place_id (Google's stable
+-- per-business identifier), so re-running an overlapping search refreshes
+-- a row's rating/phone/etc. instead of duplicating it, and never touches
+-- status/notes on conflict (see the upsert in the search route).
+create table if not exists prospects (
+  id uuid primary key default gen_random_uuid(),
+  place_id text not null unique,
+  business_name text not null,
+  category text,
+  search_location text,
+  address text,
+  phone text,
+  rating numeric(2,1),
+  review_count integer,
+  status text not null default 'new' check (status in ('new','contacted','not_interested','converted')),
+  notes text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create index if not exists prospects_status_idx on prospects (status, created_at desc);
+alter table prospects enable row level security;
 alter table reviews_snapshots enable row level security;
