@@ -67,20 +67,20 @@ const projects = [
     image: "/screenshots/thestatclinic.png",
   },
   {
-    slug: "thematek",
-    title: "Thematek",
-    category: "Technology / IT Services",
-    tagline: "Cutting-edge website. Even sharper AI behind the scenes.",
-    result: "68% Automated",
-    image: "/screenshots/thematek.png",
-  },
-  {
     slug: "detroit-glass-mirror",
     title: "Detroit Glass & Mirror",
     category: "Home Services / Glass",
     tagline: "Detroit's premier glass shop, now impossible to miss on Google.",
     result: "Google Map Pack",
     image: "/screenshots/detroitglassandmirror.png",
+  },
+  {
+    slug: "thematek",
+    title: "Thematek",
+    category: "Technology / IT Services",
+    tagline: "Cutting-edge website. Even sharper AI behind the scenes.",
+    result: "68% Automated",
+    image: "/screenshots/thematek.png",
   },
   {
     slug: "salazar-drywall-pros",
