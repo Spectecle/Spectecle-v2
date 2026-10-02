@@ -25,7 +25,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
     .eq("id", id);
 
   if (error) {
-    console.error("[payment-reminders/:id] update error:", error);
+    console.error("[invoice-reminders/:id] update error:", error);
     return NextResponse.json({ error: "Failed to update" }, { status: 500 });
   }
 

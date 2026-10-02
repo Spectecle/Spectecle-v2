@@ -34,7 +34,7 @@ export function PaymentReminderCard({ reminder }: { reminder: PaymentReminder })
     const next = !paused;
     setPaused(next);
     setPauseSaving(true);
-    const res = await fetch(`/api/portal/admin/payment-reminders/${reminder.id}`, {
+    const res = await fetch(`/api/portal/admin/invoice-reminders/${reminder.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ paused: next }),
@@ -47,7 +47,7 @@ export function PaymentReminderCard({ reminder }: { reminder: PaymentReminder })
     setSending(true);
     setSendError("");
     setSendSuccess(false);
-    const res = await fetch(`/api/portal/admin/payment-reminders/${reminder.id}/send-now`, { method: "POST" });
+    const res = await fetch(`/api/portal/admin/invoice-reminders/${reminder.id}/send-now`, { method: "POST" });
     setSending(false);
     if (res.ok) {
       setSendSuccess(true);

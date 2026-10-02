@@ -48,11 +48,11 @@ const NAV_ITEMS = [
     isActive: (pathname: string) => pathname.startsWith("/portal/admin/prospecting"),
   },
   {
-    value: "payment-reminders",
+    value: "invoice-reminders",
     label: "Payment Reminders",
     icon: BellRing,
-    href: "/portal/admin/payment-reminders",
-    isActive: (pathname: string) => pathname.startsWith("/portal/admin/payment-reminders"),
+    href: "/portal/admin/invoice-reminders",
+    isActive: (pathname: string) => pathname.startsWith("/portal/admin/invoice-reminders"),
   },
 ];
 

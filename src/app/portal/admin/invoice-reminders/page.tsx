@@ -10,7 +10,7 @@ export default async function PaymentRemindersPage({
   searchParams: Promise<{ status?: string }>;
 }) {
   const user = await getSession();
-  if (!user) redirect("/portal/sign-in?next=/portal/admin/payment-reminders");
+  if (!user) redirect("/portal/sign-in?next=/portal/admin/invoice-reminders");
   if (!isAdmin(user.email)) notFound();
 
   const { status: statusParam } = await searchParams;
