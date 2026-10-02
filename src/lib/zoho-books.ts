@@ -114,3 +114,52 @@ export async function fetchInvoiceDetail(invoiceId: string): Promise<ZohoInvoice
   if (!data.invoice) return null;
   return parseInvoiceSummary(data.invoice);
 }
+
+export type ZohoRecurringInvoice = {
+  recurringInvoiceId: string;
+  name: string | null;
+  customerName: string | null;
+  status: string | null;
+  total: number | null;
+  frequency: string | null; // human-readable, e.g. "Every month", "Every year"
+  startDate: string | null;
+  endDate: string | null;
+  lastSentDate: string | null;
+  nextInvoiceDate: string | null;
+};
+
+function describeFrequency(frequency: unknown, repeatEvery: unknown): string | null {
+  if (typeof frequency !== "string" || !frequency) return null;
+  const unit = frequency.replace(/s$/, ""); // "months" -> "month"
+  const every = typeof repeatEvery === "number" && repeatEvery > 0 ? repeatEvery : 1;
+  return every === 1 ? `Every ${unit}` : `Every ${every} ${unit}s`;
+}
+
+/** GET /recurringinvoices -- the active recurring billing agreements behind
+ * each client's "reoccuring payment" (confirmed field names against a real
+ * response: recurring_invoice_id, recurrence_name, customer_name, status,
+ * total, recurrence_frequency + repeat_every, start_date, end_date,
+ * last_sent_date, next_invoice_date). Fetched live on every page view --
+ * deliberately not persisted anywhere, since Zoho is already the single
+ * source of truth here and there's no reminder-style cadence state to track
+ * on top of it (unlike payment_reminders). */
+export async function fetchRecurringInvoices(): Promise<ZohoRecurringInvoice[]> {
+  const data = (await zohoFetch("/recurringinvoices")) as {
+    recurring_invoices?: Record<string, unknown>[];
+  };
+  return (data.recurring_invoices ?? [])
+    .filter((raw) => raw.recurring_invoice_id)
+    .map((raw) => ({
+      recurringInvoiceId: String(raw.recurring_invoice_id),
+      name: typeof raw.recurrence_name === "string" ? raw.recurrence_name.trim() || null : null,
+      customerName: typeof raw.customer_name === "string" ? raw.customer_name : null,
+      status: typeof raw.status === "string" ? raw.status : null,
+      total: typeof raw.total === "number" ? raw.total : null,
+      frequency: describeFrequency(raw.recurrence_frequency, raw.repeat_every),
+      startDate: typeof raw.start_date === "string" && raw.start_date ? raw.start_date : null,
+      endDate: typeof raw.end_date === "string" && raw.end_date ? raw.end_date : null,
+      lastSentDate: typeof raw.last_sent_date === "string" && raw.last_sent_date ? raw.last_sent_date : null,
+      nextInvoiceDate:
+        typeof raw.next_invoice_date === "string" && raw.next_invoice_date ? raw.next_invoice_date : null,
+    }));
+}

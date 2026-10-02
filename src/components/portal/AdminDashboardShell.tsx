@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { Menu, X, ChevronLeft, LayoutDashboard, Inbox, Users, Mail, Target, BellRing } from "lucide-react";
+import { Menu, X, ChevronLeft, LayoutDashboard, Inbox, Users, Mail, Target, CreditCard } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 import { SignOutButton } from "@/components/portal/SignOutButton";
 
@@ -49,8 +49,8 @@ const NAV_ITEMS = [
   },
   {
     value: "invoice-reminders",
-    label: "Payment Reminders",
-    icon: BellRing,
+    label: "Client Payments",
+    icon: CreditCard,
     href: "/portal/admin/invoice-reminders",
     isActive: (pathname: string) => pathname.startsWith("/portal/admin/invoice-reminders"),
   },

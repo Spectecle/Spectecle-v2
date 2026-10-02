@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { CheckCircle2, Clock, Loader2, Send } from "lucide-react";
+import { CheckCircle2, Clock, Loader2, Mail, Send } from "lucide-react";
 import { formatUsd, type PaymentReminder } from "@/lib/payment-reminder-format";
 
 function daysOverdue(dueDate: string | null): number | null {
@@ -82,6 +82,19 @@ export function PaymentReminderCard({ reminder }: { reminder: PaymentReminder })
                 {overdueDays === 0 ? "Due today" : `${overdueDays} day${overdueDays === 1 ? "" : "s"} overdue`}
               </span>
             ) : null}
+            {reminder.reminder_count > 0 && (
+              <span
+                className="flex items-center gap-1 text-xs font-semibold text-[var(--portal-accent)] bg-[var(--portal-accent)]/10 px-2 py-0.5 rounded-full"
+                title={
+                  reminder.last_reminder_sent_at
+                    ? `Last sent ${formatDate(reminder.last_reminder_sent_at)}`
+                    : undefined
+                }
+              >
+                <Mail className="w-3 h-3" />
+                {reminder.reminder_count} sent
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-3 mt-1.5 flex-wrap text-xs text-[var(--portal-text-muted)]">
             <span className="text-[var(--portal-text-secondary)] font-medium">
@@ -89,10 +102,6 @@ export function PaymentReminderCard({ reminder }: { reminder: PaymentReminder })
             </span>
             <span>{reminder.email ?? "no email on file"}</span>
             <span>Due {formatDate(reminder.due_date)}</span>
-            <span>
-              {reminder.reminder_count} reminder{reminder.reminder_count === 1 ? "" : "s"} sent
-              {reminder.last_reminder_sent_at ? ` · last ${formatDate(reminder.last_reminder_sent_at)}` : ""}
-            </span>
             {reminder.invoice_url && (
               <a
                 href={reminder.invoice_url}
