@@ -419,4 +419,34 @@ create table if not exists prospects (
 );
 create index if not exists prospects_status_idx on prospects (status, created_at desc);
 alter table prospects enable row level security;
+
+-- ============================================================
+-- Migration: Payment Reminders (automated Zoho Books invoice chasing)
+-- ============================================================
+-- Tracks only reminder CADENCE/PAUSE state per Zoho Books invoice -- never
+-- a paid/unpaid flag. Whether an invoice is still owed is always re-checked
+-- live against Zoho Books on every cron run (Zoho is the real system of
+-- record for payment status, not this table), so there's nothing here that
+-- can drift out of sync with reality. Like `prospects`, deliberately not
+-- organization_id-scoped: a Zoho invoice already carries its own customer
+-- name/email/balance/due-date, and not every invoiced contact is
+-- necessarily a portal user.
+create table if not exists payment_reminders (
+  id uuid primary key default gen_random_uuid(),
+  zoho_invoice_id text not null unique,
+  invoice_number text,
+  customer_name text,
+  email text,
+  balance numeric(10,2),
+  due_date date,
+  invoice_url text,
+  paused boolean not null default false,
+  last_reminder_sent_at timestamptz,
+  reminder_count integer not null default 0,
+  resolved_at timestamptz,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create index if not exists payment_reminders_zoho_invoice_idx on payment_reminders (zoho_invoice_id);
+alter table payment_reminders enable row level security;
 alter table reviews_snapshots enable row level security;

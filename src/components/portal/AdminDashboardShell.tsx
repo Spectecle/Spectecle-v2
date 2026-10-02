@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { Menu, X, ChevronLeft, LayoutDashboard, Inbox, Users, Mail, Target } from "lucide-react";
+import { Menu, X, ChevronLeft, LayoutDashboard, Inbox, Users, Mail, Target, BellRing } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 import { SignOutButton } from "@/components/portal/SignOutButton";
 
@@ -46,6 +46,13 @@ const NAV_ITEMS = [
     icon: Target,
     href: "/portal/admin/prospecting",
     isActive: (pathname: string) => pathname.startsWith("/portal/admin/prospecting"),
+  },
+  {
+    value: "payment-reminders",
+    label: "Payment Reminders",
+    icon: BellRing,
+    href: "/portal/admin/payment-reminders",
+    isActive: (pathname: string) => pathname.startsWith("/portal/admin/payment-reminders"),
   },
 ];
 
