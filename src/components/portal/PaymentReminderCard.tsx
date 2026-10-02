@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { CheckCircle2, Clock, Loader2, Send } from "lucide-react";
-import { formatUsd, type PaymentReminder } from "@/lib/payment-reminders";
+import { formatUsd, type PaymentReminder } from "@/lib/payment-reminder-format";
 
 function daysOverdue(dueDate: string | null): number | null {
   if (!dueDate) return null;

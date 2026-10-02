@@ -2,28 +2,12 @@ import { Resend } from "resend";
 import { supabase } from "@/lib/supabase";
 import { fetchInvoiceDetail } from "@/lib/zoho-books";
 import { invoiceReminderLetterHtml } from "@/lib/client-letter-emails";
+import { formatUsd, type PaymentReminder } from "@/lib/payment-reminder-format";
+
+export type { PaymentReminder };
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = `Spectecle Billing <${process.env.RESEND_FROM || "onboarding@resend.dev"}>`;
-
-export type PaymentReminder = {
-  id: string;
-  zoho_invoice_id: string;
-  invoice_number: string | null;
-  customer_name: string | null;
-  email: string | null;
-  balance: number | null;
-  due_date: string | null;
-  invoice_url: string | null;
-  paused: boolean;
-  last_reminder_sent_at: string | null;
-  reminder_count: number;
-  resolved_at: string | null;
-};
-
-export function formatUsd(amount: number): string {
-  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount);
-}
 
 export async function getPaymentReminders(): Promise<PaymentReminder[]> {
   const { data, error } = await supabase
