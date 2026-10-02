@@ -14,9 +14,12 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Deliberate launch gate, same shape as MONTHLY_REPORTS_ENABLED -- stays
-  // off (dry-run only, no emails, no DB writes) until you've reviewed a
-  // real dry run and are ready to let this actually email clients.
+  // Deliberate launch gate, same shape as MONTHLY_REPORTS_ENABLED -- but
+  // scoped ONLY to actually sending emails. Syncing the queue from Zoho
+  // (upsert/resolve below) always runs regardless, since that's just
+  // reflecting Zoho's real state -- it never emails anyone, and gating it
+  // too would leave the admin page empty until the first real send, which
+  // defeats the point of being able to review the queue before going live.
   const enabled = process.env.PAYMENT_REMINDERS_ENABLED === "true";
 
   const results = { dryRun: !enabled, tracked: 0, resolved: 0, reminded: 0, skipped: 0, failed: 0 };
@@ -30,15 +33,6 @@ export async function GET(req: Request) {
   }
 
   const overdueIds = overdueInvoices.map((inv) => inv.invoiceId);
-
-  if (!enabled) {
-    console.log(
-      `[cron/send-payment-reminders] DRY RUN — ${overdueInvoices.length} overdue invoice(s) from Zoho:`,
-      overdueInvoices.map((inv) => `${inv.invoiceNumber ?? inv.invoiceId} (${inv.email ?? "no email"})`)
-    );
-    results.tracked = overdueInvoices.length;
-    return NextResponse.json(results);
-  }
 
   // Upsert every currently-overdue invoice -- refreshes balance/due_date/etc
   // on existing rows, inserts new ones. Never touches paused/
@@ -105,16 +99,26 @@ export async function GET(req: Request) {
     }
   }
 
-  // Send reminders for still-overdue, non-paused invoices due for another
-  // nudge (never sent, or last sent more than 3 days ago).
+  // Figure out which still-overdue, non-paused invoices are due for another
+  // nudge (never sent, or last sent more than 3 days ago) -- computed
+  // either way, but only actually sent (and recorded) when enabled.
   const now = Date.now();
-  for (const row of stillOverdueRows.filter((r) => !r.paused)) {
+  const dueForReminder = stillOverdueRows.filter((row) => {
+    if (row.paused) return false;
     const lastSent = row.last_reminder_sent_at ? new Date(row.last_reminder_sent_at).getTime() : null;
-    if (lastSent !== null && now - lastSent < REMINDER_INTERVAL_MS) {
-      results.skipped++;
-      continue;
-    }
+    return lastSent === null || now - lastSent >= REMINDER_INTERVAL_MS;
+  });
 
+  if (!enabled) {
+    console.log(
+      `[cron/send-payment-reminders] DRY RUN — synced ${results.tracked} overdue invoice(s), ` +
+        `${dueForReminder.length} would be reminded:`,
+      dueForReminder.map((row) => `${row.invoice_number ?? row.zoho_invoice_id} (${row.email ?? "no email"})`)
+    );
+    return NextResponse.json(results);
+  }
+
+  for (const row of dueForReminder) {
     const sendResult = await sendReminderEmail(row);
     if (sendResult.success) {
       results.reminded++;
@@ -123,6 +127,7 @@ export async function GET(req: Request) {
       results.failed++;
     }
   }
+  results.skipped = stillOverdueRows.filter((r) => !r.paused).length - dueForReminder.length;
 
   console.log("[cron/send-payment-reminders] done:", results);
   return NextResponse.json(results);
