@@ -7,18 +7,6 @@ export const metadata: Metadata = {
   title: "Web Design & Development Detroit, MI",
   description:
     "Custom web design and development for Detroit businesses. Next.js, React, Core Web Vitals: sites built to rank on Google and convert visitors into customers.",
-  keywords: [
-    "web design Detroit",
-    "web designer Detroit Michigan",
-    "web development Detroit MI",
-    "custom website design Detroit",
-    "Next.js web development Michigan",
-    "small business website design Detroit",
-    "professional web design Michigan",
-    "e-commerce website design Detroit",
-    "responsive web design Detroit",
-    "affordable web design Detroit Michigan",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Web Design & Development Detroit, MI | Spectecle",

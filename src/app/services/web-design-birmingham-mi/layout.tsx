@@ -7,18 +7,6 @@ export const metadata: Metadata = {
   title: "Web Design & Development Birmingham, MI",
   description:
     "Custom web design for Birmingham, Michigan businesses. Next.js, React, Core Web Vitals: refined, high-performance websites built for Oakland County's most discerning brands.",
-  keywords: [
-    "web design Birmingham MI",
-    "web designer Birmingham Michigan",
-    "website design Oakland County",
-    "web development Birmingham MI",
-    "custom website design Birmingham",
-    "Next.js web development Oakland County",
-    "small business website design Birmingham MI",
-    "professional web design Bloomfield Hills",
-    "boutique website design Michigan",
-    "luxury brand web design Michigan",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Web Design & Development Birmingham, MI | Spectecle",

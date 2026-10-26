@@ -7,20 +7,6 @@ export const metadata: Metadata = {
   title: "Law Firm Website Design | Attorney Websites",
   description:
     "Custom law firm website design for attorneys and legal practices nationwide. Authority-first design, practice area pages, and consultation-focused conversion, built to earn client trust.",
-  keywords: [
-    "law firm website design",
-    "attorney website design",
-    "legal website design",
-    "law firm web design agency",
-    "website for lawyers",
-    "law firm SEO",
-    "personal injury attorney website",
-    "family law website design",
-    "criminal defense attorney website",
-    "estate planning website design",
-    "immigration lawyer website",
-    "law firm website design near me",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Law Firm Website Design | Attorney Websites | Spectecle",

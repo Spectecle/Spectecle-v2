@@ -102,6 +102,14 @@ const projects = [
 
 const featuredProjects = projects.slice(0, 6);
 
+// Service pages not covered by the capabilities list above.
+const specialtyLinks = [
+  { label: "Web design in Birmingham, MI", href: "/services/web-design-birmingham-mi" },
+  { label: "Law firm websites", href: "/services/law-firm-website-design" },
+  { label: "Medical & dental websites", href: "/services/medical-website-design" },
+  { label: "The Loop client portal", href: "/services/the-loop" },
+];
+
 function ProjectCard({ p, delay }: { p: (typeof projects)[number]; delay: number }) {
   return (
     <Reveal delay={delay}>
@@ -227,6 +235,20 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal>
+            <p className="mt-10 text-sm leading-relaxed text-[var(--site-text-secondary)]">
+              Also:{" "}
+              {specialtyLinks.map((l, i) => (
+                <span key={l.href}>
+                  <Link href={l.href} data-cursor className="underline underline-offset-4 decoration-[var(--site-border)] hover:text-[var(--site-text-primary)] hover:decoration-[var(--site-copper-soft)] transition-colors">
+                    {l.label}
+                  </Link>
+                  {i < specialtyLinks.length - 1 ? " · " : ""}
+                </span>
+              ))}
+            </p>
+          </Reveal>
         </div>
       </section>
 

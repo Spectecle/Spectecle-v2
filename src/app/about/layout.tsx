@@ -6,15 +6,6 @@ export const metadata: Metadata = {
   title: "About Spectecle | Web Design, SEO & AI Automation Agency",
   description:
     "Spectecle is a web design, SEO, and AI automation agency built around a small, senior team, no account managers, no outsourced work, no handoffs. Serving businesses nationwide.",
-  keywords: [
-    "web design agency",
-    "SEO agency",
-    "AI automation agency",
-    "boutique web design studio",
-    "web design agency about",
-    "national web design agency",
-    "web design expert team",
-  ],
   openGraph: {
     title: "About Spectecle | Web Design, SEO & AI Automation Agency",
     description:

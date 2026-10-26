@@ -20,16 +20,19 @@ const SLIDES = [
     id: "web-design",
     image: "/hero/web-design.jpg",
     caption: "Website & Development",
+    alt: "A designer's desk at night with a laptop, lamp and keyboard",
   },
   {
     id: "seo",
     image: "/hero/seo.jpg",
     caption: "SEO & Ad Campaigns",
+    alt: "Print design books and paper samples laid out on a white table",
   },
   {
     id: "brand",
     image: "/hero/typography.jpg",
     caption: "AI & Workflow Automation",
+    alt: "A magazine, watch, sunglasses and latte on a wooden chair",
   },
 ];
 
@@ -87,7 +90,7 @@ export default function Hero() {
             >
               <Image
                 src={slide.image}
-                alt=""
+                alt={slide.alt}
                 fill
                 priority={i === 0}
                 sizes="100vw"
@@ -126,7 +129,7 @@ export default function Hero() {
                 >
                   Websites worth
                 </span>
-              </span>
+              </span>{" "}
               <span className="block overflow-hidden pb-[0.18em]">
                 <span
                   className="block transition-transform duration-[1050ms]"

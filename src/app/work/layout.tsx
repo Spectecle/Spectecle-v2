@@ -6,28 +6,6 @@ export const metadata: Metadata = {
   title: "Portfolio & Case Studies: Web Design, SEO & AI Work",
   description:
     "Real projects. Measurable results. Browse Spectecle's portfolio of web design, local SEO, and AI automation work for businesses across the U.S.: from photography studios and law firms to IT companies and beauty brands.",
-  keywords: [
-    "web design portfolio",
-    "web design case studies",
-    "photography website design case study",
-    "contractor website design",
-    "law firm website design",
-    "beauty studio website design",
-    "makeup artist website design",
-    "healthcare clinic website design",
-    "e-commerce website design",
-    "IT company website design",
-    "drywall contractor local SEO",
-    "Google Map Pack ranking",
-    "AI automation business case study",
-    "local SEO results",
-    "web design agency portfolio",
-    "attorney website design",
-    "glass company website design",
-    "sports clinic SEO",
-    "digital agency case studies",
-    "web design results",
-  ],
   openGraph: {
     title: "Portfolio & Case Studies | Spectecle SEO & Web Design",
     description:

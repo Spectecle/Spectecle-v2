@@ -7,18 +7,6 @@ export const metadata: Metadata = {
   title: "SEO Agency Detroit, MI: Local & Technical SEO",
   description:
     "Detroit SEO agency specializing in local search, technical SEO, and content strategy. Page-one rankings for Michigan businesses that need to be found.",
-  keywords: [
-    "SEO agency Detroit",
-    "SEO company Detroit Michigan",
-    "local SEO Detroit",
-    "SEO services Michigan",
-    "Detroit digital marketing agency",
-    "Google Business Profile optimization Detroit",
-    "technical SEO Michigan",
-    "local SEO company near me",
-    "SEO for small business Detroit",
-    "search engine optimization Michigan",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "SEO Agency Detroit, MI | Spectecle",

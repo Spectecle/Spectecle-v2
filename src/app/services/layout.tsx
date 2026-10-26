@@ -6,28 +6,6 @@ export const metadata: Metadata = {
   title: "Web Design, SEO & AI Automation Services",
   description:
     "Spectecle offers professional web design, SEO, and AI automation services for businesses nationwide. Custom Next.js websites that rank on Google, data-driven SEO that drives organic traffic, and intelligent workflow automation that scales your business.",
-  keywords: [
-    "web design services",
-    "web design agency",
-    "custom website design",
-    "SEO services",
-    "SEO agency",
-    "local SEO services",
-    "AI automation services",
-    "workflow automation small business",
-    "Next.js web development",
-    "web development agency",
-    "digital marketing agency",
-    "Google ranking services",
-    "e-commerce web design",
-    "AI chatbot development",
-    "web design near me",
-    "affordable web design",
-    "professional web designer",
-    "SEO company",
-    "AI agent development",
-    "web design and SEO agency",
-  ],
   openGraph: {
     title: "Web Design, SEO & AI Services | Spectecle SEO & Web Design",
     description:

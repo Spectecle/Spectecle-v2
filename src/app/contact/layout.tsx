@@ -6,22 +6,6 @@ export const metadata: Metadata = {
   title: "Contact Spectecle: Free Strategy Call",
   description:
     "Contact Spectecle SEO & Web Design for a free 30-minute strategy call. Web design, SEO, and AI automation for businesses nationwide. Response within 24 hours, no commitment required.",
-  keywords: [
-    "contact web design agency",
-    "hire web designer",
-    "web design quote",
-    "free website consultation",
-    "SEO consultation",
-    "get a website quote",
-    "digital agency contact",
-    "AI automation consultation",
-    "web agency phone number",
-    "web design near me",
-    "start a web project",
-    "free strategy call web design",
-    "contact SEO agency",
-    "book web design consultation",
-  ],
   openGraph: {
     title: "Contact Spectecle: Free Strategy Call",
     description:

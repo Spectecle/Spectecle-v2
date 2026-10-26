@@ -56,7 +56,7 @@ export default function OGImage() {
                 background: "#cb7c46",
               }}
             />
-            Serving Clients Nationwide
+            Detroit-Based · Serving Clients Nationwide
           </div>
 
           {/* Wordmark */}

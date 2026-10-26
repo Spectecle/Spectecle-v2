@@ -7,20 +7,6 @@ export const metadata: Metadata = {
   title: "Medical Website Design | Doctor & Dentist Websites",
   description:
     "Custom medical website design for doctors, dentists, and private practices nationwide. Patient-first design, service pages, and appointment-focused conversion, built to earn patient trust.",
-  keywords: [
-    "medical website design",
-    "doctor website design",
-    "dentist website design",
-    "medical practice website design",
-    "healthcare website design agency",
-    "private practice website design",
-    "website for doctors",
-    "internal medicine website design",
-    "dental website design",
-    "medical practice SEO",
-    "optometry website design",
-    "medical website design near me",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Medical Website Design | Doctor & Dentist Websites | Spectecle",

@@ -7,18 +7,6 @@ export const metadata: Metadata = {
   title: "AI Automation & Workflow Automation Services",
   description:
     "Custom AI agents and workflow automation for businesses nationwide. Eliminate manual tasks, automate customer interactions, and scale operations without adding headcount.",
-  keywords: [
-    "AI automation services",
-    "workflow automation",
-    "AI agents for business",
-    "business automation",
-    "AI chatbot development",
-    "CRM automation",
-    "n8n automation",
-    "AI integration services",
-    "business process automation",
-    "AI consulting",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "AI & Workflow Automation | Spectecle",
