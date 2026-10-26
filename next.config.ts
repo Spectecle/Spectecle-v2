@@ -29,6 +29,13 @@ const nextConfig: NextConfig = {
         destination: "/services",
         permanent: true,
       },
+      // Old site URLs. Trailing-slash variants are handled by Next's
+      // built-in trailing-slash redirect before these run.
+      { source: "/company", destination: "/about", permanent: true },
+      { source: "/client-support", destination: "/portal", permanent: true },
+      { source: "/home", destination: "/", permanent: true },
+      { source: "/privacy-policy", destination: "/privacy", permanent: true },
+      { source: "/terms-conditions", destination: "/terms", permanent: true },
     ];
   },
   async headers() {
