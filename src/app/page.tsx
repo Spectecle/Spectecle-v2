@@ -104,7 +104,6 @@ const featuredProjects = projects.slice(0, 6);
 
 // Service pages not covered by the capabilities list above.
 const specialtyLinks = [
-  { label: "Web design in Birmingham, MI", href: "/services/web-design-birmingham-mi" },
   { label: "Law firm websites", href: "/services/law-firm-website-design" },
   { label: "Medical & dental websites", href: "/services/medical-website-design" },
   { label: "The Loop client portal", href: "/services/the-loop" },

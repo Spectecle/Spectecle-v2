@@ -9,7 +9,6 @@ const navLinks = [
 
 const serviceLinks = [
   { label: "Web Design Detroit", href: "/services/web-design-detroit" },
-  { label: "Web Design Birmingham", href: "/services/web-design-birmingham-mi" },
   { label: "SEO Agency Detroit", href: "/services/seo-agency-detroit" },
   { label: "AI & Automation", href: "/services/ai-automation" },
   { label: "Law Firm Websites", href: "/services/law-firm-website-design" },
