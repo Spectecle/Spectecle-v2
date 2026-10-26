@@ -148,17 +148,17 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-24 items-start">
             <Reveal>
-              <p
+              <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.16] tracking-tight"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
                 A studio for brands that want to look <em className="italic" style={{ color: "#9a5423" }}>inevitable</em> online.
-              </p>
+              </h2>
             </Reveal>
             <div>
               <Reveal delay={0.1}>
                 <p className="text-[1.06rem] leading-[1.72] max-w-[44ch]" style={{ color: "#544838" }}>
-                  Strategy, design, development, and marketing live under one roof, so the work stays sharp from first sketch to launched site. No handoffs to lose the thread. No template doing the thinking for you. Just a team that treats your site like the storefront it actually is.
+                  Strategy, design, development, and marketing live under one roof, so the work stays sharp from first sketch to launched site. No handoffs to lose the thread. No template doing the thinking for you. Just a team that treats your site like the storefront it actually is. Based in Metro Detroit, working with businesses across Michigan and nationwide.
                 </p>
               </Reveal>
               <div className="mt-12">
