@@ -1,185 +1,116 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-const EFFECTIVE_DATE = "August 26, 2026";
-const COMPANY = "Spectecle SEO & Web Design";
-const EMAIL = "hello@spectecle.com";
+const EFFECTIVE_DATE = "October 27, 2026";
+const COMPANY = "Spectecle LLC";
+const EMAIL = "admin@spectecle.com";
 const WEBSITE = "spectecle.com";
 
-const sections = [
+const collectedInfo = [
+  {
+    category: "Contact information",
+    examples: "Name, business name, email, phone",
+    source: "You, through forms, email or sign-up",
+  },
+  {
+    category: "Account information",
+    examples: "Login email, password (stored encrypted), preferences, saved items",
+    source: "You",
+  },
+  {
+    category: "Client and billing records",
+    examples: "Contracts, invoices, project files, support requests",
+    source: "You; payments are processed by third-party processors, and we do not store full card numbers",
+  },
+  {
+    category: "Usage and device data",
+    examples: "Pages viewed, features used, app version, device type, operating system, IP address, crash logs",
+    source: "Automatically, through cookies, SDKs and server logs",
+  },
+  {
+    category: "Approximate location",
+    examples: "City-level location derived from IP address; precise location only if you allow it in your device settings",
+    source: "Automatically or with your permission",
+  },
+  {
+    category: "Business listing data",
+    examples: "Business name, address, hours, images and descriptions submitted for featured listings",
+    source: "Businesses that submit them",
+  },
+  {
+    category: "Public event information",
+    examples: "Event names, dates, locations and descriptions",
+    source: "Public calendars and websites",
+  },
+];
+
+const sections: { id: string; title: string; body: React.ReactNode }[] = [
   {
     id: "information-we-collect",
-    title: "1. Information We Collect",
-    content: [
-      {
-        subtitle: "Information You Provide",
-        body: `When you fill out our contact form or request a strategy call, we collect the information you provide directly — including your name, email address, company name, project details, and budget range. We only collect what you choose to share.`,
-      },
-      {
-        subtitle: "Information Collected Automatically",
-        body: `When you visit spectecle.com, we automatically collect certain technical information, including: your IP address, browser type and version, operating system, referring URLs, pages visited, and time spent on pages. This information is collected through cookies and analytics tools (described below) and is used solely to improve site performance and understand user behavior.`,
-      },
-      {
-        subtitle: "Communications",
-        body: `If you contact us by email at ${EMAIL}, we retain a record of that communication, including your email address and message content, in order to respond to your inquiry and maintain accurate records.`,
-      },
-    ],
+    title: "1. Information we collect",
+    body: null, // rendered as the collectedInfo table below
   },
   {
     id: "how-we-use-information",
-    title: "2. How We Use Your Information",
-    content: [
-      {
-        subtitle: "Responding to Inquiries",
-        body: `The primary use of information submitted through our contact form is to respond to your project inquiry, schedule a strategy call, or provide you with a proposal. We do not add you to any marketing list without your explicit consent.`,
-      },
-      {
-        subtitle: "Improving Our Website",
-        body: `Automatically collected data (analytics, page views, session data) is used to understand how visitors use spectecle.com so we can improve the experience, fix technical issues, and optimize page performance.`,
-      },
-      {
-        subtitle: "Legal Obligations",
-        body: `We may use or disclose your information where required to comply with applicable law, regulation, legal process, or enforceable governmental request.`,
-      },
-    ],
+    title: "2. How we use information",
+    body: "We use information to provide, operate and improve the Services; create and manage accounts; respond to requests; send service messages; send marketing emails you can opt out of at any time; measure performance; prevent fraud and abuse; enforce our terms; and comply with law.",
   },
   {
-    id: "cookies",
-    title: "3. Cookies & Analytics",
-    content: [
-      {
-        subtitle: "What Are Cookies",
-        body: `Cookies are small text files stored on your device by your web browser. They help websites remember preferences, understand traffic patterns, and improve user experience.`,
-      },
-      {
-        subtitle: "Cookie Consent",
-        body: `When you first visit spectecle.com, a cookie banner asks whether you'd like to accept or decline non-essential cookies. If you accept, analytics cookies are enabled. If you decline, only strictly necessary cookies run and analytics tracking stays off. Your choice is remembered on this device; you can change it at any time by clearing your browser's site data for spectecle.com and reloading the page.`,
-      },
-      {
-        subtitle: "Google Analytics 4",
-        body: `We use Google Analytics 4 (GA4) to understand how visitors interact with our website, using Google's Consent Mode: analytics cookies are switched off by default and only activate if you accept our cookie banner. GA4 collects anonymized data about page views, session duration, device type, and referral sources, processed by Google in accordance with their Privacy Policy. We do not use GA4 to collect personally identifiable information.`,
-      },
-      {
-        subtitle: "Essential Cookies",
-        body: `Some cookies are strictly necessary for the website to function properly (e.g., form session state). These cannot be disabled without breaking core site functionality.`,
-      },
-      {
-        subtitle: "Managing Cookies",
-        body: `Most web browsers also allow you to control cookies through your browser settings. You can set your browser to refuse cookies or delete existing cookies. Note that disabling cookies may affect the functionality of certain parts of this website.`,
-      },
-    ],
+    id: "how-we-share-information",
+    title: "3. How we share information",
+    body: (
+      <>
+        We share information only with: service providers that host, analyze, process payments,
+        send messages or provide AI processing for us, under obligations to protect it; app stores
+        and platforms as needed to deliver the app; authorities or other parties when required by
+        law or to protect rights, safety and property; and a successor in a merger, acquisition or
+        sale of assets.{" "}
+        <strong className="font-semibold text-[var(--site-text-primary)]">
+          We do not sell your personal information
+        </strong>
+        , and we do not share it for cross-context behavioral advertising.
+      </>
+    ),
   },
   {
-    id: "data-sharing",
-    title: "4. Data Sharing & Third Parties",
-    content: [
-      {
-        subtitle: "We Do Not Sell Your Data",
-        body: `Spectecle SEO & Web Design does not sell, rent, or trade your personal information to third parties for any purpose.`,
-      },
-      {
-        subtitle: "Service Providers",
-        body: `We may share information with trusted third-party service providers who assist us in operating our website or providing services — such as hosting providers, analytics platforms (Google Analytics), and email tools. These providers are contractually obligated to handle your data securely and only for the purposes we specify.`,
-      },
-      {
-        subtitle: "Legal Requirements",
-        body: `We may disclose your information if required by law, court order, or governmental authority, or if we believe disclosure is necessary to protect our rights, your safety, or the safety of others.`,
-      },
-      {
-        subtitle: "Business Transfers",
-        body: `In the event of a merger, acquisition, or sale of all or a portion of our assets, your information may be transferred as part of that transaction. We will provide notice before your personal information is transferred and becomes subject to a different privacy policy.`,
-      },
-    ],
+    id: "cookies-and-analytics",
+    title: "4. Cookies and analytics",
+    body: "We use cookies and similar tools to keep the Services working and to understand usage, including analytics services such as Google Analytics. You can control cookies in your browser settings and limit ad tracking in your device settings.",
   },
   {
-    id: "data-retention",
-    title: "5. Data Retention",
-    content: [
-      {
-        subtitle: "How Long We Keep Your Data",
-        body: `We retain contact form submissions and email communications for up to 3 years from the date of last contact. Analytics data is retained in accordance with Google Analytics' default retention settings (2 years for event data, 14 months for user and session data).`,
-      },
-      {
-        subtitle: "Deletion Requests",
-        body: `You may request deletion of your personal data at any time by emailing ${EMAIL}. We will process deletion requests within 30 days, subject to any legal obligations to retain certain records.`,
-      },
-    ],
+    id: "ai-features",
+    title: "5. AI features",
+    body: "Some Services use third-party AI providers to generate responses or automate tasks. Information you enter into an AI feature is sent to those providers to produce a response. Do not enter sensitive personal information into AI features. AI output may be inaccurate.",
   },
   {
-    id: "your-rights",
-    title: "6. Your Privacy Rights",
-    content: [
-      {
-        subtitle: "Rights for All Users",
-        body: `Regardless of your location, you have the right to: (1) know what personal information we hold about you; (2) request a copy of that information; (3) request correction of inaccurate information; (4) request deletion of your information; and (5) withdraw consent where processing is based on consent.`,
-      },
-      {
-        subtitle: "California Residents (CCPA)",
-        body: `If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA), including the right to know about personal information collected, disclosed, or sold; the right to delete personal information; the right to opt-out of the sale of personal information (we do not sell personal information); and the right to non-discrimination for exercising your CCPA rights.`,
-      },
-      {
-        subtitle: "European / UK Residents (GDPR)",
-        body: `If you are in the European Economic Area or United Kingdom, you have rights under the General Data Protection Regulation (GDPR), including the right of access, rectification, erasure, restriction of processing, data portability, and the right to object. You also have the right to lodge a complaint with your local data protection authority.`,
-      },
-      {
-        subtitle: "Exercising Your Rights",
-        body: `To exercise any of these rights, please contact us at ${EMAIL}. We will respond to all verifiable requests within 30 days. We may need to verify your identity before processing certain requests.`,
-      },
-    ],
+    id: "retention",
+    title: "6. Retention",
+    body: "We keep information only as long as needed for the purposes above, to meet legal, tax and accounting obligations, and to resolve disputes. Client records are generally kept for seven (7) years after the relationship ends.",
   },
   {
-    id: "data-security",
-    title: "7. Data Security",
-    content: [
-      {
-        subtitle: "How We Protect Your Information",
-        body: `We implement reasonable administrative, technical, and physical safeguards to protect your personal information against unauthorized access, alteration, disclosure, or destruction. Our website is served over HTTPS (TLS encryption), and we limit access to personal information to personnel who need it to perform their job functions.`,
-      },
-      {
-        subtitle: "No Guarantee",
-        body: `While we take security seriously, no method of transmission over the internet or electronic storage is 100% secure. We cannot guarantee absolute security, and we encourage you to use strong, unique passwords and keep your contact details up to date.`,
-      },
-    ],
-  },
-  {
-    id: "third-party-links",
-    title: "8. Third-Party Links",
-    content: [
-      {
-        subtitle: "External Sites",
-        body: `Our website may contain links to third-party websites. This Privacy Policy applies only to spectecle.com. We are not responsible for the privacy practices of external sites and encourage you to review their privacy policies before providing any personal information.`,
-      },
-    ],
+    id: "security",
+    title: "7. Security",
+    body: "We use reasonable administrative, technical and physical safeguards. No system is completely secure, and we cannot guarantee the security of information.",
   },
   {
     id: "children",
-    title: "9. Children's Privacy",
-    content: [
-      {
-        subtitle: "Not Directed at Children",
-        body: `Spectecle SEO & Web Design's website and services are intended for adults and business owners. We do not knowingly collect personal information from children under the age of 13. If you believe we have inadvertently collected information from a child, please contact us at ${EMAIL} and we will delete it promptly.`,
-      },
-    ],
+    title: "8. Children",
+    body: "The Services are not directed to children under 13, and we do not knowingly collect their personal information. If you believe a child has provided us information, contact us and we will delete it.",
+  },
+  {
+    id: "your-choices-and-rights",
+    title: "9. Your choices and rights",
+    body: `You may request access to, correction of or deletion of your personal information, and you may close your account at any time, by contacting us at ${EMAIL}. If the law of your state gives you additional privacy rights, we will honor requests as that law requires. We will verify your identity before acting on a request.`,
   },
   {
     id: "changes",
-    title: "10. Changes to This Policy",
-    content: [
-      {
-        subtitle: "Policy Updates",
-        body: `We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or for other operational reasons. When we make material changes, we will update the "Effective Date" at the top of this page. We encourage you to review this policy periodically. Continued use of our website after changes are posted constitutes your acceptance of the updated policy.`,
-      },
-    ],
+    title: "10. Changes",
+    body: "We may update this Privacy Policy by posting a new version with a new effective date. Material changes will be highlighted on the Services or sent by email.",
   },
   {
-    id: "contact-us",
-    title: "11. Contact Us",
-    content: [
-      {
-        subtitle: "Privacy Questions",
-        body: `If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your personal information, please contact us at:\n\nSpectecle SEO & Web Design\nEmail: ${EMAIL}\nPhone: +1 (313) 353-4105\n\nWe will respond to all privacy-related inquiries within 30 days.`,
-      },
-    ],
+    id: "contact",
+    title: "11. Contact",
+    body: `Spectecle LLC, ${EMAIL}.`,
   },
 ];
 
@@ -206,16 +137,18 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mt-4 text-[var(--site-text-secondary)] text-base">
-            Effective Date: {EFFECTIVE_DATE} &nbsp;·&nbsp; {COMPANY} &nbsp;·&nbsp;{" "}
+            Effective date: {EFFECTIVE_DATE} &nbsp;·&nbsp; {COMPANY} &nbsp;·&nbsp;{" "}
             <a href={`https://${WEBSITE}`} className="text-[#9a5423] hover:underline">
               {WEBSITE}
             </a>
           </p>
           <p className="mt-6 text-[var(--site-text-secondary)] leading-relaxed max-w-2xl">
-            At Spectecle SEO & Web Design, your privacy matters. This Privacy Policy explains what
-            information we collect when you visit spectecle.com or contact us, how we use it,
-            and the choices you have. We are committed to handling your data responsibly and
-            transparently.
+            This Privacy Policy explains how Spectecle LLC (&quot;Spectecle,&quot; &quot;we,&quot;
+            &quot;us,&quot; each meaning Spectecle LLC only and never any individual) collects, uses
+            and shares information through spectecle.com, The Loop client portal, and Spectecle
+            apps, software and online services, including Explore Dearborn (together, the
+            &quot;Services&quot;). It does not cover websites we build or host for clients. Each
+            client is responsible for its own website&apos;s privacy practices.
           </p>
         </div>
       </section>
@@ -253,18 +186,34 @@ export default function PrivacyPage() {
               >
                 {section.title}
               </h2>
-              <div className="space-y-6">
-                {section.content.map((item, i) => (
-                  <div key={i}>
-                    <h3 className="text-base font-semibold text-[#9a5423] mb-2">
-                      {item.subtitle}
-                    </h3>
-                    <p className="text-[var(--site-text-secondary)] leading-relaxed text-sm whitespace-pre-line">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              {section.id === "information-we-collect" ? (
+                <div className="overflow-x-auto border border-[var(--site-border)]">
+                  <table className="w-full min-w-[560px] text-sm text-left">
+                    <thead className="bg-[var(--site-surface)] text-[var(--site-text-muted)]">
+                      <tr>
+                        <th scope="col" className="px-4 py-3 font-medium">Category</th>
+                        <th scope="col" className="px-4 py-3 font-medium">Examples</th>
+                        <th scope="col" className="px-4 py-3 font-medium">Source</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-[var(--site-text-secondary)] leading-relaxed">
+                      {collectedInfo.map((row) => (
+                        <tr key={row.category} className="border-t border-[var(--site-border)] align-top">
+                          <th scope="row" className="px-4 py-3 font-normal text-[var(--site-text-primary)]">
+                            {row.category}
+                          </th>
+                          <td className="px-4 py-3">{row.examples}</td>
+                          <td className="px-4 py-3">{row.source}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p className="text-[var(--site-text-secondary)] leading-relaxed text-sm">
+                  {section.body}
+                </p>
+              )}
             </div>
           ))}
         </div>
