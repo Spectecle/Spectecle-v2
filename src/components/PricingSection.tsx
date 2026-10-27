@@ -65,23 +65,14 @@ const designCardTiers: AdaptivePricingTier[] = designTiers.map((tier, i) => ({
   description: tier.tagline,
   badge: tier.featured ? "Most Popular" : undefined,
   features: tier.items.map((item) => ({ text: item, included: true })),
-  buttonText: tier.isCustom ? "Contact Us" : "Get Started",
+  buttonText: tier.isCustom ? "Contact us" : "Get started",
   highlighted: tier.featured,
 }));
 
 /* ─── Website Design tiers ───────────────────────────────── */
 function WebsiteDesignSection() {
   return (
-    <div>
-      <div className="mb-10">
-        <h2 className="text-4xl md:text-5xl font-light text-[var(--site-text-primary)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>
-          Choose your website design.
-        </h2>
-        <p className="text-[var(--site-text-secondary)] max-w-xl text-sm">
-          A one-time investment to design and build your site. Pick the level of customization
-          that fits your business.
-        </p>
-      </div>
+    <div className="pt-6">
       <AdaptivePricingCards tiers={designCardTiers} />
     </div>
   );
@@ -91,7 +82,7 @@ export function PricingSection() {
   return (
     <section className="relative px-6 pb-14">
       <div className="max-w-6xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
           <WebsiteDesignSection />
         </motion.div>
       </div>

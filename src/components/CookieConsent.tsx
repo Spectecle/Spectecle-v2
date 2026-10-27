@@ -38,7 +38,7 @@ export default function CookieConsent() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[100] p-4 sm:p-6">
-      <div className="max-w-3xl mx-auto bg-[var(--site-bg)] border border-[var(--site-border)] shadow-lg rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+      <div className="max-w-3xl mx-auto bg-[var(--site-bg)] border border-[var(--site-border)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
         <p className="text-sm text-[var(--site-text-secondary)] leading-relaxed flex-1">
           We use cookies to run this site and understand how it&apos;s used, including
           messages sent through our contact form and analytics on how visitors interact
@@ -51,13 +51,13 @@ export default function CookieConsent() {
         <div className="flex items-center gap-3 shrink-0">
           <button
             onClick={() => choose("denied")}
-            className="text-xs font-semibold uppercase tracking-wider text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer px-2 py-2"
+            className="text-sm font-semibold text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors cursor-pointer px-3 py-3"
           >
             Decline
           </button>
           <button
             onClick={() => choose("granted")}
-            className="btn-primary text-xs font-semibold uppercase tracking-wider px-5 py-2.5 cursor-pointer"
+            className="btn-primary text-sm font-semibold px-5 py-3 cursor-pointer"
           >
             <span>Accept</span>
           </button>

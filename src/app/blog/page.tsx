@@ -42,7 +42,7 @@ function Reveal({
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -65,8 +65,8 @@ export default function BlogPage() {
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Guides that <span className="italic text-[#9a5423]">actually work.</span>
@@ -85,7 +85,7 @@ export default function BlogPage() {
             <Link href={`/blog/${featured.slug}`} className="group grid lg:grid-cols-[1fr_1fr] gap-8 items-center">
               <div className="relative">
                 <span
-                  className="absolute top-4 left-4 z-10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#1e1e1e] bg-[#9a5423]"
+                  className="absolute top-4 left-4 z-10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1e1e1e] bg-[#9a5423]"
                 >
                   Featured
                 </span>
@@ -130,7 +130,7 @@ export default function BlogPage() {
 
           <div className="grid md:grid-cols-2 gap-x-10 gap-y-14">
             {rest.map((post, i) => (
-              <Reveal key={post.slug} delay={i * 0.07}>
+              <Reveal key={post.slug} delay={i * 0.03}>
                 <Link href={`/blog/${post.slug}`} className="group block">
                   <PostCover post={post} size="compact" />
                   <div className="mt-5 flex items-center gap-3">
@@ -173,7 +173,7 @@ export default function BlogPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1"
               >
-                Book a Free Call
+                Book a free call
                 <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>

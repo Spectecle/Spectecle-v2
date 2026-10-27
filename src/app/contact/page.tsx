@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ProofGallery } from "@/components/ui/ProofGallery";
@@ -27,7 +27,7 @@ function Reveal({
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -44,14 +44,55 @@ const budgetOptions = ["$1,000 – $5,000", "$5,000 – $10,000", "$10,000 – $
 
 const serviceOptions = ["Web Design & Development", "SEO & Digital Marketing", "AI & Automation", "All Three", "Something Else"];
 
+const EMPTY_FORM = { name: "", email: "", company: "", service: "", budget: "", message: "" };
+type ContactForm = typeof EMPTY_FORM;
+
+// Unsent form drafts survive a refresh or accidental navigation (nothing sensitive is stored).
+const DRAFT_KEY = "spectecle-contact-draft";
+
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "", email: "", company: "", service: "", budget: "", message: "",
-  });
+  const [formData, setFormData] = useState<ContactForm>(EMPTY_FORM);
+  const [draftRestored, setDraftRestored] = useState(false);
+  const draftChecked = useRef(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const loadedAt = useRef(Date.now());
   const [honey, setHoney] = useState("");
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null") as Partial<ContactForm> | null;
+        if (saved && Object.values(saved).some((v) => typeof v === "string" && v.trim())) {
+          setFormData((prev) => {
+            const next = { ...prev };
+            for (const k of Object.keys(EMPTY_FORM) as (keyof ContactForm)[]) {
+              if (typeof saved[k] === "string") next[k] = saved[k];
+            }
+            return next;
+          });
+          setDraftRestored(true);
+        }
+      } catch {}
+      draftChecked.current = true;
+    });
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
+    if (!draftChecked.current || status === "success") return;
+    try {
+      if (Object.values(formData).some((v) => v.trim())) localStorage.setItem(DRAFT_KEY, JSON.stringify(formData));
+      else localStorage.removeItem(DRAFT_KEY);
+    } catch {}
+  }, [formData, status]);
+
+  const discardDraft = () => {
+    try { localStorage.removeItem(DRAFT_KEY); } catch {}
+    setFormData(EMPTY_FORM);
+    setErrors({});
+    setDraftRestored(false);
+  };
 
   const fieldError = (field: string, value: string) => {
     if (field === "name" && !value.trim()) return "Enter your name so we know who to reply to.";
@@ -93,7 +134,11 @@ export default function ContactPage() {
         body: JSON.stringify({ ...formData, _honey: honey, _ts: loadedAt.current }),
       });
       setStatus(res.ok ? "success" : "error");
-      if (res.ok) trackEvent("contact_submit", { page_path: "/contact" });
+      if (res.ok) {
+        trackEvent("contact_submit", { page_path: "/contact" });
+        try { localStorage.removeItem(DRAFT_KEY); } catch {}
+        setDraftRestored(false);
+      }
     } catch {
       setStatus("error");
     }
@@ -109,7 +154,7 @@ export default function ContactPage() {
   const inputClass = (field: string) =>
     `w-full bg-transparent border-b ${
       errors[field] ? "border-rose-400" : "border-[var(--site-border)]"
-    } text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] px-0 py-3 text-sm transition-all duration-200 focus:border-[#9a5423] outline-none`;
+    } text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] px-0 py-3 text-sm transition duration-200 focus:border-[#9a5423] outline-none`;
 
   return (
     <>
@@ -122,8 +167,8 @@ export default function ContactPage() {
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Let&apos;s build something <span className="italic text-[#9a5423]">that actually works.</span>
@@ -168,9 +213,9 @@ export default function ContactPage() {
                   <button
                     onClick={() => {
                       setStatus("idle");
-                      setFormData({ name: "", email: "", company: "", service: "", budget: "", message: "" });
+                      setFormData(EMPTY_FORM);
                     }}
-                    className="text-[#9a5423] text-sm font-medium border-b border-[#9a5423] pb-0.5 cursor-pointer"
+                    className="text-[#9a5423] text-sm font-normal border-b border-[#9a5423] pb-0.5 cursor-pointer"
                   >
                     ← Send another message
                   </button>
@@ -191,18 +236,26 @@ export default function ContactPage() {
                     <p className="text-[var(--site-text-muted)] text-sm">
                       A quick question or a full project brief, both are welcome.
                     </p>
+                    {draftRestored && (
+                      <p className="mt-3 text-sm text-[var(--site-text-secondary)]" role="status">
+                        We restored your unsent message.{" "}
+                        <button type="button" onClick={discardDraft} className="text-[#9a5423] underline underline-offset-2 cursor-pointer">
+                          Discard draft
+                        </button>
+                      </p>
+                    )}
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="contact-name" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                      <label htmlFor="contact-name" className="block text-xs font-normal text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                         Full Name <span className="text-rose-400">*</span>
                       </label>
                       <input id="contact-name" name="name" type="text" autoComplete="name" value={formData.name} onChange={handleChange} onBlur={handleBlur} aria-invalid={!!errors.name} aria-describedby={errors.name ? "contact-name-error" : undefined} placeholder="Jane Smith" className={inputClass("name")} />
                       {errors.name && <p id="contact-name-error" className="mt-1.5 text-xs text-rose-400">{errors.name}</p>}
                     </div>
                     <div>
-                      <label htmlFor="contact-email" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                      <label htmlFor="contact-email" className="block text-xs font-normal text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                         Email <span className="text-rose-400">*</span>
                       </label>
                       <input id="contact-email" name="email" type="email" autoComplete="email" value={formData.email} onChange={handleChange} onBlur={handleBlur} aria-invalid={!!errors.email} aria-describedby={errors.email ? "contact-email-error" : undefined} placeholder="jane@company.com" className={inputClass("email")} />
@@ -211,14 +264,14 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="contact-company" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                    <label htmlFor="contact-company" className="block text-xs font-normal text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                       Company Name <span className="text-[var(--site-text-muted)] normal-case tracking-normal">(optional)</span>
                     </label>
                     <input id="contact-company" name="company" type="text" autoComplete="organization" value={formData.company} onChange={handleChange} placeholder="Acme Bakery" className={inputClass("company")} />
                   </div>
 
                   <div>
-                    <label htmlFor="contact-service" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                    <label htmlFor="contact-service" className="block text-xs font-normal text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                       Service Interest
                     </label>
                     <select id="contact-service" name="service" value={formData.service} onChange={handleChange} className={`${inputClass("service")} cursor-pointer`}>
@@ -228,9 +281,12 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="contact-message" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                    <label htmlFor="contact-message" className="block text-xs font-normal text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                       What&apos;s on Your Mind? <span className="text-rose-400">*</span>
                     </label>
+                    <p id="contact-message-help" className="text-xs text-[var(--site-text-muted)]">
+                      Your goals, questions, or challenges.
+                    </p>
                     <textarea
                       id="contact-message"
                       name="message"
@@ -238,16 +294,15 @@ export default function ContactPage() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       aria-invalid={!!errors.message}
-                      aria-describedby={errors.message ? "contact-message-error" : undefined}
+                      aria-describedby={errors.message ? "contact-message-help contact-message-error" : "contact-message-help"}
                       rows={4}
-                      placeholder="Tell us about your goals, questions, or challenges."
                       className={`${inputClass("message")} resize-none`}
                     />
                     {errors.message && <p id="contact-message-error" className="mt-1.5 text-xs text-rose-400">{errors.message}</p>}
                   </div>
 
                   <div>
-                    <label htmlFor="contact-budget" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                    <label htmlFor="contact-budget" className="block text-xs font-normal text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                       Budget Range <span className="text-[var(--site-text-muted)] normal-case tracking-normal">(optional)</span>
                     </label>
                     <select id="contact-budget" name="budget" value={formData.budget} onChange={handleChange} className={`${inputClass("budget")} cursor-pointer`}>
@@ -278,7 +333,7 @@ export default function ContactPage() {
                       </>
                     ) : (
                       <>
-                        <span>Send Message</span>
+                        <span>Send message</span>
                         <ArrowUpRight className="w-4 h-4 relative z-10" />
                       </>
                     )}

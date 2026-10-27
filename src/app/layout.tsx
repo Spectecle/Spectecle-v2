@@ -13,14 +13,14 @@ const GOOGLE_ADS_CONVERSION_ID = "AW-18414328207";
 const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   display: "swap",
 });
 
 const fraunces = Fraunces({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });

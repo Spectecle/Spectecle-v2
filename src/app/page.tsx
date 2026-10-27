@@ -16,7 +16,7 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -118,11 +118,11 @@ function ProjectCard({ p, delay }: { p: (typeof projects)[number]; delay: number
             src={p.image}
             alt={`${p.title} homepage`}
             fill
-            className="object-cover object-top transition-transform duration-[1200ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.06]"
+            className="object-cover object-top transition-transform duration-300 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.06]"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
-        <div className="mt-5 pb-4 border-b border-[var(--site-border)] group-hover:border-[var(--site-copper-soft)] transition-colors duration-400">
+        <div className="mt-5 pb-4 border-b border-[var(--site-border)] group-hover:border-[var(--site-copper-soft)] transition-colors duration-300">
           <h3
             className="text-2xl font-light text-[var(--site-text-primary)]"
             style={{ fontFamily: "var(--font-serif)" }}
@@ -157,14 +157,14 @@ export default function HomePage() {
             </Reveal>
             <div>
               <Reveal delay={0.1}>
-                <p className="text-[1.06rem] leading-[1.72] max-w-[44ch]" style={{ color: "#544838" }}>
+                <p className="text-[1.06rem] leading-[1.6] max-w-[44ch]" style={{ color: "#544838" }}>
                   Strategy, design, development, and marketing live under one roof, so the work stays sharp from first sketch to launched site. No handoffs to lose the thread. No template doing the thinking for you. Just a team that treats your site like the storefront it actually is. Based in Metro Detroit, working with businesses across Michigan and nationwide.
                 </p>
               </Reveal>
               <div className="mt-12">
                 <Reveal delay={0.16}>
                   <div>
-                    <span className="block text-3xl sm:text-4xl lg:text-5xl leading-none" style={{ fontFamily: "var(--font-serif)" }}>
+                    <span className="block text-3xl sm:text-4xl lg:text-5xl leading-[1.1]" style={{ fontFamily: "var(--font-serif)" }}>
                       2014
                     </span>
                     <span className="block mt-2.5 text-xs tracking-[0.16em] uppercase" style={{ color: "#93856d" }}>
@@ -192,16 +192,16 @@ export default function HomePage() {
 
           <div>
             {services.map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.05}>
+              <Reveal key={s.n} delay={i * 0.03}>
                 <Link
                   href={s.href}
                   data-cursor
-                  className="group relative grid grid-cols-[1fr] sm:grid-cols-[1fr_auto] items-center gap-4 sm:gap-12 py-6 sm:py-8 px-4 -mx-4 overflow-hidden border-t border-[var(--site-border)] last:border-b transition-[padding-left] duration-[450ms] ease-[cubic-bezier(.16,1,.3,1)] sm:hover:pl-9"
+                  className="group relative grid grid-cols-[1fr] sm:grid-cols-[1fr_auto] items-center gap-4 sm:gap-12 py-6 sm:py-8 px-4 -mx-4 overflow-hidden border-t border-[var(--site-border)] last:border-b"
                 >
                   {/* Mobile: original copper-wash treatment, tap-driven only
                       (no :hover classes) so a single tap navigates instead of
                       being swallowed by iOS's hover-preview-then-navigate quirk. */}
-                  <span className="sm:hidden absolute inset-y-0 left-0 w-0 bg-[rgba(203,124,70,.06)] -z-10 transition-[width] duration-300 ease-out group-active:w-full" />
+                  <span className="sm:hidden absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-[rgba(203,124,70,.06)] -z-10 transition-transform duration-300 ease-out group-active:scale-x-100" />
 
                   {/* Desktop/tablet only: full-row image reveal on hover, tap,
                       or keyboard focus. No z-index here on purpose: this div
@@ -210,7 +210,7 @@ export default function HomePage() {
                       behind the text — a negative z-index instead risked
                       sinking it behind the section's own background in some
                       browsers. */}
-                  <div className="hidden sm:block absolute inset-0 opacity-0 scale-105 transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] sm:group-hover:opacity-100 sm:group-hover:scale-100 sm:group-active:opacity-100 sm:group-active:scale-100 sm:group-focus-visible:opacity-100 sm:group-focus-visible:scale-100">
+                  <div className="hidden sm:block absolute inset-0 opacity-0 scale-105 transition duration-300 ease-[cubic-bezier(.16,1,.3,1)] sm:group-hover:opacity-100 sm:group-hover:scale-100 sm:group-active:opacity-100 sm:group-active:scale-100 sm:group-focus-visible:opacity-100 sm:group-focus-visible:scale-100">
                     <Image
                       src={s.image}
                       alt=""
@@ -222,7 +222,7 @@ export default function HomePage() {
                   </div>
 
                   <span
-                    className="relative z-10 text-2xl sm:text-3xl lg:text-4xl font-normal text-[var(--site-text-primary)] tracking-tight group-active:text-[var(--site-copper-soft)] sm:group-hover:text-white transition-colors"
+                    className="relative z-10 text-2xl sm:text-3xl lg:text-4xl font-normal text-[var(--site-text-primary)] tracking-tight group-active:text-[var(--site-copper-soft)] sm:group-hover:text-white transition duration-300 ease-out sm:group-hover:translate-x-5"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {s.title}
@@ -271,9 +271,9 @@ export default function HomePage() {
               <Link
                 href="/work"
                 data-cursor
-                className="hidden sm:inline-flex items-center gap-2.5 text-xs tracking-[0.16em] uppercase text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors shrink-0 pb-1"
+                className="hidden sm:inline-flex items-center gap-2.5 text-sm text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors shrink-0 pb-1"
               >
-                All projects
+                See all projects
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
@@ -281,7 +281,7 @@ export default function HomePage() {
 
           <div className="grid sm:grid-cols-2 gap-x-8 gap-y-16 sm:gap-y-24 md:[&>*:nth-child(even)]:mt-16">
             {featuredProjects.map((p, i) => (
-              <ProjectCard key={p.slug} p={p} delay={(i % 2) * 0.08} />
+              <ProjectCard key={p.slug} p={p} delay={(i % 2) * 0.03} />
             ))}
           </div>
 
@@ -289,9 +289,9 @@ export default function HomePage() {
             <Link
               href="/work"
               data-cursor
-              className="inline-flex items-center gap-2.5 text-xs tracking-[0.16em] uppercase text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors"
+              className="inline-flex items-center gap-2.5 text-sm text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors"
             >
-              All projects
+              See all projects
               <ArrowUpRight className="w-4 h-4" />
             </Link>
           </Reveal>
@@ -323,11 +323,11 @@ export default function HomePage() {
       <section className="py-32 sm:py-40 px-6 bg-[var(--site-surface)] border-t border-[var(--site-border)]">
         <Reveal>
           <div className="max-w-4xl mx-auto text-center">
-            <span className="text-xs text-[var(--site-copper-soft)] font-medium uppercase tracking-[0.25em]">
+            <span className="text-xs text-[var(--site-copper-soft)] font-normal uppercase tracking-[0.25em]">
               Let&apos;s Build Together
             </span>
             <h2
-              className="mt-6 text-5xl md:text-7xl font-normal text-[var(--site-text-primary)] leading-[1.05] tracking-tight"
+              className="mt-6 text-5xl md:text-7xl font-normal text-[var(--site-text-primary)] leading-[1.1] tracking-tight"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Let&apos;s build something worth{" "}
@@ -343,7 +343,7 @@ export default function HomePage() {
                 data-cursor
                 className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1"
               >
-                <span>Book a Free Call</span>
+                <span>Book a free call</span>
                 <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>

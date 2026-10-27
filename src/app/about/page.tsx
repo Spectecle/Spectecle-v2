@@ -19,7 +19,7 @@ function Reveal({
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -93,8 +93,8 @@ export default function AboutPage() {
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Small team. <span className="italic text-[#9a5423]">Serious results.</span>
@@ -111,14 +111,14 @@ export default function AboutPage() {
               href="/contact"
               className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5"
             >
-              Work With Us
+              Work with us
               <ArrowUpRight className="w-4 h-4" />
             </Link>
             <Link
               href="/work"
               className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors"
             >
-              View Our Work
+              View our work
             </Link>
           </div>
         </div>
@@ -138,14 +138,14 @@ export default function AboutPage() {
 
           <div className="divide-y divide-[var(--site-border)]">
             {expertise.map((e, i) => (
-              <Reveal key={e.title} delay={i * 0.08}>
+              <Reveal key={e.title} delay={i * 0.03}>
                 <div className="grid md:grid-cols-[80px_1fr] items-start gap-4 py-8">
                   <span className="text-sm text-[var(--site-text-muted)] font-mono">{e.n}</span>
                   <div>
                     <h3 className="text-[var(--site-text-primary)] font-semibold text-xl mb-2" style={{ fontFamily: "var(--font-sans)" }}>
                       {e.title}
                     </h3>
-                    <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-2xl">{e.desc}</p>
+                    <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-[70ch]">{e.desc}</p>
                   </div>
                 </div>
               </Reveal>
@@ -159,7 +159,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Our Story</span>
 
-          <div className="mt-5 space-y-5 text-[var(--site-text-secondary)] leading-relaxed">
+          <div className="mt-5 space-y-5 text-[var(--site-text-secondary)] leading-relaxed max-w-[70ch]">
             <p>
               Spectecle grew out of hands-on experience in enterprise IT and systems
               engineering, learning firsthand what makes software perform, scale, and
@@ -222,7 +222,7 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-2 gap-x-12 gap-y-10">
             {values.map((v, i) => (
-              <Reveal key={v.title} delay={i * 0.07}>
+              <Reveal key={v.title} delay={i * 0.03}>
                 <div>
                   <h3 className="text-[var(--site-text-primary)] font-semibold text-lg mb-2" style={{ fontFamily: "var(--font-sans)" }}>
                     {v.title}
@@ -292,7 +292,7 @@ export default function AboutPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1"
               >
-                Book a Free Call
+                Book a free call
                 <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>

@@ -22,7 +22,7 @@ function Reveal({
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -46,7 +46,7 @@ function renderBlock(block: ContentBlock, i: number) {
       );
     case "p":
       return (
-        <p key={i} className="text-[var(--site-text-secondary)] leading-relaxed mb-6">
+        <p key={i} className="text-[var(--site-text-secondary)] leading-relaxed mb-6 max-w-[70ch]">
           {block.text}
         </p>
       );
@@ -120,7 +120,7 @@ export default function BlogPostClient({
         <div className="max-w-3xl mx-auto">
           <Link href="/blog" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors text-sm mb-10">
             <ArrowLeft className="w-4 h-4" />
-            Back to Blog
+            Back to blog
           </Link>
 
           <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -137,7 +137,7 @@ export default function BlogPostClient({
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="text-4xl md:text-5xl xl:text-6xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
@@ -255,7 +255,7 @@ export default function BlogPostClient({
             </p>
             <div className="mt-10">
               <Link href="/contact" className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1">
-                Book a Free Strategy Call
+                Book a free strategy call
                 <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>

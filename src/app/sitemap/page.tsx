@@ -44,7 +44,7 @@ function LinkList({ links, className = "space-y-1" }: { links: { label: string; 
             className="group flex items-center justify-between gap-3 py-2 text-sm text-[var(--site-text-secondary)] hover:text-[#9a5423] transition-colors"
           >
             <span>{link.label}</span>
-            <ArrowUpRight className="w-3.5 h-3.5 shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            <ArrowUpRight className="w-3.5 h-3.5 shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition" />
           </Link>
         </li>
       ))}
@@ -77,7 +77,7 @@ export default function SitemapPage() {
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="relative pt-[176px] pb-10 px-6">
         <div className="max-w-5xl mx-auto">
-          <h1 className="inline-flex items-center gap-2 px-4 py-2 border border-[#9a5423]/20 text-sm text-[#9a5423] font-medium">
+          <h1 className="inline-flex items-center gap-2 px-4 py-2 border border-[#9a5423]/20 text-sm text-[#9a5423] font-normal">
             <span className="w-2 h-2 bg-[#9a5423]" />
             Site Map
           </h1>

@@ -29,13 +29,13 @@ export function AdaptivePricingCards({ tiers }: { tiers: PricingTier[] }) {
           className={cn(
             "relative flex flex-col h-full rounded-lg border transition-colors duration-300",
             tier.highlighted
-              ? "bg-[#1e1e1e] border-[#1e1e1e] shadow-2xl lg:-translate-y-2 z-10"
+              ? "bg-[#1e1e1e] border-[#1e1e1e] shadow-[0_8px_24px_rgba(0,0,0,0.06)] lg:-translate-y-2 z-10"
               : "bg-[var(--site-bg)] border-[var(--site-border)] hover:border-[var(--site-text-muted)]"
           )}
         >
           {tier.badge && (
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-              <div className="bg-[#9a5423] text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap">
+              <div className="bg-[#9a5423] text-white text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap">
                 {tier.badge}
               </div>
             </div>

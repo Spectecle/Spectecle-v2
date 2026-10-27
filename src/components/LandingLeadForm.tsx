@@ -11,7 +11,7 @@ const budgetOptions = ["$1,000 – $5,000", "$5,000 – $10,000", "$10,000 – $
 const inputClass = (hasError: boolean) =>
   `w-full bg-[var(--site-bg)] border ${
     hasError ? "border-rose-400" : "border-[var(--site-border)]"
-  } text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] px-4 py-3 text-sm transition-all duration-200 focus:border-[#9a5423] outline-none`;
+  } text-[var(--site-text-primary)] placeholder-[var(--site-text-muted)] px-4 py-3 text-sm transition duration-200 focus:border-[#9a5423] outline-none`;
 
 /**
  * A compact, self-contained lead form for a paid-traffic landing page —

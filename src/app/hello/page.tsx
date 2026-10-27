@@ -83,7 +83,7 @@ function Reveal({
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -105,7 +105,7 @@ function FeaturedWorkCard({ p }: { p: (typeof projects)[number] }) {
         {isVideo ? (
           <video
             ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             src="/videos/glambyabeer.mp4"
             autoPlay
             muted
@@ -118,7 +118,7 @@ function FeaturedWorkCard({ p }: { p: (typeof projects)[number] }) {
             src={p.screenshotUrl}
             alt={`${p.title} homepage`}
             fill
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
         )}
@@ -175,7 +175,7 @@ export default function HelloPage() {
 
           <div className="grid md:grid-cols-3 gap-x-8 gap-y-10 mb-10">
             {FEATURED.map((p, i) => (
-              <Reveal key={p.slug} delay={i * 0.1}>
+              <Reveal key={p.slug} delay={i * 0.03}>
                 <FeaturedWorkCard p={p} />
               </Reveal>
             ))}
@@ -233,7 +233,7 @@ export default function HelloPage() {
 
           <div className="divide-y divide-[var(--site-border)]">
             {FAQ_ITEMS.map((item, i) => (
-              <Reveal key={item.question} delay={i * 0.05}>
+              <Reveal key={item.question} delay={i * 0.03}>
                 <div>
                   <button
                     className="w-full flex items-center justify-between gap-4 py-6 text-left group cursor-pointer"
@@ -280,7 +280,7 @@ export default function HelloPage() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-10">
             <Link href="/contact" className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1">
-              Start a Project
+              Start a project
               <ArrowUpRight className="w-5 h-5" />
             </Link>
             <a

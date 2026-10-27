@@ -121,7 +121,7 @@ export default function Hero() {
         <div className="flex-1 flex flex-col justify-center">
           <div className="max-w-[1080px]">
             <h1
-              className="font-normal leading-[0.99] tracking-tight text-[11vw] sm:text-[6vw] lg:text-[4.6vw]"
+              className="font-normal leading-[1.1] tracking-tight text-[11vw] sm:text-[6vw] lg:text-[4.6vw]"
               style={{ fontFamily: "var(--font-serif)", color: HERO_TEXT }}
             >
               <span className="block overflow-hidden pb-[0.18em]">
@@ -148,7 +148,7 @@ export default function Hero() {
             >
               Every brand has a moment it&apos;s finally seen: someone stops scrolling, looks twice, and stays.
               We build that moment into your site,{" "}
-              <b className="font-medium" style={{ color: HERO_TEXT }}>engineered to load fast, rank higher, and convert</b>, then keep it growing long after launch.
+              <b className="font-normal" style={{ color: HERO_TEXT }}>engineered to load fast, rank higher, and convert</b>, then keep it growing long after launch.
             </p>
 
             <div
@@ -158,7 +158,7 @@ export default function Hero() {
               <Link
                 href="/contact"
                 data-cursor
-                className="hero-cta inline-flex items-center gap-3 text-[15px] font-medium px-[30px] py-[17px] rounded-full cursor-pointer"
+                className="hero-cta inline-flex items-center gap-3 text-[15px] font-normal px-[30px] py-[17px] rounded-full cursor-pointer"
                 style={{ background: HERO_TEXT, color: "#160f09" }}
               >
                 <span className="relative z-10 inline-flex items-center gap-3">
@@ -200,43 +200,50 @@ export default function Hero() {
 
           <div className="hidden md:block relative h-px w-full max-w-[340px] justify-self-center" style={{ background: HERO_BORDER }}>
             <span
-              className="absolute left-0 top-0 h-px"
-              style={{ width: `${Math.min(progress, 1) * 100}%`, background: HERO_ACCENT }}
+              className="absolute inset-x-0 top-0 h-px origin-left"
+              style={{ transform: `scaleX(${Math.min(progress, 1)})`, background: HERO_ACCENT }}
             />
           </div>
 
           <div className="flex items-center gap-2.5 justify-self-end">
             <button
               onClick={() => goTo(index - 1)}
-              aria-label="Previous work"
+              aria-label="Show previous slide"
               data-cursor
-              className="w-11 h-11 rounded-full border grid place-items-center transition-colors cursor-pointer"
+              className="has-tip w-11 h-11 rounded-full border grid place-items-center transition-colors cursor-pointer"
               style={{ borderColor: HERO_BORDER, color: HERO_TEXT }}
             >
               <ChevronLeft className="w-4 h-4" />
+              <span className="tip" role="tooltip">Show previous slide</span>
             </button>
             <button
               onClick={() => goTo(index + 1)}
-              aria-label="Next work"
+              aria-label="Show next slide"
               data-cursor
-              className="w-11 h-11 rounded-full border grid place-items-center transition-colors cursor-pointer"
+              className="has-tip w-11 h-11 rounded-full border grid place-items-center transition-colors cursor-pointer"
               style={{ borderColor: HERO_BORDER, color: HERO_TEXT }}
             >
               <ChevronRight className="w-4 h-4" />
+              <span className="tip" role="tooltip">Show next slide</span>
             </button>
-            <div className="hidden sm:flex items-center gap-2 ml-1.5">
+            <div className="hidden sm:flex items-center ml-1.5">
               {SLIDES.map((slide, i) => (
                 <button
                   key={slide.id}
                   onClick={() => goTo(i)}
-                  aria-label={`Go to work ${i + 1}`}
+                  aria-label={`Show ${slide.caption}`}
                   data-cursor
-                  className="w-[7px] h-[7px] rounded-full transition-all cursor-pointer"
-                  style={{
-                    background: i === index ? HERO_ACCENT : HERO_BORDER,
-                    transform: i === index ? "scale(1.25)" : "none",
-                  }}
-                />
+                  className="has-tip w-6 h-11 grid place-items-center cursor-pointer"
+                >
+                  <span
+                    className="block w-[7px] h-[7px] rounded-full transition-transform duration-200"
+                    style={{
+                      background: i === index ? HERO_ACCENT : HERO_BORDER,
+                      transform: i === index ? "scale(1.25)" : "none",
+                    }}
+                  />
+                  <span className="tip" role="tooltip">Show {slide.caption}</span>
+                </button>
               ))}
             </div>
           </div>

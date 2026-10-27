@@ -46,7 +46,7 @@ export function TestimonialCard({ author, text, href, className }: TestimonialCa
           <AvatarFallback>{initials(author.name)}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col items-start">
-          <h3 className="text-md font-semibold leading-none text-[var(--site-text-primary)]">
+          <h3 className="text-md font-semibold leading-[1.1] text-[var(--site-text-primary)]">
             {author.name}
           </h3>
           <p className="text-sm text-[var(--site-text-muted)]">

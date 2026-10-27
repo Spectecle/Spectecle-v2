@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  --leading-relaxed: 1.6;
   --color-cream: #f7f2e9;
   --color-cream-light: #fffdf8;
   --color-cream-dark: #efe6d3;
@@ -61,14 +62,14 @@ body {
 }
 
 .glass-hover {
-  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
 .glass-hover:hover {
   background: #1c1614;
   border-color: rgba(227, 168, 118, 0.4);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.07);
 }
 
 /* Pill CTA button — ink fill, copper hover-slide */
@@ -80,7 +81,7 @@ body {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: transform 0.25s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-primary::before {
@@ -89,7 +90,7 @@ body {
   inset: 0;
   background: var(--site-copper, #9a5423);
   transform: translateY(101%);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 0;
 }
 
@@ -164,13 +165,12 @@ body {
 
 /* Custom cursor hover expansion */
 .cb-cursor {
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  /* `scale` composes with the JS-driven `transform` that positions the ring. */
+  transition: scale 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.15s ease;
   will-change: transform;
 }
 .cb-cursor.is-hover {
-  width: 64px;
-  height: 64px;
+  scale: 1.88; /* 34px → 64px */
   background: rgba(242, 236, 225, 0.08);
 }
 
@@ -283,4 +283,48 @@ input:focus, textarea:focus, select:focus {
 :where(a, button, summary, [role="button"], [tabindex]:not([tabindex="-1"])):focus-visible {
   outline: 2px solid #cb7c46;
   outline-offset: 3px;
+}
+
+/* Tooltips for icon-only buttons: show on hover and keyboard focus. */
+.has-tip { position: relative; }
+.has-tip > .tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #211a13;
+  color: #f7f2e9;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+  z-index: 50;
+}
+.has-tip.tip-below > .tip { bottom: auto; top: calc(100% + 8px); }
+.has-tip:focus-visible > .tip { opacity: 1; }
+@media (hover: hover) {
+  .has-tip:hover > .tip { opacity: 1; }
+}
+
+/* Tap targets: give standalone links and buttons at least a 44px-tall hit
+   area without changing how they look. Inline links inside paragraphs are
+   exempt (WCAG 2.5.8 inline exception). Base layer, so any positioning
+   utility on the element still wins. */
+@layer base {
+  :where(a[href], button):not(p a):not(.portal-shell *) {
+    position: relative;
+  }
+  :where(a[href], button):not(p a):not(.portal-shell *)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: max(100%, 44px);
+    transform: translateY(-50%);
+  }
 }

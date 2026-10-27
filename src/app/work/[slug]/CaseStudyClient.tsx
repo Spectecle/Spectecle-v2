@@ -82,7 +82,7 @@ function Reveal({
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -104,7 +104,7 @@ export default function CaseStudyClient({
         <div className="max-w-6xl mx-auto">
           <Link href="/work" className="inline-flex items-center gap-2 text-[var(--site-text-muted)] hover:text-[var(--site-text-primary)] transition-colors text-sm mb-8">
             <ArrowLeft className="w-4 h-4" />
-            Back to Portfolio
+            Back to portfolio
           </Link>
 
           <p className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
@@ -113,13 +113,13 @@ export default function CaseStudyClient({
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-4 text-5xl md:text-6xl xl:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-4 text-5xl md:text-6xl xl:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             {project.title}
           </motion.h1>
-          <p className="mt-4 text-[#9a5423] font-medium text-lg">{project.tagline}</p>
+          <p className="mt-4 text-[#9a5423] font-normal text-lg">{project.tagline}</p>
         </div>
       </section>
 
@@ -181,7 +181,7 @@ export default function CaseStudyClient({
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 + 0.1, duration: 0.5, ease: "easeOut" }}
+                  transition={{ delay: i * 0.06 + 0.1, duration: 0.3, ease: "easeOut" }}
                 >
                   <Icon className="w-5 h-5 text-[#9a5423] mb-3" />
                   <p className="text-[var(--site-text-primary)] font-semibold text-sm mb-1">{f.label}</p>
@@ -272,7 +272,7 @@ export default function CaseStudyClient({
                 href="/contact"
                 className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1"
               >
-                Book a Free Strategy Call
+                Book a free strategy call
                 <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>

@@ -55,7 +55,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "backdrop-blur-xl border-b border-[var(--site-border)]" : ""}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition duration-300 ${scrolled ? "backdrop-blur-xl border-b border-[var(--site-border)]" : ""}`}
         style={{ background: scrolled ? "rgba(247,242,233,0.95)" : "transparent" }}
       >
         <nav className="w-full px-6 lg:px-10 h-24 flex items-center justify-between">
@@ -84,7 +84,7 @@ export default function Navbar() {
               >
                 {link.label}
                 <span
-                  className="absolute left-0 bottom-0 h-px w-0 transition-[width] duration-300 group-hover:w-full"
+                  className="absolute left-0 bottom-0 h-px w-full origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"
                   style={{ background: overDarkHero ? HERO_ACCENT : "var(--site-copper-soft)" }}
                 />
               </Link>
@@ -114,7 +114,7 @@ export default function Navbar() {
             <Link
               href="/portal"
               data-cursor
-              className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium transition-colors cursor-pointer"
+              className="hidden md:inline-flex items-center gap-1.5 text-sm font-normal transition-colors cursor-pointer"
               style={{ color: overDarkHero ? HERO_TEXT_MUTED : "var(--site-text-secondary)" }}
             >
               <User className="w-3.5 h-3.5" />
@@ -123,18 +123,20 @@ export default function Navbar() {
             <Link
               href="/contact"
               data-cursor
-              className="hidden md:inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] border rounded-full px-[22px] py-3 cursor-pointer transition-colors duration-300 hover:border-[var(--site-copper-soft)] hover:bg-[var(--site-copper)] hover:text-[#f7f2e9]"
+              className="hidden md:inline-flex items-center gap-2 text-sm font-normal border rounded-full px-6 py-3 cursor-pointer transition-colors duration-300 hover:border-[var(--site-copper-soft)] hover:bg-[var(--site-copper)] hover:text-[#f7f2e9]"
               style={{ borderColor: overDarkHero ? HERO_BORDER : "var(--site-border)", color: overDarkHero ? HERO_TEXT : "var(--site-text-primary)" }}
             >
               Start a project
             </Link>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2.5 transition-colors cursor-pointer"
+              className="has-tip tip-below md:hidden p-2.5 transition-colors cursor-pointer"
               style={{ color: overDarkHero ? HERO_TEXT : "var(--site-text-secondary)" }}
-              aria-label="Toggle menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
             >
               {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <span className="tip" role="tooltip">{menuOpen ? "Close menu" : "Open menu"}</span>
             </button>
           </div>
         </nav>
@@ -186,7 +188,7 @@ export default function Navbar() {
                   href="/contact"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 w-fit cursor-pointer"
                 >
-                  <span>Start a Project</span>
+                  <span>Start a project</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </Link>
                 <Link

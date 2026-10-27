@@ -20,7 +20,7 @@ function Reveal({
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -37,8 +37,8 @@ export default function WorkPage() {
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Work that drives <span className="italic text-[#9a5423]">measurable growth.</span>
@@ -62,7 +62,7 @@ export default function WorkPage() {
                       src={p.screenshotUrl}
                       alt={`${p.title} homepage`}
                       fill
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
@@ -93,7 +93,7 @@ export default function WorkPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1"
               >
-                Start a Project
+                Start a project
                 <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>

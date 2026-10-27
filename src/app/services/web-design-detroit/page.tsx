@@ -19,7 +19,7 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -86,8 +86,8 @@ export default function WebDesignDetroitPage() {
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               A website that turns clicks into <span className="italic text-[#9a5423]">clients.</span>
@@ -105,7 +105,7 @@ export default function WebDesignDetroitPage() {
                 href={GOOGLE_REVIEW_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#9a5423] hover:underline font-medium"
+                className="text-[#9a5423] hover:underline font-normal"
               >
                 Read our Google reviews
               </a>
@@ -141,8 +141,8 @@ export default function WebDesignDetroitPage() {
           </Reveal>
           <div className="grid sm:grid-cols-3 gap-6">
             {outcomes.map((o, i) => (
-              <Reveal key={o.label} delay={i * 0.08}>
-                <div className="group border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
+              <Reveal key={o.label} delay={i * 0.03}>
+                <div className="group border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition duration-300">
                   <div className="w-10 h-10 rounded-full bg-[#9a5423]/10 flex items-center justify-center mb-4 group-hover:bg-[#9a5423]/20 transition-colors">
                     <o.Icon className="w-5 h-5 text-[#9a5423]" strokeWidth={1.75} />
                   </div>
@@ -205,7 +205,7 @@ export default function WebDesignDetroitPage() {
             </Reveal>
             <div className="grid sm:grid-cols-3 gap-6">
               {featuredTestimonials.map((t, i) => (
-                <Reveal key={t.name} delay={i * 0.08}>
+                <Reveal key={t.name} delay={i * 0.03}>
                   <div className="border border-[var(--site-border)] p-6 h-full">
                     <Quote className="w-5 h-5 text-[#9a5423]/50 mb-3" />
                     <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>

@@ -85,13 +85,13 @@ export default function TermsPage() {
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="relative pt-[176px] pb-10 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#9a5423]/20 text-sm text-[#9a5423] font-medium mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#9a5423]/20 text-sm text-[#9a5423] font-normal mb-8">
             <span className="w-2 h-2 bg-[#9a5423]" />
             Legal
           </div>
 
           <h1
-            className="text-4xl md:text-5xl font-bold text-[var(--site-text-primary)] leading-tight"
+            className="text-4xl md:text-5xl font-semibold text-[var(--site-text-primary)] leading-tight"
             style={{ fontFamily: "var(--font-sans)" }}
           >
             Website Terms of Use
@@ -140,7 +140,7 @@ export default function TermsPage() {
           {sections.map((section) => (
             <div key={section.id} id={section.id} className="scroll-mt-28">
               <h2
-                className="text-xl md:text-2xl font-bold text-[var(--site-text-primary)] mb-6 pb-4 border-b border-[var(--site-border)]"
+                className="text-xl md:text-2xl font-semibold text-[var(--site-text-primary)] mb-6 pb-4 border-b border-[var(--site-border)]"
                 style={{ fontFamily: "var(--font-sans)" }}
               >
                 {section.title}
@@ -160,7 +160,7 @@ export default function TermsPage() {
             Questions About These Terms?
           </p>
           <h2
-            className="text-3xl md:text-4xl font-bold text-[var(--site-text-primary)]"
+            className="text-3xl md:text-4xl font-semibold text-[var(--site-text-primary)]"
             style={{ fontFamily: "var(--font-sans)" }}
           >
             Reach out — we&apos;re here to help.
@@ -177,7 +177,7 @@ export default function TermsPage() {
               href="/contact"
               className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5 cursor-pointer"
             >
-              <span>Contact Us</span>
+              <span>Contact us</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
             <Link

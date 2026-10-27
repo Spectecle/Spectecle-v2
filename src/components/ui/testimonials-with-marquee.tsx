@@ -37,7 +37,7 @@ export function TestimonialsSection({
           <h2 className="max-w-[720px] text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight">
             {title}
           </h2>
-          <p className="text-md max-w-[600px] font-medium text-[var(--site-text-secondary)] sm:text-xl">
+          <p className="text-md max-w-[600px] font-normal text-[var(--site-text-secondary)] sm:text-xl">
             {description}
           </p>
         </div>

@@ -12,7 +12,7 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -64,8 +64,8 @@ export default function WebDesignBirminghamPage() {
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Web Design & <span className="italic text-[#9a5423]">Development</span> for Birmingham businesses.
@@ -77,11 +77,11 @@ export default function WebDesignBirminghamPage() {
 
             <div className="mt-8 flex flex-wrap gap-8">
               <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
-                Get a Free Quote
+                Get a free quote
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
               <Link href="/work" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
-                View Our Work <ChevronRight className="w-4 h-4" />
+                View our work <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -120,8 +120,8 @@ export default function WebDesignBirminghamPage() {
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
-              <Reveal key={f.label} delay={i * 0.07}>
-                <div className="group border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
+              <Reveal key={f.label} delay={i * 0.03}>
+                <div className="group border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition duration-300">
                   <div className="w-10 h-10 rounded-full bg-[#9a5423]/10 flex items-center justify-center mb-4 group-hover:bg-[#9a5423]/20 transition-colors">
                     <f.Icon className="w-5 h-5 text-[#9a5423]" strokeWidth={1.75} />
                   </div>
@@ -154,7 +154,7 @@ export default function WebDesignBirminghamPage() {
               { title: "MI Family Lawyer", location: "Michigan", result: "Custom Law Firm Site", href: "/work/mi-family-lawyer" },
             ].map((p) => (
               <Reveal key={p.title}>
-                <Link href={p.href} className="group block border border-[var(--site-border)] bg-[var(--site-bg)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
+                <Link href={p.href} className="group block border border-[var(--site-border)] bg-[var(--site-bg)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition duration-300">
                   <p className="text-xs uppercase tracking-widest text-[var(--site-text-muted)] mb-2">{p.location}</p>
                   <h3 className="text-[var(--site-text-primary)] font-semibold mb-1">{p.title}</h3>
                   <p className="text-sm font-semibold text-[#9a5423] mb-3">{p.result}</p>
@@ -214,7 +214,7 @@ export default function WebDesignBirminghamPage() {
               { title: "AI & Automation", desc: "Automate lead follow-up, client intake, and internal workflows.", href: "/services/ai-automation" },
             ].map((s) => (
               <Reveal key={s.title}>
-                <Link href={s.href} className="group block border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition-all duration-300">
+                <Link href={s.href} className="group block border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition duration-300">
                   <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 group-hover:text-[#9a5423] transition-colors">{s.title}</h3>
                   <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{s.desc}</p>
                   <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#9a5423]">
@@ -239,7 +239,7 @@ export default function WebDesignBirminghamPage() {
             </p>
             <div className="mt-10">
               <Link href="/contact" className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1">
-                Book a Free Strategy Call
+                Book a free strategy call
                 <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>

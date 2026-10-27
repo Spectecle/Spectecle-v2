@@ -48,7 +48,7 @@ function StickyCard({
               <div>
                 <span className="text-xs font-mono text-white/60">{item.n}</span>
                 <h3
-                  className="mt-1 text-2xl font-light text-white leading-none"
+                  className="mt-1 text-2xl font-light text-white leading-[1.1]"
                   style={{ fontFamily: "var(--font-serif)" }}
                 >
                   {item.title}

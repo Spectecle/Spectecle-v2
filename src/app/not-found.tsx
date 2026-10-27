@@ -11,8 +11,8 @@ export default function NotFound() {
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-7xl md:text-8xl font-light text-[var(--site-text-primary)] leading-none"
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="text-7xl md:text-8xl font-light text-[var(--site-text-primary)] leading-[1.1]"
           style={{ fontFamily: "var(--font-serif)" }}
         >
           404 Error!
@@ -21,7 +21,7 @@ export default function NotFound() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.3, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 text-[var(--site-text-secondary)] text-lg"
         >
           Ooops! That page does not exist.
@@ -30,7 +30,7 @@ export default function NotFound() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
           className="mt-10 flex flex-wrap items-center gap-8"
         >
           <Link
@@ -43,7 +43,7 @@ export default function NotFound() {
             href="/contact"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors"
           >
-            Start a Project
+            Start a project
             <ArrowUpRight className="w-4 h-4" />
           </Link>
         </motion.div>

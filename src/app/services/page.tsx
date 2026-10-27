@@ -21,7 +21,7 @@ function Reveal({
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -119,8 +119,8 @@ export default function ServicesPage() {
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.05]"
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Three disciplines. <span className="italic text-[#9a5423]">One obsession.</span>
@@ -135,14 +135,14 @@ export default function ServicesPage() {
       <section className="py-12 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto divide-y divide-[var(--site-border)]">
           {services.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.08}>
+            <Reveal key={s.title} delay={i * 0.03}>
               <Link href={s.href} className="group grid md:grid-cols-[80px_1fr_140px_auto] items-center gap-6 py-8">
                 <span className="text-sm text-[var(--site-text-muted)] font-mono">{s.n}</span>
                 <div>
                   <h2 className="text-3xl font-light text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
                     {s.title}
                   </h2>
-                  <p className="mt-2 text-[#9a5423] text-sm font-medium">{s.tagline}</p>
+                  <p className="mt-2 text-[#9a5423] text-sm font-normal">{s.tagline}</p>
                   <p className="mt-3 text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-xl">{s.desc}</p>
                 </div>
                 <div className="hidden md:block relative w-full aspect-[4/3] overflow-hidden">
@@ -151,10 +151,10 @@ export default function ServicesPage() {
                     alt=""
                     fill
                     sizes="140px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
-                <ArrowUpRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#9a5423] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all justify-self-end" />
+                <ArrowUpRight className="w-6 h-6 text-[var(--site-text-muted)] group-hover:text-[#9a5423] group-hover:translate-x-1 group-hover:-translate-y-1 transition justify-self-end" />
               </Link>
             </Reveal>
           ))}
@@ -213,7 +213,7 @@ export default function ServicesPage() {
                   alt=""
                   fill
                   sizes="(max-width: 768px) 100vw, 500px"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <div className="order-1 md:order-2">
@@ -223,7 +223,7 @@ export default function ServicesPage() {
                 <h2 className="text-3xl sm:text-4xl font-light text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
                   {theLoop.title}
                 </h2>
-                <p className="mt-2 text-[#9a5423] text-sm font-medium">{theLoop.tagline}</p>
+                <p className="mt-2 text-[#9a5423] text-sm font-normal">{theLoop.tagline}</p>
                 <p className="mt-3 text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-md">{theLoop.desc}</p>
                 <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors">
                   Learn more
@@ -269,7 +269,7 @@ export default function ServicesPage() {
                     alt=""
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/5" />
                   <div className="absolute inset-0 flex flex-col justify-end p-8">
@@ -299,7 +299,7 @@ export default function ServicesPage() {
           </Reveal>
           <div className="grid sm:grid-cols-2 gap-x-12 gap-y-10">
             {additionalServices.map((a, i) => (
-              <Reveal key={a.title} delay={i * 0.08}>
+              <Reveal key={a.title} delay={i * 0.03}>
                 <h3 className="text-[var(--site-text-primary)] font-semibold mb-2">{a.title}</h3>
                 <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">{a.desc}</p>
               </Reveal>
@@ -320,10 +320,10 @@ export default function ServicesPage() {
 
           <div className="divide-y divide-[var(--site-border)]">
             {faqs.map((faq, i) => (
-              <Reveal key={i} delay={i * 0.05}>
+              <Reveal key={i} delay={i * 0.03}>
                 <div className="py-7">
                   <h3 className="text-[var(--site-text-primary)] font-semibold mb-3">{faq.q}</h3>
-                  <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">{faq.a}</p>
+                  <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed max-w-[70ch]">{faq.a}</p>
                 </div>
               </Reveal>
             ))}
@@ -349,7 +349,7 @@ export default function ServicesPage() {
         <Reveal>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-6xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
-              Nationwide reach. <span className="italic text-[#9a5423]">Results-driven.</span>
+              Detroit roots. <span className="italic text-[#9a5423]">Nationwide results.</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
               Book a free 30-minute strategy call. No sales pitch, just honest advice on what will move the needle for your business, wherever you are.
@@ -359,7 +359,7 @@ export default function ServicesPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-1"
               >
-                Book a Free Strategy Call
+                Book a free strategy call
                 <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>
