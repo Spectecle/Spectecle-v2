@@ -266,3 +266,14 @@ input:focus, textarea:focus, select:focus {
   background: var(--site-surface);
   border-color: var(--site-border);
 }
+
+/* Reduced motion: stop CSS animations (ticker, Ken Burns) and make
+   transitions instant for visitors who ask for it. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

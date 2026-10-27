@@ -123,14 +123,14 @@ export default function Navbar() {
             <Link
               href="/contact"
               data-cursor
-              className="hidden md:inline-flex items-center gap-2 text-[11.5px] font-medium uppercase tracking-[0.2em] border rounded-full px-[22px] py-3 cursor-pointer transition-colors duration-300 hover:border-[var(--site-copper-soft)] hover:bg-[var(--site-copper)] hover:text-[#f7f2e9]"
+              className="hidden md:inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] border rounded-full px-[22px] py-3 cursor-pointer transition-colors duration-300 hover:border-[var(--site-copper-soft)] hover:bg-[var(--site-copper)] hover:text-[#f7f2e9]"
               style={{ borderColor: overDarkHero ? HERO_BORDER : "var(--site-border)", color: overDarkHero ? HERO_TEXT : "var(--site-text-primary)" }}
             >
               Start a project
             </Link>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 transition-colors cursor-pointer"
+              className="md:hidden p-2.5 transition-colors cursor-pointer"
               style={{ color: overDarkHero ? HERO_TEXT : "var(--site-text-secondary)" }}
               aria-label="Toggle menu"
             >

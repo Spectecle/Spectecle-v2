@@ -190,7 +190,7 @@ export function LandingLeadForm({
               </span>
             </button>
 
-            <p className="text-center text-[11px] text-[var(--site-text-muted)]">
+            <p className="text-center text-xs text-[var(--site-text-muted)]">
               No hard sell, ever. By submitting you agree to our{" "}
               <Link href="/privacy" className="underline underline-offset-2">Privacy Policy</Link>.
             </p>

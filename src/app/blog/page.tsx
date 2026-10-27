@@ -85,7 +85,7 @@ export default function BlogPage() {
             <Link href={`/blog/${featured.slug}`} className="group grid lg:grid-cols-[1fr_1fr] gap-8 items-center">
               <div className="relative">
                 <span
-                  className="absolute top-4 left-4 z-10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#1e1e1e] bg-[#9a5423]"
+                  className="absolute top-4 left-4 z-10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#1e1e1e] bg-[#9a5423]"
                 >
                   Featured
                 </span>

@@ -9,6 +9,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // Native scrolling for visitors who ask for reduced motion.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const lenis = new Lenis({
       duration: 1.4,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),

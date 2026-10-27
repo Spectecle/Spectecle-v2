@@ -53,19 +53,37 @@ export default function ContactPage() {
   const loadedAt = useRef(Date.now());
   const [honey, setHoney] = useState("");
 
+  const fieldError = (field: string, value: string) => {
+    if (field === "name" && !value.trim()) return "Enter your name so we know who to reply to.";
+    if (field === "email" && !value.trim()) return "Enter your email so we can reply.";
+    if (field === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Enter an email like name@company.com.";
+    if (field === "message" && !value.trim()) return "Tell us a little about your project.";
+    return "";
+  };
+
   const validate = () => {
     const e: Record<string, string> = {};
-    if (!formData.name.trim()) e.name = "Name is required";
-    if (!formData.email.trim()) e.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) e.email = "Enter a valid email";
-    if (!formData.message.trim()) e.message = "Tell us about your project";
+    for (const field of ["name", "email", "message"] as const) {
+      const msg = fieldError(field, formData[field]);
+      if (msg) e[field] = msg;
+    }
     return e;
+  };
+
+  // Validate a field the first time the visitor leaves it, not while typing.
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const msg = fieldError(e.target.name, e.target.value);
+    setErrors((prev) => ({ ...prev, [e.target.name]: msg }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
-    if (Object.keys(errs).length) { setErrors(errs); return; }
+    if (Object.keys(errs).length) {
+      setErrors(errs);
+      document.getElementById(`contact-${Object.keys(errs)[0]}`)?.focus();
+      return;
+    }
     setErrors({});
     setStatus("submitting");
     try {
@@ -177,58 +195,62 @@ export default function ContactPage() {
 
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                      <label htmlFor="contact-name" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                         Full Name <span className="text-rose-400">*</span>
                       </label>
-                      <input name="name" type="text" value={formData.name} onChange={handleChange} placeholder="Jane Smith" className={inputClass("name")} />
-                      {errors.name && <p className="mt-1.5 text-xs text-rose-400">{errors.name}</p>}
+                      <input id="contact-name" name="name" type="text" autoComplete="name" value={formData.name} onChange={handleChange} onBlur={handleBlur} aria-invalid={!!errors.name} aria-describedby={errors.name ? "contact-name-error" : undefined} placeholder="Jane Smith" className={inputClass("name")} />
+                      {errors.name && <p id="contact-name-error" className="mt-1.5 text-xs text-rose-400">{errors.name}</p>}
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                      <label htmlFor="contact-email" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                         Email <span className="text-rose-400">*</span>
                       </label>
-                      <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="jane@company.com" className={inputClass("email")} />
-                      {errors.email && <p className="mt-1.5 text-xs text-rose-400">{errors.email}</p>}
+                      <input id="contact-email" name="email" type="email" autoComplete="email" value={formData.email} onChange={handleChange} onBlur={handleBlur} aria-invalid={!!errors.email} aria-describedby={errors.email ? "contact-email-error" : undefined} placeholder="jane@company.com" className={inputClass("email")} />
+                      {errors.email && <p id="contact-email-error" className="mt-1.5 text-xs text-rose-400">{errors.email}</p>}
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                    <label htmlFor="contact-company" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                       Company Name <span className="text-[var(--site-text-muted)] normal-case tracking-normal">(optional)</span>
                     </label>
-                    <input name="company" type="text" value={formData.company} onChange={handleChange} placeholder="Your Business Name" className={inputClass("company")} />
+                    <input id="contact-company" name="company" type="text" autoComplete="organization" value={formData.company} onChange={handleChange} placeholder="Acme Bakery" className={inputClass("company")} />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                    <label htmlFor="contact-service" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                       Service Interest
                     </label>
-                    <select name="service" value={formData.service} onChange={handleChange} className={`${inputClass("service")} cursor-pointer`}>
+                    <select id="contact-service" name="service" value={formData.service} onChange={handleChange} className={`${inputClass("service")} cursor-pointer`}>
                       <option value="" disabled>Select a service</option>
                       {serviceOptions.map((s) => <option key={s} value={s}>{s}</option>)}
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                    <label htmlFor="contact-message" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                       What&apos;s on Your Mind? <span className="text-rose-400">*</span>
                     </label>
                     <textarea
+                      id="contact-message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
+                      onBlur={handleBlur}
+                      aria-invalid={!!errors.message}
+                      aria-describedby={errors.message ? "contact-message-error" : undefined}
                       rows={4}
                       placeholder="Tell us about your goals, questions, or challenges."
                       className={`${inputClass("message")} resize-none`}
                     />
-                    {errors.message && <p className="mt-1.5 text-xs text-rose-400">{errors.message}</p>}
+                    {errors.message && <p id="contact-message-error" className="mt-1.5 text-xs text-rose-400">{errors.message}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
+                    <label htmlFor="contact-budget" className="block text-xs font-medium text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
                       Budget Range <span className="text-[var(--site-text-muted)] normal-case tracking-normal">(optional)</span>
                     </label>
-                    <select name="budget" value={formData.budget} onChange={handleChange} className={`${inputClass("budget")} cursor-pointer`}>
+                    <select id="contact-budget" name="budget" value={formData.budget} onChange={handleChange} className={`${inputClass("budget")} cursor-pointer`}>
                       <option value="" disabled>Select a range, or skip if unsure</option>
                       {budgetOptions.map((b) => <option key={b} value={b}>{b}</option>)}
                     </select>

@@ -57,6 +57,8 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
+    // No auto-advancing slideshow for reduced-motion visitors; arrows still work.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf: number;
     const loop = (now: number) => {
       const p = (now - t0.current) / SLIDE_DURATION;

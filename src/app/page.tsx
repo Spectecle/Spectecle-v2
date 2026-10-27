@@ -167,7 +167,7 @@ export default function HomePage() {
                     <span className="block text-3xl sm:text-4xl lg:text-5xl leading-none" style={{ fontFamily: "var(--font-serif)" }}>
                       2014
                     </span>
-                    <span className="block mt-2.5 text-[11.5px] tracking-[0.16em] uppercase" style={{ color: "#93856d" }}>
+                    <span className="block mt-2.5 text-xs tracking-[0.16em] uppercase" style={{ color: "#93856d" }}>
                       Founded
                     </span>
                   </div>

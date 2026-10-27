@@ -28,7 +28,7 @@ export default function Footer() {
               <Link
                 href={link.href}
                 data-cursor
-                className="text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors whitespace-nowrap"
+                className="inline-block py-3 -my-3 text-sm text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors whitespace-nowrap"
               >
                 {link.label}
               </Link>
@@ -53,7 +53,7 @@ export default function Footer() {
               data-cursor
               target={link.href.startsWith("http") ? "_blank" : undefined}
               rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="text-xs tracking-[0.15em] uppercase text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors"
+              className="inline-block py-3.5 -my-3.5 text-xs tracking-[0.15em] uppercase text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors"
             >
               {link.label}
             </Link>

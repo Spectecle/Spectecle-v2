@@ -35,7 +35,7 @@ export function AdaptivePricingCards({ tiers }: { tiers: PricingTier[] }) {
         >
           {tier.badge && (
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-              <div className="bg-[#9a5423] text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap">
+              <div className="bg-[#9a5423] text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap">
                 {tier.badge}
               </div>
             </div>
@@ -43,7 +43,7 @@ export function AdaptivePricingCards({ tiers }: { tiers: PricingTier[] }) {
 
           <div className={cn("text-center pt-12 pb-6 px-6", tier.highlighted ? "text-white" : "text-[var(--site-text-primary)]")}>
             {tier.subtitle && (
-              <div className={cn("text-[10px] font-semibold uppercase tracking-[0.2em] mb-4", tier.highlighted ? "text-white/50" : "text-[var(--site-text-muted)]")}>
+              <div className={cn("text-xs font-semibold uppercase tracking-[0.2em] mb-4", tier.highlighted ? "text-white/50" : "text-[var(--site-text-muted)]")}>
                 {tier.subtitle}
               </div>
             )}
@@ -56,7 +56,7 @@ export function AdaptivePricingCards({ tiers }: { tiers: PricingTier[] }) {
           </div>
 
           <div className="flex-1 px-6">
-            <h4 className={cn("text-[10px] font-semibold uppercase tracking-[0.2em] mb-4", tier.highlighted ? "text-white/50" : "text-[var(--site-text-muted)]")}>
+            <h4 className={cn("text-xs font-semibold uppercase tracking-[0.2em] mb-4", tier.highlighted ? "text-white/50" : "text-[var(--site-text-muted)]")}>
               Plan Highlights
             </h4>
             <div className="space-y-3">

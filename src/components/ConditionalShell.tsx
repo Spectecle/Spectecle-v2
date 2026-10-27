@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { MotionConfig } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { SiteThemeProvider } from "./SiteThemeProvider";
@@ -29,13 +30,17 @@ export default function ConditionalShell({ children }: { children: React.ReactNo
     );
   }
 
+  // reducedMotion="user": framer drops transform animations (keeps opacity)
+  // for visitors with prefers-reduced-motion set.
   return (
-    <SiteThemeProvider>
-      <CustomCursor />
-      <Navbar />
-      <main className="flex-1">{children}</main>
-      <Footer />
-      <CookieConsent />
-    </SiteThemeProvider>
+    <MotionConfig reducedMotion="user">
+      <SiteThemeProvider>
+        <CustomCursor />
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <CookieConsent />
+      </SiteThemeProvider>
+    </MotionConfig>
   );
 }
