@@ -239,10 +239,6 @@ export default function PrivacyPage() {
             >
               {EMAIL}
             </a>{" "}
-            or call{" "}
-            <a href="tel:+13133534105" className="text-[#9a5423] hover:underline">
-              +1 (313) 353-4105
-            </a>{" "}
             with any privacy-related questions.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
