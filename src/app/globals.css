@@ -277,3 +277,10 @@ input:focus, textarea:focus, select:focus {
     scroll-behavior: auto !important;
   }
 }
+
+/* Keyboard focus: visible on both the cream pages and the dark hero.
+   Mouse clicks don't trigger :focus-visible, so this only shows for keyboard users. */
+:where(a, button, summary, [role="button"], [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid #cb7c46;
+  outline-offset: 3px;
+}
