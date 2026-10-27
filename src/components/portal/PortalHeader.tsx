@@ -9,7 +9,7 @@ export async function PortalHeader() {
   const user = await getSession();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--portal-border)] bg-[var(--portal-surface)]/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-[var(--portal-border)] bg-[var(--portal-surface)]">
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-5">
           <Link href="/portal" className="flex items-center gap-2 cursor-pointer">

@@ -268,7 +268,7 @@ async function DashboardSection({
             Email Activity (This Month)
           </p>
           {gmailAccount && (
-            <span className="text-xs text-[var(--portal-text-faint)] bg-[var(--portal-border)] px-2 py-0.5 rounded-full">
+            <span className="text-xs text-[var(--portal-text-faint)]">
               {gmailAccount}
             </span>
           )}

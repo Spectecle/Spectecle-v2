@@ -67,7 +67,7 @@ export function PaymentReminderCard({ reminder }: { reminder: PaymentReminder })
               {reminder.customer_name ?? "Unknown customer"}
             </h3>
             {reminder.invoice_number && (
-              <span className="text-xs text-[var(--portal-text-faint)] bg-[var(--portal-border)] px-2 py-0.5 rounded-full">
+              <span className="text-xs text-[var(--portal-text-faint)]">
                 {reminder.invoice_number}
               </span>
             )}
@@ -84,7 +84,7 @@ export function PaymentReminderCard({ reminder }: { reminder: PaymentReminder })
             ) : null}
             {reminder.reminder_count > 0 && (
               <span
-                className="flex items-center gap-1 text-xs font-semibold text-[var(--portal-accent)] bg-[var(--portal-accent)]/10 px-2 py-0.5 rounded-full"
+                className="flex items-center gap-1 text-xs font-semibold text-[var(--portal-accent)]"
                 title={
                   reminder.last_reminder_sent_at
                     ? `Last sent ${formatDate(reminder.last_reminder_sent_at)}`

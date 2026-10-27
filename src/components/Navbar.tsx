@@ -55,13 +55,13 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition duration-300 ${scrolled ? "backdrop-blur-xl border-b border-[var(--site-border)]" : ""}`}
-        style={{ background: scrolled ? "rgba(247,242,233,0.95)" : "transparent" }}
+        className={`fixed top-0 left-0 right-0 z-50 transition duration-300 ${scrolled ? "border-b border-[var(--site-border)]" : ""}`}
+        style={{ background: scrolled ? "#f7f2e9" : "transparent" }}
       >
         <nav className="w-full px-6 lg:px-10 h-24 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3.5 cursor-pointer group" data-cursor>
-            <LogoMark className="w-16 h-16 drop-shadow-sm" />
+            <LogoMark className="w-16 h-16" />
             <span
               className="text-[17px] sm:text-[19px] font-semibold uppercase tracking-[0.28em]"
               style={{ fontFamily: "var(--font-sans)", color: overDarkHero ? HERO_TEXT : "var(--site-text-primary)" }}
@@ -153,7 +153,7 @@ export default function Navbar() {
             className="fixed inset-0 z-40"
           >
             <div
-              className="absolute inset-0 bg-[var(--site-text-primary)]/30 backdrop-blur-sm"
+              className="absolute inset-0 bg-[var(--site-text-primary)]/50"
               onClick={() => setMenuOpen(false)}
             />
             <motion.div

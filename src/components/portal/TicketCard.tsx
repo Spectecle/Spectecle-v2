@@ -72,7 +72,7 @@ export function TicketCard({
             </span>
             <h3 className="text-[var(--portal-text-primary)] font-semibold text-sm truncate">{serviceType}</h3>
             {messages.length > 0 && (
-              <span className="flex items-center gap-1 text-xs text-[var(--portal-text-muted)] bg-[var(--portal-border)] rounded-full px-1.5 py-0.5 shrink-0">
+              <span className="flex items-center gap-1 text-xs text-[var(--portal-text-muted)] shrink-0">
                 <MessageSquare className="w-2.5 h-2.5" />
                 {messages.length}
               </span>

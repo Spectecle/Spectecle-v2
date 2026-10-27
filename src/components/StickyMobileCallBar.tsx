@@ -12,7 +12,7 @@ import { reportPhoneConversion } from "@/lib/report-phone-conversion";
  */
 export function StickyMobileCallBar({ pagePath }: { pagePath: string }) {
   return (
-    <div className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[var(--site-border)] bg-[var(--site-bg)]/95 backdrop-blur-sm px-4 py-3">
+    <div className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[var(--site-border)] bg-[var(--site-bg)] px-4 py-3">
       <a
         href="tel:+13133534105"
         onClick={(e) => {

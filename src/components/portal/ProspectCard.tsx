@@ -72,7 +72,7 @@ export function ProspectCard({ prospect }: { prospect: Prospect }) {
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="text-sm font-semibold text-[var(--portal-text-primary)]">{prospect.business_name}</h3>
             {prospect.category && (
-              <span className="text-xs text-[var(--portal-text-faint)] bg-[var(--portal-border)] px-2 py-0.5 rounded-full capitalize">
+              <span className="text-xs text-[var(--portal-text-faint)] capitalize">
                 {prospect.category}
               </span>
             )}

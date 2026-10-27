@@ -93,11 +93,11 @@ export function PlanComparison({ prices, currentTier }: { prices: PlanPrices; cu
               }`}
             >
               {isCurrent ? (
-                <span className="inline-block self-start mb-3 text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#cb7c46]/15 text-[#cb7c46]">
+                <span className="inline-block self-start mb-3 text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#cb7c46]/15 text-[#cb7c46]">
                   Your Plan
                 </span>
               ) : tier === "growth" ? (
-                <span className="inline-block self-start mb-3 text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[var(--portal-border)] text-[var(--portal-text-secondary)]">
+                <span className="inline-block self-start mb-3 text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[var(--portal-border)] text-[var(--portal-text-secondary)]">
                   Most Popular
                 </span>
               ) : null}
@@ -210,7 +210,7 @@ export function AddonSection({
           return (
             <div key={addon} className="glass border border-[var(--portal-border)] p-6 flex flex-col">
               {isActive && (
-                <span className="inline-block self-start mb-3 text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#cb7c46]/15 text-[#cb7c46]">
+                <span className="inline-block self-start mb-3 text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#cb7c46]/15 text-[#cb7c46]">
                   Active
                 </span>
               )}
