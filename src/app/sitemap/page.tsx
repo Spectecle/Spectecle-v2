@@ -30,7 +30,7 @@ const services = [
 
 const legal = [
   { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms of Service", href: "/terms" },
+  { label: "Terms of Use", href: "/terms" },
   { label: "The Loop (Client Portal)", href: "/portal" },
 ];
 
