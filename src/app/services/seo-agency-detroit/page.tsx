@@ -80,7 +80,7 @@ export default function SEOAgencyDetroitPage() {
             </div>
           </div>
 
-          <Reveal delay={0.15}>
+          <div className="rise-in">
             <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
               <Image
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop"
@@ -91,7 +91,7 @@ export default function SEOAgencyDetroitPage() {
                 priority
               />
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 

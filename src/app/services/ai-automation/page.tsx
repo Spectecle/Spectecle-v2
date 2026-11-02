@@ -80,7 +80,7 @@ export default function AIAutomationPage() {
             </div>
           </div>
 
-          <Reveal delay={0.15}>
+          <div className="rise-in">
             <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
               <Image
                 src="https://images.unsplash.com/photo-1716406536069-c27068316336?q=80&w=1600&auto=format&fit=crop"
@@ -91,7 +91,7 @@ export default function AIAutomationPage() {
                 priority
               />
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 

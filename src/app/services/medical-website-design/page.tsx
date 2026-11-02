@@ -107,7 +107,7 @@ export default function MedicalWebsiteDesignPage() {
             </div>
           </div>
 
-          <Reveal delay={0.15}>
+          <div className="rise-in">
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1762625570087-6d98fca29531?q=80&w=1600&auto=format&fit=crop"
@@ -118,7 +118,7 @@ export default function MedicalWebsiteDesignPage() {
                 priority
               />
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 

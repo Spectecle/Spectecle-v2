@@ -84,7 +84,7 @@ export default function WebDesignBirminghamPage() {
             </div>
           </div>
 
-          <Reveal delay={0.15}>
+          <div className="rise-in">
             <div className="relative aspect-[4/3] overflow-hidden border border-[var(--site-border)]">
               <Image
                 src="https://images.unsplash.com/photo-1758448500688-3ababa93fd67?q=80&w=1600&auto=format&fit=crop"
@@ -95,7 +95,7 @@ export default function WebDesignBirminghamPage() {
                 priority
               />
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 

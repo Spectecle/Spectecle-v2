@@ -98,7 +98,7 @@ export default function LawFirmWebsiteDesignPage() {
             </div>
           </div>
 
-          <Reveal delay={0.15}>
+          <div className="rise-in">
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1619771678310-9f1e06085d86?q=80&w=1600&auto=format&fit=crop"
@@ -109,7 +109,7 @@ export default function LawFirmWebsiteDesignPage() {
                 priority
               />
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
