@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
+import { webDesignFaqs } from "./faqs";
 
 const BASE_URL = "https://spectecle.com";
 const PAGE_URL = `${BASE_URL}/services/web-design-detroit`;
 
 export const metadata: Metadata = {
-  title: "Web Design & Development Detroit, MI",
+  title: "Web Design Detroit: Custom Websites That Convert",
   description:
-    "Custom web design and development for Detroit businesses. Next.js, React, Core Web Vitals: sites built to rank on Google and convert visitors into customers.",
+    "Custom web design for Detroit businesses: fast, mobile-first websites with SEO built in, designed to turn visitors into calls. Free quote in one business day.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
-    title: "Web Design & Development Detroit, MI | Spectecle",
+    title: "Web Design Detroit: Custom Websites That Convert | Spectecle",
     description:
-      "Custom web design and development for Detroit businesses. Sites built to rank, load fast, and convert.",
+      "Custom web design for Detroit businesses. Fast, mobile-first websites with SEO built in, designed to turn visitors into calls.",
     url: PAGE_URL,
   },
 };
@@ -22,53 +23,25 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "Service",
     name: "Web Design & Development: Detroit, Michigan",
+    serviceType: "Web design",
     provider: { "@id": `${BASE_URL}/#organization` },
     areaServed: [
       { "@type": "City", name: "Detroit" },
+      { "@type": "AdministrativeArea", name: "Metro Detroit" },
       { "@type": "State", name: "Michigan" },
-      { "@type": "Country", name: "United States" },
     ],
     description:
-      "Custom web design and development using Next.js and React. High-performance, conversion-optimized websites for businesses in Detroit, Michigan and beyond.",
+      "Custom web design and development for Detroit and Metro Detroit businesses: mobile-first websites with SEO, analytics, and clear paths to call or book, plus ongoing care after launch.",
     url: PAGE_URL,
   },
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What happens after I submit the form?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "We reply within one business day, usually sooner. No hard sell: we'll ask a few questions about your business and goals, then give you honest advice and a clear, itemized plan. If we're not the right fit, we'll tell you that too.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How much does a website cost for a small business?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Web design costs vary based on scope and goals. Simple brochure sites, custom web applications, and e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call. No hidden fees, no surprises.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How long does it take to build a website?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Most custom websites take a few weeks from kickoff to launch. Simpler brochure sites move faster. Timeline depends on feedback turnaround and the complexity of integrations required.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you build websites with SEO built in?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Every site we build includes on-page SEO from day one: proper heading structure, schema markup, fast load times, and Core Web Vitals optimization. SEO is not an afterthought.",
-        },
-      },
-    ],
+    mainEntity: webDesignFaqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
   },
   {
     "@context": "https://schema.org",
@@ -76,7 +49,7 @@ const jsonLd = [
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
       { "@type": "ListItem", position: 2, name: "Services", item: `${BASE_URL}/services` },
-      { "@type": "ListItem", position: 3, name: "Web Design & Development", item: PAGE_URL },
+      { "@type": "ListItem", position: 3, name: "Web Design Detroit", item: PAGE_URL },
     ],
   },
 ];
