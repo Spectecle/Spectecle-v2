@@ -21,6 +21,7 @@ const mainPages = [
 
 const services = [
   { label: "Web Design & Development", href: "/services/web-design-detroit" },
+  { label: "Web Design: Dearborn & Dearborn Heights", href: "/services/web-design-dearborn" },
   { label: "Web Design & Development: Birmingham, MI", href: "/services/web-design-birmingham-mi" },
   { label: "SEO Agency Detroit", href: "/services/seo-agency-detroit" },
   { label: "AI & Automation", href: "/services/ai-automation" },

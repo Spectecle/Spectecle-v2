@@ -12,6 +12,7 @@
 
 - [Services overview](https://spectecle.com/services): web design and development, SEO, ad campaigns, and AI automation
 - [Web design in Detroit](https://spectecle.com/services/web-design-detroit): custom, fast-loading websites built to rank and convert
+- [Web design in Dearborn](https://spectecle.com/services/web-design-dearborn): websites for Dearborn and Dearborn Heights businesses, from a studio based in Dearborn
 - [SEO agency in Detroit](https://spectecle.com/services/seo-agency-detroit): technical SEO, keyword strategy, content, and local SEO
 - [AI and workflow automation](https://spectecle.com/services/ai-automation): AI intake agents and automated workflows connected to CRMs and team tools
 - [Law firm website design](https://spectecle.com/services/law-firm-website-design): websites for attorneys and legal practices
@@ -33,3 +34,4 @@
 - [About](https://spectecle.com/about)
 - [Contact](https://spectecle.com/contact)
 - [Blog](https://spectecle.com/blog): guides on web design, local SEO, and AI automation for Michigan businesses
+- [Local SEO in Detroit](https://spectecle.com/blog/local-seo-detroit-guide): a practical guide for small businesses

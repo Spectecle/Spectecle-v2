@@ -287,6 +287,7 @@ export default function WebDesignDetroitPage() {
       {/* ── RELATED WORK AND READING ──────────────────── */}
       <RelatedReading
         items={[
+          { href: "/services/web-design-dearborn", title: "Web design in Dearborn and Dearborn Heights", kind: "Service" },
           { href: "/work/detroit-glass-mirror", title: "Detroit Glass & Mirror: website redesign and local SEO", kind: "Case study" },
           { href: "/work/the-stat-clinic", title: "The Stat Clinic: clinic website and SEO", kind: "Case study" },
           { href: "/work/indoor-garden", title: "Indoor Garden: e-commerce store for a Michigan plant shop", kind: "Case study" },

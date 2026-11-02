@@ -431,6 +431,7 @@ export default function SEOAgencyDetroitPage() {
           { href: "/work/the-stat-clinic", title: "The Stat Clinic: clinic website and SEO", kind: "Case study" },
           { href: "/work/detroit-glass-mirror", title: "Detroit Glass & Mirror: website redesign and local SEO", kind: "Case study" },
           { href: "/work/glam-by-abeer", title: "Glam by Abeer: portfolio website and local SEO", kind: "Case study" },
+          { href: "/blog/local-seo-detroit-guide", title: "Local SEO in Detroit: A Practical Guide for Small Businesses", kind: "Guide" },
           { href: "/blog/contractor-website-design-michigan", title: "Local SEO for Michigan Contractors: How to Rank #1 for Your Trade", kind: "Guide" },
         ]}
       />

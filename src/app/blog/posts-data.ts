@@ -24,6 +24,220 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "local-seo-detroit-guide",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    title: "Local SEO in Detroit: A Practical Guide for Small Businesses",
+    excerpt:
+      "What actually moves local rankings for Metro Detroit businesses: your Google Business Profile, reviews, consistent business details, and pages worth ranking.",
+    category: "Local SEO",
+    categoryColor: "text-[#9a5423]",
+    readTime: "6 min read",
+    publishedAt: "November 2, 2026",
+    metaTitle: "Local SEO in Detroit: A Practical Guide for Small Businesses",
+    metaDescription:
+      "How Detroit-area small businesses get into Google's map results and local searches: Business Profile, reviews, citations, and pages that rank.",
+    metaKeywords: [
+      "local seo detroit",
+      "local seo metro detroit",
+      "seo for small businesses detroit",
+      "google business profile detroit",
+      "local seo dearborn",
+    ],
+    caseStudySlug: "detroit-glass-mirror",
+    caseStudyTitle: "Detroit Glass & Mirror",
+    content: [
+      {
+        type: "p",
+        text: "Local SEO decides whether your business shows up when someone in Detroit, Dearborn, or the suburbs around them searches for what you do. It's the reason one plumber, salon, or law firm appears in Google's map results and another doesn't, even when the second one does better work. This guide covers what actually moves local rankings, in the order we'd tackle it for a small Metro Detroit business.",
+      },
+      {
+        type: "h2",
+        text: "What Is Local SEO?",
+      },
+      {
+        type: "p",
+        text: "Local SEO is the work that helps a business appear in local search results: Google's map listings, near-me searches, and regular results for searches that include a place, like plumber in Dearborn. It covers your Google Business Profile, your reviews, how consistently your business details appear across the web, and whether your website has clear pages for the services and areas you cover.",
+      },
+      {
+        type: "h2",
+        text: "How Google Decides Who Shows Up in the Map Results",
+      },
+      {
+        type: "p",
+        text: "Google says local results are based mainly on three things: relevance, distance, and prominence.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Relevance: how well your Business Profile and website match what someone searched for. A complete profile with the right categories and services helps Google understand what you do.",
+          "Distance: how far your business is from the person searching, or from the place named in their search. You can't change where you are, but you can make sure Google knows the areas you serve.",
+          "Prominence: how well known your business is, based on information from across the web, including reviews, links, and mentions.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Distance is why local results look different across Metro Detroit. Someone searching from Dearborn and someone searching from Midtown can see different businesses for the same search. That's normal, and it's why a business usually ranks best close to where it's based and works hardest to rank farther out.",
+      },
+      {
+        type: "h2",
+        text: "Your Google Business Profile, Step by Step",
+      },
+      {
+        type: "p",
+        text: "For most local businesses, the Google Business Profile does more to bring in calls than any other single thing. Work through it in this order.",
+      },
+      {
+        type: "h3",
+        text: "1. Pick the right primary category",
+      },
+      {
+        type: "p",
+        text: "Choose the category that describes your main business as specifically as possible, then add secondary categories only for services you really offer. The primary category is one of the strongest signals Google uses to decide which searches you appear for.",
+      },
+      {
+        type: "h3",
+        text: "2. List every service",
+      },
+      {
+        type: "p",
+        text: "Add each service you offer with a short, plain description. Use the words customers use, not internal jargon. If you serve customers at their location, set your service area to the cities and neighborhoods you actually cover.",
+      },
+      {
+        type: "h3",
+        text: "3. Set accurate hours",
+      },
+      {
+        type: "p",
+        text: "Keep regular hours current and add special hours for holidays. A business that shows as open when someone searches has an advantage, and wrong hours lead to bad reviews.",
+      },
+      {
+        type: "h3",
+        text: "4. Add real photos",
+      },
+      {
+        type: "p",
+        text: "Show your work, your team, your storefront or vehicles, and your space. Real photos help people choose you, and they show that the business is active. Add new ones as you complete new work.",
+      },
+      {
+        type: "h3",
+        text: "5. Write a clear description",
+      },
+      {
+        type: "p",
+        text: "Explain what you do, who you do it for, and where, in plain language. Put the most common questions customers ask on your website too, so people can find the answers before they call.",
+      },
+      {
+        type: "h2",
+        text: "Reviews: A Steady Flow, Not a Burst",
+      },
+      {
+        type: "p",
+        text: "Reviews affect both whether you show up and whether people pick you. What matters most is a steady stream of recent, genuine reviews, not a large number collected once and then forgotten.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Ask every customer, right after the job is done or the appointment ends, while the experience is fresh.",
+          "Send the direct review link from your Google Business Profile so leaving a review takes one tap.",
+          "Reply to every review, positive or negative. A calm, helpful reply to a bad review reassures the next customer reading it.",
+          "Never pay for reviews, offer discounts in exchange for them, or ask only the customers you expect to be happy. Google's policies prohibit selectively asking for positive reviews.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Citations and Consistent Business Details",
+      },
+      {
+        type: "p",
+        text: "A citation is any place online that lists your business name, address, and phone number: directories, maps apps, review sites, and local organizations. When those details match everywhere, search engines are more confident they all describe the same business. When they don't, for example an old phone number on one site and a new one on another, that confidence drops.",
+      },
+      {
+        type: "p",
+        text: "Start with the listings that matter most, and make sure the name, address, phone number, and website are identical on each:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Google Business Profile",
+          "Bing Places, which also feeds Microsoft's search and assistant results",
+          "Apple Business Connect, for Apple Maps and Siri",
+          "Yelp and the Better Business Bureau",
+          "Your local chamber of commerce, such as the Dearborn Area Chamber or the Detroit Regional Chamber",
+          "Directories specific to your industry",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Pages That Rank for Detroit Searches",
+      },
+      {
+        type: "p",
+        text: "Your website gives Google the detail your Business Profile can't. Give each main service its own page, with a clear title, a plain explanation of what's included, photos of real work, and an easy way to contact you. A single services page that lists everything rarely ranks for anything.",
+      },
+      {
+        type: "p",
+        text: "Be careful with city pages. A page for each suburb that repeats the same text with a different city name swapped in is what Google calls a doorway page, and it can hurt the whole site. Create a page for an area only when you have something specific to say about working there: projects you've done, the kinds of customers you serve, or details that are different in that city.",
+      },
+      {
+        type: "p",
+        text: "Speed matters too. Most local searches happen on phones, often in a hurry. A site that loads slowly or makes the phone number hard to find loses the customer to the next result.",
+      },
+      {
+        type: "h2",
+        text: "Common Local SEO Mistakes",
+      },
+      {
+        type: "p",
+        text: "These are the problems we find most often when we audit Metro Detroit businesses.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A Google Business Profile that was set up once and never touched again.",
+          "Different phone numbers or business names on different sites.",
+          "Asking for reviews only occasionally, so months go by with nothing new.",
+          "One generic services page instead of a page for each service.",
+          "City pages that are copies of each other with the town name changed.",
+          "A website that's slow on phones or hides the phone number.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Local SEO Questions",
+      },
+      {
+        type: "h3",
+        text: "How long does local SEO take?",
+      },
+      {
+        type: "p",
+        text: "It depends on your competition and where you're starting. Fixing your Google Business Profile and getting a steady flow of reviews usually shows up first in the map results. Rankings in the regular results for competitive Detroit searches take longer and build over months.",
+      },
+      {
+        type: "h3",
+        text: "Do I need a website if I have a Google Business Profile?",
+      },
+      {
+        type: "p",
+        text: "Yes. Your profile gets you into the map results, but your website is where people check your work and decide whether to call. Google also uses your website to understand what you do and which areas you serve.",
+      },
+      {
+        type: "h3",
+        text: "Can I do local SEO myself?",
+      },
+      {
+        type: "p",
+        text: "You can do a lot of it: completing your Business Profile, asking for reviews, and keeping your details consistent are all things a business owner can handle. Where outside help usually pays off is the technical side of the website, service and area pages that are worth ranking, and keeping the work going month after month.",
+      },
+      {
+        type: "callout",
+        text: "See a Detroit local SEO project → Detroit Glass & Mirror: website redesign and local SEO",
+        caseStudySlug: "detroit-glass-mirror",
+      },
+    ],
+  },
+
+  {
     slug: "photography-website-design-michigan",
     image: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=800&q=80",
     title: "How Michigan Photography Studios Can Get More Clients From Google",

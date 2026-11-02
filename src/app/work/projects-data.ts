@@ -40,6 +40,7 @@ export type ProjectData = {
   afterLaunch?: string;
   platform?: string;
   updated?: string;
+  localPage?: { href: string; label: string };
   year: string;
   liveUrl: string;
   screenshotUrl: string;
@@ -93,6 +94,7 @@ export const projects: ProjectData[] = [
     ],
     afterLaunch: "The practice needed the Vision Source member logo on its front page. On wide screens it now sits beside the Vùe logo in the header. On smaller screens it appears as a slim strip under the header. Later, the owner decided the membership program wasn't working the way he wanted. We took it out of the main navigation but kept the membership page live, so it can come back without a rebuild.",
     platform: "WordPress + Elementor",
+    localPage: { href: "/services/web-design-dearborn", label: "More web design work in Dearborn" },
     updated: "November 2026",
     services: ["Web Design & Development", "Ongoing Website Care"],
     testimonial: {
@@ -154,6 +156,7 @@ export const projects: ProjectData[] = [
       { title: "Set up local search", desc: "Search titles and descriptions target Dearborn makeup searches, backed by a Google Business Profile and schema markup." },
     ],
     platform: "WordPress + Elementor",
+    localPage: { href: "/services/web-design-dearborn", label: "More web design work in Dearborn" },
     updated: "November 2026",
     services: ["Web Design & Development", "Local SEO", "Google Business Profile"],
     testimonial: {

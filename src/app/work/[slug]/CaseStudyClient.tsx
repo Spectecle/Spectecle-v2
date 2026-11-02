@@ -177,6 +177,15 @@ export default function CaseStudyClient({
               Visit {project.domain}
               <ArrowUpRight className="w-4 h-4" />
             </a>
+            {project.localPage && (
+              <Link
+                href={project.localPage.href}
+                className="mt-4 ml-6 inline-flex items-center gap-2 text-sm text-[var(--site-text-secondary)] underline underline-offset-4 hover:text-[var(--site-text-primary)]"
+              >
+                {project.localPage.label}
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            )}
           </div>
         </section>
       )}

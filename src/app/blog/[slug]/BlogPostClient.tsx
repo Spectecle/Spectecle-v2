@@ -78,6 +78,10 @@ function renderBlock(block: ContentBlock, i: number) {
 }
 
 const SERVICE_LINKS: Record<string, { title: string; href: string; desc: string }[]> = {
+  "local-seo-detroit-guide": [
+    { title: "SEO Agency Detroit", href: "/services/seo-agency-detroit", desc: "Local and technical SEO for Metro Detroit businesses: Google Business Profile, reviews, citations, and service pages, with monthly reporting." },
+    { title: "Web Design in Dearborn", href: "/services/web-design-dearborn", desc: "Custom, fast-loading websites for Dearborn and Dearborn Heights businesses, with local SEO built in." },
+  ],
   "photography-website-design-michigan": [
     { title: "SEO & Digital Marketing", href: "/services/seo-agency-detroit", desc: "Local SEO, Google Business Profile optimization, and content strategy to get your photography studio ranking for the searches that book clients." },
     { title: "Web Design & Development", href: "/services/web-design-detroit", desc: "Custom portfolio sites built for speed, local SEO, and frictionless online bookings." },

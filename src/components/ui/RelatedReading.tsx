@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-export type RelatedItem = { href: string; title: string; kind: "Case study" | "Guide" };
+export type RelatedItem = { href: string; title: string; kind: "Case study" | "Guide" | "Service" };
 
 /* Contextual links from a service page to the case studies and guides that back
    it up. Titles are passed in (not looked up from projects-data/posts-data) so
