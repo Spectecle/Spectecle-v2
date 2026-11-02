@@ -118,6 +118,30 @@ export default function CaseStudyClient({
             {project.title}
           </motion.h1>
           <p className="mt-4 text-[#9a5423] font-normal text-lg">{project.tagline}</p>
+          {project.about && (
+            <>
+              <dl className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4 text-sm">
+                {[
+                  ["Client", project.title],
+                  ["Location", project.location],
+                  ["Platform", project.platform],
+                  ["Services", project.services.join(", ")],
+                ].map(([k, v]) => (
+                  <div key={k}>
+                    <dt className="text-xs text-[var(--site-text-muted)] uppercase tracking-wider">{k}</dt>
+                    <dd className="mt-1 text-[var(--site-text-secondary)]">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-6 text-sm text-[var(--site-text-muted)]">
+                Written by{" "}
+                <Link href="/about" className="text-[var(--site-text-secondary)] underline underline-offset-4 hover:text-[var(--site-text-primary)]">
+                  Walid AlHassan
+                </Link>
+                , founder of Spectecle · Updated {project.updated}
+              </p>
+            </>
+          )}
         </div>
       </section>
 
@@ -134,6 +158,28 @@ export default function CaseStudyClient({
           </Reveal>
         </div>
       </section>
+
+      {/* ── ABOUT THE CLIENT ─────────────────────────── */}
+      {project.about && (
+        <section className="pt-14 px-6">
+          <div className="max-w-5xl mx-auto">
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">About the Client</span>
+            <h2 className="mt-3 text-3xl font-light text-[var(--site-text-primary)] leading-snug" style={{ fontFamily: "var(--font-serif)" }}>
+              Who {project.title} is
+            </h2>
+            <p className="mt-5 max-w-[70ch] text-[var(--site-text-secondary)] leading-relaxed">{project.about}</p>
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm text-[var(--site-text-secondary)] underline underline-offset-4 hover:text-[var(--site-text-primary)]"
+            >
+              Visit {project.domain}
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+        </section>
+      )}
 
       {/* ── CHALLENGE + SOLUTION ─────────────────────── */}
       <section className="py-14 px-6">
@@ -159,6 +205,31 @@ export default function CaseStudyClient({
           </Reveal>
         </div>
       </section>
+
+      {/* ── APPROACH ──────────────────────────────────── */}
+      {project.approach && (
+        <section className="py-14 px-6 border-t border-[var(--site-border)]">
+          <div className="max-w-5xl mx-auto">
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">Our Approach</span>
+            <h2 className="mt-3 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              How we approached it.
+            </h2>
+            <ol className="mt-10 grid sm:grid-cols-2 gap-x-12 gap-y-8">
+              {project.approach.map((step, i) => (
+                <li key={step.title} className="flex gap-4">
+                  <span className="text-2xl font-light text-[#9a5423] leading-[1.1]" style={{ fontFamily: "var(--font-serif)" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="text-[var(--site-text-primary)] font-semibold">{step.title}</h3>
+                    <p className="mt-2 text-sm text-[var(--site-text-secondary)] leading-relaxed">{step.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      )}
 
       {/* ── FEATURES ─────────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
@@ -190,6 +261,19 @@ export default function CaseStudyClient({
           </div>
         </div>
       </section>
+
+      {/* ── AFTER LAUNCH ──────────────────────────────── */}
+      {project.afterLaunch && (
+        <section className="py-14 px-6 border-t border-[var(--site-border)]">
+          <div className="max-w-5xl mx-auto">
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">After Launch</span>
+            <h2 className="mt-3 text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              Ongoing work.
+            </h2>
+            <p className="mt-5 max-w-[70ch] text-[var(--site-text-secondary)] leading-relaxed">{project.afterLaunch}</p>
+          </div>
+        </section>
+      )}
 
       {/* ── DELIVERABLES ─────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
@@ -262,8 +346,14 @@ export default function CaseStudyClient({
               Ready for results <span className="italic text-[#9a5423]">like these?</span>
             </h2>
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg max-w-xl mx-auto">
-              Book a free 30-minute strategy call. We&apos;ll map out exactly how we can
-              drive the same kind of growth for your business.
+              {project.about ? (
+                <>Book a free 30-minute strategy call. We&apos;ll look at your business and map out what we&apos;d build for it.</>
+              ) : (
+                <>
+                  Book a free 30-minute strategy call. We&apos;ll map out exactly how we can
+                  drive the same kind of growth for your business.
+                </>
+              )}
             </p>
             <div className="mt-10">
               <Link

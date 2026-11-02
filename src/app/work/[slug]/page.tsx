@@ -54,6 +54,11 @@ export default async function CaseStudyPage({
     about: project.industry,
     keywords: project.metaKeywords.join(", "),
     publisher: { "@id": `${BASE_URL}/#organization` },
+    ...(project.about && {
+      author: { "@type": "Person", name: "Walid AlHassan", jobTitle: "Founder", url: `${BASE_URL}/about` },
+      dateModified: "2026-11-02",
+      mentions: { "@type": "Organization", name: project.title, url: project.liveUrl },
+    }),
     inLanguage: "en-US",
     breadcrumb: {
       "@type": "BreadcrumbList",
