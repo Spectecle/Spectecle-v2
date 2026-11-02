@@ -1,0 +1,35 @@
+# Spectecle
+
+> Spectecle is a web design, SEO, and AI automation studio based in Dearborn, Michigan, serving Metro Detroit and clients nationwide. The same small team designs, builds, and ranks each site. Spectecle LLC is the legal entity; the founder is Walid AlHassan.
+
+- Service area: Dearborn, Dearborn Heights, Detroit, and Metro Detroit; remote clients across the United States
+- Phone: (313) 353-4105
+- Email: hello@spectecle.com
+- Hours: every day, 9 AM to 9 PM (Eastern)
+- Google Business Profile: https://maps.google.com/?cid=16659534901346479284
+
+## Services
+
+- [Services overview](https://spectecle.com/services): web design and development, SEO, ad campaigns, and AI automation
+- [Web design in Detroit](https://spectecle.com/services/web-design-detroit): custom, fast-loading websites built to rank and convert
+- [SEO agency in Detroit](https://spectecle.com/services/seo-agency-detroit): technical SEO, keyword strategy, content, and local SEO
+- [AI and workflow automation](https://spectecle.com/services/ai-automation): AI intake agents and automated workflows connected to CRMs and team tools
+- [Law firm website design](https://spectecle.com/services/law-firm-website-design): websites for attorneys and legal practices
+- [Medical website design](https://spectecle.com/services/medical-website-design): websites for doctors, dentists, and clinics
+- [The Loop client portal](https://spectecle.com/services/the-loop): where clients submit and track requests
+
+## Case studies
+
+- [Salazar Drywall Pros](https://spectecle.com/work/salazar-drywall-pros): contractor website and ongoing care for a Detroit-area drywall company
+- [Vue Optometry](https://spectecle.com/work/vue-optometry): ongoing website care for an optometry practice in Dearborn Heights
+- [Glam by Abeer](https://spectecle.com/work/glam-by-abeer): portfolio website and local SEO for a Dearborn makeup artist
+- [MI Family Lawyer](https://spectecle.com/work/mi-family-lawyer): website and SEO for a Michigan family law attorney
+- [The Stat Clinic](https://spectecle.com/work/the-stat-clinic): website and SEO for a Michigan walk-in and telemedicine clinic
+- [Detroit Glass & Mirror](https://spectecle.com/work/detroit-glass-mirror): website redesign for a Detroit glass company
+- [Thematek](https://spectecle.com/work/thematek): website and AI intake agent for a Detroit IT company
+
+## Company
+
+- [About](https://spectecle.com/about)
+- [Contact](https://spectecle.com/contact)
+- [Blog](https://spectecle.com/blog): guides on web design, local SEO, and AI automation for Michigan businesses
