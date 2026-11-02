@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SectionJsonLd } from "@/components/SectionJsonLd";
 
 const BASE_URL = "https://spectecle.com";
 
@@ -42,10 +43,7 @@ const jsonLd = {
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <SectionJsonLd path="/blog" json={JSON.stringify(jsonLd)} />
       {children}
     </>
   );

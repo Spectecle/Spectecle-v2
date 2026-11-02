@@ -61,8 +61,9 @@ export default async function BlogPostPage({
     url: `${BASE_URL}/blog/${slug}`,
     image,
     datePublished: publishedDate,
-    dateModified: publishedDate,
-    author: { "@type": "Organization", name: "Spectecle", url: BASE_URL },
+    // Content reviewed and claims updated Nov 2, 2026
+    dateModified: "2026-11-02T00:00:00.000Z",
+    author: { "@type": "Person", name: "Walid AlHassan", jobTitle: "Founder", url: `${BASE_URL}/about`, worksFor: { "@id": `${BASE_URL}/#organization` } },
     publisher: { "@id": `${BASE_URL}/#organization` },
     inLanguage: "en-US",
     breadcrumb: {

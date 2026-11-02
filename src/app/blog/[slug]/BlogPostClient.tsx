@@ -132,6 +132,14 @@ export default function BlogPostClient({
             </span>
             <span className="w-1 h-1 bg-[var(--site-text-muted)]" />
             <span className="text-xs text-[var(--site-text-muted)]">{post.publishedAt}</span>
+            <span className="w-1 h-1 bg-[var(--site-text-muted)]" />
+            <span className="text-xs text-[var(--site-text-muted)]">
+              By{" "}
+              <Link href="/about" className="underline underline-offset-4 hover:text-[var(--site-text-primary)]">
+                Walid AlHassan
+              </Link>
+              , founder · Updated November 2026
+            </span>
           </div>
 
           <motion.h1

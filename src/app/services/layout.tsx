@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SectionJsonLd } from "@/components/SectionJsonLd";
 
 const BASE_URL = "https://spectecle.com";
 
@@ -75,68 +76,6 @@ const jsonLd = {
       url: `${BASE_URL}/services/medical-website-design`,
     },
     {
-      "@type": "FAQPage",
-      "@id": `${BASE_URL}/services#faq`,
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Do you offer local SEO services?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes, we help single-location and multi-location businesses show up in local search results anywhere in the country. We also work remotely with clients across the U.S. and internationally.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How much does a website cost for a small business?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Web design costs vary based on scope, complexity, and your goals. Simple brochure sites, custom web applications, and full e-commerce stores each have different requirements. We provide transparent, itemized quotes after a free 30-minute discovery call. No hidden fees, no surprises.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long does SEO take to show results?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Most businesses see meaningful ranking improvements within 3–6 months of consistent SEO work. For competitive local or national keywords, expect 4–8 months to reach page one. We provide monthly reporting so you always know exactly where you stand.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What is AI automation and how can it help my business?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "AI automation replaces time-consuming, repetitive tasks with intelligent workflows. Common examples include: automated lead follow-up sequences, AI-powered customer support chatbots, automated reporting, CRM data entry, and document processing. For most businesses, automation saves 5–20 hours per week and meaningfully reduces operational costs.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Do you work with clients remotely?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Absolutely. The majority of our work is done remotely with clients across the United States and internationally. Our process is built for seamless remote collaboration, from kickoff calls to launch. Distance is never a barrier.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can you take over an existing website or help with a redesign?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes. We conduct a full audit of your existing site (performance, SEO health, UX, and conversion rate), then either optimize it in place or migrate it to a better platform. Many clients come to us with a site that just isn't performing and leave with one that does.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What's included in your ongoing care plans?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Care plans include performance monitoring, security patches, content updates, uptime monitoring, and priority support with fast response times. Think of us as your dedicated on-call digital team, without the overhead of a full-time hire.",
-          },
-        },
-      ],
-    },
-    {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
@@ -149,10 +88,7 @@ const jsonLd = {
 export default function ServicesLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <SectionJsonLd path="/services" json={JSON.stringify(jsonLd)} />
       {children}
     </>
   );

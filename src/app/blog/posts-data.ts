@@ -103,7 +103,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "We recently worked with a Michigan photography studio that was invisible in local search despite years of excellent work and a loyal Instagram following. After rebuilding their site on a modern stack and launching a targeted local SEO campaign (Google Business Profile optimization, review generation, and service landing pages), organic traffic grew 180% in four months. Booking inquiries tripled. They now consistently appear in both the map pack and organic results for their primary search terms.",
+        text: "One pattern we see often: a Michigan photography studio with years of excellent work and a loyal Instagram following is still invisible in local search, because Google has nothing to rank. The fix is the combination covered above: a fast site on a modern stack, a complete Google Business Profile, a steady flow of reviews, and a landing page for each type of session.",
       },
       {
         type: "h2",
@@ -111,7 +111,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "The first step is understanding where you currently stand. A technical audit of your site's speed, keyword targeting, and GBP completeness will reveal exactly which gaps to close first. Most Michigan photography studios we work with see meaningful ranking movement within 60–90 days of a well-executed campaign, and the results compound from there.",
+        text: "The first step is understanding where you currently stand. A technical audit of your site's speed, keyword targeting, and GBP completeness will reveal exactly which gaps to close first. Ranking movement usually takes a few months of consistent work, and the results compound from there.",
       },
     ],
   },
@@ -190,11 +190,11 @@ export const posts: BlogPost[] = [
       },
       {
         type: "h2",
-        text: "Real Results: Zero to #1 in Michigan",
+        text: "A Real Example: A Detroit-Area Drywall Contractor",
       },
       {
         type: "p",
-        text: "Salazar Drywall Pros came to us with no website, no Google presence, and a business built entirely on word-of-mouth referrals. We built their site with a project portfolio and trust signals, launched a citation campaign across 40+ directories, optimized their Google Business Profile, and implemented a review acquisition system targeting their full service area. They were generating 4× more leads per month within five weeks of launch and ranking #1 in local search for their primary keywords.",
+        text: "Salazar Drywall Pros, a drywall contractor serving Detroit and Southeast Michigan, built its business on referrals and repeat customers. We built their site around a project gallery, a page for each type of work, a testimonials page, and free-estimate requests on every page, and we maintain it: theme and plugin updates, backups, and a technical SEO cleanup that fixed missing search titles, a broken www redirect, and a duplicate page document hidden inside the services page. That foundation is what lets a contractor show up when homeowners search.",
       },
       {
         type: "callout",
@@ -342,7 +342,7 @@ export const posts: BlogPost[] = [
     content: [
       {
         type: "p",
-        text: "Most Michigan makeup artists and beauty studios have the same digital footprint: a well-curated Instagram, maybe a Facebook page, and either no website or one that hasn't been updated in years. The problem isn't the quality of the work. It's that 60% of new beauty clients begin their search on Google, not Instagram. And if you're not ranking there, you don't exist to those clients.",
+        text: "Most Michigan makeup artists and beauty studios have the same digital footprint: a well-curated Instagram, maybe a Facebook page, and either no website or one that hasn't been updated in years. The problem isn't the quality of the work. It's that many new clients start their search on Google, not Instagram, and if you're not ranking there, those clients never see you.",
       },
       {
         type: "h2",
@@ -384,11 +384,11 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "We built a luxury portfolio website and launched a full local SEO campaign for Michigan makeup artist Glam by Abeer. The site featured full-screen galleries organized by service type (bridal, editorial, lashes, glam), with an integrated online booking system. A Google Business Profile optimization and review generation strategy followed. Within a few months, she was ranking page one for 15+ Michigan beauty keywords. Her booking calendar now fills three months in advance from organic search alone.",
+        text: "We built a portfolio-first website and local search setup for Glam by Abeer, a Dearborn makeup artist. The site groups her galleries by bridal, full glam, and photoshoots, sends every Book Now button to a single booking page, and includes a blog on skin prep and makeup tips. Search titles were written for Dearborn makeup searches and backed by a Google Business Profile.",
       },
       {
         type: "callout",
-        text: "Full case study → Glam by Abeer: 15+ keywords ranked, booked 3 months in advance",
+        text: "Full case study → Glam by Abeer: portfolio website and local SEO for a Dearborn makeup artist",
         caseStudySlug: "glam-by-abeer",
       },
       {
@@ -397,7 +397,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "If you're a Michigan makeup artist with no website, that's the first priority. If you have a site but no GBP presence, that's next. If you have both but aren't ranking, it's time for a keyword audit and a service page content strategy. Most beauty studios we work with see meaningful ranking movement within 60–90 days, and unlike Instagram, the results compound rather than decay the moment you stop posting.",
+        text: "If you're a Michigan makeup artist with no website, that's the first priority. If you have a site but no GBP presence, that's next. If you have both but aren't ranking, it's time for a keyword audit and a service page content strategy. Ranking movement usually takes a few months, and unlike Instagram, the results compound rather than decay the moment you stop posting.",
       },
     ],
   },
@@ -448,7 +448,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "An AI intake agent, built on a language model trained on your specific services, pricing, and qualification criteria, handles the initial conversation with a prospect, determines whether they're a fit, captures project requirements, and routes them to the right person. For businesses receiving 20+ inquiries per week, this alone saves multiple team hours daily. This is exactly what we built for Thematek, a Michigan IT company. Their agent now handles 68% of initial client inquiries automatically, 24/7, and tripled the quality of leads reaching their sales team.",
+        text: "An AI intake agent, built on a language model trained on your specific services, pricing, and qualification criteria, handles the initial conversation with a prospect, determines whether they're a fit, captures project requirements, and routes them to the right person. For a business answering the same intake questions every day, that frees up real team time. This is what we built for Thematek, a Detroit IT company: an intake agent trained on their own service catalog that answers common questions at any hour and sends qualified leads to their CRM and Slack.",
       },
       {
         type: "h3",
@@ -464,7 +464,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "For businesses with repetitive customer questions, service hours, pricing, process questions, FAQs, an AI support agent running on your website can handle 60–70% of inquiries without human involvement. Unlike traditional chatbots with rigid decision trees, LLM-powered agents understand natural language and handle the variations in how people phrase the same question.",
+        text: "For businesses with repetitive customer questions, service hours, pricing, process questions, FAQs, an AI support agent running on your website can handle a large share of routine inquiries without human involvement. Unlike traditional chatbots with rigid decision trees, LLM-powered agents understand natural language and handle the variations in how people phrase the same question.",
       },
       {
         type: "h3",
@@ -488,11 +488,11 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Building a custom AI intake agent like the one we built for Thematek typically requires an initial investment of $3,000–$8,000 depending on complexity, with ongoing maintenance of $200–$600 per month based on usage and updates. For a business saving 40+ team hours per month, at $50–$150/hour for skilled labor, the ROI is measurable within the first 60 days.",
+        text: "Building a custom AI intake agent like the one we built for Thematek typically requires an initial investment of $3,000–$8,000 depending on complexity, with ongoing maintenance of $200–$600 per month based on usage and updates. The return depends on how much repetitive work it takes off your team's plate.",
       },
       {
         type: "callout",
-        text: "See how we deployed AI automation at Thematek → 68% of inquiries automated, 40 hrs/month saved",
+        text: "See how we built Thematek's AI intake agent →",
         caseStudySlug: "thematek",
       },
       {
@@ -568,7 +568,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "The average Instagram DM-to-purchase flow involves 4–6 messages before payment, with significant drop-off at each step. A well-designed checkout reduces this to three clicks: product, cart, payment, dramatically improving conversion rates. Most Michigan businesses making this transition see 30–60% more sales from the same volume of interested visitors.",
+        text: "An Instagram DM-to-purchase flow usually takes several back-and-forth messages before payment, with drop-off at each step. A well-designed checkout reduces this to three clicks: product, cart, payment.",
       },
       {
         type: "h3",
@@ -592,11 +592,11 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Indoor Garden came to us selling plants exclusively through Instagram DMs, no website, no checkout, no email list. We built a full e-commerce site with a product catalog, an optimized checkout flow, and an SEO content strategy targeting plant care and indoor gardening searches in Michigan. Within five months, organic traffic grew 220%. Forty percent of revenue now comes directly through the website, with email subscribers repurchasing at a higher rate than any other channel.",
+        text: "A typical starting point: a plant shop selling only through Instagram DMs, with no website, no checkout, and no email list. The fix is a full e-commerce site with a product catalog, a short checkout, and content built around plant care and indoor gardening searches, so new customers can find the shop and buy without messaging back and forth.",
       },
       {
         type: "callout",
-        text: "Full build breakdown → Indoor Garden: +220% organic traffic, 40% revenue from website",
+        text: "See the Indoor Garden case study →",
         caseStudySlug: "indoor-garden",
       },
       {
@@ -605,7 +605,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Moving from Instagram-only to a properly built e-commerce site typically takes 6–10 weeks for a product-based Michigan business. The investment pays back quickly. Most businesses we've worked with see the website break even within the first 90 days of launch and become their highest-margin sales channel within a year.",
+        text: "Moving from Instagram-only to a properly built e-commerce site typically takes 6–10 weeks for a product-based Michigan business, and the site keeps selling for you long after launch.",
       },
     ],
   },
