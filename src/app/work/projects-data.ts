@@ -53,7 +53,7 @@ export const projects: ProjectData[] = [
     cardResult: "Always Up-to-Date",
     cardResultColor: "text-[#9a5423]",
     tagline: "Keeping a membership-based eye care brand current online",
-    metaTitle: "Vue Optometry: Website Design & Ongoing Care Case Study | Spectecle",
+    metaTitle: "Vue Optometry: Website Design & Care Case Study",
     metaDescription:
       "How Spectecle supports Vùe Eye Boutique Optometry with ongoing website updates and care for their membership-based, insurance-free eye care model.",
     metaKeywords: [
@@ -99,9 +99,9 @@ export const projects: ProjectData[] = [
     cardResult: "15+ Keywords Ranked",
     cardResultColor: "text-[#9a5423]",
     tagline: "Luxury beauty brand: discovered on Google, booked for months",
-    metaTitle: "Glam by Abeer: Web Design & Beauty SEO Case Study | Spectecle",
+    metaTitle: "Glam by Abeer: Web Design & Beauty SEO Case Study",
     metaDescription:
-      "How Spectecle built a luxury portfolio website and local SEO campaign for Michigan makeup artist Glam by Abeer, ranking for 15+ beauty keywords and filling her booking calendar months in advance.",
+      "How Spectecle built a luxury portfolio site and local SEO campaign for Michigan makeup artist Glam by Abeer, ranking for 15+ beauty keywords.",
     metaKeywords: [
       "makeup artist website design Michigan",
       "beauty studio website case study",
@@ -148,7 +148,7 @@ export const projects: ProjectData[] = [
     cardResult: "Custom Law Firm Site",
     cardResultColor: "text-[#9a5423]",
     tagline: "Authority-first web presence for a Michigan family law attorney",
-    metaTitle: "MI Family Lawyer: Family Law Website & SEO Case Study | Spectecle",
+    metaTitle: "MI Family Lawyer: Law Firm Website & SEO Case Study",
     metaDescription:
       "How Spectecle designed a credibility-first family law website and SEO strategy for Michigan attorney Neda Mohiedeen.",
     metaKeywords: [
@@ -251,7 +251,7 @@ export const projects: ProjectData[] = [
     cardResult: "Google Map Pack",
     cardResultColor: "text-[#9a5423]",
     tagline: "Detroit's premier glass shop, now impossible to miss",
-    metaTitle: "Detroit Glass & Mirror: Local SEO & Website Redesign Case Study | Spectecle",
+    metaTitle: "Detroit Glass & Mirror: Local SEO Case Study | Spectecle",
     metaDescription:
       "How Spectecle helped Detroit Glass & Mirror enter the Google Map Pack with a full website redesign and local SEO campaign, doubling monthly quote requests.",
     metaKeywords: [
@@ -300,7 +300,7 @@ export const projects: ProjectData[] = [
     cardResult: "#1 Local Rankings",
     cardResultColor: "text-[#9a5423]",
     tagline: "From word of mouth to page one on Google",
-    metaTitle: "Salazar Drywall Pros: Local SEO & Web Design Case Study | Spectecle",
+    metaTitle: "Salazar Drywall Pros: Local SEO Case Study | Spectecle",
     metaDescription:
       "How Spectecle took Salazar Drywall Pros from zero online presence to #1 local search rankings in their Michigan service area, generating 4x more leads.",
     metaKeywords: [
@@ -352,7 +352,7 @@ export const projects: ProjectData[] = [
     tagline: "From Instagram DMs to a thriving online store",
     metaTitle: "Indoor Garden: E-commerce Web Design Case Study | Spectecle",
     metaDescription:
-      "How Spectecle launched a full e-commerce website for Indoor Garden, moving them off Instagram sales and achieving +220% organic traffic growth through targeted SEO.",
+      "How Spectecle launched an e-commerce website for Indoor Garden, moving sales off Instagram and growing organic traffic 220% with targeted SEO.",
     metaKeywords: [
       "e-commerce website design Michigan",
       "plant shop website design",
@@ -449,7 +449,7 @@ export const projects: ProjectData[] = [
     tagline: "Performance-grade digital presence for a data-driven clinic",
     metaTitle: "The Stat Clinic: Web Design & SEO Case Study | Spectecle",
     metaDescription:
-      "How Spectecle built a conversion-focused website and SEO strategy for The Stat Clinic in Michigan, increasing online appointment bookings by 85% and organic traffic by 156%.",
+      "How Spectecle built a conversion-focused website and SEO strategy for The Stat Clinic in Michigan: 85% more online bookings, 156% more organic traffic.",
     metaKeywords: [
       "sports clinic website design Michigan",
       "healthcare website design case study",

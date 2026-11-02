@@ -84,10 +84,8 @@ export default function WebDesignDetroitPage() {
             </nav>
 
             <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
+              initial={false}
+              className="rise-in mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               A website that turns clicks into <span className="italic text-[#9a5423]">clients.</span>

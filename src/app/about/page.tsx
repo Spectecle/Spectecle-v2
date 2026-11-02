@@ -91,10 +91,8 @@ export default function AboutPage() {
           </span>
 
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
+            initial={false}
+            className="rise-in mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Small team. <span className="italic text-[#9a5423]">Serious results.</span>

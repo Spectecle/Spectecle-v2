@@ -105,7 +105,7 @@ export function LandingLeadForm({
         <input type="text" name="hp_confirm_field" tabIndex={-1} autoComplete="off" value={honey} onChange={(e) => setHoney(e.target.value)} />
       </div>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         {status === "success" ? (
           <motion.div key="success" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-6">
             <CheckCircle2 className="w-9 h-9 text-[#9a5423] mx-auto mb-4" />

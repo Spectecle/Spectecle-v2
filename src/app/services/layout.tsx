@@ -5,8 +5,9 @@ const BASE_URL = "https://spectecle.com";
 export const metadata: Metadata = {
   title: "Web Design, SEO & AI Automation Services",
   description:
-    "Spectecle offers professional web design, SEO, and AI automation services for businesses nationwide. Custom Next.js websites that rank on Google, data-driven SEO that drives organic traffic, and intelligent workflow automation that scales your business.",
+    "Web design, SEO, and AI automation from a Detroit studio: fast Next.js sites that rank, local SEO that brings in calls, and automation that saves hours.",
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     title: "Web Design, SEO & AI Services | Spectecle SEO & Web Design",
     description:
       "Professional web design, SEO & AI automation for businesses nationwide. Custom websites that rank and convert. SEO that dominates. Automation that scales.",

@@ -33,9 +33,9 @@ export const posts: BlogPost[] = [
     categoryColor: "text-[#9a5423]",
     readTime: "6 min read",
     publishedAt: "March 18, 2026",
-    metaTitle: "Photography Website Design Michigan: Get More Bookings From Google | Spectecle",
+    metaTitle: "Photography Website Design Michigan: More Google Bookings",
     metaDescription:
-      "A complete guide for Michigan photography studios on how to rank in local search, optimize Google Business Profile, and turn search traffic into consistent booking inquiries.",
+      "How Michigan photography studios rank in local search, optimize their Google Business Profile, and turn search traffic into steady booking inquiries.",
     metaKeywords: [
       "photography website design Michigan",
       "photographer SEO Michigan",
@@ -126,9 +126,9 @@ export const posts: BlogPost[] = [
     categoryColor: "text-[#9a5423]",
     readTime: "7 min read",
     publishedAt: "March 4, 2026",
-    metaTitle: "Contractor Website Design Michigan: Local SEO to Rank #1 | Spectecle",
+    metaTitle: "Contractor Website Design Michigan: Local SEO to Rank #1",
     metaDescription:
-      "A complete local SEO guide for Michigan contractors, drywall companies, roofers, and home service businesses, how to rank #1 on Google and generate 4x more leads.",
+      "A local SEO guide for Michigan contractors, drywall companies, roofers, and home service businesses: how to rank #1 on Google and win more leads.",
     metaKeywords: [
       "contractor website design Michigan",
       "local SEO for contractors Michigan",
@@ -222,9 +222,9 @@ export const posts: BlogPost[] = [
     categoryColor: "text-[#41433a]",
     readTime: "6 min read",
     publishedAt: "February 19, 2026",
-    metaTitle: "Law Firm Website Design Michigan: Get More Consultation Calls | Spectecle",
+    metaTitle: "Law Firm Website Design Michigan: More Consultation Calls",
     metaDescription:
-      "How Michigan attorneys and law firms build websites that rank on Google, establish authority, and convert visitors into consultation calls. A complete guide from Spectecle.",
+      "How Michigan attorneys and law firms build websites that rank on Google, establish authority, and turn visitors into consultation calls.",
     metaKeywords: [
       "law firm website design Michigan",
       "attorney website design Michigan",
@@ -326,9 +326,9 @@ export const posts: BlogPost[] = [
     categoryColor: "text-[#9a5423]",
     readTime: "5 min read",
     publishedAt: "February 5, 2026",
-    metaTitle: "Makeup Artist SEO Michigan: Fill Your Booking Calendar | Spectecle",
+    metaTitle: "Makeup Artist SEO Michigan: Fill Your Booking Calendar",
     metaDescription:
-      "How Michigan makeup artists, lash technicians, and beauty studios use local SEO and Google Business Profile to rank for 'makeup artist near me' and fill their booking calendars months in advance.",
+      "How Michigan makeup artists and beauty studios use local SEO and Google Business Profile to rank for 'makeup artist near me' and fill their calendars.",
     metaKeywords: [
       "makeup artist website design Michigan",
       "beauty studio SEO Michigan",
@@ -412,9 +412,9 @@ export const posts: BlogPost[] = [
     categoryColor: "text-[#9a5423]",
     readTime: "7 min read",
     publishedAt: "January 22, 2026",
-    metaTitle: "AI Business Automation Michigan 2026: What Actually Works | Spectecle",
+    metaTitle: "AI Business Automation Michigan 2026: What Works",
     metaDescription:
-      "What Michigan small and mid-size businesses are actually using AI automation for in 2026, from lead qualification agents to workflow automation, and what ROI to expect.",
+      "What Michigan small and mid-size businesses use AI automation for in 2026, from lead qualification agents to workflow automation, and the ROI to expect.",
     metaKeywords: [
       "AI business automation Michigan",
       "AI automation for small business Michigan",
@@ -516,9 +516,9 @@ export const posts: BlogPost[] = [
     categoryColor: "text-[#41433a]",
     readTime: "6 min read",
     publishedAt: "January 8, 2026",
-    metaTitle: "E-commerce Website Design Michigan: Move Beyond Instagram Sales | Spectecle",
+    metaTitle: "E-commerce Website Design Michigan: Beyond Instagram Sales",
     metaDescription:
-      "How Michigan product-based businesses and retailers are building e-commerce websites to capture search traffic, own their sales channel, and scale beyond Instagram DM orders.",
+      "How Michigan retailers build e-commerce websites that capture search traffic, own their sales channel, and grow beyond Instagram DM orders.",
     metaKeywords: [
       "e-commerce website design Michigan",
       "online store design Michigan",

@@ -165,10 +165,8 @@ export default function ContactPage() {
             Based in Detroit · Serving Clients Nationwide
           </span>
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
+            initial={false}
+            className="rise-in mt-6 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Let&apos;s build something <span className="italic text-[#9a5423]">that actually works.</span>
@@ -191,7 +189,7 @@ export default function ContactPage() {
             <div style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} aria-hidden="true">
               <input type="text" name="hp_confirm_field" tabIndex={-1} autoComplete="off" value={honey} onChange={(e) => setHoney(e.target.value)} />
             </div>
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               {status === "success" ? (
                 <motion.div
                   key="success"

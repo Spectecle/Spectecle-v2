@@ -4,11 +4,12 @@ const BASE_URL = "https://spectecle.com";
 const PAGE_URL = `${BASE_URL}/services/medical-website-design`;
 
 export const metadata: Metadata = {
-  title: "Medical Website Design | Doctor & Dentist Websites",
+  title: "Medical & Dental Website Design",
   description:
-    "Custom medical website design for doctors, dentists, and private practices nationwide. Patient-first design, service pages, and appointment-focused conversion, built to earn patient trust.",
+    "Medical website design for doctors, dentists, and private practices: patient-first design, clear service pages, and appointment-focused layouts.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     title: "Medical Website Design | Doctor & Dentist Websites | Spectecle",
     description:
       "Custom medical website design built to earn patient trust. Patient-first design, service pages, and appointment-focused conversion.",

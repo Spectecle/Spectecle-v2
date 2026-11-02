@@ -24,6 +24,7 @@ export async function generateMetadata({
     openGraph: {
       title: project.metaTitle,
       description: project.metaDescription,
+      images: [{ url: project.screenshotUrl }],
       url: `${BASE_URL}/work/${slug}`,
     },
     alternates: { canonical: `${BASE_URL}/work/${slug}` },

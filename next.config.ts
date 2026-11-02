@@ -36,6 +36,23 @@ const nextConfig: NextConfig = {
       { source: "/home", destination: "/", permanent: true },
       { source: "/privacy-policy", destination: "/privacy", permanent: true },
       { source: "/terms-conditions", destination: "/terms", permanent: true },
+      // More old URLs still getting Search Console impressions (GSC, Nov 2026).
+      { source: "/how-to-seo-rank-in-detroit-and-build-traffic", destination: "/services/seo-agency-detroit", permanent: true },
+      { source: "/blog-importance-of-social-media-marketing", destination: "/blog", permanent: true },
+      { source: "/blog-how-pay-per-click-works", destination: "/blog", permanent: true },
+      { source: "/blog-list", destination: "/blog", permanent: true },
+      { source: "/portfolio/:path*", destination: "/work", permanent: true },
+      { source: "/our-portfolio", destination: "/work", permanent: true },
+      { source: "/government-services", destination: "/services", permanent: true },
+      { source: "/customizations", destination: "/services", permanent: true },
+      { source: "/services-2", destination: "/services", permanent: true },
+      // One host: www → apex.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.spectecle.com" }],
+        destination: "https://spectecle.com/:path*",
+        permanent: true,
+      },
     ];
   },
   async headers() {

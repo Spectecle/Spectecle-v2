@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 const BASE_URL = "https://spectecle.com";
 
 export const metadata: Metadata = {
-  title: "Get a Free Web Design & SEO Quote | Spectecle",
+  title: "Get a Free Web Design & SEO Quote",
   description:
-    "Spectecle is a web design, SEO, ad campaign & AI automation agency serving businesses nationwide. Custom Next.js websites, local SEO, paid ads, and AI agents built to convert. Get your free quote today.",
+    "Web design, SEO, ad campaigns, and AI automation from one Detroit team. Custom Next.js sites, local SEO, and paid ads built to convert. Get a free quote.",
   authors: [{ name: "Spectecle SEO & Web Design", url: BASE_URL }],
   creator: "Spectecle SEO & Web Design",
   publisher: "Spectecle SEO & Web Design",

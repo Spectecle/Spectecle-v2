@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 const BASE_URL = "https://spectecle.com";
 
 export const metadata: Metadata = {
-  title: "Contact Spectecle: Free Strategy Call",
+  title: { absolute: "Contact Spectecle | Free Strategy Call" },
   description:
-    "Contact Spectecle SEO & Web Design for a free 30-minute strategy call. Web design, SEO, and AI automation for businesses nationwide. Response within 24 hours, no commitment required.",
+    "Book a free 30-minute strategy call with Spectecle. Web design, SEO, and AI automation for businesses in Detroit and nationwide. Replies within 24 hours.",
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     title: "Contact Spectecle: Free Strategy Call",
     description:
       "Book a free 30-minute strategy call with Spectecle SEO & Web Design. Honest advice, no commitment, response within 24 hours.",

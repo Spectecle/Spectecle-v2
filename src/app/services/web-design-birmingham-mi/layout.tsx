@@ -6,9 +6,10 @@ const PAGE_URL = `${BASE_URL}/services/web-design-birmingham-mi`;
 export const metadata: Metadata = {
   title: "Web Design & Development Birmingham, MI",
   description:
-    "Custom web design for Birmingham, Michigan businesses. Next.js, React, Core Web Vitals: refined, high-performance websites built for Oakland County's most discerning brands.",
+    "Custom web design for Birmingham, Michigan businesses: fast Next.js sites with strong Core Web Vitals, built for Oakland County brands that want to stand out.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     title: "Web Design & Development Birmingham, MI | Spectecle",
     description:
       "Custom web design for Birmingham, Michigan businesses. Refined sites built to rank, load fast, and convert.",

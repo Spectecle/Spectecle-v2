@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 const BASE_URL = "https://spectecle.com";
 
 export const metadata: Metadata = {
-  title: "Portfolio & Case Studies: Web Design, SEO & AI Work",
+  title: "Web Design & SEO Case Studies",
   description:
-    "Real projects. Measurable results. Browse Spectecle's portfolio of web design, local SEO, and AI automation work for businesses across the U.S.: from photography studios and law firms to IT companies and beauty brands.",
+    "Real projects, measurable results. Browse Spectecle's web design, local SEO, and AI automation work for law firms, clinics, contractors, and more.",
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     title: "Portfolio & Case Studies | Spectecle SEO & Web Design",
     description:
       "Real projects, real results. Web design, SEO & AI automation case studies for clients nationwide.",

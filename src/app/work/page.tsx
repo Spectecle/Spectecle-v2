@@ -35,10 +35,8 @@ export default function WorkPage() {
       <section className="pt-[176px] pb-12 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
+            initial={false}
+            className="rise-in text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Work that drives <span className="italic text-[#9a5423]">measurable growth.</span>

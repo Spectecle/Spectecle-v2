@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "Custom web design and development for Detroit businesses. Next.js, React, Core Web Vitals: sites built to rank on Google and convert visitors into customers.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     title: "Web Design & Development Detroit, MI | Spectecle",
     description:
       "Custom web design and development for Detroit businesses. Sites built to rank, load fast, and convert.",

@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "Detroit SEO agency specializing in local search, technical SEO, and content strategy. Page-one rankings for Michigan businesses that need to be found.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     title: "SEO Agency Detroit, MI | Spectecle",
     description:
       "Detroit SEO agency specializing in local search, technical SEO, and content strategy. Page-one rankings for Michigan businesses.",

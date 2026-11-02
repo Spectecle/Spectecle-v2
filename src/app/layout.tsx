@@ -30,8 +30,8 @@ const BASE_URL = "https://spectecle.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Spectecle | Web Design, SEO & AI Agency",
-    template: "%s | Spectecle SEO & Web Design",
+    default: "Detroit Web Design, SEO & AI Agency | Spectecle",
+    template: "%s | Spectecle",
   },
   description:
     "Spectecle is a Detroit web design, SEO & AI automation agency. We build fast, high-converting websites for businesses in Metro Detroit and nationwide.",
@@ -186,9 +186,11 @@ export default function RootLayout({
         </Script>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-tag" strategy="afterInteractive">
+        {/* Tags load after the page is idle (they were ~157 KB of JS on the critical
+            path). gtag() is defined above, so early events queue in dataLayer. */}
+        <Script id="google-tag" strategy="lazyOnload">
           {`
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });

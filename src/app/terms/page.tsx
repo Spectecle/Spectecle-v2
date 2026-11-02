@@ -1,5 +1,18 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Website Terms of Use",
+  description:
+    "The terms for using spectecle.com, operated by Spectecle LLC: site content, pricing, acceptable use, intellectual property, and how disputes are handled.",
+  alternates: { canonical: "https://spectecle.com/terms" },
+  openGraph: {
+    title: "Website Terms of Use | Spectecle",
+    url: "https://spectecle.com/terms",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+  },
+};
 
 const EFFECTIVE_DATE = "October 27, 2026";
 const COMPANY = "Spectecle LLC";

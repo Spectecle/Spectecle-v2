@@ -41,13 +41,12 @@ const SLIDE_DURATION = 5600;
 export default function Hero() {
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [loaded, setLoaded] = useState(false);
   const t0 = useRef(0);
 
+  // Entrance motion is pure CSS (.hero-reveal / .rise-in) so it starts on first
+  // paint instead of waiting for hydration, which was delaying LCP by ~6s on mobile.
   useEffect(() => {
     t0.current = performance.now();
-    const id = requestAnimationFrame(() => setLoaded(true));
-    return () => cancelAnimationFrame(id);
   }, []);
 
   const goTo = useCallback((i: number) => {
@@ -126,16 +125,16 @@ export default function Hero() {
             >
               <span className="block overflow-hidden pb-[0.18em]">
                 <span
-                  className="block transition-transform duration-[1050ms]"
-                  style={{ transform: loaded ? "none" : "translateY(112%)", transitionDelay: "180ms" }}
+                  className="block hero-reveal"
+                  style={{ animationDelay: "180ms" }}
                 >
                   Websites worth
                 </span>
               </span>{" "}
               <span className="block overflow-hidden pb-[0.18em]">
                 <span
-                  className="block transition-transform duration-[1050ms]"
-                  style={{ transform: loaded ? "none" : "translateY(112%)", transitionDelay: "300ms" }}
+                  className="block hero-reveal"
+                  style={{ animationDelay: "300ms" }}
                 >
                   looking at <em className="italic" style={{ color: HERO_ACCENT }}>twice.</em>
                 </span>
@@ -143,8 +142,8 @@ export default function Hero() {
             </h1>
 
             <p
-              className="mt-6 sm:mt-8 max-w-[32em] text-base sm:text-[1.16rem] leading-[1.6] transition-all duration-1000"
-              style={{ color: HERO_TEXT_MUTED, opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(16px)", transitionDelay: "500ms" }}
+              className="mt-6 sm:mt-8 max-w-[32em] text-base sm:text-[1.16rem] leading-[1.6] rise-in"
+              style={{ color: HERO_TEXT_MUTED, animationDelay: "120ms" }}
             >
               Every brand has a moment it&apos;s finally seen: someone stops scrolling, looks twice, and stays.
               We build that moment into your site,{" "}
@@ -152,8 +151,8 @@ export default function Hero() {
             </p>
 
             <div
-              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-6 sm:gap-8 transition-all duration-1000"
-              style={{ opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(16px)", transitionDelay: "660ms" }}
+              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-6 sm:gap-8 rise-in"
+              style={{ animationDelay: "180ms" }}
             >
               <Link
                 href="/contact"
@@ -181,8 +180,8 @@ export default function Hero() {
 
         {/* Reel bar */}
         <div
-          className="pb-8 sm:pb-10 grid grid-cols-2 md:grid-cols-[auto_1fr_auto] items-center gap-4 md:gap-10 transition-all duration-1000"
-          style={{ opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(18px)", transitionDelay: "900ms" }}
+          className="pb-8 sm:pb-10 grid grid-cols-2 md:grid-cols-[auto_1fr_auto] items-center gap-4 md:gap-10 rise-in"
+          style={{ animationDelay: "240ms" }}
         >
           <div className="flex items-baseline gap-4 min-w-0">
             <span className="text-[15px] whitespace-nowrap" style={{ fontFamily: "var(--font-serif)", color: HERO_TEXT_MUTED }}>

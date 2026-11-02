@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "The Loop is Spectecle's private client portal: track requests, analytics, rankings, invoices, and reports in one place. Included free with every project.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     title: "The Loop | Spectecle Client Portal",
     description:
       "A private client portal for tracking requests, analytics, invoices, and reports, all in one place. Included with every project.",

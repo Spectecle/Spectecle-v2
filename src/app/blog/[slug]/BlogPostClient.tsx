@@ -135,10 +135,8 @@ export default function BlogPostClient({
           </div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl xl:text-6xl font-light text-[var(--site-text-primary)] leading-[1.1]"
+            initial={false}
+            className="rise-in text-4xl md:text-5xl xl:text-6xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             {post.title}

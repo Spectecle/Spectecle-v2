@@ -111,10 +111,8 @@ export default function CaseStudyClient({
             {project.category} · {project.industry}
           </p>
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-4 text-5xl md:text-6xl xl:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
+            initial={false}
+            className="rise-in mt-4 text-5xl md:text-6xl xl:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             {project.title}

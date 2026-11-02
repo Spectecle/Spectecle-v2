@@ -6,9 +6,10 @@ const PAGE_URL = `${BASE_URL}/services/law-firm-website-design`;
 export const metadata: Metadata = {
   title: "Law Firm Website Design | Attorney Websites",
   description:
-    "Custom law firm website design for attorneys and legal practices nationwide. Authority-first design, practice area pages, and consultation-focused conversion, built to earn client trust.",
+    "Law firm website design for attorneys and legal practices: authority-first design, practice area pages, and consultation-focused layouts that earn trust.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     title: "Law Firm Website Design | Attorney Websites | Spectecle",
     description:
       "Custom law firm website design built to earn client trust. Authority-first design, practice area pages, and consultation-focused conversion.",

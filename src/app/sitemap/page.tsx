@@ -6,7 +6,8 @@ import { posts } from "@/app/blog/posts-data";
 
 export const metadata: Metadata = {
   title: "Sitemap",
-  description: "Every page on spectecle.com in one place.",
+  description: "Every page on spectecle.com in one place: services, case studies, blog posts, and company pages.",
+  alternates: { canonical: "https://spectecle.com/sitemap" },
 };
 
 const mainPages = [

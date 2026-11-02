@@ -285,6 +285,13 @@ input:focus, textarea:focus, select:focus {
   outline-offset: 3px;
 }
 
+/* Above-the-fold entrance motion. CSS (not JS) so it runs on first paint and
+   never hides content from the LCP measurement; transform only, no opacity. */
+@keyframes rise-in { from { transform: translateY(16px); } to { transform: none; } }
+.rise-in { animation: rise-in 300ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes hero-reveal { from { transform: translateY(112%); } to { transform: none; } }
+.hero-reveal { animation: hero-reveal 1050ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+
 /* Tooltips for icon-only buttons: show on hover and keyboard focus. */
 .has-tip { position: relative; }
 .has-tip > .tip {

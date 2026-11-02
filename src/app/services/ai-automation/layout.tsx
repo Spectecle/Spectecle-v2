@@ -6,9 +6,10 @@ const PAGE_URL = `${BASE_URL}/services/ai-automation`;
 export const metadata: Metadata = {
   title: "AI Automation & Workflow Automation Services",
   description:
-    "Custom AI agents and workflow automation for businesses nationwide. Eliminate manual tasks, automate customer interactions, and scale operations without adding headcount.",
+    "Custom AI agents and workflow automation for businesses nationwide. Cut manual tasks, automate customer conversations, and scale without adding headcount.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     title: "AI & Workflow Automation | Spectecle",
     description:
       "Custom AI agents and workflow automation for businesses nationwide. Eliminate manual tasks and scale without hiring.",

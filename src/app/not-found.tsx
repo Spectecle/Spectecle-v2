@@ -9,20 +9,16 @@ export default function NotFound() {
     <section className="min-h-screen flex items-center px-6 md:px-16 bg-[var(--site-bg)]">
       <div className="max-w-xl">
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="text-7xl md:text-8xl font-light text-[var(--site-text-primary)] leading-[1.1]"
+          initial={false}
+          className="rise-in text-7xl md:text-8xl font-light text-[var(--site-text-primary)] leading-[1.1]"
           style={{ fontFamily: "var(--font-serif)" }}
         >
           404 Error!
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 text-[var(--site-text-secondary)] text-lg"
+          initial={false}
+          className="rise-in mt-6 text-[var(--site-text-secondary)] text-lg"
         >
           Ooops! That page does not exist.
         </motion.p>
