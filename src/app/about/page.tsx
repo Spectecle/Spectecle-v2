@@ -277,7 +277,6 @@ export default function AboutPage() {
 
       {/* ── REVIEWS ───────────────────────────────────── */}
       <ReviewsStrip />
-      <p className="px-6 pb-10 text-center text-xs text-[var(--site-text-muted)]">Updated November 2026</p>
 
       {/* ── CTA ───────────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-[var(--site-border)]">

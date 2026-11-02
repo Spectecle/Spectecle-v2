@@ -195,7 +195,6 @@ export default function WebDesignDetroitPage() {
                 <Phone className="w-4 h-4" />
                 Call (313) 353-4105
               </a>
-              <span>Updated November 2026</span>
             </div>
           </div>
 

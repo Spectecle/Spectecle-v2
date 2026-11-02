@@ -94,7 +94,6 @@ export default function WebDesignDearbornPage() {
               Call (313) 353-4105
             </a>
           </div>
-          <p className="mt-6 text-xs text-[var(--site-text-muted)]">Updated November 2026</p>
         </div>
       </section>
 

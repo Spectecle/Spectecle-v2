@@ -169,8 +169,6 @@ export default function SEOAgencyDetroitPage() {
                 <Star className="w-3.5 h-3.5 fill-current text-[#9a5423]" />
                 Rated 5.0 on Google
               </a>
-              <span>·</span>
-              <span>Updated November 2026</span>
             </p>
           </div>
 

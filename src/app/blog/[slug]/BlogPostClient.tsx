@@ -142,7 +142,6 @@ export default function BlogPostClient({
               <Link href="/about" className="underline underline-offset-4 hover:text-[var(--site-text-primary)]">
                 Spectecle
               </Link>
-              {" "}· Updated November 2026
             </span>
           </div>
 

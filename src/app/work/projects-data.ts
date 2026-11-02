@@ -39,7 +39,6 @@ export type ProjectData = {
   approach?: { title: string; desc: string }[];
   afterLaunch?: string;
   platform?: string;
-  updated?: string;
   localPage?: { href: string; label: string };
   year: string;
   liveUrl: string;
@@ -95,7 +94,6 @@ export const projects: ProjectData[] = [
     afterLaunch: "The practice needed the Vision Source member logo on its front page. On wide screens it now sits beside the Vùe logo in the header. On smaller screens it appears as a slim strip under the header. Later, the owner decided the membership program wasn't working the way he wanted. We took it out of the main navigation but kept the membership page live, so it can come back without a rebuild.",
     platform: "WordPress + Elementor",
     localPage: { href: "/services/web-design-dearborn", label: "More web design work in Dearborn" },
-    updated: "November 2026",
     services: ["Web Design & Development", "Ongoing Website Care"],
     testimonial: {
       quote: "Great designer, responsive, high quality work. Highly recommend.",
@@ -157,7 +155,6 @@ export const projects: ProjectData[] = [
     ],
     platform: "WordPress + Elementor",
     localPage: { href: "/services/web-design-dearborn", label: "More web design work in Dearborn" },
-    updated: "November 2026",
     services: ["Web Design & Development", "Local SEO", "Google Business Profile"],
     testimonial: {
       quote: "Every time a client of mine visits my website, they compliment the way it looks when they come in for their appointments. … I had a vision that I did not think was possible to achieve, and he gave me my vision PLUS more.",
@@ -220,7 +217,6 @@ export const projects: ProjectData[] = [
       { title: "Measure from day one", desc: "Google Analytics and Search Console were set up at launch, so search visibility can be tracked for each practice area." },
     ],
     platform: "WordPress",
-    updated: "November 2026",
     services: ["Web Design & Development", "SEO Strategy"],
     testimonial: {
       quote: "I had been needing to update my website and didn't know where to start. … He was patient throughout the whole process and really helped me with my vision. I'm so happy I went with him and highly recommend that everyone does the same!",
@@ -327,7 +323,6 @@ export const projects: ProjectData[] = [
       { title: "Lay local SEO foundations", desc: "Service pages, a Google Business Profile, and the same business name, phone, and details across directories." },
     ],
     platform: "WordPress + Avada",
-    updated: "November 2026",
     services: ["Web Design & Development", "Local SEO", "Citation Building", "Google Business Profile"],
     year: "2024",
     liveUrl: "https://detroitglassandmirror.com",
@@ -382,7 +377,6 @@ export const projects: ProjectData[] = [
     ],
     afterLaunch: "In a full health check, we updated the Avada theme and its builder plugins after taking a complete backup, and removed leftover placeholder and log files. We fixed a missing www redirect that had left the sitemap unreachable to search engines on the www address, removed a duplicate HTML document hidden inside the services page that was producing a second title and description, wrote missing search titles and descriptions for the Contact and Testimonials pages, and added alt text to the logo that appears on every page.",
     platform: "WordPress + Avada",
-    updated: "November 2026",
     services: ["Web Design & Development", "Local SEO", "Google Business Profile", "Citation Building"],
     year: "2024",
     liveUrl: "https://salazardrywallpros.com",
@@ -481,7 +475,6 @@ export const projects: ProjectData[] = [
       { title: "Connect it to the team", desc: "n8n workflows send qualified leads to the CRM and alert the team in Slack, so nothing sits unanswered." },
     ],
     platform: "Custom website + n8n automation",
-    updated: "November 2026",
     services: ["Web Design & Development", "AI & Automation", "Workflow Automation"],
     year: "2024",
     liveUrl: "https://thematek.com",
@@ -535,7 +528,6 @@ export const projects: ProjectData[] = [
       { title: "Build search foundations", desc: "Keyword research and on-page SEO around the clinic's services, with Google Analytics conversion tracking from launch." },
     ],
     platform: "WordPress + Elementor",
-    updated: "November 2026",
     services: ["Web Design & Development", "SEO Strategy", "Content Marketing"],
     year: "2024",
     liveUrl: "https://thestatclinic.com",

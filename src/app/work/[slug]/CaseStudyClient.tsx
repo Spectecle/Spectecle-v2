@@ -138,7 +138,6 @@ export default function CaseStudyClient({
                 <Link href="/about" className="text-[var(--site-text-secondary)] underline underline-offset-4 hover:text-[var(--site-text-primary)]">
                   the Spectecle team
                 </Link>
-                {" "}· Updated {project.updated}
               </p>
             </>
           )}
