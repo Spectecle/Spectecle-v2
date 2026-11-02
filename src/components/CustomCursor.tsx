@@ -19,7 +19,9 @@ export default function CustomCursor() {
     let my = window.innerHeight / 2;
     let rx = mx;
     let ry = my;
+    let scale = 1;
     let raf = 0;
+    const HOVER_SCALE = 64 / 34; // ring grows from 34px to 64px over links and buttons
 
     const onMove = (e: PointerEvent) => {
       mx = e.clientX;
@@ -28,29 +30,29 @@ export default function CustomCursor() {
     };
     window.addEventListener("pointermove", onMove);
 
+    // Ring trails the pointer (eased), centred on it; scale is eased in the same
+    // transform so growing on hover never moves the ring off the pointer.
     const follow = () => {
       rx += (mx - rx) * 0.18;
       ry += (my - ry) * 0.18;
-      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+      const target = ring.classList.contains("is-hover") ? HOVER_SCALE : 1;
+      scale += (target - scale) * 0.2;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%) scale(${scale})`;
       raf = requestAnimationFrame(follow);
     };
     raf = requestAnimationFrame(follow);
 
-    const hoverables = document.querySelectorAll("[data-cursor]");
-    const onEnter = () => ring.classList.add("is-hover");
-    const onLeave = () => ring.classList.remove("is-hover");
-    hoverables.forEach((el) => {
-      el.addEventListener("mouseenter", onEnter);
-      el.addEventListener("mouseleave", onLeave);
-    });
+    // Delegated, so links rendered after client-side navigation also grow the ring.
+    const onOver = (e: PointerEvent) => {
+      const hit = (e.target as Element | null)?.closest?.("[data-cursor]");
+      ring.classList.toggle("is-hover", !!hit);
+    };
+    document.addEventListener("pointerover", onOver);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("pointermove", onMove);
-      hoverables.forEach((el) => {
-        el.removeEventListener("mouseenter", onEnter);
-        el.removeEventListener("mouseleave", onLeave);
-      });
+      document.removeEventListener("pointerover", onOver);
     };
   }, []);
 

@@ -165,12 +165,13 @@ body {
 
 /* Custom cursor hover expansion */
 .cb-cursor {
-  /* `scale` composes with the JS-driven `transform` that positions the ring. */
-  transition: scale 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.15s ease;
+  /* Position and hover growth are both set in CustomCursor's transform, so the
+     ring always scales around its own center. (The standalone CSS `scale`
+     property is applied on top of `transform` and would scale the position too.) */
+  transition: background 0.15s ease;
   will-change: transform;
 }
 .cb-cursor.is-hover {
-  scale: 1.88; /* 34px → 64px */
   background: rgba(242, 236, 225, 0.08);
 }
 
