@@ -79,8 +79,9 @@ const jsonLd = {
     {
       "@type": ["Organization", "ProfessionalService"],
       "@id": `${BASE_URL}/#organization`,
-      name: "Spectecle SEO & Web Design",
-      alternateName: "Spectecle",
+      name: "Spectecle",
+      alternateName: "Spectecle SEO & Web Design",
+      legalName: "Spectecle LLC",
       url: BASE_URL,
       logo: {
         "@type": "ImageObject",
@@ -95,7 +96,20 @@ const jsonLd = {
       email: "hello@spectecle.com",
       foundingDate: "2014",
       priceRange: "$$",
+      // Service-area business: no street address. Hours match the Google Business Profile.
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          opens: "09:00",
+          closes: "21:00",
+        },
+      ],
+      hasMap: "https://maps.google.com/?cid=16659534901346479284",
+      sameAs: ["https://maps.google.com/?cid=16659534901346479284"],
       areaServed: [
+        { "@type": "City", name: "Dearborn" },
+        { "@type": "City", name: "Dearborn Heights" },
         { "@type": "City", name: "Detroit" },
         { "@type": "State", name: "Michigan" },
         { "@type": "Country", name: "United States" },

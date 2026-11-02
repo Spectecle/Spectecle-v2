@@ -11,6 +11,9 @@ import {
   Phone,
   ArrowUpRight,
   CheckCircle2,
+  Clock,
+  MapPin,
+  Star,
 } from "lucide-react";
 
 function Reveal({
@@ -38,6 +41,13 @@ function Reveal({
 const contactInfo = [
   { icon: Mail, label: "Email", value: "hello@spectecle.com", href: "mailto:hello@spectecle.com" },
   { icon: Phone, label: "Phone", value: "+1 (313) 353-4105", href: "tel:+13133534105" },
+  { icon: Star, label: "Reviews", value: "Read our Google reviews", href: "https://maps.google.com/?cid=16659534901346479284" },
+];
+
+// Matches the Google Business Profile (service-area business, no public address).
+const businessDetails = [
+  { icon: Clock, label: "Hours", value: "Every day, 9 AM to 9 PM" },
+  { icon: MapPin, label: "Serving", value: "Dearborn, Dearborn Heights, Detroit & Metro Detroit, plus clients nationwide" },
 ];
 
 const budgetOptions = ["$1,000 – $5,000", "$5,000 – $10,000", "$10,000 – $15,000", "Enterprise", "Not Sure"];
@@ -371,6 +381,15 @@ export default function ContactPage() {
                       <span className="text-sm text-[var(--site-text-secondary)] group-hover:text-[var(--site-text-primary)] transition-colors">{c.value}</span>
                     </div>
                   </a>
+                ))}
+                {businessDetails.map((d) => (
+                  <div key={d.label} className="flex items-start gap-3">
+                    <d.icon className="w-4 h-4 text-[#9a5423] shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs text-[var(--site-text-muted)] uppercase tracking-wider mr-2">{d.label}</span>
+                      <span className="text-sm text-[var(--site-text-secondary)]">{d.value}</span>
+                    </div>
+                  </div>
                 ))}
               </div>
             </Reveal>
