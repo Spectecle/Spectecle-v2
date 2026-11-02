@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 import { AdaptivePricingCards, type PricingTier as AdaptivePricingTier } from "@/components/ui/AdaptivePricingCards";
 
+// Prices are shared only during onboarding; never put them in this file (it ships to the browser).
 type DesignTier = {
   name: string;
   tagline: string;
-  price: string;
   isCustom?: boolean;
   featured?: boolean;
   items: string[];
@@ -16,7 +16,6 @@ const designTiers: DesignTier[] = [
   {
     name: "Blueprint",
     tagline: "A professional site, fast, built on a proven foundation.",
-    price: "$1,500",
     items: [
       "Pre-designed, industry-proven foundation",
       "Customized with your colors, content & branding",
@@ -26,7 +25,6 @@ const designTiers: DesignTier[] = [
   {
     name: "Craft",
     tagline: "Semi-custom design, shaped around your brand.",
-    price: "$2,500",
     featured: true,
     items: [
       "Everything in Blueprint, plus:",
@@ -37,7 +35,6 @@ const designTiers: DesignTier[] = [
   {
     name: "Bespoke",
     tagline: "Fully custom, built from a blank canvas.",
-    price: "$3,000",
     items: [
       "Everything in Craft, plus:",
       "Fully custom design, unlimited creative direction",
@@ -47,7 +44,6 @@ const designTiers: DesignTier[] = [
   {
     name: "Enterprise",
     tagline: "Multi-location businesses and custom integrations.",
-    price: "Contact for pricing",
     isCustom: true,
     items: [
       "Everything in Bespoke, plus:",

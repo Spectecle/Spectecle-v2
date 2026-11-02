@@ -488,7 +488,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Building a custom AI intake agent like the one we built for Thematek typically requires an initial investment of $3,000–$8,000 depending on complexity, with ongoing maintenance of $200–$600 per month based on usage and updates. The return depends on how much repetitive work it takes off your team's plate.",
+        text: "The cost of a custom AI intake agent like the one we built for Thematek depends on how many services it needs to know, which systems it connects to, and how much ongoing tuning it needs. We scope and quote each one individually, and the return depends on how much repetitive work it takes off your team's plate.",
       },
       {
         type: "callout",
