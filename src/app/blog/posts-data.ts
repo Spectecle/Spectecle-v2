@@ -31,7 +31,7 @@ export const posts: BlogPost[] = [
       "Most photographers compete hard on Instagram and ignore search entirely, which is exactly why local SEO is the highest-ROI marketing channel most Michigan studios aren't using.",
     category: "Local SEO",
     categoryColor: "text-[#9a5423]",
-    readTime: "6 min read",
+    readTime: "4 min read",
     publishedAt: "March 18, 2026",
     metaTitle: "Photography Website Design Michigan: More Google Bookings",
     metaDescription:
@@ -48,6 +48,14 @@ export const posts: BlogPost[] = [
       {
         type: "p",
         text: "Instagram is where photographers build an audience. Google is where they book clients. The gap between those two platforms is where most Michigan photography studios are leaving money on the table, and it's one of the most consistent patterns we see working with creative businesses across the state.",
+      },
+      {
+        type: "h2",
+        text: "What Is Local SEO for Photographers?",
+      },
+      {
+        type: "p",
+        text: "Local SEO for photographers is the work that helps your studio appear when someone nearby searches for the kind of session you offer, like a newborn photographer in Ann Arbor or a wedding photographer in metro Detroit. It covers your website, your Google Business Profile, your reviews, and how your business details appear across the web. Done well, it brings you people who are already looking to book.",
       },
       {
         type: "h2",
@@ -107,6 +115,53 @@ export const posts: BlogPost[] = [
       },
       {
         type: "h2",
+        text: "Common Mistakes Michigan Photographers Make Online",
+      },
+      {
+        type: "p",
+        text: "Most of these are easy to fix once you know to look for them.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Building the whole site as one gallery page, so Google has nothing to match a specific search like family photographer Royal Oak.",
+          "Uploading full-resolution photos that make pages slow on phones, where most people browse portfolios.",
+          "Not explaining what each type of session includes, so visitors leave to find someone who does.",
+          "Letting the Google Business Profile go quiet, with old photos and no recent reviews.",
+          "Sending every inquiry through Instagram DMs, where leads get buried.",
+          "Copying the same paragraph onto pages for different cities, which Google treats as low-value duplicate content.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Questions Photographers Ask Us",
+      },
+      {
+        type: "h3",
+        text: "Do I need a blog to rank?",
+      },
+      {
+        type: "p",
+        text: "Not to start. Pages for each type of session matter more. A blog helps later, when you have useful things to say about locations, planning a shoot, or what to wear, because those are questions clients actually search.",
+      },
+      {
+        type: "h3",
+        text: "Should I list every city I serve?",
+      },
+      {
+        type: "p",
+        text: "List the areas you really serve on your Google Business Profile and contact page. Create a separate page for a city only when you have something specific to say about shooting there, like the locations you use.",
+      },
+      {
+        type: "h3",
+        text: "How do I get more Google reviews?",
+      },
+      {
+        type: "p",
+        text: "Ask every client when they're happiest, usually when they receive their gallery, and send the direct review link from your Google Business Profile. Ask everyone, not only the clients you expect to be happy: screening who you ask breaks Google's review policy.",
+      },
+      {
+        type: "h2",
         text: "Where to Start",
       },
       {
@@ -124,7 +179,7 @@ export const posts: BlogPost[] = [
       "The best contractor in Michigan isn't always the one who wins the job. The one who shows up first on Google wins the job, and here's exactly how to be that contractor.",
     category: "Local SEO",
     categoryColor: "text-[#9a5423]",
-    readTime: "7 min read",
+    readTime: "5 min read",
     publishedAt: "March 4, 2026",
     metaTitle: "Contractor Website Design Michigan: Local SEO to Rank #1",
     metaDescription:
@@ -143,6 +198,14 @@ export const posts: BlogPost[] = [
       {
         type: "p",
         text: "The best contractor in Michigan isn't always the one who wins the job. The one who shows up first on Google wins the job. For decades, referrals were enough. Today, a homeowner needing drywall repair, a new roof, or a bathroom remodel types what they need into Google before they call anyone, and whoever ranks first gets the call. Whoever isn't on Google doesn't get considered.",
+      },
+      {
+        type: "h2",
+        text: "What Is Local SEO for Contractors?",
+      },
+      {
+        type: "p",
+        text: "Local SEO for contractors is everything that decides whether your company shows up when a homeowner nearby searches for your trade, both in Google's map results and in the regular results below them. It covers your Google Business Profile, your reviews, your service pages, and whether your business name, address, and phone number match everywhere they appear online.",
       },
       {
         type: "h2",
@@ -203,6 +266,53 @@ export const posts: BlogPost[] = [
       },
       {
         type: "h2",
+        text: "Common Mistakes That Keep Contractors Off Page One",
+      },
+      {
+        type: "p",
+        text: "We see the same handful of problems on most contractor sites we audit.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Listing a cell number on one directory and an office line on another. Mismatched contact details weaken trust in your listing.",
+          "One generic services page instead of a page for each type of job you want more of.",
+          "No project photos, or only stock photos. Homeowners want to see real work.",
+          "Asking for reviews once in a while instead of after every finished job.",
+          "A website that's slow or hard to use on a phone, which is where most homeowners search.",
+          "Service-area pages that repeat the same text with a different city name swapped in. Google treats those as doorway pages.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Questions Contractors Ask Us",
+      },
+      {
+        type: "h3",
+        text: "Do I need a website if I have a Google Business Profile?",
+      },
+      {
+        type: "p",
+        text: "Yes. Your profile gets you into the map results, but your website is where homeowners check your work, your services, and whether you look established. Google also uses your website to understand what you do and where you work.",
+      },
+      {
+        type: "h3",
+        text: "Should I make a page for every city I work in?",
+      },
+      {
+        type: "p",
+        text: "Only where you can say something specific: projects you've done there, the kinds of homes you work on, or local details that matter to the job. A handful of genuinely useful area pages beats dozens of near-identical ones.",
+      },
+      {
+        type: "h3",
+        text: "How long before I see more calls?",
+      },
+      {
+        type: "p",
+        text: "It depends on your competition and where you're starting. Fixing your Google Business Profile and getting steady reviews usually shows up first in the map results. Organic rankings for competitive trades take longer.",
+      },
+      {
+        type: "h2",
         text: "Where to Start",
       },
       {
@@ -220,7 +330,7 @@ export const posts: BlogPost[] = [
       "Legal is one of the most competitive SEO verticals. The attorneys who consistently win online have websites built on trust and authority, not just aesthetics.",
     category: "Web Design & SEO",
     categoryColor: "text-[#41433a]",
-    readTime: "6 min read",
+    readTime: "4 min read",
     publishedAt: "February 19, 2026",
     metaTitle: "Law Firm Website Design Michigan: More Consultation Calls",
     metaDescription:
@@ -239,6 +349,14 @@ export const posts: BlogPost[] = [
       {
         type: "p",
         text: "Legal is one of the most competitive SEO verticals in existence. Michigan attorneys are competing against national directories like FindLaw, Avvo, and Justia (all with enormous domain authority) for the same local searches. The attorneys who win are those with websites built on trust, authority, and conversion, not just aesthetics. A template that 'looks professional' is not enough.",
+      },
+      {
+        type: "h2",
+        text: "What Makes a Law Firm Website Different?",
+      },
+      {
+        type: "p",
+        text: "A law firm website has a job most business sites don't: earning trust from someone who may be facing one of the hardest moments of their life. It has to explain each practice area clearly, show who the attorney is, and make a first conversation feel low-risk, while following the advertising rules that apply to lawyers.",
       },
       {
         type: "h2",
@@ -307,6 +425,53 @@ export const posts: BlogPost[] = [
       },
       {
         type: "h2",
+        text: "Common Mistakes on Attorney Websites",
+      },
+      {
+        type: "p",
+        text: "These are the patterns that most often stop a visitor from reaching out.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Leading with the firm name instead of the problems clients need help with.",
+          "One page covering every practice area, so it ranks for none of them.",
+          "Stock photos of gavels and handshakes instead of the actual attorney.",
+          "Long intake forms before a prospective client has spoken to anyone.",
+          "Statements about past results that could create unjustified expectations, which lawyer advertising rules restrict.",
+          "No way to reach the firm after hours, when many people start searching.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Questions Attorneys Ask Us",
+      },
+      {
+        type: "h3",
+        text: "Should each practice area have its own page?",
+      },
+      {
+        type: "p",
+        text: "Yes. Someone searching for a custody lawyer wants a page about custody, not a list of everything the firm does. Separate pages also give Google a clear match for each type of case.",
+      },
+      {
+        type: "h3",
+        text: "Can we show client reviews on our site?",
+      },
+      {
+        type: "p",
+        text: "Many firms do, but check the advertising rules that apply to you first and avoid anything that promises an outcome. Linking to your Google reviews is a simple option.",
+      },
+      {
+        type: "h3",
+        text: "Do we need a blog?",
+      },
+      {
+        type: "p",
+        text: "A blog helps when it answers the questions people search before they call, like how custody is decided or what happens at a first consultation. Write for prospective clients, not for other lawyers.",
+      },
+      {
+        type: "h2",
         text: "The Bottom Line",
       },
       {
@@ -324,7 +489,7 @@ export const posts: BlogPost[] = [
       "Most Michigan makeup artists live on Instagram and ignore Google, which is exactly why local SEO delivers such strong ROI for the beauty businesses that use it correctly.",
     category: "Local SEO",
     categoryColor: "text-[#9a5423]",
-    readTime: "5 min read",
+    readTime: "4 min read",
     publishedAt: "February 5, 2026",
     metaTitle: "Makeup Artist SEO Michigan: Fill Your Booking Calendar",
     metaDescription:
@@ -343,6 +508,14 @@ export const posts: BlogPost[] = [
       {
         type: "p",
         text: "Most Michigan makeup artists and beauty studios have the same digital footprint: a well-curated Instagram, maybe a Facebook page, and either no website or one that hasn't been updated in years. The problem isn't the quality of the work. It's that many new clients start their search on Google, not Instagram, and if you're not ranking there, those clients never see you.",
+      },
+      {
+        type: "h2",
+        text: "What Is Local SEO for Makeup Artists?",
+      },
+      {
+        type: "p",
+        text: "Local SEO for makeup artists is the work that puts your studio in front of people nearby who are searching for what you do, like bridal makeup or lash extensions. It covers your Google Business Profile, your reviews, your website's service pages, and how consistently your business details appear online.",
       },
       {
         type: "h2",
@@ -372,9 +545,9 @@ export const posts: BlogPost[] = [
         type: "ul",
         items: [
           "Complete your service list with every service type, duration, and starting price",
-          "Post new photos weekly, since Google weights freshness heavily for local rankings",
+          "Add new photos regularly so your profile shows recent work",
           "Respond to every review, positive and negative",
-          "Use the Q&A section to pre-answer the most common client questions",
+          "Answer the most common client questions on your website and in your profile description",
           "Enable messaging and booking if you use an online booking system",
         ],
       },
@@ -390,6 +563,52 @@ export const posts: BlogPost[] = [
         type: "callout",
         text: "Full case study → Glam by Abeer: portfolio website and local SEO for a Dearborn makeup artist",
         caseStudySlug: "glam-by-abeer",
+      },
+      {
+        type: "h2",
+        text: "Common Mistakes Beauty Studios Make Online",
+      },
+      {
+        type: "p",
+        text: "Each of these quietly costs bookings.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Relying only on Instagram, where posts drop out of view within days.",
+          "A single portfolio page instead of a page for each service you want to be booked for.",
+          "Taking bookings through DMs, which slows clients down and loses inquiries.",
+          "Business details that differ between Instagram, Google, and the website.",
+          "Large photo files that make the site slow on phones.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Questions Makeup Artists Ask Us",
+      },
+      {
+        type: "h3",
+        text: "Do I need a website if my Instagram is doing well?",
+      },
+      {
+        type: "p",
+        text: "Instagram is great for showing your work to people who already follow you. A website is what shows up when someone who has never heard of you searches on Google, and it's a place you control that doesn't depend on an algorithm.",
+      },
+      {
+        type: "h3",
+        text: "What should my booking page include?",
+      },
+      {
+        type: "p",
+        text: "The services you offer, how long each takes, what's included, your location or travel area, and one clear way to book. The fewer messages it takes to book, the more people finish.",
+      },
+      {
+        type: "h3",
+        text: "How do I get more Google reviews?",
+      },
+      {
+        type: "p",
+        text: "Ask every client right after their appointment, while the look is fresh, and send the direct review link from your Google Business Profile. Ask everyone: screening who you ask breaks Google's review policy.",
       },
       {
         type: "h2",
@@ -410,7 +629,7 @@ export const posts: BlogPost[] = [
       "The conversation around AI has been dominated by hype. Here's what Michigan businesses are actually deploying, and what's genuinely delivering measurable ROI.",
     category: "AI & Automation",
     categoryColor: "text-[#9a5423]",
-    readTime: "7 min read",
+    readTime: "4 min read",
     publishedAt: "January 22, 2026",
     metaTitle: "AI Business Automation Michigan 2026: What Works",
     metaDescription:
@@ -497,6 +716,53 @@ export const posts: BlogPost[] = [
       },
       {
         type: "h2",
+        text: "Common Mistakes With AI Automation",
+      },
+      {
+        type: "p",
+        text: "Most automation projects that disappoint make one of these mistakes.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Automating a process that isn't written down yet. Fix the process first, then automate it.",
+          "Letting an AI agent answer questions it wasn't trained on, instead of handing off to a person.",
+          "Not telling customers when they're talking to an AI.",
+          "Sending customer data to tools without checking how they store and use it.",
+          "Skipping a human review step for anything that commits your business, like quotes or refunds.",
+          "Building it once and never checking the answers it gives.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Questions Business Owners Ask Us",
+      },
+      {
+        type: "h3",
+        text: "Will an AI agent replace my staff?",
+      },
+      {
+        type: "p",
+        text: "In the businesses we work with, it takes the repetitive first steps off the team's plate: answering common questions, collecting details, and routing requests. People still handle the conversations that need judgment.",
+      },
+      {
+        type: "h3",
+        text: "What do we need before we start?",
+      },
+      {
+        type: "p",
+        text: "A clear list of your services, the questions customers ask most, and the steps your team follows today. If those live in someone's head, writing them down is the first step.",
+      },
+      {
+        type: "h3",
+        text: "How do we know it's working?",
+      },
+      {
+        type: "p",
+        text: "Look at how many inquiries it handles without a person, how quickly customers get a response, and whether the leads it sends your team are a good fit. Review a sample of its conversations regularly.",
+      },
+      {
+        type: "h2",
         text: "Where to Start",
       },
       {
@@ -514,7 +780,7 @@ export const posts: BlogPost[] = [
       "Instagram DMs are not a business model. They're a workaround. Here's how Michigan product businesses are building the infrastructure to turn their social following into a real, scalable operation.",
     category: "Web Design",
     categoryColor: "text-[#41433a]",
-    readTime: "6 min read",
+    readTime: "4 min read",
     publishedAt: "January 8, 2026",
     metaTitle: "E-commerce Website Design Michigan: Beyond Instagram Sales",
     metaDescription:
@@ -533,6 +799,14 @@ export const posts: BlogPost[] = [
       {
         type: "p",
         text: "Instagram DMs are not a business model. They're a workaround, a sign that a business is generating real demand but hasn't built the infrastructure to capture it properly. For Michigan product-based businesses, Instagram has been an incredible discovery tool, but the businesses actually scaling their operations are the ones who've built a proper e-commerce website alongside their social presence.",
+      },
+      {
+        type: "h2",
+        text: "What Is E-commerce SEO?",
+      },
+      {
+        type: "p",
+        text: "E-commerce SEO is the work that helps your products show up when people search for them on Google, in regular results and in Google's shopping results. It covers product and category pages, product structured data, site speed, and content that answers the questions shoppers ask before they buy.",
       },
       {
         type: "h2",
@@ -588,7 +862,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "h2",
-        text: "Case Study: Indoor Garden",
+        text: "A Typical Starting Point",
       },
       {
         type: "p",
@@ -598,6 +872,52 @@ export const posts: BlogPost[] = [
         type: "callout",
         text: "See the Indoor Garden case study →",
         caseStudySlug: "indoor-garden",
+      },
+      {
+        type: "h2",
+        text: "Common Mistakes When Moving Sales Off Instagram",
+      },
+      {
+        type: "p",
+        text: "These are the problems we fix most often in new online stores.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Copying manufacturer descriptions word for word, so your product pages look like everyone else's.",
+          "Product photos with huge file sizes that slow the site down on phones.",
+          "Asking customers to create an account before they can check out.",
+          "No product structured data, so Google can't show availability and other details in results.",
+          "Not collecting email addresses, so every repeat sale depends on social media reach.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Questions Shop Owners Ask Us",
+      },
+      {
+        type: "h3",
+        text: "Should I keep selling on Instagram?",
+      },
+      {
+        type: "p",
+        text: "Yes. Instagram is still a good place to show new products. Link your posts to product pages so the sale happens on a site you own, with a proper checkout and an email signup.",
+      },
+      {
+        type: "h3",
+        text: "Which platform should my store use?",
+      },
+      {
+        type: "p",
+        text: "It depends on your catalog, how you ship, and who will run the store day to day. We recommend a platform after looking at those, not before.",
+      },
+      {
+        type: "h3",
+        text: "What do I need to get started?",
+      },
+      {
+        type: "p",
+        text: "Product photos, descriptions, your shipping and return policies, and a list of your best sellers. That's enough to plan the catalog and the first pages to build.",
       },
       {
         type: "h2",

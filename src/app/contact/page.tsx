@@ -171,7 +171,7 @@ export default function ContactPage() {
       <section className="pt-[176px] pb-12 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
-            Based in Detroit · Serving Clients Nationwide
+            Based in Dearborn · Serving Metro Detroit and Clients Nationwide
           </span>
           <motion.h1
             initial={false}

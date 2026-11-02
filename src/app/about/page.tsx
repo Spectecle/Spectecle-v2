@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { ReviewsStrip } from "@/components/ui/ReviewsStrip";
 
 function Reveal({
   children,
@@ -87,7 +88,7 @@ export default function AboutPage() {
       <section className="pt-[176px] pb-14 px-6">
         <div className="max-w-3xl mx-auto">
           <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
-            About Spectecle · Based in Detroit, Serving Clients Nationwide
+            About Spectecle · Based in Dearborn, Serving Metro Detroit and Clients Nationwide
           </span>
 
           <motion.h1
@@ -273,6 +274,10 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* ── REVIEWS ───────────────────────────────────── */}
+      <ReviewsStrip />
+      <p className="px-6 pb-10 text-center text-xs text-[var(--site-text-muted)]">Updated November 2026</p>
 
       {/* ── CTA ───────────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-[var(--site-border)]">

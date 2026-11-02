@@ -8,6 +8,7 @@ import Hero from "@/components/ui/hero";
 import ServiceTicker from "@/components/ui/ServiceTicker";
 import { services } from "@/lib/services-data";
 import { ArrowUpRight } from "lucide-react";
+import { ReviewsStrip } from "@/components/ui/ReviewsStrip";
 
 /* ─── Reveal ───────────────────────────────────────── */
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -322,6 +323,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ══ REVIEWS ═══════════════════════════════════ */}
+      <ReviewsStrip />
 
       {/* ══ CLOSING CTA ═══════════════════════════════ */}
       <section className="py-32 sm:py-40 px-6 bg-[var(--site-surface)] border-t border-[var(--site-border)]">
