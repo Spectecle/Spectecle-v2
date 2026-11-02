@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { RelatedReading } from "@/components/ui/RelatedReading";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
@@ -278,6 +279,14 @@ export default function MedicalWebsiteDesignPage() {
           </div>
         </div>
       </section>
+
+      {/* ── RELATED WORK AND READING ──────────────────── */}
+      <RelatedReading
+        items={[
+          { href: "/work/the-stat-clinic", title: "The Stat Clinic: clinic website and SEO", kind: "Case study" },
+          { href: "/work/vue-optometry", title: "Vue Optometry: website care for an optometry practice", kind: "Case study" },
+        ]}
+      />
 
       {/* ── CTA ──────────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-[var(--site-border)]">

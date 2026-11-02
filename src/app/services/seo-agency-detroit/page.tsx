@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { RelatedReading } from "@/components/ui/RelatedReading";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronRight, Search, Target, BookOpen, MapPin } from "lucide-react";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
@@ -186,6 +187,16 @@ export default function SEOAgencyDetroitPage() {
           </div>
         </div>
       </section>
+
+      {/* ── RELATED WORK AND READING ──────────────────── */}
+      <RelatedReading
+        items={[
+          { href: "/work/salazar-drywall-pros", title: "Salazar Drywall Pros: contractor website and local SEO", kind: "Case study" },
+          { href: "/work/detroit-glass-mirror", title: "Detroit Glass & Mirror: website redesign and local SEO", kind: "Case study" },
+          { href: "/work/glam-by-abeer", title: "Glam by Abeer: portfolio website and local SEO", kind: "Case study" },
+          { href: "/blog/contractor-website-design-michigan", title: "Local SEO for Michigan Contractors: How to Rank #1 for Your Trade", kind: "Guide" },
+        ]}
+      />
 
       {/* ── CTA ──────────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-[var(--site-border)]">

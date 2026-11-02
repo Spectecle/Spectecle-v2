@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { RelatedReading } from "@/components/ui/RelatedReading";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronRight, TrendingUp, Award, Users, Quote } from "lucide-react";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
@@ -250,6 +251,17 @@ export default function WebDesignDetroitPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* ── RELATED WORK AND READING ──────────────────── */}
+      <RelatedReading
+        items={[
+          { href: "/work/detroit-glass-mirror", title: "Detroit Glass & Mirror: website redesign and local SEO", kind: "Case study" },
+          { href: "/work/the-stat-clinic", title: "The Stat Clinic: clinic website and SEO", kind: "Case study" },
+          { href: "/work/indoor-garden", title: "Indoor Garden: e-commerce store for a Michigan plant shop", kind: "Case study" },
+          { href: "/blog/contractor-website-design-michigan", title: "Local SEO for Michigan Contractors: How to Rank #1 for Your Trade", kind: "Guide" },
+          { href: "/blog/ecommerce-website-design-michigan", title: "E-commerce Website Design: How Michigan Shops Are Moving Beyond Instagram Sales", kind: "Guide" },
+        ]}
+      />
 
       {/* ── FINAL CTA ────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-[var(--site-border)] pb-32 md:pb-20">

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { RelatedReading } from "@/components/ui/RelatedReading";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronRight, Quote, ShieldCheck, FileText, MessageSquare, Database } from "lucide-react";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
@@ -261,6 +262,14 @@ export default function LawFirmWebsiteDesignPage() {
           </div>
         </div>
       </section>
+
+      {/* ── RELATED WORK AND READING ──────────────────── */}
+      <RelatedReading
+        items={[
+          { href: "/work/mi-family-lawyer", title: "MI Family Lawyer: family law website and SEO", kind: "Case study" },
+          { href: "/blog/law-firm-website-design-michigan", title: "Law Firm Website Design in Michigan: How Attorneys Get More Consultation Calls", kind: "Guide" },
+        ]}
+      />
 
       {/* ── CTA ──────────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-[var(--site-border)]">

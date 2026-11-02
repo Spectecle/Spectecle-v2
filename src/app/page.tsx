@@ -160,6 +160,10 @@ export default function HomePage() {
                 <p className="text-[1.06rem] leading-[1.6] max-w-[44ch]" style={{ color: "#544838" }}>
                   Strategy, design, development, and marketing live under one roof, so the work stays sharp from first sketch to launched site. No handoffs to lose the thread. No template doing the thinking for you. Just a team that treats your site like the storefront it actually is. Based in Metro Detroit, working with businesses across Michigan and nationwide.
                 </p>
+                <Link href="/about" data-cursor className="mt-5 inline-flex items-center gap-2 text-sm underline underline-offset-4" style={{ color: "#544838" }}>
+                  Meet the studio
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
               </Reveal>
               <div className="mt-12">
                 <Reveal delay={0.16}>

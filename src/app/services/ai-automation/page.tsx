@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { RelatedReading } from "@/components/ui/RelatedReading";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronRight, Bot, Workflow, Plug, MessageSquare } from "lucide-react";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
@@ -186,6 +187,14 @@ export default function AIAutomationPage() {
           </div>
         </div>
       </section>
+
+      {/* ── RELATED WORK AND READING ──────────────────── */}
+      <RelatedReading
+        items={[
+          { href: "/work/thematek", title: "Thematek: IT company website and AI intake agent", kind: "Case study" },
+          { href: "/blog/ai-business-automation-michigan", title: "AI Business Automation in 2026: What Michigan Companies Are Actually Using It For", kind: "Guide" },
+        ]}
+      />
 
       {/* ── CTA ──────────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-[var(--site-border)]">
