@@ -65,6 +65,13 @@ const faqs = [
   },
 ];
 
+const recentWork = [
+  { name: "Vue Optometry", kind: "Optometry practice, Dearborn Heights", href: "/work/vue-optometry", image: "/screenshots/vueoptometry.png" },
+  { name: "The Stat Clinic", kind: "Walk-in and telemedicine clinic", href: "/work/the-stat-clinic", image: "/screenshots/thestatclinic.png" },
+  { name: "Glam by Abeer", kind: "Makeup artist, Dearborn", href: "/work/glam-by-abeer", image: "/screenshots/glambyabeer.png" },
+  { name: "Detroit Glass & Mirror", kind: "Glass company, Detroit", href: "/work/detroit-glass-mirror", image: "/screenshots/detroitglassandmirror.png" },
+];
+
 const featuredTestimonials = testimonials.filter((t) =>
   ["Hassan MB", "Ali Saab", "Tim Kwiatkowski"].includes(t.name)
 );
@@ -89,12 +96,13 @@ export default function WebDesignDetroitPage() {
               className="rise-in mt-4 text-6xl md:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              A website that turns clicks into <span className="italic text-[#9a5423]">clients.</span>
+              Web design in Detroit that turns clicks into <span className="italic text-[#9a5423]">clients.</span>
             </motion.h1>
 
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl leading-relaxed">
-              Custom-built, fast-loading, and designed to convert the traffic you&apos;re already paying
-              for. Tell us about your business below, we&apos;ll tell you exactly what it needs.
+              Spectecle is a Dearborn-based web design studio that builds custom, fast-loading websites for
+              Detroit and Metro Detroit businesses, designed to convert the traffic you&apos;re already paying for.
+              Tell us about your business, and we&apos;ll tell you exactly what it needs.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-[var(--site-text-muted)]">
@@ -113,9 +121,33 @@ export default function WebDesignDetroitPage() {
             </div>
           </div>
 
-          <Reveal delay={0.15}>
+          <div className="rise-in">
             <LandingLeadForm id="lead-form" pagePath={PAGE_PATH} source={SOURCE} />
-          </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ── RECENT WORK STRIP ─────────────────────────── */}
+      <section className="pb-14 px-6">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest mb-5">Recent websites</p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {recentWork.map((w) => (
+              <Link key={w.href} href={w.href} className="group block">
+                <div className="relative aspect-[1600/557] overflow-hidden border border-[var(--site-border)]">
+                  <Image
+                    src={w.image}
+                    alt={`${w.name} website`}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <p className="mt-2 text-sm text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors">{w.name}</p>
+                <p className="text-xs text-[var(--site-text-muted)]">{w.kind}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

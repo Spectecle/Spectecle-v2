@@ -1,4 +1,4 @@
-export const testimonials = [
+const allTestimonials = [
   {
     quote: "From the get-go, the team at Spectecle took the time to understand my brand and what I wanted to achieve with my site. They designed a sleek, modern website that's easy to navigate and looks great on both desktop and mobile.",
     name: "Hassan MB",
@@ -50,6 +50,10 @@ export const testimonials = [
     role: "Client, Dearborn Cleaners LLC",
   },
 ];
+
+// The founder's name must not appear anywhere on the site, so quotes that mention
+// him by name are never shown.
+export const testimonials = allTestimonials.filter((t) => !/walid/i.test(t.quote));
 
 export const marqueeTestimonials = testimonials.map((t) => ({
   author: { name: t.name, handle: t.role },

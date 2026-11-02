@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import { seoFaqs } from "./faqs";
 
 const BASE_URL = "https://spectecle.com";
 const PAGE_URL = `${BASE_URL}/services/seo-agency-detroit`;
 
 export const metadata: Metadata = {
-  title: "SEO Agency Detroit, MI: Local & Technical SEO",
+  title: "SEO Agency Detroit: Local SEO That Brings Calls",
   description:
-    "Detroit SEO agency specializing in local search, technical SEO, and content strategy. Page-one rankings for Michigan businesses that need to be found.",
+    "Detroit SEO agency for local businesses: technical fixes, Google Business Profile, and content that ranks, reported monthly. Get a free SEO audit.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
-    title: "SEO Agency Detroit, MI | Spectecle",
+    title: "SEO Agency Detroit: Local SEO That Brings Calls | Spectecle",
     description:
       "Detroit SEO agency specializing in local search, technical SEO, and content strategy. Page-one rankings for Michigan businesses.",
     url: PAGE_URL,
@@ -35,40 +36,11 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "How long does SEO take to show results in Detroit?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Most businesses see meaningful ranking improvements within 3–6 months of consistent SEO work. For competitive local Detroit markets, expect 4–8 months to reach page one. We provide monthly reporting so you always know where you stand.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What is local SEO and why does my Detroit business need it?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Local SEO optimizes your business to appear in Google searches with geographic intent, like 'web designer near me' or 'attorney Detroit.' It includes Google Business Profile optimization, local citations, and geo-targeted content. For any business serving a local area, it's the highest-ROI marketing channel available.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do you offer Google Business Profile optimization in Detroit?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Google Business Profile optimization is a core part of our local SEO service. We handle category selection, service descriptions, photo optimization, Q&A, and review strategy: the factors that determine whether you appear in the local map pack.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How do you measure SEO success?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "We track keyword rankings, organic traffic, click-through rates, and most importantly, leads and revenue attributed to organic search. Every month you receive a clear report with the metrics that actually matter to your business.",
-        },
-      },
-    ],
+    mainEntity: seoFaqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
   },
   {
     "@context": "https://schema.org",

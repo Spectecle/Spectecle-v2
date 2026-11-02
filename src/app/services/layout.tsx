@@ -4,7 +4,8 @@ import { SectionJsonLd } from "@/components/SectionJsonLd";
 const BASE_URL = "https://spectecle.com";
 
 export const metadata: Metadata = {
-  title: "Web Design, SEO & AI Automation Services",
+  // template: service subpages get the brand suffix (a plain string here would stop the root template)
+  title: { default: "Web Design, SEO & AI Automation Services | Spectecle", template: "%s | Spectecle" },
   description:
     "Web design, SEO, and AI automation from a Detroit studio: fast Next.js sites that rank, local SEO that brings in calls, and automation that saves hours.",
   openGraph: {

@@ -4,8 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { RelatedReading } from "@/components/ui/RelatedReading";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronRight, Search, Target, BookOpen, MapPin } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Search, Target, BookOpen, MapPin, CheckCircle2, Phone, Star } from "lucide-react";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
+import { seoFaqs } from "./faqs";
+
+const GOOGLE_REVIEWS = "https://maps.google.com/?cid=16659534901346479284";
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -22,25 +25,117 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 }
 
 const features = [
-  { label: "Technical SEO Audits", desc: "Crawlability, Core Web Vitals, and indexation, with a clear action plan.", Icon: Search },
-  { label: "Keyword & Competitor Strategy", desc: "Intent-mapped targeting where you can realistically rank.", Icon: Target },
-  { label: "Content & Authority", desc: "Editorial planning that earns organic rankings over time.", Icon: BookOpen },
-  { label: "Local SEO", desc: "Google Business Profile and geo-targeted content for map pack visibility.", Icon: MapPin },
+  {
+    label: "Technical SEO audits and fixes",
+    desc: "We check how Google crawls, indexes, and loads your site, then fix what's holding it back.",
+    points: [
+      "Crawling and indexing checks in Google Search Console",
+      "Page speed and Core Web Vitals",
+      "Titles, descriptions, redirects, and structured data",
+      "Fixes made in your site's code, not handed off as a report",
+    ],
+    Icon: Search,
+  },
+  {
+    label: "Keyword and competitor strategy",
+    desc: "We find the searches your customers actually use and the ones you can realistically win first.",
+    points: [
+      "Searches by service and by city",
+      "Who ranks today, and why",
+      "Clear targets for the first few months",
+    ],
+    Icon: Target,
+  },
+  {
+    label: "Content and authority",
+    desc: "Pages and posts that answer what customers ask, plus the listings and links that build trust.",
+    points: [
+      "Service and location pages that aren't copy-pasted",
+      "Blog content that answers real customer questions",
+      "Directory listings with consistent business details",
+    ],
+    Icon: BookOpen,
+  },
+  {
+    label: "Local SEO",
+    desc: "Everything that decides whether you show up in Google's map results and near-me searches.",
+    points: [
+      "Google Business Profile setup and upkeep",
+      "Review requests on a steady schedule",
+      "Local structured data and location signals",
+    ],
+    Icon: MapPin,
+  },
 ];
 
-const faqs = [
+const industries = [
+  { label: "Contractors and home services", href: "/blog/contractor-website-design-michigan" },
+  { label: "Medical, dental, and optometry practices", href: "/services/medical-website-design" },
+  { label: "Law firms", href: "/services/law-firm-website-design" },
+  { label: "Beauty studios and makeup artists", href: "/blog/makeup-artist-seo-michigan" },
+  { label: "Local retailers and online shops", href: "/blog/ecommerce-website-design-michigan" },
+];
+
+const steps = [
+  { title: "Free SEO audit", desc: "We check how Google sees your site today: what's indexed, how fast it loads, which searches you appear for, and what your competitors do better." },
+  { title: "Strategy and targets", desc: "We pick the searches worth winning first, by service and by city, and agree on what success looks like for your business." },
+  { title: "Technical fixes", desc: "Speed, indexing, titles, structured data, and redirects, fixed directly in your site by the same team that builds websites." },
+  { title: "Content, local, and authority", desc: "Service pages, your Google Business Profile, reviews, and directory listings, worked on every month." },
+  { title: "Monthly reporting in The Loop", desc: "Rankings, search traffic, and leads from search in your client portal, with notes on what we did and what's next." },
+];
+
+const results = [
   {
-    q: "How long does SEO take to show results?",
-    a: "Most businesses see ranking movement within 3–6 months, page one in 4–8 for competitive markets.",
+    client: "The Stat Clinic",
+    kind: "Walk-in and telemedicine clinic",
+    result: "11,711 Google search impressions in 90 days, and the first result for “stat telemedicine & walk-in.”",
+    href: "/work/the-stat-clinic",
   },
   {
-    q: "What is local SEO and do I need it?",
-    a: "It's optimizing for searches like 'near me.' For any local business, it's the highest-ROI channel available.",
+    client: "Detroit Glass & Mirror",
+    kind: "Detroit glass company",
+    result: "In Google's top five for “detroit glass company” and top ten for “glass company detroit.”",
+    href: "/work/detroit-glass-mirror",
   },
   {
-    q: "How do you measure success?",
-    a: "Rankings, traffic, and most importantly, leads and revenue attributed to organic search, reported monthly.",
+    client: "Glam by Abeer",
+    kind: "Dearborn makeup artist",
+    result: "Her makeup-tips blog posts appeared in Google searches 3,142 times in 90 days, mostly for foundation and skin-tone questions.",
+    href: "/work/glam-by-abeer",
   },
+  {
+    client: "Vue Optometry",
+    kind: "Optometry practice, Dearborn Heights",
+    result: "Ongoing care: a booking-first homepage, clear insurance lists, and contact details patients can trust, updated as the practice changes.",
+    href: "/work/vue-optometry",
+  },
+];
+
+const reviews = [
+  {
+    name: "Yusuf M.",
+    quote: "The website turned out phenomenal and has definitely helped me come across as a more reputable business. Couldn't be happier with the results.",
+  },
+  {
+    name: "Abeer",
+    quote: "Every time a client of mine visits my website, they compliment the way it looks when they come in for their appointments.",
+  },
+  {
+    name: "Ali",
+    quote: "From the get-go, the team at Spectecle took the time to understand my brand and what I wanted to achieve with my site. It's clear they really care about the details, and it shows in the final product.",
+  },
+  {
+    name: "ali saab",
+    quote: "Honestly, they outdid my expectations. Highly recommend if you're looking for someone who's reliable, professional, and seriously skilled in website design.",
+  },
+];
+
+const reasons = [
+  "One team for the website and the SEO, so technical fixes happen in your site's code by the people who built it.",
+  "Based in Dearborn and working with Metro Detroit businesses we can meet in person.",
+  "Monthly reporting in The Loop, your client portal: what we did, what moved, and what's next.",
+  "Proof you can check: our clients' Search Console results above, and our own first-place Google rankings for Dearborn web design searches.",
+  "No account managers. You talk directly to the people doing the work.",
 ];
 
 export default function SEOAgencyDetroitPage() {
@@ -69,16 +164,30 @@ export default function SEOAgencyDetroitPage() {
             <p className="mt-6 text-[var(--site-text-secondary)] text-lg md:text-xl max-w-2xl leading-relaxed">
               Search-first strategies that push you to page one and keep you there.
             </p>
+            <p className="mt-4 text-[var(--site-text-secondary)] max-w-[60ch] leading-relaxed">
+              Spectecle is a Metro Detroit SEO agency based in Dearborn. We help local businesses show up when nearby
+              customers search, in Google&apos;s map results, regular results, and AI answers. The same small team that
+              builds websites does the SEO, so fixes happen in your site, and every month you see what we did and what moved.
+            </p>
 
-            <div className="mt-8 flex flex-wrap gap-8">
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
               <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-primary)] border-b border-[var(--site-text-primary)] pb-0.5">
                 Get a free SEO audit
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
-              <Link href="/work" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
-                View results <ChevronRight className="w-4 h-4" />
-              </Link>
+              <a href="tel:+13133534105" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--site-text-secondary)] hover:text-[var(--site-text-primary)] transition-colors">
+                <Phone className="w-4 h-4" />
+                Call (313) 353-4105
+              </a>
             </div>
+            <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--site-text-muted)]">
+              <a href={GOOGLE_REVIEWS} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-4 hover:text-[var(--site-text-primary)]">
+                <Star className="w-3.5 h-3.5 fill-current text-[#9a5423]" />
+                Rated 5.0 on Google
+              </a>
+              <span>·</span>
+              <span>Updated November 2026</span>
+            </p>
           </div>
 
           <div className="rise-in">
@@ -111,21 +220,79 @@ export default function SEOAgencyDetroitPage() {
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-5xl mx-auto">
           <Reveal className="mb-14">
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>What&apos;s included.</h2>
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              What&apos;s included in our SEO services.
+            </h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <Reveal key={f.label} delay={i * 0.03}>
                 <div className="group border border-[var(--site-border)] p-6 h-full hover:border-[#9a5423]/50 hover:-translate-y-1 transition duration-300">
                   <div className="w-10 h-10 rounded-full bg-[#9a5423]/10 flex items-center justify-center mb-4 group-hover:bg-[#9a5423]/20 transition-colors">
                     <f.Icon className="w-5 h-5 text-[#9a5423]" strokeWidth={1.75} />
                   </div>
-                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2 text-sm">{f.label}</h3>
-                  <p className="text-[var(--site-text-muted)] text-sm leading-relaxed">{f.desc}</p>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold mb-2">{f.label}</h3>
+                  <p className="text-[var(--site-text-secondary)] text-sm leading-relaxed">{f.desc}</p>
+                  <ul className="mt-4 space-y-2">
+                    {f.points.map((p) => (
+                      <li key={p} className="flex gap-2 text-sm text-[var(--site-text-muted)]">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 shrink-0 text-[#9a5423]" />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── WHO WE HELP ──────────────────────────────── */}
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-[1fr_1.2fr] gap-10">
+          <Reveal>
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Who we help.</h2>
+            <p className="mt-4 text-[var(--site-text-secondary)] leading-relaxed max-w-[50ch]">
+              Local businesses whose customers search before they call. These are the industries we know best.
+            </p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <ul className="divide-y divide-[var(--site-border)] border-y border-[var(--site-border)]">
+              {industries.map((it) => (
+                <li key={it.href}>
+                  <Link href={it.href} className="group flex items-center justify-between py-4 text-[var(--site-text-primary)] hover:text-[#9a5423] transition-colors">
+                    {it.label}
+                    <ArrowUpRight className="w-4 h-4 text-[var(--site-text-muted)] group-hover:text-[#9a5423]" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── PROCESS ──────────────────────────────────── */}
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="mb-10">
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              How our Detroit SEO process works.
+            </h2>
+          </Reveal>
+          <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
+            {steps.map((step, i) => (
+              <li key={step.title} className="flex gap-4">
+                <span className="text-2xl font-light text-[#9a5423] leading-[1.1]" style={{ fontFamily: "var(--font-serif)" }}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-[var(--site-text-primary)] font-semibold">{step.title}</h3>
+                  <p className="mt-2 text-sm text-[var(--site-text-secondary)] leading-relaxed">{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -151,14 +318,100 @@ export default function SEOAgencyDetroitPage() {
         </div>
       </section>
 
+      {/* ── RESULTS ──────────────────────────────────── */}
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="mb-10">
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              Results for Metro Detroit businesses.
+            </h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {results.map((r) => (
+              <Link key={r.client} href={r.href} className="group border border-[var(--site-border)] p-6 hover:border-[#9a5423]/50 transition-colors">
+                <p className="text-xs text-[var(--site-text-muted)] uppercase tracking-wider">{r.kind}</p>
+                <h3 className="mt-1 text-xl font-light text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
+                  {r.client}
+                </h3>
+                <p className="mt-3 text-sm text-[var(--site-text-secondary)] leading-relaxed">{r.result}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#9a5423]">
+                  Read the case study <ArrowUpRight className="w-3.5 h-3.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-6 text-xs text-[var(--site-text-muted)]">
+            Source: Google Search Console, August 4 to October 30, 2026, shared with our clients&apos; permission.
+          </p>
+        </div>
+      </section>
+
+      {/* ── REVIEWS ──────────────────────────────────── */}
+      <section className="py-14 px-6 border-t border-[var(--site-border)] bg-[var(--site-surface)]">
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>What clients say.</h2>
+            <a href={GOOGLE_REVIEWS} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-[var(--site-text-secondary)] underline underline-offset-4 hover:text-[var(--site-text-primary)]">
+              Read all our Google reviews <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8">
+            {reviews.map((r) => (
+              <figure key={r.name} className="border-t border-[var(--site-border)] pt-5">
+                <blockquote className="text-[var(--site-text-primary)] leading-relaxed" style={{ fontFamily: "var(--font-serif)" }}>
+                  &ldquo;{r.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-3 text-sm text-[var(--site-text-muted)]">{r.name} · Google review</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHY SPECTECLE ────────────────────────────── */}
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-[1fr_1.2fr] gap-10">
+          <Reveal>
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>
+              Why choose Spectecle as your Detroit SEO agency.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <ul className="space-y-4">
+              {reasons.map((r) => (
+                <li key={r} className="flex gap-3 text-[var(--site-text-secondary)] leading-relaxed">
+                  <CheckCircle2 className="w-5 h-5 mt-0.5 shrink-0 text-[#9a5423]" />
+                  {r}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── HOW PRICING WORKS ────────────────────────── */}
+      <section className="py-14 px-6 border-t border-[var(--site-border)]">
+        <div className="max-w-3xl mx-auto">
+          <Reveal>
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>How pricing works.</h2>
+            <p className="mt-5 text-[var(--site-text-secondary)] leading-relaxed">
+              Every business starts in a different place, so we don&apos;t sell one-size packages. The work depends on how
+              many services and areas you want to rank for, how competitive those searches are, the state of your current
+              website, and whether you want us writing content. We start with a free SEO audit, then send a written scope and
+              quote. No hidden fees.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ── FAQ ──────────────────────────────────────── */}
       <section className="py-14 px-6 border-t border-[var(--site-border)]">
         <div className="max-w-3xl mx-auto">
           <Reveal className="mb-14">
-            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Common questions.</h2>
+            <h2 className="text-4xl font-light text-[var(--site-text-primary)]" style={{ fontFamily: "var(--font-serif)" }}>Detroit SEO questions.</h2>
           </Reveal>
           <Reveal>
-            <FAQAccordion faqs={faqs} />
+            <FAQAccordion faqs={seoFaqs} />
           </Reveal>
         </div>
       </section>
@@ -191,7 +444,7 @@ export default function SEOAgencyDetroitPage() {
       {/* ── RELATED WORK AND READING ──────────────────── */}
       <RelatedReading
         items={[
-          { href: "/work/salazar-drywall-pros", title: "Salazar Drywall Pros: contractor website and local SEO", kind: "Case study" },
+          { href: "/work/the-stat-clinic", title: "The Stat Clinic: clinic website and SEO", kind: "Case study" },
           { href: "/work/detroit-glass-mirror", title: "Detroit Glass & Mirror: website redesign and local SEO", kind: "Case study" },
           { href: "/work/glam-by-abeer", title: "Glam by Abeer: portfolio website and local SEO", kind: "Case study" },
           { href: "/blog/contractor-website-design-michigan", title: "Local SEO for Michigan Contractors: How to Rank #1 for Your Trade", kind: "Guide" },
