@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronRight, Search, Target, BookOpen, MapPin, CheckCircle2, Phone, Star } from "lucide-react";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { seoFaqs } from "./faqs";
+import { testimonials } from "@/lib/testimonials-data";
 
 const GOOGLE_REVIEWS = "https://maps.google.com/?cid=16659534901346479284";
 
@@ -111,24 +112,7 @@ const results = [
   },
 ];
 
-const reviews = [
-  {
-    name: "Yusuf M.",
-    quote: "The website turned out phenomenal and has definitely helped me come across as a more reputable business. Couldn't be happier with the results.",
-  },
-  {
-    name: "Abeer",
-    quote: "Every time a client of mine visits my website, they compliment the way it looks when they come in for their appointments.",
-  },
-  {
-    name: "Ali",
-    quote: "From the get-go, the team at Spectecle took the time to understand my brand and what I wanted to achieve with my site. It's clear they really care about the details, and it shows in the final product.",
-  },
-  {
-    name: "ali saab",
-    quote: "Honestly, they outdid my expectations. Highly recommend if you're looking for someone who's reliable, professional, and seriously skilled in website design.",
-  },
-];
+const reviews = testimonials;
 
 const reasons = [
   "One team for the website and the SEO, so technical fixes happen in your site's code by the people who built it.",
@@ -361,7 +345,7 @@ export default function SEOAgencyDetroitPage() {
                 <blockquote className="text-[var(--site-text-primary)] leading-relaxed" style={{ fontFamily: "var(--font-serif)" }}>
                   &ldquo;{r.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-3 text-sm text-[var(--site-text-muted)]">{r.name} · Google review</figcaption>
+                <figcaption className="mt-3 text-sm text-[var(--site-text-muted)]">{r.name} · {r.role}{r.role === "Google review" ? "" : " · Google review"}</figcaption>
               </figure>
             ))}
           </div>

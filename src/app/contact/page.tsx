@@ -50,11 +50,10 @@ const businessDetails = [
   { icon: MapPin, label: "Serving", value: "Dearborn, Dearborn Heights, Detroit & Metro Detroit, plus clients nationwide" },
 ];
 
-const budgetOptions = ["$1,000 – $5,000", "$5,000 – $10,000", "$10,000 – $15,000", "Enterprise", "Not Sure"];
 
 const serviceOptions = ["Web Design & Development", "SEO & Digital Marketing", "AI & Automation", "All Three", "Something Else"];
 
-const EMPTY_FORM = { name: "", email: "", company: "", service: "", budget: "", message: "" };
+const EMPTY_FORM = { name: "", email: "", company: "", service: "", message: "" };
 type ContactForm = typeof EMPTY_FORM;
 
 // Unsent form drafts survive a refresh or accidental navigation (nothing sensitive is stored).
@@ -308,17 +307,6 @@ export default function ContactPage() {
                     />
                     {errors.message && <p id="contact-message-error" className="mt-1.5 text-xs text-rose-400">{errors.message}</p>}
                   </div>
-
-                  <div>
-                    <label htmlFor="contact-budget" className="block text-xs font-normal text-[var(--site-text-secondary)] mb-2 uppercase tracking-wider">
-                      Budget Range <span className="text-[var(--site-text-muted)] normal-case tracking-normal">(optional)</span>
-                    </label>
-                    <select id="contact-budget" name="budget" value={formData.budget} onChange={handleChange} className={`${inputClass("budget")} cursor-pointer`}>
-                      <option value="" disabled>Select a range, or skip if unsure</option>
-                      {budgetOptions.map((b) => <option key={b} value={b}>{b}</option>)}
-                    </select>
-                  </div>
-
                   {status === "error" && (
                     <p className="text-rose-400 text-sm text-center py-2">
                       Something went wrong. Please try again or email us directly at{" "}

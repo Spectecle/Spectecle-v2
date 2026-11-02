@@ -73,7 +73,7 @@ const recentWork = [
 ];
 
 const featuredTestimonials = testimonials.filter((t) =>
-  ["Hassan MB", "Ali Saab", "Tim Kwiatkowski"].includes(t.name)
+  ["Abeer", "Hassan Saab", "Tim Kwiatkowski"].includes(t.name)
 );
 
 export default function WebDesignDetroitPage() {

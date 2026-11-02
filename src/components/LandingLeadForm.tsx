@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { trackEvent } from "@/lib/track";
 
-const budgetOptions = ["$1,000 – $5,000", "$5,000 – $10,000", "$10,000 – $15,000", "Enterprise", "Not Sure"];
 
 const inputClass = (hasError: boolean) =>
   `w-full bg-[var(--site-bg)] border ${
@@ -34,7 +33,7 @@ export function LandingLeadForm({
   heading?: string;
   subheading?: string;
 }) {
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", businessType: "", budget: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", businessType: "" });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   // Captured in an effect (after render) rather than during render itself,
@@ -76,7 +75,6 @@ export function LandingLeadForm({
           email: formData.email,
           phone: formData.phone || undefined,
           businessType: formData.businessType || undefined,
-          budget: formData.budget || undefined,
           message,
           source,
           _honey: honey,
@@ -165,12 +163,6 @@ export function LandingLeadForm({
               className={inputClass(false)}
             />
 
-            <select name="budget" value={formData.budget} onChange={handleChange} className={`${inputClass(false)} cursor-pointer`}>
-              <option value="">Budget range (optional)</option>
-              {budgetOptions.map((b) => (
-                <option key={b} value={b}>{b}</option>
-              ))}
-            </select>
 
             {status === "error" && (
               <p className="text-rose-400 text-sm text-center py-1">
