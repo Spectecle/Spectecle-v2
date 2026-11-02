@@ -107,7 +107,7 @@ export function LandingLeadForm({
         {status === "success" ? (
           <motion.div key="success" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-6">
             <CheckCircle2 className="w-9 h-9 text-[#9a5423] mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-[var(--site-text-primary)] mb-2">Request received.</h3>
+            <h2 className="text-xl font-semibold text-[var(--site-text-primary)] mb-2">Request received.</h2>
             <p className="text-[var(--site-text-secondary)] text-sm">
               We&apos;ll reply within one business day with honest advice, no hard sell. Check{" "}
               <span className="text-[#9a5423]">{formData.email}</span> for a confirmation.
@@ -116,7 +116,7 @@ export function LandingLeadForm({
         ) : (
           <motion.form key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onSubmit={handleSubmit} noValidate className="space-y-3.5">
             <div>
-              <h3 className="text-xl font-semibold text-[var(--site-text-primary)]">{heading}</h3>
+              <h2 className="text-xl font-semibold text-[var(--site-text-primary)]">{heading}</h2>
               <p className="text-[var(--site-text-muted)] text-sm mt-1">{subheading}</p>
             </div>
 

@@ -148,14 +148,14 @@ export default function CaseStudyClient({
       {/* ── FULL-BLEED SCREENSHOT ─────────────────────── */}
       <section className="px-6">
         <div className="max-w-6xl mx-auto">
-          <Reveal>
+          <div className="rise-in">
             <BrowserMockup
               url={project.domain}
               screenshotUrl={project.screenshotUrl}
               alt={`${project.title} website screenshot`}
               priority
             />
-          </Reveal>
+          </div>
         </div>
       </section>
 
