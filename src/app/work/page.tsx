@@ -45,6 +45,12 @@ export default function WorkPage() {
             Web design, SEO, and AI automation projects for businesses across the country.
             Every case study is a real client with a real result.
           </p>
+          <p className="mt-4 text-[var(--site-text-secondary)] max-w-2xl mx-auto leading-relaxed">
+            Most of our clients are in Dearborn, Detroit, and across Michigan: contractors and home
+            service companies, medical and optometry practices, a family law firm, a beauty studio,
+            an online plant shop, and an IT company. Each case study covers what the business needed,
+            what we built, and the services involved.
+          </p>
         </div>
       </section>
 
@@ -67,7 +73,11 @@ export default function WorkPage() {
                   <h2 className="mt-5 text-2xl font-light text-[var(--site-text-primary)] group-hover:text-[#9a5423] transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
                     {p.title}
                   </h2>
+                  <p className="mt-1 text-xs text-[var(--site-text-muted)]">
+                    {p.industry} · {p.location} · {p.year}
+                  </p>
                   <p className="mt-2 text-sm text-[var(--site-text-secondary)] leading-relaxed max-w-md">{p.tagline}</p>
+                  <p className="mt-2 text-xs text-[var(--site-text-muted)]">{p.services.join(" · ")}</p>
                 </Link>
               ))}
             </div>

@@ -35,11 +35,12 @@ export const metadata: Metadata = {
     images: [`${BASE_URL}/opengraph-image`],
   },
   alternates: { canonical: `${BASE_URL}/hello` },
+  // Paid-ads landing page: keep it out of search so it doesn't compete with the homepage.
   robots: {
-    index: true,
+    index: false,
     follow: true,
     googleBot: {
-      index: true,
+      index: false,
       follow: true,
       "max-video-preview": -1,
       "max-image-preview": "large",
