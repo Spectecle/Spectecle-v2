@@ -136,9 +136,9 @@ export default function CaseStudyClient({
               <p className="mt-6 text-sm text-[var(--site-text-muted)]">
                 Written by{" "}
                 <Link href="/about" className="text-[var(--site-text-secondary)] underline underline-offset-4 hover:text-[var(--site-text-primary)]">
-                  Walid AlHassan
+                  the Spectecle team
                 </Link>
-                , founder of Spectecle · Updated {project.updated}
+                {" "}· Updated {project.updated}
               </p>
             </>
           )}

@@ -136,9 +136,9 @@ export default function BlogPostClient({
             <span className="text-xs text-[var(--site-text-muted)]">
               By{" "}
               <Link href="/about" className="underline underline-offset-4 hover:text-[var(--site-text-primary)]">
-                Walid AlHassan
+                Spectecle
               </Link>
-              , founder · Updated November 2026
+              {" "}· Updated November 2026
             </span>
           </div>
 
