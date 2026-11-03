@@ -69,7 +69,7 @@ const included = [
     Icon: Search,
   },
   {
-    label: "Built to convert",
+    label: "Built to bring in leads",
     desc: "Every page has one clear next step, so visitors call, book, or ask for a quote.",
     points: [
       "Click-to-call and quote buttons throughout, not just on the contact page",

@@ -60,10 +60,8 @@ export const metadata: Metadata = {
       "Premium web design, SEO & AI automation agency serving businesses nationwide. We build websites that convert, rankings that dominate, and systems that scale.",
   },
   twitter: {
+    // No title/description here: X falls back to each page's og:title and og:description.
     card: "summary_large_image",
-    title: "Spectecle | Web Design, SEO & AI Agency",
-    description:
-      "Premium web design, SEO & AI automation agency serving businesses nationwide. We build websites that convert and scale.",
   },
   alternates: {
     canonical: BASE_URL,
@@ -91,7 +89,7 @@ const jsonLd = {
       },
       image: `${BASE_URL}/logo.png`,
       description:
-        "Spectecle is a Detroit-based web design, SEO & AI automation agency serving businesses across Michigan and the United States.",
+        "Spectecle is a web design, SEO, and AI automation studio based in Dearborn, serving Metro Detroit and clients nationwide.",
       telephone: "+13133534105",
       email: "hello@spectecle.com",
       foundingDate: "2014",
