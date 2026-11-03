@@ -32,14 +32,14 @@ const projects = [
     title: "Glam by Abeer",
     category: "Beauty Studio",
     tagline: "A bold beauty brand built for the Instagram generation.",
-    result: "+65% Bookings",
+    result: "Portfolio & Booking Site",
     image: "/screenshots/glambyabeer.png",
   },
   {
     slug: "vue-optometry",
     title: "Vue Optometry",
     category: "Healthcare / Optometry",
-    tagline: "Membership-based eye care, reimagined online.",
+    tagline: "A booking-first website for a Dearborn Heights optometry practice.",
     result: "Always Up-to-Date",
     image: "/screenshots/vueoptometry.png",
   },
@@ -62,9 +62,9 @@ const projects = [
   {
     slug: "the-stat-clinic",
     title: "The Stat Clinic",
-    category: "Sports Performance & Health",
-    tagline: "Performance-grade digital presence for a data-driven clinic.",
-    result: "+85% Appointments",
+    category: "Healthcare / Walk-in Clinic",
+    tagline: "A walk-in and telemedicine clinic, easy to book from a phone.",
+    result: "Clinic Website",
     image: "/screenshots/thestatclinic.png",
   },
   {
@@ -72,7 +72,7 @@ const projects = [
     title: "Detroit Glass & Mirror",
     category: "Home Services / Glass",
     tagline: "Detroit's premier glass shop, now impossible to miss on Google.",
-    result: "Google Map Pack",
+    result: "Local SEO",
     image: "/screenshots/detroitglassandmirror.png",
   },
   {
@@ -80,7 +80,7 @@ const projects = [
     title: "Thematek",
     category: "Technology / IT Services",
     tagline: "Cutting-edge website. Even sharper AI behind the scenes.",
-    result: "68% Automated",
+    result: "AI Intake Agent",
     image: "/screenshots/thematek.png",
   },
   {
@@ -88,7 +88,7 @@ const projects = [
     title: "Salazar Drywall Pros",
     category: "Home Services / Construction",
     tagline: "From word of mouth to page one on Google.",
-    result: "#1 Local Rankings",
+    result: "Contractor Website",
     image: "/screenshots/salazardrywallpros.png",
   },
   {
@@ -96,7 +96,7 @@ const projects = [
     title: "Indoor Garden",
     category: "Retail / E-commerce",
     tagline: "From Instagram DMs to a thriving online store.",
-    result: "+220% Organic Traffic",
+    result: "E-commerce Store",
     image: "/screenshots/indoorgarden.png",
   },
 ];

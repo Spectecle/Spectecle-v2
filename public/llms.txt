@@ -28,6 +28,7 @@
 - [The Stat Clinic](https://spectecle.com/work/the-stat-clinic): website and SEO for a Michigan walk-in and telemedicine clinic
 - [Detroit Glass & Mirror](https://spectecle.com/work/detroit-glass-mirror): website redesign for a Detroit glass company
 - [Thematek](https://spectecle.com/work/thematek): website and AI intake agent for a Detroit IT company
+- [Explore Dearborn](https://spectecle.com/work/explore-dearborn): Spectecle's own bilingual English/Arabic events app for iPhone and Android, plus its website
 
 ## Company
 

@@ -146,12 +146,15 @@ export default function CaseStudy({
             <h2 className="mt-3 text-3xl font-light text-[var(--site-text-primary)] leading-snug" style={{ fontFamily: "var(--font-serif)" }}>
               On iPhone and Android
             </h2>
-            <ul className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+            <ul className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
               {project.appScreens.map((shot) => (
                 <li key={shot.src} className="scroll-reveal">
                   <figure>
-                    <div className="mx-auto max-w-[240px] rounded-[2.2rem] border-[6px] border-[#1d1a16] bg-[#1d1a16] overflow-hidden shadow-lg">
-                      <Image src={shot.src} alt={shot.alt} width={1179} height={2556} sizes="(max-width: 768px) 45vw, 240px" className="w-full h-auto rounded-[1.7rem]" />
+                    {/* Screens vary in height, so each sits top-aligned in a fixed phone frame on the app's own background. */}
+                    <div className="mx-auto max-w-[260px] rounded-[2.2rem] border-[6px] border-[#1d1a16] bg-[#1d1a16] shadow-lg">
+                      <div className="relative aspect-[1290/2650] overflow-hidden rounded-[1.7rem] bg-[#f9f5ec]">
+                        <Image src={shot.src} alt={shot.alt} fill sizes="(max-width: 768px) 45vw, 260px" className="object-contain object-top" />
+                      </div>
                     </div>
                     <figcaption className="mt-3 text-center text-sm text-[var(--site-text-muted)]">{shot.caption}</figcaption>
                   </figure>

@@ -107,7 +107,14 @@ export const projects: ProjectData[] = [
     extraScreens: [
       { src: "/screenshots/exploredearborn-ar.png", alt: "Explore Dearborn website in Arabic", caption: "The website in Arabic, with a right-to-left layout", domain: "exploredearborn.com/ar" },
     ],
-    appScreens: [],
+    appScreens: [
+      { src: "/screenshots/explore-dearborn-app/welcome.jpg", alt: "Explore Dearborn welcome screen with sign-in options", caption: "Welcome: sign in with Apple, Google, or email, or explore as a guest" },
+      { src: "/screenshots/explore-dearborn-app/discover.jpg", alt: "Explore Dearborn Discover tab showing upcoming holidays and new events", caption: "Discover: holidays coming up and new events from local venues" },
+      { src: "/screenshots/explore-dearborn-app/explore.jpg", alt: "Explore Dearborn Explore tab with search, day, and category filters", caption: "Explore: search with day and category filters" },
+      { src: "/screenshots/explore-dearborn-app/city.jpg", alt: "Explore Dearborn City tab showing city notices and meetings", caption: "City: closures, notices, meetings, and the Mayor's walks" },
+      { src: "/screenshots/explore-dearborn-app/event-dates.jpg", alt: "Explore Dearborn event page listing every date and time", caption: "Event page: every date and time, with I'm going" },
+      { src: "/screenshots/explore-dearborn-app/event-details.jpg", alt: "Explore Dearborn event page with when, what, and where", caption: "Event page: when, what, and where, with add to calendar and directions" },
+    ],
     year: "2026",
     liveUrl: "https://exploredearborn.com",
     screenshotUrl: "/screenshots/exploredearborn.png",
