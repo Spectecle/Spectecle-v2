@@ -169,14 +169,22 @@ export default function WebDesignDearbornPage() {
               events. Building it meant learning the city&apos;s neighborhoods, venues, and calendar in detail, which
               is the same local knowledge we bring to every Dearborn website.
             </p>
-            <a
-              href="https://exploredearborn.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 text-sm text-[var(--site-text-secondary)] underline underline-offset-4 hover:text-[var(--site-text-primary)]"
-            >
-              Visit exploredearborn.com <ArrowUpRight className="w-4 h-4" />
-            </a>
+            <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+              <Link
+                href="/work/explore-dearborn"
+                className="inline-flex items-center gap-2 text-sm text-[var(--site-text-secondary)] underline underline-offset-4 hover:text-[var(--site-text-primary)]"
+              >
+                See the app and website <ArrowUpRight className="w-4 h-4" />
+              </Link>
+              <a
+                href="https://exploredearborn.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-[var(--site-text-secondary)] underline underline-offset-4 hover:text-[var(--site-text-primary)]"
+              >
+                Visit exploredearborn.com <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
           </Reveal>
         </div>
       </section>
