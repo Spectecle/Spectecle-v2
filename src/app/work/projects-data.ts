@@ -94,7 +94,7 @@ export const projects: ProjectData[] = [
       "Business promotion and event submission pages",
       "Admin dashboard",
     ],
-    about: "Explore Dearborn is a Spectecle product: an events guide for Dearborn, Michigan, in English and Arabic. It lists concerts, festivals, markets, library programs, and city events, plus the alerts residents need, like closures and election days.",
+    about: "Explore Dearborn is a Spectecle product: an events guide for Dearborn, Michigan, in English and Arabic. It lists concerts, festivals, markets, library programs, and city events, plus the alerts residents need, like closures and election days. The app is built for iPhone and Android and launches soon, and the website is live at exploredearborn.com.",
     approach: [
       { title: "Start with the city's real calendar", desc: "Events come in automatically from the city calendar and local venues, so the app is useful from the first day instead of waiting for submissions." },
       { title: "Build Arabic in, not on", desc: "Every screen works in both languages. The layout flips right-to-left in Arabic, dates and plurals follow Arabic rules, and event details are translated." },
