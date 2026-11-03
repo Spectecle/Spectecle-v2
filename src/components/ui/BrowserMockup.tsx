@@ -22,7 +22,8 @@ export function BrowserMockup({
         fill
         className="object-cover object-top"
         sizes={compact ? "(max-width: 768px) 100vw, 400px" : "(max-width: 1024px) 100vw, 1024px"}
-        priority={priority}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : undefined}
       />
     </div>
   );

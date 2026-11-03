@@ -93,7 +93,8 @@ export default function Hero() {
                 src={slide.image}
                 alt={slide.alt}
                 fill
-                priority={i === 0}
+                loading={i === 0 ? "eager" : "lazy"}
+                fetchPriority={i === 0 ? "high" : undefined}
                 sizes="100vw"
                 className="object-cover object-top"
                 style={{ filter: "brightness(.55) contrast(1.05) saturate(.85)" }}

@@ -89,7 +89,8 @@ export default function AIAutomationPage() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
-                priority
+                loading="eager"
+                fetchPriority="high"
               />
             </div>
           </div>
@@ -136,6 +137,7 @@ export default function AIAutomationPage() {
           alt="An antique copper pocket watch"
           fill
           sizes="100vw"
+          quality={60}
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />

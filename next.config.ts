@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
   images: {
+    // 60 is used for full-bleed photos under dark overlays, where the lower quality isn't visible.
+    qualities: [60, 75],
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

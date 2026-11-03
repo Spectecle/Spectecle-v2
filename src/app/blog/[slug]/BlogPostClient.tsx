@@ -175,7 +175,8 @@ export default function BlogPostClient({
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 1024px"
-                  priority
+                  loading="eager"
+                  fetchPriority="high"
                 />
               </div>
             )}
