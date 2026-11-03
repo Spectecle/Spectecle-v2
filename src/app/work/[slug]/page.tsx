@@ -57,7 +57,9 @@ export default async function CaseStudyPage({
     ...(project.about && {
       author: { "@id": `${BASE_URL}/#organization` },
       dateModified: "2026-11-02",
-      mentions: { "@type": "Organization", name: project.title, url: project.liveUrl },
+      mentions: project.ownProduct
+        ? { "@type": "MobileApplication", name: project.title, url: project.liveUrl, operatingSystem: "iOS, Android", applicationCategory: "LifestyleApplication", inLanguage: ["en", "ar"], creator: { "@id": `${BASE_URL}/#organization` } }
+        : { "@type": "Organization", name: project.title, url: project.liveUrl },
     }),
     inLanguage: "en-US",
     breadcrumb: {

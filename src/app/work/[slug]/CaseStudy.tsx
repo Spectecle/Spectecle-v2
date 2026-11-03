@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import type { ProjectData } from "../projects-data";
 import { BrowserMockup } from "@/components/ui/BrowserMockup";
+import Image from "next/image";
 
 type IconComponent = React.ComponentType<{ className?: string }>;
 
@@ -101,7 +102,7 @@ export default function CaseStudy({
             <>
               <dl className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4 text-sm">
                 {[
-                  ["Client", project.title],
+                  [project.ownProduct ? "Product" : "Client", project.title],
                   ["Location", project.location],
                   ["Platform", project.platform],
                   ["Services", project.services.join(", ")],
@@ -137,13 +138,47 @@ export default function CaseStudy({
         </div>
       </section>
 
+      {/* ── APP SCREENS (app projects) ─────────────────── */}
+      {project.appScreens && project.appScreens.length > 0 && (
+        <section className="pt-14 px-6">
+          <div className="max-w-6xl mx-auto">
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">The App</span>
+            <h2 className="mt-3 text-3xl font-light text-[var(--site-text-primary)] leading-snug" style={{ fontFamily: "var(--font-serif)" }}>
+              On iPhone and Android
+            </h2>
+            <ul className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+              {project.appScreens.map((shot) => (
+                <li key={shot.src} className="scroll-reveal">
+                  <figure>
+                    <div className="mx-auto max-w-[240px] rounded-[2.2rem] border-[6px] border-[#1d1a16] bg-[#1d1a16] overflow-hidden shadow-lg">
+                      <Image src={shot.src} alt={shot.alt} width={1179} height={2556} sizes="(max-width: 768px) 45vw, 240px" className="w-full h-auto rounded-[1.7rem]" />
+                    </div>
+                    <figcaption className="mt-3 text-center text-sm text-[var(--site-text-muted)]">{shot.caption}</figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {/* ── EXTRA WEBSITE VIEWS ──────────────────────── */}
+      {project.extraScreens?.map((shot) => (
+        <section key={shot.src} className="pt-14 px-6">
+          <div className="max-w-6xl mx-auto scroll-reveal">
+            <BrowserMockup url={shot.domain} screenshotUrl={shot.src} alt={shot.alt} />
+            <p className="mt-3 text-sm text-[var(--site-text-muted)]">{shot.caption}</p>
+          </div>
+        </section>
+      ))}
+
       {/* ── ABOUT THE CLIENT ─────────────────────────── */}
       {project.about && (
         <section className="pt-14 px-6">
           <div className="max-w-5xl mx-auto">
-            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">About the Client</span>
+            <span className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-widest">{project.ownProduct ? "About the Product" : "About the Client"}</span>
             <h2 className="mt-3 text-3xl font-light text-[var(--site-text-primary)] leading-snug" style={{ fontFamily: "var(--font-serif)" }}>
-              Who {project.title} is
+              {project.ownProduct ? `What ${project.title} is` : `Who ${project.title} is`}
             </h2>
             <p className="mt-5 max-w-[70ch] text-[var(--site-text-secondary)] leading-relaxed">{project.about}</p>
             <a

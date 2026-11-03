@@ -40,12 +40,78 @@ export type ProjectData = {
   afterLaunch?: string;
   platform?: string;
   localPage?: { href: string; label: string };
+  // App projects: phone screenshots (portrait) and extra website views, e.g. another language.
+  appScreens?: { src: string; alt: string; caption: string }[];
+  extraScreens?: { src: string; alt: string; caption: string; domain: string }[];
+  ownProduct?: boolean;
   year: string;
   liveUrl: string;
   screenshotUrl: string;
 };
 
 export const projects: ProjectData[] = [
+  {
+    slug: "explore-dearborn",
+    title: "Explore Dearborn",
+    domain: "exploredearborn.com",
+    category: "App Development",
+    industry: "Local Events / Community",
+    location: "Dearborn, Michigan",
+    tags: ["iOS & Android App", "Bilingual English/Arabic", "Website"],
+    cardDesc:
+      "A bilingual English and Arabic events app for Dearborn, built for iPhone and Android, with a matching website, designed and developed by Spectecle.",
+    cardResult: "iOS & Android App",
+    cardResultColor: "text-[#9a5423]",
+    tagline: "Everything happening in Dearborn, in one app, in English and Arabic",
+    metaTitle: "Explore Dearborn: Bilingual Events App Case Study",
+    metaDescription:
+      "How Spectecle designed and built Explore Dearborn, a bilingual English and Arabic events app for iPhone and Android, plus its website.",
+    metaKeywords: [
+      "app development dearborn",
+      "ios android app development michigan",
+      "bilingual app english arabic",
+      "react native app development detroit",
+      "Spectecle app development case study",
+    ],
+    challenge: "Events in Dearborn are spread across the city calendar, library programs, venue pages, and local Instagram accounts, and a lot of it is only in English. There was no single place to see what's happening this week, and no events guide built for the city's Arabic-speaking families.",
+    solution: "We designed and built Explore Dearborn from scratch: a mobile app for iPhone and Android that gathers Dearborn events into one feed, in English and Arabic, plus a website that introduces the app and lets businesses promote their events.",
+    features: [
+      { icon: "smartphone", label: "iPhone and Android App", desc: "One React Native codebase for both platforms, built with Expo" },
+      { icon: "message-square", label: "English and Arabic", desc: "A full Arabic version with a right-to-left layout, switchable in the app" },
+      { icon: "calendar", label: "Events in One Place", desc: "Today, this weekend, popular, and coming up, with search and category filters" },
+      { icon: "map-pin", label: "City Tab and Alerts", desc: "Civic updates like closures and election days, kept separate from fun events" },
+      { icon: "users", label: "Interested and Going", desc: "Save events, RSVP, and see who's going, with privacy controls" },
+      { icon: "refresh-cw", label: "Automatic Event Feed", desc: "Events pulled in from the city calendar and local venues, with Arabic translations" },
+      { icon: "star", label: "Featured Businesses", desc: "A sponsored slot local businesses can book through the website" },
+      { icon: "layers", label: "Admin Dashboard", desc: "Review submitted events, manage sponsors, and post city alerts" },
+    ],
+    deliverables: [
+      "iPhone and Android app (React Native, Expo)",
+      "English and Arabic interface with right-to-left layout",
+      "Backend and database (Supabase)",
+      "Automatic event import and translation",
+      "Marketing website in English and Arabic",
+      "Business promotion and event submission pages",
+      "Admin dashboard",
+    ],
+    about: "Explore Dearborn is a Spectecle product: an events guide for Dearborn, Michigan, in English and Arabic. It lists concerts, festivals, markets, library programs, and city events, plus the alerts residents need, like closures and election days.",
+    approach: [
+      { title: "Start with the city's real calendar", desc: "Events come in automatically from the city calendar and local venues, so the app is useful from the first day instead of waiting for submissions." },
+      { title: "Build Arabic in, not on", desc: "Every screen works in both languages. The layout flips right-to-left in Arabic, dates and plurals follow Arabic rules, and event details are translated." },
+      { title: "Keep civic and fun separate", desc: "City business like closures and elections lives in its own tab, so it's easy to find and doesn't crowd out weekend plans." },
+      { title: "One codebase, two platforms", desc: "The app is built once in React Native with Expo and runs on both iPhone and Android, with a website built to match." },
+    ],
+    platform: "React Native (Expo) + Supabase",
+    services: ["iOS & Android App Development", "Web Design & Development", "Bilingual (English/Arabic)"],
+    ownProduct: true,
+    extraScreens: [
+      { src: "/screenshots/exploredearborn-ar.png", alt: "Explore Dearborn website in Arabic", caption: "The website in Arabic, with a right-to-left layout", domain: "exploredearborn.com/ar" },
+    ],
+    appScreens: [],
+    year: "2026",
+    liveUrl: "https://exploredearborn.com",
+    screenshotUrl: "/screenshots/exploredearborn.png",
+  },
   {
     slug: "vue-optometry",
     title: "Vue Optometry",

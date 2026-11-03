@@ -44,12 +44,12 @@ const projects = [
     image: "/screenshots/vueoptometry.png",
   },
   {
-    slug: "mi-family-lawyer",
-    title: "MI Family Lawyer",
-    category: "Legal / Family Law",
-    tagline: "Authority-first web presence for a Michigan family law attorney.",
-    result: "Custom Law Firm Site",
-    image: "/screenshots/mifamilylawyer.png",
+    slug: "explore-dearborn",
+    title: "Explore Dearborn",
+    category: "App Development",
+    tagline: "A bilingual events app for Dearborn, on iPhone and Android.",
+    result: "iOS & Android App",
+    image: "/screenshots/exploredearborn.png",
   },
   {
     slug: "dearborn-cleaners",
