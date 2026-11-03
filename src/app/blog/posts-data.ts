@@ -24,6 +24,176 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "choose-web-designer-detroit",
+    image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80",
+    title: "How to Choose a Web Designer in Metro Detroit: Questions to Ask",
+    excerpt:
+      "The questions to ask a Detroit web designer before you hire, what good answers sound like, and the red flags that cost small businesses time and money.",
+    category: "Web Design",
+    categoryColor: "text-[#9a5423]",
+    readTime: "6 min read",
+    publishedAt: "November 2, 2026",
+    metaTitle: "How to Choose a Web Designer in Metro Detroit",
+    metaDescription:
+      "The questions to ask a Detroit web designer before you hire, what good answers sound like, and the red flags that cost small businesses time and money.",
+    metaKeywords: [
+      "how to choose a web designer",
+      "web design agency detroit",
+      "website agency detroit",
+      "questions to ask a web designer",
+      "hire web designer detroit",
+    ],
+    content: [
+      {
+        type: "p",
+        text: "Metro Detroit has no shortage of web designers: solo freelancers, small studios, national agencies with a Detroit page, and website builders that promise a site in an afternoon. They can all show you a nice homepage. What separates them is what happens before and after launch: whether the site brings in calls, whether it shows up in Google, and whether you can get help when something breaks. These are the questions that reveal the difference, and what good answers sound like.",
+      },
+      {
+        type: "h2",
+        text: "What Does a Web Designer Actually Do?",
+      },
+      {
+        type: "p",
+        text: "A web designer plans, designs, and usually builds your website. Depending on who you hire, that can also include writing the content, setting up search basics, connecting booking or payment tools, and looking after the site once it's live. Before you compare quotes, find out which of those are included, because two proposals with the same title can cover very different work.",
+      },
+      {
+        type: "h2",
+        text: "Questions to Ask Before You Hire",
+      },
+      {
+        type: "h3",
+        text: "Can I see sites you've built for businesses like mine?",
+      },
+      {
+        type: "p",
+        text: "Look past screenshots. Open the live sites on your phone, try to find the phone number, and see how fast they load. Ask which ones are still clients. A designer whose old sites are still running well, and still updated, is one who builds for the long term.",
+      },
+      {
+        type: "h3",
+        text: "Who will actually do the work?",
+      },
+      {
+        type: "p",
+        text: "Some agencies sell the project and pass it to a junior designer or an outside team. That isn't always bad, but you should know who you'll be talking to and who will fix things later.",
+      },
+      {
+        type: "h3",
+        text: "How will the site help me get found on Google?",
+      },
+      {
+        type: "p",
+        text: "A good answer is specific: page titles and descriptions for each service, a clear page structure, fast load times, a sitemap, and Google Search Console and Analytics set up at launch so you can see how people find you. A vague \"it's SEO-friendly\" isn't an answer.",
+      },
+      {
+        type: "h3",
+        text: "What happens to my current rankings if you replace my site?",
+      },
+      {
+        type: "p",
+        text: "If your current site gets any search traffic, the new one needs to keep those page addresses or redirect them properly. Designers who skip this step can wipe out years of rankings overnight. Ask how they handle it.",
+      },
+      {
+        type: "h3",
+        text: "Who owns the website, the domain, and the content?",
+      },
+      {
+        type: "p",
+        text: "You should be able to get your domain, your content, and a copy of your site if you ever leave. Get the answer in writing, and make sure the domain is registered in your name, not the designer's.",
+      },
+      {
+        type: "h3",
+        text: "What platform will you build on, and can I make edits myself?",
+      },
+      {
+        type: "p",
+        text: "There's no single right platform. What matters is that the choice fits your business and that you know what you can change yourself. Ask what everyday edits like hours, photos, or a new service will look like after launch.",
+      },
+      {
+        type: "h3",
+        text: "What's included after launch?",
+      },
+      {
+        type: "p",
+        text: "Websites need updates, backups, and security checks. Ask what's included, how you request changes, and how quickly they're usually handled. A shared place to track requests and see what was done beats a long email thread.",
+      },
+      {
+        type: "h3",
+        text: "How do you price the project, and what's not included?",
+      },
+      {
+        type: "p",
+        text: "You should get a written, itemized scope before work starts: the pages, features, and connections included, the timeline, and what costs extra. Be wary of a single number with no breakdown.",
+      },
+      {
+        type: "h2",
+        text: "Red Flags",
+      },
+      {
+        type: "ul",
+        items: [
+          "They can't show live sites, only mockups or screenshots.",
+          "The domain or hosting would be in their name, not yours.",
+          "No plan for redirects when replacing a site that already ranks.",
+          "\"Guaranteed number one on Google.\" Nobody can promise that.",
+          "A quote with no written scope, or pressure to sign on the first call.",
+          "Silence about what happens after launch.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Freelancer, Studio, or Big Agency?",
+      },
+      {
+        type: "ul",
+        items: [
+          "Freelancers can be affordable and personal, but one person can be a single point of failure if they get busy or move on.",
+          "Small studios usually give you the people doing the work directly, with more than one skill set under one roof.",
+          "Large agencies have more resources and process, but you may deal mostly with account managers, and smaller projects can get less attention.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Whichever you choose, the questions above apply.",
+      },
+      {
+        type: "h2",
+        text: "How We Answer These at Spectecle",
+      },
+      {
+        type: "p",
+        text: "We're a small studio based in Dearborn, and the same team designs, builds, and handles the SEO, so search basics are part of every site from the start. Google Search Console and Analytics are set up at launch, old pages are redirected so rankings carry over, and after launch, requests and reports live in The Loop, our client portal. We send a written, itemized scope before any work starts.",
+      },
+      {
+        type: "h2",
+        text: "Choosing a Web Designer: Questions",
+      },
+      {
+        type: "h3",
+        text: "How long should a small business website take?",
+      },
+      {
+        type: "p",
+        text: "Most custom websites take a few weeks from kickoff to launch. The biggest factor is usually how quickly content and feedback come back, followed by any booking, payment, or CRM connections the site needs.",
+      },
+      {
+        type: "h3",
+        text: "Should I hire a local web designer?",
+      },
+      {
+        type: "p",
+        text: "You don't have to, but it helps. A local designer knows your market and the searches your customers use, and can meet when it matters.",
+      },
+      {
+        type: "h3",
+        text: "Do I need SEO if I'm getting a new website?",
+      },
+      {
+        type: "p",
+        text: "The basics should be built into the website itself. Ongoing SEO, like your Google Business Profile, reviews, and new content, is separate and worth it if your customers find businesses like yours on Google.",
+      },
+    ],
+  },
+  {
     slug: "bilingual-websites-dearborn",
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
     title: "Bilingual Websites for Dearborn Businesses: English and Arabic Done Right",

@@ -78,6 +78,10 @@ function renderBlock(block: ContentBlock, i: number) {
 }
 
 const SERVICE_LINKS: Record<string, { title: string; href: string; desc: string }[]> = {
+  "choose-web-designer-detroit": [
+    { title: "Web Design Detroit", href: "/services/web-design-detroit", desc: "Custom, fast-loading websites for Metro Detroit businesses, with a written scope before work starts and search basics built in." },
+    { title: "Web Design in Dearborn", href: "/services/web-design-dearborn", desc: "Custom websites for Dearborn and Dearborn Heights businesses, with local SEO built in." },
+  ],
   "bilingual-websites-dearborn": [
     { title: "Web Design in Dearborn", href: "/services/web-design-dearborn", desc: "Custom websites for Dearborn and Dearborn Heights businesses, in English, Arabic, or both, with local SEO built in." },
     { title: "Web Design Detroit", href: "/services/web-design-detroit", desc: "Custom, fast-loading websites for Metro Detroit businesses, designed to turn visitors into calls." },

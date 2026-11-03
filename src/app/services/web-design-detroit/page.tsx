@@ -498,6 +498,7 @@ export default function WebDesignDetroitPage() {
           { href: "/work/the-stat-clinic", title: "The Stat Clinic: clinic website and SEO", kind: "Case study" },
           { href: "/work/salazar-drywall-pros", title: "Salazar Drywall Pros: contractor website and ongoing care", kind: "Case study" },
           { href: "/services/seo-agency-detroit", title: "SEO in Detroit: local search, technical fixes, and monthly reporting", kind: "Service" },
+          { href: "/blog/choose-web-designer-detroit", title: "How to Choose a Web Designer in Metro Detroit: Questions to Ask", kind: "Guide" },
           { href: "/blog/local-seo-detroit-guide", title: "Local SEO in Detroit: A Practical Guide for Small Businesses", kind: "Guide" },
           { href: "/blog/contractor-website-design-michigan", title: "Local SEO for Michigan Contractors: How to Rank #1 for Your Trade", kind: "Guide" },
           { href: "/blog/ecommerce-website-design-michigan", title: "E-commerce Website Design: How Michigan Shops Are Moving Beyond Instagram Sales", kind: "Guide" },
