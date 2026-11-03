@@ -13,6 +13,7 @@ import { reportPhoneConversion } from "@/lib/report-phone-conversion";
 const DARK_HERO_ROUTES = ["/", "/hello"];
 
 const navLinks = [
+  { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Our Work", href: "/work" },
   { label: "About", href: "/about" },
@@ -26,7 +27,7 @@ export default function Navbar() {
 
   // /hello is a standalone campaign landing page, not part of the normal
   // click-the-logo-to-go-home flow, so it gets an explicit Home link.
-  const links = pathname === "/hello" ? [{ label: "Home", href: "/" }, ...navLinks] : navLinks;
+  const links = navLinks;
 
   // "/" and "/hello" open on the dark photo hero, so the transparent,
   // pre-scroll navbar needs the hero's light text instead of the site's
@@ -71,13 +72,13 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 data-cursor
-                className={`group relative text-[13px] font-semibold uppercase tracking-[0.14em] transition-opacity cursor-pointer pb-1 ${
+                className={`group relative whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.14em] transition-opacity cursor-pointer pb-1 ${
                   pathname === link.href ? "opacity-100" : "opacity-65 hover:opacity-100"
                 }`}
                 style={{ color: overDarkHero ? HERO_TEXT : "var(--site-text-primary)" }}
@@ -94,7 +95,7 @@ export default function Navbar() {
           {/* Phone + portal + desktop CTA + mobile menu button */}
           <div className="flex items-center gap-4">
             <div
-              className="hidden lg:flex items-center gap-4 pr-4 mr-1 border-r"
+              className="hidden xl:flex items-center gap-4 pr-4 mr-1 border-r"
               style={{ borderColor: overDarkHero ? HERO_BORDER : "var(--site-border)" }}
             >
               <a
@@ -104,7 +105,7 @@ export default function Navbar() {
                   trackEvent("phone_click", { page_path: pathname });
                   reportPhoneConversion(e, "tel:+13133534105");
                 }}
-                className="flex items-center gap-1.5 text-sm transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 whitespace-nowrap text-sm transition-colors cursor-pointer"
                 style={{ color: overDarkHero ? HERO_TEXT_MUTED : "var(--site-text-secondary)" }}
               >
                 <Phone className="w-3.5 h-3.5" />
@@ -114,7 +115,7 @@ export default function Navbar() {
             <Link
               href="/portal"
               data-cursor
-              className="hidden md:inline-flex items-center gap-1.5 text-sm font-normal transition-colors cursor-pointer"
+              className="hidden xl:inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-normal transition-colors cursor-pointer"
               style={{ color: overDarkHero ? HERO_TEXT_MUTED : "var(--site-text-secondary)" }}
             >
               <User className="w-3.5 h-3.5" />
@@ -123,14 +124,14 @@ export default function Navbar() {
             <Link
               href="/contact"
               data-cursor
-              className="hidden md:inline-flex items-center gap-2 text-sm font-normal border rounded-full px-6 py-3 cursor-pointer transition-colors duration-300 hover:border-[var(--site-copper-soft)] hover:bg-[var(--site-copper)] hover:text-[#f7f2e9]"
+              className="hidden lg:inline-flex items-center gap-2 whitespace-nowrap text-sm font-normal border rounded-full px-6 py-3 cursor-pointer transition-colors duration-300 hover:border-[var(--site-copper-soft)] hover:bg-[var(--site-copper)] hover:text-[#f7f2e9]"
               style={{ borderColor: overDarkHero ? HERO_BORDER : "var(--site-border)", color: overDarkHero ? HERO_TEXT : "var(--site-text-primary)" }}
             >
               Start a project
             </Link>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="has-tip tip-below md:hidden p-2.5 transition-colors cursor-pointer"
+              className="has-tip tip-below lg:hidden p-2.5 transition-colors cursor-pointer"
               style={{ color: overDarkHero ? HERO_TEXT : "var(--site-text-secondary)" }}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
