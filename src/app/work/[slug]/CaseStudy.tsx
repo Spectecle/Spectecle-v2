@@ -1,7 +1,5 @@
-"use client";
-
+// Server component: no client JS beyond the shared layout. Scroll reveals are CSS-only (.scroll-reveal).
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -68,29 +66,11 @@ const ICON_MAP: Record<string, IconComponent> = {
   link: Link2,
 };
 
-function Reveal({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.3, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+function Reveal({ children, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  return <div className={`scroll-reveal ${className}`}>{children}</div>;
 }
 
-export default function CaseStudyClient({
+export default function CaseStudy({
   project,
   nextProject,
 }: {
@@ -110,13 +90,12 @@ export default function CaseStudyClient({
           <p className="text-xs font-semibold text-[var(--site-text-muted)] uppercase tracking-[0.25em]">
             {project.category} · {project.industry}
           </p>
-          <motion.h1
-            initial={false}
+          <h1
             className="rise-in mt-4 text-5xl md:text-6xl xl:text-7xl font-light text-[var(--site-text-primary)] leading-[1.1]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             {project.title}
-          </motion.h1>
+          </h1>
           <p className="mt-4 text-[#9a5423] font-normal text-lg">{project.tagline}</p>
           {project.about && (
             <>
@@ -250,20 +229,14 @@ export default function CaseStudyClient({
           </Reveal>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
-            {project.features.map((f, i) => {
+            {project.features.map((f) => {
               const Icon = ICON_MAP[f.icon] ?? Layers;
               return (
-                <motion.div
-                  key={f.label}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 + 0.1, duration: 0.3, ease: "easeOut" }}
-                >
+                <div key={f.label} className="scroll-reveal">
                   <Icon className="w-5 h-5 text-[#9a5423] mb-3" />
                   <p className="text-[var(--site-text-primary)] font-semibold text-sm mb-1">{f.label}</p>
                   <p className="text-[var(--site-text-muted)] text-xs leading-relaxed">{f.desc}</p>
-                </motion.div>
+                </div>
               );
             })}
           </div>

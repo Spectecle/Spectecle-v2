@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { projects } from "../projects-data";
-import CaseStudyClient from "./CaseStudyClient";
+import CaseStudy from "./CaseStudy";
 
 const BASE_URL = "https://spectecle.com";
 
@@ -76,7 +76,7 @@ export default async function CaseStudyPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <CaseStudyClient project={project} nextProject={nextProject} />
+      <CaseStudy project={project} nextProject={nextProject} />
     </>
   );
 }
