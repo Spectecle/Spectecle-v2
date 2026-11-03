@@ -24,6 +24,161 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "bilingual-websites-dearborn",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+    title: "Bilingual Websites for Dearborn Businesses: English and Arabic Done Right",
+    excerpt:
+      "How Dearborn businesses can build an English and Arabic website that reads naturally, works right-to-left, and shows up in Google in both languages.",
+    category: "Web Design",
+    categoryColor: "text-[#9a5423]",
+    readTime: "5 min read",
+    publishedAt: "November 2, 2026",
+    metaTitle: "Bilingual Websites in Dearborn: English and Arabic",
+    metaDescription:
+      "How Dearborn businesses can build an English and Arabic website that reads naturally, works right-to-left, and shows up in Google in both languages.",
+    metaKeywords: [
+      "bilingual website dearborn",
+      "arabic website design",
+      "english arabic website",
+      "arabic web design michigan",
+      "web design dearborn",
+    ],
+    content: [
+      {
+        type: "p",
+        text: "Dearborn has one of the largest Arab American communities in the country, and many of the customers walking into its shops, clinics, and offices are more comfortable reading Arabic than English. A website in both languages tells those customers they're welcome before they ever call. Done badly, though, it can look broken, confuse Google, and do more harm than an English-only site. This guide covers how to do it right, based on what we learned building Explore Dearborn, our own bilingual events guide for the city.",
+      },
+      {
+        type: "h2",
+        text: "What Is a Bilingual Website?",
+      },
+      {
+        type: "p",
+        text: "A bilingual website offers the same content in two languages, with an easy way to switch between them. A good one is more than a translation pasted onto the same pages. Each language gets its own pages, its own layout direction, and its own search listing, so an Arabic speaker and an English speaker both get a site that feels like it was made for them.",
+      },
+      {
+        type: "h2",
+        text: "Why It Matters for Dearborn Businesses",
+      },
+      {
+        type: "ul",
+        items: [
+          "Customers decide faster in their first language. Prices, services, insurance, and directions are where misunderstandings cost you a customer.",
+          "Families share links. A son or daughter finds you in English and sends the Arabic page to a parent.",
+          "Few local competitors do it well. Many Dearborn sites either skip Arabic or bolt on an automatic translation widget, so a well-built Arabic version stands out.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "How We Built Explore Dearborn in Two Languages",
+      },
+      {
+        type: "p",
+        text: "Explore Dearborn (exploredearborn.com) lists events around the city in English and Arabic. These are the decisions that made it work:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Separate pages for each language. English lives at the main address, and Arabic lives under /ar/. Each language version has its own address that people can share and Google can list.",
+          "Real right-to-left layout. Arabic pages are marked as Arabic and right-to-left, so the whole layout flips: menus, text alignment, icons, and reading order.",
+          "An Arabic font that's actually designed for Arabic. The Arabic pages load a typeface made for Arabic script, and only on Arabic pages, so English pages stay fast.",
+          "Mixed text handled on purpose. The English brand name, email addresses, and web links stay left-to-right inside Arabic sentences, so they don't come out scrambled.",
+          "A language switch on every page that goes to the same page in the other language, not back to the homepage.",
+          "Search engines told how the two versions relate. Each page points to its other-language twin, so Google shows the Arabic page to Arabic searchers and the English page to everyone else.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The Most Common Mistakes",
+      },
+      {
+        type: "ul",
+        items: [
+          "Automatic translation widgets. They produce awkward or wrong Arabic, and the translated text usually isn't something Google can list as its own page.",
+          "Arabic text on an English layout. Right-aligned paragraphs inside a left-to-right page look broken, especially on phones.",
+          "Phone numbers, prices, and dates that flip. Numbers and mixed English-Arabic lines need to be set up deliberately, or they display in the wrong order.",
+          "Only translating the homepage. Customers click through to services and contact pages. If those switch back to English, the effort is lost.",
+          "One language's pages hidden from Google. If the Arabic pages share an address with the English ones or aren't linked properly, they never show up in search.",
+          "Forms that don't work in Arabic. Labels, error messages, and confirmation emails all need translating, and email fields should stay left-to-right.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "What to Translate First",
+      },
+      {
+        type: "p",
+        text: "You don't need every page on day one. Start where a misunderstanding costs the most:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Your homepage and main service pages.",
+          "Contact details, hours, location, and directions.",
+          "Anything about prices, insurance, payment, or booking.",
+          "Your contact or booking form, including its error and thank-you messages.",
+          "Frequently asked questions.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Blog posts and older news can follow later.",
+      },
+      {
+        type: "h2",
+        text: "Getting the Arabic Right",
+      },
+      {
+        type: "p",
+        text: "Have the Arabic written or reviewed by a fluent speaker who knows your industry. Many Dearborn customers read Modern Standard Arabic but speak a regional dialect, so keep the wording clear and professional rather than overly formal. Keep brand names, product names, and anything a customer might search for in English as they are, and keep the tone the same as your English pages. The Arabic version should sound like the same business, not a different one.",
+      },
+      {
+        type: "h2",
+        text: "How Bilingual Pages Show Up in Google",
+      },
+      {
+        type: "p",
+        text: "When each language has its own page and the pages point to each other, Google can match the right version to the right searcher. An Arabic search for a service in Dearborn can bring up your Arabic page, while English searchers see the English one. Mention in your Google Business Profile description that you serve customers in Arabic, too.",
+      },
+      {
+        type: "h2",
+        text: "Bilingual Website Questions",
+      },
+      {
+        type: "h3",
+        text: "Should Arabic be on a separate website?",
+      },
+      {
+        type: "p",
+        text: "Usually not. Keeping both languages on one website, with Arabic under its own section like /ar/, is simpler to manage and builds up a single site's reputation in Google instead of splitting it in two.",
+      },
+      {
+        type: "h3",
+        text: "Can I add Arabic to my existing website?",
+      },
+      {
+        type: "p",
+        text: "Often, yes. Most modern websites can add a second language. How much work it takes depends on whether the site's design can flip to right-to-left cleanly and how many pages you want translated.",
+      },
+      {
+        type: "h3",
+        text: "Is automatic translation good enough?",
+      },
+      {
+        type: "p",
+        text: "It's fine for a rough idea, but not for the pages customers act on. A fluent writer catches meaning, tone, and industry terms that automatic tools get wrong, and the result is pages Google can actually list.",
+      },
+      {
+        type: "h3",
+        text: "Does a bilingual site cost twice as much?",
+      },
+      {
+        type: "p",
+        text: "No. The design and build are shared, and the extra work is the translation, the right-to-left layout, and the language setup. We scope it after a free discovery call, like any project.",
+      },
+    ],
+  },
+  {
     slug: "local-seo-detroit-guide",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
     title: "Local SEO in Detroit: A Practical Guide for Small Businesses",

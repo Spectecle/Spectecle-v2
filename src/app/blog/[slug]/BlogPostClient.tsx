@@ -78,6 +78,10 @@ function renderBlock(block: ContentBlock, i: number) {
 }
 
 const SERVICE_LINKS: Record<string, { title: string; href: string; desc: string }[]> = {
+  "bilingual-websites-dearborn": [
+    { title: "Web Design in Dearborn", href: "/services/web-design-dearborn", desc: "Custom websites for Dearborn and Dearborn Heights businesses, in English, Arabic, or both, with local SEO built in." },
+    { title: "Web Design Detroit", href: "/services/web-design-detroit", desc: "Custom, fast-loading websites for Metro Detroit businesses, designed to turn visitors into calls." },
+  ],
   "local-seo-detroit-guide": [
     { title: "SEO Agency Detroit", href: "/services/seo-agency-detroit", desc: "Local and technical SEO for Metro Detroit businesses: Google Business Profile, reviews, citations, and service pages, with monthly reporting." },
     { title: "Web Design in Dearborn", href: "/services/web-design-dearborn", desc: "Custom, fast-loading websites for Dearborn and Dearborn Heights businesses, with local SEO built in." },

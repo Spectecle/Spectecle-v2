@@ -227,6 +227,7 @@ export default function WebDesignDearbornPage() {
         items={[
           { href: "/work/vue-optometry", title: "Vue Optometry: website care for an optometry practice", kind: "Case study" },
           { href: "/work/glam-by-abeer", title: "Glam by Abeer: portfolio website and local SEO", kind: "Case study" },
+          { href: "/blog/bilingual-websites-dearborn", title: "Bilingual Websites for Dearborn Businesses: English and Arabic Done Right", kind: "Guide" },
           { href: "/services/web-design-detroit", title: "Web design in Detroit", kind: "Service" },
           { href: "/services/seo-agency-detroit", title: "Local SEO for Metro Detroit businesses", kind: "Service" },
         ]}

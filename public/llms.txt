@@ -35,3 +35,4 @@
 - [Contact](https://spectecle.com/contact)
 - [Blog](https://spectecle.com/blog): guides on web design, local SEO, and AI automation for Michigan businesses
 - [Local SEO in Detroit](https://spectecle.com/blog/local-seo-detroit-guide): a practical guide for small businesses
+- [Bilingual Websites for Dearborn Businesses](https://spectecle.com/blog/bilingual-websites-dearborn): building English and Arabic websites that work
